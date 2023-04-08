@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+    title: Twitter OpenAPI
+    description: |-
+        Twitter OpenAPI
+    termsOfService: https://github.com/fa0311
+    contact:
+        email: yuki@yuki0311.com
+    license:
+        name: other
+        url: https://github.com/fa0311/twitter-openapi/LICENSE
+    version: 0.0.1
+servers:
+    - url: https://twitter.com/i/api/graphql
+paths:
+    /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
+        get:
+            description: get timeline
+            requestBody:
+                description: Update an existent pet in the store
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/HomeTimelineData"
+                required: true
+            responses:
+                "200":
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/HomeTimelineData"
+
+    /FaBzCqZXuQCb4PhB0RHqHw/Following:
+        get:
+            description: get following user list
+            requestBody:
+                description: Update an existent pet in the store
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/HomeTimelineData"
+                required: true
+            responses:
+                "200":
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/HomeTimelineData"
+
+    /VptSi88PiaQhBevFbGVlGg/Followers:
+        get:
+            description: get followers user list
+            requestBody:
+                description: Update an existent pet in the store
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/HomeTimelineData"
+                required: true
+            responses:
+                "200":
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/HomeTimelineData"
+
+components:
+    schemas:
+        HomeTimelineResponse:
+            properties:
+                data:
+                    $ref: "#/components/schemas/HomeTimelineData"
+
+        HomeTimelineData:
+            properties:
+                home:
+                    $ref: "#/components/schemas/HomeTimelineHome"
+
+        HomeTimelineHome:
+            properties:
+                home_timeline_urt:
+                    $ref: "#/components/schemas/HomeTimelineUrt"
+
+        HomeTimelineUrt:
+            properties:
+                instructions:
+                    type: "array"
+                    items:
+                        oneOf:
+                            - $ref: "#/components/schemas/TimelineAddEntries"
+                        discriminator:
+                            propertyName: type
+                            mapping":
+                                TimelineAddEntries: "#components/schemas/TimelineAddEntries"
+
+        InstructionType:
+            type: string
+            enum: [TimelineAddEntries, TimelineTerminateTimeline]
+
+        TimelineAddEntries:
+            properties:
+                type:
+                    $ref: "#/components/schemas/InstructionType"
+                entries:
+                    type: "string" #todo
