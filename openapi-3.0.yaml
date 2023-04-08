@@ -12,35 +12,45 @@ info:
     version: 0.0.1
 servers:
     - url: https://twitter.com/i/api/graphql
+
 paths:
     /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
         get:
-            description: get timeline
-            requestBody:
-                description: Update an existent pet in the store
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/HomeTimelineData"
-                required: true
+            operationId: getHomeTimeline
+            description: get tweet list of timeline
+            parameters:
+                - $ref: "#/components/parameters/Variables"
+                - $ref: "#/components/parameters/Features"
+                - in: query
+                  name: queryId
+                  required: true
+                  schema:
+                      type: string
+                      default: "BntFPEOxs3GYdPaS6CjUcg"
+
             responses:
                 "200":
                     description: Successful operation
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/HomeTimelineData"
+                                $ref: "#/components/schemas/HomeTimelineResponse"
 
     /FaBzCqZXuQCb4PhB0RHqHw/Following:
         get:
-            description: get following user list
-            requestBody:
-                description: Update an existent pet in the store
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/HomeTimelineData"
-                required: true
+            operationId: getFollowing
+            description: get user list of following
+
+            parameters:
+                - $ref: "#/components/parameters/Variables"
+                - $ref: "#/components/parameters/Features"
+                - in: query
+                  name: queryId
+                  required: true
+                  schema:
+                      type: string
+                      default: "FaBzCqZXuQCb4PhB0RHqHw"
+
             responses:
                 "200":
                     description: Successful operation
@@ -51,14 +61,19 @@ paths:
 
     /VptSi88PiaQhBevFbGVlGg/Followers:
         get:
-            description: get followers user list
-            requestBody:
-                description: Update an existent pet in the store
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/HomeTimelineData"
-                required: true
+            operationId: getFollowers
+            description: get user list of followers
+
+            parameters:
+                - $ref: "#/components/parameters/Variables"
+                - $ref: "#/components/parameters/Features"
+                - in: query
+                  name: queryId
+                  required: true
+                  schema:
+                      type: string
+                      default: "VptSi88PiaQhBevFbGVlGg"
+
             responses:
                 "200":
                     description: Successful operation
@@ -69,40 +84,179 @@ paths:
 
 components:
     schemas:
+        TypeName:
+            type: string
+            enum: [TimelineTweet, TimelineTimelineItem, TimelineTimelineCursor]
+
+        InstructionType:
+            type: string
+            enum: [TimelineAddEntries]
+
+        ContentEntryType:
+            type: string
+            enum: [TimelineTimelineItem, TimelineTimelineCursor]
+
+        ContentItemType:
+            type: string
+            enum: [TimelineTweet]
+
+        TestObject:
+            type: object
+
         HomeTimelineResponse:
+            required:
+                - "data"
             properties:
                 data:
                     $ref: "#/components/schemas/HomeTimelineData"
 
         HomeTimelineData:
+            required:
+                - "home"
             properties:
                 home:
                     $ref: "#/components/schemas/HomeTimelineHome"
 
         HomeTimelineHome:
+            required:
+                - "home_timeline_urt"
             properties:
                 home_timeline_urt:
                     $ref: "#/components/schemas/HomeTimelineUrt"
 
         HomeTimelineUrt:
+            required:
+                - "instructions"
+                - "metadata"
+                - "responseObjects"
             properties:
                 instructions:
-                    type: "array"
+                    type: array
                     items:
-                        oneOf:
-                            - $ref: "#/components/schemas/TimelineAddEntries"
-                        discriminator:
-                            propertyName: type
-                            mapping":
-                                TimelineAddEntries: "#components/schemas/TimelineAddEntries"
+                        $ref: "#/components/schemas/InstructionUnion"
+                metadata:
+                    type: object # todo
+                responseObjects:
+                    type: object # todo
 
-        InstructionType:
-            type: string
-            enum: [TimelineAddEntries, TimelineTerminateTimeline]
+        InstructionUnion:
+            oneOf:
+                - $ref: "#/components/schemas/TimelineAddEntries"
+            discriminator:
+                propertyName: type
+                mapping": # deprecated
+                    TimelineAddEntries: "#components/schemas/TimelineAddEntries"
 
         TimelineAddEntries:
             properties:
                 type:
                     $ref: "#/components/schemas/InstructionType"
                 entries:
-                    type: "string" #todo
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/Entry"
+
+        Entry:
+            required:
+                - "content"
+                - "entryId"
+                - "sortIndex"
+            properties:
+                content:
+                    $ref: "#/components/schemas/ContentUnion"
+                entryId:
+                    type: string
+                    pattern: '^[a-z\-]+[0-9]+$'
+                sortIndex:
+                    type: string
+                    pattern: "[0-9]+$"
+
+        ContentUnion:
+            oneOf:
+                - $ref: "#/components/schemas/TimelineTimelineItem"
+                - $ref: "#/components/schemas/TimelineTimelineCursor"
+            discriminator:
+                propertyName: entryType
+                mapping": # deprecated
+                    TimelineTimelineItem: "#components/schemas/TimelineTimelineItem"
+                    TimelineTimelineCursor: "#/components/schemas/TimelineTimelineCursor"
+
+        TimelineTimelineItem:
+            required:
+                - "entryType"
+                - "itemContent"
+                - "__typename"
+            properties:
+                __typename:
+                    $ref: "#/components/schemas/TypeName"
+                entryType:
+                    $ref: "#/components/schemas/ContentEntryType"
+                itemContent:
+                    $ref: "#/components/schemas/ItemContent"
+                clientEventInfo:
+                    type: object # todo
+                feedbackInfo:
+                    type: object # todo
+
+        TimelineTimelineCursor:
+            properties:
+                __typename:
+                    $ref: "#/components/schemas/TypeName"
+                entryType:
+                    $ref: "#/components/schemas/ContentEntryType"
+                cursorType:
+                    type: string
+                    enum: [Top, Bottom]
+                value:
+                    type: string
+
+        ItemContent:
+            required:
+                - "__typename"
+                - "itemType"
+            properties:
+                __typename:
+                    $ref: "#/components/schemas/TypeName"
+                itemType:
+                    $ref: "#/components/schemas/ContentItemType"
+                tweetDisplayType:
+                    type: string # union
+                tweet_results:
+                    type: object # todo
+
+    # === parameters ===
+
+    parameters:
+        Variables:
+            name: variables
+            in: query
+            required: true
+            schema:
+                type: string
+
+        Features:
+            name: features
+            in: query
+            required: true
+            schema:
+                type: string
+
+        # https://github.com/OpenAPITools/openapi-generator/issues/13584
+        # It doesn't seem to work with dart lang.
+
+        VariablesV3:
+            name: variables
+            in: query
+            required: true
+            content:
+                application/json:
+                    schema:
+                        type: object
+        FeaturesV3:
+            name: features
+            in: query
+            required: true
+            content:
+                application/json:
+                    schema:
+                        type: object
