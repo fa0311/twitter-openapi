@@ -6,6 +6,7 @@ TypeName:
       TimelineTimelineItem,
       TimelineTimelineCursor,
       TweetWithVisibilityResults,
+      TimelineTimelineModule,
       Tweet,
       User,
     ]

@@ -60,7 +60,6 @@ TweetLegacy:
     required:
         - "bookmark_count"
         - "bookmarked"
-        - "created_at"
         - "conversation_id_str"
         - "display_text_range"
         - "entities"

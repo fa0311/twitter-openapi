@@ -64,11 +64,8 @@ UserLegacy:
     - "blocking"
     - "can_dm"
     - "can_media_tag"
-    - "created_at"
     - "default_profile"
     - "default_profile_image"
-    - "description"
-    - "fast_followers_count"
     - "favourites_count"
     - "follow_request_sent"
     - "followed_by"
@@ -103,14 +100,18 @@ UserLegacy:
       default: false
     can_dm:
       type: boolean
+      default: false
     can_media_tag:
       type: boolean
+      default: false
     created_at:
       type: string # Wed Jul 08 14:05:58 +0000 2009
     default_profile:
       type: boolean
+      default: false
     default_profile_image:
       type: boolean
+      default: false
     description:
       type: string
     entities:
@@ -134,8 +135,10 @@ UserLegacy:
       type: integer
     has_custom_timelines:
       type: boolean
+      default: false
     is_translator:
       type: boolean
+      default: false
     listed_count:
       type: integer
     location:
@@ -158,6 +161,7 @@ UserLegacy:
         type: string
     possibly_sensitive:
       type: boolean
+      default: false
     profile_banner_extensions:
       type: object
     profile_banner_url:
@@ -183,3 +187,4 @@ UserLegacy:
       type: boolean
     want_retweets:
       type: boolean
+      default: false

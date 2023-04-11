@@ -8,13 +8,7 @@ InstructionUnion:
 
 InstructionType:
   type: string
-  enum:
-    [
-      TimelineAddEntries,
-      TimelineAddToModule,
-      TimelineTerminateTimeline,
-      TimelineShowAlert,
-    ]
+  enum: [TimelineAddEntries]
 
 TimelineAddEntries:
   required:

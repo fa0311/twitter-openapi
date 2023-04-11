@@ -2,15 +2,17 @@ ContentUnion:
   oneOf:
     - $ref: "#/TimelineTimelineItem"
     - $ref: "#/TimelineTimelineCursor"
+    - $ref: "#/TimelineTimelineModule"
   discriminator:
     propertyName: entryType
     mapping": # deprecated
       TimelineTimelineItem: "#/TimelineTimelineItem"
       TimelineTimelineCursor: "#/TimelineTimelineCursor"
+      TimelineTimelineModule: "#/TimelineTimelineModule"
 
 ContentEntryType:
   type: string
-  enum: [TimelineTimelineItem, TimelineTimelineCursor]
+  enum: [TimelineTimelineItem, TimelineTimelineCursor, TimelineTimelineModule]
 
 TimelineTimelineItem:
   required:
@@ -47,3 +49,15 @@ TimelineTimelineCursor:
       enum: [Top, Bottom]
     value:
       type: string
+
+TimelineTimelineModule:
+  required:
+    - "__typename"
+    - "entryType"
+  properties:
+    __typename:
+      $ref: "./TypeName.yaml#/TypeName" # TimelineTimelineModule
+
+    entryType:
+      type: string # enum
+      $ref: "#/ContentEntryType" # TimelineTimelineCursor
