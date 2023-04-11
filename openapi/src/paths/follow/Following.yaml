@@ -1,0 +1,26 @@
+get:
+  operationId: getFollowing
+  description: get user list of following
+
+  parameters:
+    - name: variables
+      in: query
+      required: true
+      schema:
+        type: string
+
+    - name: features
+      in: query
+      required: true
+      schema:
+        type: string
+
+    - name: queryId
+      in: query
+      schema:
+        type: string
+        default: "FaBzCqZXuQCb4PhB0RHqHw"
+
+  responses:
+    "200":
+      description: Successful operation

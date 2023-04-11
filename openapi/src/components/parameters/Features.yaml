@@ -1,0 +1,9 @@
+# https://github.com/OpenAPITools/openapi-generator/issues/13584
+
+Features:
+  in: query
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object

@@ -1,0 +1,27 @@
+ContentItemType:
+  type: string
+  enum: [TimelineTweet]
+
+ItemContent:
+  required:
+    - "__typename"
+    - "itemType"
+    - "tweetDisplayType"
+    - "tweet_results"
+  properties:
+    __typename:
+      $ref: "TypeName.yaml#/TypeName" # TimelineTweet
+    itemType:
+      type: string # enum
+      $ref: "#/ContentItemType" # TimelineTweet
+    tweetDisplayType:
+      type: string
+    tweet_results:
+      $ref: "#/ItemResult"
+
+ItemResult:
+  required:
+    - "result"
+  properties:
+    result:
+      $ref: "./Tweet.yaml#/TweetResult"

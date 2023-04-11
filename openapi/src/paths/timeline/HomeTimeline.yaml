@@ -1,0 +1,68 @@
+get:
+  operationId: getHomeTimeline
+  description: get tweet list of timeline
+  parameters:
+    - name: variables
+      in: query
+      required: true
+      schema:
+        type: string
+
+    - name: features
+      in: query
+      required: true
+      schema:
+        type: string
+
+    - name: queryId
+      in: query
+      required: true
+      schema:
+        type: string
+        default: "BntFPEOxs3GYdPaS6CjUcg"
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HomeTimelineResponse"
+
+components:
+  schemas:
+    HomeTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/HomeTimelineData"
+
+    HomeTimelineData:
+      required:
+        - "home"
+      properties:
+        home:
+          $ref: "#/components/schemas/HomeTimelineHome"
+
+    HomeTimelineHome:
+      required:
+        - "home_timeline_urt"
+      properties:
+        home_timeline_urt:
+          $ref: "#/components/schemas/HomeTimelineUrt"
+
+    HomeTimelineUrt:
+      required:
+        - "instructions"
+        - "metadata"
+        - "responseObjects"
+      properties:
+        instructions:
+          type: array
+          items:
+            $ref: "./../../components/schemas/Instruction.yaml#/InstructionUnion"
+        metadata:
+          type: object # todo
+        responseObjects:
+          type: object # todo

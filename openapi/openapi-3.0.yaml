@@ -1,0 +1,22 @@
+openapi: 3.0.3
+info:
+    title: Twitter OpenAPI
+    description: |-
+        Twitter OpenAPI
+    termsOfService: https://github.com/fa0311
+    contact:
+        email: yuki@yuki0311.com
+    license:
+        name: other
+        url: https://github.com/fa0311/twitter-openapi/LICENSE
+    version: 0.0.1
+servers:
+    - url: https://twitter.com/i/api/graphql
+
+paths:
+    /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
+        $ref: ./src/paths/timeline/HomeTimeline.yaml
+    /FaBzCqZXuQCb4PhB0RHqHw/Following:
+        $ref: ./src/paths/follow/Following.yaml
+    /VptSi88PiaQhBevFbGVlGg/Followers:
+        $ref: ./src/paths/follow/Followers.yaml

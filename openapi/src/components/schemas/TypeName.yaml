@@ -1,0 +1,11 @@
+TypeName:
+  type: string
+  enum:
+    [
+      TimelineTweet,
+      TimelineTimelineItem,
+      TimelineTimelineCursor,
+      TweetWithVisibilityResults,
+      Tweet,
+      User,
+    ]
