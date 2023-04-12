@@ -1,96 +1,96 @@
 openapi: 3.0.3
 info:
-    title: Twitter OpenAPI
-    description: |-
-        Twitter OpenAPI(Swagger) specification
-    termsOfService: https://github.com/fa0311
-    contact:
-        email: yuki@yuki0311.com
-    license:
-        name: GNU Affero General Public License v3.
-        url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
-    version: 0.0.1
+  title: Twitter OpenAPI
+  description: |-
+    Twitter OpenAPI(Swagger) specification
+  termsOfService: https://github.com/fa0311
+  contact:
+    email: yuki@yuki0311.com
+  license:
+    name: GNU Affero General Public License v3.
+    url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
+  version: 0.0.1
 servers:
-    - url: https://twitter.com/i/api/graphql
+  - url: https://twitter.com/i/api/graphql
 
 paths:
-    # timeline
-    /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
-        $ref: ./src/paths/timeline/HomeTimeline.yaml
-    /37RUvMgTiEVYYfrRTVDxpw/HomeLatestTimeline:
-        $ref: ./src/paths/timeline/HomeLatestTimeline.yaml
-    /VEwO8c1TYdm5zjxCOIiwFw/ListLatestTweetsTimeline:
-        $ref: ./src/paths/timeline/ListLatestTweetsTimeline.yaml
-    # follow
-    /FaBzCqZXuQCb4PhB0RHqHw/Following:
-        $ref: ./src/paths/follow/Following.yaml
-    /VptSi88PiaQhBevFbGVlGg/Followers:
-        $ref: ./src/paths/follow/Followers.yaml
+  # timeline
+  /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
+    $ref: ./src/paths/timeline/HomeTimeline.yaml
+  /37RUvMgTiEVYYfrRTVDxpw/HomeLatestTimeline:
+    $ref: ./src/paths/timeline/HomeLatestTimeline.yaml
+  /VEwO8c1TYdm5zjxCOIiwFw/ListLatestTweetsTimeline:
+    $ref: ./src/paths/timeline/ListLatestTweetsTimeline.yaml
+  # follow
+  /FaBzCqZXuQCb4PhB0RHqHw/Following:
+    $ref: ./src/paths/follow/Following.yaml
+  /VptSi88PiaQhBevFbGVlGg/Followers:
+    $ref: ./src/paths/follow/Followers.yaml
 
 components:
-    securitySchemes:
-        BearerAuth:
-            type: http
-            scheme: bearer
-            description: "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
 
-        CsrfToken:
-            type: apiKey
-            in: header
-            name: x-csrf-token
+    CsrfToken:
+      type: apiKey
+      in: header
+      name: x-csrf-token
 
-        ActiveUser:
-            type: apiKey
-            in: header
-            name: x-twitter-active-user
-            description: "yes"
+    ActiveUser:
+      type: apiKey
+      in: header
+      name: x-twitter-active-user
+      description: "yes"
 
-        AuthType:
-            type: apiKey
-            in: header
-            name: x-twitter-auth-type
-            description: "OAuth2Session"
+    AuthType:
+      type: apiKey
+      in: header
+      name: x-twitter-auth-type
+      description: "OAuth2Session"
 
-        ClientLanguage:
-            type: apiKey
-            in: header
-            name: x-twitter-client-language
-            description: "en"
+    ClientLanguage:
+      type: apiKey
+      in: header
+      name: x-twitter-client-language
+      description: "en"
 
-        CookieAuthToken:
-            type: apiKey
-            in: cookie
-            name: auth_token
+    CookieAuthToken:
+      type: apiKey
+      in: cookie
+      name: auth_token
 
-        CookieAuthCt0:
-            type: apiKey
-            in: cookie
-            name: ct0
+    CookieCt0:
+      type: apiKey
+      in: cookie
+      name: ct0
 
 tags:
-    - name: timeline
-      description: timeline
-    - name: tweet
-      description: tweet
-    - name: user
-      description: user
-    - name: follow
-      description: follow
-    - name: search
-      description: search
-    - name: dm
-      description: dm
-    - name: settings
-      description: settings
-    - name: notify
-      description: notify
+  - name: timeline
+    description: timeline
+  - name: tweet
+    description: tweet
+  - name: user
+    description: user
+  - name: follow
+    description: follow
+  - name: search
+    description: search
+  - name: dm
+    description: dm
+  - name: settings
+    description: settings
+  - name: notify
+    description: notify
 
-    # ===
-    - name: login required
-      description: login session required
-    - name: graphql
-      description: graphql
-    - name: login-flow
-      description: login flow
-    - name: report-flow
-      description: report flow
+  # ===
+  - name: login required
+    description: login session required
+  - name: graphql
+    description: graphql
+  - name: login-flow
+    description: login flow
+  - name: report-flow
+    description: report flow

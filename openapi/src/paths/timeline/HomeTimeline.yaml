@@ -50,6 +50,7 @@ get:
         type: string
         default: "BntFPEOxs3GYdPaS6CjUcg"
         example: "'BntFPEOxs3GYdPaS6CjUcg'"
+
   responses:
     "200":
       description: Successful operation
@@ -57,6 +58,16 @@ get:
         application/json:
           schema:
             $ref: "./../../components/schemas/Timeline.yaml#/TimelineResponse"
+
+  security:
+    - bearerAuth: []
+    - CsrfToken: []
+    - ActiveUser: []
+    - AuthType: []
+    - ClientLanguage: []
+    - CookieAuthToken: []
+    - CookieCt0: []
+
   tags:
     - "timeline"
     - "login-required"

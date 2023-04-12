@@ -47,6 +47,7 @@ get:
         type: string
         default: "VEwO8c1TYdm5zjxCOIiwFw"
         example: "'VEwO8c1TYdm5zjxCOIiwFw'"
+
   responses:
     "200":
       description: Successful operation
@@ -54,6 +55,16 @@ get:
         application/json:
           schema:
             $ref: "./../../components/schemas/Timeline.yaml#/ListTweetsTimelineResponse"
+
+  security:
+    - bearerAuth: []
+    - CsrfToken: []
+    - ActiveUser: []
+    - AuthType: []
+    - ClientLanguage: []
+    - CookieAuthToken: []
+    - CookieCt0: []
+
   tags:
     - "timeline"
     - "login-required"
