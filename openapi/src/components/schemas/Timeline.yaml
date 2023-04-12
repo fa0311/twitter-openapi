@@ -1,0 +1,66 @@
+TimelineResponse:
+  required:
+    - "data"
+  properties:
+    data:
+      $ref: "#/HomeTimelineData"
+
+HomeTimelineData:
+  required:
+    - "home"
+  properties:
+    home:
+      $ref: "#/HomeTimelineHome"
+
+HomeTimelineHome:
+  required:
+    - "home_timeline_urt"
+  properties:
+    home_timeline_urt:
+      $ref: "#/HomeTimelineUrt"
+
+# ======
+
+ListTweetsTimelineResponse:
+  required:
+    - "data"
+  properties:
+    data:
+      $ref: "#/ListTweetsTimelineData"
+
+ListTweetsTimelineData:
+  required:
+    - "list"
+  properties:
+    home:
+      $ref: "#/ListTweetsTimelineList"
+
+ListTweetsTimelineList:
+  required:
+    - "tweets_timeline"
+  properties:
+    tweets_timeline:
+      $ref: "#/ListTweetsTimeline"
+
+ListTweetsTimeline:
+  required:
+    - "timeline"
+  properties:
+    timeline:
+      $ref: "#/HomeTimelineUrt"
+
+# ======
+
+HomeTimelineUrt:
+  required:
+    - "instructions"
+    - "metadata"
+  properties:
+    instructions:
+      type: array
+      items:
+        $ref: "./Instruction.yaml#/InstructionUnion"
+    metadata:
+      type: object # todo
+    responseObjects:
+      type: object # todo

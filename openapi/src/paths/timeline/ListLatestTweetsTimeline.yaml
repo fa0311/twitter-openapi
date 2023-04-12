@@ -1,5 +1,5 @@
 get:
-  operationId: getHomeTimeline
+  operationId: getListLatestTweetsTimeline
   description: get tweet list of timeline
   parameters:
     - name: variables
@@ -7,22 +7,19 @@ get:
       required: true
       schema:
         type: string
-        example: '''{
-          "count": 20,
-          "includePromotedContent": true,
-          "latestControlAvailable": true,
-          "requestContext": "launch",
-          "withCommunity": true,
-          "withDownvotePerspective": false,
-          "withReactionsMetadata": false,
-          "withReactionsPerspective": false
+        example: '''
+          {
+          "listId":"000000000000",
+          "count":20,
+          "withDownvotePerspective":false
           }'''
     - name: features
       in: query
       required: true
       schema:
         type: string
-        example: '''{
+        example: '''
+          {
           "blue_business_profile_image_shape_enabled": true,
           "responsive_web_graphql_exclude_directive_enabled": true,
           "verified_phone_label_enabled": false,
@@ -40,23 +37,23 @@ get:
           "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": false,
           "interactive_text_enabled": true,
           "responsive_web_text_conversations_enabled": false,
-          "longform_notetweets_richtext_consumption_enabled": true,
-          "responsive_web_enhance_cards_enabled": false
+          "longform_notetweets_rich_text_read_enabled": true,
+          "responsive_web_enhance_cards_enabled": false,
           }'''
     - name: queryId
       in: query
       required: true
       schema:
         type: string
-        default: "BntFPEOxs3GYdPaS6CjUcg"
-        example: "'BntFPEOxs3GYdPaS6CjUcg'"
+        default: "VEwO8c1TYdm5zjxCOIiwFw"
+        example: "'VEwO8c1TYdm5zjxCOIiwFw'"
   responses:
     "200":
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: "./../../components/schemas/Timeline.yaml#/TimelineResponse"
+            $ref: "./../../components/schemas/Timeline.yaml#/ListTweetsTimelineResponse"
   tags:
     - "timeline"
     - "login-required"

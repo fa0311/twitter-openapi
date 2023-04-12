@@ -75,10 +75,8 @@ UserLegacy:
     - "has_custom_timelines"
     - "is_translator"
     - "listed_count"
-    - "location"
     - "media_count"
     - "muting"
-    - "name"
     - "normal_followers_count"
     - "notifications"
     - "pinned_tweet_ids_str"
@@ -120,6 +118,7 @@ UserLegacy:
       type: integer
     favourites_count:
       type: integer
+      default: 0
     follow_request_sent:
       type: boolean
       default: false
@@ -128,11 +127,13 @@ UserLegacy:
       default: false
     followers_count:
       type: integer
+      default: 0
     following:
       type: boolean
       default: false
     friends_count:
       type: integer
+      default: 0
     has_custom_timelines:
       type: boolean
       default: false
@@ -141,10 +142,12 @@ UserLegacy:
       default: false
     listed_count:
       type: integer
+      default: 0
     location:
       type: string
     media_count:
       type: integer
+      default: 0
     muting:
       type: boolean
       default: false
@@ -152,6 +155,7 @@ UserLegacy:
       type: string
     normal_followers_count:
       type: integer
+      default: 0
     notifications:
       type: boolean
       default: false
@@ -179,6 +183,7 @@ UserLegacy:
       type: string
     statuses_count:
       type: integer
+      default: 0
     translator_type:
       type: string
     url:
