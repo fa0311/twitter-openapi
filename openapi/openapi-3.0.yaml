@@ -16,18 +16,916 @@ servers:
 paths:
   # timeline
   /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
-    $ref: ./src/paths/timeline/HomeTimeline.yaml
+    get:
+      operationId: getHomeTimeline
+      description: get tweet list of timeline
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''{
+              "count": 20,
+              "includePromotedContent": true,
+              "latestControlAvailable": true,
+              "requestContext": "launch",
+              "withCommunity": true,
+              "withDownvotePerspective": false,
+              "withReactionsMetadata": false,
+              "withReactionsPerspective": false
+              }'''
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''{
+              "blue_business_profile_image_shape_enabled": true,
+              "responsive_web_graphql_exclude_directive_enabled": true,
+              "verified_phone_label_enabled": false,
+              "responsive_web_graphql_timeline_navigation_enabled": true,
+              "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+              "tweetypie_unmention_optimization_enabled": true,
+              "vibe_api_enabled": true,
+              "responsive_web_edit_tweet_api_enabled": true,
+              "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
+              "view_counts_everywhere_api_enabled": true,
+              "longform_notetweets_consumption_enabled": true,
+              "tweet_awards_web_tipping_enabled": false,
+              "freedom_of_speech_not_reach_fetch_enabled": false,
+              "standardized_nudges_misinfo": true,
+              "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": false,
+              "interactive_text_enabled": true,
+              "responsive_web_text_conversations_enabled": false,
+              "longform_notetweets_richtext_consumption_enabled": true,
+              "responsive_web_enhance_cards_enabled": false
+              }'''
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "BntFPEOxs3GYdPaS6CjUcg"
+            example: "'BntFPEOxs3GYdPaS6CjUcg'"
+
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TimelineResponse"
+          headers:
+            x-connection-hash:
+              $ref: "#/components/headers/x-connection-hash"
+            x-content-type-options:
+              $ref: "#/components/headers/x-content-type-options"
+            x-frame-options:
+              $ref: "#/components/headers/x-frame-options"
+            x-rate-limit-limit:
+              $ref: "#/components/headers/x-rate-limit-limit"
+            x-rate-limit-remaining:
+              $ref: "#/components/headers/x-rate-limit-remaining"
+            x-rate-limit-reset:
+              $ref: "#/components/headers/x-rate-limit-reset"
+            x-response-time:
+              $ref: "#/components/headers/x-response-time"
+            x-tfe-preserve-body:
+              $ref: "#/components/headers/x-tfe-preserve-body"
+            x-transaction-id:
+              $ref: "#/components/headers/x-transaction-id"
+            x-twitter-response-tags:
+              $ref: "#/components/headers/x-twitter-response-tags"
+            x-xss-protection:
+              $ref: "#/components/headers/x-xss-protection"
+
+      security:
+        - bearerAuth: []
+        - CsrfToken: []
+        - ActiveUser: []
+        - AuthType: []
+        - ClientLanguage: []
+        - CookieAuthToken: []
+        - CookieCt0: []
+
+      tags:
+        - "timeline"
+        - "login-required"
+
   /37RUvMgTiEVYYfrRTVDxpw/HomeLatestTimeline:
-    $ref: ./src/paths/timeline/HomeLatestTimeline.yaml
+    get:
+      operationId: getHomeLatestTimeline
+      description: get tweet list of timeline
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''{
+              "count":20,
+              "includePromotedContent":true,
+              "latestControlAvailable":true,
+              "requestContext":"launch",
+              "withDownvotePerspective":false
+              }'''
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''{
+              "blue_business_profile_image_shape_enabled":true,
+              "responsive_web_graphql_exclude_directive_enabled":true,
+              "verified_phone_label_enabled":false,
+              "responsive_web_graphql_timeline_navigation_enabled":true,
+              "responsive_web_graphql_skip_user_profile_image_extensions_enabled":false,
+              "tweetypie_unmention_optimization_enabled":true,
+              "vibe_api_enabled":true,
+              "responsive_web_edit_tweet_api_enabled":true,
+              "graphql_is_translatable_rweb_tweet_is_translatable_enabled":true,
+              "view_counts_everywhere_api_enabled":true,
+              "longform_notetweets_consumption_enabled":true,
+              "tweet_awards_web_tipping_enabled":false,
+              "freedom_of_speech_not_reach_fetch_enabled":false,
+              "standardized_nudges_misinfo":true,
+              "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":false,
+              "interactive_text_enabled":true,
+              "responsive_web_text_conversations_enabled":false,
+              "longform_notetweets_rich_text_read_enabled":true,
+              "responsive_web_enhance_cards_enabled":false
+              }'''
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "37RUvMgTiEVYYfrRTVDxpw"
+            example: "'37RUvMgTiEVYYfrRTVDxpw'"
+
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TimelineResponse"
+          headers:
+            x-connection-hash:
+              $ref: "#/components/headers/x-connection-hash"
+            x-content-type-options:
+              $ref: "#/components/headers/x-content-type-options"
+            x-frame-options:
+              $ref: "#/components/headers/x-frame-options"
+            x-rate-limit-limit:
+              $ref: "#/components/headers/x-rate-limit-limit"
+            x-rate-limit-remaining:
+              $ref: "#/components/headers/x-rate-limit-remaining"
+            x-rate-limit-reset:
+              $ref: "#/components/headers/x-rate-limit-reset"
+            x-response-time:
+              $ref: "#/components/headers/x-response-time"
+            x-tfe-preserve-body:
+              $ref: "#/components/headers/x-tfe-preserve-body"
+            x-transaction-id:
+              $ref: "#/components/headers/x-transaction-id"
+            x-twitter-response-tags:
+              $ref: "#/components/headers/x-twitter-response-tags"
+            x-xss-protection:
+              $ref: "#/components/headers/x-xss-protection"
+
+      security:
+        - bearerAuth: []
+        - CsrfToken: []
+        - ActiveUser: []
+        - AuthType: []
+        - ClientLanguage: []
+        - CookieAuthToken: []
+        - CookieCt0: []
+      tags:
+        - "timeline"
+        - "login-required"
+
   /VEwO8c1TYdm5zjxCOIiwFw/ListLatestTweetsTimeline:
-    $ref: ./src/paths/timeline/ListLatestTweetsTimeline.yaml
+    get:
+      operationId: getListLatestTweetsTimeline
+      description: get tweet list of timeline
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''
+              {
+              "listId":"000000000000",
+              "count":20,
+              "withDownvotePerspective":false
+              }'''
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''
+              {
+              "blue_business_profile_image_shape_enabled": true,
+              "responsive_web_graphql_exclude_directive_enabled": true,
+              "verified_phone_label_enabled": false,
+              "responsive_web_graphql_timeline_navigation_enabled": true,
+              "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+              "tweetypie_unmention_optimization_enabled": true,
+              "vibe_api_enabled": true,
+              "responsive_web_edit_tweet_api_enabled": true,
+              "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
+              "view_counts_everywhere_api_enabled": true,
+              "longform_notetweets_consumption_enabled": true,
+              "tweet_awards_web_tipping_enabled": false,
+              "freedom_of_speech_not_reach_fetch_enabled": false,
+              "standardized_nudges_misinfo": true,
+              "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": false,
+              "interactive_text_enabled": true,
+              "responsive_web_text_conversations_enabled": false,
+              "longform_notetweets_rich_text_read_enabled": true,
+              "responsive_web_enhance_cards_enabled": false,
+              }'''
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "VEwO8c1TYdm5zjxCOIiwFw"
+            example: "'VEwO8c1TYdm5zjxCOIiwFw'"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListTweetsTimelineResponse"
+          headers:
+            x-connection-hash:
+              $ref: "#/components/headers/x-connection-hash"
+            x-content-type-options:
+              $ref: "#/components/headers/x-content-type-options"
+            x-frame-options:
+              $ref: "#/components/headers/x-frame-options"
+            x-rate-limit-limit:
+              $ref: "#/components/headers/x-rate-limit-limit"
+            x-rate-limit-remaining:
+              $ref: "#/components/headers/x-rate-limit-remaining"
+            x-rate-limit-reset:
+              $ref: "#/components/headers/x-rate-limit-reset"
+            x-response-time:
+              $ref: "#/components/headers/x-response-time"
+            x-tfe-preserve-body:
+              $ref: "#/components/headers/x-tfe-preserve-body"
+            x-transaction-id:
+              $ref: "#/components/headers/x-transaction-id"
+            x-twitter-response-tags:
+              $ref: "#/components/headers/x-twitter-response-tags"
+            x-xss-protection:
+              $ref: "#/components/headers/x-xss-protection"
+
+      security:
+        - bearerAuth: []
+        - CsrfToken: []
+        - ActiveUser: []
+        - AuthType: []
+        - ClientLanguage: []
+        - CookieAuthToken: []
+        - CookieCt0: []
+      tags:
+        - "timeline"
+        - "login-required"
+
   # follow
   /FaBzCqZXuQCb4PhB0RHqHw/Following:
-    $ref: ./src/paths/follow/Following.yaml
+    get:
+      operationId: getFollowers
+      description: get user list of followers
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: queryId
+          in: query
+          schema:
+            type: string
+            default: "VptSi88PiaQhBevFbGVlGg"
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "follow"
   /VptSi88PiaQhBevFbGVlGg/Followers:
-    $ref: ./src/paths/follow/Followers.yaml
+    get:
+      operationId: getFollowing
+      description: get user list of following
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: queryId
+          in: query
+          schema:
+            type: string
+            default: "FaBzCqZXuQCb4PhB0RHqHw"
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "follow"
 
 components:
+  schemas:
+    # ================= TypeName =================
+    TypeName:
+      type: string
+      enum:
+        [
+          TimelineTweet,
+          TimelineTimelineItem,
+          TimelineTimelineCursor,
+          TweetWithVisibilityResults,
+          TimelineTimelineModule,
+          Tweet,
+          User,
+        ]
+
+    # ================= Timeline =================
+
+    TimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/HomeTimelineData"
+
+    HomeTimelineData:
+      required:
+        - "home"
+      properties:
+        home:
+          $ref: "#/components/schemas/HomeTimelineHome"
+
+    HomeTimelineHome:
+      required:
+        - "home_timeline_urt"
+      properties:
+        home_timeline_urt:
+          $ref: "#/components/schemas/HomeTimelineUrt"
+
+    ListTweetsTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListTweetsTimelineData"
+
+    ListTweetsTimelineData:
+      required:
+        - "list"
+      properties:
+        home:
+          $ref: "#/components/schemas/ListTweetsTimelineList"
+
+    ListTweetsTimelineList:
+      required:
+        - "tweets_timeline"
+      properties:
+        tweets_timeline:
+          $ref: "#/components/schemas/ListTweetsTimeline"
+
+    ListTweetsTimeline:
+      required:
+        - "timeline"
+      properties:
+        timeline:
+          $ref: "#/components/schemas/HomeTimelineUrt"
+
+    HomeTimelineUrt:
+      required:
+        - "instructions"
+        - "metadata"
+      properties:
+        instructions:
+          type: array
+          items:
+            $ref: "#/components/schemas/InstructionUnion"
+        metadata:
+          type: object # todo
+        responseObjects:
+          type: object # todo
+
+    # ================= Content =================
+    ContentUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineTimelineItem"
+        - $ref: "#/components/schemas/TimelineTimelineCursor"
+        - $ref: "#/components/schemas/TimelineTimelineModule"
+      discriminator:
+        propertyName: entryType
+        mapping": # deprecated
+          TimelineTimelineItem: "#/components/schemas/TimelineTimelineItem"
+          TimelineTimelineCursor: "#/components/schemas/TimelineTimelineCursor"
+          TimelineTimelineModule: "#/components/schemas/TimelineTimelineModule"
+
+    ContentEntryType:
+      type: string
+      enum:
+        [TimelineTimelineItem, TimelineTimelineCursor, TimelineTimelineModule]
+
+    TimelineTimelineItem:
+      required:
+        - "__typename"
+        - "entryType"
+        - "itemContent"
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # TimelineTimelineItem
+        entryType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineItem
+        itemContent:
+          $ref: "#/components/schemas/ItemContent"
+        clientEventInfo:
+          type: object # todo
+        feedbackInfo:
+          type: object # todo
+
+    TimelineTimelineCursor:
+      required:
+        - "__typename"
+        - "entryType"
+        - "cursorType"
+        - "value"
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # TimelineTimelineCursor
+        entryType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
+        cursorType:
+          type: string
+          enum: [Top, Bottom]
+        value:
+          type: string
+
+    TimelineTimelineModule:
+      required:
+        - "__typename"
+        - "entryType"
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # TimelineTimelineModule
+
+        entryType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
+
+    # ================= Instruction =================
+
+    InstructionUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineAddEntries"
+      discriminator:
+        propertyName: type
+        mapping": # deprecated
+          TimelineAddEntries: "#/components/schemas/TimelineAddEntries"
+
+    InstructionType:
+      type: string
+      enum: [TimelineAddEntries]
+
+    TimelineAddEntries:
+      required:
+        - type
+        - entries
+      properties:
+        type:
+          type: string
+          $ref: "#/components/schemas/InstructionType" # TimelineAddEntries
+        entries:
+          type: array
+          items:
+            $ref: "#/components/schemas/TimelineAddEntry"
+
+    TimelineAddEntry:
+      required:
+        - "content"
+        - "entryId"
+        - "sortIndex"
+      properties:
+        content:
+          $ref: "#/components/schemas/ContentUnion"
+        entryId:
+          type: string
+          pattern: '^[a-z\-]+[0-9]+$'
+        sortIndex:
+          type: string
+          pattern: "[0-9]+$"
+
+    # ================= ContentItem =================
+    ContentItemType:
+      type: string
+      enum: [TimelineTweet]
+
+    ItemContent:
+      required:
+        - "__typename"
+        - "itemType"
+        - "tweetDisplayType"
+        - "tweet_results"
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # TimelineTweet
+        itemType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentItemType" # TimelineTweet
+        tweetDisplayType:
+          type: string
+        tweet_results:
+          $ref: "#/components/schemas/ItemResult"
+
+    ItemResult:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/TweetResult"
+
+    # ================= Tweet =================
+    TweetResult:
+      required:
+        - "__typename"
+        - "rest_id"
+        - "core"
+        - "edit_control"
+        - "edit_prespective"
+        - "is_translatable"
+        - "legacy"
+        - "views"
+
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # Tweet TweetWithVisibilityResults
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        core:
+          $ref: "#/components/schemas/UserResultCore"
+        unmention_data:
+          type: object # todo
+        edit_control:
+          type: object
+          properties:
+            edit_tweet_ids:
+              type: array
+              items:
+                type: string
+                pattern: "^[0-9]+$"
+            editable_until_msecs:
+              type: string
+              pattern: "^[0-9]+$"
+            is_edit_eligible:
+              type: boolean
+            edits_remaining:
+              type: string
+              pattern: "^[0-9]+$"
+        edit_prespective:
+          type: object
+          properties:
+            favorited:
+              type: boolean
+            retweeted:
+              type: boolean
+        is_translatable:
+          type: boolean
+          default: false
+        legacy:
+          $ref: "#/components/schemas/TweetLegacy"
+        views:
+          type: object
+          properties:
+            count:
+              type: string
+              pattern: "^[0-9]+$"
+            state:
+              type: string # enum
+
+    TweetLegacy:
+      required:
+        - "bookmark_count"
+        - "bookmarked"
+        - "conversation_id_str"
+        - "display_text_range"
+        - "entities"
+        - "favorite_count"
+        - "favorited"
+        - "full_text"
+        - "is_quote_status"
+        - "lang"
+        - "quote_count"
+        - "reply_count"
+        - "retweet_count"
+        - "retweeted"
+        - "user_id_str"
+        - "id_str"
+      properties:
+        bookmark_count:
+          type: integer
+        bookmarked:
+          type: boolean
+        created_at:
+          type: string # Thu Apr 06 13:23:34 +0000 2023
+        conversation_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        display_text_range:
+          type: array
+          items:
+            type: integer
+        entities:
+          type: object
+        favorite_count:
+          type: integer
+        favorited:
+          type: boolean
+        full_text:
+          type: string
+        is_quote_status:
+          type: boolean
+        lang:
+          type: string # enum
+        possibly_sensitive:
+          type: boolean
+          default: false
+        possibly_sensitive_editable:
+          type: boolean
+          default: false
+        quote_count:
+          type: integer
+        reply_count:
+          type: integer
+        retweet_count:
+          type: integer
+        retweeted:
+          type: boolean
+        user_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+
+    # ================= User =================
+
+    UserResultCore:
+      required:
+        - "user_results"
+      properties:
+        user_results:
+          $ref: "#/components/schemas/UserResults"
+
+    UserResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/UserResult"
+
+    UserResult:
+      required:
+        - "__typename"
+        - "affiliates_highlighted_label"
+        - "has_graduated_access"
+        - "id"
+        - "is_blue_verified"
+        - "legacy"
+        - "rest_id"
+        - "super_follow_eligible"
+        - "super_followed_by"
+        - "super_following"
+
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # User
+        affiliates_highlighted_label:
+          type: object # todo
+        has_graduated_access:
+          type: boolean
+        has_nft_avatar:
+          type: boolean
+          default: false
+        id:
+          type: string
+          pattern: '^[a-z\-]+[0-9]+$'
+        is_blue_verified:
+          type: boolean
+          default: false
+        legacy:
+          $ref: "#/components/schemas/UserLegacy"
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        business_account:
+          type: object # todo
+        super_follow_eligible:
+          type: boolean
+          default: false
+        super_followed_by:
+          type: boolean
+          default: false
+        super_following:
+          type: boolean
+          default: false
+
+    UserLegacy:
+      required:
+        - "blocked_by"
+        - "blocking"
+        - "can_dm"
+        - "can_media_tag"
+        - "default_profile"
+        - "default_profile_image"
+        - "favourites_count"
+        - "follow_request_sent"
+        - "followed_by"
+        - "followers_count"
+        - "following"
+        - "friends_count"
+        - "has_custom_timelines"
+        - "is_translator"
+        - "listed_count"
+        - "media_count"
+        - "muting"
+        - "normal_followers_count"
+        - "notifications"
+        - "pinned_tweet_ids_str"
+        - "possibly_sensitive"
+        - "profile_image_url_https"
+        - "profile_interstitial_type"
+        - "protected"
+        - "screen_name"
+        - "statuses_count"
+        - "translator_type"
+        - "verified"
+        - "want_retweets"
+      properties:
+        blocked_by:
+          type: boolean
+          default: false
+        blocking:
+          type: boolean
+          default: false
+        can_dm:
+          type: boolean
+          default: false
+        can_media_tag:
+          type: boolean
+          default: false
+        created_at:
+          type: string # Wed Jul 08 14:05:58 +0000 2009
+        default_profile:
+          type: boolean
+          default: false
+        default_profile_image:
+          type: boolean
+          default: false
+        description:
+          type: string
+        entities:
+          type: object # todo
+        fast_followers_count:
+          type: integer
+        favourites_count:
+          type: integer
+          default: 0
+        follow_request_sent:
+          type: boolean
+          default: false
+        followed_by:
+          type: boolean
+          default: false
+        followers_count:
+          type: integer
+          default: 0
+        following:
+          type: boolean
+          default: false
+        friends_count:
+          type: integer
+          default: 0
+        has_custom_timelines:
+          type: boolean
+          default: false
+        is_translator:
+          type: boolean
+          default: false
+        listed_count:
+          type: integer
+          default: 0
+        location:
+          type: string
+        media_count:
+          type: integer
+          default: 0
+        muting:
+          type: boolean
+          default: false
+        name:
+          type: string
+        normal_followers_count:
+          type: integer
+          default: 0
+        notifications:
+          type: boolean
+          default: false
+        pinned_tweet_ids_str:
+          type: array
+          items:
+            type: string
+        possibly_sensitive:
+          type: boolean
+          default: false
+        profile_banner_extensions:
+          type: object
+        profile_banner_url:
+          type: string
+        profile_image_extensions:
+          type: object
+        profile_image_url_https:
+          type: string
+        profile_interstitial_type:
+          type: string
+        protected:
+          type: boolean
+          default: false
+        screen_name:
+          type: string
+        statuses_count:
+          type: integer
+          default: 0
+        translator_type:
+          type: string
+        url:
+          type: string
+        verified:
+          type: boolean
+        want_retweets:
+          type: boolean
+          default: false
+  headers:
+    x-connection-hash:
+      schema:
+        type: string
+    x-content-type-options:
+      schema:
+        type: string
+    x-frame-options:
+      schema:
+        type: string
+    x-rate-limit-limit:
+      schema:
+        type: integer
+    x-rate-limit-remaining:
+      schema:
+        type: integer
+    x-rate-limit-reset:
+      schema:
+        type: integer
+    x-response-time:
+      schema:
+        type: integer
+    x-tfe-preserve-body:
+      schema:
+        type: boolean
+    x-transaction-id:
+      schema:
+        type: string
+    x-twitter-response-tags:
+      schema:
+        type: string
+    x-xss-protection:
+      schema:
+        type: integer
+
   securitySchemes:
     BearerAuth:
       type: http

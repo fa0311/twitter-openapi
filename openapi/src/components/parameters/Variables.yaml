@@ -1,9 +1,0 @@
-# https://github.com/OpenAPITools/openapi-generator/issues/13584
-
-Variables:
-  in: query
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
