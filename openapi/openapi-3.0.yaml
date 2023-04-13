@@ -112,6 +112,7 @@ paths:
       tags:
         - "timeline"
         - "login-required"
+        - "graphql"
 
   /37RUvMgTiEVYYfrRTVDxpw/HomeLatestTimeline:
     get:
@@ -206,6 +207,7 @@ paths:
       tags:
         - "timeline"
         - "login-required"
+        - "graphql"
 
   /VEwO8c1TYdm5zjxCOIiwFw/ListLatestTweetsTimeline:
     get:
@@ -299,6 +301,7 @@ paths:
       tags:
         - "timeline"
         - "login-required"
+        - "graphql"
 
   # follow
   /FaBzCqZXuQCb4PhB0RHqHw/Following:
@@ -351,6 +354,70 @@ paths:
           description: Successful operation
       tags:
         - "follow"
+        - "graphql"
+
+  /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
+    get:
+      operationId: getUserByScreenName
+      description: "get user by screen name"
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: queryId
+          in: query
+          schema:
+            type: string
+            default: "sLVLhk0bGj3MVFEKTdax1w"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          headers:
+            x-connection-hash:
+              $ref: "#/components/headers/x-connection-hash"
+            x-content-type-options:
+              $ref: "#/components/headers/x-content-type-options"
+            x-frame-options:
+              $ref: "#/components/headers/x-frame-options"
+            x-rate-limit-limit:
+              $ref: "#/components/headers/x-rate-limit-limit"
+            x-rate-limit-remaining:
+              $ref: "#/components/headers/x-rate-limit-remaining"
+            x-rate-limit-reset:
+              $ref: "#/components/headers/x-rate-limit-reset"
+            x-response-time:
+              $ref: "#/components/headers/x-response-time"
+            x-tfe-preserve-body:
+              $ref: "#/components/headers/x-tfe-preserve-body"
+            x-transaction-id:
+              $ref: "#/components/headers/x-transaction-id"
+            x-twitter-response-tags:
+              $ref: "#/components/headers/x-twitter-response-tags"
+            x-xss-protection:
+              $ref: "#/components/headers/x-xss-protection"
+
+      security:
+        - bearerAuth: []
+        - CsrfToken: []
+        - ActiveUser: []
+        - AuthType: []
+        - ClientLanguage: []
+        - CookieAuthToken: []
+        - CookieCt0: []
+      tags:
+        - "user"
+        - "graphql"
 
 components:
   schemas:
@@ -368,16 +435,16 @@ components:
           User,
         ]
 
-    # ================= Timeline =================
+    # ================= Timeline Response =================
 
     TimelineResponse:
       required:
         - "data"
       properties:
         data:
-          $ref: "#/components/schemas/HomeTimelineData"
+          $ref: "#/components/schemas/HomeTimelineResponseData"
 
-    HomeTimelineData:
+    HomeTimelineResponseData:
       required:
         - "home"
       properties:
@@ -432,6 +499,22 @@ components:
           type: object # todo
         responseObjects:
           type: object # todo
+
+    # ================= User Response =================
+
+    UserResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/UserResponseData"
+
+    UserResponseData:
+      required:
+        - "user"
+      properties:
+        user:
+          $ref: "#/components/schemas/UserResults"
 
     # ================= Instruction =================
 
