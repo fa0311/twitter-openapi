@@ -433,6 +433,48 @@ components:
         responseObjects:
           type: object # todo
 
+    # ================= Instruction =================
+
+    InstructionUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineAddEntries"
+      discriminator:
+        propertyName: type
+        mapping": # deprecated
+          TimelineAddEntries: "#/components/schemas/TimelineAddEntries"
+
+    InstructionType:
+      type: string
+      enum: [TimelineAddEntries]
+
+    TimelineAddEntries:
+      required:
+        - type
+        - entries
+      properties:
+        type:
+          type: string
+          $ref: "#/components/schemas/InstructionType" # TimelineAddEntries
+        entries:
+          type: array
+          items:
+            $ref: "#/components/schemas/TimelineAddEntry"
+
+    TimelineAddEntry:
+      required:
+        - "content"
+        - "entryId"
+        - "sortIndex"
+      properties:
+        content:
+          $ref: "#/components/schemas/ContentUnion"
+        entryId:
+          type: string
+          pattern: '^[a-z\-]+[0-9]+$'
+        sortIndex:
+          type: string
+          pattern: "[0-9]+$"
+
     # ================= Content =================
     ContentUnion:
       oneOf:
@@ -498,48 +540,6 @@ components:
         entryType:
           type: string # enum
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
-
-    # ================= Instruction =================
-
-    InstructionUnion:
-      oneOf:
-        - $ref: "#/components/schemas/TimelineAddEntries"
-      discriminator:
-        propertyName: type
-        mapping": # deprecated
-          TimelineAddEntries: "#/components/schemas/TimelineAddEntries"
-
-    InstructionType:
-      type: string
-      enum: [TimelineAddEntries]
-
-    TimelineAddEntries:
-      required:
-        - type
-        - entries
-      properties:
-        type:
-          type: string
-          $ref: "#/components/schemas/InstructionType" # TimelineAddEntries
-        entries:
-          type: array
-          items:
-            $ref: "#/components/schemas/TimelineAddEntry"
-
-    TimelineAddEntry:
-      required:
-        - "content"
-        - "entryId"
-        - "sortIndex"
-      properties:
-        content:
-          $ref: "#/components/schemas/ContentUnion"
-        entryId:
-          type: string
-          pattern: '^[a-z\-]+[0-9]+$'
-        sortIndex:
-          type: string
-          pattern: "[0-9]+$"
 
     # ================= ContentItem =================
     ContentItemType:
