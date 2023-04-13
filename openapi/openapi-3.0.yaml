@@ -568,12 +568,33 @@ components:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/TweetResult"
+          $ref: "#/components/schemas/TweetUnion"
 
     # ================= Tweet =================
-    TweetResult:
+
+    TweetUnion:
+      oneOf:
+        - $ref: "#/components/schemas/Tweet"
+        - $ref: "#/components/schemas/TweetWithVisibilityResults"
+      discriminator:
+        propertyName: __typename
+        mapping": # deprecated
+          Tweet: "#/components/schemas/Tweet"
+          TweetWithVisibilityResults: "#/components/schemas/TweetWithVisibilityResults"
+
+    TweetWithVisibilityResults:
       required:
         - "__typename"
+        - "tweet"
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # TweetWithVisibilityResults
+        tweet:
+          $ref: "#/components/schemas/Tweet"
+
+    Tweet:
+      required:
+        # - "__typename"
         - "rest_id"
         - "core"
         - "edit_control"
@@ -584,7 +605,7 @@ components:
 
       properties:
         __typename:
-          $ref: "#/components/schemas/TypeName" # Tweet TweetWithVisibilityResults
+          $ref: "#/components/schemas/TypeName" # Tweet
         rest_id:
           type: string
           pattern: "^[0-9]+$"
@@ -708,9 +729,17 @@ components:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/UserResult"
+          $ref: "#/components/schemas/UserUnion"
 
-    UserResult:
+    UserUnion:
+      oneOf:
+        - $ref: "#/components/schemas/User"
+      discriminator:
+        propertyName: __typename
+        mapping": # deprecated
+          User: "#/components/schemas/User"
+
+    User:
       required:
         - "__typename"
         - "affiliates_highlighted_label"
@@ -762,8 +791,12 @@ components:
         - "blocking"
         - "can_dm"
         - "can_media_tag"
+        - "created_at"
         - "default_profile"
         - "default_profile_image"
+        - "description"
+        - "entities"
+        - "fast_followers_count"
         - "favourites_count"
         - "follow_request_sent"
         - "followed_by"
@@ -773,8 +806,10 @@ components:
         - "has_custom_timelines"
         - "is_translator"
         - "listed_count"
+        - "location"
         - "media_count"
         - "muting"
+        - "name"
         - "normal_followers_count"
         - "notifications"
         - "pinned_tweet_ids_str"
@@ -783,6 +818,7 @@ components:
         - "profile_interstitial_type"
         - "protected"
         - "screen_name"
+        - "status"
         - "statuses_count"
         - "translator_type"
         - "verified"
@@ -868,10 +904,12 @@ components:
           type: object
         profile_banner_url:
           type: string
+          format: uri
         profile_image_extensions:
           type: object
         profile_image_url_https:
           type: string
+          format: uri
         profile_interstitial_type:
           type: string
         protected:
