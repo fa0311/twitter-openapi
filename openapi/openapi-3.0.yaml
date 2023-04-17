@@ -278,130 +278,7 @@ paths:
         - "login-required"
         - "graphql"
 
-  # follow
-  /FaBzCqZXuQCb4PhB0RHqHw/Following:
-    get:
-      operationId: getFollowers
-      description: get user list of followers
-      parameters:
-        - name: variables
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: features
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: queryId
-          in: query
-          schema:
-            type: string
-            default: "VptSi88PiaQhBevFbGVlGg"
-      responses:
-        "200":
-          description: Successful operation
-      tags:
-        - "follow"
-  /VptSi88PiaQhBevFbGVlGg/Followers:
-    get:
-      operationId: getFollowing
-      description: get user list of following
-      parameters:
-        - name: variables
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: features
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: queryId
-          in: query
-          schema:
-            type: string
-            default: "FaBzCqZXuQCb4PhB0RHqHw"
-      responses:
-        "200":
-          description: Successful operation
-      tags:
-        - "follow"
-        - "graphql"
-
-  /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
-    get:
-      operationId: getUserByScreenName
-      description: "get user by screen name"
-      parameters:
-        - name: variables
-          in: query
-          required: true
-          schema:
-            type: string
-            example: '''
-              {
-              "screen_name": "elonmusk",
-              "withSafetyModeUserFields": true,
-              }
-              '''
-        - name: features
-          in: query
-          required: true
-          schema:
-            type: string
-            example: '''
-              {
-              "blue_business_profile_image_shape_enabled": true,
-              "responsive_web_graphql_exclude_directive_enabled": true,
-              "verified_phone_label_enabled": false,
-              "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
-              "responsive_web_graphql_timeline_navigation_enabled": true,
-              }
-              '''
-        - name: queryId
-          in: query
-          required: true
-          schema:
-            type: string
-            default: "VptSi88PiaQhBevFbGVlGg"
-            example: "'VptSi88PiaQhBevFbGVlGg'"
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UserResponse"
-          headers:
-            x-connection-hash:
-              $ref: "#/components/headers/x-connection-hash"
-            x-content-type-options:
-              $ref: "#/components/headers/x-content-type-options"
-            x-frame-options:
-              $ref: "#/components/headers/x-frame-options"
-            x-rate-limit-limit:
-              $ref: "#/components/headers/x-rate-limit-limit"
-            x-rate-limit-remaining:
-              $ref: "#/components/headers/x-rate-limit-remaining"
-            x-rate-limit-reset:
-              $ref: "#/components/headers/x-rate-limit-reset"
-            x-response-time:
-              $ref: "#/components/headers/x-response-time"
-            x-tfe-preserve-body:
-              $ref: "#/components/headers/x-tfe-preserve-body"
-            x-transaction-id:
-              $ref: "#/components/headers/x-transaction-id"
-            x-twitter-response-tags:
-              $ref: "#/components/headers/x-twitter-response-tags"
-            x-xss-protection:
-              $ref: "#/components/headers/x-xss-protection"
-
-      tags:
-        - "user"
-        - "graphql"
+  # user tweets
 
   /HuTx74BxAnezK1gWvYY7zg/UserTweets:
     get:
@@ -494,6 +371,135 @@ paths:
         - "user"
         - "graphql"
 
+  # user
+
+  /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
+    get:
+      operationId: getUserByScreenName
+      description: "get user by screen name"
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''
+              {
+              "screen_name": "elonmusk",
+              "withSafetyModeUserFields": true,
+              }
+              '''
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''
+              {
+              "blue_business_profile_image_shape_enabled": true,
+              "responsive_web_graphql_exclude_directive_enabled": true,
+              "verified_phone_label_enabled": false,
+              "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+              "responsive_web_graphql_timeline_navigation_enabled": true,
+              }
+              '''
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "VptSi88PiaQhBevFbGVlGg"
+            example: "'VptSi88PiaQhBevFbGVlGg'"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+          headers:
+            x-connection-hash:
+              $ref: "#/components/headers/x-connection-hash"
+            x-content-type-options:
+              $ref: "#/components/headers/x-content-type-options"
+            x-frame-options:
+              $ref: "#/components/headers/x-frame-options"
+            x-rate-limit-limit:
+              $ref: "#/components/headers/x-rate-limit-limit"
+            x-rate-limit-remaining:
+              $ref: "#/components/headers/x-rate-limit-remaining"
+            x-rate-limit-reset:
+              $ref: "#/components/headers/x-rate-limit-reset"
+            x-response-time:
+              $ref: "#/components/headers/x-response-time"
+            x-tfe-preserve-body:
+              $ref: "#/components/headers/x-tfe-preserve-body"
+            x-transaction-id:
+              $ref: "#/components/headers/x-transaction-id"
+            x-twitter-response-tags:
+              $ref: "#/components/headers/x-twitter-response-tags"
+            x-xss-protection:
+              $ref: "#/components/headers/x-xss-protection"
+
+      tags:
+        - "user"
+        - "graphql"
+
+  # follow
+
+  /FaBzCqZXuQCb4PhB0RHqHw/Following:
+    get:
+      operationId: getFollowers
+      description: get user list of followers
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: queryId
+          in: query
+          schema:
+            type: string
+            default: "VptSi88PiaQhBevFbGVlGg"
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "follow"
+
+  /VptSi88PiaQhBevFbGVlGg/Followers:
+    get:
+      operationId: getFollowing
+      description: get user list of following
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: queryId
+          in: query
+          schema:
+            type: string
+            default: "FaBzCqZXuQCb4PhB0RHqHw"
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "follow"
+        - "graphql"
+
 components:
   schemas:
     # ================= General =================
@@ -568,22 +574,6 @@ components:
         timeline:
           $ref: "#/components/schemas/Timeline"
 
-    # ================= User Response =================
-
-    UserResponse:
-      required:
-        - "data"
-      properties:
-        data:
-          $ref: "#/components/schemas/UserResponseData"
-
-    UserResponseData:
-      required:
-        - "user"
-      properties:
-        user:
-          $ref: "#/components/schemas/UserResults"
-
     # ================= UserTweets Response =================
 
     UserTweetsResponse:
@@ -613,6 +603,22 @@ components:
       properties:
         timeline_v2:
           $ref: "#/components/schemas/TimelineV2"
+
+    # ================= User Response =================
+
+    UserResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/UserResponseData"
+
+    UserResponseData:
+      required:
+        - "user"
+      properties:
+        user:
+          $ref: "#/components/schemas/UserResults"
 
     # ================= Timeline =================
 
