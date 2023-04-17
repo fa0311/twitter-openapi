@@ -587,20 +587,23 @@ components:
       required:
         - "user"
       properties:
-        home:
+        user:
           $ref: "#/components/schemas/UserTweetsUser"
 
     UserTweetsUser:
       required:
         - "result"
       properties:
-        tweets_timeline:
+        result:
           $ref: "#/components/schemas/UserTweetsResult"
 
     UserTweetsResult:
       required:
+        - "__typename"
         - "timeline_v2"
       properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # User
         timeline_v2:
           $ref: "#/components/schemas/TimelineV2"
 
@@ -624,20 +627,14 @@ components:
 
     TimelineV2:
       required:
-        - "__typename"
         - "timeline"
       properties:
-        __typename:
-          $ref: "#/components/schemas/TypeName" # User
         timeline:
-          type: array
-          items:
-            $ref: "#/components/schemas/Timeline"
+          $ref: "#/components/schemas/Timeline"
 
     Timeline:
       required:
         - "instructions"
-        - "metadata"
       properties:
         instructions:
           type: array
@@ -654,15 +651,17 @@ components:
       oneOf:
         - $ref: "#/components/schemas/TimelineAddEntries"
         - $ref: "#/components/schemas/TimelineClearCache"
+        - $ref: "#/components/schemas/TimelinePinEntry"
       discriminator:
         propertyName: type
         mapping": # deprecated
           TimelineAddEntries: "#/components/schemas/TimelineAddEntries"
           TimelineClearCache: "#/components/schemas/TimelineClearCache"
+          TimelinePinEntry: "#/components/schemas/TimelinePinEntry"
 
     InstructionType:
       type: string
-      enum: [TimelineAddEntries]
+      enum: [TimelineAddEntries, TimelineClearCache, TimelinePinEntry]
 
     TimelineAddEntries:
       required:
@@ -684,6 +683,17 @@ components:
         type:
           type: string
           $ref: "#/components/schemas/InstructionType" # TimelineClearCache
+
+    TimelinePinEntry:
+      required:
+        - type
+        - entry
+      properties:
+        type:
+          type: string
+          $ref: "#/components/schemas/InstructionType" # TimelinePinEntry
+        entry:
+          $ref: "#/components/schemas/TimelineAddEntry"
 
     TimelineAddEntry:
       required:
@@ -787,6 +797,15 @@ components:
           type: string
         tweet_results:
           $ref: "#/components/schemas/ItemResult"
+        socialContext:
+          type: object
+          properties:
+            contextType:
+              type: string # enum
+            text:
+              type: string
+            type:
+              type: string # enum
 
     ItemResult:
       required:
