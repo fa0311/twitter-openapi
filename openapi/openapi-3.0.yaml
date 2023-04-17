@@ -341,16 +341,33 @@ paths:
           required: true
           schema:
             type: string
+            example: '''
+              {
+              "screen_name": "elonmusk",
+              "withSafetyModeUserFields": true,
+              }
+              '''
         - name: features
           in: query
           required: true
           schema:
             type: string
+            example: '''
+              {
+              "blue_business_profile_image_shape_enabled": true,
+              "responsive_web_graphql_exclude_directive_enabled": true,
+              "verified_phone_label_enabled": false,
+              "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+              "responsive_web_graphql_timeline_navigation_enabled": true,
+              }
+              '''
         - name: queryId
           in: query
+          required: true
           schema:
             type: string
-            default: "sLVLhk0bGj3MVFEKTdax1w"
+            default: "VptSi88PiaQhBevFbGVlGg"
+            example: "'VptSi88PiaQhBevFbGVlGg'"
       responses:
         "200":
           description: Successful operation
@@ -358,6 +375,97 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
+          headers:
+            x-connection-hash:
+              $ref: "#/components/headers/x-connection-hash"
+            x-content-type-options:
+              $ref: "#/components/headers/x-content-type-options"
+            x-frame-options:
+              $ref: "#/components/headers/x-frame-options"
+            x-rate-limit-limit:
+              $ref: "#/components/headers/x-rate-limit-limit"
+            x-rate-limit-remaining:
+              $ref: "#/components/headers/x-rate-limit-remaining"
+            x-rate-limit-reset:
+              $ref: "#/components/headers/x-rate-limit-reset"
+            x-response-time:
+              $ref: "#/components/headers/x-response-time"
+            x-tfe-preserve-body:
+              $ref: "#/components/headers/x-tfe-preserve-body"
+            x-transaction-id:
+              $ref: "#/components/headers/x-transaction-id"
+            x-twitter-response-tags:
+              $ref: "#/components/headers/x-twitter-response-tags"
+            x-xss-protection:
+              $ref: "#/components/headers/x-xss-protection"
+
+      tags:
+        - "user"
+        - "graphql"
+
+  /HuTx74BxAnezK1gWvYY7zg/UserTweets:
+    get:
+      operationId: getUserTweets
+      description: "get user by screen name"
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''
+              {
+              "userId": "44196397",
+              "count": 40,
+              "includePromotedContent": true,
+              "withQuickPromoteEligibilityTweetFields": true,
+              "withVoice": true,
+              "withV2Timeline": true
+              }
+              '''
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '''
+              {
+              "blue_business_profile_image_shape_enabled": true,
+              "responsive_web_graphql_exclude_directive_enabled": true,
+              "verified_phone_label_enabled": false,
+              "responsive_web_graphql_timeline_navigation_enabled": true,
+              "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+              "tweetypie_unmention_optimization_enabled": true,
+              "vibe_api_enabled": true,
+              "responsive_web_edit_tweet_api_enabled": true,
+              "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
+              "view_counts_everywhere_api_enabled": true,
+              "longform_notetweets_consumption_enabled": true,
+              "tweet_awards_web_tipping_enabled": false,
+              "freedom_of_speech_not_reach_fetch_enabled": false,
+              "standardized_nudges_misinfo": true,
+              "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": false,
+              "interactive_text_enabled": true,
+              "responsive_web_text_conversations_enabled": false,
+              "longform_notetweets_rich_text_read_enabled": true,
+              "responsive_web_enhance_cards_enabled": false
+              }
+              '''
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "HuTx74BxAnezK1gWvYY7zg"
+            example: "'HuTx74BxAnezK1gWvYY7zg'"
+
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTweetsResponse"
           headers:
             x-connection-hash:
               $ref: "#/components/headers/x-connection-hash"
@@ -423,7 +531,7 @@ components:
         - "home_timeline_urt"
       properties:
         home_timeline_urt:
-          $ref: "#/components/schemas/HomeTimelineUrt"
+          $ref: "#/components/schemas/Timeline"
 
     ListTweetsTimelineResponse:
       required:
@@ -451,21 +559,7 @@ components:
         - "timeline"
       properties:
         timeline:
-          $ref: "#/components/schemas/HomeTimelineUrt"
-
-    HomeTimelineUrt:
-      required:
-        - "instructions"
-        - "metadata"
-      properties:
-        instructions:
-          type: array
-          items:
-            $ref: "#/components/schemas/InstructionUnion"
-        metadata:
-          type: object # todo
-        responseObjects:
-          type: object # todo
+          $ref: "#/components/schemas/Timeline"
 
     # ================= User Response =================
 
@@ -483,15 +577,75 @@ components:
         user:
           $ref: "#/components/schemas/UserResults"
 
-    # ================= Instruction =================
+    # ================= UserTweets Response =================
+
+    UserTweetsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/UserTweetsData"
+
+    UserTweetsData:
+      required:
+        - "user"
+      properties:
+        home:
+          $ref: "#/components/schemas/UserTweetsUser"
+
+    UserTweetsUser:
+      required:
+        - "result"
+      properties:
+        tweets_timeline:
+          $ref: "#/components/schemas/UserTweetsResult"
+
+    UserTweetsResult:
+      required:
+        - "timeline_v2"
+      properties:
+        timeline_v2:
+          $ref: "#/components/schemas/TimelineV2"
+
+    # ================= Timeline =================
+
+    TimelineV2:
+      required:
+        - "__typename"
+        - "timeline"
+      properties:
+        __typename:
+          $ref: "#/components/schemas/TypeName" # User
+        timeline:
+          type: array
+          items:
+            $ref: "#/components/schemas/Timeline"
+
+    Timeline:
+      required:
+        - "instructions"
+        - "metadata"
+      properties:
+        instructions:
+          type: array
+          items:
+            $ref: "#/components/schemas/InstructionUnion"
+        metadata:
+          type: object # todo
+        responseObjects:
+          type: object # todo
+
+    # ================= Content =================
 
     InstructionUnion:
       oneOf:
         - $ref: "#/components/schemas/TimelineAddEntries"
+        - $ref: "#/components/schemas/TimelineClearCache"
       discriminator:
         propertyName: type
         mapping": # deprecated
           TimelineAddEntries: "#/components/schemas/TimelineAddEntries"
+          TimelineClearCache: "#/components/schemas/TimelineClearCache"
 
     InstructionType:
       type: string
@@ -509,6 +663,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/TimelineAddEntry"
+
+    TimelineClearCache:
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          $ref: "#/components/schemas/InstructionType" # TimelineClearCache
 
     TimelineAddEntry:
       required:
