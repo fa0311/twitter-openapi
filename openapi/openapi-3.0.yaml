@@ -15,6 +15,7 @@ servers:
 
 paths:
   # timeline
+
   /BntFPEOxs3GYdPaS6CjUcg/HomeTimeline:
     get:
       operationId: getHomeTimeline
@@ -68,7 +69,6 @@ paths:
             type: string
             default: "BntFPEOxs3GYdPaS6CjUcg"
             example: "'BntFPEOxs3GYdPaS6CjUcg'"
-
       responses:
         "200":
           description: Successful operation
@@ -99,7 +99,6 @@ paths:
               $ref: "#/components/headers/x-twitter-response-tags"
             x-xss-protection:
               $ref: "#/components/headers/x-xss-protection"
-
       tags:
         - "timeline"
         - "login-required"
@@ -155,7 +154,6 @@ paths:
             type: string
             default: "37RUvMgTiEVYYfrRTVDxpw"
             example: "'37RUvMgTiEVYYfrRTVDxpw'"
-
       responses:
         "200":
           description: Successful operation
@@ -186,7 +184,6 @@ paths:
               $ref: "#/components/headers/x-twitter-response-tags"
             x-xss-protection:
               $ref: "#/components/headers/x-xss-protection"
-
       tags:
         - "timeline"
         - "login-required"
@@ -283,7 +280,7 @@ paths:
   /HuTx74BxAnezK1gWvYY7zg/UserTweets:
     get:
       operationId: getUserTweets
-      description: "get user by screen name"
+      description: "get user tweets"
       parameters:
         - name: variables
           in: query
