@@ -100,15 +100,6 @@ paths:
             x-xss-protection:
               $ref: "#/components/headers/x-xss-protection"
 
-      security:
-        - bearerAuth: []
-        - CsrfToken: []
-        - ActiveUser: []
-        - AuthType: []
-        - ClientLanguage: []
-        - CookieAuthToken: []
-        - CookieCt0: []
-
       tags:
         - "timeline"
         - "login-required"
@@ -196,14 +187,6 @@ paths:
             x-xss-protection:
               $ref: "#/components/headers/x-xss-protection"
 
-      security:
-        - bearerAuth: []
-        - CsrfToken: []
-        - ActiveUser: []
-        - AuthType: []
-        - ClientLanguage: []
-        - CookieAuthToken: []
-        - CookieCt0: []
       tags:
         - "timeline"
         - "login-required"
@@ -290,14 +273,6 @@ paths:
             x-xss-protection:
               $ref: "#/components/headers/x-xss-protection"
 
-      security:
-        - bearerAuth: []
-        - CsrfToken: []
-        - ActiveUser: []
-        - AuthType: []
-        - ClientLanguage: []
-        - CookieAuthToken: []
-        - CookieCt0: []
       tags:
         - "timeline"
         - "login-required"
@@ -407,14 +382,6 @@ paths:
             x-xss-protection:
               $ref: "#/components/headers/x-xss-protection"
 
-      security:
-        - bearerAuth: []
-        - CsrfToken: []
-        - ActiveUser: []
-        - AuthType: []
-        - ClientLanguage: []
-        - CookieAuthToken: []
-        - CookieCt0: []
       tags:
         - "user"
         - "graphql"
@@ -1113,3 +1080,12 @@ tags:
     description: login flow
   - name: report-flow
     description: report flow
+
+security:
+  - bearerAuth: []
+  - CsrfToken: []
+  - ActiveUser: []
+  - AuthType: []
+  - ClientLanguage: []
+  - CookieAuthToken: []
+  - CookieCt0: []
