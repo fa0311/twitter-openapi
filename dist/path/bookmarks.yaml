@@ -1,17 +1,23 @@
 components:
   schemas:
+    BookmarksData:
+      properties:
+        bookmark_timeline_v2:
+          $ref: '#/components/schemas/BookmarksTimeline'
+      required:
+      - bookmark_timeline_v2
     BookmarksResponse:
       properties:
         data:
-          $ref: '#/components/schemas/BookmarksResponseData'
+          $ref: '#/components/schemas/BookmarksData'
       required:
       - data
-    BookmarksResponseData:
+    BookmarksTimeline:
       properties:
-        bookmark_timeline_v2:
+        timeline:
           $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
       required:
-      - bookmark_timeline_v2
+      - timeline
 info:
   title: Twitter OpenAPI
   version: 0.0.1

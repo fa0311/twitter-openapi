@@ -1,9 +1,44 @@
+components:
+  schemas:
+    FollowData:
+      properties:
+        user:
+          $ref: '#/components/schemas/FollowUser'
+      required:
+      - user
+    FollowResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/FollowData'
+      required:
+      - data
+    FollowResult:
+      properties:
+        __typename:
+          $ref: ./../schemas/typename.yaml#/components/schemas/TypeName
+        timeline:
+          $ref: '#/components/schemas/FollowTimeline'
+      required:
+      - __typename
+      - timeline
+    FollowTimeline:
+      properties:
+        timeline:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
+      required:
+      - timeline
+    FollowUser:
+      properties:
+        result:
+          $ref: '#/components/schemas/FollowResult'
+      required:
+      - result
 info:
   title: Twitter OpenAPI
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /{{FollowersQuery}}/Followers:
+  /JpFFCTBPxYVlDqMUr9twzQ/Followers:
     get:
       description: get user list of following
       operationId: getFollowing
@@ -12,23 +47,38 @@ paths:
         name: variables
         required: true
         schema:
-          example: '{{Variables}}'
+          example: '{"userId": "44196397", "count": 20, "includePromotedContent":
+            false}'
           type: string
       - in: query
         name: features
         required: true
         schema:
-          example: '{{Features}}'
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       - in: query
         name: queryId
         required: true
         schema:
-          default: '{{Query}}'
-          example: '{{Query}}'
+          default: JpFFCTBPxYVlDqMUr9twzQ
+          example: JpFFCTBPxYVlDqMUr9twzQ
           type: string
       responses:
         '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -67,7 +117,7 @@ paths:
       tags:
       - follow
       - graphql
-  /{{FollowingQuery}}/Following:
+  /b22I8WSfQ8H4Ev8486xAlQ/Following:
     get:
       description: get user list of followers
       operationId: getFollowers
@@ -76,23 +126,38 @@ paths:
         name: variables
         required: true
         schema:
-          example: '{{Variables}}'
+          example: '{"userId": "44196397", "count": 20, "includePromotedContent":
+            false}'
           type: string
       - in: query
         name: features
         required: true
         schema:
-          example: '{{Features}}'
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       - in: query
         name: queryId
         required: true
         schema:
-          default: '{{Query}}'
-          example: '{{Query}}'
+          default: b22I8WSfQ8H4Ev8486xAlQ
+          example: b22I8WSfQ8H4Ev8486xAlQ
           type: string
       responses:
         '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowResponse'
           description: Successful operation
           headers:
             x-connection-hash:

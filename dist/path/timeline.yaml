@@ -20,7 +20,7 @@ components:
       - timeline
     ListTweetsTimelineData:
       properties:
-        home:
+        list:
           $ref: '#/components/schemas/ListTweetsTimelineList'
       required:
       - list

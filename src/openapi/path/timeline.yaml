@@ -86,7 +86,7 @@ components:
       required:
         - "list"
       properties:
-        home:
+        list:
           $ref: "#/components/schemas/ListTweetsTimelineList"
 
     ListTweetsTimelineList:

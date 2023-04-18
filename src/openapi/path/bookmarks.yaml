@@ -26,11 +26,18 @@ components:
         - "data"
       properties:
         data:
-          $ref: "#/components/schemas/BookmarksResponseData"
+          $ref: "#/components/schemas/BookmarksData"
 
-    BookmarksResponseData:
+    BookmarksData:
       required:
         - "bookmark_timeline_v2"
       properties:
         bookmark_timeline_v2:
+          $ref: "#/components/schemas/BookmarksTimeline"
+
+    BookmarksTimeline:
+      required:
+        - "timeline"
+      properties:
+        timeline:
           $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"

@@ -11,6 +11,10 @@ paths:
       responses:
         "200":
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowResponse"
       tags:
         - "follow"
         - "graphql"
@@ -22,6 +26,50 @@ paths:
       responses:
         "200":
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowResponse"
       tags:
         - "follow"
         - "graphql"
+
+components:
+  schemas:
+    FollowResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/FollowData"
+
+    FollowData:
+      required:
+        - "user"
+      properties:
+        user:
+          $ref: "#/components/schemas/FollowUser"
+
+    FollowUser:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/FollowResult"
+
+    FollowResult:
+      required:
+        - "__typename"
+        - "timeline"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        timeline:
+          $ref: "#/components/schemas/FollowTimeline"
+
+    FollowTimeline:
+      required:
+        - "timeline"
+      properties:
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
