@@ -4,6 +4,7 @@ components:
       enum:
       - TimelineTweet
       - TimelineTimelineItem
+      - TimelineUser
       - TimelineTimelineCursor
       - TweetWithVisibilityResults
       - TimelineTimelineModule
