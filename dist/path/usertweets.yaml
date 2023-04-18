@@ -280,7 +280,7 @@ paths:
         name: variables
         required: true
         schema:
-          example: '{"userId": "44196397", "count": 20, "includePromotedContent":
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
             false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
             true, "withV2Timeline": true}'
           type: string
