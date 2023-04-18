@@ -1,18 +1,18 @@
 components:
   schemas:
-    FollowData:
-      properties:
-        user:
-          $ref: '#/components/schemas/FollowUser'
-      required:
-      - user
     FollowResponse:
       properties:
         data:
-          $ref: '#/components/schemas/FollowData'
+          $ref: '#/components/schemas/FollowResponseData'
       required:
       - data
-    FollowResult:
+    FollowResponseData:
+      properties:
+        user:
+          $ref: '#/components/schemas/FollowResponseUser'
+      required:
+      - user
+    FollowResponseResult:
       properties:
         __typename:
           $ref: ./../schemas/typename.yaml#/components/schemas/TypeName
@@ -21,18 +21,18 @@ components:
       required:
       - __typename
       - timeline
+    FollowResponseUser:
+      properties:
+        result:
+          $ref: '#/components/schemas/FollowResponseResult'
+      required:
+      - result
     FollowTimeline:
       properties:
         timeline:
           $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
       required:
       - timeline
-    FollowUser:
-      properties:
-        result:
-          $ref: '#/components/schemas/FollowResult'
-      required:
-      - result
 info:
   title: Twitter OpenAPI
   version: 0.0.1

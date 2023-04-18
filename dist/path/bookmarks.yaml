@@ -1,17 +1,17 @@
 components:
   schemas:
-    BookmarksData:
+    BookmarksResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BookmarksResponseData'
+      required:
+      - data
+    BookmarksResponseData:
       properties:
         bookmark_timeline_v2:
           $ref: '#/components/schemas/BookmarksTimeline'
       required:
       - bookmark_timeline_v2
-    BookmarksResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/BookmarksData'
-      required:
-      - data
     BookmarksTimeline:
       properties:
         timeline:

@@ -41,23 +41,23 @@ components:
         - "data"
       properties:
         data:
-          $ref: "#/components/schemas/FollowData"
+          $ref: "#/components/schemas/FollowResponseData"
 
-    FollowData:
+    FollowResponseData:
       required:
         - "user"
       properties:
         user:
-          $ref: "#/components/schemas/FollowUser"
+          $ref: "#/components/schemas/FollowResponseUser"
 
-    FollowUser:
+    FollowResponseUser:
       required:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/FollowResult"
+          $ref: "#/components/schemas/FollowResponseResult"
 
-    FollowResult:
+    FollowResponseResult:
       required:
         - "__typename"
         - "timeline"

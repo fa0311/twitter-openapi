@@ -26,9 +26,9 @@ components:
         - "data"
       properties:
         data:
-          $ref: "#/components/schemas/BookmarksData"
+          $ref: "#/components/schemas/BookmarksResponseData"
 
-    BookmarksData:
+    BookmarksResponseData:
       required:
         - "bookmark_timeline_v2"
       properties:
