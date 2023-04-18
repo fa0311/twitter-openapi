@@ -63,6 +63,8 @@ tags:
     description: tweet
   - name: user
     description: user
+  - name: bookmark
+    description: bookmark
   - name: follow
     description: follow
   - name: search
