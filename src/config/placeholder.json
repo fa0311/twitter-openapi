@@ -2,12 +2,13 @@
     "HomeTimeline": {
         "Query": "HCosKfLNW1AcOo3la3mMgg",
         "Variables": {
-            "count": 40,
+            "count": 20,
             "includePromotedContent": true,
             "latestControlAvailable": true,
+            "requestContext": "launch",
             "withCommunity": true
         },
-        "Feature": {
+        "Features": {
             "blue_business_profile_image_shape_enabled": true,
             "responsive_web_graphql_exclude_directive_enabled": true,
             "verified_phone_label_enabled": false,
@@ -37,7 +38,7 @@
             "latestControlAvailable": true,
             "requestContext": "launch"
         },
-        "Feature": {
+        "Features": {
             "blue_business_profile_image_shape_enabled": true,
             "responsive_web_graphql_exclude_directive_enabled": true,
             "verified_phone_label_enabled": false,
@@ -65,7 +66,7 @@
             "listId": "53044119",
             "count": 20
         },
-        "Feature": {
+        "Features": {
             "blue_business_profile_image_shape_enabled": true,
             "responsive_web_graphql_exclude_directive_enabled": true,
             "verified_phone_label_enabled": false,
@@ -169,7 +170,7 @@
         "Query": "YqiE3JL1KNgf9nSljYdxaA",
         "Variables": {
             "userId": "44196397",
-            "count": 20,
+            "count": 40,
             "includePromotedContent": false,
             "withClientEventToken": false,
             "withBirdwatchNotes": false,
