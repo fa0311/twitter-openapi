@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths: {}
+components:
+  schemas:
+    ContentUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineTimelineItem"
+        - $ref: "#/components/schemas/TimelineTimelineCursor"
+        - $ref: "#/components/schemas/TimelineTimelineModule"
+      discriminator:
+        propertyName: entryType
+        mapping": # deprecated
+          TimelineTimelineItem: "#/components/schemas/TimelineTimelineItem"
+          TimelineTimelineCursor: "#/components/schemas/TimelineTimelineCursor"
+          TimelineTimelineModule: "#/components/schemas/TimelineTimelineModule"
+
+    ContentEntryType:
+      type: string
+      enum:
+        [TimelineTimelineItem, TimelineTimelineCursor, TimelineTimelineModule]
+
+    TimelineTimelineItem:
+      required:
+        - "__typename"
+        - "entryType"
+        - "itemContent"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineItem
+        entryType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineItem
+        itemContent:
+          $ref: "#/components/schemas/ItemContent"
+        clientEventInfo:
+          type: object # todo
+        feedbackInfo:
+          type: object # todo
+
+    TimelineTimelineCursor:
+      required:
+        - "__typename"
+        - "entryType"
+        - "cursorType"
+        - "value"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor
+        entryType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
+        cursorType:
+          type: string
+          enum: [Top, Bottom]
+        value:
+          type: string
+
+    TimelineTimelineModule:
+      required:
+        - "__typename"
+        - "entryType"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineModule
+
+        entryType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
+
+    # ================= ContentItem =================
+    ContentItemType:
+      type: string
+      enum: [TimelineTweet]
+
+    ItemContent:
+      required:
+        - "__typename"
+        - "itemType"
+        - "tweetDisplayType"
+        - "tweet_results"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTweet
+        itemType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentItemType" # TimelineTweet
+        tweetDisplayType:
+          type: string
+        tweet_results:
+          $ref: "#/components/schemas/ItemResult"
+        socialContext:
+          type: object
+          properties:
+            contextType:
+              type: string # enum
+            text:
+              type: string
+            type:
+              type: string # enum
+
+    ItemResult:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "./tweet.yaml#/components/schemas/TweetUnion"

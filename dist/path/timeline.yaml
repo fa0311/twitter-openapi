@@ -1,0 +1,258 @@
+components:
+  schemas:
+    HomeTimelineHome:
+      properties:
+        home_timeline_urt:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
+      required:
+      - home_timeline_urt
+    HomeTimelineResponseData:
+      properties:
+        home:
+          $ref: '#/components/schemas/HomeTimelineHome'
+      required:
+      - home
+    ListTweetsTimeline:
+      properties:
+        timeline:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
+      required:
+      - timeline
+    ListTweetsTimelineData:
+      properties:
+        home:
+          $ref: '#/components/schemas/ListTweetsTimelineList'
+      required:
+      - list
+    ListTweetsTimelineList:
+      properties:
+        tweets_timeline:
+          $ref: '#/components/schemas/ListTweetsTimeline'
+      required:
+      - tweets_timeline
+    ListTweetsTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ListTweetsTimelineData'
+      required:
+      - data
+    TimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/HomeTimelineResponseData'
+      required:
+      - data
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
+    get:
+      description: get tweet list of timeline
+      operationId: getListLatestTweetsTimeline
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"listId": "53044119", "count": 20}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{{Features}}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: 2TemLyqrMpTeAmysdbnVqw
+          example: 2TemLyqrMpTeAmysdbnVqw
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTweetsTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - timeline
+      - login-required
+      - graphql
+  /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
+    get:
+      description: get tweet list of timeline
+      operationId: getHomeTimeline
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"count": 40, "includePromotedContent": true, "latestControlAvailable":
+            true, "withCommunity": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{{Features}}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: HCosKfLNW1AcOo3la3mMgg
+          example: HCosKfLNW1AcOo3la3mMgg
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - timeline
+      - login-required
+      - graphql
+  /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
+    get:
+      description: get tweet list of timeline
+      operationId: getHomeLatestTimeline
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
+            true, "requestContext": "launch"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{{Features}}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: zhX91JE87mWvfprhYE97xA
+          example: zhX91JE87mWvfprhYE97xA
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - timeline
+      - login-required
+      - graphql

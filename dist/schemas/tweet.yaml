@@ -1,0 +1,145 @@
+components:
+  schemas:
+    Tweet:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        core:
+          $ref: ./user.yaml#/components/schemas/UserResultCore
+        edit_control:
+          properties:
+            edit_tweet_ids:
+              items:
+                pattern: ^[0-9]+$
+                type: string
+              type: array
+            editable_until_msecs:
+              pattern: ^[0-9]+$
+              type: string
+            edits_remaining:
+              pattern: ^[0-9]+$
+              type: string
+            is_edit_eligible:
+              type: boolean
+          type: object
+        edit_prespective:
+          properties:
+            favorited:
+              type: boolean
+            retweeted:
+              type: boolean
+          type: object
+        is_translatable:
+          default: false
+          type: boolean
+        legacy:
+          $ref: '#/components/schemas/TweetLegacy'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        unmention_data:
+          type: object
+        views:
+          properties:
+            count:
+              pattern: ^[0-9]+$
+              type: string
+            state:
+              type: string
+          type: object
+      required:
+      - rest_id
+      - core
+      - edit_control
+      - edit_prespective
+      - is_translatable
+      - legacy
+      - views
+    TweetLegacy:
+      properties:
+        bookmark_count:
+          type: integer
+        bookmarked:
+          type: boolean
+        conversation_id_str:
+          pattern: ^[0-9]+$
+          type: string
+        created_at:
+          $ref: ./general.yaml#/components/schemas/TwitterTimeFormat
+        display_text_range:
+          items:
+            type: integer
+          type: array
+        entities:
+          type: object
+        favorite_count:
+          type: integer
+        favorited:
+          type: boolean
+        full_text:
+          type: string
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        is_quote_status:
+          type: boolean
+        lang:
+          type: string
+        possibly_sensitive:
+          default: false
+          type: boolean
+        possibly_sensitive_editable:
+          default: false
+          type: boolean
+        quote_count:
+          type: integer
+        reply_count:
+          type: integer
+        retweet_count:
+          type: integer
+        retweeted:
+          type: boolean
+        user_id_str:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - bookmark_count
+      - bookmarked
+      - conversation_id_str
+      - created_at
+      - display_text_range
+      - entities
+      - favorite_count
+      - favorited
+      - full_text
+      - is_quote_status
+      - lang
+      - quote_count
+      - reply_count
+      - retweet_count
+      - retweeted
+      - user_id_str
+      - id_str
+    TweetUnion:
+      discriminator:
+        mapping":
+          Tweet: '#/components/schemas/Tweet'
+          TweetWithVisibilityResults: '#/components/schemas/TweetWithVisibilityResults'
+        propertyName: __typename
+      oneOf:
+      - $ref: '#/components/schemas/Tweet'
+      - $ref: '#/components/schemas/TweetWithVisibilityResults'
+    TweetWithVisibilityResults:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        tweet:
+          $ref: '#/components/schemas/Tweet'
+      required:
+      - __typename
+      - tweet
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths: {}

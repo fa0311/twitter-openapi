@@ -1,0 +1,101 @@
+components:
+  schemas: {}
+  securitySchemes:
+    ActiveUser:
+      description: 'yes'
+      in: header
+      name: x-twitter-active-user
+      type: apiKey
+    AuthType:
+      description: OAuth2Session
+      in: header
+      name: x-twitter-auth-type
+      type: apiKey
+    BearerAuth:
+      description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+      scheme: bearer
+      type: http
+    ClientLanguage:
+      description: en
+      in: header
+      name: x-twitter-client-language
+      type: apiKey
+    CookieAuthToken:
+      in: cookie
+      name: auth_token
+      type: apiKey
+    CookieCt0:
+      in: cookie
+      name: ct0
+      type: apiKey
+    CsrfToken:
+      in: header
+      name: x-csrf-token
+      type: apiKey
+info:
+  contact:
+    email: yuki@yuki0311.com
+  description: Twitter OpenAPI(Swagger) specification
+  license:
+    name: GNU Affero General Public License v3.
+    url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
+  termsOfService: https://github.com/fa0311
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
+    $ref: ./path/timeline.yaml#/paths/~12TemLyqrMpTeAmysdbnVqw~1ListLatestTweetsTimeline
+  /5fmEkRT-1AdHqEsbVgehMg/Likes:
+    $ref: ./path/usertweets.yaml#/paths/~15fmEkRT-1AdHqEsbVgehMg~1Likes
+  /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
+    $ref: ./path/timeline.yaml#/paths/~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
+  /HuTx74BxAnezK1gWvYY7zg/UserTweets:
+    $ref: ./path/usertweets.yaml#/paths/~1HuTx74BxAnezK1gWvYY7zg~1UserTweets
+  /RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
+    $ref: ./path/usertweets.yaml#/paths/~1RIWc55YCNyUJ-U3HHGYkdg~1UserTweetsAndReplies
+  /YqiE3JL1KNgf9nSljYdxaA/UserMedia:
+    $ref: ./path/usertweets.yaml#/paths/~1YqiE3JL1KNgf9nSljYdxaA~1UserMedia
+  /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
+    $ref: ./path/user.yaml#/paths/~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
+  /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
+    $ref: ./path/timeline.yaml#/paths/~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
+  /{{FollowersQuery}}/Followers:
+    $ref: ./path/follow.yaml#/paths/~1{{FollowersQuery}}~1Followers
+  /{{FollowingQuery}}/Following:
+    $ref: ./path/follow.yaml#/paths/~1{{FollowingQuery}}~1Following
+security:
+- bearerAuth: []
+- CsrfToken: []
+- ActiveUser: []
+- AuthType: []
+- ClientLanguage: []
+- CookieAuthToken: []
+- CookieCt0: []
+servers:
+- url: https://twitter.com/i/api/graphql
+tags:
+- description: timeline
+  name: timeline
+- description: tweet
+  name: tweet
+- description: user
+  name: user
+- description: follow
+  name: follow
+- description: search
+  name: search
+- description: dm
+  name: dm
+- description: settings
+  name: settings
+- description: notify
+  name: notify
+- description: login session required
+  name: login required
+- description: graphql
+  name: graphql
+- description: login flow
+  name: login-flow
+- description: report flow
+  name: report-flow

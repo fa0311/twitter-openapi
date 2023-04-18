@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /{{FollowingQuery}}/Following:
+    get:
+      operationId: getFollowers
+      description: get user list of followers
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "follow"
+        - "graphql"
+
+  /{{FollowersQuery}}/Followers:
+    get:
+      operationId: getFollowing
+      description: get user list of following
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "follow"
+        - "graphql"

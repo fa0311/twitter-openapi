@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+paths:
+  /parameters:
+    get:
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "{{Variables}}"
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "{{Features}}"
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "{{Query}}"
+            example: "{{Query}}"
+      responses:
+        "200":
+          description: ""

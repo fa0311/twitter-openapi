@@ -1,0 +1,89 @@
+components:
+  schemas:
+    UserResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/UserResponseData'
+      required:
+      - data
+    UserResponseData:
+      properties:
+        user:
+          $ref: ./../schemas/user.yaml#/components/schemas/UserResults
+      required:
+      - user
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
+    get:
+      description: get user by screen name
+      operationId: getUserByScreenName
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "responsive_web_graphql_timeline_navigation_enabled": true}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: sLVLhk0bGj3MVFEKTdax1w
+          example: sLVLhk0bGj3MVFEKTdax1w
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - user
+      - graphql

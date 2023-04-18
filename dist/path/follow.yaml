@@ -1,0 +1,133 @@
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /{{FollowersQuery}}/Followers:
+    get:
+      description: get user list of following
+      operationId: getFollowing
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{{Variables}}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{{Features}}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: '{{Query}}'
+          example: '{{Query}}'
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - follow
+      - graphql
+  /{{FollowingQuery}}/Following:
+    get:
+      description: get user list of followers
+      operationId: getFollowers
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{{Variables}}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{{Features}}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: '{{Query}}'
+          example: '{{Query}}'
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - follow
+      - graphql

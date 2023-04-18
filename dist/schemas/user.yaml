@@ -1,0 +1,214 @@
+components:
+  schemas:
+    User:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        affiliates_highlighted_label:
+          type: object
+        business_account:
+          type: object
+        has_graduated_access:
+          type: boolean
+        has_nft_avatar:
+          default: false
+          type: boolean
+        id:
+          pattern: ^[a-z\-]+[0-9]+$
+          type: string
+        is_blue_verified:
+          default: false
+          type: boolean
+        legacy:
+          $ref: '#/components/schemas/UserLegacy'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        super_follow_eligible:
+          default: false
+          type: boolean
+        super_followed_by:
+          default: false
+          type: boolean
+        super_following:
+          default: false
+          type: boolean
+      required:
+      - __typename
+      - affiliates_highlighted_label
+      - has_graduated_access
+      - id
+      - is_blue_verified
+      - legacy
+      - rest_id
+      - super_follow_eligible
+      - super_followed_by
+      - super_following
+    UserLegacy:
+      properties:
+        blocked_by:
+          default: false
+          type: boolean
+        blocking:
+          default: false
+          type: boolean
+        can_dm:
+          default: false
+          type: boolean
+        can_media_tag:
+          default: false
+          type: boolean
+        created_at:
+          $ref: ./general.yaml#/components/schemas/TwitterTimeFormat
+        default_profile:
+          default: false
+          type: boolean
+        default_profile_image:
+          default: false
+          type: boolean
+        description:
+          type: string
+        entities:
+          type: object
+        fast_followers_count:
+          type: integer
+        favourites_count:
+          default: 0
+          type: integer
+        follow_request_sent:
+          default: false
+          type: boolean
+        followed_by:
+          default: false
+          type: boolean
+        followers_count:
+          default: 0
+          type: integer
+        following:
+          default: false
+          type: boolean
+        friends_count:
+          default: 0
+          type: integer
+        has_custom_timelines:
+          default: false
+          type: boolean
+        is_translator:
+          default: false
+          type: boolean
+        listed_count:
+          default: 0
+          type: integer
+        location:
+          type: string
+        media_count:
+          default: 0
+          type: integer
+        muting:
+          default: false
+          type: boolean
+        name:
+          type: string
+        normal_followers_count:
+          default: 0
+          type: integer
+        notifications:
+          default: false
+          type: boolean
+        pinned_tweet_ids_str:
+          items:
+            type: string
+          type: array
+        possibly_sensitive:
+          default: false
+          type: boolean
+        profile_banner_extensions:
+          type: object
+        profile_banner_url:
+          format: uri
+          type: string
+        profile_image_extensions:
+          type: object
+        profile_image_url_https:
+          format: uri
+          type: string
+        profile_interstitial_type:
+          type: string
+        protected:
+          default: false
+          type: boolean
+        screen_name:
+          type: string
+        statuses_count:
+          default: 0
+          type: integer
+        translator_type:
+          type: string
+        url:
+          type: string
+        verified:
+          type: boolean
+        want_retweets:
+          default: false
+          type: boolean
+      required:
+      - blocked_by
+      - blocking
+      - can_dm
+      - can_media_tag
+      - created_at
+      - default_profile
+      - default_profile_image
+      - description
+      - entities
+      - fast_followers_count
+      - favourites_count
+      - follow_request_sent
+      - followed_by
+      - followers_count
+      - following
+      - friends_count
+      - has_custom_timelines
+      - is_translator
+      - listed_count
+      - location
+      - media_count
+      - muting
+      - name
+      - normal_followers_count
+      - notifications
+      - pinned_tweet_ids_str
+      - possibly_sensitive
+      - profile_image_url_https
+      - profile_interstitial_type
+      - protected
+      - screen_name
+      - status
+      - statuses_count
+      - translator_type
+      - verified
+      - want_retweets
+    UserResultCore:
+      properties:
+        user_results:
+          $ref: '#/components/schemas/UserResults'
+      required:
+      - user_results
+    UserResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/UserUnion'
+      required:
+      - result
+    UserUnion:
+      discriminator:
+        mapping":
+          User: '#/components/schemas/User'
+        propertyName: __typename
+      oneOf:
+      - $ref: '#/components/schemas/User'
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths: {}
