@@ -102,6 +102,13 @@
             "responsive_web_graphql_timeline_navigation_enabled": true
         }
     },
+    "ProfileSpotlightsQuery": {
+        "Query": "9zwVLJ48lmVUk8u_Gh9DmA",
+        "Variables": {
+            "screen_name": "elonmusk"
+        },
+        "Features": {}
+    },
     "UserTweets": {
         "Query": "HuTx74BxAnezK1gWvYY7zg",
         "Variables": {

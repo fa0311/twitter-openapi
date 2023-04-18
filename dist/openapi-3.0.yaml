@@ -48,6 +48,8 @@ paths:
     $ref: ./path/timeline.yaml#/paths/~12TemLyqrMpTeAmysdbnVqw~1ListLatestTweetsTimeline
   /5fmEkRT-1AdHqEsbVgehMg/Likes:
     $ref: ./path/usertweets.yaml#/paths/~15fmEkRT-1AdHqEsbVgehMg~1Likes
+  /9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
+    $ref: ./path/profile.yaml#/paths/~19zwVLJ48lmVUk8u_Gh9DmA~1ProfileSpotlightsQuery
   /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
     $ref: ./path/timeline.yaml#/paths/~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
   /HuTx74BxAnezK1gWvYY7zg/UserTweets:
