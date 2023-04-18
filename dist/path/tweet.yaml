@@ -1,0 +1,100 @@
+components:
+  schemas:
+    BookmarksResponseData:
+      properties:
+        threaded_conversation_with_injections_v2:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
+      required:
+      - threaded_conversation_with_injections_v2
+    TweetDetailResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BookmarksResponseData'
+      required:
+      - data
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
+    get:
+      description: get TweetDetail
+      operationId: getTweetDetail
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"focalTweetId": "1349129669258448897", "with_rux_injections":
+            false, "includePromotedContent": true, "withCommunity": true, "withQuickPromoteEligibilityTweetFields":
+            true, "withBirdwatchNotes": true, "withVoice": true, "withV2Timeline":
+            true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: wNNG8DBB8EaXw1lq4vFWGA
+          example: wNNG8DBB8EaXw1lq4vFWGA
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetDetailResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - bookmark
+      - graphql

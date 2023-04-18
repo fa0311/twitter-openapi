@@ -35,7 +35,7 @@ components:
           type: string # enum
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineItem
         itemContent:
-          $ref: "#/components/schemas/ItemContent"
+          $ref: "#/components/schemas/ItemContentUnion"
         clientEventInfo:
           type: object # todo
         feedbackInfo:
@@ -44,7 +44,6 @@ components:
     TimelineTimelineCursor:
       required:
         - "__typename"
-        - "entryType"
         - "cursorType"
         - "value"
       properties:
@@ -52,7 +51,10 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor
         entryType:
           type: string # enum
-          $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
+          $ref: "#/components/schemas/ContentEntryType" # null | TimelineTimelineCursor
+        itemType:
+          type: string # enum
+          $ref: "#/components/schemas/ContentEntryType" # null | TimelineTimelineCursor
         cursorType:
           type: string
           enum: [Top, Bottom]
@@ -72,11 +74,22 @@ components:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
 
     # ================= ContentItem =================
+
+    ItemContentUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineTweet"
+        - $ref: "#/components/schemas/TimelineTimelineCursor"
+      discriminator:
+        propertyName: itemType
+        mapping": # deprecated
+          TimelineTweet: "#/components/schemas/TimelineTweet"
+          TimelineTimelineCursor: "#/components/schemas/TimelineTimelineCursor"
+
     ContentItemType:
       type: string
-      enum: [TimelineTweet]
+      enum: [TimelineTweet, TimelineTimelineCursor]
 
-    ItemContent:
+    TimelineTweet:
       required:
         - "__typename"
         - "itemType"
@@ -106,5 +119,7 @@ components:
       required:
         - "result"
       properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # null | TimelineTweet
         result:
           $ref: "./tweet.yaml#/components/schemas/TweetUnion"

@@ -9,6 +9,7 @@ components:
     ContentItemType:
       enum:
       - TimelineTweet
+      - TimelineTimelineCursor
       type: string
     ContentUnion:
       discriminator:
@@ -21,7 +22,72 @@ components:
       - $ref: '#/components/schemas/TimelineTimelineItem'
       - $ref: '#/components/schemas/TimelineTimelineCursor'
       - $ref: '#/components/schemas/TimelineTimelineModule'
-    ItemContent:
+    ItemContentUnion:
+      discriminator:
+        mapping":
+          TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
+          TimelineTweet: '#/components/schemas/TimelineTweet'
+        propertyName: itemType
+      oneOf:
+      - $ref: '#/components/schemas/TimelineTweet'
+      - $ref: '#/components/schemas/TimelineTimelineCursor'
+    ItemResult:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        result:
+          $ref: ./tweet.yaml#/components/schemas/TweetUnion
+      required:
+      - result
+    TimelineTimelineCursor:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        cursorType:
+          enum:
+          - Top
+          - Bottom
+          type: string
+        entryType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        itemType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        value:
+          type: string
+      required:
+      - __typename
+      - cursorType
+      - value
+    TimelineTimelineItem:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        clientEventInfo:
+          type: object
+        entryType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        feedbackInfo:
+          type: object
+        itemContent:
+          $ref: '#/components/schemas/ItemContentUnion'
+      required:
+      - __typename
+      - entryType
+      - itemContent
+    TimelineTimelineModule:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        entryType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+      required:
+      - __typename
+      - entryType
+    TimelineTweet:
       properties:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
@@ -46,58 +112,6 @@ components:
       - itemType
       - tweetDisplayType
       - tweet_results
-    ItemResult:
-      properties:
-        result:
-          $ref: ./tweet.yaml#/components/schemas/TweetUnion
-      required:
-      - result
-    TimelineTimelineCursor:
-      properties:
-        __typename:
-          $ref: ./typename.yaml#/components/schemas/TypeName
-        cursorType:
-          enum:
-          - Top
-          - Bottom
-          type: string
-        entryType:
-          $ref: '#/components/schemas/ContentEntryType'
-          type: string
-        value:
-          type: string
-      required:
-      - __typename
-      - entryType
-      - cursorType
-      - value
-    TimelineTimelineItem:
-      properties:
-        __typename:
-          $ref: ./typename.yaml#/components/schemas/TypeName
-        clientEventInfo:
-          type: object
-        entryType:
-          $ref: '#/components/schemas/ContentEntryType'
-          type: string
-        feedbackInfo:
-          type: object
-        itemContent:
-          $ref: '#/components/schemas/ItemContent'
-      required:
-      - __typename
-      - entryType
-      - itemContent
-    TimelineTimelineModule:
-      properties:
-        __typename:
-          $ref: ./typename.yaml#/components/schemas/TypeName
-        entryType:
-          $ref: '#/components/schemas/ContentEntryType'
-          type: string
-      required:
-      - __typename
-      - entryType
 info:
   title: Twitter OpenAPI
   version: 0.0.1

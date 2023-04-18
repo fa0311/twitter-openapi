@@ -5,6 +5,7 @@ components:
       - TimelineAddEntries
       - TimelineClearCache
       - TimelinePinEntry
+      - TimelineTerminateTimeline
       type: string
     InstructionUnion:
       discriminator:
@@ -12,11 +13,13 @@ components:
           TimelineAddEntries: '#/components/schemas/TimelineAddEntries'
           TimelineClearCache: '#/components/schemas/TimelineClearCache'
           TimelinePinEntry: '#/components/schemas/TimelinePinEntry'
+          TimelineTerminateTimeline: '#/components/schemas/TimelineTerminateTimeline'
         propertyName: type
       oneOf:
       - $ref: '#/components/schemas/TimelineAddEntries'
       - $ref: '#/components/schemas/TimelineClearCache'
       - $ref: '#/components/schemas/TimelinePinEntry'
+      - $ref: '#/components/schemas/TimelineTerminateTimeline'
     TimelineAddEntries:
       properties:
         entries:
@@ -60,6 +63,19 @@ components:
       required:
       - type
       - entry
+    TimelineTerminateTimeline:
+      properties:
+        direction:
+          enum:
+          - Top
+          - Bottom
+          type: string
+        type:
+          $ref: '#/components/schemas/InstructionType'
+          type: string
+      required:
+      - type
+      - direction
 info:
   title: Twitter OpenAPI
   version: 0.0.1

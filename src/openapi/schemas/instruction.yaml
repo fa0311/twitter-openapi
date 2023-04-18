@@ -11,16 +11,24 @@ components:
         - $ref: "#/components/schemas/TimelineAddEntries"
         - $ref: "#/components/schemas/TimelineClearCache"
         - $ref: "#/components/schemas/TimelinePinEntry"
+        - $ref: "#/components/schemas/TimelineTerminateTimeline"
       discriminator:
         propertyName: type
         mapping": # deprecated
           TimelineAddEntries: "#/components/schemas/TimelineAddEntries"
           TimelineClearCache: "#/components/schemas/TimelineClearCache"
           TimelinePinEntry: "#/components/schemas/TimelinePinEntry"
+          TimelineTerminateTimeline: "#/components/schemas/TimelineTerminateTimeline"
 
     InstructionType:
       type: string
-      enum: [TimelineAddEntries, TimelineClearCache, TimelinePinEntry]
+      enum:
+        [
+          TimelineAddEntries,
+          TimelineClearCache,
+          TimelinePinEntry,
+          TimelineTerminateTimeline,
+        ]
 
     TimelineAddEntries:
       required:
@@ -53,6 +61,18 @@ components:
           $ref: "#/components/schemas/InstructionType" # TimelinePinEntry
         entry:
           $ref: "#/components/schemas/TimelineAddEntry"
+
+    TimelineTerminateTimeline:
+      required:
+        - type
+        - direction
+      properties:
+        type:
+          type: string
+          $ref: "#/components/schemas/InstructionType" # TimelineTerminateTimeline
+        direction:
+          type: string
+          enum: [Top, Bottom]
 
     TimelineAddEntry:
       required:

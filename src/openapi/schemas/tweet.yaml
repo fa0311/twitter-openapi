@@ -29,7 +29,6 @@ components:
 
     Tweet:
       required:
-        # - "__typename"
         - "rest_id"
         - "core"
         - "edit_control"
@@ -40,7 +39,7 @@ components:
 
       properties:
         __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # Tweet
+          $ref: "./typename.yaml#/components/schemas/TypeName" # null | Tweet
         rest_id:
           type: string
           pattern: "^[0-9]+$"

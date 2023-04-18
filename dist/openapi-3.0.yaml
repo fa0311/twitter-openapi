@@ -60,6 +60,8 @@ paths:
     $ref: ./path/user.yaml#/paths/~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
   /tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
     $ref: ./path/bookmarks.yaml#/paths/~1tmd4ifV8RHltzn8ymGg1aw~1Bookmarks
+  /wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
+    $ref: ./path/tweet.yaml#/paths/~1wNNG8DBB8EaXw1lq4vFWGA~1TweetDetail
   /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
     $ref: ./path/timeline.yaml#/paths/~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
   /{{FollowersQuery}}/Followers:
