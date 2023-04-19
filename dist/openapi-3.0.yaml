@@ -45,31 +45,31 @@ info:
 openapi: 3.0.3
 paths:
   /2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
-    $ref: ./path/timeline.yaml#/paths/~12TemLyqrMpTeAmysdbnVqw~1ListLatestTweetsTimeline
+    $ref: ./paths/timeline.yaml#/paths/~12TemLyqrMpTeAmysdbnVqw~1ListLatestTweetsTimeline
   /5fmEkRT-1AdHqEsbVgehMg/Likes:
-    $ref: ./path/usertweets.yaml#/paths/~15fmEkRT-1AdHqEsbVgehMg~1Likes
+    $ref: ./paths/usertweets.yaml#/paths/~15fmEkRT-1AdHqEsbVgehMg~1Likes
   /9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
-    $ref: ./path/profile.yaml#/paths/~19zwVLJ48lmVUk8u_Gh9DmA~1ProfileSpotlightsQuery
+    $ref: ./paths/profile.yaml#/paths/~19zwVLJ48lmVUk8u_Gh9DmA~1ProfileSpotlightsQuery
   /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
-    $ref: ./path/timeline.yaml#/paths/~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
+    $ref: ./paths/timeline.yaml#/paths/~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
   /HuTx74BxAnezK1gWvYY7zg/UserTweets:
-    $ref: ./path/usertweets.yaml#/paths/~1HuTx74BxAnezK1gWvYY7zg~1UserTweets
+    $ref: ./paths/usertweets.yaml#/paths/~1HuTx74BxAnezK1gWvYY7zg~1UserTweets
   /JpFFCTBPxYVlDqMUr9twzQ/Followers:
-    $ref: ./path/follow.yaml#/paths/~1JpFFCTBPxYVlDqMUr9twzQ~1Followers
+    $ref: ./paths/follow.yaml#/paths/~1JpFFCTBPxYVlDqMUr9twzQ~1Followers
   /RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
-    $ref: ./path/usertweets.yaml#/paths/~1RIWc55YCNyUJ-U3HHGYkdg~1UserTweetsAndReplies
+    $ref: ./paths/usertweets.yaml#/paths/~1RIWc55YCNyUJ-U3HHGYkdg~1UserTweetsAndReplies
   /YqiE3JL1KNgf9nSljYdxaA/UserMedia:
-    $ref: ./path/usertweets.yaml#/paths/~1YqiE3JL1KNgf9nSljYdxaA~1UserMedia
+    $ref: ./paths/usertweets.yaml#/paths/~1YqiE3JL1KNgf9nSljYdxaA~1UserMedia
   /b22I8WSfQ8H4Ev8486xAlQ/Following:
-    $ref: ./path/follow.yaml#/paths/~1b22I8WSfQ8H4Ev8486xAlQ~1Following
+    $ref: ./paths/follow.yaml#/paths/~1b22I8WSfQ8H4Ev8486xAlQ~1Following
   /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
-    $ref: ./path/user.yaml#/paths/~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
+    $ref: ./paths/user.yaml#/paths/~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
   /tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
-    $ref: ./path/bookmarks.yaml#/paths/~1tmd4ifV8RHltzn8ymGg1aw~1Bookmarks
+    $ref: ./paths/bookmarks.yaml#/paths/~1tmd4ifV8RHltzn8ymGg1aw~1Bookmarks
   /wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
-    $ref: ./path/tweet.yaml#/paths/~1wNNG8DBB8EaXw1lq4vFWGA~1TweetDetail
+    $ref: ./paths/tweet.yaml#/paths/~1wNNG8DBB8EaXw1lq4vFWGA~1TweetDetail
   /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
-    $ref: ./path/timeline.yaml#/paths/~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
+    $ref: ./paths/timeline.yaml#/paths/~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
 security:
 - bearerAuth: []
 - CsrfToken: []
