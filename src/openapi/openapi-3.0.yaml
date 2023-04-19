@@ -18,43 +18,34 @@ components:
   schemas: {}
 
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+    # Moved to Parameters because it is not working as Security
+    # BearerAuth:
+    #   type: http
+    #   scheme: bearer
+    #   description: "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+    # AuthType:
+    #   type: apiKey
+    #   in: header
+    #   name: x-twitter-auth-type
+    #   description: "OAuth2Session"
 
     CsrfToken:
       type: apiKey
       in: header
       name: x-csrf-token
-
-    ActiveUser:
-      type: apiKey
-      in: header
-      name: x-twitter-active-user
-      description: "yes"
-
-    AuthType:
-      type: apiKey
-      in: header
-      name: x-twitter-auth-type
-      description: "OAuth2Session"
-
-    ClientLanguage:
-      type: apiKey
-      in: header
-      name: x-twitter-client-language
-      description: "en"
-
-    CookieAuthToken:
-      type: apiKey
-      in: cookie
-      name: auth_token
+      description: "document.cookie.split('; ').find(row => row.startsWith('ct0='));"
 
     CookieCt0:
       type: apiKey
       in: cookie
       name: ct0
+      description: "document.cookie.split('; ').find(row => row.startsWith('ct0='));"
+
+    CookieAuthToken:
+      type: apiKey
+      in: cookie
+      name: auth_token
+      description: "HttpOnly cookie"
 
 tags:
   - name: timeline

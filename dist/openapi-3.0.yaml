@@ -1,34 +1,18 @@
 components:
   schemas: {}
   securitySchemes:
-    ActiveUser:
-      description: 'yes'
-      in: header
-      name: x-twitter-active-user
-      type: apiKey
-    AuthType:
-      description: OAuth2Session
-      in: header
-      name: x-twitter-auth-type
-      type: apiKey
-    BearerAuth:
-      description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-      scheme: bearer
-      type: http
-    ClientLanguage:
-      description: en
-      in: header
-      name: x-twitter-client-language
-      type: apiKey
     CookieAuthToken:
+      description: HttpOnly cookie
       in: cookie
       name: auth_token
       type: apiKey
     CookieCt0:
+      description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
       in: cookie
       name: ct0
       type: apiKey
     CsrfToken:
+      description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
       in: header
       name: x-csrf-token
       type: apiKey
