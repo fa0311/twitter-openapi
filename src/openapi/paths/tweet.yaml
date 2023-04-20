@@ -23,9 +23,9 @@ components:
         - "data"
       properties:
         data:
-          $ref: "#/components/schemas/BookmarksResponseData"
+          $ref: "#/components/schemas/TweetDetailResponseData"
 
-    BookmarksResponseData:
+    TweetDetailResponseData:
       required:
         - "threaded_conversation_with_injections_v2"
       properties:

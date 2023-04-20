@@ -1,17 +1,17 @@
 components:
   schemas:
-    BookmarksResponseData:
+    TweetDetailResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TweetDetailResponseData'
+      required:
+      - data
+    TweetDetailResponseData:
       properties:
         threaded_conversation_with_injections_v2:
           $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
       required:
       - threaded_conversation_with_injections_v2
-    TweetDetailResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/BookmarksResponseData'
-      required:
-      - data
 info:
   title: Twitter OpenAPI
   version: 0.0.1
