@@ -144,6 +144,8 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentItemType'
           type: string
+        promotedMetadata:
+          type: object
         tweetDisplayType:
           type: string
         tweet_results:
@@ -164,8 +166,6 @@ components:
           type: string
         userDisplayType:
           type: string
-        user_results:
-          $ref: ./user.yaml#/components/schemas/UserResults
       required:
       - __typename
       - itemType
