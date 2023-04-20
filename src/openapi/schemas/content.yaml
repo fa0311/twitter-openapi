@@ -147,6 +147,8 @@ components:
           $ref: "#/components/schemas/ItemResult"
         SocialContext:
           $ref: "#/components/schemas/SocialContext"
+        promotedMetadata:
+          type: object # todo
 
     TimelineUser:
       required:
