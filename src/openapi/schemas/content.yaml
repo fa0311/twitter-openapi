@@ -147,6 +147,8 @@ components:
           $ref: "#/components/schemas/ItemResult"
         SocialContext:
           $ref: "#/components/schemas/SocialContext"
+        promotedMetadata:
+          type: object # todo
 
     TimelineUser:
       required:
@@ -165,8 +167,6 @@ components:
           $ref: "#/components/schemas/SocialContext"
         userDisplayType:
           type: string # enum
-        user_results:
-          $ref: "./user.yaml#/components/schemas/UserResults"
 
     ItemResult:
       required:
