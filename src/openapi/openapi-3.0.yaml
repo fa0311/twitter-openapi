@@ -47,36 +47,6 @@ components:
       name: auth_token
       description: "HttpOnly cookie"
 
-tags:
-  - name: timeline
-    description: timeline
-  - name: tweet
-    description: tweet
-  - name: user
-    description: user
-  - name: bookmark
-    description: bookmark
-  - name: follow
-    description: follow
-  - name: search
-    description: search
-  - name: dm
-    description: dm
-  - name: settings
-    description: settings
-  - name: notify
-    description: notify
-
-  # ===
-  - name: login required
-    description: login session required
-  - name: graphql
-    description: graphql
-  - name: login-flow
-    description: login flow
-  - name: report-flow
-    description: report flow
-
 security:
   - bearerAuth: []
   - CsrfToken: []

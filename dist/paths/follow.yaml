@@ -150,9 +150,6 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
-      tags:
-      - follow
-      - graphql
   /b22I8WSfQ8H4Ev8486xAlQ/Following:
     get:
       description: get user list of followers
@@ -265,6 +262,3 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
-      tags:
-      - follow
-      - graphql

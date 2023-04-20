@@ -15,9 +15,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
-      tags:
-        - "user"
-        - "graphql"
 
 components:
   schemas:

@@ -15,9 +15,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserTweetsResponse"
-      tags:
-        - "user"
-        - "graphql"
 
   /{{UserTweetsAndRepliesQuery}}/UserTweetsAndReplies:
     get:
@@ -30,9 +27,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserTweetsResponse"
-      tags:
-        - "user"
-        - "graphql"
 
   /{{UserMediaQuery}}/UserMedia:
     get:
@@ -45,9 +39,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserTweetsResponse"
-      tags:
-        - "user"
-        - "graphql"
 
   /{{LikesQuery}}/Likes:
     get:
@@ -60,9 +51,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserTweetsResponse"
-      tags:
-        - "user"
-        - "graphql"
 
 components:
   schemas:

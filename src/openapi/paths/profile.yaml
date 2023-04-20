@@ -15,9 +15,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProfileResponse"
-      tags:
-        - "user"
-        - "graphql"
 
 components:
   schemas:
