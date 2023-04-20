@@ -131,6 +131,3 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
-      tags:
-      - bookmark
-      - graphql

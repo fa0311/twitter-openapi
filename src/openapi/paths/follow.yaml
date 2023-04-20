@@ -15,9 +15,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FollowResponse"
-      tags:
-        - "follow"
-        - "graphql"
 
   /{{FollowersQuery}}/Followers:
     get:
@@ -30,9 +27,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FollowResponse"
-      tags:
-        - "follow"
-        - "graphql"
 
 components:
   schemas:
