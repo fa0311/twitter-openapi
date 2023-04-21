@@ -7,7 +7,7 @@ paths:
   /{{FollowingQuery}}/Following:
     get:
       operationId: getFollowing
-      description: get user list of followers
+      description: get user list of following
       responses:
         "200":
           description: Successful operation
@@ -21,7 +21,7 @@ paths:
   /{{FollowersQuery}}/Followers:
     get:
       operationId: Followers
-      description: get user list of following
+      description: get user list of followers
       responses:
         "200":
           description: Successful operation

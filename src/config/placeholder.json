@@ -303,7 +303,7 @@
         }
     },
     "Followers": {
-        "Query": "JpFFCTBPxYVlDqMUr9twzQ",
+        "Query": "djdTXDIk2qhd4OStqlUFeQ",
         "Variables": {
             "userId": "44196397",
             "count": 20,

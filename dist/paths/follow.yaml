@@ -40,8 +40,8 @@ openapi: 3.0.3
 paths:
   /IWP6Zt14sARO29lJT35bBw/Following:
     get:
-      description: get user list of followers
-      operationId: getFollowers
+      description: get user list of following
+      operationId: getFollowing
       parameters:
       - in: query
         name: variables
@@ -152,10 +152,10 @@ paths:
                 type: integer
       tags:
       - UserList
-  /JpFFCTBPxYVlDqMUr9twzQ/Followers:
+  /djdTXDIk2qhd4OStqlUFeQ/Followers:
     get:
-      description: get user list of following
-      operationId: getFollowing
+      description: get user list of followers
+      operationId: Followers
       parameters:
       - in: query
         name: variables
@@ -184,8 +184,8 @@ paths:
         name: queryId
         required: true
         schema:
-          default: JpFFCTBPxYVlDqMUr9twzQ
-          example: JpFFCTBPxYVlDqMUr9twzQ
+          default: djdTXDIk2qhd4OStqlUFeQ
+          example: djdTXDIk2qhd4OStqlUFeQ
           type: string
       - in: header
         name: authorization
