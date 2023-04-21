@@ -197,16 +197,9 @@ components:
     UserResults:
       properties:
         result:
-          $ref: '#/components/schemas/UserUnion'
+          $ref: '#/components/schemas/User'
       required:
       - result
-    UserUnion:
-      discriminator:
-        mapping":
-          User: '#/components/schemas/User'
-        propertyName: __typename
-      oneOf:
-      - $ref: '#/components/schemas/User'
 info:
   title: Twitter OpenAPI
   version: 0.0.1
