@@ -166,6 +166,8 @@ components:
           type: string
         userDisplayType:
           type: string
+        user_results:
+          $ref: ./user.yaml#/components/schemas/UserResults
       required:
       - __typename
       - itemType
