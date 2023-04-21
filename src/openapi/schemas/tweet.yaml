@@ -36,7 +36,6 @@ components:
         - "is_translatable"
         - "legacy"
         - "views"
-        - "quoted_status_result"
 
       properties:
         __typename:
