@@ -38,10 +38,10 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /JpFFCTBPxYVlDqMUr9twzQ/Followers:
+  /IWP6Zt14sARO29lJT35bBw/Following:
     get:
-      description: get user list of following
-      operationId: getFollowing
+      description: get user list of followers
+      operationId: getFollowers
       parameters:
       - in: query
         name: variables
@@ -70,8 +70,8 @@ paths:
         name: queryId
         required: true
         schema:
-          default: JpFFCTBPxYVlDqMUr9twzQ
-          example: JpFFCTBPxYVlDqMUr9twzQ
+          default: IWP6Zt14sARO29lJT35bBw
+          example: IWP6Zt14sARO29lJT35bBw
           type: string
       - in: header
         name: authorization
@@ -150,10 +150,10 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
-  /b22I8WSfQ8H4Ev8486xAlQ/Following:
+  /JpFFCTBPxYVlDqMUr9twzQ/Followers:
     get:
-      description: get user list of followers
-      operationId: getFollowers
+      description: get user list of following
+      operationId: getFollowing
       parameters:
       - in: query
         name: variables
@@ -182,8 +182,8 @@ paths:
         name: queryId
         required: true
         schema:
-          default: b22I8WSfQ8H4Ev8486xAlQ
-          example: b22I8WSfQ8H4Ev8486xAlQ
+          default: JpFFCTBPxYVlDqMUr9twzQ
+          example: JpFFCTBPxYVlDqMUr9twzQ
           type: string
       - in: header
         name: authorization

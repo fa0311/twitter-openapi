@@ -38,14 +38,14 @@ paths:
     $ref: ./paths/timeline.yaml#/paths/~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
   /HuTx74BxAnezK1gWvYY7zg/UserTweets:
     $ref: ./paths/usertweets.yaml#/paths/~1HuTx74BxAnezK1gWvYY7zg~1UserTweets
+  /IWP6Zt14sARO29lJT35bBw/Following:
+    $ref: ./paths/follow.yaml#/paths/~1IWP6Zt14sARO29lJT35bBw~1Following
   /JpFFCTBPxYVlDqMUr9twzQ/Followers:
     $ref: ./paths/follow.yaml#/paths/~1JpFFCTBPxYVlDqMUr9twzQ~1Followers
   /RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
     $ref: ./paths/usertweets.yaml#/paths/~1RIWc55YCNyUJ-U3HHGYkdg~1UserTweetsAndReplies
   /YqiE3JL1KNgf9nSljYdxaA/UserMedia:
     $ref: ./paths/usertweets.yaml#/paths/~1YqiE3JL1KNgf9nSljYdxaA~1UserMedia
-  /b22I8WSfQ8H4Ev8486xAlQ/Following:
-    $ref: ./paths/follow.yaml#/paths/~1b22I8WSfQ8H4Ev8486xAlQ~1Following
   /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
     $ref: ./paths/user.yaml#/paths/~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
   /tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
