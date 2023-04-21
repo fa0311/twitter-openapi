@@ -17,15 +17,7 @@ components:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/UserUnion"
-
-    UserUnion:
-      oneOf:
-        - $ref: "#/components/schemas/User"
-      discriminator:
-        propertyName: __typename
-        mapping": # deprecated
-          User: "#/components/schemas/User"
+          $ref: "#/components/schemas/User"
 
     User:
       required:
