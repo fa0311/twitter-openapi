@@ -15,6 +15,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BookmarksResponse"
+      tags:
+        - "Tweet"
 
 components:
   schemas:

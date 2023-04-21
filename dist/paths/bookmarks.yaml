@@ -134,3 +134,5 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet

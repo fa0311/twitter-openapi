@@ -15,6 +15,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FollowResponse"
+      tags:
+        - "UserList"
 
   /{{FollowersQuery}}/Followers:
     get:
@@ -27,6 +29,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FollowResponse"
+      tags:
+        - "UserList"
 
 components:
   schemas:

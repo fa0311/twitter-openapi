@@ -55,3 +55,10 @@ security:
   - ClientLanguage: []
   - CookieAuthToken: []
   - CookieCt0: []
+tags:
+  - name: User
+    description: response User
+  - name: UserList
+    description: response User list
+  - name: Tweet
+    description: response tweet

@@ -64,3 +64,10 @@ security:
 - CookieCt0: []
 servers:
 - url: https://twitter.com/i/api/graphql
+tags:
+- description: response User
+  name: User
+- description: response User list
+  name: UserList
+- description: response tweet
+  name: Tweet

@@ -34,6 +34,8 @@ components:
           type: boolean
         legacy:
           $ref: '#/components/schemas/TweetLegacy'
+        quoted_status_result:
+          $ref: ./content.yaml#/components/schemas/ItemResult
         rest_id:
           pattern: ^[0-9]+$
           type: string
@@ -55,6 +57,7 @@ components:
       - is_translatable
       - legacy
       - views
+      - quoted_status_result
     TweetLegacy:
       properties:
         bookmark_count:

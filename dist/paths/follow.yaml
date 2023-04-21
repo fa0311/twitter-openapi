@@ -150,6 +150,8 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - UserList
   /JpFFCTBPxYVlDqMUr9twzQ/Followers:
     get:
       description: get user list of following
@@ -262,3 +264,5 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - UserList

@@ -145,6 +145,8 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet
   /HuTx74BxAnezK1gWvYY7zg/UserTweets:
     get:
       description: get user tweets
@@ -258,6 +260,8 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet
   /RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
     get:
       description: get user replies tweets
@@ -370,6 +374,8 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet
   /YqiE3JL1KNgf9nSljYdxaA/UserMedia:
     get:
       description: get user media tweets
@@ -483,3 +489,5 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet

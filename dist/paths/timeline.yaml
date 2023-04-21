@@ -158,6 +158,8 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet
   /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
     get:
       description: get tweet list of timeline
@@ -270,6 +272,8 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet
   /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
     get:
       description: get tweet list of timeline
@@ -382,3 +386,5 @@ paths:
             x-xss-protection:
               schema:
                 type: integer
+      tags:
+      - Tweet
