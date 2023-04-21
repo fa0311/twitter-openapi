@@ -36,6 +36,7 @@ components:
         - "is_translatable"
         - "legacy"
         - "views"
+        - "quoted_status_result"
 
       properties:
         __typename:
@@ -83,6 +84,8 @@ components:
               pattern: "^[0-9]+$"
             state:
               type: string # enum
+        quoted_status_result:
+          $ref: "./content.yaml#/components/schemas/ItemResult"
 
     TweetLegacy:
       required:
