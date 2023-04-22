@@ -101,6 +101,8 @@ components:
           type: integer
         retweeted:
           type: boolean
+        retweeted_status_result:
+          $ref: ./content.yaml#/components/schemas/ItemResult
         user_id_str:
           pattern: ^[0-9]+$
           type: string
