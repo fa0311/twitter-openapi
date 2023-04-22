@@ -16,6 +16,11 @@ components:
       in: header
       name: x-csrf-token
       type: apiKey
+    authType:
+      description: OAuth2Session if you are logged in
+      in: header
+      name: x-twitter-auth-type
+      type: apiKey
 info:
   contact:
     email: yuki@yuki0311.com

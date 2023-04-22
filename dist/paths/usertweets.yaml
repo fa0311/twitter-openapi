@@ -83,13 +83,6 @@ paths:
           description: Unknown what this value means.
           type: string
       - in: header
-        name: x-twitter-auth-type
-        required: true
-        schema:
-          default: OAuth2Session
-          description: Unknown what this value means.
-          type: string
-      - in: header
         name: x-twitter-client-language
         required: true
         schema:
@@ -195,13 +188,6 @@ paths:
         required: true
         schema:
           default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-auth-type
-        required: true
-        schema:
-          default: OAuth2Session
           description: Unknown what this value means.
           type: string
       - in: header
@@ -312,13 +298,6 @@ paths:
           description: Unknown what this value means.
           type: string
       - in: header
-        name: x-twitter-auth-type
-        required: true
-        schema:
-          default: OAuth2Session
-          description: Unknown what this value means.
-          type: string
-      - in: header
         name: x-twitter-client-language
         required: true
         schema:
@@ -424,13 +403,6 @@ paths:
         required: true
         schema:
           default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-auth-type
-        required: true
-        schema:
-          default: OAuth2Session
           description: Unknown what this value means.
           type: string
       - in: header
