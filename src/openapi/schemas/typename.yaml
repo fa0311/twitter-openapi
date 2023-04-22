@@ -15,6 +15,7 @@ components:
           TimelineTimelineCursor,
           TweetWithVisibilityResults,
           TimelineTimelineModule,
+          TweetTombstone,
           Tweet,
           User,
         ]

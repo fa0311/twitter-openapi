@@ -36,7 +36,6 @@ components:
       required:
       - __typename
       - affiliates_highlighted_label
-      - has_graduated_access
       - id
       - is_blue_verified
       - legacy

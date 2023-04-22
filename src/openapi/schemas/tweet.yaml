@@ -11,11 +11,13 @@ components:
       oneOf:
         - $ref: "#/components/schemas/Tweet"
         - $ref: "#/components/schemas/TweetWithVisibilityResults"
+        - $ref: "#/components/schemas/TweetTombstone"
       discriminator:
         propertyName: __typename
         mapping": # deprecated
           Tweet: "#/components/schemas/Tweet"
           TweetWithVisibilityResults: "#/components/schemas/TweetWithVisibilityResults"
+          TweetTombstone: "#/components/schemas/TweetTombstone"
 
     TweetWithVisibilityResults:
       required:
@@ -26,6 +28,12 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
         tweet:
           $ref: "#/components/schemas/Tweet"
+
+    TweetTombstone: #remove tweet
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
+        # todo
 
     Tweet:
       required:
