@@ -84,7 +84,7 @@ components:
           $ref: "#/components/schemas/ContentEntryType" # null | TimelineTimelineCursor
         cursorType:
           type: string
-          enum: [Top, Bottom, ShowMore, ShowMoreThreads]
+          enum: [Top, Bottom, ShowMore, ShowMoreThreads, Gap] # Gap???
         value:
           type: string
 

@@ -80,6 +80,7 @@ components:
           - Bottom
           - ShowMore
           - ShowMoreThreads
+          - Gap
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
