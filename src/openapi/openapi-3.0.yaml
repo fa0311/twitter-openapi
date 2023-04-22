@@ -23,11 +23,6 @@ components:
     #   type: http
     #   scheme: bearer
     #   description: "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
-    # AuthType:
-    #   type: apiKey
-    #   in: header
-    #   name: x-twitter-auth-type
-    #   description: "OAuth2Session"
 
     CsrfToken:
       type: apiKey
@@ -46,6 +41,12 @@ components:
       in: cookie
       name: auth_token
       description: "HttpOnly cookie"
+
+    authType:
+      type: apiKey
+      in: header
+      name: x-twitter-auth-type
+      description: "OAuth2Session if you are logged in"
 
 security:
   - bearerAuth: []

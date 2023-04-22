@@ -41,13 +41,6 @@ paths:
             type: string
             default: "yes"
             description: "Unknown what this value means."
-        - name: x-twitter-auth-type
-          in: header
-          required: true
-          schema:
-            type: string
-            default: "OAuth2Session"
-            description: "Unknown what this value means."
         - name: x-twitter-client-language
           in: header
           required: true
