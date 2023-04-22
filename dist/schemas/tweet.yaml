@@ -1,5 +1,96 @@
 components:
   schemas:
+    Entities:
+      properties:
+        hashtags:
+          items:
+            $ref: '#/components/schemas/Hashtag'
+          type: array
+        media:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+        symbols:
+          items:
+            $ref: '#/components/schemas/Symbol'
+          type: array
+        urls:
+          items:
+            $ref: '#/components/schemas/Url'
+          type: array
+        user_mentions:
+          items:
+            $ref: '#/components/schemas/UserMention'
+          type: array
+      required:
+      - hashtags
+      - symbols
+      - user_mentions
+      - urls
+      - media
+    ExtendedEntities:
+      properties:
+        media:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+      required:
+      - media
+    Hashtag:
+      type: object
+    Media:
+      properties:
+        display_url:
+          format: uri
+          type: string
+        expanded_url:
+          format: uri
+          type: string
+        ext_media_availability:
+          type: object
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        indices:
+          items:
+            type: integer
+          type: array
+        media_key:
+          pattern: ^[0-9]+_[0-9]+$
+          type: string
+        media_url_https:
+          format: uri
+          type: string
+        original_info:
+          properties:
+            focus_rects:
+              items:
+                type: object
+              type: array
+            height:
+              type: integer
+            width:
+              type: integer
+          type: object
+        sizes:
+          type: object
+        type:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - id_str
+      - indices
+      - media_url_https
+      - url
+      - display_url
+      - expanded_url
+      - type
+      - sizes
+      - original_info
+    Symbol:
+      type: object
     Tweet:
       properties:
         __typename:
@@ -73,7 +164,9 @@ components:
             type: integer
           type: array
         entities:
-          type: object
+          $ref: '#/components/schemas/Entities'
+        extended_entities:
+          $ref: '#/components/schemas/ExtendedEntities'
         favorite_count:
           type: integer
         favorited:
@@ -148,6 +241,10 @@ components:
       required:
       - __typename
       - tweet
+    Url:
+      type: object
+    UserMention:
+      type: object
 info:
   title: Twitter OpenAPI
   version: 0.0.1

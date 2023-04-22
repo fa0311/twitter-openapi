@@ -128,7 +128,7 @@ components:
           items:
             type: integer
         entities:
-          type: object
+          $ref: "#/components/schemas/Entities"
         favorite_count:
           type: integer
         favorited:
@@ -161,3 +161,104 @@ components:
         id_str:
           type: string
           pattern: "^[0-9]+$"
+        extended_entities:
+          $ref: "#/components/schemas/ExtendedEntities"
+
+    Entities:
+      required:
+        - "hashtags"
+        - "symbols"
+        - "user_mentions"
+        - "urls"
+        - "media"
+      properties:
+        hashtags:
+          type: array
+          items:
+            $ref: "#/components/schemas/Hashtag"
+        symbols:
+          type: array
+          items:
+            $ref: "#/components/schemas/Symbol"
+        user_mentions:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserMention"
+        urls:
+          type: array
+          items:
+            $ref: "#/components/schemas/Url"
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/Media"
+
+    Hashtag:
+      type: object # todo
+    Symbol:
+      type: object # todo
+    UserMention:
+      type: object # todo
+    Url:
+      type: object # todo
+
+    ExtendedEntities:
+      required:
+        - "media"
+      properties:
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/Media"
+
+    Media:
+      required:
+        - "id_str"
+        - "indices"
+        - "media_url_https"
+        - "url"
+        - "display_url"
+        - "expanded_url"
+        - "type"
+        - "sizes"
+        - "original_info"
+      properties:
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        indices:
+          type: array
+          items:
+            type: integer
+        media_url_https:
+          type: string
+          format: uri
+        url:
+          type: string
+          format: uri
+        display_url:
+          type: string
+          format: uri
+        expanded_url:
+          type: string
+          format: uri
+        type:
+          type: string # enum
+        sizes:
+          type: object # todo
+        original_info:
+          type: object
+          properties:
+            height:
+              type: integer
+            width:
+              type: integer
+            focus_rects:
+              type: array
+              items:
+                type: object # todo
+        media_key:
+          type: string
+          pattern: "^[0-9]+_[0-9]+$"
+        ext_media_availability:
+          type: object # todo
