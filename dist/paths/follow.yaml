@@ -155,7 +155,7 @@ paths:
   /djdTXDIk2qhd4OStqlUFeQ/Followers:
     get:
       description: get user list of followers
-      operationId: Followers
+      operationId: getFollowers
       parameters:
       - in: query
         name: variables

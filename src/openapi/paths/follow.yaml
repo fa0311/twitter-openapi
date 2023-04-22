@@ -20,7 +20,7 @@ paths:
 
   /{{FollowersQuery}}/Followers:
     get:
-      operationId: Followers
+      operationId: getFollowers
       description: get user list of followers
       responses:
         "200":
