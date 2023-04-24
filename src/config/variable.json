@@ -1,0 +1,8 @@
+{
+    "dart": {
+        "header": "parameters"
+    },
+    "typescript": {
+        "header": "securitySchemes"
+    }
+}

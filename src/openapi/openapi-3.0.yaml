@@ -18,12 +18,6 @@ components:
   schemas: {}
 
   securitySchemes:
-    # Moved to Parameters because it is not working as Security
-    # BearerAuth:
-    #   type: http
-    #   scheme: bearer
-    #   description: "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
-
     CsrfToken:
       type: apiKey
       in: header
@@ -47,6 +41,30 @@ components:
       in: header
       name: x-twitter-auth-type
       description: "OAuth2Session if you are logged in"
+
+    # {% if header == securitySchemes %}
+
+    UserAgent:
+      description: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+      in: header
+      name: user-agent
+      type: apiKey
+    ActiveUser:
+      description: "yes"
+      in: header
+      name: x-twitter-active-user
+      type: apiKey
+    BearerAuth:
+      description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+      scheme: bearer
+      type: http
+    ClientLanguage:
+      description: en
+      in: header
+      name: x-twitter-client-language
+      type: apiKey
+
+    # {% endif %}
 
 security:
   - bearerAuth: []

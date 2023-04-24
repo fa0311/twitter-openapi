@@ -26,7 +26,8 @@ paths:
             default: "{{Query}}"
             example: "{{Query}}"
 
-        # ======== Security ========
+        # {% if header == parameters %}
+
         - name: authorization
           in: header
           required: true
@@ -55,6 +56,9 @@ paths:
             type: string
             default: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
             description: "UserAgent, some APIs may be rejected if changed."
+
+        # {% endif %}
+
       responses:
         "200":
           description: ""

@@ -3,6 +3,8 @@ import glob
 import json
 import yaml
 import shutil
+import copy
+import re
 
 
 class placeholder_manager:
@@ -36,57 +38,79 @@ class placeholder_manager:
         return file
 
 
-OUTPUT_DIR = "dist"
+OUTPUT_DIR = "dist/{0}"
 INPUT_DIR = "src/openapi"
 
+try:
+    shutil.rmtree("dist")
+except:
+    pass
 
-def read(file: str):
-    with open(file, mode="r", encoding="utf-8") as f:
-        return f.read()
-
-
-def write(file: str, data: str) -> None:
-    with open(file.replace(INPUT_DIR, OUTPUT_DIR, 1), mode="w+", encoding="utf-8") as f:
-        f.write(data)
+with open("src/config/variable.json", mode="r", encoding="utf-8") as f:
+    variable = json.load(f)
 
 
-def get_yaml(data, key):
-    return yaml.safe_load(placeholder.replace_file(str(data), key))
+for lang in variable.keys():
 
+    def read(file: str):
+        with open(file, mode="r", encoding="utf-8") as f:
+            return remove(f.read())
 
-shutil.rmtree("dist")
-for dir in glob.glob(os.path.join(INPUT_DIR, "**/")):
-    os.makedirs(dir.replace(INPUT_DIR, OUTPUT_DIR, 1), exist_ok=True)
+    def write(file: str, data: str) -> None:
+        with open(
+            file.replace(INPUT_DIR, OUTPUT_DIR.format(lang), 1),
+            mode="w+",
+            encoding="utf-8",
+        ) as f:
+            f.write(data)
 
-placeholder = placeholder_manager()
-parameters = read("src/config/parameters.yaml")
-header = read("src/config/header.yaml")
+    def get_yaml(data, key):
+        return yaml.safe_load(placeholder.replace_file(str(data), key))
 
-paths = {}
-for file in glob.glob(os.path.join(INPUT_DIR, "**/*.yaml")):
-    file = file.replace(os.path.sep, "/")
-    relative = file.replace(INPUT_DIR, "", 1)
+    def remove(data):
+        for match in re.findall(r"(\{% (.*?) %\})", data):
+            equation = match[1].split(" ")
+            if equation[0] == "if" and equation[2] == "==":
+                if equation[3] != variable[lang][equation[1]]:
+                    data = re.sub(
+                        re.escape(match[0]) + "[\s\S]*?" + re.escape("{% endif %}"),
+                        "",
+                        data,
+                    )
 
-    load = yaml.safe_load(placeholder.replace(read(file)))
+        return data
 
-    for key in load["paths"].keys():
-        append = get_yaml(parameters, key.split("/")[-1])
-        req = load["paths"][key]["get"]
-        req["parameters"] = append["paths"]["/parameters"]["get"]["parameters"]
+    for dir in glob.glob(os.path.join(INPUT_DIR, "**/")):
+        os.makedirs(dir.replace(INPUT_DIR, OUTPUT_DIR.format(lang), 1), exist_ok=True)
 
-        append = get_yaml(header, key.split("/")[-1])
-        req = load["paths"][key]["get"]
-        req["responses"]["200"]["headers"] = append["components"]["headers"]
+    placeholder = placeholder_manager()
+    parameters = read("src/config/parameters.yaml")
+    header = read("src/config/header.yaml")
 
-        escape = key.replace("/", "~1")
-        paths.update({key: {"$ref": f".{relative}#/paths/{escape}"}})
+    paths = {}
+    for file in glob.glob(os.path.join(INPUT_DIR, "**/*.yaml")):
+        file = file.replace(os.path.sep, "/")
+        relative = file.replace(INPUT_DIR, "", 1)
+
+        load = yaml.safe_load(placeholder.replace(read(file)))
+
+        for key in load["paths"].keys():
+            append = get_yaml(parameters, key.split("/")[-1])
+            req = load["paths"][key]["get"]
+            req["parameters"] = append["paths"]["/parameters"]["get"]["parameters"]
+
+            append = get_yaml(header, key.split("/")[-1])
+            req = load["paths"][key]["get"]
+            req["responses"]["200"]["headers"] = append["components"]["headers"]
+
+            escape = key.replace("/", "~1")
+            paths.update({key: {"$ref": f".{relative}#/paths/{escape}"}})
+        write(file, yaml.dump(load))
+
+    file = "src/openapi/openapi-3.0.yaml"
+    data = read(file)
+    for path in paths:
+        load = yaml.safe_load(placeholder.replace(data))
+        load["paths"] = paths
+
     write(file, yaml.dump(load))
-
-
-file = "src/openapi/openapi-3.0.yaml"
-data = read(file)
-for path in paths:
-    load = yaml.safe_load(placeholder.replace(data))
-    load["paths"] = paths
-
-write(file, yaml.dump(load))
