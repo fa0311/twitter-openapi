@@ -1,0 +1,349 @@
+components:
+  schemas:
+    UserTweetsData:
+      properties:
+        user:
+          $ref: '#/components/schemas/UserTweetsUser'
+      required:
+      - user
+    UserTweetsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/UserTweetsData'
+      required:
+      - data
+    UserTweetsResult:
+      properties:
+        __typename:
+          $ref: ./../schemas/typename.yaml#/components/schemas/TypeName
+        timeline_v2:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/TimelineV2
+      required:
+      - __typename
+      - timeline_v2
+    UserTweetsUser:
+      properties:
+        result:
+          $ref: '#/components/schemas/UserTweetsResult'
+      required:
+      - result
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /5fmEkRT-1AdHqEsbVgehMg/Likes:
+    get:
+      description: get user likes tweets
+      operationId: getLikes
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"userId": "44196397", "count": 20, "includePromotedContent":
+            false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
+            true, "withV2Timeline": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: 5fmEkRT-1AdHqEsbVgehMg
+          example: 5fmEkRT-1AdHqEsbVgehMg
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet
+  /HuTx74BxAnezK1gWvYY7zg/UserTweets:
+    get:
+      description: get user tweets
+      operationId: getUserTweets
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            true, "withQuickPromoteEligibilityTweetFields": true, "withVoice": true,
+            "withV2Timeline": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: HuTx74BxAnezK1gWvYY7zg
+          example: HuTx74BxAnezK1gWvYY7zg
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet
+  /RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
+    get:
+      description: get user replies tweets
+      operationId: getUserTweetsAndReplies
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            true, "withCommunity": true, "withVoice": true, "withV2Timeline": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: RIWc55YCNyUJ-U3HHGYkdg
+          example: RIWc55YCNyUJ-U3HHGYkdg
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet
+  /YqiE3JL1KNgf9nSljYdxaA/UserMedia:
+    get:
+      description: get user media tweets
+      operationId: getUserMedia
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
+            true, "withV2Timeline": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            false, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "interactive_text_enabled": true, "responsive_web_text_conversations_enabled":
+            false, "longform_notetweets_rich_text_read_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: YqiE3JL1KNgf9nSljYdxaA
+          example: YqiE3JL1KNgf9nSljYdxaA
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet

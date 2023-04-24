@@ -1,0 +1,182 @@
+components:
+  schemas:
+    ContentEntryType:
+      enum:
+      - TimelineTimelineItem
+      - TimelineTimelineCursor
+      - TimelineTimelineModule
+      type: string
+    ContentItemType:
+      enum:
+      - TimelineTweet
+      - TimelineTimelineCursor
+      - TimelineUser
+      type: string
+    ContentUnion:
+      discriminator:
+        mapping":
+          TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
+          TimelineTimelineItem: '#/components/schemas/TimelineTimelineItem'
+          TimelineTimelineModule: '#/components/schemas/TimelineTimelineModule'
+        propertyName: entryType
+      oneOf:
+      - $ref: '#/components/schemas/TimelineTimelineItem'
+      - $ref: '#/components/schemas/TimelineTimelineModule'
+      - $ref: '#/components/schemas/TimelineTimelineCursor'
+    ItemContentUnion:
+      discriminator:
+        mapping":
+          TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
+          TimelineTweet: '#/components/schemas/TimelineTweet'
+          TimelineUser: '#/components/schemas/TimelineUser'
+        propertyName: itemType
+      oneOf:
+      - $ref: '#/components/schemas/TimelineTweet'
+      - $ref: '#/components/schemas/TimelineTimelineCursor'
+      - $ref: '#/components/schemas/TimelineUser'
+    ItemResult:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        result:
+          $ref: ./tweet.yaml#/components/schemas/TweetUnion
+      required:
+      - result
+    ModuleEntry:
+      properties:
+        clientEventInfo:
+          type: object
+        itemContent:
+          $ref: '#/components/schemas/ItemContentUnion'
+      required:
+      - clientEventInfo
+      - itemContent
+    ModuleItem:
+      properties:
+        entryId:
+          pattern: ^[a-z\-]+[0-9]+$
+          type: string
+        item:
+          $ref: '#/components/schemas/ModuleEntry'
+      required:
+      - entryId
+      - item
+    SocialContext:
+      properties:
+        contextType:
+          type: string
+        text:
+          type: string
+        type:
+          type: string
+      type: object
+    TimelineTimelineCursor:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        cursorType:
+          enum:
+          - Top
+          - Bottom
+          - ShowMore
+          - ShowMoreThreads
+          - Gap
+          type: string
+        entryType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        itemType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        value:
+          type: string
+      required:
+      - __typename
+      - cursorType
+      - value
+    TimelineTimelineItem:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        clientEventInfo:
+          type: object
+        entryType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        feedbackInfo:
+          type: object
+        itemContent:
+          $ref: '#/components/schemas/ItemContentUnion'
+      required:
+      - __typename
+      - entryType
+      - itemContent
+    TimelineTimelineModule:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        clientEventInfo:
+          type: object
+        displayType:
+          type: string
+        entryType:
+          $ref: '#/components/schemas/ContentEntryType'
+          type: string
+        footer:
+          type: object
+        header:
+          type: object
+        items:
+          items:
+            $ref: '#/components/schemas/ModuleItem'
+          type: array
+      required:
+      - __typename
+      - entryType
+      - displayType
+      - items
+      - clientEventInfo
+    TimelineTweet:
+      properties:
+        SocialContext:
+          $ref: '#/components/schemas/SocialContext'
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+          type: string
+        promotedMetadata:
+          type: object
+        tweetDisplayType:
+          type: string
+        tweet_results:
+          $ref: '#/components/schemas/ItemResult'
+      required:
+      - __typename
+      - itemType
+      - tweetDisplayType
+      - tweet_results
+    TimelineUser:
+      properties:
+        SocialContext:
+          $ref: '#/components/schemas/SocialContext'
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+          type: string
+        userDisplayType:
+          type: string
+        user_results:
+          $ref: ./user.yaml#/components/schemas/UserResults
+      required:
+      - __typename
+      - itemType
+      - socialContext
+      - userDisplayType
+      - user_results
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths: {}
