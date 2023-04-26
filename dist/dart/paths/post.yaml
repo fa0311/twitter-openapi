@@ -1,0 +1,678 @@
+components:
+  schemas:
+    CreateRetweetResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateRetweetResponseData'
+      required:
+      - data
+    CreateRetweetResponseData:
+      properties:
+        create_retweet:
+          $ref: '#/components/schemas/CreateRetweetResponseResult'
+      required:
+      - create_retweet
+    CreateRetweetResponseResult:
+      properties:
+        retweet_results:
+          $ref: ./../schemas/post.yaml#/components/schemas/CreateRetweet
+      required:
+      - retweet_results
+    CreateTweetResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateTweetResponseData'
+      required:
+      - data
+    CreateTweetResponseData:
+      properties:
+        create_retweet:
+          $ref: '#/components/schemas/CreateTweetResponseResult'
+      required:
+      - create_tweet
+    CreateTweetResponseResult:
+      properties:
+        tweet_results:
+          $ref: ./../schemas/post.yaml#/components/schemas/CreateTweet
+      required:
+      - tweet_results
+    DeleteRetweetResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteRetweetResponseData'
+      required:
+      - data
+    DeleteRetweetResponseData:
+      properties:
+        create_retweet:
+          $ref: '#/components/schemas/CreateRetweetResponseResult'
+      required:
+      - unretweet
+    DeleteRetweetResponseResult:
+      properties:
+        retweet_results:
+          $ref: ./../schemas/post.yaml#/components/schemas/DeleteRetweet
+      required:
+      - source_tweet_results
+    DeleteTweetResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteTweetResponseData'
+      required:
+      - data
+    DeleteTweetResponseData:
+      properties:
+        delete_retweet:
+          $ref: '#/components/schemas/DeleteTweetResponseResult'
+      required:
+      - delete_tweet
+    DeleteTweetResponseResult:
+      properties:
+        tweet_results:
+          $ref: ./../schemas/post.yaml#/components/schemas/DeleteTweet
+      required:
+      - tweet_results
+    FavoriteTweetResponseData:
+      properties:
+        data:
+          $ref: ./../schemas/post.yaml#/components/schemas/FavoriteTweet
+      required:
+      - data
+    UnfavoriteTweetResponseData:
+      properties:
+        data:
+          $ref: ./../schemas/post.yaml#/components/schemas/UnfavoriteTweet
+      required:
+      - data
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
+    post:
+      description: create Tweet
+      operationId: createTweet
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"tweet_text": "test", "media": {"media_entities": [], "possibly_sensitive":
+            false}, "semantic_annotation_ids": []}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{"tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "interactive_text_enabled":
+            true, "responsive_web_text_conversations_enabled": false, "longform_notetweets_rich_text_read_enabled":
+            true, "blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: 1RyAhNwby-gzGCRVsMxKbQ
+          example: 1RyAhNwby-gzGCRVsMxKbQ
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Post
+  /VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
+    post:
+      description: delete Retweet
+      operationId: deleteTweet
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"tweet_id": "1349129669258448897"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: VaenaVgh5q5ih7kvyVjgtg
+          example: VaenaVgh5q5ih7kvyVjgtg
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Post
+  /ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
+    post:
+      description: unfavorite Tweet
+      operationId: unfavoriteTweet
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"tweet_id": "1349129669258448897"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: ZYKSe-w7KEslx3JhSIk5LA
+          example: ZYKSe-w7KEslx3JhSIk5LA
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnfavoriteTweetResponseData'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Post
+  /iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
+    post:
+      description: delete Retweet
+      operationId: deleteRetweet
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"tweet_id": "1349129669258448897"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: iQtK4dl5hBmXewYZuEOKVw
+          example: iQtK4dl5hBmXewYZuEOKVw
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteRetweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Post
+  /lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
+    post:
+      description: favorite Tweet
+      operationId: favoriteTweet
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"tweet_id": "1349129669258448897"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: lI07N6Otwv1PhnEgXILM7A
+          example: lI07N6Otwv1PhnEgXILM7A
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavoriteTweetResponseData'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Post
+  /ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
+    post:
+      description: create Retweet
+      operationId: createRetweet
+      parameters:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          example: '{"tweet_id": "1349129669258448897"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          example: '{}'
+          type: string
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: ojPdsZsimiJrUGLR1sjUtA
+          example: ojPdsZsimiJrUGLR1sjUtA
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRetweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Post

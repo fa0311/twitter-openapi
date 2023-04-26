@@ -1,0 +1,60 @@
+components:
+  schemas:
+    CreateRetweet:
+      properties:
+        result:
+          items:
+            $ref: '#/components/schemas/Retweet'
+          type: object
+      required:
+      - result
+    CreateTweet:
+      properties:
+        result:
+          items:
+            $ref: ./tweet.yaml#/components/schemas/Tweet
+          type: object
+      required:
+      - result
+    DeleteRetweet:
+      properties:
+        result:
+          items:
+            $ref: '#/components/schemas/Retweet'
+          type: object
+      required:
+      - result
+    DeleteTweet:
+      properties:
+        nullable: true
+        type: object
+    FavoriteTweet:
+      properties:
+        favorite_tweet:
+          type: string
+      required:
+      - favorite_tweet
+    Retweet:
+      properties:
+        legacy:
+          items:
+            properties:
+              full_text:
+                type: string
+          type: object
+        rest_id:
+          type: string
+      required:
+      - rest_id
+      - legacy
+    UnfavoriteTweet:
+      properties:
+        unfavorite_tweet:
+          type: string
+      required:
+      - unfavorite_tweet
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths: {}
