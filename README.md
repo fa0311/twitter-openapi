@@ -8,7 +8,13 @@ Twitter OpenAPI(Swagger) specification
 ## Usage
 
 ```shell
-openapi-generator-cli generate -g <language> -i https://raw.githubusercontent.com/fa0311/twitter-openapi/main/dist/openapi-3.0.yaml -o ./generated
+openapi-generator-cli generate -g <language> -i https://raw.githubusercontent.com/fa0311/twitter-openapi/main/dist/typescript/openapi-3.0.yaml -o ./generated
+```
+
+If the language supports variable-length arguments.
+
+```shell
+openapi-generator-cli generate -g <language> -i https://raw.githubusercontent.com/fa0311/twitter-openapi/main/dist/dart/openapi-3.0.yaml -o ./generated
 ```
 
 Note that the license also inherits to the output.
