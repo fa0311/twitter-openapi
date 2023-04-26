@@ -40,6 +40,7 @@ class placeholder_manager:
 
 OUTPUT_DIR = "dist/{0}"
 INPUT_DIR = "src/openapi"
+METHODS = ["get", "put", "post", "delete", "options", "head", "patch", "trace"]
 
 try:
     shutil.rmtree("dist")
@@ -96,15 +97,18 @@ for lang in variable.keys():
 
         for key in load["paths"].keys():
             append = get_yaml(parameters, key.split("/")[-1])
-            req = load["paths"][key]["get"]
-            req["parameters"] = append["paths"]["/parameters"]["get"]["parameters"]
+            param = append["paths"]["/parameters"]
+            for method in METHODS:
+                if load["paths"][key].get(method, None) is not None:
+                    req = load["paths"][key][method]
+                    req["parameters"] = param["get"]["parameters"]
 
-            append = get_yaml(header, key.split("/")[-1])
-            req = load["paths"][key]["get"]
-            req["responses"]["200"]["headers"] = append["components"]["headers"]
+                    append = get_yaml(header, key.split("/")[-1])
+                    req = load["paths"][key][method]
+                    req["responses"]["200"]["headers"] = append["components"]["headers"]
 
-            escape = key.replace("/", "~1")
-            paths.update({key: {"$ref": f".{relative}#/paths/{escape}"}})
+                    escape = key.replace("/", "~1")
+                    paths.update({key: {"$ref": f".{relative}#/paths/{escape}"}})
         write(file, yaml.dump(load))
 
     file = "src/openapi/openapi-3.0.yaml"
