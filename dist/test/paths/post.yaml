@@ -141,38 +141,6 @@ paths:
       description: create Tweet
       operationId: postCreateTweet
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{"tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
-                    true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
-                    true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
-                    true, "tweet_awards_web_tipping_enabled": false, "interactive_text_enabled":
-                    true, "responsive_web_text_conversations_enabled": false, "longform_notetweets_rich_text_read_enabled":
-                    true, "blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
-                    true, "verified_phone_label_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-                    true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
-                    false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-                    false, "responsive_web_graphql_timeline_navigation_enabled": true,
-                    "responsive_web_enhance_cards_enabled": false}'
-                  type: object
-                queryId:
-                  default: 1RyAhNwby-gzGCRVsMxKbQ
-                  example: 1RyAhNwby-gzGCRVsMxKbQ
-                  type: string
-                variables:
-                  example: '{"tweet_text": "test", "media": {"media_entities": [],
-                    "possibly_sensitive": false}, "semantic_annotation_ids": [], "dark_request":
-                    false}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
-        required: true
       responses:
         '200':
           content:
@@ -221,26 +189,6 @@ paths:
       description: delete Retweet
       operationId: postDeleteTweet
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: VaenaVgh5q5ih7kvyVjgtg
-                  example: VaenaVgh5q5ih7kvyVjgtg
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
-        required: true
       responses:
         '200':
           content:
@@ -289,26 +237,6 @@ paths:
       description: unfavorite Tweet
       operationId: postUnfavoriteTweet
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: ZYKSe-w7KEslx3JhSIk5LA
-                  example: ZYKSe-w7KEslx3JhSIk5LA
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
-        required: true
       responses:
         '200':
           content:
@@ -357,26 +285,6 @@ paths:
       description: delete Retweet
       operationId: postDeleteRetweet
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: iQtK4dl5hBmXewYZuEOKVw
-                  example: iQtK4dl5hBmXewYZuEOKVw
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
-        required: true
       responses:
         '200':
           content:
@@ -425,26 +333,6 @@ paths:
       description: favorite Tweet
       operationId: postFavoriteTweet
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: lI07N6Otwv1PhnEgXILM7A
-                  example: lI07N6Otwv1PhnEgXILM7A
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
-        required: true
       responses:
         '200':
           content:
@@ -493,26 +381,6 @@ paths:
       description: create Retweet
       operationId: postCreateRetweet
       parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: ojPdsZsimiJrUGLR1sjUtA
-                  example: ojPdsZsimiJrUGLR1sjUtA
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
-        required: true
       responses:
         '200':
           content:

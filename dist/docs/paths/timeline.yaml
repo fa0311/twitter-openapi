@@ -1,0 +1,608 @@
+components:
+  schemas:
+    HomeTimelineHome:
+      properties:
+        home_timeline_urt:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
+      required:
+      - home_timeline_urt
+    HomeTimelineResponseData:
+      properties:
+        home:
+          $ref: '#/components/schemas/HomeTimelineHome'
+      required:
+      - home
+    ListTweetsTimeline:
+      properties:
+        timeline:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
+      required:
+      - timeline
+    ListTweetsTimelineData:
+      properties:
+        list:
+          $ref: '#/components/schemas/ListTweetsTimelineList'
+      required:
+      - list
+    ListTweetsTimelineList:
+      properties:
+        tweets_timeline:
+          $ref: '#/components/schemas/ListTweetsTimeline'
+      required:
+      - tweets_timeline
+    ListTweetsTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ListTweetsTimelineData'
+      required:
+      - data
+    TimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/HomeTimelineResponseData'
+      required:
+      - data
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
+    get:
+      description: get tweet list of timeline
+      operationId: getListLatestTweetsTimeline
+      parameters:
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: 2TemLyqrMpTeAmysdbnVqw
+          example: 2TemLyqrMpTeAmysdbnVqw
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                listId:
+                  default: '53044119'
+                  example: '53044119'
+                  type: string
+              required:
+              - listId
+              - count
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                blue_business_profile_image_shape_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                interactive_text_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_text_conversations_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweetypie_unmention_optimization_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                vibe_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - blue_business_profile_image_shape_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - tweetypie_unmention_optimization_enabled
+              - vibe_api_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - interactive_text_enabled
+              - responsive_web_text_conversations_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTweetsTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet
+  /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
+    get:
+      description: get tweet list of timeline
+      operationId: getHomeTimeline
+      parameters:
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: HCosKfLNW1AcOo3la3mMgg
+          example: HCosKfLNW1AcOo3la3mMgg
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                includePromotedContent:
+                  default: true
+                  example: true
+                  type: boolean
+                latestControlAvailable:
+                  default: true
+                  example: true
+                  type: boolean
+                requestContext:
+                  default: launch
+                  example: launch
+                  type: string
+                withCommunity:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - count
+              - includePromotedContent
+              - latestControlAvailable
+              - requestContext
+              - withCommunity
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                blue_business_profile_image_shape_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                interactive_text_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_text_conversations_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweetypie_unmention_optimization_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                vibe_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - blue_business_profile_image_shape_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - tweetypie_unmention_optimization_enabled
+              - vibe_api_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - interactive_text_enabled
+              - responsive_web_text_conversations_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet
+  /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
+    get:
+      description: get tweet list of timeline
+      operationId: getHomeLatestTimeline
+      parameters:
+      - in: query
+        name: queryId
+        required: true
+        schema:
+          default: zhX91JE87mWvfprhYE97xA
+          example: zhX91JE87mWvfprhYE97xA
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                includePromotedContent:
+                  default: true
+                  example: true
+                  type: boolean
+                latestControlAvailable:
+                  default: true
+                  example: true
+                  type: boolean
+                requestContext:
+                  default: launch
+                  example: launch
+                  type: string
+              required:
+              - count
+              - includePromotedContent
+              - latestControlAvailable
+              - requestContext
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                blue_business_profile_image_shape_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                interactive_text_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_text_conversations_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweetypie_unmention_optimization_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                vibe_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - blue_business_profile_image_shape_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - tweetypie_unmention_optimization_enabled
+              - vibe_api_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - interactive_text_enabled
+              - responsive_web_text_conversations_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-frame-options:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+            x-xss-protection:
+              schema:
+                type: integer
+      tags:
+      - Tweet
