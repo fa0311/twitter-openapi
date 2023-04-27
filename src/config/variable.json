@@ -1,4 +1,9 @@
 {
+    "docs": {
+        "header": "securitySchemes",
+        "get_parameters": "schema_content",
+        "post_parameters": "schema_parameters"
+    },
     "dart": {
         "header": "parameters",
         "get_parameters": "string",
@@ -13,10 +18,5 @@
         "header": "securitySchemes",
         "get_parameters": "string",
         "post_parameters": "string"
-    },
-    "docs": {
-        "header": "securitySchemes",
-        "get_parameters": "schema_content",
-        "post_parameters": "schema_content"
     }
 }
