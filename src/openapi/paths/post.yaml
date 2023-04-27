@@ -161,7 +161,7 @@ components:
       required:
         - "create_tweet"
       properties:
-        create_retweet:
+        create_tweet:
           $ref: "#/components/schemas/CreateTweetResponseResult"
 
     CreateTweetResponseResult:
@@ -190,4 +190,4 @@ components:
         - "tweet_results"
       properties:
         tweet_results:
-          $ref: "./../schemas/post.yaml#/components/schemas/DeleteTweet"
+          type: object
