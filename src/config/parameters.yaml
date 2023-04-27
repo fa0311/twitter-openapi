@@ -59,6 +59,61 @@ paths:
 
         # {% endif %}
 
+    post:
+      parameters:
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: object
+            example: "{{Variables}}"
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: object
+            example: "{{Features}}"
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "{{Query}}"
+            example: "{{Query}}"
+
+        # {% if header == parameters %}
+
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+            description: "It is a constant value and does not need to be changed."
+        - name: x-twitter-active-user
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "yes"
+            description: "Unknown what this value means."
+        - name: x-twitter-client-language
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "en"
+            description: "language code."
+        - name: user-agent
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+            description: "UserAgent, some APIs may be rejected if changed."
+
+        # {% endif %}
+
       responses:
         "200":
           description: ""

@@ -101,7 +101,7 @@ for lang in variable.keys():
             for method in METHODS:
                 if load["paths"][key].get(method, None) is not None:
                     req = load["paths"][key][method]
-                    req["parameters"] = param["get"]["parameters"]
+                    req["parameters"] = param[method]["parameters"]
 
                     append = get_yaml(header, key.split("/")[-1])
                     req = load["paths"][key][method]
