@@ -6,7 +6,7 @@ info:
 paths:
   /{{FavoriteTweetQuery}}/FavoriteTweet:
     post:
-      operationId: favoriteTweet
+      operationId: postFavoriteTweet
       description: favorite Tweet
       responses:
         "200":
@@ -20,7 +20,7 @@ paths:
 
   /{{UnfavoriteTweetQuery}}/UnfavoriteTweet:
     post:
-      operationId: unfavoriteTweet
+      operationId: postUnfavoriteTweet
       description: unfavorite Tweet
       responses:
         "200":
@@ -34,7 +34,7 @@ paths:
 
   /{{CreateRetweetQuery}}/CreateRetweet:
     post:
-      operationId: createRetweet
+      operationId: postCreateRetweet
       description: create Retweet
       responses:
         "200":
@@ -48,7 +48,7 @@ paths:
 
   /{{DeleteRetweetQuery}}/DeleteRetweet:
     post:
-      operationId: deleteRetweet
+      operationId: postDeleteRetweet
       description: delete Retweet
       responses:
         "200":
@@ -62,7 +62,7 @@ paths:
 
   /{{CreateTweetQuery}}/CreateTweet:
     post:
-      operationId: createTweet
+      operationId: postCreateTweet
       description: create Tweet
       responses:
         "200":
@@ -76,7 +76,7 @@ paths:
 
   /{{DeleteTweetQuery}}/DeleteTweet:
     post:
-      operationId: deleteTweet
+      operationId: postDeleteTweet
       description: delete Retweet
       responses:
         "200":
@@ -95,14 +95,28 @@ components:
         - "data"
       properties:
         data:
-          $ref: "./../schemas/post.yaml#/components/schemas/FavoriteTweet"
+          $ref: "#/components/schemas/FavoriteTweet"
+
+    FavoriteTweet:
+      required:
+        - "favorite_tweet"
+      properties:
+        favorite_tweet:
+          type: string
 
     UnfavoriteTweetResponseData:
       required:
         - "data"
       properties:
         data:
-          $ref: "./../schemas/post.yaml#/components/schemas/UnfavoriteTweet"
+          $ref: "#/components/schemas/UnfavoriteTweet"
+
+    UnfavoriteTweet:
+      required:
+        - "unfavorite_tweet"
+      properties:
+        unfavorite_tweet:
+          type: string
 
     # ---Retweet---
 
@@ -125,7 +139,30 @@ components:
         - "retweet_results"
       properties:
         retweet_results:
-          $ref: "./../schemas/post.yaml#/components/schemas/CreateRetweet"
+          $ref: "#/components/schemas/CreateRetweet"
+
+    CreateRetweet:
+      required:
+        - "result"
+      properties:
+        result:
+          type: object
+          items:
+            $ref: "#/components/schemas/Retweet"
+
+    Retweet:
+      required:
+        - "rest_id"
+        - "legacy"
+      properties:
+        rest_id:
+          type: string
+        legacy:
+          type: object
+          items:
+            properties:
+              full_text:
+                type: string
 
     DeleteRetweetResponse:
       required:
@@ -146,7 +183,16 @@ components:
         - "source_tweet_results"
       properties:
         retweet_results:
-          $ref: "./../schemas/post.yaml#/components/schemas/DeleteRetweet"
+          $ref: "#/components/schemas/DeleteRetweet"
+
+    DeleteRetweet:
+      required:
+        - "result"
+      properties:
+        result:
+          type: object
+          items:
+            $ref: "#/components/schemas/Retweet"
 
     # ---Tweet---
 
@@ -169,7 +215,14 @@ components:
         - "tweet_results"
       properties:
         tweet_results:
-          $ref: "./../schemas/post.yaml#/components/schemas/CreateTweet"
+          $ref: "#/components/schemas/CreateTweet"
+
+    CreateTweet:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/Tweet"
 
     DeleteTweetResponse:
       required:
