@@ -141,149 +141,145 @@ paths:
       description: create Tweet
       operationId: postCreateTweet
       parameters:
-      - content:
-          application/json:
-            schema:
+      - in: query
+        name: variables
+        required: true
+        schema:
+          properties:
+            dark_request:
+              default: false
+              example: false
+              type: boolean
+            media:
               properties:
-                dark_request:
-                  default: false
-                  example: false
-                  type: boolean
-                media:
-                  properties:
-                    media_entities:
-                      items:
-                        type: object
-                      type: array
-                    possibly_sensitive:
-                      default: false
-                      example: false
-                      type: boolean
-                  required:
-                  - media_entities
-                  - possibly_sensitive
-                  type: object
-                semantic_annotation_ids:
+                media_entities:
                   items:
                     type: object
                   type: array
-                tweet_text:
-                  default: test
-                  example: test
-                  type: string
-              required:
-              - tweet_text
-              - media
-              - semantic_annotation_ids
-              - dark_request
-              type: object
-        in: query
-        name: variables
-        required: true
-      - content:
-          application/json:
-            schema:
-              properties:
-                blue_business_profile_image_shape_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                freedom_of_speech_not_reach_fetch_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                interactive_text_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                longform_notetweets_consumption_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                longform_notetweets_rich_text_read_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                responsive_web_edit_tweet_api_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                responsive_web_enhance_cards_enabled:
+                possibly_sensitive:
                   default: false
                   example: false
-                  type: boolean
-                responsive_web_graphql_exclude_directive_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
-                  default: false
-                  example: false
-                  type: boolean
-                responsive_web_graphql_timeline_navigation_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                responsive_web_text_conversations_enabled:
-                  default: false
-                  example: false
-                  type: boolean
-                standardized_nudges_misinfo:
-                  default: true
-                  example: true
-                  type: boolean
-                tweet_awards_web_tipping_enabled:
-                  default: false
-                  example: false
-                  type: boolean
-                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
-                  default: false
-                  example: false
-                  type: boolean
-                tweetypie_unmention_optimization_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                verified_phone_label_enabled:
-                  default: false
-                  example: false
-                  type: boolean
-                vibe_api_enabled:
-                  default: true
-                  example: true
-                  type: boolean
-                view_counts_everywhere_api_enabled:
-                  default: true
-                  example: true
                   type: boolean
               required:
-              - tweetypie_unmention_optimization_enabled
-              - vibe_api_enabled
-              - responsive_web_edit_tweet_api_enabled
-              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
-              - view_counts_everywhere_api_enabled
-              - longform_notetweets_consumption_enabled
-              - tweet_awards_web_tipping_enabled
-              - interactive_text_enabled
-              - responsive_web_text_conversations_enabled
-              - longform_notetweets_rich_text_read_enabled
-              - blue_business_profile_image_shape_enabled
-              - responsive_web_graphql_exclude_directive_enabled
-              - verified_phone_label_enabled
-              - freedom_of_speech_not_reach_fetch_enabled
-              - standardized_nudges_misinfo
-              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
-              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-              - responsive_web_graphql_timeline_navigation_enabled
-              - responsive_web_enhance_cards_enabled
+              - media_entities
+              - possibly_sensitive
               type: object
-        in: query
+            semantic_annotation_ids:
+              items:
+                type: object
+              type: array
+            tweet_text:
+              default: test
+              example: test
+              type: string
+          required:
+          - tweet_text
+          - media
+          - semantic_annotation_ids
+          - dark_request
+          type: object
+      - in: query
         name: features
         required: true
+        schema:
+          properties:
+            blue_business_profile_image_shape_enabled:
+              default: true
+              example: true
+              type: boolean
+            freedom_of_speech_not_reach_fetch_enabled:
+              default: true
+              example: true
+              type: boolean
+            graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+              default: true
+              example: true
+              type: boolean
+            interactive_text_enabled:
+              default: true
+              example: true
+              type: boolean
+            longform_notetweets_consumption_enabled:
+              default: true
+              example: true
+              type: boolean
+            longform_notetweets_rich_text_read_enabled:
+              default: true
+              example: true
+              type: boolean
+            responsive_web_edit_tweet_api_enabled:
+              default: true
+              example: true
+              type: boolean
+            responsive_web_enhance_cards_enabled:
+              default: false
+              example: false
+              type: boolean
+            responsive_web_graphql_exclude_directive_enabled:
+              default: true
+              example: true
+              type: boolean
+            responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+              default: false
+              example: false
+              type: boolean
+            responsive_web_graphql_timeline_navigation_enabled:
+              default: true
+              example: true
+              type: boolean
+            responsive_web_text_conversations_enabled:
+              default: false
+              example: false
+              type: boolean
+            standardized_nudges_misinfo:
+              default: true
+              example: true
+              type: boolean
+            tweet_awards_web_tipping_enabled:
+              default: false
+              example: false
+              type: boolean
+            tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+              default: false
+              example: false
+              type: boolean
+            tweetypie_unmention_optimization_enabled:
+              default: true
+              example: true
+              type: boolean
+            verified_phone_label_enabled:
+              default: false
+              example: false
+              type: boolean
+            vibe_api_enabled:
+              default: true
+              example: true
+              type: boolean
+            view_counts_everywhere_api_enabled:
+              default: true
+              example: true
+              type: boolean
+          required:
+          - tweetypie_unmention_optimization_enabled
+          - vibe_api_enabled
+          - responsive_web_edit_tweet_api_enabled
+          - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+          - view_counts_everywhere_api_enabled
+          - longform_notetweets_consumption_enabled
+          - tweet_awards_web_tipping_enabled
+          - interactive_text_enabled
+          - responsive_web_text_conversations_enabled
+          - longform_notetweets_rich_text_read_enabled
+          - blue_business_profile_image_shape_enabled
+          - responsive_web_graphql_exclude_directive_enabled
+          - verified_phone_label_enabled
+          - freedom_of_speech_not_reach_fetch_enabled
+          - standardized_nudges_misinfo
+          - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+          - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+          - responsive_web_graphql_timeline_navigation_enabled
+          - responsive_web_enhance_cards_enabled
+          type: object
       responses:
         '200':
           content:
@@ -332,20 +328,18 @@ paths:
       description: delete Retweet
       operationId: postDeleteTweet
       parameters:
-      - content:
-          application/json:
-            schema:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
-        in: query
+      - in: query
         name: variables
         required: true
+        schema:
+          properties:
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
+          required:
+          - tweet_id
+          type: object
       responses:
         '200':
           content:
@@ -394,20 +388,18 @@ paths:
       description: unfavorite Tweet
       operationId: postUnfavoriteTweet
       parameters:
-      - content:
-          application/json:
-            schema:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
-        in: query
+      - in: query
         name: variables
         required: true
+        schema:
+          properties:
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
+          required:
+          - tweet_id
+          type: object
       responses:
         '200':
           content:
@@ -456,20 +448,18 @@ paths:
       description: delete Retweet
       operationId: postDeleteRetweet
       parameters:
-      - content:
-          application/json:
-            schema:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
-        in: query
+      - in: query
         name: variables
         required: true
+        schema:
+          properties:
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
+          required:
+          - tweet_id
+          type: object
       responses:
         '200':
           content:
@@ -518,20 +508,18 @@ paths:
       description: favorite Tweet
       operationId: postFavoriteTweet
       parameters:
-      - content:
-          application/json:
-            schema:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
-        in: query
+      - in: query
         name: variables
         required: true
+        schema:
+          properties:
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
+          required:
+          - tweet_id
+          type: object
       responses:
         '200':
           content:
@@ -580,20 +568,18 @@ paths:
       description: create Retweet
       operationId: postCreateRetweet
       parameters:
-      - content:
-          application/json:
-            schema:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
-        in: query
+      - in: query
         name: variables
         required: true
+        schema:
+          properties:
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
+          required:
+          - tweet_id
+          type: object
       responses:
         '200':
           content:
