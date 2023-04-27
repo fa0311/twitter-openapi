@@ -6,18 +6,6 @@ paths:
   /parameters:
     get:
       parameters:
-        - name: variables
-          in: query
-          required: true
-          schema:
-            type: string
-            example: "{{Variables}}"
-        - name: features
-          in: query
-          required: true
-          schema:
-            type: string
-            example: "{{Features}}"
         - name: queryId
           in: query
           required: true
@@ -25,6 +13,45 @@ paths:
             type: string
             default: "{{Query}}"
             example: "{{Query}}"
+
+        # {% if get_parameters == string %}
+
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "{{Variables}}"
+            example: "{{Variables}}"
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: string
+            default: "{{Features}}"
+            example: "{{Features}}"
+
+        # {% endif %}
+
+        # {% if get_parameters == object %}
+
+        - name: variables
+          in: query
+          required: true
+          schema:
+            type: object
+        - name: features
+          in: query
+          required: true
+          schema:
+            type: object
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: object
+
+        # {% endif %}
 
         # {% if header == parameters %}
 
@@ -58,7 +85,71 @@ paths:
             description: "UserAgent, some APIs may be rejected if changed."
 
         # {% endif %}
+      responses:
+        "200":
+          description: ""
 
+    post:
+      # {% if header == parameters %}
+
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+            description: "It is a constant value and does not need to be changed."
+        - name: x-twitter-active-user
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "yes"
+            description: "Unknown what this value means."
+        - name: x-twitter-client-language
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "en"
+            description: "language code."
+        - name: user-agent
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+            description: "UserAgent, some APIs may be rejected if changed."
+
+      # {% endif %}
+
+      # {% if post_parameters == object %}
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - "queryId"
+                - "variables"
+                - "features"
+              properties:
+                queryId:
+                  type: string
+                  default: "{{Query}}"
+                  example: "{{Query}}"
+                variables:
+                  type: object
+                  # default: "{{Variables}}"
+                  example: "{{Variables}}"
+                features:
+                  type: object
+                  # default: "{{Features}}"
+                  example: "{{Features}}"
+
+      # {% endif %}
       responses:
         "200":
           description: ""

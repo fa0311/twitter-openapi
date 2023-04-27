@@ -1,8 +1,17 @@
 {
     "dart": {
-        "header": "parameters"
+        "header": "parameters",
+        "get_parameters": "string",
+        "post_parameters": "object"
     },
     "typescript": {
-        "header": "securitySchemes"
+        "header": "securitySchemes",
+        "get_parameters": "string",
+        "post_parameters": "object"
+    },
+    "test": {
+        "header": "securitySchemes",
+        "get_parameters": "string",
+        "post_parameters": "string"
     }
 }
