@@ -140,6 +140,25 @@ for lang in variable.keys():
                 if param[method].get("requestBody") is not None:
                     req["requestBody"] = param[method].get("requestBody")
 
+                if variable[lang].get(method + "_parameters") == "schema_content":
+                    for p_key in placeholder.data[key.split("/")[-1]].keys():
+                        if p_key.lower() == "query":
+                            continue
+                        req["parameters"].append(
+                            {
+                                "name": p_key.lower(),
+                                "in": "query",
+                                "required": True,
+                                "content": {
+                                    "application/json": {
+                                        "schema": placeholder_to_yaml(
+                                            placeholder.data[key.split("/")[-1]][p_key]
+                                        ),
+                                    },
+                                },
+                            }
+                        )
+
                 if variable[lang].get(method + "_parameters") == "schema_parameters":
                     for p_key in placeholder.data[key.split("/")[-1]].keys():
                         if p_key.lower() == "query":
@@ -148,6 +167,7 @@ for lang in variable.keys():
                             {
                                 "name": p_key.lower(),
                                 "in": "query",
+                                "required": True,
                                 "schema": placeholder_to_yaml(
                                     placeholder.data[key.split("/")[-1]][p_key]
                                 ),
