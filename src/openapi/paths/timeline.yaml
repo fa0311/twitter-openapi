@@ -4,7 +4,7 @@ info:
   version: 0.0.1
 
 paths:
-  /{{HomeTimelineQuery}}/HomeTimeline:
+  /graphql/{{queryId}}/HomeTimeline:
     get:
       operationId: getHomeTimeline
       description: get tweet list of timeline
@@ -16,9 +16,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/TimelineResponse"
       tags:
-        - "Tweet"
+        - "tweet"
 
-  /{{HomeLatestTimelineQuery}}/HomeLatestTimeline:
+  /graphql/{{queryId}}/HomeLatestTimeline:
     get:
       operationId: getHomeLatestTimeline
       description: get tweet list of timeline
@@ -30,9 +30,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/TimelineResponse"
       tags:
-        - "Tweet"
+        - "tweet"
 
-  /{{ListLatestTweetsTimelineQuery}}/ListLatestTweetsTimeline:
+  /graphql/{{queryId}}/ListLatestTweetsTimeline:
     get:
       operationId: getListLatestTweetsTimeline
       description: get tweet list of timeline
@@ -44,7 +44,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ListTweetsTimelineResponse"
       tags:
-        - "Tweet"
+        - "tweet"
 
 components:
   schemas:

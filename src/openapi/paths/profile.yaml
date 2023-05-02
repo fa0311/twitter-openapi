@@ -4,7 +4,7 @@ info:
   version: 0.0.1
 
 paths:
-  /{{ProfileSpotlightsQueryQuery}}/ProfileSpotlightsQuery:
+  /graphql/{{queryId}}/ProfileSpotlightsQuery:
     get:
       operationId: getProfileSpotlightsQuery
       description: "get user by screen name"
