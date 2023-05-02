@@ -47,18 +47,20 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
+  /graphql/2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
     get:
       description: get tweet list of timeline
       operationId: getListLatestTweetsTimeline
       parameters:
-      - in: query
+      - content:
+          application/json:
+            schema:
+              default: 2TemLyqrMpTeAmysdbnVqw
+              example: 2TemLyqrMpTeAmysdbnVqw
+              type: string
+        in: query
         name: queryId
         required: true
-        schema:
-          default: 2TemLyqrMpTeAmysdbnVqw
-          example: 2TemLyqrMpTeAmysdbnVqw
-          type: string
       - content:
           application/json:
             schema:
@@ -224,19 +226,21 @@ paths:
               schema:
                 type: integer
       tags:
-      - Tweet
-  /HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
+      - tweet
+  /graphql/HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
     get:
       description: get tweet list of timeline
       operationId: getHomeTimeline
       parameters:
-      - in: query
+      - content:
+          application/json:
+            schema:
+              default: HCosKfLNW1AcOo3la3mMgg
+              example: HCosKfLNW1AcOo3la3mMgg
+              type: string
+        in: query
         name: queryId
         required: true
-        schema:
-          default: HCosKfLNW1AcOo3la3mMgg
-          example: HCosKfLNW1AcOo3la3mMgg
-          type: string
       - content:
           application/json:
             schema:
@@ -417,19 +421,21 @@ paths:
               schema:
                 type: integer
       tags:
-      - Tweet
-  /zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
+      - tweet
+  /graphql/zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
     get:
       description: get tweet list of timeline
       operationId: getHomeLatestTimeline
       parameters:
-      - in: query
+      - content:
+          application/json:
+            schema:
+              default: zhX91JE87mWvfprhYE97xA
+              example: zhX91JE87mWvfprhYE97xA
+              type: string
+        in: query
         name: queryId
         required: true
-        schema:
-          default: zhX91JE87mWvfprhYE97xA
-          example: zhX91JE87mWvfprhYE97xA
-          type: string
       - content:
           application/json:
             schema:
@@ -605,4 +611,4 @@ paths:
               schema:
                 type: integer
       tags:
-      - Tweet
+      - tweet

@@ -136,11 +136,19 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
+  /graphql/1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
     post:
       description: create Tweet
       operationId: postCreateTweet
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
       - in: header
         name: authorization
         required: true
@@ -162,46 +170,49 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{"tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
-                    true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
-                    true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
-                    true, "tweet_awards_web_tipping_enabled": false, "interactive_text_enabled":
-                    true, "responsive_web_text_conversations_enabled": false, "longform_notetweets_rich_text_read_enabled":
-                    true, "blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
-                    true, "verified_phone_label_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-                    true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
-                    false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-                    false, "responsive_web_graphql_timeline_navigation_enabled": true,
-                    "responsive_web_enhance_cards_enabled": false}'
-                  type: object
-                queryId:
-                  default: 1RyAhNwby-gzGCRVsMxKbQ
-                  example: 1RyAhNwby-gzGCRVsMxKbQ
-                  type: string
-                variables:
-                  example: '{"tweet_text": "test", "media": {"media_entities": [],
-                    "possibly_sensitive": false}, "semantic_annotation_ids": [], "dark_request":
-                    false}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
+          default: '"1RyAhNwby-gzGCRVsMxKbQ"'
+          example: '"1RyAhNwby-gzGCRVsMxKbQ"'
+          type: object
+      - in: query
+        name: variables
         required: true
+        schema:
+          default: '{"tweet_text": "test", "media": {"media_entities": [], "possibly_sensitive":
+            false}, "semantic_annotation_ids": [], "dark_request": false}'
+          example: '{"tweet_text": "test", "media": {"media_entities": [], "possibly_sensitive":
+            false}, "semantic_annotation_ids": [], "dark_request": false}'
+          type: object
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "interactive_text_enabled":
+            true, "responsive_web_text_conversations_enabled": false, "longform_notetweets_rich_text_read_enabled":
+            true, "blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          example: '{"tweetypie_unmention_optimization_enabled": true, "vibe_api_enabled":
+            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "tweet_awards_web_tipping_enabled": false, "interactive_text_enabled":
+            true, "responsive_web_text_conversations_enabled": false, "longform_notetweets_rich_text_read_enabled":
+            true, "blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: object
       responses:
         '200':
           content:
@@ -244,12 +255,20 @@ paths:
               schema:
                 type: integer
       tags:
-      - Post
-  /VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
+      - post
+  /graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
     post:
       description: delete Retweet
       operationId: postDeleteTweet
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
       - in: header
         name: authorization
         required: true
@@ -271,34 +290,27 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: VaenaVgh5q5ih7kvyVjgtg
-                  example: VaenaVgh5q5ih7kvyVjgtg
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
+          default: '"VaenaVgh5q5ih7kvyVjgtg"'
+          example: '"VaenaVgh5q5ih7kvyVjgtg"'
+          type: object
+      - in: query
+        name: variables
         required: true
+        schema:
+          default: '{"tweet_id": "1349129669258448897"}'
+          example: '{"tweet_id": "1349129669258448897"}'
+          type: object
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: object
       responses:
         '200':
           content:
@@ -341,12 +353,20 @@ paths:
               schema:
                 type: integer
       tags:
-      - Post
-  /ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
+      - post
+  /graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
     post:
       description: unfavorite Tweet
       operationId: postUnfavoriteTweet
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
       - in: header
         name: authorization
         required: true
@@ -368,34 +388,22 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: ZYKSe-w7KEslx3JhSIk5LA
-                  example: ZYKSe-w7KEslx3JhSIk5LA
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
+          default: '"ZYKSe-w7KEslx3JhSIk5LA"'
+          example: '"ZYKSe-w7KEslx3JhSIk5LA"'
+          type: object
+      - in: query
+        name: Parameters
         required: true
+        schema:
+          default: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          example: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          type: object
       responses:
         '200':
           content:
@@ -438,12 +446,20 @@ paths:
               schema:
                 type: integer
       tags:
-      - Post
-  /iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
+      - post
+  /graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
     post:
       description: delete Retweet
       operationId: postDeleteRetweet
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
       - in: header
         name: authorization
         required: true
@@ -465,34 +481,22 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: iQtK4dl5hBmXewYZuEOKVw
-                  example: iQtK4dl5hBmXewYZuEOKVw
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
+          default: '"iQtK4dl5hBmXewYZuEOKVw"'
+          example: '"iQtK4dl5hBmXewYZuEOKVw"'
+          type: object
+      - in: query
+        name: Parameters
         required: true
+        schema:
+          default: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          example: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          type: object
       responses:
         '200':
           content:
@@ -535,12 +539,20 @@ paths:
               schema:
                 type: integer
       tags:
-      - Post
-  /lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
+      - post
+  /graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
     post:
       description: favorite Tweet
       operationId: postFavoriteTweet
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
       - in: header
         name: authorization
         required: true
@@ -562,34 +574,22 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: lI07N6Otwv1PhnEgXILM7A
-                  example: lI07N6Otwv1PhnEgXILM7A
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
+          default: '"lI07N6Otwv1PhnEgXILM7A"'
+          example: '"lI07N6Otwv1PhnEgXILM7A"'
+          type: object
+      - in: query
+        name: Parameters
         required: true
+        schema:
+          default: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          example: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          type: object
       responses:
         '200':
           content:
@@ -632,12 +632,20 @@ paths:
               schema:
                 type: integer
       tags:
-      - Post
-  /ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
+      - post
+  /graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
     post:
       description: create Retweet
       operationId: postCreateRetweet
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
       - in: header
         name: authorization
         required: true
@@ -659,34 +667,22 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                features:
-                  example: '{{Features}}'
-                  type: object
-                queryId:
-                  default: ojPdsZsimiJrUGLR1sjUtA
-                  example: ojPdsZsimiJrUGLR1sjUtA
-                  type: string
-                variables:
-                  example: '{"tweet_id": "1349129669258448897"}'
-                  type: object
-              required:
-              - queryId
-              - variables
-              - features
+          default: '"ojPdsZsimiJrUGLR1sjUtA"'
+          example: '"ojPdsZsimiJrUGLR1sjUtA"'
+          type: object
+      - in: query
+        name: Parameters
         required: true
+        schema:
+          default: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          example: '{"variables": {"tweet_id": "1349129669258448897"}, "features":
+            {}}'
+          type: object
       responses:
         '200':
           content:
@@ -729,4 +725,4 @@ paths:
               schema:
                 type: integer
       tags:
-      - Post
+      - post

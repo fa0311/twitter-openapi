@@ -63,31 +63,18 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
+  /graphql/9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
     get:
       description: get user by screen name
       operationId: getProfileSpotlightsQuery
       parameters:
-      - in: query
-        name: queryId
+      - in: header
+        name: user-agent
         required: true
         schema:
-          default: 9zwVLJ48lmVUk8u_Gh9DmA
-          example: 9zwVLJ48lmVUk8u_Gh9DmA
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          default: '{"screen_name": "elonmusk"}'
-          example: '{"screen_name": "elonmusk"}'
-          type: string
-      - in: query
-        name: features
-        required: true
-        schema:
-          default: '{}'
-          example: '{}'
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
           type: string
       - in: header
         name: authorization
@@ -110,13 +97,26 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
+          default: '"9zwVLJ48lmVUk8u_Gh9DmA"'
+          example: '"9zwVLJ48lmVUk8u_Gh9DmA"'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"screen_name": "elonmusk"}'
+          example: '{"screen_name": "elonmusk"}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
           type: string
       responses:
         '200':

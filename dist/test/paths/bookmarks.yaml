@@ -23,7 +23,7 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
+  /graphql/tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
     get:
       description: get bookmarks
       operationId: getBookmarks
@@ -32,8 +32,8 @@ paths:
         name: queryId
         required: true
         schema:
-          default: tmd4ifV8RHltzn8ymGg1aw
-          example: tmd4ifV8RHltzn8ymGg1aw
+          default: '"tmd4ifV8RHltzn8ymGg1aw"'
+          example: '"tmd4ifV8RHltzn8ymGg1aw"'
           type: string
       - in: query
         name: variables
@@ -111,4 +111,4 @@ paths:
               schema:
                 type: integer
       tags:
-      - Tweet
+      - tweet

@@ -17,18 +17,20 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
+  /graphql/wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
     get:
       description: get TweetDetail
       operationId: getTweetDetail
       parameters:
-      - in: query
+      - content:
+          application/json:
+            schema:
+              default: wNNG8DBB8EaXw1lq4vFWGA
+              example: wNNG8DBB8EaXw1lq4vFWGA
+              type: string
+        in: query
         name: queryId
         required: true
-        schema:
-          default: wNNG8DBB8EaXw1lq4vFWGA
-          example: wNNG8DBB8EaXw1lq4vFWGA
-          type: string
       - content:
           application/json:
             schema:
@@ -224,4 +226,4 @@ paths:
               schema:
                 type: integer
       tags:
-      - Tweet
+      - tweet

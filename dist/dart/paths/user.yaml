@@ -17,35 +17,18 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
+  /graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
     get:
       description: get user by screen name
       operationId: getUserByScreenName
       parameters:
-      - in: query
-        name: queryId
+      - in: header
+        name: user-agent
         required: true
         schema:
-          default: sLVLhk0bGj3MVFEKTdax1w
-          example: sLVLhk0bGj3MVFEKTdax1w
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          default: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
-          example: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
-          type: string
-      - in: query
-        name: features
-        required: true
-        schema:
-          default: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
-            true, "verified_phone_label_enabled": false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "responsive_web_graphql_timeline_navigation_enabled": true}'
-          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
-            true, "verified_phone_label_enabled": false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "responsive_web_graphql_timeline_navigation_enabled": true}'
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
           type: string
       - in: header
         name: authorization
@@ -68,13 +51,30 @@ paths:
           default: en
           description: language code.
           type: string
-      - in: header
-        name: user-agent
+      - in: query
+        name: queryId
         required: true
         schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
+          default: '"sLVLhk0bGj3MVFEKTdax1w"'
+          example: '"sLVLhk0bGj3MVFEKTdax1w"'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
+          example: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "responsive_web_graphql_timeline_navigation_enabled": true}'
+          example: '{"blue_business_profile_image_shape_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "responsive_web_graphql_timeline_navigation_enabled": true}'
           type: string
       responses:
         '200':
@@ -118,4 +118,4 @@ paths:
               schema:
                 type: integer
       tags:
-      - User
+      - user
