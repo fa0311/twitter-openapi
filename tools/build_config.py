@@ -86,26 +86,3 @@ class Config:
                 },
             },
         }
-
-        """
-    "docs": {
-        "header": "securitySchemes",
-        "get_parameters": "schema_content",
-        "post_parameters": "schema_parameters"
-    },
-    "dart": {
-        "header": "parameters",
-        "get_parameters": "string",
-        "post_parameters": "object"
-    },
-    "typescript": {
-        "header": "securitySchemes",
-        "get_parameters": "string",
-        "post_parameters": "object"
-    },
-    "test": {
-        "header": "securitySchemes",
-        "get_parameters": "string",
-        "post_parameters": "string"
-    }
-    """
