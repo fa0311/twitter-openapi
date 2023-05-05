@@ -51,9 +51,13 @@ security:
   - CookieAuthToken: []
   - CookieCt0: []
 tags:
-  - name: User
+  - name: user
     description: response User
-  - name: UserList
+  - name: userList
     description: response User list
-  - name: Tweet
+  - name: tweet
     description: response tweet
+  - name: post
+    description: post
+  - name: v1.1
+    description: legacy APIs

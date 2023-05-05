@@ -1,205 +1,34 @@
 components:
-  schemas:
-    User:
-      properties:
-        __typename:
-          $ref: ./typename.yaml#/components/schemas/TypeName
-        affiliates_highlighted_label:
-          type: object
-        business_account:
-          type: object
-        has_graduated_access:
-          type: boolean
-        has_nft_avatar:
-          default: false
-          type: boolean
-        id:
-          pattern: ^[a-z\-]+[0-9]+$
-          type: string
-        is_blue_verified:
-          default: false
-          type: boolean
-        legacy:
-          $ref: '#/components/schemas/UserLegacy'
-        rest_id:
-          pattern: ^[0-9]+$
-          type: string
-        super_follow_eligible:
-          default: false
-          type: boolean
-        super_followed_by:
-          default: false
-          type: boolean
-        super_following:
-          default: false
-          type: boolean
-      required:
-      - __typename
-      - affiliates_highlighted_label
-      - id
-      - is_blue_verified
-      - legacy
-      - rest_id
-      - super_follow_eligible
-      - super_followed_by
-      - super_following
-    UserLegacy:
-      properties:
-        blocked_by:
-          default: false
-          type: boolean
-        blocking:
-          default: false
-          type: boolean
-        can_dm:
-          default: false
-          type: boolean
-        can_media_tag:
-          default: false
-          type: boolean
-        created_at:
-          $ref: ./general.yaml#/components/schemas/TwitterTimeFormat
-        default_profile:
-          default: false
-          type: boolean
-        default_profile_image:
-          default: false
-          type: boolean
-        description:
-          type: string
-        entities:
-          type: object
-        fast_followers_count:
-          type: integer
-        favourites_count:
-          default: 0
-          type: integer
-        follow_request_sent:
-          default: false
-          type: boolean
-        followed_by:
-          default: false
-          type: boolean
-        followers_count:
-          default: 0
-          type: integer
-        following:
-          default: false
-          type: boolean
-        friends_count:
-          default: 0
-          type: integer
-        has_custom_timelines:
-          default: false
-          type: boolean
-        is_translator:
-          default: false
-          type: boolean
-        listed_count:
-          default: 0
-          type: integer
-        location:
-          type: string
-        media_count:
-          default: 0
-          type: integer
-        muting:
-          default: false
-          type: boolean
-        name:
-          type: string
-        normal_followers_count:
-          default: 0
-          type: integer
-        notifications:
-          default: false
-          type: boolean
-        pinned_tweet_ids_str:
-          items:
-            type: string
-          type: array
-        possibly_sensitive:
-          default: false
-          type: boolean
-        profile_banner_extensions:
-          type: object
-        profile_banner_url:
-          format: uri
-          type: string
-        profile_image_extensions:
-          type: object
-        profile_image_url_https:
-          format: uri
-          type: string
-        profile_interstitial_type:
-          type: string
-        protected:
-          default: false
-          type: boolean
-        screen_name:
-          type: string
-        statuses_count:
-          default: 0
-          type: integer
-        translator_type:
-          type: string
-        url:
-          type: string
-        verified:
-          type: boolean
-        want_retweets:
-          default: false
-          type: boolean
-      required:
-      - blocked_by
-      - blocking
-      - can_dm
-      - can_media_tag
-      - created_at
-      - default_profile
-      - default_profile_image
-      - description
-      - entities
-      - fast_followers_count
-      - favourites_count
-      - follow_request_sent
-      - followed_by
-      - followers_count
-      - following
-      - friends_count
-      - has_custom_timelines
-      - is_translator
-      - listed_count
-      - location
-      - media_count
-      - muting
-      - name
-      - normal_followers_count
-      - notifications
-      - pinned_tweet_ids_str
-      - possibly_sensitive
-      - profile_image_url_https
-      - profile_interstitial_type
-      - protected
-      - screen_name
-      - status
-      - statuses_count
-      - translator_type
-      - verified
-      - want_retweets
-    UserResultCore:
-      properties:
-        user_results:
-          $ref: '#/components/schemas/UserResults'
-      required:
-      - user_results
-    UserResults:
-      properties:
-        result:
-          $ref: '#/components/schemas/User'
-      required:
-      - result
+  schemas: {}
+  securitySchemes:
+    CookieAuthToken:
+      description: HttpOnly cookie
+      in: cookie
+      name: auth_token
+      type: apiKey
+    CookieCt0:
+      description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
+      in: cookie
+      name: ct0
+      type: apiKey
+    CsrfToken:
+      description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
+      in: header
+      name: x-csrf-token
+      type: apiKey
+    authType:
+      description: OAuth2Session if you are logged in
+      in: header
+      name: x-twitter-auth-type
+      type: apiKey
 info:
+  contact:
+    email: yuki@yuki0311.com
+  description: Twitter OpenAPI(Swagger) specification
+  license:
+    name: GNU Affero General Public License v3.
+    url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
+  termsOfService: https://github.com/fa0311
   title: Twitter OpenAPI
   version: 0.0.1
 openapi: 3.0.3
@@ -207,40 +36,57 @@ paths:
   /1.1/friendships/create.json:
     $ref: ./paths/v1.1.yaml#/paths/~11.1~1friendships~1create.json
   /graphql/1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1{{queryId}}~1CreateTweet
+    $ref: ./paths/post.yaml#/paths/~1graphql~11RyAhNwby-gzGCRVsMxKbQ~1CreateTweet
   /graphql/2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
-    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{{queryId}}~1ListLatestTweetsTimeline
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~12TemLyqrMpTeAmysdbnVqw~1ListLatestTweetsTimeline
   /graphql/5fmEkRT-1AdHqEsbVgehMg/Likes:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{{queryId}}~1Likes
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~15fmEkRT-1AdHqEsbVgehMg~1Likes
   /graphql/9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
-    $ref: ./paths/profile.yaml#/paths/~1graphql~1{{queryId}}~1ProfileSpotlightsQuery
+    $ref: ./paths/profile.yaml#/paths/~1graphql~19zwVLJ48lmVUk8u_Gh9DmA~1ProfileSpotlightsQuery
   /graphql/HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
-    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{{queryId}}~1HomeTimeline
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
   /graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{{queryId}}~1UserTweets
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1HuTx74BxAnezK1gWvYY7zg~1UserTweets
   /graphql/IWP6Zt14sARO29lJT35bBw/Following:
-    $ref: ./paths/follow.yaml#/paths/~1graphql~1{{queryId}}~1Following
+    $ref: ./paths/follow.yaml#/paths/~1graphql~1IWP6Zt14sARO29lJT35bBw~1Following
   /graphql/RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{{queryId}}~1UserTweetsAndReplies
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1RIWc55YCNyUJ-U3HHGYkdg~1UserTweetsAndReplies
   /graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1{{queryId}}~1DeleteTweet
+    $ref: ./paths/post.yaml#/paths/~1graphql~1VaenaVgh5q5ih7kvyVjgtg~1DeleteTweet
   /graphql/YqiE3JL1KNgf9nSljYdxaA/UserMedia:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{{queryId}}~1UserMedia
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1YqiE3JL1KNgf9nSljYdxaA~1UserMedia
   /graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1{{queryId}}~1UnfavoriteTweet
+    $ref: ./paths/post.yaml#/paths/~1graphql~1ZYKSe-w7KEslx3JhSIk5LA~1UnfavoriteTweet
   /graphql/djdTXDIk2qhd4OStqlUFeQ/Followers:
-    $ref: ./paths/follow.yaml#/paths/~1graphql~1{{queryId}}~1Followers
+    $ref: ./paths/follow.yaml#/paths/~1graphql~1djdTXDIk2qhd4OStqlUFeQ~1Followers
   /graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1{{queryId}}~1DeleteRetweet
+    $ref: ./paths/post.yaml#/paths/~1graphql~1iQtK4dl5hBmXewYZuEOKVw~1DeleteRetweet
   /graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1{{queryId}}~1FavoriteTweet
+    $ref: ./paths/post.yaml#/paths/~1graphql~1lI07N6Otwv1PhnEgXILM7A~1FavoriteTweet
   /graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1{{queryId}}~1CreateRetweet
+    $ref: ./paths/post.yaml#/paths/~1graphql~1ojPdsZsimiJrUGLR1sjUtA~1CreateRetweet
   /graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
-    $ref: ./paths/user.yaml#/paths/~1graphql~1{{queryId}}~1UserByScreenName
+    $ref: ./paths/user.yaml#/paths/~1graphql~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
   /graphql/tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
-    $ref: ./paths/bookmarks.yaml#/paths/~1graphql~1{{queryId}}~1Bookmarks
+    $ref: ./paths/bookmarks.yaml#/paths/~1graphql~1tmd4ifV8RHltzn8ymGg1aw~1Bookmarks
   /graphql/wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
-    $ref: ./paths/tweet.yaml#/paths/~1graphql~1{{queryId}}~1TweetDetail
+    $ref: ./paths/tweet.yaml#/paths/~1graphql~1wNNG8DBB8EaXw1lq4vFWGA~1TweetDetail
   /graphql/zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
-    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{{queryId}}~1HomeLatestTimeline
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
+security:
+- bearerAuth: []
+- CsrfToken: []
+- ActiveUser: []
+- AuthType: []
+- ClientLanguage: []
+- CookieAuthToken: []
+- CookieCt0: []
+servers:
+- url: https://twitter.com/i/api/graphql
+tags:
+- description: response User
+  name: User
+- description: response User list
+  name: UserList
+- description: response tweet
+  name: Tweet
