@@ -33,8 +33,16 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
+  /1.1/friends/following/list.json:
+    $ref: ./paths/v1.1-get.yaml#/paths/~11.1~1friends~1following~1list.json
   /1.1/friendships/create.json:
-    $ref: ./paths/v1.1.yaml#/paths/~11.1~1friendships~1create.json
+    $ref: ./paths/v1.1-post.yaml#/paths/~11.1~1friendships~1create.json
+  /1.1/friendships/destroy.json:
+    $ref: ./paths/v1.1-post.yaml#/paths/~11.1~1friendships~1destroy.json
+  /1.1/search/typeahead.json:
+    $ref: ./paths/v1.1-get.yaml#/paths/~11.1~1search~1typeahead.json
+  /2/search/adaptive.json:
+    $ref: ./paths/v2.0-get.yaml#/paths/~12~1search~1adaptive.json
   /graphql/1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
     $ref: ./paths/post.yaml#/paths/~1graphql~11RyAhNwby-gzGCRVsMxKbQ~1CreateTweet
   /graphql/2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
@@ -87,10 +95,16 @@ tags:
 - description: response User
   name: user
 - description: response User list
-  name: userList
+  name: user-list
 - description: response tweet
   name: tweet
 - description: post
   name: post
-- description: legacy APIs
-  name: v1.1
+- description: legacy APIs get
+  name: v1.1-get
+- description: legacy APIs post
+  name: v1.1-post
+- description: legacy APIs get
+  name: v2-get
+- description: legacy APIs post
+  name: v2-post

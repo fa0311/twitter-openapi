@@ -350,7 +350,6 @@ paths:
         required: true
         schema:
           properties: {}
-          required: []
           type: object
       responses:
         '200':
@@ -405,7 +404,6 @@ paths:
           properties:
             features:
               properties: {}
-              required: []
               type: object
             variables:
               properties:
@@ -473,7 +471,6 @@ paths:
           properties:
             features:
               properties: {}
-              required: []
               type: object
             variables:
               properties:
@@ -541,7 +538,6 @@ paths:
           properties:
             features:
               properties: {}
-              required: []
               type: object
             variables:
               properties:
@@ -609,7 +605,6 @@ paths:
           properties:
             features:
               properties: {}
-              required: []
               type: object
             variables:
               properties:

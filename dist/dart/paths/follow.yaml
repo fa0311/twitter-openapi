@@ -148,7 +148,7 @@ paths:
               schema:
                 type: string
       tags:
-      - userList
+      - user-list
   /graphql/djdTXDIk2qhd4OStqlUFeQ/Followers:
     get:
       description: get user list of followers
@@ -259,4 +259,4 @@ paths:
               schema:
                 type: string
       tags:
-      - userList
+      - user-list

@@ -3,10 +3,10 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /1.1/friendships/create.json:
-    post:
-      description: post create friendships
-      operationId: postCreateFriendships
+  /1.1/friends/following/list.json:
+    get:
+      description: get friends following list
+      operationId: getFriendsFollowingList
       parameters:
       - in: query
         name: include_profile_interstitial_type
@@ -100,11 +100,32 @@ paths:
           example: '1'
           type: object
       - in: query
+        name: cursor
+        required: true
+        schema:
+          default: '-1'
+          example: '-1'
+          type: object
+      - in: query
         name: user_id
         required: true
         schema:
-          default: '1180389371481976833'
-          example: '1180389371481976833'
+          default: '17152334'
+          example: '17152334'
+          type: object
+      - in: query
+        name: count
+        required: true
+        schema:
+          default: '3'
+          example: '3'
+          type: object
+      - in: query
+        name: with_total_count
+        required: true
+        schema:
+          default: 'true'
+          example: 'true'
           type: object
       responses:
         '200':
@@ -138,4 +159,84 @@ paths:
               schema:
                 type: string
       tags:
-      - v1.1
+      - v1.1-get
+  /1.1/search/typeahead.json:
+    get:
+      description: get search typeahead
+      operationId: getSearchTypeahead
+      parameters:
+      - in: query
+        name: include_ext_is_blue_verified
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: object
+      - in: query
+        name: include_ext_verified_type
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: object
+      - in: query
+        name: include_ext_profile_image_shape
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: object
+      - in: query
+        name: q
+        required: true
+        schema:
+          default: '"aaa"'
+          example: '"aaa"'
+          type: object
+      - in: query
+        name: src
+        required: true
+        schema:
+          default: '"search_box"'
+          example: '"search_box"'
+          type: object
+      - in: query
+        name: result_type
+        required: true
+        schema:
+          default: '"events,users,topics"'
+          example: '"events,users,topics"'
+          type: object
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            status:
+              schema:
+                type: string
+            x-access-level:
+              schema:
+                type: string
+            x-client-event-enabled:
+              schema:
+                type: boolean
+            x-connection-hash:
+              schema:
+                type: string
+            x-content-type-options:
+              schema:
+                type: string
+            x-response-time:
+              schema:
+                type: integer
+            x-transaction:
+              schema:
+                type: string
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - v1.1-get

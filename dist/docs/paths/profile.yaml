@@ -95,7 +95,6 @@ paths:
           application/json:
             schema:
               properties: {}
-              required: []
               type: object
         in: query
         name: features
