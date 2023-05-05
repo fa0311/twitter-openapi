@@ -105,6 +105,6 @@ tags:
 - description: legacy APIs post
   name: v1.1-post
 - description: legacy APIs get
-  name: v2-get
+  name: v2.0-get
 - description: legacy APIs post
-  name: v2-post
+  name: v2.0-post
