@@ -97,12 +97,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -124,9 +118,6 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - userList
   /graphql/djdTXDIk2qhd4OStqlUFeQ/Followers:
@@ -188,12 +179,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -215,8 +200,5 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - userList

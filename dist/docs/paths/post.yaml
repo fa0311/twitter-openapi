@@ -298,12 +298,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -325,9 +319,6 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - post
   /graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
@@ -372,12 +363,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -399,9 +384,6 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - post
   /graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
@@ -449,12 +431,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -476,9 +452,6 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - post
   /graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
@@ -526,12 +499,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -553,9 +520,6 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - post
   /graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
@@ -603,12 +567,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -630,9 +588,6 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - post
   /graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
@@ -680,12 +635,6 @@ paths:
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
-              schema:
-                type: string
-            x-frame-options:
-              schema:
-                type: string
             x-rate-limit-limit:
               schema:
                 type: integer
@@ -707,8 +656,5 @@ paths:
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - post

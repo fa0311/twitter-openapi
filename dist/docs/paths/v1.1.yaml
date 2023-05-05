@@ -110,38 +110,32 @@ paths:
         '200':
           description: Successful operation
           headers:
+            status:
+              schema:
+                type: string
+            x-access-level:
+              schema:
+                type: string
+            x-client-event-enabled:
+              schema:
+                type: boolean
             x-connection-hash:
               schema:
                 type: string
             x-content-type-options:
               schema:
                 type: string
-            x-frame-options:
-              schema:
-                type: string
-            x-rate-limit-limit:
-              schema:
-                type: integer
-            x-rate-limit-remaining:
-              schema:
-                type: integer
-            x-rate-limit-reset:
-              schema:
-                type: integer
             x-response-time:
               schema:
                 type: integer
-            x-tfe-preserve-body:
+            x-transaction:
               schema:
-                type: boolean
+                type: string
             x-transaction-id:
               schema:
                 type: string
             x-twitter-response-tags:
               schema:
                 type: string
-            x-xss-protection:
-              schema:
-                type: integer
       tags:
       - v1.1
