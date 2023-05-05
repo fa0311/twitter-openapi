@@ -11,87 +11,106 @@ class Config:
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(),
-                        SetResponsesHeader(),
-                        AddParametersOnContent(),
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnContent(split=-1),
                     ]
-                    for key in ["default", "user", "userList", "tweet"]
+                    for key in ["default", "user", "user-list", "tweet"]
                 }
                 | {
-                    "post": [
-                        ReplaceQueryIdPlaceholder(),
-                        SetResponsesHeader(),
-                        AddParametersOnParameters(),
-                    ],
-                    "v1.1": [SetResponsesHeader("v1.1"), AddParametersOnParameters()],
+                    key: [
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParameters(split=-1),
+                    ]
+                    for key in ["post"]
+                }
+                | {
+                    key: [
+                        SetResponsesHeader("legacy"),
+                        AddParametersOnParameters(split=2),
+                    ]
+                    for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
                 },
             },
             "dart": {
                 "openapi": [],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(),
-                        AddSecuritySchemesOnHeader(),
-                        SetResponsesHeader(),
-                        AddParametersOnParametersAsString(),
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        AddSecuritySchemesOnHeader(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParametersAsString(split=-1),
                     ]
-                    for key in ["default", "user", "userList", "tweet"]
+                    for key in ["default", "user", "user-list", "tweet"]
                 }
                 | {
-                    "post": [
-                        ReplaceQueryIdPlaceholder(),
-                        AddSecuritySchemesOnHeader(),
-                        SetResponsesHeader(),
-                        AddParametersOnParametersAsObject(),
-                    ],
-                    "v1.1": [
-                        SetResponsesHeader("v1.1"),
-                        AddParametersOnParametersAsObject(),
-                    ],
+                    key: [
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        AddSecuritySchemesOnHeader(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParametersAsObject(split=-1),
+                    ]
+                    for key in ["post"]
+                }
+                | {
+                    key: [
+                        SetResponsesHeader(suffix="legacy"),
+                        AddParametersOnParametersAsObject(split=2),
+                    ]
+                    for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
                 },
             },
             "typescript": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(),
-                        SetResponsesHeader(),
-                        AddParametersOnParametersAsString(),
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParametersAsString(split=-1),
                     ]
-                    for key in ["default", "user", "userList", "tweet"]
+                    for key in ["default", "user", "user-list", "tweet"]
                 }
                 | {
-                    "post": [
-                        ReplaceQueryIdPlaceholder(),
-                        SetResponsesHeader(),
-                        AddParametersOnParametersAsObject(),
-                    ],
-                    "v1.1": [
-                        SetResponsesHeader("v1.1"),
-                        AddParametersOnParametersAsObject(),
-                    ],
+                    key: [
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParametersAsObject(split=-1),
+                    ]
+                    for key in ["post"]
+                }
+                | {
+                    key: [
+                        SetResponsesHeader(suffix="legacy"),
+                        AddParametersOnParametersAsObject(split=2),
+                    ]
+                    for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
                 },
             },
             "test": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(),
-                        SetResponsesHeader(),
-                        AddParametersOnParametersAsString(),
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParametersAsString(split=-1),
                     ]
-                    for key in ["default", "user", "userList", "tweet"]
+                    for key in ["default", "user", "user-list", "tweet"]
                 }
                 | {
-                    "post": [
-                        ReplaceQueryIdPlaceholder(),
-                        SetResponsesHeader(),
-                        AddParametersOnParametersAsString(),
-                    ],
-                    "v1.1": [
-                        SetResponsesHeader("v1.1"),
-                        AddParametersOnParametersAsString(),
-                    ],
+                    key: [
+                        ReplaceQueryIdPlaceholder(split=-1),
+                        SetResponsesHeader(suffix=None),
+                        AddParametersOnParametersAsString(split=-1),
+                    ]
+                    for key in ["post"]
+                }
+                | {
+                    key: [
+                        SetResponsesHeader(suffix="legacy"),
+                        AddParametersOnParametersAsObject(split=2),
+                    ]
+                    for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
                 },
             },
         }

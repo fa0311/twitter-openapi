@@ -16,7 +16,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FollowResponse"
       tags:
-        - "userList"
+        - "user-list"
 
   /graphql/{{queryId}}/Followers:
     get:
@@ -30,7 +30,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/FollowResponse"
       tags:
-        - "userList"
+        - "user-list"
 
 components:
   schemas:

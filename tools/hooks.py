@@ -15,9 +15,9 @@ class HookBase:
             properties = {i: fn(obj[i]) for i in obj}
             value = {
                 "type": "object",
-                "required": [i for i in obj],
                 "properties": properties,
             }
+            value.update({"required": [i for i in obj]} if len(obj) > 0 else {})
             value.update({"default": properties} if default else {})
             value.update({"example": properties} if example else {})
             return value
@@ -50,27 +50,46 @@ class HookBase:
             return yaml.safe_load(f)
 
 
+# HookBase extends
+
+
 class OpenapiHookBase(HookBase):
     def hook(self, value: dict):
         return value
 
 
 class RequestHookBase(HookBase):
+    split: int
+    path_name: str
+
+    def __init__(self, split=1):
+        super().__init__()
+        self.split = split
+
     def hook(self, path: str, value: dict):
+        value["parameters"] = value.get("parameters", [])
+        self.path_name = "/".join(path.split("/")[self.split :])
         return path, value
 
 
-class AddSecuritySchemesOnSecuritySchemes(HookBase):
+# OpenapiHookBase extends
+
+
+class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
     def hook(self, value: dict):
+        value = super().hook(value)
         component = self.load_component("security_schemes")
         param = component["components"]["securitySchemes"]
         value["components"]["securitySchemes"].extend(param)
         return value
 
 
+# RequestHookBase extends
+
+
 class AddSecuritySchemesOnHeader(RequestHookBase):
     def hook(self, path: str, value: dict):
-        value["parameters"] = value.get("parameters", [])
+        path, value = super().hook(path, value)
         component = self.load_component("security_schemes")
         param = component["paths"]["/parameters"]["get"]["parameters"]
         value["parameters"].extend(param)
@@ -79,30 +98,30 @@ class AddSecuritySchemesOnHeader(RequestHookBase):
 
 class ReplaceQueryIdPlaceholder(RequestHookBase):
     def hook(self, path: str, value: dict):
-        path_name = path.split("/")[-1]
-        new = self.PLACEHOLDER[path_name]["queryId"]
+        path, value = super().hook(path, value)
+        new = self.PLACEHOLDER[self.path_name]["queryId"]
         return path.replace(r"{{queryId}}", new), value
 
 
 class SetResponsesHeader(RequestHookBase):
-    prexix: str
+    suffix: str
 
-    def __init__(self, prexix: str = ""):
+    def __init__(self, suffix: str | None = None):
         super().__init__()
-        self.prexix = prexix if prexix == "" else "_" + prexix
+        self.suffix = "" if suffix is None else "_" + suffix
 
     def hook(self, path: str, value: dict):
-        component = self.load_component("response_header" + self.prexix)
+        path, value = super().hook(path, value)
+        component = self.load_component("response_header" + self.suffix)
         value["responses"]["200"]["headers"] = component["components"]["headers"]
         return path, value
 
 
 class AddParametersOnParametersAsString(RequestHookBase):
     def hook(self, path: str, value: dict):
-        value["parameters"] = value.get("parameters", [])
-        path_name = path.split("/")[-1]
-        for key in self.PLACEHOLDER[path_name].keys():
-            example = json.dumps(self.PLACEHOLDER[path_name][key])
+        path, value = super().hook(path, value)
+        for key in self.PLACEHOLDER[self.path_name].keys():
+            example = json.dumps(self.PLACEHOLDER[self.path_name][key])
             value["parameters"].append(
                 {
                     "name": key,
@@ -120,10 +139,9 @@ class AddParametersOnParametersAsString(RequestHookBase):
 
 class AddParametersOnParametersAsObject(RequestHookBase):
     def hook(self, path: str, value: dict):
-        value["parameters"] = value.get("parameters", [])
-        path_name = path.split("/")[-1]
-        for key in self.PLACEHOLDER[path_name].keys():
-            example = json.dumps(self.PLACEHOLDER[path_name][key])
+        path, value = super().hook(path, value)
+        for key in self.PLACEHOLDER[self.path_name].keys():
+            example = json.dumps(self.PLACEHOLDER[self.path_name][key])
             value["parameters"].append(
                 {
                     "name": key,
@@ -141,9 +159,8 @@ class AddParametersOnParametersAsObject(RequestHookBase):
 
 class AddParametersOnContent(RequestHookBase):
     def hook(self, path: str, value: dict):
-        value["parameters"] = value.get("parameters", [])
-        path_name = path.split("/")[-1]
-        for key in self.PLACEHOLDER[path_name].keys():
+        path, value = super().hook(path, value)
+        for key in self.PLACEHOLDER[self.path_name].keys():
             value["parameters"].append(
                 {
                     "name": key,
@@ -152,7 +169,7 @@ class AddParametersOnContent(RequestHookBase):
                     "content": {
                         "application/json": {
                             "schema": self.placeholder_to_yaml(
-                                self.PLACEHOLDER[path_name][key]
+                                self.PLACEHOLDER[self.path_name][key]
                             ),
                         },
                     },
@@ -163,16 +180,15 @@ class AddParametersOnContent(RequestHookBase):
 
 class AddParametersOnParameters(RequestHookBase):
     def hook(self, path: str, value: dict):
-        value["parameters"] = value.get("parameters", [])
-        path_name = path.split("/")[-1]
-        for key in self.PLACEHOLDER[path_name].keys():
+        path, value = super().hook(path, value)
+        for key in self.PLACEHOLDER[self.path_name].keys():
             value["parameters"].append(
                 {
                     "name": key,
                     "in": "query",
                     "required": True,
                     "schema": self.placeholder_to_yaml(
-                        self.PLACEHOLDER[path_name][key]
+                        self.PLACEHOLDER[self.path_name][key]
                     ),
                 }
             )
@@ -181,9 +197,8 @@ class AddParametersOnParameters(RequestHookBase):
 
 class AddParametersOnBody(RequestHookBase):
     def hook(self, path: str, value: dict):
-        value["parameters"] = value.get("parameters", [])
-        path_name = path.split("/")[-1]
-        data = self.PLACEHOLDER[path_name]
+        path, value = super().hook(path, value)
+        data = self.PLACEHOLDER[self.path_name]
         schema = {i: self.placeholder_to_yaml(data[i]) for i in data.keys()}
         value["requestBody"] = {
             "description": "body",
