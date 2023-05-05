@@ -41,9 +41,9 @@ for lang in config.main().keys():
                     load["paths"][path][method] = value
                     load["paths"][key] = load["paths"].pop(path)
 
-            escape = path.replace("/", "~1")
-            relative = file.replace(config.INPUT_DIR, "", 1)
-            paths.update({key: {"$ref": f".{relative}#/paths/{escape}"}})
+                    escape = key.replace("/", "~1")
+                    relative = file.replace(config.INPUT_DIR, "", 1)
+                    paths.update({key: {"$ref": f".{relative}#/paths/{escape}"}})
 
         with open(dist_replace(file), mode="w+", encoding="utf-8") as f:
             f.write(yaml.dump(load))
@@ -52,8 +52,8 @@ for lang in config.main().keys():
     with open(file, mode="r", encoding="utf-8") as f:
         openapi = yaml.safe_load(f)
     for path in paths:
-        load["paths"] = paths
+        openapi["paths"] = paths
     with open(dist_replace(file), mode="w+", encoding="utf-8") as f:
-        f.write(yaml.dump(load))
+        f.write(yaml.dump(openapi))
 
 print("=== Build End ===")
