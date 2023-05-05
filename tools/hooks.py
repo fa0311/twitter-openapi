@@ -85,8 +85,14 @@ class ReplaceQueryIdPlaceholder(RequestHookBase):
 
 
 class SetResponsesHeader(RequestHookBase):
+    prexix: str
+
+    def __init__(self, prexix: str = ""):
+        super().__init__()
+        self.prexix = prexix if prexix == "" else "_" + prexix
+
     def hook(self, path: str, value: dict):
-        component = self.load_component("response_header")
+        component = self.load_component("response_header" + self.prexix)
         value["responses"]["200"]["headers"] = component["components"]["headers"]
         return path, value
 

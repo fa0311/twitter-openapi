@@ -23,7 +23,7 @@ class Config:
                         SetResponsesHeader(),
                         AddParametersOnParameters(),
                     ],
-                    "v1.1": [SetResponsesHeader(), AddParametersOnParameters()],
+                    "v1.1": [SetResponsesHeader("v1.1"), AddParametersOnParameters()],
                 },
             },
             "dart": {
@@ -44,7 +44,10 @@ class Config:
                         SetResponsesHeader(),
                         AddParametersOnParametersAsObject(),
                     ],
-                    "v1.1": [SetResponsesHeader(), AddParametersOnParametersAsObject()],
+                    "v1.1": [
+                        SetResponsesHeader("v1.1"),
+                        AddParametersOnParametersAsObject(),
+                    ],
                 },
             },
             "typescript": {
@@ -63,7 +66,10 @@ class Config:
                         SetResponsesHeader(),
                         AddParametersOnParametersAsObject(),
                     ],
-                    "v1.1": [SetResponsesHeader(), AddParametersOnParametersAsObject()],
+                    "v1.1": [
+                        SetResponsesHeader("v1.1"),
+                        AddParametersOnParametersAsObject(),
+                    ],
                 },
             },
             "test": {
@@ -82,7 +88,10 @@ class Config:
                         SetResponsesHeader(),
                         AddParametersOnParametersAsString(),
                     ],
-                    "v1.1": [SetResponsesHeader(), AddParametersOnParametersAsString()],
+                    "v1.1": [
+                        SetResponsesHeader("v1.1"),
+                        AddParametersOnParametersAsString(),
+                    ],
                 },
             },
         }

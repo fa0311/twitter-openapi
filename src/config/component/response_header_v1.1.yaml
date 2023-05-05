@@ -6,24 +6,27 @@ paths: {}
 
 components:
   headers:
+    status:
+      schema:
+        type: string
+    x-access-level:
+      schema:
+        type: string
+    x-client-event-enabled:
+      schema:
+        type: boolean
     x-connection-hash:
       schema:
         type: string
-    x-rate-limit-limit:
+    x-content-type-options:
       schema:
-        type: integer
-    x-rate-limit-remaining:
-      schema:
-        type: integer
-    x-rate-limit-reset:
-      schema:
-        type: integer
+        type: string
     x-response-time:
       schema:
         type: integer
-    x-tfe-preserve-body:
+    x-transaction:
       schema:
-        type: boolean
+        type: string
     x-transaction-id:
       schema:
         type: string
