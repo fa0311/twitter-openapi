@@ -7,6 +7,105 @@ paths:
     post:
       description: post create friendships
       operationId: postCreateFriendships
+      parameters:
+      - in: query
+        name: include_profile_interstitial_type
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_blocking
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_blocked_by
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_followed_by
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_want_retweets
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_mute_edge
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_can_dm
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_can_media_tag
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_ext_has_nft_avatar
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_ext_is_blue_verified
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_ext_verified_type
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: include_ext_profile_image_shape
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: skip_status
+        required: true
+        schema:
+          default: '1'
+          example: '1'
+          type: string
+      - in: query
+        name: user_id
+        required: true
+        schema:
+          default: '1180389371481976833'
+          example: '1180389371481976833'
+          type: string
       responses:
         '200':
           description: Successful operation
