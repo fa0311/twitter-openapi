@@ -90,7 +90,7 @@ security:
 - CookieAuthToken: []
 - CookieCt0: []
 servers:
-- url: https://twitter.com/i/api/graphql
+- url: https://twitter.com/i/api
 tags:
 - description: response User
   name: user
