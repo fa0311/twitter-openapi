@@ -11,7 +11,7 @@ info:
     url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
   version: 0.0.1
 servers:
-  - url: https://twitter.com/i/api/graphql
+  - url: https://twitter.com/i/api
 
 paths: {}
 components:
