@@ -10,65 +10,21 @@ paths:
       parameters: []
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
-              properties:
-                include_blocked_by:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_blocking:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_can_dm:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_can_media_tag:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_has_nft_avatar:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_is_blue_verified:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_profile_image_shape:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_verified_type:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_followed_by:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_mute_edge:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_profile_interstitial_type:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_want_retweets:
-                  default: 1
-                  example: 1
-                  type: integer
-                skip_status:
-                  default: 1
-                  example: 1
-                  type: integer
-                user_id:
-                  default: 44196397
-                  example: 44196397
-                  type: integer
+              default: '{"include_profile_interstitial_type": 1, "include_blocking":
+                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
+                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
+                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
+                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
+                1, "skip_status": 1, "user_id": 44196397}'
+              example: '{"include_profile_interstitial_type": 1, "include_blocking":
+                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
+                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
+                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
+                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
+                1, "skip_status": 1, "user_id": 44196397}'
+              type: object
         description: body
         required: true
       responses:
@@ -111,65 +67,21 @@ paths:
       parameters: []
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
-              properties:
-                include_blocked_by:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_blocking:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_can_dm:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_can_media_tag:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_has_nft_avatar:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_is_blue_verified:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_profile_image_shape:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_ext_verified_type:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_followed_by:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_mute_edge:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_profile_interstitial_type:
-                  default: 1
-                  example: 1
-                  type: integer
-                include_want_retweets:
-                  default: 1
-                  example: 1
-                  type: integer
-                skip_status:
-                  default: 1
-                  example: 1
-                  type: integer
-                user_id:
-                  default: 44196397
-                  example: 44196397
-                  type: integer
+              default: '{"include_profile_interstitial_type": 1, "include_blocking":
+                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
+                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
+                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
+                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
+                1, "skip_status": 1, "user_id": 44196397}'
+              example: '{"include_profile_interstitial_type": 1, "include_blocking":
+                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
+                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
+                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
+                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
+                1, "skip_status": 1, "user_id": 44196397}'
+              type: object
         description: body
         required: true
       responses:
