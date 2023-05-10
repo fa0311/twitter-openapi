@@ -117,98 +117,124 @@ class SetResponsesHeader(RequestHookBase):
         return path, value
 
 
-class AddParametersOnParametersAsString(RequestHookBase):
+# OnParameters
+
+
+class AddParametersOnParameters(RequestHookBase):
+    schemaType: str | None
+
+    def __init__(self, split: str = 1, schemaType: str | None = None):
+        super().__init__(split=split)
+        self.schemaType = schemaType
+
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
         for key in self.PLACEHOLDER[self.path_name].keys():
             example = json.dumps(self.PLACEHOLDER[self.path_name][key])
+            if self.schemaType == "string":
+                schema = {
+                    "type": "string",
+                    "default": example,
+                    "example": example,
+                }
+            elif self.schemaType == "object":
+                schema = {
+                    "type": "object",
+                    "default": example,
+                    "example": example,
+                }
+            else:
+                schema = self.placeholder_to_yaml(example)
             value["parameters"].append(
                 {
                     "name": key,
                     "in": "query",
                     "required": True,
-                    "schema": {
-                        "type": "string",
-                        "default": example,
-                        "example": example,
-                    },
+                    "schema": schema,
                 }
             )
         return path, value
 
 
-class AddParametersOnParametersAsObject(RequestHookBase):
+# OnBody
+
+
+class AddParametersOnBody(RequestHookBase):
+    schemaType: str | None
+    contentType: str | None
+
+    def __init__(
+        self,
+        split: str = 1,
+        contentType: str = "application/json",
+        schemaType: str | None = None,
+    ):
+        super().__init__(split)
+        self.schemaType = schemaType
+        self.contentType = contentType
+
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
-        for key in self.PLACEHOLDER[self.path_name].keys():
-            example = json.dumps(self.PLACEHOLDER[self.path_name][key])
-            value["parameters"].append(
-                {
-                    "name": key,
-                    "in": "query",
-                    "required": True,
-                    "schema": {
-                        "type": "object",
-                        "default": example,
-                        "example": example,
-                    },
+        data = self.PLACEHOLDER[self.path_name]
+
+        if self.schemaType == "string":
+            example = json.dumps(self.PLACEHOLDER[self.path_name])
+            schema = {
+                "type": "string",
+                "default": example,
+                "example": example,
+            }
+        elif self.schemaType == "object":
+            example = json.dumps(self.PLACEHOLDER[self.path_name])
+            schema = {
+                "type": "object",
+                "default": example,
+                "example": example,
+            }
+        else:
+            schema = {
+                "properties": {
+                    i: self.placeholder_to_yaml(data[i]) for i in data.keys()
+                },
+                # "required": [i for i in data.keys()],
+            }
+        value["requestBody"] = {
+            "description": "body",
+            "required": True,
+            "content": {
+                self.contentType: {
+                    "schema": schema,
                 }
-            )
+            },
+        }
         return path, value
+
+
+# OnContent
 
 
 class AddParametersOnContent(RequestHookBase):
+    contentType: str
+
+    def __init__(self, split: str = 1, contentType: str = "application/json"):
+        super().__init__(split=split)
+        self.contentType = contentType
+
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
-        for key in self.PLACEHOLDER[self.path_name].keys():
+        data = self.PLACEHOLDER[self.path_name]
+        for key in data.keys():
             value["parameters"].append(
                 {
                     "name": key,
                     "in": "query",
                     "required": True,
                     "content": {
-                        "application/json": {
-                            "schema": self.placeholder_to_yaml(
-                                self.PLACEHOLDER[self.path_name][key]
-                            ),
-                        },
+                        self.contentType: {
+                            "schema": self.placeholder_to_yaml(data[key]),
+                            # "required": [i for i in data[key]],
+                        }
                     },
                 }
             )
-        return path, value
-
-
-class AddParametersOnParameters(RequestHookBase):
-    def hook(self, path: str, value: dict):
-        path, value = super().hook(path, value)
-        for key in self.PLACEHOLDER[self.path_name].keys():
-            value["parameters"].append(
-                {
-                    "name": key,
-                    "in": "query",
-                    "required": True,
-                    "schema": self.placeholder_to_yaml(
-                        self.PLACEHOLDER[self.path_name][key]
-                    ),
-                }
-            )
-        return path, value
-
-
-class AddParametersOnBody(RequestHookBase):
-    def hook(self, path: str, value: dict):
-        path, value = super().hook(path, value)
-        data = self.PLACEHOLDER[self.path_name]
-        schema = {i: self.placeholder_to_yaml(data[i]) for i in data.keys()}
-        value["requestBody"] = {
-            "description": "body",
-            "required": True,
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "properties": schema,
-                    },
-                }
-            },
-        }
         return path, value
