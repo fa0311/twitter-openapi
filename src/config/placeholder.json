@@ -360,42 +360,6 @@
             "responsive_web_enhance_cards_enabled": false
         }
     },
-    "FavoriteTweet": {
-        "queryId": "lI07N6Otwv1PhnEgXILM7A",
-        "Parameters": {
-            "variables": {
-                "tweet_id": "1349129669258448897"
-            },
-            "features": {}
-        }
-    },
-    "UnfavoriteTweet": {
-        "queryId": "ZYKSe-w7KEslx3JhSIk5LA",
-        "Parameters": {
-            "variables": {
-                "tweet_id": "1349129669258448897"
-            },
-            "features": {}
-        }
-    },
-    "CreateRetweet": {
-        "queryId": "ojPdsZsimiJrUGLR1sjUtA",
-        "Parameters": {
-            "variables": {
-                "tweet_id": "1349129669258448897"
-            },
-            "features": {}
-        }
-    },
-    "DeleteRetweet": {
-        "queryId": "iQtK4dl5hBmXewYZuEOKVw",
-        "Parameters": {
-            "variables": {
-                "tweet_id": "1349129669258448897"
-            },
-            "features": {}
-        }
-    },
     "CreateTweet": {
         "queryId": "1RyAhNwby-gzGCRVsMxKbQ",
         "variables": {
@@ -429,12 +393,40 @@
             "responsive_web_enhance_cards_enabled": false
         }
     },
+    "FavoriteTweet": {
+        "queryId": "lI07N6Otwv1PhnEgXILM7A",
+        "variables": {
+            "tweet_id": "1349129669258448897",
+            "dark_request": false
+        }
+    },
+    "UnfavoriteTweet": {
+        "queryId": "ZYKSe-w7KEslx3JhSIk5LA",
+        "variables": {
+            "tweet_id": "1349129669258448897",
+            "dark_request": false
+        }
+    },
+    "CreateRetweet": {
+        "queryId": "ojPdsZsimiJrUGLR1sjUtA",
+        "variables": {
+            "tweet_id": "1349129669258448897",
+            "dark_request": false
+        }
+    },
+    "DeleteRetweet": {
+        "queryId": "iQtK4dl5hBmXewYZuEOKVw",
+        "variables": {
+            "source_tweet_id": "1349129669258448897",
+            "dark_request": false
+        }
+    },
     "DeleteTweet": {
         "queryId": "VaenaVgh5q5ih7kvyVjgtg",
         "variables": {
-            "tweet_id": "1349129669258448897"
-        },
-        "features": {}
+            "tweet_id": "1349129669258448897",
+            "dark_request": false
+        }
     },
     "=====v1.1====": {
         "url": "https://twitter.com/i/api/1.1/"

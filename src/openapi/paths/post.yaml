@@ -146,9 +146,7 @@ components:
         - "result"
       properties:
         result:
-          type: object
-          items:
-            $ref: "#/components/schemas/Retweet"
+          $ref: "#/components/schemas/Retweet"
 
     Retweet:
       required:
@@ -157,12 +155,14 @@ components:
       properties:
         rest_id:
           type: string
+          pattern: "^[0-9]+$"
         legacy:
           type: object
-          items:
-            properties:
-              full_text:
-                type: string
+          required:
+            - "full_text"
+          properties:
+            full_text:
+              type: string
 
     DeleteRetweetResponse:
       required:
