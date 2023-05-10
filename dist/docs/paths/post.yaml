@@ -3,9 +3,7 @@ components:
     CreateRetweet:
       properties:
         result:
-          items:
-            $ref: '#/components/schemas/Retweet'
-          type: object
+          $ref: '#/components/schemas/Retweet'
       required:
       - result
     CreateRetweetResponse:
@@ -109,12 +107,14 @@ components:
     Retweet:
       properties:
         legacy:
-          items:
-            properties:
-              full_text:
-                type: string
+          properties:
+            full_text:
+              type: string
+          required:
+          - full_text
           type: object
         rest_id:
+          pattern: ^[0-9]+$
           type: string
       required:
       - rest_id
@@ -338,18 +338,17 @@ paths:
         required: true
         schema:
           properties:
+            dark_request:
+              default: false
+              example: false
+              type: boolean
             tweet_id:
               default: '1349129669258448897'
               example: '1349129669258448897'
               type: string
           required:
           - tweet_id
-          type: object
-      - in: query
-        name: features
-        required: true
-        schema:
-          properties: {}
+          - dark_request
           type: object
       responses:
         '200':
@@ -398,25 +397,21 @@ paths:
           example: ZYKSe-w7KEslx3JhSIk5LA
           type: string
       - in: query
-        name: Parameters
+        name: variables
         required: true
         schema:
           properties:
-            features:
-              properties: {}
-              type: object
-            variables:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
+            dark_request:
+              default: false
+              example: false
+              type: boolean
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
           required:
-          - variables
-          - features
+          - tweet_id
+          - dark_request
           type: object
       responses:
         '200':
@@ -465,25 +460,21 @@ paths:
           example: iQtK4dl5hBmXewYZuEOKVw
           type: string
       - in: query
-        name: Parameters
+        name: variables
         required: true
         schema:
           properties:
-            features:
-              properties: {}
-              type: object
-            variables:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
+            dark_request:
+              default: false
+              example: false
+              type: boolean
+            source_tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
           required:
-          - variables
-          - features
+          - source_tweet_id
+          - dark_request
           type: object
       responses:
         '200':
@@ -532,25 +523,21 @@ paths:
           example: lI07N6Otwv1PhnEgXILM7A
           type: string
       - in: query
-        name: Parameters
+        name: variables
         required: true
         schema:
           properties:
-            features:
-              properties: {}
-              type: object
-            variables:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
+            dark_request:
+              default: false
+              example: false
+              type: boolean
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
           required:
-          - variables
-          - features
+          - tweet_id
+          - dark_request
           type: object
       responses:
         '200':
@@ -599,25 +586,21 @@ paths:
           example: ojPdsZsimiJrUGLR1sjUtA
           type: string
       - in: query
-        name: Parameters
+        name: variables
         required: true
         schema:
           properties:
-            features:
-              properties: {}
-              type: object
-            variables:
-              properties:
-                tweet_id:
-                  default: '1349129669258448897'
-                  example: '1349129669258448897'
-                  type: string
-              required:
-              - tweet_id
-              type: object
+            dark_request:
+              default: false
+              example: false
+              type: boolean
+            tweet_id:
+              default: '1349129669258448897'
+              example: '1349129669258448897'
+              type: string
           required:
-          - variables
-          - features
+          - tweet_id
+          - dark_request
           type: object
       responses:
         '200':

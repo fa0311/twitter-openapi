@@ -14,119 +14,119 @@ paths:
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_blocking
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_blocked_by
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_followed_by
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_want_retweets
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_mute_edge
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_can_dm
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_can_media_tag
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_ext_has_nft_avatar
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_ext_is_blue_verified
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_ext_verified_type
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_ext_profile_image_shape
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: skip_status
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: cursor
         required: true
         schema:
           default: '-1'
           example: '-1'
-          type: object
+          type: string
       - in: query
         name: user_id
         required: true
         schema:
           default: '17152334'
           example: '17152334'
-          type: object
+          type: string
       - in: query
         name: count
         required: true
         schema:
           default: '3'
           example: '3'
-          type: object
+          type: string
       - in: query
         name: with_total_count
         required: true
         schema:
           default: 'true'
           example: 'true'
-          type: object
+          type: string
       responses:
         '200':
           description: Successful operation
@@ -171,42 +171,42 @@ paths:
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_ext_verified_type
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: include_ext_profile_image_shape
         required: true
         schema:
           default: '1'
           example: '1'
-          type: object
+          type: string
       - in: query
         name: q
         required: true
         schema:
           default: '"aaa"'
           example: '"aaa"'
-          type: object
+          type: string
       - in: query
         name: src
         required: true
         schema:
           default: '"search_box"'
           example: '"search_box"'
-          type: object
+          type: string
       - in: query
         name: result_type
         required: true
         schema:
           default: '"events,users,topics"'
           example: '"events,users,topics"'
-          type: object
+          type: string
       responses:
         '200':
           description: Successful operation
