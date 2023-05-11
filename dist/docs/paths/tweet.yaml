@@ -24,6 +24,29 @@ paths:
       parameters:
       - content:
           application/json:
+            required:
+            - w
+            - N
+            - N
+            - G
+            - '8'
+            - D
+            - B
+            - B
+            - '8'
+            - E
+            - a
+            - X
+            - w
+            - '1'
+            - l
+            - q
+            - '4'
+            - v
+            - F
+            - W
+            - G
+            - A
             schema:
               default: wNNG8DBB8EaXw1lq4vFWGA
               example: wNNG8DBB8EaXw1lq4vFWGA
@@ -33,6 +56,15 @@ paths:
         required: true
       - content:
           application/json:
+            required:
+            - focalTweetId
+            - with_rux_injections
+            - includePromotedContent
+            - withCommunity
+            - withQuickPromoteEligibilityTweetFields
+            - withBirdwatchNotes
+            - withVoice
+            - withV2Timeline
             schema:
               properties:
                 focalTweetId:
@@ -82,6 +114,26 @@ paths:
         required: true
       - content:
           application/json:
+            required:
+            - blue_business_profile_image_shape_enabled
+            - responsive_web_graphql_exclude_directive_enabled
+            - verified_phone_label_enabled
+            - responsive_web_graphql_timeline_navigation_enabled
+            - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+            - tweetypie_unmention_optimization_enabled
+            - vibe_api_enabled
+            - responsive_web_edit_tweet_api_enabled
+            - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+            - view_counts_everywhere_api_enabled
+            - longform_notetweets_consumption_enabled
+            - tweet_awards_web_tipping_enabled
+            - freedom_of_speech_not_reach_fetch_enabled
+            - standardized_nudges_misinfo
+            - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+            - interactive_text_enabled
+            - responsive_web_text_conversations_enabled
+            - longform_notetweets_rich_text_read_enabled
+            - responsive_web_enhance_cards_enabled
             schema:
               properties:
                 blue_business_profile_image_shape_enabled:

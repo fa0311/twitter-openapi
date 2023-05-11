@@ -110,8 +110,8 @@ paths:
         name: user_id
         required: true
         schema:
-          default: '17152334'
-          example: '17152334'
+          default: '"17152334"'
+          example: '"17152334"'
           type: object
       - in: query
         name: count
@@ -190,8 +190,8 @@ paths:
         name: q
         required: true
         schema:
-          default: '"aaa"'
-          example: '"aaa"'
+          default: '"test"'
+          example: '"test"'
           type: object
       - in: query
         name: src

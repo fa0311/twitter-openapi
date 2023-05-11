@@ -8,6 +8,35 @@ paths:
       description: get friends following list
       operationId: getFriendsFollowingList
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
       - in: query
         name: include_profile_interstitial_type
         required: true
@@ -110,8 +139,8 @@ paths:
         name: user_id
         required: true
         schema:
-          default: '17152334'
-          example: '17152334'
+          default: '"17152334"'
+          example: '"17152334"'
           type: string
       - in: query
         name: count
@@ -165,6 +194,35 @@ paths:
       description: get search typeahead
       operationId: getSearchTypeahead
       parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
       - in: query
         name: include_ext_is_blue_verified
         required: true
@@ -190,8 +248,8 @@ paths:
         name: q
         required: true
         schema:
-          default: '"aaa"'
-          example: '"aaa"'
+          default: '"test"'
+          example: '"test"'
           type: string
       - in: query
         name: src

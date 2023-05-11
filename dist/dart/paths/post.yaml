@@ -312,6 +312,10 @@ paths:
                   - semantic_annotation_ids
                   - dark_request
                   type: object
+              required:
+              - queryId
+              - variables
+              - features
         description: body
         required: true
       responses:
@@ -405,6 +409,9 @@ paths:
                   - tweet_id
                   - dark_request
                   type: object
+              required:
+              - queryId
+              - variables
         description: body
         required: true
       responses:
@@ -498,6 +505,9 @@ paths:
                   - tweet_id
                   - dark_request
                   type: object
+              required:
+              - queryId
+              - variables
         description: body
         required: true
       responses:
@@ -591,6 +601,9 @@ paths:
                   - source_tweet_id
                   - dark_request
                   type: object
+              required:
+              - queryId
+              - variables
         description: body
         required: true
       responses:
@@ -684,6 +697,9 @@ paths:
                   - tweet_id
                   - dark_request
                   type: object
+              required:
+              - queryId
+              - variables
         description: body
         required: true
       responses:
@@ -777,6 +793,9 @@ paths:
                   - tweet_id
                   - dark_request
                   type: object
+              required:
+              - queryId
+              - variables
         description: body
         required: true
       responses:

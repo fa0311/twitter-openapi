@@ -70,6 +70,29 @@ paths:
       parameters:
       - content:
           application/json:
+            required:
+            - '9'
+            - z
+            - w
+            - V
+            - L
+            - J
+            - '4'
+            - '8'
+            - l
+            - m
+            - V
+            - U
+            - k
+            - '8'
+            - u
+            - _
+            - G
+            - h
+            - '9'
+            - D
+            - m
+            - A
             schema:
               default: 9zwVLJ48lmVUk8u_Gh9DmA
               example: 9zwVLJ48lmVUk8u_Gh9DmA
@@ -79,6 +102,8 @@ paths:
         required: true
       - content:
           application/json:
+            required:
+            - screen_name
             schema:
               properties:
                 screen_name:
@@ -93,6 +118,7 @@ paths:
         required: true
       - content:
           application/json:
+            required: []
             schema:
               properties: {}
               type: object

@@ -7,24 +7,112 @@ paths:
     post:
       description: post create friendships
       operationId: postCreateFriendships
-      parameters: []
+      parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
-              default: '{"include_profile_interstitial_type": 1, "include_blocking":
-                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
-                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
-                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
-                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
-                1, "skip_status": 1, "user_id": 44196397}'
-              example: '{"include_profile_interstitial_type": 1, "include_blocking":
-                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
-                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
-                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
-                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
-                1, "skip_status": 1, "user_id": 44196397}'
-              type: object
+              properties:
+                include_blocked_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_blocking:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_dm:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_media_tag:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_has_nft_avatar:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_is_blue_verified:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_profile_image_shape:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_verified_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_followed_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_mute_edge:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_profile_interstitial_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_want_retweets:
+                  default: 1
+                  example: 1
+                  type: integer
+                skip_status:
+                  default: 1
+                  example: 1
+                  type: integer
+                user_id:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+              required:
+              - include_profile_interstitial_type
+              - include_blocking
+              - include_blocked_by
+              - include_followed_by
+              - include_want_retweets
+              - include_mute_edge
+              - include_can_dm
+              - include_can_media_tag
+              - include_ext_has_nft_avatar
+              - include_ext_is_blue_verified
+              - include_ext_verified_type
+              - include_ext_profile_image_shape
+              - skip_status
+              - user_id
         description: body
         required: true
       responses:
@@ -64,24 +152,112 @@ paths:
     post:
       description: post destroy friendships
       operationId: postDestroyFriendships
-      parameters: []
+      parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
-              default: '{"include_profile_interstitial_type": 1, "include_blocking":
-                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
-                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
-                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
-                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
-                1, "skip_status": 1, "user_id": 44196397}'
-              example: '{"include_profile_interstitial_type": 1, "include_blocking":
-                1, "include_blocked_by": 1, "include_followed_by": 1, "include_want_retweets":
-                1, "include_mute_edge": 1, "include_can_dm": 1, "include_can_media_tag":
-                1, "include_ext_has_nft_avatar": 1, "include_ext_is_blue_verified":
-                1, "include_ext_verified_type": 1, "include_ext_profile_image_shape":
-                1, "skip_status": 1, "user_id": 44196397}'
-              type: object
+              properties:
+                include_blocked_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_blocking:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_dm:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_media_tag:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_has_nft_avatar:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_is_blue_verified:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_profile_image_shape:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_verified_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_followed_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_mute_edge:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_profile_interstitial_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_want_retweets:
+                  default: 1
+                  example: 1
+                  type: integer
+                skip_status:
+                  default: 1
+                  example: 1
+                  type: integer
+                user_id:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+              required:
+              - include_profile_interstitial_type
+              - include_blocking
+              - include_blocked_by
+              - include_followed_by
+              - include_want_retweets
+              - include_mute_edge
+              - include_can_dm
+              - include_can_media_tag
+              - include_ext_has_nft_avatar
+              - include_ext_is_blue_verified
+              - include_ext_verified_type
+              - include_ext_profile_image_shape
+              - skip_status
+              - user_id
         description: body
         required: true
       responses:
