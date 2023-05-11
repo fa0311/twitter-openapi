@@ -110,8 +110,8 @@ paths:
         name: user_id
         required: true
         schema:
-          default: '"17152334"'
-          example: '"17152334"'
+          default: '"44196397"'
+          example: '"44196397"'
           type: string
       - in: query
         name: count
