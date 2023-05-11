@@ -80,7 +80,7 @@ class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
         value = super().hook(value)
         component = self.load_component("security_schemes")
         param = component["components"]["securitySchemes"]
-        value["components"]["securitySchemes"].extend(param)
+        value["components"]["securitySchemes"].update(param)
         return value
 
 
@@ -196,7 +196,7 @@ class AddParametersOnBody(RequestHookBase):
                 "properties": {
                     i: self.placeholder_to_yaml(data[i]) for i in data.keys()
                 },
-                # "required": [i for i in data.keys()],
+                "required": [i for i in data.keys()],
             }
         value["requestBody"] = {
             "description": "body",
@@ -232,7 +232,7 @@ class AddParametersOnContent(RequestHookBase):
                     "content": {
                         self.contentType: {
                             "schema": self.placeholder_to_yaml(data[key]),
-                            # "required": [i for i in data[key]],
+                            "required": [i for i in data[key]],
                         }
                     },
                 }

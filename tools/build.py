@@ -6,6 +6,7 @@ import shutil
 import copy
 import re
 from build_config import Config
+from hooks import OpenapiHookBase, RequestHookBase
 
 
 print("=== Build Start ===")
@@ -37,6 +38,7 @@ for lang in config.main().keys():
                 for tag in list(load["paths"][path][method].get("tags", ["default"])):
                     key, value = path, load["paths"][path][method]
                     for hook in config.main()[lang]["request"][tag]:
+                        hook: RequestHookBase
                         key, value = hook.hook(key, value)
                     load["paths"][path][method] = value
                     load["paths"][key] = load["paths"].pop(path)
@@ -53,6 +55,9 @@ for lang in config.main().keys():
         openapi = yaml.safe_load(f)
     for path in paths:
         openapi["paths"] = paths
+    for hook in config.main()[lang]["openapi"]:
+        hook: OpenapiHookBase
+        openapi = hook.hook(openapi)
     with open(dist_replace(file), mode="w+", encoding="utf-8") as f:
         f.write(yaml.dump(openapi))
 

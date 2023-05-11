@@ -68,6 +68,7 @@ class Config:
                 | {
                     key: [
                         SetResponsesHeader(suffix="legacy"),
+                        AddSecuritySchemesOnHeader(split=-1),
                         AddParametersOnParameters(
                             split=2,
                             schemaType="string",
@@ -78,9 +79,10 @@ class Config:
                 | {
                     key: [
                         SetResponsesHeader(suffix="legacy"),
+                        AddSecuritySchemesOnHeader(split=-1),
                         AddParametersOnBody(
                             split=2,
-                            schemaType="object",
+                            schemaType=None,
                             contentType="application/x-www-form-urlencoded",
                         ),
                     ]
