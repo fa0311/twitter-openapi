@@ -41,260 +41,260 @@ paths:
         name: include_profile_interstitial_type
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_blocking
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_blocked_by
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_followed_by
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_want_retweets
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_mute_edge
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_can_dm
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_can_media_tag
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_has_nft_avatar
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_is_blue_verified
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_verified_type
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_profile_image_shape
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: skip_status
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: cards_platform
         required: true
         schema:
-          default: '"Web-12"'
-          example: '"Web-12"'
+          default: Web-12
+          example: Web-12
           type: string
       - in: query
         name: include_cards
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_alt_text
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_ext_limited_action_results
         required: true
         schema:
-          default: 'false'
-          example: 'false'
-          type: string
+          default: false
+          example: false
+          type: boolean
       - in: query
         name: include_quote_count
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_reply_count
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: tweet_mode
         required: true
         schema:
-          default: '"extended"'
-          example: '"extended"'
+          default: extended
+          example: extended
           type: string
       - in: query
         name: include_ext_views
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_entities
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_user_entities
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_ext_media_color
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_ext_media_availability
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_ext_sensitive_media_warning
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: include_ext_trusted_friends_metadata
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: send_error_codes
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: simple_quoted_tweet
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: q
         required: true
         schema:
-          default: '"elon musk"'
-          example: '"elon musk"'
+          default: elon musk
+          example: elon musk
           type: string
       - in: query
         name: query_source
         required: true
         schema:
-          default: '"trend_click"'
-          example: '"trend_click"'
+          default: trend_click
+          example: trend_click
           type: string
       - in: query
         name: count
         required: true
         schema:
-          default: '20'
-          example: '20'
-          type: string
+          default: 20
+          example: 20
+          type: integer
       - in: query
         name: requestContext
         required: true
         schema:
-          default: '"launch"'
-          example: '"launch"'
+          default: launch
+          example: launch
           type: string
       - in: query
         name: pc
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: spelling_corrections
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: string
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_edit_control
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: string
+          default: true
+          example: true
+          type: boolean
       - in: query
         name: ext
         required: true
         schema:
-          default: '"mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,birdwatchPivot,enrichments,superFollowMetadata,unmentionInfo,editControl,vibe"'
-          example: '"mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,birdwatchPivot,enrichments,superFollowMetadata,unmentionInfo,editControl,vibe"'
+          default: mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,birdwatchPivot,enrichments,superFollowMetadata,unmentionInfo,editControl,vibe
+          example: mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,birdwatchPivot,enrichments,superFollowMetadata,unmentionInfo,editControl,vibe
           type: string
       responses:
         '200':

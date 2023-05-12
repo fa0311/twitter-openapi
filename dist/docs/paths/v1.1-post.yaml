@@ -7,105 +7,85 @@ paths:
     post:
       description: post create friendships
       operationId: postCreateFriendships
-      parameters:
-      - in: query
-        name: include_profile_interstitial_type
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                include_blocked_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_blocking:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_dm:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_media_tag:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_has_nft_avatar:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_is_blue_verified:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_profile_image_shape:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_verified_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_followed_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_mute_edge:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_profile_interstitial_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_want_retweets:
+                  default: 1
+                  example: 1
+                  type: integer
+                skip_status:
+                  default: 1
+                  example: 1
+                  type: integer
+                user_id:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+              required:
+              - include_profile_interstitial_type
+              - include_blocking
+              - include_blocked_by
+              - include_followed_by
+              - include_want_retweets
+              - include_mute_edge
+              - include_can_dm
+              - include_can_media_tag
+              - include_ext_has_nft_avatar
+              - include_ext_is_blue_verified
+              - include_ext_verified_type
+              - include_ext_profile_image_shape
+              - skip_status
+              - user_id
+        description: body
         required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_blocking
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_blocked_by
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_followed_by
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_want_retweets
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_mute_edge
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_can_dm
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_can_media_tag
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_has_nft_avatar
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_is_blue_verified
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_verified_type
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_profile_image_shape
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: skip_status
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: user_id
-        required: true
-        schema:
-          default: '"44196397"'
-          example: '"44196397"'
-          type: string
       responses:
         '200':
           description: Successful operation
@@ -143,105 +123,85 @@ paths:
     post:
       description: post destroy friendships
       operationId: postDestroyFriendships
-      parameters:
-      - in: query
-        name: include_profile_interstitial_type
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                include_blocked_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_blocking:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_dm:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_can_media_tag:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_has_nft_avatar:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_is_blue_verified:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_profile_image_shape:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_ext_verified_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_followed_by:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_mute_edge:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_profile_interstitial_type:
+                  default: 1
+                  example: 1
+                  type: integer
+                include_want_retweets:
+                  default: 1
+                  example: 1
+                  type: integer
+                skip_status:
+                  default: 1
+                  example: 1
+                  type: integer
+                user_id:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+              required:
+              - include_profile_interstitial_type
+              - include_blocking
+              - include_blocked_by
+              - include_followed_by
+              - include_want_retweets
+              - include_mute_edge
+              - include_can_dm
+              - include_can_media_tag
+              - include_ext_has_nft_avatar
+              - include_ext_is_blue_verified
+              - include_ext_verified_type
+              - include_ext_profile_image_shape
+              - skip_status
+              - user_id
+        description: body
         required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_blocking
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_blocked_by
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_followed_by
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_want_retweets
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_mute_edge
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_can_dm
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_can_media_tag
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_has_nft_avatar
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_is_blue_verified
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_verified_type
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: include_ext_profile_image_shape
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: skip_status
-        required: true
-        schema:
-          default: '1'
-          example: '1'
-          type: string
-      - in: query
-        name: user_id
-        required: true
-        schema:
-          default: '"44196397"'
-          example: '"44196397"'
-          type: string
       responses:
         '200':
           description: Successful operation
