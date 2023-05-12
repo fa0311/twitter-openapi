@@ -32,10 +32,24 @@ class Config:
                 }
                 | {
                     key: [
-                        SetResponsesHeader("legacy"),
-                        AddParametersOnParameters(split=2),
+                        SetResponsesHeader(suffix="legacy"),
+                        AddParametersOnParameters(
+                            split=2,
+                            schemaType=None,
+                        ),
                     ]
-                    for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
+                    for key in ["v1.1-get", "v2.0-get"]
+                }
+                | {
+                    key: [
+                        SetResponsesHeader(suffix="legacy"),
+                        AddParametersOnBody(
+                            split=2,
+                            schemaType=None,
+                            contentType="application/x-www-form-urlencoded",
+                        ),
+                    ]
+                    for key in ["v1.1-post", "v2.0-post"]
                 },
             },
             "dart": {
@@ -71,7 +85,7 @@ class Config:
                         AddSecuritySchemesOnHeader(split=-1),
                         AddParametersOnParameters(
                             split=2,
-                            schemaType="string",
+                            schemaType=None,
                         ),
                     ]
                     for key in ["v1.1-get", "v2.0-get"]

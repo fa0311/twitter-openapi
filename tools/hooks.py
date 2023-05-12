@@ -129,22 +129,24 @@ class AddParametersOnParameters(RequestHookBase):
 
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
-        for key in self.PLACEHOLDER[self.path_name].keys():
-            example = json.dumps(self.PLACEHOLDER[self.path_name][key])
+        data = self.PLACEHOLDER[self.path_name]
+        for key in data.keys():
             if self.schemaType == "string":
+                example = json.dumps(data[key])
                 schema = {
                     "type": "string",
                     "default": example,
                     "example": example,
                 }
             elif self.schemaType == "object":
+                example = json.dumps(data[key])
                 schema = {
                     "type": "object",
                     "default": example,
                     "example": example,
                 }
             else:
-                schema = self.placeholder_to_yaml(example)
+                schema = self.placeholder_to_yaml(data[key])
             value["parameters"].append(
                 {
                     "name": key,
@@ -178,14 +180,14 @@ class AddParametersOnBody(RequestHookBase):
         data = self.PLACEHOLDER[self.path_name]
 
         if self.schemaType == "string":
-            example = json.dumps(self.PLACEHOLDER[self.path_name])
+            example = json.dumps(data)
             schema = {
                 "type": "string",
                 "default": example,
                 "example": example,
             }
         elif self.schemaType == "object":
-            example = json.dumps(self.PLACEHOLDER[self.path_name])
+            example = json.dumps(data)
             schema = {
                 "type": "object",
                 "default": example,
