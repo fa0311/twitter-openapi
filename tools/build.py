@@ -7,6 +7,7 @@ import copy
 import re
 from build_config import Config
 from hooks import OpenapiHookBase, RequestHookBase
+from tqdm import tqdm
 
 
 print("=== Build Start ===")
@@ -20,7 +21,7 @@ try:
 except:
     pass
 
-for lang in config.main().keys():
+for lang in tqdm(config.main().keys(), leave=False):
     dist_replace = lambda x: x.replace(
         config.INPUT_DIR, config.OUTPUT_DIR.format(lang), 1
     )
@@ -29,7 +30,8 @@ for lang in config.main().keys():
         os.makedirs(dist_replace(dir), exist_ok=True)
 
     paths = {}
-    for file in glob.glob(os.path.join(config.INPUT_DIR, "**/*.yaml")):
+    files = glob.glob(os.path.join(config.INPUT_DIR, "**/*.yaml"))
+    for file in tqdm(files, leave=False):
         file = file.replace(os.path.sep, "/")
         with open(file, mode="r", encoding="utf-8") as f:
             load = yaml.safe_load(f)
