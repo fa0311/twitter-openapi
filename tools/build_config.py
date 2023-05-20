@@ -50,7 +50,8 @@ class Config:
                         ),
                     ]
                     for key in ["v1.1-post", "v2.0-post"]
-                },
+                }
+                | {"other": []},
             },
             "dart": {
                 "openapi": [],
@@ -101,7 +102,8 @@ class Config:
                         ),
                     ]
                     for key in ["v1.1-post", "v2.0-post"]
-                },
+                }
+                | {"other": []},
             },
             "typescript": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
@@ -136,7 +138,8 @@ class Config:
                         ),
                     ]
                     for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
-                },
+                }
+                | {"other": []},
             },
             "test": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
@@ -171,6 +174,7 @@ class Config:
                         ),
                     ]
                     for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
-                },
+                }
+                | {"other": []},
             },
         }

@@ -67,3 +67,5 @@ tags:
     description: legacy APIs get
   - name: v2.0-post
     description: legacy APIs post
+  - name: other
+    description: other

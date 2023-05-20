@@ -81,6 +81,8 @@ paths:
     $ref: ./paths/tweet.yaml#/paths/~1graphql~1wNNG8DBB8EaXw1lq4vFWGA~1TweetDetail
   /graphql/zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
     $ref: ./paths/timeline.yaml#/paths/~1graphql~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
+  /other:
+    $ref: ./paths/other.yaml#/paths/~1other
 security:
 - bearerAuth: []
 - CsrfToken: []
@@ -108,3 +110,5 @@ tags:
   name: v2.0-get
 - description: legacy APIs post
   name: v2.0-post
+- description: other
+  name: other
