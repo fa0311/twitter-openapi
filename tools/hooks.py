@@ -58,6 +58,11 @@ class OpenapiHookBase(HookBase):
         return value
 
 
+class SchemasHookBase(HookBase):
+    def hook(self, value: dict):
+        return value
+
+
 class RequestHookBase(HookBase):
     split: int
     path_name: str
@@ -81,6 +86,16 @@ class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
         component = self.load_component("security_schemes")
         param = component["components"]["securitySchemes"]
         value["components"]["securitySchemes"].update(param)
+        return value
+
+
+# SchemasHookBase extends
+
+
+class RemoveDiscriminator(SchemasHookBase):
+    def hook(self, value: dict):
+        if value.get("discriminator") is not None:
+            del value["discriminator"]
         return value
 
 
