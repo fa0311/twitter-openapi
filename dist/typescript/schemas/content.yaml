@@ -13,23 +13,11 @@ components:
       - TimelineUser
       type: string
     ContentUnion:
-      discriminator:
-        mapping":
-          TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
-          TimelineTimelineItem: '#/components/schemas/TimelineTimelineItem'
-          TimelineTimelineModule: '#/components/schemas/TimelineTimelineModule'
-        propertyName: entryType
       oneOf:
       - $ref: '#/components/schemas/TimelineTimelineItem'
       - $ref: '#/components/schemas/TimelineTimelineModule'
       - $ref: '#/components/schemas/TimelineTimelineCursor'
     ItemContentUnion:
-      discriminator:
-        mapping":
-          TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
-          TimelineTweet: '#/components/schemas/TimelineTweet'
-          TimelineUser: '#/components/schemas/TimelineUser'
-        propertyName: itemType
       oneOf:
       - $ref: '#/components/schemas/TimelineTweet'
       - $ref: '#/components/schemas/TimelineTimelineCursor'

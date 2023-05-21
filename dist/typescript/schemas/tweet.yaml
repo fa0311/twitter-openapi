@@ -222,12 +222,6 @@ components:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
     TweetUnion:
-      discriminator:
-        mapping":
-          Tweet: '#/components/schemas/Tweet'
-          TweetTombstone: '#/components/schemas/TweetTombstone'
-          TweetWithVisibilityResults: '#/components/schemas/TweetWithVisibilityResults'
-        propertyName: __typename
       oneOf:
       - $ref: '#/components/schemas/Tweet'
       - $ref: '#/components/schemas/TweetWithVisibilityResults'
