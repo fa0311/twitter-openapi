@@ -36,20 +36,17 @@ components:
       name: auth_token
       description: "HttpOnly cookie"
 
-    authType:
+    AuthType:
       type: apiKey
       in: header
       name: x-twitter-auth-type
       description: "OAuth2Session if you are logged in"
 
 security:
-  - bearerAuth: []
   - CsrfToken: []
-  - ActiveUser: []
-  - AuthType: []
-  - ClientLanguage: []
-  - CookieAuthToken: []
   - CookieCt0: []
+  - CookieAuthToken: []
+  - AuthType: []
 tags:
   - name: user
     description: response User

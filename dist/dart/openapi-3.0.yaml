@@ -1,6 +1,11 @@
 components:
   schemas: {}
   securitySchemes:
+    AuthType:
+      description: OAuth2Session if you are logged in
+      in: header
+      name: x-twitter-auth-type
+      type: apiKey
     CookieAuthToken:
       description: HttpOnly cookie
       in: cookie
@@ -15,11 +20,6 @@ components:
       description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
       in: header
       name: x-csrf-token
-      type: apiKey
-    authType:
-      description: OAuth2Session if you are logged in
-      in: header
-      name: x-twitter-auth-type
       type: apiKey
 info:
   contact:
@@ -84,13 +84,10 @@ paths:
   /other:
     $ref: ./paths/other.yaml#/paths/~1other
 security:
-- bearerAuth: []
 - CsrfToken: []
-- ActiveUser: []
-- AuthType: []
-- ClientLanguage: []
-- CookieAuthToken: []
 - CookieCt0: []
+- CookieAuthToken: []
+- AuthType: []
 servers:
 - url: https://twitter.com/i/api
 tags:

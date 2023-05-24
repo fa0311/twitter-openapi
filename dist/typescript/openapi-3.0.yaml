@@ -6,6 +6,11 @@ components:
       in: header
       name: x-twitter-active-user
       type: apiKey
+    AuthType:
+      description: OAuth2Session if you are logged in
+      in: header
+      name: x-twitter-auth-type
+      type: apiKey
     BearerAuth:
       description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
       scheme: bearer
@@ -35,11 +40,6 @@ components:
         like Gecko) Chrome/112.0.0.0 Safari/537.36
       in: header
       name: user-agent
-      type: apiKey
-    authType:
-      description: OAuth2Session if you are logged in
-      in: header
-      name: x-twitter-auth-type
       type: apiKey
 info:
   contact:
@@ -104,13 +104,14 @@ paths:
   /other:
     $ref: ./paths/other.yaml#/paths/~1other
 security:
-- bearerAuth: []
 - CsrfToken: []
-- ActiveUser: []
-- AuthType: []
-- ClientLanguage: []
-- CookieAuthToken: []
 - CookieCt0: []
+- CookieAuthToken: []
+- AuthType: []
+- UserAgent: []
+- BearerAuth: []
+- ActiveUser: []
+- ClientLanguage: []
 servers:
 - url: https://twitter.com/i/api
 tags:
