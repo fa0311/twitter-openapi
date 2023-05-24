@@ -86,6 +86,7 @@ class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
         component = self.load_component("security_schemes")
         param = component["components"]["securitySchemes"]
         value["components"]["securitySchemes"].update(param)
+        value["security"].extend(component["security"])
         return value
 
 
