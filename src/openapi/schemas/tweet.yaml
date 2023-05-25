@@ -170,7 +170,7 @@ components:
         - "symbols"
         - "user_mentions"
         - "urls"
-        - "media"
+        # - "media"
       properties:
         hashtags:
           type: array

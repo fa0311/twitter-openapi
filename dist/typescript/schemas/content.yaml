@@ -122,7 +122,6 @@ components:
       - __typename
       - entryType
       - displayType
-      - items
       - clientEventInfo
     TimelineTweet:
       properties:

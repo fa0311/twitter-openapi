@@ -46,7 +46,7 @@ components:
         - "__typename"
         - "entryType"
         - "displayType"
-        - "items"
+        # - "items"
         - "clientEventInfo"
       properties:
         __typename:

@@ -27,7 +27,6 @@ components:
       - symbols
       - user_mentions
       - urls
-      - media
     ExtendedEntities:
       properties:
         media:
