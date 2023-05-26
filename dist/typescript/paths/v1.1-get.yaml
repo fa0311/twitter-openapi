@@ -12,121 +12,121 @@ paths:
         name: include_profile_interstitial_type
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_blocking
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_blocked_by
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_followed_by
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_want_retweets
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_mute_edge
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_can_dm
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_can_media_tag
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_has_nft_avatar
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_is_blue_verified
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_verified_type
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_profile_image_shape
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: skip_status
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: cursor
         required: true
         schema:
-          default: '-1'
-          example: '-1'
-          type: object
+          default: -1
+          example: -1
+          type: integer
       - in: query
         name: user_id
         required: true
         schema:
-          default: '"44196397"'
-          example: '"44196397"'
-          type: object
+          default: '44196397'
+          example: '44196397'
+          type: string
       - in: query
         name: count
         required: true
         schema:
-          default: '3'
-          example: '3'
-          type: object
+          default: 3
+          example: 3
+          type: integer
       - in: query
         name: with_total_count
         required: true
         schema:
-          default: 'true'
-          example: 'true'
-          type: object
+          default: true
+          example: true
+          type: boolean
       responses:
         '200':
           description: Successful operation
@@ -169,44 +169,44 @@ paths:
         name: include_ext_is_blue_verified
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_verified_type
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: include_ext_profile_image_shape
         required: true
         schema:
-          default: '1'
-          example: '1'
-          type: object
+          default: 1
+          example: 1
+          type: integer
       - in: query
         name: q
         required: true
         schema:
-          default: '"test"'
-          example: '"test"'
-          type: object
+          default: test
+          example: test
+          type: string
       - in: query
         name: src
         required: true
         schema:
-          default: '"search_box"'
-          example: '"search_box"'
-          type: object
+          default: search_box
+          example: search_box
+          type: string
       - in: query
         name: result_type
         required: true
         schema:
-          default: '"events,users,topics"'
-          example: '"events,users,topics"'
-          type: object
+          default: events,users,topics
+          example: events,users,topics
+          type: string
       responses:
         '200':
           description: Successful operation
