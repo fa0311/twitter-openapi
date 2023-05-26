@@ -125,9 +125,10 @@ class Config:
                     key: [
                         ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
-                        AddParametersOnParameters(
+                        AddParametersOnBody(
                             split=-1,
-                            schemaType="object",
+                            schemaType=None,
+                            contentType="application/json",
                         ),
                     ]
                     for key in ["post"]
@@ -137,10 +138,21 @@ class Config:
                         SetResponsesHeader(suffix="legacy"),
                         AddParametersOnParameters(
                             split=2,
-                            schemaType="object",
+                            schemaType=None,
                         ),
                     ]
-                    for key in ["v1.1-get", "v1.1-post", "v2.0-get", "v2.0-post"]
+                    for key in ["v1.1-get", "v2.0-get"]
+                }
+                | {
+                    key: [
+                        SetResponsesHeader(suffix="legacy"),
+                        AddParametersOnBody(
+                            split=2,
+                            schemaType=None,
+                            contentType="application/x-www-form-urlencoded",
+                        ),
+                    ]
+                    for key in ["v1.1-post", "v2.0-post"]
                 }
                 | {"other": []},
             },
