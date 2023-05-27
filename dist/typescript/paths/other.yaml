@@ -16,10 +16,8 @@ components:
       type: object
     OtherResponse:
       properties:
-        session:
+        Session:
           $ref: '#/components/schemas/Session'
-      required:
-      - session
       type: object
     Session:
       properties:

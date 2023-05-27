@@ -6,7 +6,7 @@ import shutil
 import copy
 import re
 from build_config import Config
-from hooks import OpenapiHookBase, RequestHookBase, SchemasHookBase
+from hooks import OpenapiHookBase, RequestHookBase, SchemasHookBase,OtherHookBase
 from tqdm import tqdm
 
 
@@ -54,6 +54,14 @@ for lang, profile in tqdm(config.main().items(), leave=False):
                 hook: SchemasHookBase
                 value = hook.hook(value)
             load["components"]["schemas"][name] = value
+        if file == "src/openapi/paths/other.yaml":
+            for hook in profile["other"]:
+                hook: OtherHookBase
+                key, value = hook.hook()
+                load["components"]["schemas"][key] = value
+                load["components"]["schemas"]["OtherResponse"]["properties"][key] = {
+                    "$ref": f"#/components/schemas/{key}"
+                }
         with open(dist_replace(file), mode="w+", encoding="utf-8") as f:
             f.write(yaml.dump(load))
 

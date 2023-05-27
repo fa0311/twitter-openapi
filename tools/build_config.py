@@ -10,6 +10,7 @@ class Config:
             "docs": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "schemas": [],
+                "other":[],
                 "request": {
                     key: [
                         ReplaceQueryIdPlaceholder(split=-1),
@@ -57,6 +58,7 @@ class Config:
             "dart": {
                 "openapi": [],
                 "schemas": [],
+                "other":[],
                 "request": {
                     key: [
                         ReplaceQueryIdPlaceholder(split=-1),
@@ -110,6 +112,7 @@ class Config:
             "typescript": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "schemas": [RemoveDiscriminator()],
+                "other":[],
                 "request": {
                     key: [
                         ReplaceQueryIdPlaceholder(split=-1),
@@ -159,6 +162,7 @@ class Config:
             "test": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "schemas": [],
+                "other":[],
                 "request": {
                     key: [
                         ReplaceQueryIdPlaceholder(split=-1),

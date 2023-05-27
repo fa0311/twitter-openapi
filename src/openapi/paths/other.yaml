@@ -22,10 +22,8 @@ components:
   schemas:
     OtherResponse:
       type: object
-      required:
-        - "session"
       properties:
-        session:
+        Session:
           $ref: "#/components/schemas/Session" # window.__INITIAL_STATE__
     Session:
       type: object

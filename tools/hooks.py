@@ -49,17 +49,24 @@ class HookBase:
         with open(f"src/config/component/{name}.yaml", mode="r", encoding="utf-8") as f:
             return yaml.safe_load(f)
 
+    def load_placeholder(self) -> dict:
+        with open("src/config/placeholder.json", mode="r", encoding="utf-8") as f:
+            return yaml.safe_load(f)
+
 
 # HookBase extends
 
 
 class OpenapiHookBase(HookBase):
-    def hook(self, value: dict):
+    def hook(self, value: dict)->dict:
         return value
 
+class OtherHookBase(HookBase):
+    def hook(self)->tuple[str, dict]:
+        return  "", {}
 
 class SchemasHookBase(HookBase):
-    def hook(self, value: dict):
+    def hook(self, value: dict)->dict:
         return value
 
 
@@ -71,7 +78,7 @@ class RequestHookBase(HookBase):
         super().__init__()
         self.split = split
 
-    def hook(self, path: str, value: dict):
+    def hook(self, path: str, value: dict)->tuple[str, dict]:
         value["parameters"] = value.get("parameters", [])
         self.path_name = "/".join(path.split("/")[self.split :])
         return path, value
