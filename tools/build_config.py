@@ -111,7 +111,7 @@ class Config:
             },
             "typescript": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
-                "schemas": [RemoveDiscriminator()],
+                "schemas": [],
                 "other":[],
                 "request": {
                     key: [
