@@ -8,6 +8,13 @@ components:
       - TimelineTerminateTimeline
       type: string
     InstructionUnion:
+      discriminator:
+        mapping":
+          TimelineAddEntries: '#/components/schemas/TimelineAddEntries'
+          TimelineClearCache: '#/components/schemas/TimelineClearCache'
+          TimelinePinEntry: '#/components/schemas/TimelinePinEntry'
+          TimelineTerminateTimeline: '#/components/schemas/TimelineTerminateTimeline'
+        propertyName: type
       oneOf:
       - $ref: '#/components/schemas/TimelineAddEntries'
       - $ref: '#/components/schemas/TimelineClearCache'
