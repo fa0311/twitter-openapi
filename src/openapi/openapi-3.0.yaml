@@ -51,6 +51,7 @@ components:
 security:
   - CsrfToken: []
   - CookieCt0: []
+  - GuestToken: []
   - CookieAuthToken: []
   - AuthType: []
 tags:
