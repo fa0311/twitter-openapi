@@ -22,13 +22,19 @@ components:
       type: apiKey
       in: header
       name: x-csrf-token
-      description: "document.cookie.split('; ').find(row => row.startsWith('ct0='));"
+      description: ""
 
     CookieCt0:
       type: apiKey
       in: cookie
       name: ct0
       description: "document.cookie.split('; ').find(row => row.startsWith('ct0='));"
+
+    GuestToken:
+      type: apiKey
+      in: header
+      name: x-guest-token
+      description: "document.cookie.split('; ').find(row => row.startsWith('gt='));"
 
     CookieAuthToken:
       type: apiKey

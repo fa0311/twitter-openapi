@@ -17,9 +17,14 @@ components:
       name: ct0
       type: apiKey
     CsrfToken:
-      description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
+      description: ''
       in: header
       name: x-csrf-token
+      type: apiKey
+    GuestToken:
+      description: document.cookie.split('; ').find(row => row.startsWith('gt='));
+      in: header
+      name: x-guest-token
       type: apiKey
 info:
   contact:
