@@ -53,6 +53,44 @@ components:
           pattern: "^[0-9]+$"
         core:
           $ref: "./user.yaml#/components/schemas/UserResultCore"
+        card:
+          type: object
+          properties:
+            rest_id: string
+            legacy:
+              type: object
+              required:
+                - "binding_values"
+                - "name"
+                - "url"
+              properties:
+                name: 
+                  type: string
+                url:
+                  type: string
+                binding_values:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - "key"
+                      - "value"
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: object
+                        required:
+                          - "type"
+                        properties:
+                          string_value:
+                            type: string
+                          boolean_value:
+                            type: boolean
+                          scribe_key:
+                            type: string
+                          type:
+                            type: string
         unmention_data:
           type: object # todo
         edit_control:
