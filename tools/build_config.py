@@ -13,7 +13,6 @@ class Config:
                 "other":[],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnContent(
                             split=-1, contentType="application/json"
@@ -23,7 +22,6 @@ class Config:
                 }
                 | {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnParameters(
                             split=-1,
@@ -61,7 +59,6 @@ class Config:
                 "other":[],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         AddSecuritySchemesOnHeader(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnParameters(
@@ -73,7 +70,6 @@ class Config:
                 }
                 | {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         AddSecuritySchemesOnHeader(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnBody(
@@ -115,7 +111,6 @@ class Config:
                 "other":[],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnParameters(
                             split=-1,
@@ -126,7 +121,6 @@ class Config:
                 }
                 | {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnBody(
                             split=-1,
@@ -165,7 +159,6 @@ class Config:
                 "other":[],
                 "request": {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnParameters(
                             split=-1,
@@ -176,7 +169,6 @@ class Config:
                 }
                 | {
                     key: [
-                        ReplaceQueryIdPlaceholder(split=-1),
                         SetResponsesHeader(suffix=None),
                         AddParametersOnParameters(
                             split=-1,

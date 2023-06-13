@@ -4,10 +4,12 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{{queryId}}/TweetDetail:
+  /graphql/{queryId}/TweetDetail:
     get:
       operationId: getTweetDetail
       description: get TweetDetail
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation

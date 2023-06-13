@@ -4,10 +4,12 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{{queryId}}/HomeTimeline:
+  /graphql/{queryId}/HomeTimeline:
     get:
       operationId: getHomeTimeline
       description: get tweet list of timeline
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -18,10 +20,12 @@ paths:
       tags:
         - "tweet"
 
-  /graphql/{{queryId}}/HomeLatestTimeline:
+  /graphql/{queryId}/HomeLatestTimeline:
     get:
       operationId: getHomeLatestTimeline
       description: get tweet list of timeline
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -32,10 +36,12 @@ paths:
       tags:
         - "tweet"
 
-  /graphql/{{queryId}}/ListLatestTweetsTimeline:
+  /graphql/{queryId}/ListLatestTweetsTimeline:
     get:
       operationId: getListLatestTweetsTimeline
       description: get tweet list of timeline
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
