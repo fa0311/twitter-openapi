@@ -94,6 +94,44 @@ components:
       properties:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
+        card:
+          properties:
+            legacy:
+              properties:
+                binding_values:
+                  items:
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        properties:
+                          boolean_value:
+                            type: boolean
+                          scribe_key:
+                            type: string
+                          string_value:
+                            type: string
+                          type:
+                            type: string
+                        required:
+                        - type
+                        type: object
+                    required:
+                    - key
+                    - value
+                    type: object
+                  type: array
+                name:
+                  type: string
+                url:
+                  type: string
+              required:
+              - binding_values
+              - name
+              - url
+              type: object
+            rest_id: string
+          type: object
         core:
           $ref: ./user.yaml#/components/schemas/UserResultCore
         edit_control:
@@ -241,6 +279,24 @@ components:
       - __typename
       - tweet
     Url:
+      properties:
+        display_url:
+          type: string
+        expanded_url:
+          format: uri
+          type: string
+        indices:
+          items:
+            type: integer
+          type: array
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+      - indices
+      - expanded_url
+      - display_url
       type: object
     UserMention:
       type: object
