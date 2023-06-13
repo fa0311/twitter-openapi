@@ -238,7 +238,25 @@ components:
     UserMention:
       type: object # todo
     Url:
-      type: object # todo
+      type: object
+      required:
+        - "url"
+        - "indices"
+        - "expanded_url"
+        - "display_url"
+      properties:
+        display_url:
+          type: string
+        expanded_url:
+          type: string
+          format: uri
+        url:
+          type: string
+          format: uri
+        indices:
+          type: array
+          items:
+            type: integer
 
     ExtendedEntities:
       required:
