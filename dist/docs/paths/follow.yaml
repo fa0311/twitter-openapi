@@ -38,39 +38,46 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/IWP6Zt14sARO29lJT35bBw/Following:
+  /graphql/{pathQueryId}/Followers:
     get:
-      description: get user list of following
-      operationId: getFollowing
+      description: get user list of followers
+      operationId: getFollowers
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: djdTXDIk2qhd4OStqlUFeQ
+          example: djdTXDIk2qhd4OStqlUFeQ
+          type: string
       - content:
           application/json:
             required:
-            - I
-            - W
-            - P
-            - '6'
-            - Z
-            - t
-            - '1'
-            - '4'
-            - s
-            - A
-            - R
-            - O
-            - '2'
-            - '9'
-            - l
-            - J
+            - d
+            - j
+            - d
             - T
-            - '3'
-            - '5'
-            - b
-            - B
-            - w
+            - X
+            - D
+            - I
+            - k
+            - '2'
+            - q
+            - h
+            - d
+            - '4'
+            - O
+            - S
+            - t
+            - q
+            - l
+            - U
+            - F
+            - e
+            - Q
             schema:
-              default: IWP6Zt14sARO29lJT35bBw
-              example: IWP6Zt14sARO29lJT35bBw
+              default: djdTXDIk2qhd4OStqlUFeQ
+              example: djdTXDIk2qhd4OStqlUFeQ
               type: string
         in: query
         name: queryId
@@ -261,39 +268,46 @@ paths:
                 type: string
       tags:
       - user-list
-  /graphql/djdTXDIk2qhd4OStqlUFeQ/Followers:
+  /graphql/{pathQueryId}/Following:
     get:
-      description: get user list of followers
-      operationId: getFollowers
+      description: get user list of following
+      operationId: getFollowing
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: IWP6Zt14sARO29lJT35bBw
+          example: IWP6Zt14sARO29lJT35bBw
+          type: string
       - content:
           application/json:
             required:
-            - d
-            - j
-            - d
-            - T
-            - X
-            - D
             - I
-            - k
-            - '2'
-            - q
-            - h
-            - d
-            - '4'
-            - O
-            - S
+            - W
+            - P
+            - '6'
+            - Z
             - t
-            - q
+            - '1'
+            - '4'
+            - s
+            - A
+            - R
+            - O
+            - '2'
+            - '9'
             - l
-            - U
-            - F
-            - e
-            - Q
+            - J
+            - T
+            - '3'
+            - '5'
+            - b
+            - B
+            - w
             schema:
-              default: djdTXDIk2qhd4OStqlUFeQ
-              example: djdTXDIk2qhd4OStqlUFeQ
+              default: IWP6Zt14sARO29lJT35bBw
+              example: IWP6Zt14sARO29lJT35bBw
               type: string
         in: query
         name: queryId

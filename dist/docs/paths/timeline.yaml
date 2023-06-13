@@ -47,39 +47,46 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
+  /graphql/{pathQueryId}/HomeLatestTimeline:
     get:
       description: get tweet list of timeline
-      operationId: getListLatestTweetsTimeline
+      operationId: getHomeLatestTimeline
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: zhX91JE87mWvfprhYE97xA
+          example: zhX91JE87mWvfprhYE97xA
+          type: string
       - content:
           application/json:
             required:
-            - '2'
-            - T
-            - e
+            - z
+            - h
+            - X
+            - '9'
+            - '1'
+            - J
+            - E
+            - '8'
+            - '7'
             - m
-            - L
-            - y
-            - q
-            - r
-            - M
+            - W
+            - v
+            - f
             - p
-            - T
-            - e
+            - r
+            - h
+            - Y
+            - E
+            - '9'
+            - '7'
+            - x
             - A
-            - m
-            - y
-            - s
-            - d
-            - b
-            - n
-            - V
-            - q
-            - w
             schema:
-              default: 2TemLyqrMpTeAmysdbnVqw
-              example: 2TemLyqrMpTeAmysdbnVqw
+              default: zhX91JE87mWvfprhYE97xA
+              example: zhX91JE87mWvfprhYE97xA
               type: string
         in: query
         name: queryId
@@ -87,21 +94,33 @@ paths:
       - content:
           application/json:
             required:
-            - listId
             - count
+            - includePromotedContent
+            - latestControlAvailable
+            - requestContext
             schema:
               properties:
                 count:
                   default: 20
                   example: 20
                   type: integer
-                listId:
-                  default: '53044119'
-                  example: '53044119'
+                includePromotedContent:
+                  default: true
+                  example: true
+                  type: boolean
+                latestControlAvailable:
+                  default: true
+                  example: true
+                  type: boolean
+                requestContext:
+                  default: launch
+                  example: launch
                   type: string
               required:
-              - listId
               - count
+              - includePromotedContent
+              - latestControlAvailable
+              - requestContext
               type: object
         in: query
         name: variables
@@ -235,7 +254,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListTweetsTimelineResponse'
+                $ref: '#/components/schemas/TimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -264,11 +283,18 @@ paths:
                 type: string
       tags:
       - tweet
-  /graphql/HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
+  /graphql/{pathQueryId}/HomeTimeline:
     get:
       description: get tweet list of timeline
       operationId: getHomeTimeline
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: HCosKfLNW1AcOo3la3mMgg
+          example: HCosKfLNW1AcOo3la3mMgg
+          type: string
       - content:
           application/json:
             required:
@@ -499,39 +525,46 @@ paths:
                 type: string
       tags:
       - tweet
-  /graphql/zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
+  /graphql/{pathQueryId}/ListLatestTweetsTimeline:
     get:
       description: get tweet list of timeline
-      operationId: getHomeLatestTimeline
+      operationId: getListLatestTweetsTimeline
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 2TemLyqrMpTeAmysdbnVqw
+          example: 2TemLyqrMpTeAmysdbnVqw
+          type: string
       - content:
           application/json:
             required:
-            - z
-            - h
-            - X
-            - '9'
-            - '1'
-            - J
-            - E
-            - '8'
-            - '7'
+            - '2'
+            - T
+            - e
             - m
-            - W
-            - v
-            - f
-            - p
+            - L
+            - y
+            - q
             - r
-            - h
-            - Y
-            - E
-            - '9'
-            - '7'
-            - x
+            - M
+            - p
+            - T
+            - e
             - A
+            - m
+            - y
+            - s
+            - d
+            - b
+            - n
+            - V
+            - q
+            - w
             schema:
-              default: zhX91JE87mWvfprhYE97xA
-              example: zhX91JE87mWvfprhYE97xA
+              default: 2TemLyqrMpTeAmysdbnVqw
+              example: 2TemLyqrMpTeAmysdbnVqw
               type: string
         in: query
         name: queryId
@@ -539,33 +572,21 @@ paths:
       - content:
           application/json:
             required:
+            - listId
             - count
-            - includePromotedContent
-            - latestControlAvailable
-            - requestContext
             schema:
               properties:
                 count:
                   default: 20
                   example: 20
                   type: integer
-                includePromotedContent:
-                  default: true
-                  example: true
-                  type: boolean
-                latestControlAvailable:
-                  default: true
-                  example: true
-                  type: boolean
-                requestContext:
-                  default: launch
-                  example: launch
+                listId:
+                  default: '53044119'
+                  example: '53044119'
                   type: string
               required:
+              - listId
               - count
-              - includePromotedContent
-              - latestControlAvailable
-              - requestContext
               type: object
         in: query
         name: variables
@@ -699,7 +720,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TimelineResponse'
+                $ref: '#/components/schemas/ListTweetsTimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:

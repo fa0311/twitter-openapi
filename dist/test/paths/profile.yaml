@@ -63,11 +63,18 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
+  /graphql/{pathQueryId}/ProfileSpotlightsQuery:
     get:
       description: get user by screen name
       operationId: getProfileSpotlightsQuery
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 9zwVLJ48lmVUk8u_Gh9DmA
+          example: 9zwVLJ48lmVUk8u_Gh9DmA
+          type: string
       - in: query
         name: queryId
         required: true

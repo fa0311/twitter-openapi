@@ -130,7 +130,8 @@ components:
               - name
               - url
               type: object
-            rest_id: string
+            rest_id:
+              type: string
           type: object
         core:
           $ref: ./user.yaml#/components/schemas/UserResultCore

@@ -17,11 +17,18 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
+  /graphql/{pathQueryId}/UserByScreenName:
     get:
       description: get user by screen name
       operationId: getUserByScreenName
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: sLVLhk0bGj3MVFEKTdax1w
+          example: sLVLhk0bGj3MVFEKTdax1w
+          type: string
       - content:
           application/json:
             required:

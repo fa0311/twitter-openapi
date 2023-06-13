@@ -47,24 +47,33 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
+  /graphql/{pathQueryId}/HomeLatestTimeline:
     get:
       description: get tweet list of timeline
-      operationId: getListLatestTweetsTimeline
+      operationId: getHomeLatestTimeline
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: zhX91JE87mWvfprhYE97xA
+          example: zhX91JE87mWvfprhYE97xA
+          type: string
       - in: query
         name: queryId
         required: true
         schema:
-          default: '"2TemLyqrMpTeAmysdbnVqw"'
-          example: '"2TemLyqrMpTeAmysdbnVqw"'
+          default: '"zhX91JE87mWvfprhYE97xA"'
+          example: '"zhX91JE87mWvfprhYE97xA"'
           type: string
       - in: query
         name: variables
         required: true
         schema:
-          default: '{"listId": "53044119", "count": 20}'
-          example: '{"listId": "53044119", "count": 20}'
+          default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
+            true, "requestContext": "launch"}'
+          example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
+            true, "requestContext": "launch"}'
           type: string
       - in: query
         name: features
@@ -98,7 +107,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListTweetsTimelineResponse'
+                $ref: '#/components/schemas/TimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -127,11 +136,18 @@ paths:
                 type: string
       tags:
       - tweet
-  /graphql/HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
+  /graphql/{pathQueryId}/HomeTimeline:
     get:
       description: get tweet list of timeline
       operationId: getHomeTimeline
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: HCosKfLNW1AcOo3la3mMgg
+          example: HCosKfLNW1AcOo3la3mMgg
+          type: string
       - in: query
         name: queryId
         required: true
@@ -209,26 +225,31 @@ paths:
                 type: string
       tags:
       - tweet
-  /graphql/zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
+  /graphql/{pathQueryId}/ListLatestTweetsTimeline:
     get:
       description: get tweet list of timeline
-      operationId: getHomeLatestTimeline
+      operationId: getListLatestTweetsTimeline
       parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 2TemLyqrMpTeAmysdbnVqw
+          example: 2TemLyqrMpTeAmysdbnVqw
+          type: string
       - in: query
         name: queryId
         required: true
         schema:
-          default: '"zhX91JE87mWvfprhYE97xA"'
-          example: '"zhX91JE87mWvfprhYE97xA"'
+          default: '"2TemLyqrMpTeAmysdbnVqw"'
+          example: '"2TemLyqrMpTeAmysdbnVqw"'
           type: string
       - in: query
         name: variables
         required: true
         schema:
-          default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch"}'
-          example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch"}'
+          default: '{"listId": "53044119", "count": 20}'
+          example: '{"listId": "53044119", "count": 20}'
           type: string
       - in: query
         name: features
@@ -262,7 +283,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TimelineResponse'
+                $ref: '#/components/schemas/ListTweetsTimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:

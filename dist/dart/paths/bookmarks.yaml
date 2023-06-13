@@ -23,7 +23,7 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
+  /graphql/{pathQueryId}/Bookmarks:
     get:
       description: get bookmarks
       operationId: getBookmarks
@@ -56,6 +56,13 @@ paths:
         schema:
           default: en
           description: language code.
+          type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: tmd4ifV8RHltzn8ymGg1aw
+          example: tmd4ifV8RHltzn8ymGg1aw
           type: string
       - in: query
         name: queryId

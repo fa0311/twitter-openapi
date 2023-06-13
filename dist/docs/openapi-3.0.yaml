@@ -68,44 +68,44 @@ paths:
     $ref: ./paths/v1.1-get.yaml#/paths/~11.1~1search~1typeahead.json
   /2/search/adaptive.json:
     $ref: ./paths/v2.0-get.yaml#/paths/~12~1search~1adaptive.json
-  /graphql/1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~11RyAhNwby-gzGCRVsMxKbQ~1CreateTweet
-  /graphql/2TemLyqrMpTeAmysdbnVqw/ListLatestTweetsTimeline:
-    $ref: ./paths/timeline.yaml#/paths/~1graphql~12TemLyqrMpTeAmysdbnVqw~1ListLatestTweetsTimeline
-  /graphql/5fmEkRT-1AdHqEsbVgehMg/Likes:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~15fmEkRT-1AdHqEsbVgehMg~1Likes
-  /graphql/9zwVLJ48lmVUk8u_Gh9DmA/ProfileSpotlightsQuery:
-    $ref: ./paths/profile.yaml#/paths/~1graphql~19zwVLJ48lmVUk8u_Gh9DmA~1ProfileSpotlightsQuery
-  /graphql/HCosKfLNW1AcOo3la3mMgg/HomeTimeline:
-    $ref: ./paths/timeline.yaml#/paths/~1graphql~1HCosKfLNW1AcOo3la3mMgg~1HomeTimeline
-  /graphql/HuTx74BxAnezK1gWvYY7zg/UserTweets:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1HuTx74BxAnezK1gWvYY7zg~1UserTweets
-  /graphql/IWP6Zt14sARO29lJT35bBw/Following:
-    $ref: ./paths/follow.yaml#/paths/~1graphql~1IWP6Zt14sARO29lJT35bBw~1Following
-  /graphql/RIWc55YCNyUJ-U3HHGYkdg/UserTweetsAndReplies:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1RIWc55YCNyUJ-U3HHGYkdg~1UserTweetsAndReplies
-  /graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1VaenaVgh5q5ih7kvyVjgtg~1DeleteTweet
-  /graphql/YqiE3JL1KNgf9nSljYdxaA/UserMedia:
-    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1YqiE3JL1KNgf9nSljYdxaA~1UserMedia
-  /graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1ZYKSe-w7KEslx3JhSIk5LA~1UnfavoriteTweet
-  /graphql/djdTXDIk2qhd4OStqlUFeQ/Followers:
-    $ref: ./paths/follow.yaml#/paths/~1graphql~1djdTXDIk2qhd4OStqlUFeQ~1Followers
-  /graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1iQtK4dl5hBmXewYZuEOKVw~1DeleteRetweet
-  /graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1lI07N6Otwv1PhnEgXILM7A~1FavoriteTweet
-  /graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
-    $ref: ./paths/post.yaml#/paths/~1graphql~1ojPdsZsimiJrUGLR1sjUtA~1CreateRetweet
-  /graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName:
-    $ref: ./paths/user.yaml#/paths/~1graphql~1sLVLhk0bGj3MVFEKTdax1w~1UserByScreenName
-  /graphql/tmd4ifV8RHltzn8ymGg1aw/Bookmarks:
-    $ref: ./paths/bookmarks.yaml#/paths/~1graphql~1tmd4ifV8RHltzn8ymGg1aw~1Bookmarks
-  /graphql/wNNG8DBB8EaXw1lq4vFWGA/TweetDetail:
-    $ref: ./paths/tweet.yaml#/paths/~1graphql~1wNNG8DBB8EaXw1lq4vFWGA~1TweetDetail
-  /graphql/zhX91JE87mWvfprhYE97xA/HomeLatestTimeline:
-    $ref: ./paths/timeline.yaml#/paths/~1graphql~1zhX91JE87mWvfprhYE97xA~1HomeLatestTimeline
+  /graphql/{pathQueryId}/Bookmarks:
+    $ref: ./paths/bookmarks.yaml#/paths/~1graphql~1{pathQueryId}~1Bookmarks
+  /graphql/{pathQueryId}/CreateRetweet:
+    $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1CreateRetweet
+  /graphql/{pathQueryId}/CreateTweet:
+    $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1CreateTweet
+  /graphql/{pathQueryId}/DeleteRetweet:
+    $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1DeleteRetweet
+  /graphql/{pathQueryId}/DeleteTweet:
+    $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1DeleteTweet
+  /graphql/{pathQueryId}/FavoriteTweet:
+    $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1FavoriteTweet
+  /graphql/{pathQueryId}/Followers:
+    $ref: ./paths/follow.yaml#/paths/~1graphql~1{pathQueryId}~1Followers
+  /graphql/{pathQueryId}/Following:
+    $ref: ./paths/follow.yaml#/paths/~1graphql~1{pathQueryId}~1Following
+  /graphql/{pathQueryId}/HomeLatestTimeline:
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{pathQueryId}~1HomeLatestTimeline
+  /graphql/{pathQueryId}/HomeTimeline:
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{pathQueryId}~1HomeTimeline
+  /graphql/{pathQueryId}/Likes:
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1Likes
+  /graphql/{pathQueryId}/ListLatestTweetsTimeline:
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{pathQueryId}~1ListLatestTweetsTimeline
+  /graphql/{pathQueryId}/ProfileSpotlightsQuery:
+    $ref: ./paths/profile.yaml#/paths/~1graphql~1{pathQueryId}~1ProfileSpotlightsQuery
+  /graphql/{pathQueryId}/TweetDetail:
+    $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1TweetDetail
+  /graphql/{pathQueryId}/UnfavoriteTweet:
+    $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1UnfavoriteTweet
+  /graphql/{pathQueryId}/UserByScreenName:
+    $ref: ./paths/user.yaml#/paths/~1graphql~1{pathQueryId}~1UserByScreenName
+  /graphql/{pathQueryId}/UserMedia:
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserMedia
+  /graphql/{pathQueryId}/UserTweets:
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserTweets
+  /graphql/{pathQueryId}/UserTweetsAndReplies:
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserTweetsAndReplies
   /other:
     $ref: ./paths/other.yaml#/paths/~1other
 security:

@@ -136,7 +136,110 @@ info:
   version: 0.0.1
 openapi: 3.0.3
 paths:
-  /graphql/1RyAhNwby-gzGCRVsMxKbQ/CreateTweet:
+  /graphql/{pathQueryId}/CreateRetweet:
+    post:
+      description: create Retweet
+      operationId: postCreateRetweet
+      parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: ojPdsZsimiJrUGLR1sjUtA
+          example: ojPdsZsimiJrUGLR1sjUtA
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: ojPdsZsimiJrUGLR1sjUtA
+                  example: ojPdsZsimiJrUGLR1sjUtA
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRetweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
+  /graphql/{pathQueryId}/CreateTweet:
     post:
       description: create Tweet
       operationId: postCreateTweet
@@ -169,6 +272,13 @@ paths:
         schema:
           default: en
           description: language code.
+          type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 1RyAhNwby-gzGCRVsMxKbQ
+          example: 1RyAhNwby-gzGCRVsMxKbQ
           type: string
       requestBody:
         content:
@@ -352,199 +462,7 @@ paths:
                 type: string
       tags:
       - post
-  /graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet:
-    post:
-      description: delete Retweet
-      operationId: postDeleteTweet
-      parameters:
-      - in: header
-        name: user-agent
-        required: true
-        schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      - in: header
-        name: authorization
-        required: true
-        schema:
-          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-          description: It is a constant value and does not need to be changed.
-          type: string
-      - in: header
-        name: x-twitter-active-user
-        required: true
-        schema:
-          default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-client-language
-        required: true
-        schema:
-          default: en
-          description: language code.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                queryId:
-                  default: VaenaVgh5q5ih7kvyVjgtg
-                  example: VaenaVgh5q5ih7kvyVjgtg
-                  type: string
-                variables:
-                  properties:
-                    dark_request:
-                      default: false
-                      example: false
-                      type: boolean
-                    tweet_id:
-                      default: '1349129669258448897'
-                      example: '1349129669258448897'
-                      type: string
-                  required:
-                  - tweet_id
-                  - dark_request
-                  type: object
-              required:
-              - queryId
-              - variables
-        description: body
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeleteTweetResponse'
-          description: Successful operation
-          headers:
-            x-connection-hash:
-              schema:
-                type: string
-            x-rate-limit-limit:
-              schema:
-                type: integer
-            x-rate-limit-remaining:
-              schema:
-                type: integer
-            x-rate-limit-reset:
-              schema:
-                type: integer
-            x-response-time:
-              schema:
-                type: integer
-            x-tfe-preserve-body:
-              schema:
-                type: boolean
-            x-transaction-id:
-              schema:
-                type: string
-            x-twitter-response-tags:
-              schema:
-                type: string
-      tags:
-      - post
-  /graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet:
-    post:
-      description: unfavorite Tweet
-      operationId: postUnfavoriteTweet
-      parameters:
-      - in: header
-        name: user-agent
-        required: true
-        schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      - in: header
-        name: authorization
-        required: true
-        schema:
-          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-          description: It is a constant value and does not need to be changed.
-          type: string
-      - in: header
-        name: x-twitter-active-user
-        required: true
-        schema:
-          default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-client-language
-        required: true
-        schema:
-          default: en
-          description: language code.
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                queryId:
-                  default: ZYKSe-w7KEslx3JhSIk5LA
-                  example: ZYKSe-w7KEslx3JhSIk5LA
-                  type: string
-                variables:
-                  properties:
-                    dark_request:
-                      default: false
-                      example: false
-                      type: boolean
-                    tweet_id:
-                      default: '1349129669258448897'
-                      example: '1349129669258448897'
-                      type: string
-                  required:
-                  - tweet_id
-                  - dark_request
-                  type: object
-              required:
-              - queryId
-              - variables
-        description: body
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnfavoriteTweetResponseData'
-          description: Successful operation
-          headers:
-            x-connection-hash:
-              schema:
-                type: string
-            x-rate-limit-limit:
-              schema:
-                type: integer
-            x-rate-limit-remaining:
-              schema:
-                type: integer
-            x-rate-limit-reset:
-              schema:
-                type: integer
-            x-response-time:
-              schema:
-                type: integer
-            x-tfe-preserve-body:
-              schema:
-                type: boolean
-            x-transaction-id:
-              schema:
-                type: string
-            x-twitter-response-tags:
-              schema:
-                type: string
-      tags:
-      - post
-  /graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet:
+  /graphql/{pathQueryId}/DeleteRetweet:
     post:
       description: delete Retweet
       operationId: postDeleteRetweet
@@ -577,6 +495,13 @@ paths:
         schema:
           default: en
           description: language code.
+          type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: iQtK4dl5hBmXewYZuEOKVw
+          example: iQtK4dl5hBmXewYZuEOKVw
           type: string
       requestBody:
         content:
@@ -640,7 +565,110 @@ paths:
                 type: string
       tags:
       - post
-  /graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet:
+  /graphql/{pathQueryId}/DeleteTweet:
+    post:
+      description: delete Retweet
+      operationId: postDeleteTweet
+      parameters:
+      - in: header
+        name: user-agent
+        required: true
+        schema:
+          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+            like Gecko) Chrome/112.0.0.0 Safari/537.36
+          description: UserAgent, some APIs may be rejected if changed.
+          type: string
+      - in: header
+        name: authorization
+        required: true
+        schema:
+          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+          description: It is a constant value and does not need to be changed.
+          type: string
+      - in: header
+        name: x-twitter-active-user
+        required: true
+        schema:
+          default: 'yes'
+          description: Unknown what this value means.
+          type: string
+      - in: header
+        name: x-twitter-client-language
+        required: true
+        schema:
+          default: en
+          description: language code.
+          type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: VaenaVgh5q5ih7kvyVjgtg
+          example: VaenaVgh5q5ih7kvyVjgtg
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: VaenaVgh5q5ih7kvyVjgtg
+                  example: VaenaVgh5q5ih7kvyVjgtg
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
+  /graphql/{pathQueryId}/FavoriteTweet:
     post:
       description: favorite Tweet
       operationId: postFavoriteTweet
@@ -673,6 +701,13 @@ paths:
         schema:
           default: en
           description: language code.
+          type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: lI07N6Otwv1PhnEgXILM7A
+          example: lI07N6Otwv1PhnEgXILM7A
           type: string
       requestBody:
         content:
@@ -736,10 +771,10 @@ paths:
                 type: string
       tags:
       - post
-  /graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet:
+  /graphql/{pathQueryId}/UnfavoriteTweet:
     post:
-      description: create Retweet
-      operationId: postCreateRetweet
+      description: unfavorite Tweet
+      operationId: postUnfavoriteTweet
       parameters:
       - in: header
         name: user-agent
@@ -770,14 +805,21 @@ paths:
           default: en
           description: language code.
           type: string
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: ZYKSe-w7KEslx3JhSIk5LA
+          example: ZYKSe-w7KEslx3JhSIk5LA
+          type: string
       requestBody:
         content:
           application/json:
             schema:
               properties:
                 queryId:
-                  default: ojPdsZsimiJrUGLR1sjUtA
-                  example: ojPdsZsimiJrUGLR1sjUtA
+                  default: ZYKSe-w7KEslx3JhSIk5LA
+                  example: ZYKSe-w7KEslx3JhSIk5LA
                   type: string
                 variables:
                   properties:
@@ -803,7 +845,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateRetweetResponse'
+                $ref: '#/components/schemas/UnfavoriteTweetResponseData'
           description: Successful operation
           headers:
             x-connection-hash:
