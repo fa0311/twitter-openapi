@@ -4,12 +4,10 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{queryId}/ProfileSpotlightsQuery:
+  /graphql/{pathQueryId}/ProfileSpotlightsQuery:
     get:
       operationId: getProfileSpotlightsQuery
       description: "get user by screen name"
-      parameters:
-        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation

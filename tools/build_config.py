@@ -10,10 +10,11 @@ class Config:
             "docs": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "schemas": [],
-                "other":[],
+                "other": [],
                 "request": {
                     key: [
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnContent(
                             split=-1, contentType="application/json"
                         ),
@@ -23,6 +24,7 @@ class Config:
                 | {
                     key: [
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnParameters(
                             split=-1,
                             schemaType=None,
@@ -56,11 +58,12 @@ class Config:
             "dart": {
                 "openapi": [],
                 "schemas": [],
-                "other":[],
+                "other": [],
                 "request": {
                     key: [
                         AddSecuritySchemesOnHeader(split=-1),
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnParameters(
                             split=-1,
                             schemaType="string",
@@ -72,6 +75,7 @@ class Config:
                     key: [
                         AddSecuritySchemesOnHeader(split=-1),
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnBody(
                             split=-1,
                             schemaType=None,
@@ -108,10 +112,11 @@ class Config:
             "typescript": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "schemas": [],
-                "other":[],
+                "other": [],
                 "request": {
                     key: [
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnParameters(
                             split=-1,
                             schemaType="string",
@@ -122,6 +127,7 @@ class Config:
                 | {
                     key: [
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnBody(
                             split=-1,
                             schemaType=None,
@@ -156,10 +162,11 @@ class Config:
             "test": {
                 "openapi": [AddSecuritySchemesOnSecuritySchemes()],
                 "schemas": [],
-                "other":[],
+                "other": [],
                 "request": {
                     key: [
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnParameters(
                             split=-1,
                             schemaType="string",
@@ -170,6 +177,7 @@ class Config:
                 | {
                     key: [
                         SetResponsesHeader(suffix=None),
+                        AddPathQueryIdOnParameters(split=-1),
                         AddParametersOnParameters(
                             split=-1,
                             schemaType="string",
