@@ -56,7 +56,8 @@ components:
         card:
           type: object
           properties:
-            rest_id: string
+            rest_id:
+              type: string
             legacy:
               type: object
               required:
@@ -64,7 +65,7 @@ components:
                 - "name"
                 - "url"
               properties:
-                name: 
+                name:
                   type: string
                 url:
                   type: string
