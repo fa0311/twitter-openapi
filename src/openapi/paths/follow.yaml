@@ -4,10 +4,12 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{{queryId}}/Following:
+  /graphql/{queryId}/Following:
     get:
       operationId: getFollowing
       description: get user list of following
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -18,10 +20,12 @@ paths:
       tags:
         - "user-list"
 
-  /graphql/{{queryId}}/Followers:
+  /graphql/{queryId}/Followers:
     get:
       operationId: getFollowers
       description: get user list of followers
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation

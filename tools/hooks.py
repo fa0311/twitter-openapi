@@ -118,14 +118,6 @@ class AddSecuritySchemesOnHeader(RequestHookBase):
         value["parameters"].extend(param)
         return path, value
 
-
-class ReplaceQueryIdPlaceholder(RequestHookBase):
-    def hook(self, path: str, value: dict):
-        path, value = super().hook(path, value)
-        new = self.PLACEHOLDER[self.path_name]["queryId"]
-        return path.replace(r"{{queryId}}", new), value
-
-
 class SetResponsesHeader(RequestHookBase):
     suffix: str
 

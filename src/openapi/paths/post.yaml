@@ -4,10 +4,12 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{{queryId}}/FavoriteTweet:
+  /graphql/{queryId}/FavoriteTweet:
     post:
       operationId: postFavoriteTweet
       description: favorite Tweet
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -18,10 +20,12 @@ paths:
       tags:
         - "post"
 
-  /graphql/{{queryId}}/UnfavoriteTweet:
+  /graphql/{queryId}/UnfavoriteTweet:
     post:
       operationId: postUnfavoriteTweet
       description: unfavorite Tweet
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -32,10 +36,12 @@ paths:
       tags:
         - "post"
 
-  /graphql/{{queryId}}/CreateRetweet:
+  /graphql/{queryId}/CreateRetweet:
     post:
       operationId: postCreateRetweet
       description: create Retweet
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -46,10 +52,12 @@ paths:
       tags:
         - "post"
 
-  /graphql/{{queryId}}/DeleteRetweet:
+  /graphql/{queryId}/DeleteRetweet:
     post:
       operationId: postDeleteRetweet
       description: delete Retweet
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -60,10 +68,12 @@ paths:
       tags:
         - "post"
 
-  /graphql/{{queryId}}/CreateTweet:
+  /graphql/{queryId}/CreateTweet:
     post:
       operationId: postCreateTweet
       description: create Tweet
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -74,10 +84,12 @@ paths:
       tags:
         - "post"
 
-  /graphql/{{queryId}}/DeleteTweet:
+  /graphql/{queryId}/DeleteTweet:
     post:
       operationId: postDeleteTweet
       description: delete Retweet
+      parameters:
+        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
