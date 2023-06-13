@@ -1,11 +1,15 @@
 openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
 paths: {}
 
 components:
   parameters:
     queryId:
-        name: queryId
-        in: path
-        required: true
-        schema:
-          type: string
+      name: queryId
+      in: path
+      required: true
+      schema:
+        type: string

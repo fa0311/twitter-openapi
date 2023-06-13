@@ -4,12 +4,10 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{queryId}/Bookmarks:
+  /graphql/{pathQueryId}/Bookmarks:
     get:
       operationId: getBookmarks
       description: get bookmarks
-      parameters:
-        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation

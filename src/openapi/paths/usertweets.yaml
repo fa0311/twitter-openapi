@@ -4,12 +4,10 @@ info:
   version: 0.0.1
 
 paths:
-  /graphql/{queryId}/UserTweets:
+  /graphql/{pathQueryId}/UserTweets:
     get:
       operationId: getUserTweets
       description: "get user tweets"
-      parameters:
-        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -20,12 +18,10 @@ paths:
       tags:
         - "tweet"
 
-  /graphql/{queryId}/UserTweetsAndReplies:
+  /graphql/{pathQueryId}/UserTweetsAndReplies:
     get:
       operationId: getUserTweetsAndReplies
       description: "get user replies tweets"
-      parameters:
-        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -36,12 +32,10 @@ paths:
       tags:
         - "tweet"
 
-  /graphql/{queryId}/UserMedia:
+  /graphql/{pathQueryId}/UserMedia:
     get:
       operationId: getUserMedia
       description: "get user media tweets"
-      parameters:
-        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation
@@ -52,12 +46,10 @@ paths:
       tags:
         - "tweet"
 
-  /graphql/{queryId}/Likes:
+  /graphql/{pathQueryId}/Likes:
     get:
       operationId: getLikes
       description: "get user likes tweets"
-      parameters:
-        - $ref: "../resources/parameters.yaml#/components/parameters/queryId"
       responses:
         "200":
           description: Successful operation

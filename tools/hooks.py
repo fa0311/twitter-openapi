@@ -58,15 +58,17 @@ class HookBase:
 
 
 class OpenapiHookBase(HookBase):
-    def hook(self, value: dict)->dict:
+    def hook(self, value: dict) -> dict:
         return value
 
+
 class OtherHookBase(HookBase):
-    def hook(self)->tuple[str, dict]:
-        return  "", {}
+    def hook(self) -> tuple[str, dict]:
+        return "", {}
+
 
 class SchemasHookBase(HookBase):
-    def hook(self, value: dict)->dict:
+    def hook(self, value: dict) -> dict:
         return value
 
 
@@ -78,7 +80,7 @@ class RequestHookBase(HookBase):
         super().__init__()
         self.split = split
 
-    def hook(self, path: str, value: dict)->tuple[str, dict]:
+    def hook(self, path: str, value: dict) -> tuple[str, dict]:
         value["parameters"] = value.get("parameters", [])
         self.path_name = "/".join(path.split("/")[self.split :])
         return path, value
@@ -118,6 +120,14 @@ class AddSecuritySchemesOnHeader(RequestHookBase):
         value["parameters"].extend(param)
         return path, value
 
+
+class ReplaceQueryIdPlaceholder(RequestHookBase):
+    def hook(self, path: str, value: dict):
+        path, value = super().hook(path, value)
+        new = self.PLACEHOLDER[self.path_name]["queryId"]
+        return path.replace(r"{pathQueryId}", new), value
+
+
 class SetResponsesHeader(RequestHookBase):
     suffix: str
 
@@ -129,6 +139,28 @@ class SetResponsesHeader(RequestHookBase):
         path, value = super().hook(path, value)
         component = self.load_component("response_header" + self.suffix)
         value["responses"]["200"]["headers"] = component["components"]["headers"]
+        return path, value
+
+
+class AddPathQueryIdOnParameters(RequestHookBase):
+    def __init__(self, split: str = 1):
+        super().__init__(split=split)
+
+    def hook(self, path: str, value: dict):
+        path, value = super().hook(path, value)
+        data = self.PLACEHOLDER[self.path_name]
+        value["parameters"].append(
+            {
+                "in": "path",
+                "name": "pathQueryId",
+                "required": True,
+                "schema": {
+                    "type": "string",
+                    "default": data["queryId"],
+                    "example": data["queryId"],
+                },
+            }
+        )
         return path, value
 
 
