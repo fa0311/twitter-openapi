@@ -200,6 +200,14 @@ components:
         id_str:
           type: string
           pattern: "^[0-9]+$"
+        self_thread:
+          type: object
+          required:
+            - "id_str"
+          properties:
+            id_str:
+              type: string
+              pattern: "^[0-9]+$"
         extended_entities:
           $ref: "#/components/schemas/ExtendedEntities"
 
