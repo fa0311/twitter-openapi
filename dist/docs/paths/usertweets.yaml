@@ -46,46 +46,6 @@ paths:
           type: string
       - content:
           application/json:
-            required:
-            - '5'
-            - f
-            - m
-            - E
-            - k
-            - R
-            - T
-            - '-'
-            - '1'
-            - A
-            - d
-            - H
-            - q
-            - E
-            - s
-            - b
-            - V
-            - g
-            - e
-            - h
-            - M
-            - g
-            schema:
-              default: 5fmEkRT-1AdHqEsbVgehMg
-              example: 5fmEkRT-1AdHqEsbVgehMg
-              type: string
-        in: query
-        name: queryId
-        required: true
-      - content:
-          application/json:
-            required:
-            - userId
-            - count
-            - includePromotedContent
-            - withClientEventToken
-            - withBirdwatchNotes
-            - withVoice
-            - withV2Timeline
             schema:
               properties:
                 count:
@@ -130,26 +90,6 @@ paths:
         required: true
       - content:
           application/json:
-            required:
-            - blue_business_profile_image_shape_enabled
-            - responsive_web_graphql_exclude_directive_enabled
-            - verified_phone_label_enabled
-            - responsive_web_graphql_timeline_navigation_enabled
-            - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-            - tweetypie_unmention_optimization_enabled
-            - vibe_api_enabled
-            - responsive_web_edit_tweet_api_enabled
-            - graphql_is_translatable_rweb_tweet_is_translatable_enabled
-            - view_counts_everywhere_api_enabled
-            - longform_notetweets_consumption_enabled
-            - tweet_awards_web_tipping_enabled
-            - freedom_of_speech_not_reach_fetch_enabled
-            - standardized_nudges_misinfo
-            - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
-            - interactive_text_enabled
-            - responsive_web_text_conversations_enabled
-            - longform_notetweets_rich_text_read_enabled
-            - responsive_web_enhance_cards_enabled
             schema:
               properties:
                 blue_business_profile_image_shape_enabled:
@@ -300,46 +240,6 @@ paths:
           type: string
       - content:
           application/json:
-            required:
-            - Y
-            - q
-            - i
-            - E
-            - '3'
-            - J
-            - L
-            - '1'
-            - K
-            - N
-            - g
-            - f
-            - '9'
-            - n
-            - S
-            - l
-            - j
-            - Y
-            - d
-            - x
-            - a
-            - A
-            schema:
-              default: YqiE3JL1KNgf9nSljYdxaA
-              example: YqiE3JL1KNgf9nSljYdxaA
-              type: string
-        in: query
-        name: queryId
-        required: true
-      - content:
-          application/json:
-            required:
-            - userId
-            - count
-            - includePromotedContent
-            - withClientEventToken
-            - withBirdwatchNotes
-            - withVoice
-            - withV2Timeline
             schema:
               properties:
                 count:
@@ -384,26 +284,6 @@ paths:
         required: true
       - content:
           application/json:
-            required:
-            - blue_business_profile_image_shape_enabled
-            - responsive_web_graphql_exclude_directive_enabled
-            - verified_phone_label_enabled
-            - responsive_web_graphql_timeline_navigation_enabled
-            - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-            - tweetypie_unmention_optimization_enabled
-            - vibe_api_enabled
-            - responsive_web_edit_tweet_api_enabled
-            - graphql_is_translatable_rweb_tweet_is_translatable_enabled
-            - view_counts_everywhere_api_enabled
-            - longform_notetweets_consumption_enabled
-            - tweet_awards_web_tipping_enabled
-            - freedom_of_speech_not_reach_fetch_enabled
-            - standardized_nudges_misinfo
-            - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
-            - interactive_text_enabled
-            - responsive_web_text_conversations_enabled
-            - longform_notetweets_rich_text_read_enabled
-            - responsive_web_enhance_cards_enabled
             schema:
               properties:
                 blue_business_profile_image_shape_enabled:
@@ -554,45 +434,6 @@ paths:
           type: string
       - content:
           application/json:
-            required:
-            - H
-            - u
-            - T
-            - x
-            - '7'
-            - '4'
-            - B
-            - x
-            - A
-            - n
-            - e
-            - z
-            - K
-            - '1'
-            - g
-            - W
-            - v
-            - Y
-            - Y
-            - '7'
-            - z
-            - g
-            schema:
-              default: HuTx74BxAnezK1gWvYY7zg
-              example: HuTx74BxAnezK1gWvYY7zg
-              type: string
-        in: query
-        name: queryId
-        required: true
-      - content:
-          application/json:
-            required:
-            - userId
-            - count
-            - includePromotedContent
-            - withQuickPromoteEligibilityTweetFields
-            - withVoice
-            - withV2Timeline
             schema:
               properties:
                 count:
@@ -632,26 +473,6 @@ paths:
         required: true
       - content:
           application/json:
-            required:
-            - blue_business_profile_image_shape_enabled
-            - responsive_web_graphql_exclude_directive_enabled
-            - verified_phone_label_enabled
-            - responsive_web_graphql_timeline_navigation_enabled
-            - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-            - tweetypie_unmention_optimization_enabled
-            - vibe_api_enabled
-            - responsive_web_edit_tweet_api_enabled
-            - graphql_is_translatable_rweb_tweet_is_translatable_enabled
-            - view_counts_everywhere_api_enabled
-            - longform_notetweets_consumption_enabled
-            - tweet_awards_web_tipping_enabled
-            - freedom_of_speech_not_reach_fetch_enabled
-            - standardized_nudges_misinfo
-            - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
-            - interactive_text_enabled
-            - responsive_web_text_conversations_enabled
-            - longform_notetweets_rich_text_read_enabled
-            - responsive_web_enhance_cards_enabled
             schema:
               properties:
                 blue_business_profile_image_shape_enabled:
@@ -802,45 +623,6 @@ paths:
           type: string
       - content:
           application/json:
-            required:
-            - R
-            - I
-            - W
-            - c
-            - '5'
-            - '5'
-            - Y
-            - C
-            - N
-            - y
-            - U
-            - J
-            - '-'
-            - U
-            - '3'
-            - H
-            - H
-            - G
-            - Y
-            - k
-            - d
-            - g
-            schema:
-              default: RIWc55YCNyUJ-U3HHGYkdg
-              example: RIWc55YCNyUJ-U3HHGYkdg
-              type: string
-        in: query
-        name: queryId
-        required: true
-      - content:
-          application/json:
-            required:
-            - userId
-            - count
-            - includePromotedContent
-            - withCommunity
-            - withVoice
-            - withV2Timeline
             schema:
               properties:
                 count:
@@ -880,26 +662,6 @@ paths:
         required: true
       - content:
           application/json:
-            required:
-            - blue_business_profile_image_shape_enabled
-            - responsive_web_graphql_exclude_directive_enabled
-            - verified_phone_label_enabled
-            - responsive_web_graphql_timeline_navigation_enabled
-            - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-            - tweetypie_unmention_optimization_enabled
-            - vibe_api_enabled
-            - responsive_web_edit_tweet_api_enabled
-            - graphql_is_translatable_rweb_tweet_is_translatable_enabled
-            - view_counts_everywhere_api_enabled
-            - longform_notetweets_consumption_enabled
-            - tweet_awards_web_tipping_enabled
-            - freedom_of_speech_not_reach_fetch_enabled
-            - standardized_nudges_misinfo
-            - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
-            - interactive_text_enabled
-            - responsive_web_text_conversations_enabled
-            - longform_notetweets_rich_text_read_enabled
-            - responsive_web_enhance_cards_enabled
             schema:
               properties:
                 blue_business_profile_image_shape_enabled:

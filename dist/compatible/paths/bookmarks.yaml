@@ -36,13 +36,6 @@ paths:
           example: tmd4ifV8RHltzn8ymGg1aw
           type: string
       - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"tmd4ifV8RHltzn8ymGg1aw"'
-          example: '"tmd4ifV8RHltzn8ymGg1aw"'
-          type: string
-      - in: query
         name: variables
         required: true
         schema:

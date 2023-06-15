@@ -60,13 +60,6 @@ paths:
           example: zhX91JE87mWvfprhYE97xA
           type: string
       - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"zhX91JE87mWvfprhYE97xA"'
-          example: '"zhX91JE87mWvfprhYE97xA"'
-          type: string
-      - in: query
         name: variables
         required: true
         schema:
@@ -149,13 +142,6 @@ paths:
           example: HCosKfLNW1AcOo3la3mMgg
           type: string
       - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"HCosKfLNW1AcOo3la3mMgg"'
-          example: '"HCosKfLNW1AcOo3la3mMgg"'
-          type: string
-      - in: query
         name: variables
         required: true
         schema:
@@ -236,13 +222,6 @@ paths:
         schema:
           default: 2TemLyqrMpTeAmysdbnVqw
           example: 2TemLyqrMpTeAmysdbnVqw
-          type: string
-      - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"2TemLyqrMpTeAmysdbnVqw"'
-          example: '"2TemLyqrMpTeAmysdbnVqw"'
           type: string
       - in: query
         name: variables

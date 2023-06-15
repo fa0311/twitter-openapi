@@ -30,13 +30,6 @@ paths:
           example: sLVLhk0bGj3MVFEKTdax1w
           type: string
       - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"sLVLhk0bGj3MVFEKTdax1w"'
-          example: '"sLVLhk0bGj3MVFEKTdax1w"'
-          type: string
-      - in: query
         name: variables
         required: true
         schema:

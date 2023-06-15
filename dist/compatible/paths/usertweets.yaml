@@ -37,48 +37,12 @@ paths:
       description: get user likes tweets
       operationId: getLikes
       parameters:
-      - in: header
-        name: user-agent
-        required: true
-        schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      - in: header
-        name: authorization
-        required: true
-        schema:
-          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-          description: It is a constant value and does not need to be changed.
-          type: string
-      - in: header
-        name: x-twitter-active-user
-        required: true
-        schema:
-          default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-client-language
-        required: true
-        schema:
-          default: en
-          description: language code.
-          type: string
       - in: path
         name: pathQueryId
         required: true
         schema:
           default: 5fmEkRT-1AdHqEsbVgehMg
           example: 5fmEkRT-1AdHqEsbVgehMg
-          type: string
-      - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"5fmEkRT-1AdHqEsbVgehMg"'
-          example: '"5fmEkRT-1AdHqEsbVgehMg"'
           type: string
       - in: query
         name: variables
@@ -157,48 +121,12 @@ paths:
       description: get user media tweets
       operationId: getUserMedia
       parameters:
-      - in: header
-        name: user-agent
-        required: true
-        schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      - in: header
-        name: authorization
-        required: true
-        schema:
-          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-          description: It is a constant value and does not need to be changed.
-          type: string
-      - in: header
-        name: x-twitter-active-user
-        required: true
-        schema:
-          default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-client-language
-        required: true
-        schema:
-          default: en
-          description: language code.
-          type: string
       - in: path
         name: pathQueryId
         required: true
         schema:
           default: YqiE3JL1KNgf9nSljYdxaA
           example: YqiE3JL1KNgf9nSljYdxaA
-          type: string
-      - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"YqiE3JL1KNgf9nSljYdxaA"'
-          example: '"YqiE3JL1KNgf9nSljYdxaA"'
           type: string
       - in: query
         name: variables
@@ -277,48 +205,12 @@ paths:
       description: get user tweets
       operationId: getUserTweets
       parameters:
-      - in: header
-        name: user-agent
-        required: true
-        schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      - in: header
-        name: authorization
-        required: true
-        schema:
-          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-          description: It is a constant value and does not need to be changed.
-          type: string
-      - in: header
-        name: x-twitter-active-user
-        required: true
-        schema:
-          default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-client-language
-        required: true
-        schema:
-          default: en
-          description: language code.
-          type: string
       - in: path
         name: pathQueryId
         required: true
         schema:
           default: HuTx74BxAnezK1gWvYY7zg
           example: HuTx74BxAnezK1gWvYY7zg
-          type: string
-      - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"HuTx74BxAnezK1gWvYY7zg"'
-          example: '"HuTx74BxAnezK1gWvYY7zg"'
           type: string
       - in: query
         name: variables
@@ -397,48 +289,12 @@ paths:
       description: get user replies tweets
       operationId: getUserTweetsAndReplies
       parameters:
-      - in: header
-        name: user-agent
-        required: true
-        schema:
-          default: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
-            like Gecko) Chrome/112.0.0.0 Safari/537.36
-          description: UserAgent, some APIs may be rejected if changed.
-          type: string
-      - in: header
-        name: authorization
-        required: true
-        schema:
-          default: Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
-          description: It is a constant value and does not need to be changed.
-          type: string
-      - in: header
-        name: x-twitter-active-user
-        required: true
-        schema:
-          default: 'yes'
-          description: Unknown what this value means.
-          type: string
-      - in: header
-        name: x-twitter-client-language
-        required: true
-        schema:
-          default: en
-          description: language code.
-          type: string
       - in: path
         name: pathQueryId
         required: true
         schema:
           default: RIWc55YCNyUJ-U3HHGYkdg
           example: RIWc55YCNyUJ-U3HHGYkdg
-          type: string
-      - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"RIWc55YCNyUJ-U3HHGYkdg"'
-          example: '"RIWc55YCNyUJ-U3HHGYkdg"'
           type: string
       - in: query
         name: variables

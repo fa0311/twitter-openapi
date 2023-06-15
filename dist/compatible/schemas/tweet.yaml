@@ -234,6 +234,14 @@ components:
           type: boolean
         retweeted_status_result:
           $ref: ./content.yaml#/components/schemas/ItemResult
+        self_thread:
+          properties:
+            id_str:
+              pattern: ^[0-9]+$
+              type: string
+          required:
+          - id_str
+          type: object
         user_id_str:
           pattern: ^[0-9]+$
           type: string

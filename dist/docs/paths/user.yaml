@@ -31,41 +31,6 @@ paths:
           type: string
       - content:
           application/json:
-            required:
-            - s
-            - L
-            - V
-            - L
-            - h
-            - k
-            - '0'
-            - b
-            - G
-            - j
-            - '3'
-            - M
-            - V
-            - F
-            - E
-            - K
-            - T
-            - d
-            - a
-            - x
-            - '1'
-            - w
-            schema:
-              default: sLVLhk0bGj3MVFEKTdax1w
-              example: sLVLhk0bGj3MVFEKTdax1w
-              type: string
-        in: query
-        name: queryId
-        required: true
-      - content:
-          application/json:
-            required:
-            - screen_name
-            - withSafetyModeUserFields
             schema:
               properties:
                 screen_name:
@@ -85,12 +50,6 @@ paths:
         required: true
       - content:
           application/json:
-            required:
-            - blue_business_profile_image_shape_enabled
-            - responsive_web_graphql_exclude_directive_enabled
-            - verified_phone_label_enabled
-            - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-            - responsive_web_graphql_timeline_navigation_enabled
             schema:
               properties:
                 blue_business_profile_image_shape_enabled:

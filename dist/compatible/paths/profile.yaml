@@ -76,13 +76,6 @@ paths:
           example: 9zwVLJ48lmVUk8u_Gh9DmA
           type: string
       - in: query
-        name: queryId
-        required: true
-        schema:
-          default: '"9zwVLJ48lmVUk8u_Gh9DmA"'
-          example: '"9zwVLJ48lmVUk8u_Gh9DmA"'
-          type: string
-      - in: query
         name: variables
         required: true
         schema:
