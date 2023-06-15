@@ -169,24 +169,33 @@ class AddPathQueryIdOnParameters(RequestHookBase):
 
 class AddParametersOnParameters(RequestHookBase):
     schemaType: str | None
+    ignoreKeys: list[str]
 
-    def __init__(self, split: str = 1, schemaType: str | None = None):
+    def __init__(
+        self,
+        split: str = 1,
+        schemaType: str | None = None,
+        ignoreKeys: list[str] | None = None,
+    ):
         super().__init__(split=split)
         self.schemaType = schemaType
+        self.ignoreKeys = ignoreKeys or []
 
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
         data = self.PLACEHOLDER[self.path_name]
+        data = {key: data[key] for key in data.keys() if key not in self.ignoreKeys}
+
         for key in data.keys():
             if self.schemaType == "string":
-                example = json.dumps(data[key])
+                example = data[key] if type(data[key]) is str else json.dumps(data[key])
                 schema = {
                     "type": "string",
                     "default": example,
                     "example": example,
                 }
             elif self.schemaType == "object":
-                example = json.dumps(data[key])
+                example = data[key] if type(data[key]) is str else json.dumps(data[key])
                 schema = {
                     "type": "object",
                     "default": example,
@@ -211,30 +220,34 @@ class AddParametersOnParameters(RequestHookBase):
 class AddParametersOnBody(RequestHookBase):
     schemaType: str | None
     contentType: str | None
+    ignoreKeys: list[str]
 
     def __init__(
         self,
         split: str = 1,
         contentType: str = "application/json",
         schemaType: str | None = None,
+        ignoreKeys: list[str] | None = None,
     ):
         super().__init__(split)
         self.schemaType = schemaType
         self.contentType = contentType
+        self.ignoreKeys = ignoreKeys or []
 
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
         data = self.PLACEHOLDER[self.path_name]
+        data = {key: data[key] for key in data.keys() if key not in self.ignoreKeys}
 
         if self.schemaType == "string":
-            example = json.dumps(data)
+            example = data if type(data) is str else json.dumps(data)
             schema = {
                 "type": "string",
                 "default": example,
                 "example": example,
             }
         elif self.schemaType == "object":
-            example = json.dumps(data)
+            example = data if type(data) is str else json.dumps(data)
             schema = {
                 "type": "object",
                 "default": example,
@@ -264,14 +277,23 @@ class AddParametersOnBody(RequestHookBase):
 
 class AddParametersOnContent(RequestHookBase):
     contentType: str
+    ignoreKeys: list[str]
 
-    def __init__(self, split: str = 1, contentType: str = "application/json"):
+    def __init__(
+        self,
+        split: str = 1,
+        contentType: str = "application/json",
+        ignoreKeys: list[str] | None = None,
+    ):
         super().__init__(split=split)
         self.contentType = contentType
+        self.ignoreKeys = ignoreKeys or []
 
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
         data = self.PLACEHOLDER[self.path_name]
+        data = {key: data[key] for key in data.keys() if key not in self.ignoreKeys}
+
         for key in data.keys():
             value["parameters"].append(
                 {
@@ -281,7 +303,6 @@ class AddParametersOnContent(RequestHookBase):
                     "content": {
                         self.contentType: {
                             "schema": self.placeholder_to_yaml(data[key]),
-                            "required": [i for i in data[key]],
                         }
                     },
                 }
