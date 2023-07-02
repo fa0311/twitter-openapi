@@ -94,6 +94,8 @@ components:
       - __typename
       - cursorType
       - value
+      - entryType
+      - itemType
     TimelineTimelineItem:
       properties:
         __typename:

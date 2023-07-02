@@ -34,6 +34,8 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
         # todo
+      required:
+        - "__typename"
 
     Tweet:
       required:
@@ -44,6 +46,7 @@ components:
         - "is_translatable"
         - "legacy"
         - "views"
+        - "__typename"
 
       properties:
         __typename:

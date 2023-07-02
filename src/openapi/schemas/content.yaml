@@ -73,6 +73,8 @@ components:
         - "__typename"
         - "cursorType"
         - "value"
+        - "entryType"
+        - "itemType"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor

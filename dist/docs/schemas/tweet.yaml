@@ -186,6 +186,7 @@ components:
       - is_translatable
       - legacy
       - views
+      - __typename
     TweetLegacy:
       properties:
         bookmark_count:
@@ -267,6 +268,8 @@ components:
       properties:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
+      required:
+      - __typename
     TweetUnion:
       discriminator:
         mapping":
