@@ -18,6 +18,35 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/Favoriters:
+    get:
+      operationId: getTweetFavoriters
+      description: get tweet favoriters
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TweetFavoritersResponse"
+      tags:
+        - "tweet"
+
+
+  /graphql/{pathQueryId}/Retweeters:
+    get:
+      operationId: getTweetRetweeters
+      description: get tweet retweeters
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TweetRetweetersResponse"
+      tags:
+        - "tweet"
+
 components:
   schemas:
     TweetDetailResponse:
@@ -33,3 +62,31 @@ components:
       properties:
         threaded_conversation_with_injections_v2:
           $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
+
+    TweetFavoritersResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/TweetFavoritersResponseData"
+
+    TweetFavoritersResponseData:
+      required:
+        - "favoriters_timeline"
+      properties:
+        favoriters_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineV2"
+
+    TweetRetweetersResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/TweetRetweetersResponseData"
+
+    TweetRetweetersResponseData:
+      required:
+        - "retweeters_timeline"
+      properties:
+        retweeters_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineV2"
