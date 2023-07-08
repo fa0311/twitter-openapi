@@ -3,22 +3,31 @@ components:
     InstructionType:
       enum:
       - TimelineAddEntries
+      - TimelineAddToModule
       - TimelineClearCache
       - TimelinePinEntry
+      - TimelineReplaceEntry
+      - TimelineShowAlert
       - TimelineTerminateTimeline
       type: string
     InstructionUnion:
       discriminator:
         mapping":
           TimelineAddEntries: '#/components/schemas/TimelineAddEntries'
+          TimelineAddToModule: '#/components/schemas/TimelineAddToModule'
           TimelineClearCache: '#/components/schemas/TimelineClearCache'
           TimelinePinEntry: '#/components/schemas/TimelinePinEntry'
+          TimelineReplaceEntry: '#/components/schemas/TimelineReplaceEntry'
+          TimelineShowAlert: '#/components/schemas/TimelineShowAlert'
           TimelineTerminateTimeline: '#/components/schemas/TimelineTerminateTimeline'
         propertyName: type
       oneOf:
       - $ref: '#/components/schemas/TimelineAddEntries'
+      - $ref: '#/components/schemas/TimelineAddToModule'
       - $ref: '#/components/schemas/TimelineClearCache'
       - $ref: '#/components/schemas/TimelinePinEntry'
+      - $ref: '#/components/schemas/TimelineReplaceEntry'
+      - $ref: '#/components/schemas/TimelineShowAlert'
       - $ref: '#/components/schemas/TimelineTerminateTimeline'
     TimelineAddEntries:
       properties:
@@ -46,6 +55,23 @@ components:
       - content
       - entryId
       - sortIndex
+    TimelineAddToModule:
+      properties:
+        moduleEntryId:
+          type: string
+        moduleItems:
+          items:
+            $ref: ./content.yaml#/components/schemas/ModuleItem
+          type: array
+        prepend:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/InstructionType'
+          type: string
+      required:
+      - type
+      - moduleItems
+      - moduleEntryId
     TimelineClearCache:
       properties:
         type:
@@ -63,6 +89,56 @@ components:
       required:
       - type
       - entry
+    TimelineReplaceEntry:
+      properties:
+        entry:
+          $ref: '#/components/schemas/TimelineAddEntry'
+          type: object
+        entry_id_to_replace:
+          type: string
+        type:
+          $ref: '#/components/schemas/InstructionType'
+          type: string
+      required:
+      - type
+      - entry_id_to_replace
+      - entry
+    TimelineShowAlert:
+      properties:
+        alertType:
+          enum:
+          - NewTweets
+          type: string
+        colorConfig:
+          type: object
+        displayDurationMs:
+          type: integer
+        displayLocation:
+          enum:
+          - Top
+          type: string
+        iconDisplayInfo:
+          type: object
+        richText:
+          properties:
+            entities:
+              type: array
+            text:
+              type: string
+          type: object
+        triggerDelayMs:
+          type: integer
+        type:
+          $ref: '#/components/schemas/InstructionType'
+          type: string
+        usersResults:
+          items:
+            $ref: ./user.yaml#/components/schemas/UserResults
+          type: array
+      required:
+      - type
+      - usersResults
+      - richText
     TimelineTerminateTimeline:
       properties:
         direction:
