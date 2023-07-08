@@ -93,7 +93,6 @@ components:
       properties:
         entry:
           $ref: '#/components/schemas/TimelineAddEntry'
-          type: object
         entry_id_to_replace:
           type: string
         type:
@@ -122,6 +121,8 @@ components:
         richText:
           properties:
             entities:
+              items:
+                type: object
               type: array
             text:
               type: string
