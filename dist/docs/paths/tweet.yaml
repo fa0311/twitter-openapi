@@ -12,11 +12,393 @@ components:
           $ref: ./../schemas/timeline.yaml#/components/schemas/Timeline
       required:
       - threaded_conversation_with_injections_v2
+    TweetFavoritersResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TweetFavoritersResponseData'
+      required:
+      - data
+    TweetFavoritersResponseData:
+      properties:
+        favoriters_timeline:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/TimelineV2
+      required:
+      - favoriters_timeline
+    TweetRetweetersResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TweetRetweetersResponseData'
+      required:
+      - data
+    TweetRetweetersResponseData:
+      properties:
+        retweeters_timeline:
+          $ref: ./../schemas/timeline.yaml#/components/schemas/TimelineV2
+      required:
+      - retweeters_timeline
 info:
   title: Twitter OpenAPI
   version: 0.0.1
 openapi: 3.0.3
 paths:
+  /graphql/{pathQueryId}/Favoriters:
+    get:
+      description: get tweet favoriters
+      operationId: getTweetFavoriters
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: rUyh8HWk8IXv_fvVKj3QjA
+          example: rUyh8HWk8IXv_fvVKj3QjA
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                includePromotedContent:
+                  default: true
+                  example: true
+                  type: boolean
+                tweetId:
+                  default: '1349129669258448897'
+                  example: '1349129669258448897'
+                  type: string
+              required:
+              - tweetId
+              - count
+              - includePromotedContent
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_media_download_video_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                rweb_lists_timeline_redesign_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                tweetypie_unmention_optimization_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - rweb_lists_timeline_redesign_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - creator_subscriptions_tweet_preview_api_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - tweetypie_unmention_optimization_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_media_download_video_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetFavoritersResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
+  /graphql/{pathQueryId}/Retweeters:
+    get:
+      description: get tweet retweeters
+      operationId: getTweetRetweeters
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: Gnw_Swm60cS-biSLn2OWNw
+          example: Gnw_Swm60cS-biSLn2OWNw
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                includePromotedContent:
+                  default: true
+                  example: true
+                  type: boolean
+                tweetId:
+                  default: '1349129669258448897'
+                  example: '1349129669258448897'
+                  type: string
+              required:
+              - tweetId
+              - count
+              - includePromotedContent
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_media_download_video_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                rweb_lists_timeline_redesign_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                tweetypie_unmention_optimization_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - rweb_lists_timeline_redesign_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - creator_subscriptions_tweet_preview_api_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - tweetypie_unmention_optimization_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_media_download_video_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetRetweetersResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
   /graphql/{pathQueryId}/TweetDetail:
     get:
       description: get TweetDetail
