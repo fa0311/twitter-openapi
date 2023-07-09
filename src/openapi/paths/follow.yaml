@@ -32,6 +32,20 @@ paths:
       tags:
         - "user-list"
 
+  /graphql/{pathQueryId}/FollowersYouKnow:
+    get:
+      operationId: getFollowersYouKnow
+      description: "get followers you know"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowResponse"
+      tags:
+        - "user-list"
+
 components:
   schemas:
     FollowResponse:

@@ -42,7 +42,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListTweetsTimelineResponse"
+                $ref: "#/components/schemas/ListLatestTweetsTimelineResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/SearchTimeline:
+    get:
+      operationId: getSearchTimeline
+      description: search tweet list. product:[Top, Latest, People, Photos, Videos]
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchTimelineResponse"
       tags:
         - "tweet"
 
@@ -69,7 +83,7 @@ components:
         home_timeline_urt:
           $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
 
-    ListTweetsTimelineResponse:
+    ListLatestTweetsTimelineResponse:
       required:
         - "data"
       properties:
@@ -91,6 +105,34 @@ components:
           $ref: "#/components/schemas/ListTweetsTimeline"
 
     ListTweetsTimeline:
+      required:
+        - "timeline"
+      properties:
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
+
+    SearchTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/SearchTimelineData"
+
+    SearchTimelineData:
+      required:
+        - "search_by_raw_query"
+      properties:
+        search_by_raw_query:
+          $ref: "#/components/schemas/SearchByRawQuery"
+
+    SearchByRawQuery:
+      required:
+        - "search_timeline"
+      properties:
+        search_timeline:
+          $ref: "#/components/schemas/SearchTimeline"
+
+    SearchTimeline:
       required:
         - "timeline"
       properties:
