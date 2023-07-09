@@ -30,8 +30,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/TweetFavoritersResponse"
       tags:
-        - "tweet"
-
+        - "user-list"
 
   /graphql/{pathQueryId}/Retweeters:
     get:
@@ -45,7 +44,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/TweetRetweetersResponse"
       tags:
-        - "tweet"
+        - "user-list"
 
 components:
   schemas:

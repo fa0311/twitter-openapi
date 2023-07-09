@@ -124,7 +124,7 @@ paths:
               schema:
                 type: string
       tags:
-      - tweet
+      - user-list
   /graphql/{pathQueryId}/Retweeters:
     get:
       description: get tweet retweeters
@@ -208,7 +208,7 @@ paths:
               schema:
                 type: string
       tags:
-      - tweet
+      - user-list
   /graphql/{pathQueryId}/TweetDetail:
     get:
       description: get TweetDetail
