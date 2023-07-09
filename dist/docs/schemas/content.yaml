@@ -11,6 +11,8 @@ components:
       - TimelineTweet
       - TimelineTimelineCursor
       - TimelineUser
+      - TimelinePrompt
+      - TimelineMessagePrompt
       type: string
     ContentUnion:
       discriminator:
@@ -26,6 +28,8 @@ components:
     ItemContentUnion:
       discriminator:
         mapping":
+          TimelineMessagePrompt: '#/components/schemas/TimelineMessagePrompt'
+          TimelinePrompt: '#/components/schemas/TimelinePrompt'
           TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
           TimelineTweet: '#/components/schemas/TimelineTweet'
           TimelineUser: '#/components/schemas/TimelineUser'
@@ -34,6 +38,8 @@ components:
       - $ref: '#/components/schemas/TimelineTweet'
       - $ref: '#/components/schemas/TimelineTimelineCursor'
       - $ref: '#/components/schemas/TimelineUser'
+      - $ref: '#/components/schemas/TimelinePrompt'
+      - $ref: '#/components/schemas/TimelineMessagePrompt'
     ItemResult:
       properties:
         __typename:
@@ -70,6 +76,14 @@ components:
         type:
           type: string
       type: object
+    TimelineMessagePrompt:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+    TimelinePrompt:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
     TimelineTimelineCursor:
       properties:
         __typename:

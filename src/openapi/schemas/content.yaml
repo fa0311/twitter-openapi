@@ -118,16 +118,28 @@ components:
         - $ref: "#/components/schemas/TimelineTweet"
         - $ref: "#/components/schemas/TimelineTimelineCursor"
         - $ref: "#/components/schemas/TimelineUser"
+        - $ref: "#/components/schemas/TimelinePrompt"
+        - $ref: "#/components/schemas/TimelineMessagePrompt"
+
       discriminator:
         propertyName: itemType
         mapping": # deprecated
           TimelineTweet: "#/components/schemas/TimelineTweet"
           TimelineTimelineCursor: "#/components/schemas/TimelineTimelineCursor"
           TimelineUser: "#/components/schemas/TimelineUser"
+          TimelinePrompt: "#/components/schemas/TimelinePrompt"
+          TimelineMessagePrompt: "#/components/schemas/TimelineMessagePrompt"
 
     ContentItemType:
       type: string
-      enum: [TimelineTweet, TimelineTimelineCursor, TimelineUser]
+      enum:
+        [
+          TimelineTweet,
+          TimelineTimelineCursor,
+          TimelineUser,
+          TimelinePrompt,
+          TimelineMessagePrompt,
+        ]
 
     TimelineTweet:
       required:
@@ -188,3 +200,13 @@ components:
           type: string
         type:
           type: string # enum
+
+    TimelinePrompt: # todo
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelinePrompt
+
+    TimelineMessagePrompt: # todo
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineMessagePrompt
