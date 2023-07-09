@@ -84,6 +84,8 @@ paths:
     $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1Favoriters
   /graphql/{pathQueryId}/Followers:
     $ref: ./paths/follow.yaml#/paths/~1graphql~1{pathQueryId}~1Followers
+  /graphql/{pathQueryId}/FollowersYouKnow:
+    $ref: ./paths/follow.yaml#/paths/~1graphql~1{pathQueryId}~1FollowersYouKnow
   /graphql/{pathQueryId}/Following:
     $ref: ./paths/follow.yaml#/paths/~1graphql~1{pathQueryId}~1Following
   /graphql/{pathQueryId}/HomeLatestTimeline:
@@ -98,6 +100,8 @@ paths:
     $ref: ./paths/profile.yaml#/paths/~1graphql~1{pathQueryId}~1ProfileSpotlightsQuery
   /graphql/{pathQueryId}/Retweeters:
     $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1Retweeters
+  /graphql/{pathQueryId}/SearchTimeline:
+    $ref: ./paths/timeline.yaml#/paths/~1graphql~1{pathQueryId}~1SearchTimeline
   /graphql/{pathQueryId}/TweetDetail:
     $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1TweetDetail
   /graphql/{pathQueryId}/UnfavoriteTweet:

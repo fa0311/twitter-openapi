@@ -212,6 +212,199 @@ paths:
                 type: string
       tags:
       - user-list
+  /graphql/{pathQueryId}/FollowersYouKnow:
+    get:
+      description: get followers you know
+      operationId: getFollowersYouKnow
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: W9Iz6TVLymzCWjG2uOFKZg
+          example: W9Iz6TVLymzCWjG2uOFKZg
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                includePromotedContent:
+                  default: false
+                  example: false
+                  type: boolean
+                userId:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+              required:
+              - userId
+              - count
+              - includePromotedContent
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_media_download_video_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                rweb_lists_timeline_redesign_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                tweetypie_unmention_optimization_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - rweb_lists_timeline_redesign_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - creator_subscriptions_tweet_preview_api_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - tweetypie_unmention_optimization_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_media_download_video_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                withArticleRichContentState:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - withArticleRichContentState
+              type: object
+        in: query
+        name: fieldToggles
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user-list
   /graphql/{pathQueryId}/Following:
     get:
       description: get user list of following
