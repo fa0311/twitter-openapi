@@ -20,8 +20,7 @@ Note that the license also inherits to the output.
 
 ## Contribute
 
-- `src` *.yaml files should be written according to the [v3.0/schema.json](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json)
-- `dist` Do not rewrite this file as it is an automatically generated OpenAPI file.
+[CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ### build
 
