@@ -106,6 +106,8 @@ paths:
     $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1TweetDetail
   /graphql/{pathQueryId}/UnfavoriteTweet:
     $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1UnfavoriteTweet
+  /graphql/{pathQueryId}/UserByRestId:
+    $ref: ./paths/user.yaml#/paths/~1graphql~1{pathQueryId}~1UserByRestId
   /graphql/{pathQueryId}/UserByScreenName:
     $ref: ./paths/user.yaml#/paths/~1graphql~1{pathQueryId}~1UserByScreenName
   /graphql/{pathQueryId}/UserMedia:
@@ -114,6 +116,8 @@ paths:
     $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserTweets
   /graphql/{pathQueryId}/UserTweetsAndReplies:
     $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserTweetsAndReplies
+  /graphql/{pathQueryId}/UsersByRestIds:
+    $ref: ./paths/user.yaml#/paths/~1graphql~1{pathQueryId}~1UsersByRestIds
   /other:
     $ref: ./paths/other.yaml#/paths/~1other
 security:

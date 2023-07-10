@@ -12,11 +12,134 @@ components:
           $ref: ./../schemas/user.yaml#/components/schemas/UserResults
       required:
       - user
+    UsersResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/UsersResponseData'
+      required:
+      - data
+    UsersResponseData:
+      properties:
+        users:
+          items:
+            $ref: ./../schemas/user.yaml#/components/schemas/UserResults
+          type: array
+      required:
+      - users
 info:
   title: Twitter OpenAPI
   version: 0.0.1
 openapi: 3.0.3
 paths:
+  /graphql/{pathQueryId}/UserByRestId:
+    get:
+      description: get user by rest id
+      operationId: getUserByRestId
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: Lxg1V9AiIzzXEiP2c8dRnw
+          example: Lxg1V9AiIzzXEiP2c8dRnw
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                userId:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+                withSafetyModeUserFields:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - userId
+              - withSafetyModeUserFields
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                hidden_profile_likes_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                highlights_tweets_tab_ui_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - hidden_profile_likes_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - highlights_tweets_tab_ui_enabled
+              - creator_subscriptions_tweet_preview_api_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user
   /graphql/{pathQueryId}/UserByScreenName:
     get:
       description: get user by screen name
@@ -88,6 +211,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user
+  /graphql/{pathQueryId}/UsersByRestIds:
+    get:
+      description: get users by rest ids
+      operationId: getUsersByRestIds
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: GD4q8bBE2i6cqWw2iT74Gg
+          example: GD4q8bBE2i6cqWw2iT74Gg
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                userIds:
+                  items:
+                    default: '44196397'
+                    example: '44196397'
+                    type: string
+                  type: array
+              required:
+              - userIds
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
           description: Successful operation
           headers:
             x-connection-hash:
