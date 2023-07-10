@@ -102,6 +102,34 @@
       "responsive_web_graphql_timeline_navigation_enabled": true
     }
   },
+  "UserByRestId": {
+    "queryId": "Lxg1V9AiIzzXEiP2c8dRnw",
+    "variables": {
+      "userId": "44196397",
+      "withSafetyModeUserFields": true
+    },
+    "features": {
+      "hidden_profile_likes_enabled": false,
+      "responsive_web_graphql_exclude_directive_enabled": true,
+      "verified_phone_label_enabled": false,
+      "highlights_tweets_tab_ui_enabled": true,
+      "creator_subscriptions_tweet_preview_api_enabled": true,
+      "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+      "responsive_web_graphql_timeline_navigation_enabled":true
+    }
+  },
+  "UsersByRestIds": {
+    "queryId": "GD4q8bBE2i6cqWw2iT74Gg",
+    "variables": {
+      "userIds": ["44196397"]
+    },
+    "features": {
+      "responsive_web_graphql_exclude_directive_enabled": true,
+      "verified_phone_label_enabled": false,
+      "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+      "responsive_web_graphql_timeline_navigation_enabled": true
+    }
+  },
   "ProfileSpotlightsQuery": {
     "queryId": "9zwVLJ48lmVUk8u_Gh9DmA",
     "variables": {

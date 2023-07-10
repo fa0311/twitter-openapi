@@ -18,6 +18,34 @@ paths:
       tags:
         - "user"
 
+  /graphql/{pathQueryId}/UserByRestId:
+    get:
+      operationId: getUserByRestId
+      description: "get user by rest id"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+      tags:
+        - "user"
+
+  /graphql/{pathQueryId}/UsersByRestIds:
+    get:
+      operationId: getUsersByRestIds
+      description: "get users by rest ids"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersResponse"
+      tags:
+        - "user"
+
 components:
   schemas:
     UserResponse:
@@ -33,3 +61,19 @@ components:
       properties:
         user:
           $ref: "./../schemas/user.yaml#/components/schemas/UserResults"
+
+    UsersResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/UsersResponseData"
+
+    UsersResponseData:
+      required:
+        - "users"
+      properties:
+        users:
+          type: array
+          items:
+            $ref: "./../schemas/user.yaml#/components/schemas/UserResults"
