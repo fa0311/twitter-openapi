@@ -32,6 +32,20 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/UserHighlightsTweets:
+    get:
+      operationId: getUserHighlightsTweets
+      description: "get user highlights tweets"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserHighlightsTweetsResponse"
+      tags:
+        - "tweet"
+
   /graphql/{pathQueryId}/UserMedia:
     get:
       operationId: getUserMedia
@@ -92,3 +106,41 @@ components:
           $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
         timeline_v2:
           $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineV2"
+
+    UserHighlightsTweetsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/UserHighlightsTweetsData"
+
+    UserHighlightsTweetsData:
+      required:
+        - "user"
+      properties:
+        user:
+          $ref: "#/components/schemas/UserHighlightsTweetsUser"
+
+    UserHighlightsTweetsUser:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/UserHighlightsTweetsResult"
+
+    UserHighlightsTweetsResult:
+      required:
+        - "timeline"
+        - "__typename"
+      properties:
+        timeline:
+          $ref: "#/components/schemas/UserHighlightsTweetsTimeline"
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+
+    UserHighlightsTweetsTimeline:
+      required:
+        - "timeline"
+      properties:
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
