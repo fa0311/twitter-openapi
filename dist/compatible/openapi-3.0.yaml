@@ -110,6 +110,8 @@ paths:
     $ref: ./paths/user.yaml#/paths/~1graphql~1{pathQueryId}~1UserByRestId
   /graphql/{pathQueryId}/UserByScreenName:
     $ref: ./paths/user.yaml#/paths/~1graphql~1{pathQueryId}~1UserByScreenName
+  /graphql/{pathQueryId}/UserHighlightsTweets:
+    $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserHighlightsTweets
   /graphql/{pathQueryId}/UserMedia:
     $ref: ./paths/usertweets.yaml#/paths/~1graphql~1{pathQueryId}~1UserMedia
   /graphql/{pathQueryId}/UserTweets:
