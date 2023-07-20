@@ -9,6 +9,8 @@ components:
       - TweetWithVisibilityResults
       - TimelineTimelineModule
       - TweetTombstone
+      - TimelinePrompt
+      - TimelineMessagePrompt
       - Tweet
       - User
       type: string
