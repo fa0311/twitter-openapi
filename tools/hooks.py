@@ -109,6 +109,23 @@ class RemoveDiscriminator(SchemasHookBase):
         return value
 
 
+class ReplaceLegacyDiscriminator(SchemasHookBase):
+    def hook(self, value: dict):
+        if value.get("oneOf") is not None:
+            value = {
+                "type": "object",
+                "example": ",".join(
+                    list(x["$ref"].split("/")[-1] for x in value["oneOf"])
+                ),
+                # "required": [value["discriminator"]["propertyName"]],
+                "properties": {
+                    f"oneOf_schema_{x}_validator": y
+                    for x, y in enumerate(value["oneOf"])
+                },
+            }
+        return value
+
+
 # RequestHookBase extends
 
 

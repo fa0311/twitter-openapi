@@ -46,7 +46,6 @@ components:
         content:
           $ref: ./content.yaml#/components/schemas/ContentUnion
         entryId:
-          pattern: ^[a-z\-]+[0-9]+$
           type: string
         sortIndex:
           pattern: '[0-9]+$'
