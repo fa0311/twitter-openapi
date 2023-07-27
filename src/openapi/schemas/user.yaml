@@ -43,7 +43,7 @@ components:
           default: false
         id:
           type: string
-          pattern: '^[a-z\-]+[0-9]+$'
+          # pattern: '^[a-z\-]+[0-9]+$'
         is_blue_verified:
           type: boolean
           default: false
