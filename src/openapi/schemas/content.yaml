@@ -120,7 +120,7 @@ components:
         - $ref: "#/components/schemas/TimelineMessagePrompt"
 
       discriminator:
-        propertyName: itemType
+        propertyName: __typename
         mapping": # deprecated
           TimelineTweet: "#/components/schemas/TimelineTweet"
           TimelineTimelineCursor: "#/components/schemas/TimelineTimelineCursor"
