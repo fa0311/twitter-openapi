@@ -33,7 +33,7 @@ components:
           TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
           TimelineTweet: '#/components/schemas/TimelineTweet'
           TimelineUser: '#/components/schemas/TimelineUser'
-        propertyName: itemType
+        propertyName: __typename
       oneOf:
       - $ref: '#/components/schemas/TimelineTweet'
       - $ref: '#/components/schemas/TimelineTimelineCursor'
