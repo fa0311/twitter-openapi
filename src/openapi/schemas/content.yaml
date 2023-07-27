@@ -32,7 +32,6 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineItem
         entryType:
-          type: string # enum
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineItem
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
@@ -50,9 +49,10 @@ components:
         - "clientEventInfo"
       properties:
         __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineModule
+          type: string
+          value: TimelineTimelineModule
+          # $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineModule
         entryType:
-          type: string # enum
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
         displayType:
           type: string # enum
@@ -77,10 +77,8 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor
         entryType:
-          type: string # enum
           $ref: "#/components/schemas/ContentEntryType" # null | TimelineTimelineCursor
         itemType:
-          type: string # enum
           $ref: "#/components/schemas/ContentEntryType" # null | TimelineTimelineCursor
         cursorType:
           type: string
@@ -151,7 +149,6 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTweet
         itemType:
-          type: string # enum
           $ref: "#/components/schemas/ContentItemType" # TimelineTweet
         tweetDisplayType:
           type: string
@@ -173,7 +170,6 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineUser
         itemType:
-          type: string # enum
           $ref: "#/components/schemas/ContentItemType" # TimelineUser
         SocialContext:
           $ref: "#/components/schemas/SocialContext"

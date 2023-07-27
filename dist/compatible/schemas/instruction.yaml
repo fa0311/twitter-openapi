@@ -37,7 +37,6 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
       required:
       - type
       - entries
@@ -66,7 +65,6 @@ components:
           type: boolean
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
       required:
       - type
       - moduleItems
@@ -75,7 +73,6 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
       required:
       - type
     TimelinePinEntry:
@@ -84,7 +81,6 @@ components:
           $ref: '#/components/schemas/TimelineAddEntry'
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
       required:
       - type
       - entry
@@ -96,7 +92,6 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
       required:
       - type
       - entry_id_to_replace
@@ -130,7 +125,6 @@ components:
           type: integer
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
         usersResults:
           items:
             $ref: ./user.yaml#/components/schemas/UserResults
@@ -148,7 +142,6 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/InstructionType'
-          type: string
       required:
       - type
       - direction

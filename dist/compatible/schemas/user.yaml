@@ -14,7 +14,6 @@ components:
           default: false
           type: boolean
         id:
-          pattern: ^[a-z\-]+[0-9]+$
           type: string
         is_blue_verified:
           default: false

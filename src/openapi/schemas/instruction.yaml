@@ -45,7 +45,6 @@ components:
         - entries
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelineAddEntries
         entries:
           type: array
@@ -59,7 +58,6 @@ components:
         - moduleEntryId
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelineAddToModule
         moduleItems:
           type: array
@@ -75,7 +73,6 @@ components:
         - type
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelineClearCache
 
     TimelinePinEntry:
@@ -84,7 +81,6 @@ components:
         - entry
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelinePinEntry
         entry:
           $ref: "#/components/schemas/TimelineAddEntry"
@@ -96,7 +92,6 @@ components:
         - entry
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelineReplaceEntry
         entry_id_to_replace:
           type: string
@@ -110,7 +105,6 @@ components:
         - richText
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelineShowAlert
         alertType:
           type: string
@@ -146,7 +140,6 @@ components:
         - direction
       properties:
         type:
-          type: string
           $ref: "#/components/schemas/InstructionType" # TimelineTerminateTimeline
         direction:
           type: string

@@ -98,10 +98,8 @@ components:
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
-          type: string
         itemType:
           $ref: '#/components/schemas/ContentEntryType'
-          type: string
         value:
           type: string
       required:
@@ -116,7 +114,6 @@ components:
           type: object
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
-          type: string
         feedbackInfo:
           type: object
         itemContent:
@@ -128,14 +125,14 @@ components:
     TimelineTimelineModule:
       properties:
         __typename:
-          $ref: ./typename.yaml#/components/schemas/TypeName
+          type: string
+          value: TimelineTimelineModule
         clientEventInfo:
           type: object
         displayType:
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
-          type: string
         footer:
           type: object
         header:
@@ -157,7 +154,6 @@ components:
           $ref: ./typename.yaml#/components/schemas/TypeName
         itemType:
           $ref: '#/components/schemas/ContentItemType'
-          type: string
         promotedMetadata:
           type: object
         tweetDisplayType:
@@ -177,7 +173,6 @@ components:
           $ref: ./typename.yaml#/components/schemas/TypeName
         itemType:
           $ref: '#/components/schemas/ContentItemType'
-          type: string
         userDisplayType:
           type: string
         user_results:

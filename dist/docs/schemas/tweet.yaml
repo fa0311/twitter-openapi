@@ -182,7 +182,6 @@ components:
       - rest_id
       - core
       - edit_control
-      - edit_prespective
       - is_translatable
       - legacy
       - views
