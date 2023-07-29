@@ -1,7 +1,8 @@
 import json
 import os
 import logging
-import python_generated as pt
+import base64
+import openapi_client as pt
 from pathlib import Path
 
 
@@ -12,7 +13,8 @@ if Path("cookie.json").exists():
     with open("cookie.json", "r") as f:
         cookies = json.load(f)
 else:
-    cookies = json.loads(os.environ["TWITTER_SESSION"])
+    data = base64.b64decode(os.environ["TWITTER_SESSION"]).decode("utf-8")
+    cookies = json.loads(data)
 
 cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
@@ -65,6 +67,9 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
         except Exception as e:
             logger.error(f"{key}")
             logger.error(e)
+            import traceback
+
+            logger.error(traceback.print_exc())
             error_count += 1
 
 if error_count > 0:
