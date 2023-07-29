@@ -80,7 +80,7 @@ jobs:
           pip uninstall -y -r requirements.txt
 
       # generate
-      - name: Generate Python client
+      - name: Generate
         run: |
           java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python
           java -jar openapi-generator-cli.jar generate -c test/dart-dio/openapi-generator-config.yaml -g dart-dio

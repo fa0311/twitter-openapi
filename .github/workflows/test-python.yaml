@@ -1,8 +1,6 @@
 name: test-python
 
-on:
-  pull_request_target:
-    types: [labeled]
+on: ["pull_request_target"]
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
@@ -89,7 +87,6 @@ jobs:
 
       - name: Run Python client test
         run: |
-          sleep 10
           python test/python/test_serialize.py
         env:
           TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
