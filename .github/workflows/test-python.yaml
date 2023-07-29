@@ -1,13 +1,15 @@
 name: test-python
 
 on:
-  - "pull_request_target"
-  - "push"
+  pull_request_target:
+    types: [labeled]
+
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
     name: Test
-
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    
     steps:
       - uses: actions/checkout@v3
 
