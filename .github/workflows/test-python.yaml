@@ -89,7 +89,6 @@ jobs:
 
       - name: Run Python client test
         run: |
-          sleep 10
           python test/python/test_serialize.py
         env:
           TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}

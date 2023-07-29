@@ -2,7 +2,7 @@ import json
 import os
 import logging
 import base64
-import python_generated as pt
+import openapi_client as pt
 from pathlib import Path
 
 
