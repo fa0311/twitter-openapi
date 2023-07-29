@@ -1,0 +1,2 @@
+inputSpec: dist/compatible/openapi-3.0.yaml
+outputDir: dart_dio_generated

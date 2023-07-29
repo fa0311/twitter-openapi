@@ -1,0 +1,4 @@
+inputSpec: dist/compatible/openapi-3.0.yaml
+outputDir: typescript_fetch_generated
+
+legacyDiscriminatorBehavior: false
