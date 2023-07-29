@@ -1,8 +1,4 @@
 inputSpec: dist/compatible/openapi-3.0.yaml
 outputDir: python_generated
 
-packageName: python_generated
-packageVersion: 0.0.1
-projectName: python_generated
-
 useOneOfDiscriminatorLookup: true

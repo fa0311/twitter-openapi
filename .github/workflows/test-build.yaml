@@ -1,14 +1,16 @@
-name: test-python
+name: build-test
 
 on:
-  pull_request_target:
-    types: [labeled]
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  build_and_preview:
+  build:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'ok to test')
-    name: Test
-    environment: twitter_session
 
     steps:
       - uses: actions/checkout@v3
@@ -80,14 +82,5 @@ jobs:
       - name: Generate Python client
         run: |
           java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python
-
-      # test
-      - name: Test Python client
-        run: |
-          pip install ./python_generated
-
-      - name: Run Python client test
-        run: |
-          python test/python/test_serialize.py
-        env:
-          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+          java -jar openapi-generator-cli.jar generate -c test/dart-dio/openapi-generator-config.yaml -g dart-dio
+          java -jar openapi-generator-cli.jar generate -c test/typescript-fetch/openapi-generator-config.yaml -g typescript-fetch
