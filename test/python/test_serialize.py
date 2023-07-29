@@ -14,6 +14,7 @@ if Path("cookie.json").exists():
         cookies = json.load(f)
 else:
     data = base64.b64decode(os.environ["TWITTER_SESSION"]).decode("utf-8")
+    print(data)
     cookies = json.loads(data)
 
 cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
