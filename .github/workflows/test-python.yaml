@@ -1,21 +1,14 @@
 name: test-python
 
-on:
-  # auto review
-  pull_request:
-    paths-ignore:
-      - "test/**"
-      - ".github/**"
-    branches:
-      - master
-
-env:
-  TWITTER_SESSION: ${{secrets.TWITTER_SESSION}}
-
+"on":
+  pull_request_target:
+    types: [labeled]
 jobs:
-  test:
-    name: Test
+  build_and_preview:
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'ok to test')
+    name: Test
+
     steps:
       - uses: actions/checkout@v3
 

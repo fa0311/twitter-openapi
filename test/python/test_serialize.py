@@ -1,6 +1,7 @@
 import json
 import os
 import logging
+import base64
 import python_generated as pt
 from pathlib import Path
 
@@ -12,7 +13,8 @@ if Path("cookie.json").exists():
     with open("cookie.json", "r") as f:
         cookies = json.load(f)
 else:
-    cookies = json.loads(os.environ["TWITTER_SESSION"])
+    data = base64.b64decode(os.environ["TWITTER_SESSION"]).decode("utf-8")
+    cookies = json.loads(data)
 
 cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
