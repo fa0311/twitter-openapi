@@ -13,6 +13,7 @@ if Path("cookie.json").exists():
     with open("cookie.json", "r") as f:
         cookies = json.load(f)
 else:
+    print(os.environ["TWITTER_SESSION"][0])
     data = base64.b64decode(os.environ["TWITTER_SESSION"]).decode("utf-8")
     print(data)
     cookies = json.loads(data)
