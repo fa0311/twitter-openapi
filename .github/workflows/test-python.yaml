@@ -4,7 +4,6 @@ on: ["pull_request_target"]
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'ok to test')
     name: Test
     environment: twitter_session
 
