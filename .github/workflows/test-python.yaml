@@ -1,11 +1,12 @@
 name: test-python
 
-on: ["pull_request_target"]
+on:
+  - "pull_request_target"
+  - "push"
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
     name: Test
-    environment: twitter_session
 
     steps:
       - uses: actions/checkout@v3
