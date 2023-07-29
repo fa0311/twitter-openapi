@@ -7,7 +7,7 @@ on:
       - "test/**"
       - ".github/**"
     branches:
-      - master
+      - main
 
 env:
   TWITTER_SESSION: ${{secrets.TWITTER_SESSION}}
