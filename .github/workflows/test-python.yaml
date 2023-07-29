@@ -86,13 +86,8 @@ jobs:
         run: |
           pip install ./python_generated
 
-      - name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@v1.2.2
-        with:
-          name: "cookie.json"
-          json: ${{ secrets.TWITTER_SESSION }}
-
       - name: Run Python client test
         run: |
           python test/python/test_serialize.py
+        env:
+          TWITTER_SESSION: ${{secrets.TWITTER_SESSION}}

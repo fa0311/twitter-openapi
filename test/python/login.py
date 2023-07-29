@@ -1,5 +1,7 @@
 import json
+import base64
 from tweepy_authlib import CookieSessionUserHandler
+
 
 auth_handler = CookieSessionUserHandler(
     screen_name=input("screen_name: "),
@@ -9,4 +11,5 @@ auth_handler = CookieSessionUserHandler(
 
 cookies = auth_handler.get_cookies()
 
-print(json.dumps(cookies.get_dict()))
+data = json.dumps(cookies.get_dict())
+print(base64.b64encode(data.encode("utf-8")).decode("utf-8"))

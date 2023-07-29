@@ -1,6 +1,7 @@
 import json
 import os
 import logging
+import base64
 import python_generated as pt
 from pathlib import Path
 
@@ -8,8 +9,12 @@ from pathlib import Path
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
 
-with open("cookie.json", "r") as f:
-    cookies = json.load(f)
+if Path("cookie.json").exists():
+    with open("cookie.json", "r") as f:
+        cookies = json.load(f)
+else:
+    data = base64.b64decode(os.environ["TWITTER_SESSION"]).decode("utf-8")
+    cookies = json.loads(data)
 
 cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
