@@ -8,11 +8,8 @@ from pathlib import Path
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
 
-if Path("cookie.json").exists():
-    with open("cookie.json", "r") as f:
-        cookies = json.load(f)
-else:
-    cookies = json.loads(os.environ["TWITTER_SESSION"])
+with open("cookie.json", "r") as f:
+    cookies = json.load(f)
 
 cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 

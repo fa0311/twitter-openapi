@@ -69,28 +69,30 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # generate
+      # Build
       - name: Build twitter-openapi
         run: |
           python tools/build.py
 
-      # clean up dependencies
       - name: Clean up dependencies
         run: |
           pip uninstall -y -r requirements.txt
 
-      # generate
       - name: Generate Python client
         run: |
           java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python
 
-      # test
-      - name: Test Python client
+      - name: Install Python Generated
         run: |
           pip install ./python_generated
+
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "cookie.json"
+          json: ${{ secrets.TWITTER_SESSION }}
 
       - name: Run Python client test
         run: |
           python test/python/test_serialize.py
-        env:
-          TWITTER_SESSION: ${{secrets.TWITTER_SESSION}}
