@@ -39,10 +39,10 @@ jobs:
           wget https://github.com/fa0311/openapi-generator/releases/download/twitter_openapi_python_1.2.0/openapi-generator-cli.jar -O openapi-generator-cli.jar --no-verbose --show-progress --no-clobber
 
       # Python Setup
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: "3.10"
           architecture: "x64"
 
       - name: Get Python version
