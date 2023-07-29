@@ -95,7 +95,7 @@ components:
       properties:
         entryId:
           type: string
-          pattern: '^[a-z\-]+[0-9]+$'
+          # pattern: '^[a-z\-]+[0-9]+$'
         item:
           $ref: "#/components/schemas/ModuleEntry"
 

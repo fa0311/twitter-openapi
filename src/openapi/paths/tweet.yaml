@@ -20,7 +20,7 @@ paths:
 
   /graphql/{pathQueryId}/Favoriters:
     get:
-      operationId: getTweetFavoriters
+      operationId: getFavoriters
       description: get tweet favoriters
       responses:
         "200":
@@ -34,7 +34,7 @@ paths:
 
   /graphql/{pathQueryId}/Retweeters:
     get:
-      operationId: getTweetRetweeters
+      operationId: getRetweeters
       description: get tweet retweeters
       responses:
         "200":

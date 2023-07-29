@@ -39,7 +39,7 @@ components:
       properties:
         id:
           type: string
-          pattern: "^[0-9a-zA-Z]+$"
+          # pattern: "^[0-9a-zA-Z]+$"
         result:
           $ref: "#/components/schemas/UserResultByScreenNameResult"
 

@@ -15,7 +15,6 @@ components:
     UserResultByScreenName:
       properties:
         id:
-          pattern: ^[0-9a-zA-Z]+$
           type: string
         result:
           $ref: '#/components/schemas/UserResultByScreenNameResult'

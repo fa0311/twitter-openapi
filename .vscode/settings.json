@@ -4,6 +4,6 @@
   "yaml.validate": true,
   "yaml.hover": true,
   "yaml.schemas": {
-    "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json": "twitter-openapi/**/*.yaml"
+    "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json": "src/**/*.yaml"
   }
 }

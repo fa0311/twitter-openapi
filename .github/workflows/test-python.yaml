@@ -1,0 +1,99 @@
+name: test-python
+
+on:
+  # auto review
+  pull_request:
+    paths-ignore:
+      - "test/**"
+      - ".github/**"
+    branches:
+      - master
+
+env:
+  TWITTER_SESSION: ${{secrets.TWITTER_SESSION}}
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Openapi Generator Setup
+      - name: Get OpenJDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: 11
+
+      - name: Get Java version
+        run: java -version
+
+      - name: Get Openapi Generator cache file
+        id: openapi-generator-cache
+        run: echo "file=openapi-generator-cli.jar" >> $GITHUB_OUTPUT
+
+      - name: Openapi Generator cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.openapi-generator-cache.outputs.file }}
+          key: ${{ runner.os }}-openapi-generator-${{ hashFiles('openapi-generator-cli.jar') }}
+          restore-keys: |
+            ${{ runner.os }}-openapi-generator-
+
+      - name: Get Openapi Generator
+        run: |
+          wget https://github.com/fa0311/openapi-generator/releases/download/twitter_openapi_python_1.2.0/openapi-generator-cli.jar -O openapi-generator-cli.jar --no-verbose --show-progress --no-clobber
+
+      # Python Setup
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          architecture: "x64"
+
+      - name: Get Python version
+        run: python -V
+
+      - name: Get pip cache dir
+        id: pip-cache
+        run: echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
+
+      - name: pip cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # generate
+      - name: Build twitter-openapi
+        run: |
+          python tools/build.py
+
+      # clean up dependencies
+      - name: Clean up dependencies
+        run: |
+          pip uninstall -y -r requirements.txt
+
+      # generate
+      - name: Generate Python client
+        run: |
+          java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python
+
+      # test
+      - name: Test Python client
+        run: |
+          pip install ./python_generated
+
+      - name: Run Python client test
+        run: |
+          python test/python/test_serialize.py
+        env:
+          TWITTER_SESSION: ${{secrets.TWITTER_SESSION}}

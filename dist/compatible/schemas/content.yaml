@@ -60,7 +60,6 @@ components:
     ModuleItem:
       properties:
         entryId:
-          pattern: ^[a-z\-]+[0-9]+$
           type: string
         item:
           $ref: '#/components/schemas/ModuleEntry'
