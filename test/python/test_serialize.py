@@ -67,6 +67,9 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
         except Exception as e:
             logger.error(f"{key}")
             logger.error(e)
+            import traceback
+
+            logger.error(traceback.print_exc())
             error_count += 1
 
 if error_count > 0:
