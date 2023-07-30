@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Build",
+      "type": "python",
+      "request": "launch",
+      "program": "tools/build.py",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Test OpenAPI Serialize",
+      "type": "python",
+      "request": "launch",
+      "program": "test/python/test_serialize.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "preLaunchTask": "build"
+    }
+  ]
+}
