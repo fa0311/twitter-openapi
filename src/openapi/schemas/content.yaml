@@ -52,7 +52,7 @@ components:
       properties:
         __typename:
           type: string
-          # $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineModule
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineModule
         entryType:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
         displayType:
