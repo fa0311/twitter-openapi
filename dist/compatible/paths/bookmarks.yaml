@@ -74,7 +74,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookmarksResponse'
+                oneOf:
+                - $ref: '#/components/schemas/BookmarksResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:

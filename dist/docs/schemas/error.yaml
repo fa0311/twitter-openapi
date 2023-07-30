@@ -1,0 +1,94 @@
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          type: integer
+        extensions:
+          $ref: '#/components/schemas/ErrorExtensions'
+        kind:
+          type: string
+        locations:
+          items:
+            $ref: '#/components/schemas/Location'
+          type: array
+        message:
+          type: string
+        name:
+          type: string
+        path:
+          items:
+            type: string
+          type: array
+        retry_after:
+          type: integer
+        source:
+          type: string
+        tracing:
+          $ref: '#/components/schemas/Tracing'
+      required:
+      - message
+      - locations
+      - path
+      - extensions
+      - code
+      - kind
+      - name
+      - source
+      - retry_after
+      - tracing
+      type: object
+    ErrorExtensions:
+      properties:
+        code:
+          type: integer
+        kind:
+          type: string
+        name:
+          type: string
+        retry_after:
+          type: integer
+        source:
+          type: string
+        tracing:
+          $ref: '#/components/schemas/Tracing'
+      required:
+      - name
+      - source
+      - retry_after
+      - code
+      - kind
+      - tracing
+      type: object
+    Errors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+      required:
+      - errors
+      type: object
+    Location:
+      properties:
+        column:
+          type: integer
+        line:
+          type: integer
+      required:
+      - line
+      - column
+      type: object
+    Tracing:
+      properties:
+        trace_id:
+          pattern: ^[0-9a-f]{16}$
+          type: string
+      required:
+      - trace_id
+      type: object
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+openapi: 3.0.3
+paths: {}

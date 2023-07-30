@@ -36,6 +36,7 @@ components:
       required:
       - media
     Hashtag:
+      additionalProperties: true
       type: object
     Media:
       properties:
@@ -46,6 +47,7 @@ components:
           format: uri
           type: string
         ext_media_availability:
+          additionalProperties: true
           type: object
         id_str:
           pattern: ^[0-9]+$
@@ -64,6 +66,7 @@ components:
           properties:
             focus_rects:
               items:
+                additionalProperties: true
                 type: object
               type: array
             height:
@@ -72,6 +75,7 @@ components:
               type: integer
           type: object
         sizes:
+          additionalProperties: true
           type: object
         type:
           type: string
@@ -89,6 +93,7 @@ components:
       - sizes
       - original_info
     Symbol:
+      additionalProperties: true
       type: object
     Tweet:
       properties:
@@ -169,6 +174,7 @@ components:
           pattern: ^[0-9]+$
           type: string
         unmention_data:
+          additionalProperties: true
           type: object
         views:
           properties:
@@ -263,6 +269,7 @@ components:
       - user_id_str
       - id_str
     TweetTombstone:
+      additionalProperties: true
       properties:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
@@ -307,6 +314,7 @@ components:
       - display_url
       type: object
     UserMention:
+      additionalProperties: true
       type: object
 info:
   title: Twitter OpenAPI

@@ -15,6 +15,7 @@ components:
     UserResultByScreenName:
       properties:
         id:
+          pattern: ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$
           type: string
         result:
           $ref: '#/components/schemas/UserResultByScreenNameResult'
@@ -47,6 +48,7 @@ components:
         legacy:
           $ref: '#/components/schemas/UserResultByScreenNameLegacy'
         profilemodules:
+          additionalProperties: true
           type: object
         rest_id:
           pattern: ^[0-9]+$

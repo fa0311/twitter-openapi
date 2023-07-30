@@ -51,6 +51,7 @@ components:
     ModuleEntry:
       properties:
         clientEventInfo:
+          additionalProperties: true
           type: object
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
@@ -60,6 +61,7 @@ components:
     ModuleItem:
       properties:
         entryId:
+          pattern: ^(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+
           type: string
         item:
           $ref: '#/components/schemas/ModuleEntry'
@@ -76,10 +78,12 @@ components:
           type: string
       type: object
     TimelineMessagePrompt:
+      additionalProperties: true
       properties:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
     TimelinePrompt:
+      additionalProperties: true
       properties:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
@@ -110,10 +114,12 @@ components:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
         clientEventInfo:
+          additionalProperties: true
           type: object
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         feedbackInfo:
+          additionalProperties: true
           type: object
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
@@ -124,17 +130,20 @@ components:
     TimelineTimelineModule:
       properties:
         __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
           type: string
-          value: TimelineTimelineModule
         clientEventInfo:
+          additionalProperties: true
           type: object
         displayType:
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         footer:
+          additionalProperties: true
           type: object
         header:
+          additionalProperties: true
           type: object
         items:
           items:
@@ -154,6 +163,7 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentItemType'
         promotedMetadata:
+          additionalProperties: true
           type: object
         tweetDisplayType:
           type: string
