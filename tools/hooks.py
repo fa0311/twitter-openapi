@@ -109,6 +109,15 @@ class RemoveDiscriminator(SchemasHookBase):
         return value
 
 
+class SchemasCheck(SchemasHookBase):
+    def hook(self, value: dict):
+        if value.get("allOf") is not None:
+            print(f"allOf is used")
+        if value.get("type") is None:
+            print("Type is None")
+        return value
+
+
 # RequestHookBase extends
 
 

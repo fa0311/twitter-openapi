@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Test
     if: contains(github.event.pull_request.labels.*.name, 'safe to test')
-    
+
     steps:
       - uses: actions/checkout@v3
 
@@ -92,3 +92,6 @@ jobs:
           python test/python/test_serialize.py
         env:
           TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+          ERROR_UNCATCHED: "False"
+          SLEEP_TIME: 2
+          CUESOR_TEST_COUNT: 10
