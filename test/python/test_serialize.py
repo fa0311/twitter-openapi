@@ -9,6 +9,8 @@ from pathlib import Path
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
 
+ERROR_UNCATCHED = os.environ.get("ERROR_UNCATCHED", "false").lower() == "true"
+
 if Path("cookie.json").exists():
     with open("cookie.json", "r") as f:
         cookies = json.load(f)
@@ -65,11 +67,14 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
         try:
             res = getattr(x(api_client), props)(**kwargs)
         except Exception as e:
-            logger.error(f"{key}")
-            logger.error(e)
+            if ERROR_UNCATCHED:
+                raise e
             import traceback
 
-            logger.error(traceback.print_exc())
+            logger.error("==========[STACK TRACE]==========")
+            for trace in traceback.format_exc().split("\n"):
+                logger.error(trace)
+            logger.info("================================")
             error_count += 1
 
 if error_count > 0:

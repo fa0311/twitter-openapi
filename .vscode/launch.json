@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "tools/build.py",
       "console": "integratedTerminal",
-      "justMyCode": false
+      "justMyCode": true
     },
     {
       "name": "Python: Test OpenAPI Serialize",
@@ -16,7 +16,10 @@
       "program": "test/python/test_serialize.py",
       "console": "integratedTerminal",
       "justMyCode": false,
-      "preLaunchTask": "build"
+      "preLaunchTask": "build",
+      "env": {
+        "ERROR_UNCATCHED": "True"
+      }
     }
   ]
 }
