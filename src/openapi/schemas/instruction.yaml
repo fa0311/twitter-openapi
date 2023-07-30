@@ -125,11 +125,14 @@ components:
             entities:
               type: array
               items:
-                type: object # todo
+                type: object
+                additionalProperties: true # todo
         iconDisplayInfo:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         colorConfig:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         displayLocation:
           type: string
           enum: [Top] # which else?
@@ -155,7 +158,7 @@ components:
           $ref: "./content.yaml#/components/schemas/ContentUnion"
         entryId:
           type: string
-          # pattern: '^[a-z\-]+[0-9]+$'
+          pattern: "^(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
         sortIndex:
           type: string
           pattern: "[0-9]+$"

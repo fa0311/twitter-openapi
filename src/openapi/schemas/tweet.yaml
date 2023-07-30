@@ -33,7 +33,7 @@ components:
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
-        # todo
+      additionalProperties: true # todo
 
     Tweet:
       required:
@@ -93,7 +93,8 @@ components:
                           type:
                             type: string
         unmention_data:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         edit_control:
           type: object
           properties:
@@ -241,11 +242,14 @@ components:
             $ref: "#/components/schemas/Media"
 
     Hashtag:
-      type: object # todo
+      type: object
+      additionalProperties: true # todo
     Symbol:
-      type: object # todo
+      type: object
+      additionalProperties: true # todo
     UserMention:
-      type: object # todo
+      type: object
+      additionalProperties: true # todo
     Url:
       type: object
       required:
@@ -310,7 +314,8 @@ components:
         type:
           type: string # enum
         sizes:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         original_info:
           type: object
           properties:
@@ -321,9 +326,11 @@ components:
             focus_rects:
               type: array
               items:
-                type: object # todo
+                type: object
+                additionalProperties: true # todo
         media_key:
           type: string
           pattern: "^[0-9]+_[0-9]+$"
         ext_media_availability:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo

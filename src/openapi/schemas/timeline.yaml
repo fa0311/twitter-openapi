@@ -22,6 +22,8 @@ components:
           items:
             $ref: "./../schemas/instruction.yaml#/components/schemas/InstructionUnion"
         metadata:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         responseObjects:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo

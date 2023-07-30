@@ -39,7 +39,7 @@ components:
       properties:
         id:
           type: string
-          # pattern: "^[0-9a-zA-Z]+$"
+          pattern: "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$" # base64
         result:
           $ref: "#/components/schemas/UserResultByScreenNameResult"
 
@@ -59,7 +59,8 @@ components:
         legacy:
           $ref: "#/components/schemas/UserResultByScreenNameLegacy"
         profilemodules:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         rest_id:
           type: string
           pattern: "^[0-9]+$"

@@ -36,9 +36,11 @@ components:
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
         clientEventInfo:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         feedbackInfo:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
 
     TimelineTimelineModule:
       required:
@@ -50,7 +52,6 @@ components:
       properties:
         __typename:
           type: string
-          value: TimelineTimelineModule
           # $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineModule
         entryType:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
@@ -61,12 +62,15 @@ components:
           items:
             $ref: "#/components/schemas/ModuleItem"
         footer:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         header:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
 
         clientEventInfo:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
 
     TimelineTimelineCursor:
       required:
@@ -95,7 +99,7 @@ components:
       properties:
         entryId:
           type: string
-          # pattern: '^[a-z\-]+[0-9]+$'
+          pattern: "^(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
         item:
           $ref: "#/components/schemas/ModuleEntry"
 
@@ -105,7 +109,8 @@ components:
         - "itemContent"
       properties:
         clientEventInfo:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
 
@@ -157,7 +162,8 @@ components:
         SocialContext:
           $ref: "#/components/schemas/SocialContext"
         promotedMetadata:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
 
     TimelineUser:
       required:
@@ -197,12 +203,14 @@ components:
         type:
           type: string # enum
 
-    TimelinePrompt: # todo
+    TimelinePrompt:
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelinePrompt
+      additionalProperties: true # todo
 
-    TimelineMessagePrompt: # todo
+    TimelineMessagePrompt:
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineMessagePrompt
+      additionalProperties: true # todo

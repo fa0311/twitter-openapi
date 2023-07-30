@@ -35,7 +35,8 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # User
         affiliates_highlighted_label:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         has_graduated_access:
           type: boolean
         has_nft_avatar:
@@ -43,7 +44,7 @@ components:
           default: false
         id:
           type: string
-          # pattern: '^[a-z\-]+[0-9]+$'
+          pattern: "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$" # base64
         is_blue_verified:
           type: boolean
           default: false
@@ -53,7 +54,8 @@ components:
           type: string
           pattern: "^[0-9]+$"
         business_account:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         super_follow_eligible:
           type: boolean
           default: false
@@ -126,7 +128,8 @@ components:
         description:
           type: string
         entities:
-          type: object # todo
+          type: object
+          additionalProperties: true # todo
         fast_followers_count:
           type: integer
         favourites_count:
