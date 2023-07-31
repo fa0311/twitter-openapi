@@ -103,7 +103,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProfileResponse'
+                oneOf:
+                - $ref: '#/components/schemas/ProfileResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:

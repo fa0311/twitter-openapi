@@ -14,7 +14,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TweetDetailResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/TweetDetailResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "tweet"
 
@@ -28,7 +30,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TweetFavoritersResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/TweetFavoritersResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "user-list"
 
@@ -42,7 +46,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TweetRetweetersResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/TweetRetweetersResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "user-list"
 
