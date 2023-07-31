@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Build",
+      "name": "build",
       "type": "python",
       "request": "launch",
       "program": "tools/build.py",
@@ -10,13 +10,13 @@
       "justMyCode": true
     },
     {
-      "name": "Python: Test OpenAPI Serialize",
+      "name": "test",
       "type": "python",
       "request": "launch",
       "program": "test/python/test_serialize.py",
       "console": "integratedTerminal",
       "justMyCode": false,
-      "preLaunchTask": "build",
+      "preLaunchTask": "build-task",
       "env": {
         "ERROR_UNCATCHED": "True"
       }
