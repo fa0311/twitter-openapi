@@ -11,6 +11,7 @@ import time
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
 
+TWITTER_SESSION = os.environ.get("TWITTER_SESSION", None)
 ERROR_UNCATCHED = os.environ.get("ERROR_UNCATCHED", "false").lower() == "true"
 SLEEP_TIME = float(os.environ.get("SLEEP", "0"))
 CUESOR_TEST_COUNT = int(os.environ.get("CUESOR_TEST_COUNT", "3"))
@@ -19,9 +20,12 @@ CUESOR_TEST_COUNT = int(os.environ.get("CUESOR_TEST_COUNT", "3"))
 if Path("cookie.json").exists():
     with open("cookie.json", "r") as f:
         cookies = json.load(f)
-else:
-    data = base64.b64decode(os.environ["TWITTER_SESSION"]).decode("utf-8")
+elif TWITTER_SESSION is not None:
+    data = base64.b64decode(TWITTER_SESSION).decode("utf-8")
     cookies = json.loads(data)
+else:
+    commands = ["python -m pip install tweepy_authlib", "python tools/login.py"]
+    raise Exception(f'cookie.json not found. Please run `{"; ".join(commands)}` first.')
 
 cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
@@ -35,18 +39,29 @@ def get_key(snake_str):
     return "".join(x.title() for x in components[1:])
 
 
-def get_cursor(obj):
+def get_cursor(obj, fn):
     res = []
     if type(obj) == dict:
-        if obj.get("__typename") is pt.TypeName.TIMELINETIMELINECURSOR:
-            res.append(obj["value"])
+        callback = fn(obj)
+        if callback is not None:
+            res.extend(callback)
         else:
             for v in obj.values():
-                res.extend(get_cursor(v))
+                res.extend(get_cursor(v, fn))
     elif type(obj) == list:
         for v in obj:
-            res.extend(get_cursor(v))
+            res.extend(get_cursor(v, fn))
     return res
+
+
+def find_cursor(x):
+    if x.get("__typename") is pt.TypeName.TIMELINETIMELINECURSOR:
+        return [x["value"]]
+
+
+def find_name(x):
+    if x.get("name") is not None:
+        return [x["name"]]
 
 
 def get_kwargs(key, additional):
@@ -94,9 +109,15 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
                 logger.info(f"Try: {key} {cursor}")
 
                 kwargs = get_kwargs(key, {} if cursor is None else {"cursor": cursor})
-                res: BaseModel = getattr(x(api_client), props)(**kwargs)
+                res: dict = getattr(x(api_client), props)(**kwargs).to_dict()
 
-                cursor_list.update(set(get_cursor(res.to_dict())) - cursor_history)
+                new_cursor = set(get_cursor(res, find_cursor)) - cursor_history
+                cursor_list.update(new_cursor)
+                # logger.info(f"Find cursor: {len(new_cursor)}")
+
+                if res.get("errors") is not None:
+                    logger.error(res)
+                    error_count += 1
 
                 if len(cursor_list) == 0:
                     break

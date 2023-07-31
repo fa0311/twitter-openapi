@@ -4,10 +4,8 @@
 - `dist` Do not rewrite this file as it is an automatically generated OpenAPI file.
 - `dist` Do not include this in the pull request due to potential conflicts.
 
-I'm using openapi-generator with a dart-dio build.
-It is desirable to pass these tests.
-Untested pull requests are welcome, as Dart's development population is very small.
-<https://github.com/fa0311/twitter_openapi_dart/tree/main/twitter_openapi_dart/test>
+Users using vscode can build and test with the GUI.
+[.vscode/launch.json](.vscode/launch.json) is a configuration file for vscode.
 
 ## Good first issues
 

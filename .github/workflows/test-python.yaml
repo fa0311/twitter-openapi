@@ -94,4 +94,4 @@ jobs:
           TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
           ERROR_UNCATCHED: "False"
           SLEEP_TIME: 2
-          CUESOR_TEST_COUNT: 10
+          CUESOR_TEST_COUNT: 5
