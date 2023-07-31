@@ -25,6 +25,14 @@ components:
       - $ref: '#/components/schemas/TimelineTimelineItem'
       - $ref: '#/components/schemas/TimelineTimelineModule'
       - $ref: '#/components/schemas/TimelineTimelineCursor'
+    CursorType:
+      enum:
+      - Top
+      - Bottom
+      - ShowMore
+      - ShowMoreThreads
+      - Gap
+      type: string
     ItemContentUnion:
       discriminator:
         mapping":
@@ -92,13 +100,7 @@ components:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
         cursorType:
-          enum:
-          - Top
-          - Bottom
-          - ShowMore
-          - ShowMoreThreads
-          - Gap
-          type: string
+          $ref: '#/components/schemas/CursorType'
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         itemType:
