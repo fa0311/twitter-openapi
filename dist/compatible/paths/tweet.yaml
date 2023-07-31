@@ -96,7 +96,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TweetFavoritersResponse'
+                oneOf:
+                - $ref: '#/components/schemas/TweetFavoritersResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -180,7 +182,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TweetRetweetersResponse'
+                oneOf:
+                - $ref: '#/components/schemas/TweetRetweetersResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -266,7 +270,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TweetDetailResponse'
+                oneOf:
+                - $ref: '#/components/schemas/TweetDetailResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:

@@ -111,7 +111,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -210,7 +212,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -301,7 +305,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UsersResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UsersResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
