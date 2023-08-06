@@ -3,6 +3,7 @@ name: test-python
 on:
   pull_request_target:
     types: [labeled]
+  workflow_dispatch:
 
 jobs:
   build_and_preview:
@@ -12,6 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          path: refs/remotes/pull/${{ github.event.pull_request.number }}/merge
 
       # Openapi Generator Setup
       - name: Get OpenJDK 11
