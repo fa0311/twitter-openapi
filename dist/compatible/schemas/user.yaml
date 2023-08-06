@@ -199,9 +199,27 @@ components:
     UserResults:
       properties:
         result:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/UserUnion'
       required:
       - result
+    UserUnavailable:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        reason:
+          type: string
+      required:
+      - __typename
+      - reason
+    UserUnion:
+      discriminator:
+        mapping":
+          User: '#/components/schemas/User'
+          UserUnavailable: '#/components/schemas/UserUnavailable'
+        propertyName: __typename
+      oneOf:
+      - $ref: '#/components/schemas/User'
+      - $ref: '#/components/schemas/UserUnavailable'
 info:
   title: Twitter OpenAPI
   version: 0.0.1
