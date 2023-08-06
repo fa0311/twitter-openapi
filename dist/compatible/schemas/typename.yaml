@@ -13,6 +13,7 @@ components:
       - TimelineMessagePrompt
       - Tweet
       - User
+      - UserUnavailable
       type: string
 info:
   title: Twitter OpenAPI
