@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          path: refs/remotes/pull/${{ github.event.pull_request.number }}/merge
+          ref: "${{ github.event.pull_request.merge_commit_sha }}"
 
       # Openapi Generator Setup
       - name: Get OpenJDK 11
