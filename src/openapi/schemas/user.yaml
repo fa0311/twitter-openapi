@@ -17,7 +17,17 @@ components:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/User"
+          $ref: "#/components/schemas/UserUnion"
+
+    UserUnion:
+      oneOf:
+        - $ref: "#/components/schemas/User"
+        - $ref: "#/components/schemas/UserUnavailable"
+      discriminator:
+        propertyName: __typename
+        mapping": # deprecated
+          User: "#/components/schemas/User"
+          UserUnavailable: "#/components/schemas/UserUnavailable"
 
     User:
       required:
@@ -211,3 +221,13 @@ components:
         want_retweets:
           type: boolean
           default: false
+
+    UserUnavailable:
+      required:
+        - "__typename"
+        - "reason"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # UserUnavailable
+        reason:
+          type: string

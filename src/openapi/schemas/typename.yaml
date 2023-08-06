@@ -20,4 +20,5 @@ components:
           TimelineMessagePrompt,
           Tweet,
           User,
+          UserUnavailable,
         ]
