@@ -14,7 +14,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/OtherResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/OtherResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "other"
 

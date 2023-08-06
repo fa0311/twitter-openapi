@@ -23,6 +23,10 @@ components:
       enum:
         [TimelineTimelineItem, TimelineTimelineCursor, TimelineTimelineModule]
 
+    CursorType:
+      type: string
+      enum: [Top, Bottom, ShowMore, ShowMoreThreads, Gap] # Gap???
+
     TimelineTimelineItem:
       required:
         - "__typename"
@@ -85,8 +89,7 @@ components:
         itemType:
           $ref: "#/components/schemas/ContentEntryType" # null | TimelineTimelineCursor
         cursorType:
-          type: string
-          enum: [Top, Bottom, ShowMore, ShowMoreThreads, Gap] # Gap???
+          $ref: "#/components/schemas/CursorType"
         value:
           type: string
 

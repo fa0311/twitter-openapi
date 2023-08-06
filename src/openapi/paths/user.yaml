@@ -14,7 +14,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/UserResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "user"
 
@@ -28,7 +30,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/UserResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "user"
 
@@ -42,7 +46,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UsersResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/UsersResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
         - "user"
 

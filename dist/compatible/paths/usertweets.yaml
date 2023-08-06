@@ -120,7 +120,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserTweetsResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserTweetsResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -213,7 +215,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserHighlightsTweetsResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserHighlightsTweetsResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -297,7 +301,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserTweetsResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserTweetsResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -381,7 +387,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserTweetsResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserTweetsResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -463,7 +471,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserTweetsResponse'
+                oneOf:
+                - $ref: '#/components/schemas/UserTweetsResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:

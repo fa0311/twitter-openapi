@@ -177,7 +177,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateRetweetResponse'
+                oneOf:
+                - $ref: '#/components/schemas/CreateRetweetResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -369,7 +371,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateTweetResponse'
+                oneOf:
+                - $ref: '#/components/schemas/CreateTweetResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -439,7 +443,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteRetweetResponse'
+                oneOf:
+                - $ref: '#/components/schemas/DeleteRetweetResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -509,7 +515,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteTweetResponse'
+                oneOf:
+                - $ref: '#/components/schemas/DeleteTweetResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -579,7 +587,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FavoriteTweetResponseData'
+                oneOf:
+                - $ref: '#/components/schemas/FavoriteTweetResponseData'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -649,7 +659,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnfavoriteTweetResponseData'
+                oneOf:
+                - $ref: '#/components/schemas/UnfavoriteTweetResponseData'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:

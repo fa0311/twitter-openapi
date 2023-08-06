@@ -221,7 +221,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TimelineResponse'
+                oneOf:
+                - $ref: '#/components/schemas/TimelineResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -405,7 +407,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TimelineResponse'
+                oneOf:
+                - $ref: '#/components/schemas/TimelineResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -574,7 +578,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListLatestTweetsTimelineResponse'
+                oneOf:
+                - $ref: '#/components/schemas/ListLatestTweetsTimelineResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
@@ -772,7 +778,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchTimelineResponse'
+                oneOf:
+                - $ref: '#/components/schemas/SearchTimelineResponse'
+                - $ref: ./../schemas/error.yaml#/components/schemas/Errors
           description: Successful operation
           headers:
             x-connection-hash:
