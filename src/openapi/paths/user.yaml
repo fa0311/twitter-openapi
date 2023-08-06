@@ -50,7 +50,7 @@ paths:
                   - $ref: "#/components/schemas/UsersResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
-        - "user"
+        - "users"
 
 components:
   schemas:

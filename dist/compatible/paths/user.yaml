@@ -230,4 +230,4 @@ paths:
               schema:
                 type: string
       tags:
-      - user
+      - users

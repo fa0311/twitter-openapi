@@ -56,11 +56,13 @@ security:
   - AuthType: []
 tags:
   - name: user
-    description: response User
+    description: Responses containing User objects.
+  - name: users
+    description: Responses containing List[User] objects.
   - name: user-list
-    description: response User list
+    description: Responses containing instruction objects.
   - name: tweet
-    description: response tweet
+    description: Responses containing instruction objects.
   - name: post
     description: post
   - name: v1.1-get
