@@ -3,7 +3,6 @@ import os
 import logging
 import base64
 import openapi_client as pt
-from pydantic import BaseModel
 from pathlib import Path
 import time
 
@@ -91,7 +90,7 @@ api_client.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 
 error_count = 0
 
-for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
+for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
     for props, fn in x.__dict__.items():
         if not callable(fn):
             continue
