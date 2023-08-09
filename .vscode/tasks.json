@@ -30,14 +30,14 @@
         "command": [
           "python3 -m venv .venv;",
           ".venv/bin/python3 -m pip install -r requirements.txt;",
-          "wget https://github.com/fa0311/openapi-generator/releases/download/twitter_openapi_python_1.2.0/openapi-generator-cli.jar -O openapi-generator-cli.jar;"
+          "wget https://github.com/fa0311/openapi-generator/releases/download/twitter_openapi_python_1.3.0/openapi-generator-cli.jar -O openapi-generator-cli.jar;"
         ]
       },
       "windows": {
         "command": [
           "python -m venv .venv;",
           ".venv/Scripts/python -m pip install -r requirements.txt;",
-          "Invoke-WebRequest https://github.com/fa0311/openapi-generator/releases/download/twitter_openapi_python_1.2.0/openapi-generator-cli.jar -OutFile openapi-generator-cli.jar;"
+          "Invoke-WebRequest https://github.com/fa0311/openapi-generator/releases/download/twitter_openapi_python_1.3.0/openapi-generator-cli.jar -OutFile openapi-generator-cli.jar;"
         ]
       }
     }
