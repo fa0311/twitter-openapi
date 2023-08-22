@@ -104,6 +104,8 @@ paths:
     $ref: ./paths/timeline.yaml#/paths/~1graphql~1{pathQueryId}~1SearchTimeline
   /graphql/{pathQueryId}/TweetDetail:
     $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1TweetDetail
+  /graphql/{pathQueryId}/TweetResultByRestId:
+    $ref: ./paths/tweet.yaml#/paths/~1graphql~1{pathQueryId}~1TweetResultByRestId
   /graphql/{pathQueryId}/UnfavoriteTweet:
     $ref: ./paths/post.yaml#/paths/~1graphql~1{pathQueryId}~1UnfavoriteTweet
   /graphql/{pathQueryId}/UserByRestId:
