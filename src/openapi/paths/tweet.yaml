@@ -20,6 +20,22 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/TweetResultByRestId:
+    get:
+      operationId: getTweetResultByRestId
+      description: get TweetResultByRestId
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/TweetResultByRestIdResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+      # tags:
+      #   - "tweet"
+
   /graphql/{pathQueryId}/Favoriters:
     get:
       operationId: getFavoriters
@@ -67,6 +83,20 @@ components:
       properties:
         threaded_conversation_with_injections_v2:
           $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
+
+    TweetResultByRestIdResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/TweetResultByRestIdData"
+
+    TweetResultByRestIdData:
+      required:
+        - "tweetResult"
+      properties:
+        tweetResult:
+          $ref: "./../schemas/content.yaml#/components/schemas/ItemResult"
 
     TweetFavoritersResponse:
       required:
