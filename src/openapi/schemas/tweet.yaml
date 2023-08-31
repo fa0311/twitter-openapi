@@ -218,7 +218,6 @@ components:
         - "symbols"
         - "user_mentions"
         - "urls"
-        # - "media"
       properties:
         hashtags:
           type: array
@@ -271,27 +270,25 @@ components:
           items:
             type: integer
 
-    ExtendedEntities:
-      required:
-        - "media"
-      properties:
-        media:
-          type: array
-          items:
-            $ref: "#/components/schemas/Media"
-
     Media:
       required:
+        - "display_url"
+        - "expanded_url"
         - "id_str"
         - "indices"
         - "media_url_https"
-        - "url"
-        - "display_url"
-        - "expanded_url"
         - "type"
+        - "url"
+        - "features"
         - "sizes"
         - "original_info"
       properties:
+        display_url:
+          type: string
+          format: uri
+        expanded_url:
+          type: string
+          format: uri
         id_str:
           type: string
           pattern: "^[0-9]+$"
@@ -302,20 +299,13 @@ components:
         media_url_https:
           type: string
           format: uri
+        type:
+          type: string # enum photo
         url:
           type: string
           format: uri
-        display_url:
-          type: string
-          format: uri
-        expanded_url:
-          type: string
-          format: uri
-        type:
-          type: string # enum
         sizes:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/MediaSizes"
         original_info:
           type: object
           properties:
@@ -328,9 +318,158 @@ components:
               items:
                 type: object
                 additionalProperties: true # todo
+
+    ExtendedEntities:
+      required:
+        - "media"
+      properties:
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaExtended"
+
+    MediaExtended:
+      required:
+        - "display_url"
+        - "expanded_url"
+        - "id_str"
+        - "indices"
+        - "media_key"
+        - "media_url_https"
+        - "type"
+        - "url"
+        - "ext_media_availability"
+        - "features"
+        - "sizes"
+        - "original_info"
+      properties:
+        display_url:
+          type: string
+          format: uri
+        expanded_url:
+          type: string
+          format: uri
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        indices:
+          type: array
+          items:
+            type: integer
         media_key:
           type: string
-          pattern: "^[0-9]+_[0-9]+$"
+        media_url_https:
+          type: string
+          format: uri
+        type:
+          type: string # enum # photo | video
+        url:
+          type: string
+          format: uri
+        additional_media_info:
+          type: object
+          additionalProperties: true # todo
+        mediaStats:
+          type: object
+          additionalProperties: true # todo
         ext_media_availability:
           type: object
           additionalProperties: true # todo
+        features:
+          type: object
+        sizes:
+          $ref: "#/components/schemas/MediaSizes"
+        original_info:
+          $ref: "#/components/schemas/MediaOriginalInfo"
+        video_info:
+          $ref: "#/components/schemas/MediaVideoInfo"
+
+    MediaOriginalInfo:
+      required:
+        - "height"
+        - "width"
+      properties:
+        height:
+          type: integer
+        width:
+          type: integer
+        focus_rects:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaOriginalInfoFocusRect"
+
+    MediaOriginalInfoFocusRect:
+      type: object
+      required:
+        - "x"
+        - "y"
+        - "w"
+        - "h"
+      properties:
+        x:
+          type: integer
+        y:
+          type: integer
+        w:
+          type: integer
+        h:
+          type: integer
+
+    MediaVideoInfo:
+      required:
+        - "aspect_ratio"
+        - "variants"
+      properties:
+        aspect_ratio:
+          type: array
+          items:
+            type: integer
+        duration_millis:
+          type: integer
+        variants:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaVideoInfoVariant"
+
+    MediaVideoInfoVariant:
+      required:
+        - "content_type"
+        - "url"
+      properties:
+        bitrate:
+          type: integer
+        content_type:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    MediaSizes:
+      required:
+        - "large"
+        - "medium"
+        - "small"
+        - "thumb"
+      properties:
+        large:
+          $ref: "#/components/schemas/MediaSize"
+        medium:
+          $ref: "#/components/schemas/MediaSize"
+        small:
+          $ref: "#/components/schemas/MediaSize"
+        thumb:
+          $ref: "#/components/schemas/MediaSize"
+
+    MediaSize:
+      required:
+        - "w"
+        - "h"
+        - "resize"
+      properties:
+        w:
+          type: integer
+        h:
+          type: integer
+        resize:
+          type: string # enum fit
+
