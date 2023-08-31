@@ -31,7 +31,7 @@ components:
       properties:
         media:
           items:
-            $ref: '#/components/schemas/Media'
+            $ref: '#/components/schemas/MediaExtended'
           type: array
       required:
       - media
@@ -46,9 +46,6 @@ components:
         expanded_url:
           format: uri
           type: string
-        ext_media_availability:
-          additionalProperties: true
-          type: object
         id_str:
           pattern: ^[0-9]+$
           type: string
@@ -56,9 +53,6 @@ components:
           items:
             type: integer
           type: array
-        media_key:
-          pattern: ^[0-9]+_[0-9]+$
-          type: string
         media_url_https:
           format: uri
           type: string
@@ -75,6 +69,59 @@ components:
               type: integer
           type: object
         sizes:
+          $ref: '#/components/schemas/MediaSizes'
+        type:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - display_url
+      - expanded_url
+      - id_str
+      - indices
+      - media_url_https
+      - type
+      - url
+      - features
+      - sizes
+      - original_info
+    MediaExtended:
+      properties:
+        additional_media_info:
+          additionalProperties: true
+          type: object
+        display_url:
+          format: uri
+          type: string
+        expanded_url:
+          format: uri
+          type: string
+        ext_media_availability:
+          additionalProperties: true
+          type: object
+        features:
+          type: object
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        indices:
+          items:
+            type: integer
+          type: array
+        mediaStats:
+          additionalProperties: true
+          type: object
+        media_key:
+          type: string
+        media_url_https:
+          format: uri
+          type: string
+        original_info:
+          $ref: '#/components/schemas/MediaOriginalInfo'
+        sizes:
+          $ref: '#/components/schemas/MediaSizes'
+        status:
           additionalProperties: true
           type: object
         type:
@@ -82,16 +129,104 @@ components:
         url:
           format: uri
           type: string
+        video_info:
+          $ref: '#/components/schemas/MediaVideoInfo'
       required:
-      - id_str
-      - indices
-      - media_url_https
-      - url
       - display_url
       - expanded_url
+      - id_str
+      - indices
+      - media_key
+      - media_url_https
       - type
+      - url
+      - ext_media_availability
+      - features
       - sizes
       - original_info
+    MediaOriginalInfo:
+      properties:
+        focus_rects:
+          items:
+            $ref: '#/components/schemas/MediaOriginalInfoFocusRect'
+          type: array
+        height:
+          type: integer
+        width:
+          type: integer
+      required:
+      - height
+      - width
+    MediaOriginalInfoFocusRect:
+      properties:
+        h:
+          type: integer
+        w:
+          type: integer
+        x:
+          type: integer
+        y:
+          type: integer
+      required:
+      - x
+      - y
+      - w
+      - h
+      type: object
+    MediaSize:
+      properties:
+        h:
+          type: integer
+        resize:
+          type: string
+        w:
+          type: integer
+      required:
+      - w
+      - h
+      - resize
+    MediaSizes:
+      properties:
+        large:
+          $ref: '#/components/schemas/MediaSize'
+        medium:
+          $ref: '#/components/schemas/MediaSize'
+        small:
+          $ref: '#/components/schemas/MediaSize'
+        thumb:
+          $ref: '#/components/schemas/MediaSize'
+      required:
+      - large
+      - medium
+      - small
+      - thumb
+    MediaVideoInfo:
+      properties:
+        aspect_ratio:
+          items:
+            type: integer
+          type: array
+        duration_millis:
+          type: integer
+        variants:
+          items:
+            $ref: '#/components/schemas/MediaVideoInfoVariant'
+          type: array
+      required:
+      - aspect_ratio
+      - variants
+    MediaVideoInfoVariant:
+      properties:
+        bitrate:
+          type: integer
+        content_type:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - content_type
+      - url
     Symbol:
       additionalProperties: true
       type: object
