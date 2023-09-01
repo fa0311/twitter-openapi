@@ -47,6 +47,8 @@ components:
         superFollowersCount:
           type: integer
         superFollowsApplicationStatus:
+          enum:
+          - NotStarted
           type: string
         userFeatures:
           $ref: '#/components/schemas/UserFeatures'

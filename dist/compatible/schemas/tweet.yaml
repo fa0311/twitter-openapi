@@ -69,6 +69,8 @@ components:
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         type:
+          enum:
+          - photo
           type: string
         url:
           format: uri
@@ -117,6 +119,10 @@ components:
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         type:
+          enum:
+          - photo
+          - video
+          - animated_gif
           type: string
         url:
           format: uri
@@ -170,6 +176,9 @@ components:
         h:
           type: integer
         resize:
+          enum:
+          - crop
+          - fit
           type: string
         w:
           type: integer
@@ -418,6 +427,8 @@ components:
           pattern: ^[0-9]+$
           type: string
         state:
+          enum:
+          - EnabledWithCount
           type: string
       required:
       - state
@@ -456,6 +467,8 @@ components:
     extMediaAvailability:
       properties:
         status:
+          enum:
+          - Available
           type: string
       required:
       - status

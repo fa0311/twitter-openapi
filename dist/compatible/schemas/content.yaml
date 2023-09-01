@@ -138,6 +138,9 @@ components:
           additionalProperties: true
           type: object
         displayType:
+          enum:
+          - Vertical
+          - VerticalConversation
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
@@ -185,6 +188,9 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentItemType'
         userDisplayType:
+          enum:
+          - User
+          - UserDetailed
           type: string
         user_results:
           $ref: ./user.yaml#/components/schemas/UserResults
