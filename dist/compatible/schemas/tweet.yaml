@@ -219,6 +219,13 @@ components:
       required:
       - content_type
       - url
+    SelfThread:
+      properties:
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - id_str
     Symbol:
       additionalProperties: true
       type: object
@@ -227,69 +234,13 @@ components:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
         card:
-          properties:
-            legacy:
-              properties:
-                binding_values:
-                  items:
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        properties:
-                          boolean_value:
-                            type: boolean
-                          scribe_key:
-                            type: string
-                          string_value:
-                            type: string
-                          type:
-                            type: string
-                        required:
-                        - type
-                        type: object
-                    required:
-                    - key
-                    - value
-                    type: object
-                  type: array
-                name:
-                  type: string
-                url:
-                  type: string
-              required:
-              - binding_values
-              - name
-              - url
-              type: object
-            rest_id:
-              type: string
-          type: object
+          $ref: '#/components/schemas/TweetCard'
         core:
           $ref: ./user.yaml#/components/schemas/UserResultCore
         edit_control:
-          properties:
-            edit_tweet_ids:
-              items:
-                pattern: ^[0-9]+$
-                type: string
-              type: array
-            editable_until_msecs:
-              pattern: ^[0-9]+$
-              type: string
-            edits_remaining:
-              pattern: ^[0-9]+$
-              type: string
-            is_edit_eligible:
-              type: boolean
-          type: object
+          $ref: '#/components/schemas/TweetEditControl'
         edit_prespective:
-          properties:
-            favorited:
-              type: boolean
-            retweeted:
-              type: boolean
-          type: object
+          $ref: '#/components/schemas/TweetEditPrespective'
         is_translatable:
           default: false
           type: boolean
@@ -304,13 +255,7 @@ components:
           additionalProperties: true
           type: object
         views:
-          properties:
-            count:
-              pattern: ^[0-9]+$
-              type: string
-            state:
-              type: string
-          type: object
+          $ref: '#/components/schemas/TweetView'
       required:
       - rest_id
       - core
@@ -318,6 +263,68 @@ components:
       - is_translatable
       - legacy
       - views
+    TweetCard:
+      properties:
+        legacy:
+          $ref: '#/components/schemas/TweetCardLegacy'
+        rest_id:
+          type: string
+    TweetCardLegacy:
+      properties:
+        binding_values:
+          items:
+            $ref: '#/components/schemas/TweetCardLegacyBindingValue'
+          type: array
+        name:
+          type: string
+        url:
+          type: string
+      required:
+      - binding_values
+      - name
+      - url
+    TweetCardLegacyBindingValue:
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/TweetCardLegacyBindingValueData'
+      required:
+      - key
+      - value
+    TweetCardLegacyBindingValueData:
+      properties:
+        boolean_value:
+          type: boolean
+        scribe_key:
+          type: string
+        string_value:
+          type: string
+        type:
+          type: string
+      required:
+      - type
+    TweetEditControl:
+      properties:
+        edit_tweet_ids:
+          items:
+            pattern: ^[0-9]+$
+            type: string
+          type: array
+        editable_until_msecs:
+          pattern: ^[0-9]+$
+          type: string
+        edits_remaining:
+          pattern: ^[0-9]+$
+          type: string
+        is_edit_eligible:
+          type: boolean
+    TweetEditPrespective:
+      properties:
+        favorited:
+          type: boolean
+        retweeted:
+          type: boolean
     TweetLegacy:
       properties:
         bookmark_count:
@@ -367,13 +374,7 @@ components:
         retweeted_status_result:
           $ref: ./content.yaml#/components/schemas/ItemResult
         self_thread:
-          properties:
-            id_str:
-              pattern: ^[0-9]+$
-              type: string
-          required:
-          - id_str
-          type: object
+          $ref: '#/components/schemas/SelfThread'
         user_id_str:
           pattern: ^[0-9]+$
           type: string
@@ -411,6 +412,15 @@ components:
       - $ref: '#/components/schemas/Tweet'
       - $ref: '#/components/schemas/TweetWithVisibilityResults'
       - $ref: '#/components/schemas/TweetTombstone'
+    TweetView:
+      properties:
+        count:
+          pattern: ^[0-9]+$
+          type: string
+        state:
+          type: string
+      required:
+      - state
     TweetWithVisibilityResults:
       properties:
         __typename:

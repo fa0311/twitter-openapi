@@ -54,85 +54,100 @@ components:
         core:
           $ref: "./user.yaml#/components/schemas/UserResultCore"
         card:
-          type: object
-          properties:
-            rest_id:
-              type: string
-            legacy:
-              type: object
-              required:
-                - "binding_values"
-                - "name"
-                - "url"
-              properties:
-                name:
-                  type: string
-                url:
-                  type: string
-                binding_values:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                      - "key"
-                      - "value"
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        type: object
-                        required:
-                          - "type"
-                        properties:
-                          string_value:
-                            type: string
-                          boolean_value:
-                            type: boolean
-                          scribe_key:
-                            type: string
-                          type:
-                            type: string
+          $ref: "#/components/schemas/TweetCard"
         unmention_data:
           type: object
           additionalProperties: true # todo
         edit_control:
-          type: object
-          properties:
-            edit_tweet_ids:
-              type: array
-              items:
-                type: string
-                pattern: "^[0-9]+$"
-            editable_until_msecs:
-              type: string
-              pattern: "^[0-9]+$"
-            is_edit_eligible:
-              type: boolean
-            edits_remaining:
-              type: string
-              pattern: "^[0-9]+$"
+          $ref: "#/components/schemas/TweetEditControl"
         edit_prespective:
-          type: object
-          properties:
-            favorited:
-              type: boolean
-            retweeted:
-              type: boolean
+          $ref: "#/components/schemas/TweetEditPrespective"
         is_translatable:
           type: boolean
           default: false
         legacy:
           $ref: "#/components/schemas/TweetLegacy"
         views:
-          type: object
-          properties:
-            count:
-              type: string
-              pattern: "^[0-9]+$"
-            state:
-              type: string # enum
+          $ref: "#/components/schemas/TweetView"
         quoted_status_result:
           $ref: "./content.yaml#/components/schemas/ItemResult"
+
+    TweetEditControl:
+      properties:
+        edit_tweet_ids:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+        editable_until_msecs:
+          type: string
+          pattern: "^[0-9]+$"
+        is_edit_eligible:
+          type: boolean
+        edits_remaining:
+          type: string
+          pattern: "^[0-9]+$"
+
+    TweetEditPrespective:
+      properties:
+        favorited:
+          type: boolean
+        retweeted:
+          type: boolean
+    TweetView:
+      required:
+        - "state"
+      properties:
+        count:
+          type: string
+          pattern: "^[0-9]+$"
+        state:
+          type: string # enum
+
+    TweetCard:
+      properties:
+        rest_id:
+          type: string
+        legacy:
+          $ref: "#/components/schemas/TweetCardLegacy"
+
+    TweetCardLegacy:
+      required:
+        - "binding_values"
+        - "name"
+        - "url"
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        binding_values:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetCardLegacyBindingValue"
+
+    TweetCardLegacyBindingValue:
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          $ref: "#/components/schemas/TweetCardLegacyBindingValueData"
+
+    TweetCardLegacyBindingValueData:
+      required:
+        - "type"
+      properties:
+        string_value:
+          type: string
+        boolean_value:
+          type: boolean
+        scribe_key:
+          type: string
+        type:
+          type: string
 
     TweetLegacy:
       required:
@@ -202,15 +217,17 @@ components:
           type: string
           pattern: "^[0-9]+$"
         self_thread:
-          type: object
-          required:
-            - "id_str"
-          properties:
-            id_str:
-              type: string
-              pattern: "^[0-9]+$"
+          $ref: "#/components/schemas/SelfThread"
         extended_entities:
           $ref: "#/components/schemas/ExtendedEntities"
+
+    SelfThread:
+      required:
+        - "id_str"
+      properties:
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
 
     Entities:
       required:
