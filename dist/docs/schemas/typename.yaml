@@ -11,6 +11,7 @@ components:
       - TweetTombstone
       - TimelinePrompt
       - TimelineMessagePrompt
+      - TweetUnavailable
       - Tweet
       - User
       type: string

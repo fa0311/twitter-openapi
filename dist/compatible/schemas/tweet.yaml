@@ -1,5 +1,11 @@
 components:
   schemas:
+    AdditionalMediaInfo:
+      properties:
+        monetizable:
+          type: boolean
+      required:
+      - monetizable
     Entities:
       properties:
         hashtags:
@@ -46,6 +52,8 @@ components:
         expanded_url:
           format: uri
           type: string
+        features:
+          type: object
         id_str:
           pattern: ^[0-9]+$
           type: string
@@ -57,17 +65,7 @@ components:
           format: uri
           type: string
         original_info:
-          properties:
-            focus_rects:
-              items:
-                additionalProperties: true
-                type: object
-              type: array
-            height:
-              type: integer
-            width:
-              type: integer
-          type: object
+          $ref: '#/components/schemas/MediaOriginalInfo'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         type:
@@ -89,8 +87,7 @@ components:
     MediaExtended:
       properties:
         additional_media_info:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/AdditionalMediaInfo'
         display_url:
           format: uri
           type: string
@@ -98,8 +95,7 @@ components:
           format: uri
           type: string
         ext_media_availability:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/extMediaAvailability'
         features:
           type: object
         id_str:
@@ -110,8 +106,7 @@ components:
             type: integer
           type: array
         mediaStats:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/mediaStats'
         media_key:
           type: string
         media_url_https:
@@ -121,9 +116,6 @@ components:
           $ref: '#/components/schemas/MediaOriginalInfo'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
-        status:
-          additionalProperties: true
-          type: object
         type:
           type: string
         url:
@@ -451,6 +443,18 @@ components:
     UserMention:
       additionalProperties: true
       type: object
+    extMediaAvailability:
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    mediaStats:
+      properties:
+        viewCount:
+          type: integer
+      required:
+      - viewCount
 info:
   title: Twitter OpenAPI
   version: 0.0.1
