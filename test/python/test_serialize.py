@@ -131,6 +131,17 @@ for file in glob.glob("cache/*.json"):
 logger.info(f"Success: {len(glob.glob('cache/*.json'))}")
 
 
+def error_dump(e):
+    if ERROR_UNCATCHED:
+        raise
+    import traceback
+
+    logger.error("==========[STACK TRACE]==========")
+    for trace in traceback.format_exc().split("\n"):
+        logger.error(trace)
+    logger.info("================================")
+
+
 api_conf = pt.Configuration(
     api_key={
         "ClientLanguage": "en",
@@ -147,7 +158,7 @@ api_client.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 
 error_count = 0
 
-for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
+for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
     for props, fn in x.__dict__.items():
         if not callable(fn):
             continue
@@ -185,15 +196,27 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
                 time.sleep(SLEEP_TIME)
 
         except Exception as e:
-            if ERROR_UNCATCHED:
-                raise
-            import traceback
-
-            logger.error("==========[STACK TRACE]==========")
-            for trace in traceback.format_exc().split("\n"):
-                logger.error(trace)
-            logger.info("================================")
+            error_dump(e)
             error_count += 1
+
+
+try:
+    logger.info(f"Try: Self UserByScreenName Test")
+    kwargs = get_kwargs("UserByScreenName", {"screen_name": "a810810931931"})
+    res = pt.UserApi(api_client).get_user_by_screen_name(**kwargs).to_dict()
+    if not res["data"]["user"]["result"]["legacy"]["screen_name"] == "a810810931931":
+        raise Exception("UserByScreenName failed")
+except Exception as e:
+    error_dump(e)
+    error_count += 1
+
+try:
+    logger.info(f"Try: Self UserTweets Test")
+    kwargs = get_kwargs("UserTweets", {"userId": "1180389371481976833"})
+    pt.TweetApi(api_client).get_user_tweets(**kwargs)
+except Exception as e:
+    error_dump(e)
+    error_count += 1
 
 if error_count > 0:
     exit(1)

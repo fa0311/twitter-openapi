@@ -2,6 +2,7 @@
 
 Twitter OpenAPI(Swagger) specification
 
+- [Python](https://github.com/fa0311/twitter_openapi_python)
 - [Dart](https://github.com/fa0311/twitter_openapi_dart)
 - [TypeScript](https://github.com/fa0311/twitter-openapi-typescript)
 - [React Documents](https://github.com/fa0311/twitter-openapi-docs)

@@ -137,11 +137,13 @@ security:
 servers:
 - url: https://twitter.com/i/api
 tags:
-- description: response User
+- description: Responses containing User objects.
   name: user
-- description: response User list
+- description: Responses containing List[User] objects.
+  name: users
+- description: Responses containing instruction objects.
   name: user-list
-- description: response tweet
+- description: Responses containing instruction objects.
   name: tweet
 - description: post
   name: post

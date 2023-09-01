@@ -118,6 +118,20 @@ class SchemasCheck(SchemasHookBase):
         return value
 
 
+class RequiredCheck(SchemasHookBase):
+    def hook(self, value: dict):
+        required = value.get("required", [])
+
+        for key, property in value.get("properties", {}).items():
+            if key in required and property.get("default") is not None:
+                print(f"{key} is required and has default value")
+            d = property.get("default") is None and property.get("nullable", False)
+            if property not in required and d:
+                print(f"{key} is not required and has no default value")
+
+        return value
+
+
 # RequestHookBase extends
 
 

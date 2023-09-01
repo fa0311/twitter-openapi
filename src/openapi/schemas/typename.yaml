@@ -21,4 +21,5 @@ components:
           TweetUnavailable,
           Tweet,
           User,
+          UserUnavailable,
         ]

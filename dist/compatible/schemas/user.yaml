@@ -165,10 +165,7 @@ components:
       - entities
       - fast_followers_count
       - favourites_count
-      - follow_request_sent
-      - followed_by
       - followers_count
-      - following
       - friends_count
       - has_custom_timelines
       - is_translator
@@ -178,12 +175,10 @@ components:
       - muting
       - name
       - normal_followers_count
-      - notifications
       - pinned_tweet_ids_str
       - possibly_sensitive
       - profile_image_url_https
       - profile_interstitial_type
-      - protected
       - screen_name
       - status
       - statuses_count
@@ -199,9 +194,27 @@ components:
     UserResults:
       properties:
         result:
-          $ref: '#/components/schemas/User'
+          $ref: '#/components/schemas/UserUnion'
       required:
       - result
+    UserUnavailable:
+      properties:
+        __typename:
+          $ref: ./typename.yaml#/components/schemas/TypeName
+        reason:
+          type: string
+      required:
+      - __typename
+      - reason
+    UserUnion:
+      discriminator:
+        mapping":
+          User: '#/components/schemas/User'
+          UserUnavailable: '#/components/schemas/UserUnavailable'
+        propertyName: __typename
+      oneOf:
+      - $ref: '#/components/schemas/User'
+      - $ref: '#/components/schemas/UserUnavailable'
 info:
   title: Twitter OpenAPI
   version: 0.0.1
