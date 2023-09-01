@@ -3,3 +3,4 @@ __pycache__/
 cookie.json
 *_generated
 *.jar
+cache/

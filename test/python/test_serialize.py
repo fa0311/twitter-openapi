@@ -3,10 +3,9 @@ import os
 import logging
 import base64
 import openapi_client as pt
-from pydantic import BaseModel
 from pathlib import Path
 import time
-
+import glob
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
@@ -75,6 +74,21 @@ def get_kwargs(key, additional):
     return kwargs
 
 
+def save_cache(data):
+    rand = time.time_ns()
+    os.makedirs("cache", exist_ok=True)
+    with open(f"cache/{rand}.json", "w+") as f:
+        json.dump(data, f, indent=4)
+
+
+for file in glob.glob("cache/*.json"):
+    with open(file, "r") as f:
+        cache = json.load(f)
+    data = pt.__dict__[cache["type"]].from_json(cache["raw"])
+
+logger.info(f"Success: {len(glob.glob('cache/*.json'))}")
+
+
 api_conf = pt.Configuration(
     api_key={
         "ClientLanguage": "en",
@@ -95,10 +109,10 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
     for props, fn in x.__dict__.items():
         if not callable(fn):
             continue
-        if props.startswith("__") or props.endswith("_with_http_info"):
+        if props.startswith("__") or not props.endswith("_with_http_info"):
             continue
 
-        key = get_key(props)
+        key = get_key(props[:-17])
         cursor_list = set([None])
         cursor_history = set()
 
@@ -109,14 +123,17 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
                 logger.info(f"Try: {key} {cursor}")
 
                 kwargs = get_kwargs(key, {} if cursor is None else {"cursor": cursor})
-                res: dict = getattr(x(api_client), props)(**kwargs).to_dict()
+                res: pt.ApiResponse = getattr(x(api_client), props)(**kwargs)
+                data = res.data.to_dict()
 
-                new_cursor = set(get_cursor(res, find_cursor)) - cursor_history
+                save_cache({"raw": res.raw_data, "type": res.data.__class__.__name__})
+
+                new_cursor = set(get_cursor(data, find_cursor)) - cursor_history
                 cursor_list.update(new_cursor)
                 # logger.info(f"Find cursor: {len(new_cursor)}")
 
-                if res.get("errors") is not None:
-                    logger.error(res)
+                if data.get("errors") is not None:
+                    logger.error(data)
                     error_count += 1
 
                 if len(cursor_list) == 0:
