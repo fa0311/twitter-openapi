@@ -309,17 +309,7 @@ components:
         sizes:
           $ref: "#/components/schemas/MediaSizes"
         original_info:
-          type: object
-          properties:
-            height:
-              type: integer
-            width:
-              type: integer
-            focus_rects:
-              type: array
-              items:
-                type: object
-                additionalProperties: true # todo
+          $ref: "#/components/schemas/MediaOriginalInfo"
 
     ExtendedEntities:
       required:
@@ -369,14 +359,11 @@ components:
           type: string
           format: uri
         additional_media_info:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/AdditionalMediaInfo"
         mediaStats:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/mediaStats"
         ext_media_availability:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/extMediaAvailability"
         features:
           type: object
         sizes:
@@ -445,6 +432,27 @@ components:
         url:
           type: string
           format: uri
+
+    AdditionalMediaInfo:
+      required:
+        - "monetizable"
+      properties:
+        monetizable:
+          type: boolean
+
+    mediaStats:
+      required:
+        - "viewCount"
+      properties:
+        viewCount:
+          type: integer
+
+    extMediaAvailability:
+      required:
+        - "status"
+      properties:
+        status:
+          type: string # enum Available
 
     MediaSizes:
       required:
