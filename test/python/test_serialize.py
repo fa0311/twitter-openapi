@@ -6,6 +6,7 @@ import openapi_client as pt
 from pathlib import Path
 import time
 import glob
+import aenum
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
@@ -14,7 +15,7 @@ TWITTER_SESSION = os.environ.get("TWITTER_SESSION", None)
 ERROR_UNCATCHED = os.environ.get("ERROR_UNCATCHED", "false").lower() == "true"
 SLEEP_TIME = float(os.environ.get("SLEEP", "0"))
 CUESOR_TEST_COUNT = int(os.environ.get("CUESOR_TEST_COUNT", "3"))
-
+STRICT_MODE = os.environ.get("STRICT_MODE", "false").lower() == "true"
 
 if Path("cookie.json").exists():
     with open("cookie.json", "r") as f:
@@ -74,6 +75,44 @@ def get_kwargs(key, additional):
     return kwargs
 
 
+def match_rate_zero(key):
+    if STRICT_MODE:
+        raise Exception(f"Strict mode: {key}")
+    return 0
+
+
+def match_rate(a, b, key=""):
+    if isinstance(a, aenum.Enum):
+        a = a.value
+    if isinstance(b, aenum.Enum):
+        b = b.value
+    if a is None and b is False:
+        return 1
+    if a is False and b is None:
+        return 1
+    if type(a) != type(b):
+        return match_rate_zero(key)
+    if type(a) == dict and type(b) == dict:
+        if len(a) == 0 and len(b) == 0:
+            return 1
+        if len(a) == 0 or len(b) == 0:
+            return match_rate_zero(key)
+
+        data = [match_rate(a.get(k), b.get(k), key=f"{key}.{k}") for k in a.keys()]
+
+        return sum(data) / len(a)
+    if type(a) == list and type(b) == list:
+        if len(a) == 0 and len(b) == 0:
+            return 1
+        if len(a) != len(b):
+            return match_rate_zero(a, b, key=key)
+        data = [match_rate(a[i], b[i], key=f"{key}[{i}]") for i in range(len(a))]
+        return sum(data) / len(a)
+    if a == b:
+        return 1
+    return match_rate_zero(a, b, key=key)
+
+
 def save_cache(data):
     rand = time.time_ns()
     os.makedirs("cache", exist_ok=True)
@@ -81,10 +120,13 @@ def save_cache(data):
         json.dump(data, f, indent=4)
 
 
+# ====== Load cache ======
 for file in glob.glob("cache/*.json"):
     with open(file, "r") as f:
         cache = json.load(f)
     data = pt.__dict__[cache["type"]].from_json(cache["raw"])
+    rate = match_rate(data.to_dict(), json.loads(cache["raw"]))
+    logger.info(f"Match rate: {rate}")
 
 logger.info(f"Success: {len(glob.glob('cache/*.json'))}")
 
@@ -130,7 +172,9 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
 
                 new_cursor = set(get_cursor(data, find_cursor)) - cursor_history
                 cursor_list.update(new_cursor)
-                # logger.info(f"Find cursor: {len(new_cursor)}")
+
+                rate = match_rate(data, json.loads(res.raw_data))
+                logger.info(f"Match rate: {rate}")
 
                 if data.get("errors") is not None:
                     logger.error(data)
