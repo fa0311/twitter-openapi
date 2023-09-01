@@ -112,7 +112,7 @@ for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UserListApi]:
         if props.startswith("__") or not props.endswith("_with_http_info"):
             continue
 
-        key = get_key(props[:-17])
+        key = get_key(props[:-15])
         cursor_list = set([None])
         cursor_history = set()
 
