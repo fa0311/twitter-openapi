@@ -60,7 +60,8 @@ components:
         entryType:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
         displayType:
-          type: string # enum
+          type: string
+          enum: [Vertical, VerticalConversation]
         items:
           type: array
           items:
@@ -183,7 +184,8 @@ components:
         SocialContext:
           $ref: "#/components/schemas/SocialContext"
         userDisplayType:
-          type: string # enum
+          type: string
+          enum: [User, UserDetailed]
         user_results:
           $ref: "./user.yaml#/components/schemas/UserResults"
 

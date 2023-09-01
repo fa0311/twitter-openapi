@@ -102,7 +102,8 @@ components:
           type: string
           pattern: "^[0-9]+$"
         state:
-          type: string # enum
+          type: string
+          enum: [EnabledWithCount]
 
     TweetCard:
       properties:
@@ -317,7 +318,8 @@ components:
           type: string
           format: uri
         type:
-          type: string # enum photo
+          type: string
+          enum: [photo]
         url:
           type: string
           format: uri
@@ -371,7 +373,8 @@ components:
           type: string
           format: uri
         type:
-          type: string # enum # photo | video
+          type: string
+          enum: [photo, video, animated_gif]
         url:
           type: string
           format: uri
@@ -469,7 +472,8 @@ components:
         - "status"
       properties:
         status:
-          type: string # enum Available
+          type: string
+          enum: [Available]
 
     MediaSizes:
       required:
@@ -498,5 +502,5 @@ components:
         h:
           type: integer
         resize:
-          type: string # enum fit
-
+          type: string
+          enum: [crop, fit]
