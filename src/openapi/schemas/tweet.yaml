@@ -40,8 +40,8 @@ components:
         - "rest_id"
         - "core"
         - "edit_control"
-        # - "edit_prespective"
         - "is_translatable"
+        - "source"
         - "legacy"
         - "views"
 
@@ -65,6 +65,8 @@ components:
         is_translatable:
           type: boolean
           default: false
+        source:
+          type: string # html (<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>)
         legacy:
           $ref: "#/components/schemas/TweetLegacy"
         views:
@@ -73,6 +75,32 @@ components:
           $ref: "./content.yaml#/components/schemas/ItemResult"
 
     TweetEditControl:
+      properties:
+        edit_tweet_ids:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+        editable_until_msecs:
+          type: string
+          pattern: "^[0-9]+$"
+        is_edit_eligible:
+          type: boolean
+        edits_remaining:
+          type: string
+          pattern: "^[0-9]+$"
+        initial_tweet_id:
+          type: string
+          pattern: "^[0-9]+$"
+        edit_control_initial:
+          $ref: "#/components/schemas/TweetEditControlInitial"
+
+    TweetEditControlInitial:
+      required:
+        - "edit_tweet_ids"
+        - "editable_until_msecs"
+        - "is_edit_eligible"
+        - "edits_remaining"
       properties:
         edit_tweet_ids:
           type: array

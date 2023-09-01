@@ -185,7 +185,7 @@ components:
           $ref: "#/components/schemas/SocialContext"
         userDisplayType:
           type: string
-          enum: [User, UserDetailed]
+          enum: [User, UserDetailed, SubscribableUser]
         user_results:
           $ref: "./user.yaml#/components/schemas/UserResults"
 
