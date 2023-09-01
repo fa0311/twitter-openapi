@@ -260,6 +260,8 @@ components:
         rest_id:
           pattern: ^[0-9]+$
           type: string
+        source:
+          type: string
         unmention_data:
           additionalProperties: true
           type: object
@@ -270,6 +272,7 @@ components:
       - core
       - edit_control
       - is_translatable
+      - source
       - legacy
       - views
     TweetCard:
@@ -315,6 +318,26 @@ components:
       - type
     TweetEditControl:
       properties:
+        edit_control_initial:
+          $ref: '#/components/schemas/TweetEditControlInitial'
+        edit_tweet_ids:
+          items:
+            pattern: ^[0-9]+$
+            type: string
+          type: array
+        editable_until_msecs:
+          pattern: ^[0-9]+$
+          type: string
+        edits_remaining:
+          pattern: ^[0-9]+$
+          type: string
+        initial_tweet_id:
+          pattern: ^[0-9]+$
+          type: string
+        is_edit_eligible:
+          type: boolean
+    TweetEditControlInitial:
+      properties:
         edit_tweet_ids:
           items:
             pattern: ^[0-9]+$
@@ -328,6 +351,11 @@ components:
           type: string
         is_edit_eligible:
           type: boolean
+      required:
+      - edit_tweet_ids
+      - editable_until_msecs
+      - is_edit_eligible
+      - edits_remaining
     TweetEditPrespective:
       properties:
         favorited:

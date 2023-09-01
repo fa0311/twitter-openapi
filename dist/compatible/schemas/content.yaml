@@ -191,6 +191,7 @@ components:
           enum:
           - User
           - UserDetailed
+          - SubscribableUser
           type: string
         user_results:
           $ref: ./user.yaml#/components/schemas/UserResults
