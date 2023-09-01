@@ -304,6 +304,8 @@ components:
         url:
           type: string
           format: uri
+        features:
+          type: object
         sizes:
           $ref: "#/components/schemas/MediaSizes"
         original_info:
