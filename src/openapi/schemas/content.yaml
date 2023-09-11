@@ -219,3 +219,14 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineMessagePrompt
       additionalProperties: true # todo
+
+    ClientEventInfo:
+      required:
+        - component
+        - elemen
+      properties:
+        component:
+          type: string # enum half_cover
+        element:
+          type: string
+          pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$" # august-2023-privacy-prompt-candidate
