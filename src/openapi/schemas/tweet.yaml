@@ -325,7 +325,7 @@ components:
         - "media_url_https"
         - "type"
         - "url"
-        - "features"
+        # - "features"
         - "sizes"
         - "original_info"
       properties:
@@ -347,7 +347,7 @@ components:
           format: uri
         type:
           type: string
-          enum: [photo]
+          enum: [photo, video, animated_gif]
         url:
           type: string
           format: uri
@@ -378,7 +378,7 @@ components:
         - "type"
         - "url"
         - "ext_media_availability"
-        - "features"
+        # - "features"
         - "sizes"
         - "original_info"
       properties:
