@@ -71,6 +71,8 @@ components:
         type:
           enum:
           - photo
+          - video
+          - animated_gif
           type: string
         url:
           format: uri
@@ -83,7 +85,6 @@ components:
       - media_url_https
       - type
       - url
-      - features
       - sizes
       - original_info
     MediaExtended:
@@ -139,7 +140,6 @@ components:
       - type
       - url
       - ext_media_availability
-      - features
       - sizes
       - original_info
     MediaOriginalInfo:

@@ -7,6 +7,8 @@ from pathlib import Path
 import time
 import glob
 import aenum
+import concurrent.futures
+
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
@@ -16,22 +18,6 @@ ERROR_UNCATCHED = os.environ.get("ERROR_UNCATCHED", "false").lower() == "true"
 SLEEP_TIME = float(os.environ.get("SLEEP", "0"))
 CUESOR_TEST_COUNT = int(os.environ.get("CUESOR_TEST_COUNT", "3"))
 STRICT_MODE = os.environ.get("STRICT_MODE", "false").lower() == "true"
-
-if Path("cookie.json").exists():
-    with open("cookie.json", "r") as f:
-        cookies = json.load(f)
-elif TWITTER_SESSION is not None:
-    data = base64.b64decode(TWITTER_SESSION).decode("utf-8")
-    cookies = json.loads(data)
-else:
-    commands = ["python -m pip install tweepy_authlib", "python tools/login.py"]
-    raise Exception(f'cookie.json not found. Please run `{"; ".join(commands)}` first.')
-
-cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
-
-
-with open("src/config/placeholder.json", "r") as f:
-    placeholder = json.load(f)
 
 
 def get_key(snake_str):
@@ -120,15 +106,15 @@ def save_cache(data):
         json.dump(data, f, indent=4)
 
 
-# ====== Load cache ======
-for file in glob.glob("cache/*.json"):
-    with open(file, "r") as f:
-        cache = json.load(f)
-    data = pt.__dict__[cache["type"]].from_json(cache["raw"])
-    rate = match_rate(data.to_dict(), json.loads(cache["raw"]))
-    logger.info(f"Match rate: {rate}")
-
-logger.info(f"Success: {len(glob.glob('cache/*.json'))}")
+def task_callback(file):
+    try:
+        with open(file, "r") as f:
+            cache = json.load(f)
+        data = pt.__dict__[cache["type"]].from_json(cache["raw"])
+        rate = match_rate(data.to_dict(), json.loads(cache["raw"]))
+        return f"Match rate: {rate}"
+    except Exception as e:
+        return f"Error: {e} {file}"
 
 
 def error_dump(e):
@@ -142,90 +128,122 @@ def error_dump(e):
     logger.info("================================")
 
 
-api_conf = pt.Configuration(
-    api_key={
-        "ClientLanguage": "en",
-        "ActiveUser": "yes",
-        "AuthType": "OAuth2Session",
-        "CsrfToken": cookies["ct0"],
-    },
-)
+if __name__ == "__main__":
+    if Path("cookie.json").exists():
+        with open("cookie.json", "r") as f:
+            cookies = json.load(f)
+    elif TWITTER_SESSION is not None:
+        data = base64.b64decode(TWITTER_SESSION).decode("utf-8")
+        cookies = json.loads(data)
+    else:
+        commands = ["python -m pip install tweepy_authlib", "python tools/login.py"]
+        raise Exception(
+            f'cookie.json not found. Please run `{"; ".join(commands)}` first.'
+        )
 
-api_conf.access_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+    cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
-api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
-api_client.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+    with open("src/config/placeholder.json", "r") as f:
+        placeholder = json.load(f)
 
-error_count = 0
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        tasks = [executor.submit(task_callback, x) for x in glob.glob("cache/*.json")]
+        for task in concurrent.futures.as_completed(tasks):
+            logger.info(task.result())
 
-for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
-    for props, fn in x.__dict__.items():
-        if not callable(fn):
-            continue
-        if props.startswith("__") or not props.endswith("_with_http_info"):
-            continue
+    logger.info(f"Success: {len(glob.glob('cache/*.json'))}")
 
-        key = get_key(props[:-15])
-        cursor_list = set([None])
-        cursor_history = set()
+    api_conf = pt.Configuration(
+        api_key={
+            "ClientLanguage": "en",
+            "ActiveUser": "yes",
+            "AuthType": "OAuth2Session",
+            "CsrfToken": cookies["ct0"],
+        },
+    )
 
-        try:
-            for _ in range(CUESOR_TEST_COUNT):
-                cursor = cursor_list.pop()
-                cursor_history.add(cursor)
-                logger.info(f"Try: {key} {cursor}")
+    api_conf.access_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
 
-                kwargs = get_kwargs(key, {} if cursor is None else {"cursor": cursor})
-                res: pt.ApiResponse = getattr(x(api_client), props)(**kwargs)
-                data = res.data.to_dict()
+    api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
+    api_client.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 
-                save_cache({"raw": res.raw_data, "type": res.data.__class__.__name__})
+    error_count = 0
 
-                new_cursor = set(get_cursor(data, find_cursor)) - cursor_history
-                cursor_list.update(new_cursor)
+    for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
+        for props, fn in x.__dict__.items():
+            if not callable(fn):
+                continue
+            if props.startswith("__") or not props.endswith("_with_http_info"):
+                continue
 
-                rate = match_rate(data, json.loads(res.raw_data))
-                logger.info(f"Match rate: {rate}")
+            key = get_key(props[:-15])
+            cursor_list = set([None])
+            cursor_history = set()
 
-                if data.get("errors") is not None:
-                    logger.error(data)
-                    error_count += 1
+            try:
+                for _ in range(CUESOR_TEST_COUNT):
+                    cursor = cursor_list.pop()
+                    cursor_history.add(cursor)
+                    logger.info(f"Try: {key} {cursor}")
 
-                if len(cursor_list) == 0:
-                    break
-                time.sleep(SLEEP_TIME)
+                    kwargs = get_kwargs(
+                        key, {} if cursor is None else {"cursor": cursor}
+                    )
+                    res: pt.ApiResponse = getattr(x(api_client), props)(**kwargs)
+                    data = res.data.to_dict()
 
-        except Exception as e:
-            error_dump(e)
-            error_count += 1
+                    save_cache(
+                        {
+                            "raw": res.raw_data,
+                            "type": res.data.__class__.__name__,
+                        }
+                    )
 
+                    new_cursor = set(get_cursor(data, find_cursor)) - cursor_history
+                    cursor_list.update(new_cursor)
 
-try:
-    logger.info(f"Try: Self UserByScreenName Test")
-    kwargs = get_kwargs("UserByScreenName", {"screen_name": "a810810931931"})
-    res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
-    data = res.data.to_dict()
+                    rate = match_rate(data, json.loads(res.raw_data))
+                    logger.info(f"Match rate: {rate}")
 
-    rate = match_rate(data, json.loads(res.raw_data))
-    logger.info(f"Match rate: {rate}")
-    if not data["data"]["user"]["result"]["legacy"]["screen_name"] == "a810810931931":
-        raise Exception("UserByScreenName failed")
-except Exception as e:
-    error_dump(e)
-    error_count += 1
+                    if data.get("errors") is not None:
+                        logger.error(data)
+                        error_count += 1
 
-try:
-    logger.info(f"Try: Self UserTweets Test")
-    kwargs = get_kwargs("UserTweets", {"userId": "1180389371481976833"})
-    res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
-    data = res.data.to_dict()
+                    if len(cursor_list) == 0:
+                        break
+                    time.sleep(SLEEP_TIME)
 
-    rate = match_rate(data, json.loads(res.raw_data))
-    logger.info(f"Match rate: {rate}")
+            except Exception as e:
+                error_dump(e)
+                error_count += 1
 
-except Exception as e:
-    error_dump(e)
-    error_count += 1
+    try:
+        logger.info(f"Try: Self UserByScreenName Test")
+        kwargs = get_kwargs("UserByScreenName", {"screen_name": "a810810931931"})
+        res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
+        data = res.data.to_dict()
 
-if error_count > 0:
-    exit(1)
+        rate = match_rate(data, json.loads(res.raw_data))
+        logger.info(f"Match rate: {rate}")
+        screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
+        if not screen_name == "a810810931931":
+            raise Exception("UserByScreenName failed")
+    except Exception as e:
+        error_dump(e)
+        error_count += 1
+
+    try:
+        logger.info(f"Try: Self UserTweets Test")
+        kwargs = get_kwargs("UserTweets", {"userId": "1180389371481976833"})
+        res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
+        data = res.data.to_dict()
+
+        rate = match_rate(data, json.loads(res.raw_data))
+        logger.info(f"Match rate: {rate}")
+
+    except Exception as e:
+        error_dump(e)
+        error_count += 1
+
+    if error_count > 0:
+        exit(1)
