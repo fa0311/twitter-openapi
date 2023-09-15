@@ -219,14 +219,15 @@ components:
       additionalProperties: true # todo
 
     ClientEventInfo:
-      required:
-        - component
-        - elemen
       properties:
         component:
-          type: string # enum half_cover
+          # enum half_cover
+          type: string
         element:
           type: string
           # august-2023-privacy-prompt-candidate
-          pattern: "(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
+          # pattern: "(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
           # pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$"
+        details:
+          type: object
+          additionalProperties: true # todo

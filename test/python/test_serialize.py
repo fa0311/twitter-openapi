@@ -113,10 +113,10 @@ def task_callback(file, thread=True):
             cache = json.load(f)
         data = pt.__dict__[cache["type"]].from_json(cache["raw"])
         rate = match_rate(data.to_dict(), json.loads(cache["raw"]))
-        return {rate}, {file}
+        return rate, file
     except Exception as e:
         if thread:
-            return 0, {file}
+            return 0, file
         else:
             raise
 
@@ -153,8 +153,7 @@ if __name__ == "__main__":
     with concurrent.futures.ProcessPoolExecutor() as executor:
         tasks = [executor.submit(task_callback, x) for x in glob.glob("cache/*.json")]
         for task in concurrent.futures.as_completed(tasks):
-            rate, file = [list(x).pop() for x in task.result()]
-            print(rate, file)
+            rate, file = task.result()
             if rate < 1:
                 fail.append(file)
             logger.info(f"Match rate: {rate}")
