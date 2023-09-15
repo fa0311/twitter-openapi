@@ -8,6 +8,7 @@ import time
 import glob
 import aenum
 import concurrent.futures
+import traceback
 
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
@@ -106,21 +107,23 @@ def save_cache(data):
         json.dump(data, f, indent=4)
 
 
-def task_callback(file):
+def task_callback(file, thread=True):
     try:
         with open(file, "r") as f:
             cache = json.load(f)
         data = pt.__dict__[cache["type"]].from_json(cache["raw"])
         rate = match_rate(data.to_dict(), json.loads(cache["raw"]))
-        return f"Match rate: {rate}"
+        return {rate}, {file}
     except Exception as e:
-        return f"Error: {e} {file}"
+        if thread:
+            return 0, {file}
+        else:
+            raise
 
 
 def error_dump(e):
     if ERROR_UNCATCHED:
         raise
-    import traceback
 
     logger.error("==========[STACK TRACE]==========")
     for trace in traceback.format_exc().split("\n"):
@@ -146,12 +149,21 @@ if __name__ == "__main__":
     with open("src/config/placeholder.json", "r") as f:
         placeholder = json.load(f)
 
+    fail = []
     with concurrent.futures.ProcessPoolExecutor() as executor:
         tasks = [executor.submit(task_callback, x) for x in glob.glob("cache/*.json")]
         for task in concurrent.futures.as_completed(tasks):
-            logger.info(task.result())
+            rate, file = [list(x).pop() for x in task.result()]
+            print(rate, file)
+            if rate < 1:
+                fail.append(file)
+            logger.info(f"Match rate: {rate}")
 
-    logger.info(f"Success: {len(glob.glob('cache/*.json'))}")
+    logger.info(f"Fail: {len(fail)} / {len(glob.glob('cache/*.json'))}")
+
+    for file in fail:
+        task_callback(file, thread=False)
+        logger.info(f"Match rate: {rate}")
 
     api_conf = pt.Configuration(
         api_key={

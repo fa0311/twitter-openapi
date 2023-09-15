@@ -267,7 +267,7 @@ components:
           items:
             $ref: "#/components/schemas/Callback"
         clientEventInfo:
-          $ref: "#/components/schemas/ClientEventInfo"
+          $ref: "#/components/schemas/CtaClientEventInfo"
         buttonStyle:
           type: string
           enum: ["Primary"]
@@ -286,9 +286,10 @@ components:
       properties:
         endpoint:
           type: string
+          format: uri
           # pattern: '^/1\.1/[a-z]+/[a-z]+\.json\?[a-z_]+=[a-z0-9-]+(&[a-z_]+=[a-z0-9-]+)+?$' #/1.1/onboarding/fatigue.json?{params}
 
-    ClientEventInfo:
+    CtaClientEventInfo:
       required:
         - action
       properties:

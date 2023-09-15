@@ -40,8 +40,7 @@ components:
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
         clientEventInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ClientEventInfo"
         feedbackInfo:
           type: object
           additionalProperties: true # todo
@@ -113,8 +112,7 @@ components:
         - "itemContent"
       properties:
         clientEventInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ClientEventInfo"
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
 
@@ -229,4 +227,6 @@ components:
           type: string # enum half_cover
         element:
           type: string
-          pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$" # august-2023-privacy-prompt-candidate
+          # august-2023-privacy-prompt-candidate
+          pattern: "(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
+          # pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$"
