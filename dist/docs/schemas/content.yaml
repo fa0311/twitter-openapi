@@ -1,5 +1,14 @@
 components:
   schemas:
+    ClientEventInfo:
+      properties:
+        component:
+          type: string
+        details:
+          additionalProperties: true
+          type: object
+        element:
+          type: string
     ContentEntryType:
       enum:
       - TimelineTimelineItem
@@ -54,13 +63,11 @@ components:
           $ref: ./typename.yaml#/components/schemas/TypeName
         result:
           $ref: ./tweet.yaml#/components/schemas/TweetUnion
-      required:
-      - result
+      required: null
     ModuleEntry:
       properties:
         clientEventInfo:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ClientEventInfo'
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
       required:
@@ -116,8 +123,7 @@ components:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
         clientEventInfo:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ClientEventInfo'
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         feedbackInfo:

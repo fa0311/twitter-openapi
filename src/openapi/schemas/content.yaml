@@ -40,8 +40,7 @@ components:
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
         clientEventInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ClientEventInfo"
         feedbackInfo:
           type: object
           additionalProperties: true # todo
@@ -113,8 +112,7 @@ components:
         - "itemContent"
       properties:
         clientEventInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ClientEventInfo"
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
 
@@ -191,7 +189,6 @@ components:
 
     ItemResult:
       required:
-        - "result"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # null | TimelineTweet
@@ -219,3 +216,17 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineMessagePrompt
       additionalProperties: true # todo
+
+    ClientEventInfo:
+      properties:
+        component:
+          # enum half_cover
+          type: string
+        element:
+          type: string
+          # august-2023-privacy-prompt-candidate
+          # pattern: "(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
+          # pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$"
+        details:
+          type: object
+          additionalProperties: true # todo

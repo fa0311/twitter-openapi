@@ -1,5 +1,42 @@
 components:
   schemas:
+    Callback:
+      properties:
+        endpoint:
+          format: uri
+          type: string
+      required:
+      - endpoint
+    CoverCta:
+      properties:
+        Text:
+          type: string
+        buttonStyle:
+          enum:
+          - Primary
+          type: string
+        callbacks:
+          items:
+            $ref: '#/components/schemas/Callback'
+          type: array
+        clientEventInfo:
+          $ref: '#/components/schemas/CtaClientEventInfo'
+        ctaBehavior:
+          $ref: '#/components/schemas/TimelineCoverBehavior'
+      required:
+      - text
+      - ctaBehavior
+      - callbacks
+      - clientEventInfo
+      - buttonStyle
+    CtaClientEventInfo:
+      properties:
+        action:
+          enum:
+          - primary_cta
+          type: string
+      required:
+      - action
     InstructionType:
       enum:
       - TimelineAddEntries
@@ -9,6 +46,7 @@ components:
       - TimelineReplaceEntry
       - TimelineShowAlert
       - TimelineTerminateTimeline
+      - TimelineShowCover
       type: string
     InstructionUnion:
       discriminator:
@@ -19,6 +57,7 @@ components:
           TimelinePinEntry: '#/components/schemas/TimelinePinEntry'
           TimelineReplaceEntry: '#/components/schemas/TimelineReplaceEntry'
           TimelineShowAlert: '#/components/schemas/TimelineShowAlert'
+          TimelineShowCover: '#/components/schemas/TimelineShowCover'
           TimelineTerminateTimeline: '#/components/schemas/TimelineTerminateTimeline'
         propertyName: type
       oneOf:
@@ -29,6 +68,47 @@ components:
       - $ref: '#/components/schemas/TimelineReplaceEntry'
       - $ref: '#/components/schemas/TimelineShowAlert'
       - $ref: '#/components/schemas/TimelineTerminateTimeline'
+      - $ref: '#/components/schemas/TimelineShowCover'
+    Text:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/TextEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
+    TextEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/TextEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - toIndex
+      - ref
+    TextEntityRef:
+      properties:
+        type:
+          enum:
+          - TimelineUrl
+          type: string
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - type
+      - url
+      - urlType
     TimelineAddEntries:
       properties:
         entries:
@@ -76,6 +156,44 @@ components:
           $ref: '#/components/schemas/InstructionType'
       required:
       - type
+    TimelineCoverBehavior:
+      properties:
+        type:
+          enum:
+          - TimelineCoverBehaviorDismiss
+          type: string
+      required:
+      - type
+    TimelineHalfCover:
+      properties:
+        dismissible:
+          type: boolean
+        halfCoverDisplayType:
+          enum:
+          - Cover
+          type: string
+        impressionCallbacks:
+          items:
+            $ref: '#/components/schemas/Callback'
+          type: array
+        primaryCoverCta:
+          $ref: '#/components/schemas/CoverCta'
+        primaryText:
+          $ref: '#/components/schemas/Text'
+        secondaryText:
+          $ref: '#/components/schemas/Text'
+        type:
+          enum:
+          - TimelineHalfCover
+          type: string
+      required:
+      - type
+      - halfCoverDisplayType
+      - primaryText
+      - primaryCoverCta
+      - secondaryText
+      - impressionCallbacks
+      - dismissible
     TimelinePinEntry:
       properties:
         entry:
@@ -137,6 +255,18 @@ components:
       - type
       - usersResults
       - richText
+    TimelineShowCover:
+      properties:
+        clientEventInfo:
+          $ref: ./content.yaml#/components/schemas/ClientEventInfo
+        cover:
+          $ref: '#/components/schemas/TimelineHalfCover'
+        type:
+          $ref: '#/components/schemas/InstructionType'
+      required:
+      - type
+      - clientEventInfo
+      - cover
     TimelineTerminateTimeline:
       properties:
         direction:
