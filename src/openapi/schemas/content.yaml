@@ -189,7 +189,6 @@ components:
 
     ItemResult:
       required:
-        - "result"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # null | TimelineTweet
