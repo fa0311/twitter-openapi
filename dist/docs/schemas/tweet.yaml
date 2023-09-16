@@ -269,11 +269,8 @@ components:
           $ref: '#/components/schemas/TweetView'
       required:
       - rest_id
-      - core
       - edit_control
       - is_translatable
-      - source
-      - legacy
       - views
     TweetCard:
       properties:
@@ -498,8 +495,6 @@ components:
           enum:
           - Available
           type: string
-      required:
-      - status
     mediaStats:
       properties:
         viewCount:
