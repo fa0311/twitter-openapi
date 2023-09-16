@@ -33,4 +33,7 @@ python tools/build.py
 
 ## License
 
-[agpl-3.0](./LICENSE.txt)
+This project is dual licensed. You can choose one of the following licenses:
+
+- [Custom License](./LICENSE)
+- [GNU Affero General Public License v3.0](./LICENSE.AGPL)
