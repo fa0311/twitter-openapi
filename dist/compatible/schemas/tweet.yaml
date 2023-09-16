@@ -1,5 +1,11 @@
 components:
   schemas:
+    AdditionalMediaInfo:
+      properties:
+        monetizable:
+          type: boolean
+      required:
+      - monetizable
     Entities:
       properties:
         hashtags:
@@ -31,7 +37,7 @@ components:
       properties:
         media:
           items:
-            $ref: '#/components/schemas/Media'
+            $ref: '#/components/schemas/MediaExtended'
           type: array
       required:
       - media
@@ -46,8 +52,7 @@ components:
         expanded_url:
           format: uri
           type: string
-        ext_media_availability:
-          additionalProperties: true
+        features:
           type: object
         id_str:
           pattern: ^[0-9]+$
@@ -56,42 +61,180 @@ components:
           items:
             type: integer
           type: array
-        media_key:
-          pattern: ^[0-9]+_[0-9]+$
-          type: string
         media_url_https:
           format: uri
           type: string
         original_info:
-          properties:
-            focus_rects:
-              items:
-                additionalProperties: true
-                type: object
-              type: array
-            height:
-              type: integer
-            width:
-              type: integer
-          type: object
+          $ref: '#/components/schemas/MediaOriginalInfo'
         sizes:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/MediaSizes'
         type:
+          enum:
+          - photo
+          - video
+          - animated_gif
           type: string
         url:
           format: uri
           type: string
       required:
+      - display_url
+      - expanded_url
       - id_str
       - indices
       - media_url_https
-      - url
-      - display_url
-      - expanded_url
       - type
+      - url
       - sizes
       - original_info
+    MediaExtended:
+      properties:
+        additional_media_info:
+          $ref: '#/components/schemas/AdditionalMediaInfo'
+        display_url:
+          format: uri
+          type: string
+        expanded_url:
+          format: uri
+          type: string
+        ext_media_availability:
+          $ref: '#/components/schemas/extMediaAvailability'
+        features:
+          type: object
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        indices:
+          items:
+            type: integer
+          type: array
+        mediaStats:
+          $ref: '#/components/schemas/mediaStats'
+        media_key:
+          type: string
+        media_url_https:
+          format: uri
+          type: string
+        original_info:
+          $ref: '#/components/schemas/MediaOriginalInfo'
+        sizes:
+          $ref: '#/components/schemas/MediaSizes'
+        type:
+          enum:
+          - photo
+          - video
+          - animated_gif
+          type: string
+        url:
+          format: uri
+          type: string
+        video_info:
+          $ref: '#/components/schemas/MediaVideoInfo'
+      required:
+      - display_url
+      - expanded_url
+      - id_str
+      - indices
+      - media_key
+      - media_url_https
+      - type
+      - url
+      - ext_media_availability
+      - sizes
+      - original_info
+    MediaOriginalInfo:
+      properties:
+        focus_rects:
+          items:
+            $ref: '#/components/schemas/MediaOriginalInfoFocusRect'
+          type: array
+        height:
+          type: integer
+        width:
+          type: integer
+      required:
+      - height
+      - width
+    MediaOriginalInfoFocusRect:
+      properties:
+        h:
+          type: integer
+        w:
+          type: integer
+        x:
+          type: integer
+        y:
+          type: integer
+      required:
+      - x
+      - y
+      - w
+      - h
+      type: object
+    MediaSize:
+      properties:
+        h:
+          type: integer
+        resize:
+          enum:
+          - crop
+          - fit
+          type: string
+        w:
+          type: integer
+      required:
+      - w
+      - h
+      - resize
+    MediaSizes:
+      properties:
+        large:
+          $ref: '#/components/schemas/MediaSize'
+        medium:
+          $ref: '#/components/schemas/MediaSize'
+        small:
+          $ref: '#/components/schemas/MediaSize'
+        thumb:
+          $ref: '#/components/schemas/MediaSize'
+      required:
+      - large
+      - medium
+      - small
+      - thumb
+    MediaVideoInfo:
+      properties:
+        aspect_ratio:
+          items:
+            type: integer
+          type: array
+        duration_millis:
+          type: integer
+        variants:
+          items:
+            $ref: '#/components/schemas/MediaVideoInfoVariant'
+          type: array
+      required:
+      - aspect_ratio
+      - variants
+    MediaVideoInfoVariant:
+      properties:
+        bitrate:
+          type: integer
+        content_type:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - content_type
+      - url
+    SelfThread:
+      properties:
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - id_str
     Symbol:
       additionalProperties: true
       type: object
@@ -100,69 +243,13 @@ components:
         __typename:
           $ref: ./typename.yaml#/components/schemas/TypeName
         card:
-          properties:
-            legacy:
-              properties:
-                binding_values:
-                  items:
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        properties:
-                          boolean_value:
-                            type: boolean
-                          scribe_key:
-                            type: string
-                          string_value:
-                            type: string
-                          type:
-                            type: string
-                        required:
-                        - type
-                        type: object
-                    required:
-                    - key
-                    - value
-                    type: object
-                  type: array
-                name:
-                  type: string
-                url:
-                  type: string
-              required:
-              - binding_values
-              - name
-              - url
-              type: object
-            rest_id:
-              type: string
-          type: object
+          $ref: '#/components/schemas/TweetCard'
         core:
           $ref: ./user.yaml#/components/schemas/UserResultCore
         edit_control:
-          properties:
-            edit_tweet_ids:
-              items:
-                pattern: ^[0-9]+$
-                type: string
-              type: array
-            editable_until_msecs:
-              pattern: ^[0-9]+$
-              type: string
-            edits_remaining:
-              pattern: ^[0-9]+$
-              type: string
-            is_edit_eligible:
-              type: boolean
-          type: object
+          $ref: '#/components/schemas/TweetEditControl'
         edit_prespective:
-          properties:
-            favorited:
-              type: boolean
-            retweeted:
-              type: boolean
-          type: object
+          $ref: '#/components/schemas/TweetEditPrespective'
         is_translatable:
           default: false
           type: boolean
@@ -173,24 +260,108 @@ components:
         rest_id:
           pattern: ^[0-9]+$
           type: string
+        source:
+          type: string
         unmention_data:
           additionalProperties: true
           type: object
         views:
-          properties:
-            count:
-              pattern: ^[0-9]+$
-              type: string
-            state:
-              type: string
-          type: object
+          $ref: '#/components/schemas/TweetView'
       required:
       - rest_id
       - core
       - edit_control
       - is_translatable
+      - source
       - legacy
       - views
+    TweetCard:
+      properties:
+        legacy:
+          $ref: '#/components/schemas/TweetCardLegacy'
+        rest_id:
+          type: string
+    TweetCardLegacy:
+      properties:
+        binding_values:
+          items:
+            $ref: '#/components/schemas/TweetCardLegacyBindingValue'
+          type: array
+        name:
+          type: string
+        url:
+          type: string
+      required:
+      - binding_values
+      - name
+      - url
+    TweetCardLegacyBindingValue:
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/TweetCardLegacyBindingValueData'
+      required:
+      - key
+      - value
+    TweetCardLegacyBindingValueData:
+      properties:
+        boolean_value:
+          type: boolean
+        scribe_key:
+          type: string
+        string_value:
+          type: string
+        type:
+          type: string
+      required:
+      - type
+    TweetEditControl:
+      properties:
+        edit_control_initial:
+          $ref: '#/components/schemas/TweetEditControlInitial'
+        edit_tweet_ids:
+          items:
+            pattern: ^[0-9]+$
+            type: string
+          type: array
+        editable_until_msecs:
+          pattern: ^[0-9]+$
+          type: string
+        edits_remaining:
+          pattern: ^[0-9]+$
+          type: string
+        initial_tweet_id:
+          pattern: ^[0-9]+$
+          type: string
+        is_edit_eligible:
+          type: boolean
+    TweetEditControlInitial:
+      properties:
+        edit_tweet_ids:
+          items:
+            pattern: ^[0-9]+$
+            type: string
+          type: array
+        editable_until_msecs:
+          pattern: ^[0-9]+$
+          type: string
+        edits_remaining:
+          pattern: ^[0-9]+$
+          type: string
+        is_edit_eligible:
+          type: boolean
+      required:
+      - edit_tweet_ids
+      - editable_until_msecs
+      - is_edit_eligible
+      - edits_remaining
+    TweetEditPrespective:
+      properties:
+        favorited:
+          type: boolean
+        retweeted:
+          type: boolean
     TweetLegacy:
       properties:
         bookmark_count:
@@ -240,13 +411,7 @@ components:
         retweeted_status_result:
           $ref: ./content.yaml#/components/schemas/ItemResult
         self_thread:
-          properties:
-            id_str:
-              pattern: ^[0-9]+$
-              type: string
-          required:
-          - id_str
-          type: object
+          $ref: '#/components/schemas/SelfThread'
         user_id_str:
           pattern: ^[0-9]+$
           type: string
@@ -284,6 +449,17 @@ components:
       - $ref: '#/components/schemas/Tweet'
       - $ref: '#/components/schemas/TweetWithVisibilityResults'
       - $ref: '#/components/schemas/TweetTombstone'
+    TweetView:
+      properties:
+        count:
+          pattern: ^[0-9]+$
+          type: string
+        state:
+          enum:
+          - EnabledWithCount
+          type: string
+      required:
+      - state
     TweetWithVisibilityResults:
       properties:
         __typename:
@@ -316,6 +492,20 @@ components:
     UserMention:
       additionalProperties: true
       type: object
+    extMediaAvailability:
+      properties:
+        status:
+          enum:
+          - Available
+          type: string
+      required:
+      - status
+    mediaStats:
+      properties:
+        viewCount:
+          type: integer
+      required:
+      - viewCount
 info:
   title: Twitter OpenAPI
   version: 0.0.1

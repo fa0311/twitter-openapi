@@ -15,6 +15,8 @@ components:
         - $ref: "#/components/schemas/TimelineReplaceEntry"
         - $ref: "#/components/schemas/TimelineShowAlert"
         - $ref: "#/components/schemas/TimelineTerminateTimeline"
+        - $ref: "#/components/schemas/TimelineShowCover"
+
       discriminator:
         propertyName: type
         mapping": # deprecated
@@ -25,6 +27,7 @@ components:
           TimelineReplaceEntry: "#/components/schemas/TimelineReplaceEntry"
           TimelineShowAlert: "#/components/schemas/TimelineShowAlert"
           TimelineTerminateTimeline: "#/components/schemas/TimelineTerminateTimeline"
+          TimelineShowCover: "#/components/schemas/TimelineShowCover"
 
     InstructionType:
       type: string
@@ -37,6 +40,7 @@ components:
           TimelineReplaceEntry,
           TimelineShowAlert,
           TimelineTerminateTimeline,
+          TimelineShowCover,
         ]
 
     TimelineAddEntries:
@@ -162,3 +166,133 @@ components:
         sortIndex:
           type: string
           pattern: "[0-9]+$"
+
+    TimelineShowCover:
+      required:
+        - type
+        - clientEventInfo
+        - cover
+      properties:
+        type:
+          $ref: "#/components/schemas/InstructionType" # TimelineShowCover
+        clientEventInfo:
+          $ref: "./content.yaml#/components/schemas/ClientEventInfo"
+        cover:
+          $ref: "#/components/schemas/TimelineHalfCover"
+
+    TimelineHalfCover:
+      required:
+        - type
+        - halfCoverDisplayType
+        - primaryText
+        - primaryCoverCta
+        - secondaryText
+        - impressionCallbacks
+        - dismissible
+      properties:
+        type:
+          type: string
+          enum: [TimelineHalfCover]
+        halfCoverDisplayType:
+          type: string
+          enum: [Cover]
+        primaryText:
+          $ref: "#/components/schemas/Text"
+        secondaryText:
+          $ref: "#/components/schemas/Text"
+        primaryCoverCta:
+          $ref: "#/components/schemas/CoverCta"
+        impressionCallbacks:
+          type: array
+          items:
+            $ref: "#/components/schemas/Callback"
+        dismissible:
+          type: boolean
+
+    Text:
+      required:
+        - text
+        - entities
+      properties:
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TextEntity"
+
+    TextEntity:
+      required:
+        - fromIndex
+        - toIndex
+        - ref
+      properties:
+        fromIndex:
+          type: integer
+        toIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/TextEntityRef"
+
+    TextEntityRef:
+      required:
+        - type
+        - url
+        - urlType
+      properties:
+        type:
+          type: string
+          enum: [TimelineUrl]
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [ExternalUrl]
+
+    CoverCta:
+      required:
+        - text
+        - ctaBehavior
+        - callbacks
+        - clientEventInfo
+        - buttonStyle
+      properties:
+        Text:
+          type: string
+        ctaBehavior:
+          $ref: "#/components/schemas/TimelineCoverBehavior"
+        callbacks:
+          type: array
+          items:
+            $ref: "#/components/schemas/Callback"
+        clientEventInfo:
+          $ref: "#/components/schemas/CtaClientEventInfo"
+        buttonStyle:
+          type: string
+          enum: ["Primary"]
+
+    TimelineCoverBehavior:
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum: [TimelineCoverBehaviorDismiss]
+
+    Callback:
+      required:
+        - endpoint
+      properties:
+        endpoint:
+          type: string
+          format: uri
+          # pattern: '^/1\.1/[a-z]+/[a-z]+\.json\?[a-z_]+=[a-z0-9-]+(&[a-z_]+=[a-z0-9-]+)+?$' #/1.1/onboarding/fatigue.json?{params}
+
+    CtaClientEventInfo:
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum: [primary_cta]

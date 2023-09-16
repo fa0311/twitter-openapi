@@ -38,11 +38,12 @@ components:
     Tweet:
       required:
         - "rest_id"
-        - "core"
+        # If the tweet has been edited, this property does not exist.
+        # - "core"
         - "edit_control"
-        # - "edit_prespective"
         - "is_translatable"
-        - "legacy"
+        # - "source"
+        # - "legacy"
         - "views"
 
       properties:
@@ -54,85 +55,129 @@ components:
         core:
           $ref: "./user.yaml#/components/schemas/UserResultCore"
         card:
-          type: object
-          properties:
-            rest_id:
-              type: string
-            legacy:
-              type: object
-              required:
-                - "binding_values"
-                - "name"
-                - "url"
-              properties:
-                name:
-                  type: string
-                url:
-                  type: string
-                binding_values:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                      - "key"
-                      - "value"
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        type: object
-                        required:
-                          - "type"
-                        properties:
-                          string_value:
-                            type: string
-                          boolean_value:
-                            type: boolean
-                          scribe_key:
-                            type: string
-                          type:
-                            type: string
+          $ref: "#/components/schemas/TweetCard"
         unmention_data:
           type: object
           additionalProperties: true # todo
         edit_control:
-          type: object
-          properties:
-            edit_tweet_ids:
-              type: array
-              items:
-                type: string
-                pattern: "^[0-9]+$"
-            editable_until_msecs:
-              type: string
-              pattern: "^[0-9]+$"
-            is_edit_eligible:
-              type: boolean
-            edits_remaining:
-              type: string
-              pattern: "^[0-9]+$"
+          $ref: "#/components/schemas/TweetEditControl"
         edit_prespective:
-          type: object
-          properties:
-            favorited:
-              type: boolean
-            retweeted:
-              type: boolean
+          $ref: "#/components/schemas/TweetEditPrespective"
         is_translatable:
           type: boolean
           default: false
+        source:
+          type: string # html (<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>)
         legacy:
           $ref: "#/components/schemas/TweetLegacy"
         views:
-          type: object
-          properties:
-            count:
-              type: string
-              pattern: "^[0-9]+$"
-            state:
-              type: string # enum
+          $ref: "#/components/schemas/TweetView"
         quoted_status_result:
           $ref: "./content.yaml#/components/schemas/ItemResult"
+
+    TweetEditControl:
+      properties:
+        edit_tweet_ids:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+        editable_until_msecs:
+          type: string
+          pattern: "^[0-9]+$"
+        is_edit_eligible:
+          type: boolean
+        edits_remaining:
+          type: string
+          pattern: "^[0-9]+$"
+        initial_tweet_id:
+          type: string
+          pattern: "^[0-9]+$"
+        edit_control_initial:
+          $ref: "#/components/schemas/TweetEditControlInitial"
+
+    TweetEditControlInitial:
+      required:
+        - "edit_tweet_ids"
+        - "editable_until_msecs"
+        - "is_edit_eligible"
+        - "edits_remaining"
+      properties:
+        edit_tweet_ids:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+        editable_until_msecs:
+          type: string
+          pattern: "^[0-9]+$"
+        is_edit_eligible:
+          type: boolean
+        edits_remaining:
+          type: string
+          pattern: "^[0-9]+$"
+
+    TweetEditPrespective:
+      properties:
+        favorited:
+          type: boolean
+        retweeted:
+          type: boolean
+    TweetView:
+      required:
+        - "state"
+      properties:
+        count:
+          type: string
+          pattern: "^[0-9]+$"
+        state:
+          type: string
+          enum: [EnabledWithCount]
+
+    TweetCard:
+      properties:
+        rest_id:
+          type: string
+        legacy:
+          $ref: "#/components/schemas/TweetCardLegacy"
+
+    TweetCardLegacy:
+      required:
+        - "binding_values"
+        - "name"
+        - "url"
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        binding_values:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetCardLegacyBindingValue"
+
+    TweetCardLegacyBindingValue:
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          $ref: "#/components/schemas/TweetCardLegacyBindingValueData"
+
+    TweetCardLegacyBindingValueData:
+      required:
+        - "type"
+      properties:
+        string_value:
+          type: string
+        boolean_value:
+          type: boolean
+        scribe_key:
+          type: string
+        type:
+          type: string
 
     TweetLegacy:
       required:
@@ -202,15 +247,17 @@ components:
           type: string
           pattern: "^[0-9]+$"
         self_thread:
-          type: object
-          required:
-            - "id_str"
-          properties:
-            id_str:
-              type: string
-              pattern: "^[0-9]+$"
+          $ref: "#/components/schemas/SelfThread"
         extended_entities:
           $ref: "#/components/schemas/ExtendedEntities"
+
+    SelfThread:
+      required:
+        - "id_str"
+      properties:
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
 
     Entities:
       required:
@@ -218,7 +265,6 @@ components:
         - "symbols"
         - "user_mentions"
         - "urls"
-        # - "media"
       properties:
         hashtags:
           type: array
@@ -271,27 +317,25 @@ components:
           items:
             type: integer
 
-    ExtendedEntities:
-      required:
-        - "media"
-      properties:
-        media:
-          type: array
-          items:
-            $ref: "#/components/schemas/Media"
-
     Media:
       required:
+        - "display_url"
+        - "expanded_url"
         - "id_str"
         - "indices"
         - "media_url_https"
-        - "url"
-        - "display_url"
-        - "expanded_url"
         - "type"
+        - "url"
+        # - "features"
         - "sizes"
         - "original_info"
       properties:
+        display_url:
+          type: string
+          format: uri
+        expanded_url:
+          type: string
+          format: uri
         id_str:
           type: string
           pattern: "^[0-9]+$"
@@ -302,35 +346,190 @@ components:
         media_url_https:
           type: string
           format: uri
+        type:
+          type: string
+          enum: [photo, video, animated_gif]
         url:
           type: string
           format: uri
+        features:
+          type: object
+        sizes:
+          $ref: "#/components/schemas/MediaSizes"
+        original_info:
+          $ref: "#/components/schemas/MediaOriginalInfo"
+
+    ExtendedEntities:
+      required:
+        - "media"
+      properties:
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaExtended"
+
+    MediaExtended:
+      required:
+        - "display_url"
+        - "expanded_url"
+        - "id_str"
+        - "indices"
+        - "media_key"
+        - "media_url_https"
+        - "type"
+        - "url"
+        - "ext_media_availability"
+        # - "features"
+        - "sizes"
+        - "original_info"
+      properties:
         display_url:
           type: string
           format: uri
         expanded_url:
           type: string
           format: uri
-        type:
-          type: string # enum
-        sizes:
-          type: object
-          additionalProperties: true # todo
-        original_info:
-          type: object
-          properties:
-            height:
-              type: integer
-            width:
-              type: integer
-            focus_rects:
-              type: array
-              items:
-                type: object
-                additionalProperties: true # todo
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        indices:
+          type: array
+          items:
+            type: integer
         media_key:
           type: string
-          pattern: "^[0-9]+_[0-9]+$"
+        media_url_https:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum: [photo, video, animated_gif]
+        url:
+          type: string
+          format: uri
+        additional_media_info:
+          $ref: "#/components/schemas/AdditionalMediaInfo"
+        mediaStats:
+          $ref: "#/components/schemas/mediaStats"
         ext_media_availability:
+          $ref: "#/components/schemas/extMediaAvailability"
+        features:
           type: object
-          additionalProperties: true # todo
+        sizes:
+          $ref: "#/components/schemas/MediaSizes"
+        original_info:
+          $ref: "#/components/schemas/MediaOriginalInfo"
+        video_info:
+          $ref: "#/components/schemas/MediaVideoInfo"
+
+    MediaOriginalInfo:
+      required:
+        - "height"
+        - "width"
+      properties:
+        height:
+          type: integer
+        width:
+          type: integer
+        focus_rects:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaOriginalInfoFocusRect"
+
+    MediaOriginalInfoFocusRect:
+      type: object
+      required:
+        - "x"
+        - "y"
+        - "w"
+        - "h"
+      properties:
+        x:
+          type: integer
+        y:
+          type: integer
+        w:
+          type: integer
+        h:
+          type: integer
+
+    MediaVideoInfo:
+      required:
+        - "aspect_ratio"
+        - "variants"
+      properties:
+        aspect_ratio:
+          type: array
+          items:
+            type: integer
+        duration_millis:
+          type: integer
+        variants:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaVideoInfoVariant"
+
+    MediaVideoInfoVariant:
+      required:
+        - "content_type"
+        - "url"
+      properties:
+        bitrate:
+          type: integer
+        content_type:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    AdditionalMediaInfo:
+      required:
+        - "monetizable"
+      properties:
+        monetizable:
+          type: boolean
+
+    mediaStats:
+      required:
+        - "viewCount"
+      properties:
+        viewCount:
+          type: integer
+
+    extMediaAvailability:
+      # required:
+      #   - "status"
+      properties:
+        status:
+          type: string
+          enum: [Available]
+
+    MediaSizes:
+      required:
+        - "large"
+        - "medium"
+        - "small"
+        - "thumb"
+      properties:
+        large:
+          $ref: "#/components/schemas/MediaSize"
+        medium:
+          $ref: "#/components/schemas/MediaSize"
+        small:
+          $ref: "#/components/schemas/MediaSize"
+        thumb:
+          $ref: "#/components/schemas/MediaSize"
+
+    MediaSize:
+      required:
+        - "w"
+        - "h"
+        - "resize"
+      properties:
+        w:
+          type: integer
+        h:
+          type: integer
+        resize:
+          type: string
+          enum: [crop, fit]

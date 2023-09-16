@@ -68,7 +68,8 @@ components:
         superFollowersCount:
           type: integer
         superFollowsApplicationStatus:
-          type: string # enum: NotStarted
+          type: string
+          enum: [NotStarted]
         user_id:
           type: string
           pattern: "^[0-9]+$"
