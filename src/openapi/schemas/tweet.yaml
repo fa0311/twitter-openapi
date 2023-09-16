@@ -38,11 +38,12 @@ components:
     Tweet:
       required:
         - "rest_id"
-        - "core"
+        # If the tweet has been edited, this property does not exist.
+        # - "core"
         - "edit_control"
         - "is_translatable"
-        - "source"
-        - "legacy"
+        # - "source"
+        # - "legacy"
         - "views"
 
       properties:
