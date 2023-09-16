@@ -497,8 +497,8 @@ components:
           type: integer
 
     extMediaAvailability:
-      required:
-        - "status"
+      # required:
+      #   - "status"
       properties:
         status:
           type: string
