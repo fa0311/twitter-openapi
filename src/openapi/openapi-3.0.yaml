@@ -7,8 +7,8 @@ info:
   contact:
     email: yuki@yuki0311.com
   license:
-    name: GNU Affero General Public License v3.
-    url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
+    name: custom license or AGPL-3.0-or-later
+    url: https://github.com/fa0311/twitter-openapi#license
   version: 0.0.1
 servers:
   - url: https://twitter.com/i/api

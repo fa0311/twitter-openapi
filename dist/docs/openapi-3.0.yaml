@@ -51,8 +51,8 @@ info:
     email: yuki@yuki0311.com
   description: Twitter OpenAPI(Swagger) specification
   license:
-    name: GNU Affero General Public License v3.
-    url: https://raw.githubusercontent.com/fa0311/twitter-openapi/main/LICENSE.txt
+    name: custom license or AGPL-3.0-or-later
+    url: https://github.com/fa0311/twitter-openapi#license
   termsOfService: https://github.com/fa0311
   title: Twitter OpenAPI
   version: 0.0.1
