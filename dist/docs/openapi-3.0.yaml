@@ -575,7 +575,6 @@ components:
       - media_url_https
       - type
       - url
-      - ext_media_availability
       - sizes
       - original_info
     MediaOriginalInfo:
@@ -1454,9 +1453,9 @@ components:
       - tweet
     TwitterTimeFormat:
       example: Sat Dec 31 23:59:59 +0000 2023
-      pattern: ^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)
-        (0[1-9]|[12][0-9]|3[01]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])
-        ([+-][0-9]{4}) ([0-9]{4})$
+      pattern: '^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)
+        (0[1-9]|[12][0-9]|3[01]) (0[0-9]|1[0-9]|2[0-3])(: ?)([0-5][0-9])(: ?)([0-5][0-9])
+        ([+-][0-9]{4}) ([0-9]{4})$'
       type: string
     TypeName:
       enum:
@@ -1803,8 +1802,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserUnion'
-      required:
-      - result
     UserTweetsData:
       properties:
         user:
