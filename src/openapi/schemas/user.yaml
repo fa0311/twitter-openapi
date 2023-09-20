@@ -13,8 +13,6 @@ components:
           $ref: "#/components/schemas/UserResults"
 
     UserResults:
-      required:
-        - "result"
       properties:
         result:
           $ref: "#/components/schemas/UserUnion"
