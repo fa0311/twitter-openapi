@@ -378,7 +378,7 @@ components:
         - "media_url_https"
         - "type"
         - "url"
-        - "ext_media_availability"
+        # - "ext_media_availability"
         # - "features"
         - "sizes"
         - "original_info"
