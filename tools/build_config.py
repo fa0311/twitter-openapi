@@ -8,25 +8,18 @@ class Config:
     def hooks_generator(self, queryParameterJson=True):
         # https://stackoverflow.com/questions/34820064/defining-an-api-with-swagger-get-call-that-uses-json-in-parameters/45223964
         if queryParameterJson:
+            # ["parameters"][0]["content"]["application/json"]["schema"]
             getParamHook = AddParametersOnContent(
                 split=-1,
                 contentType="application/json",
                 ignoreKeys=["queryId"],
             )
-            postParamHook = AddParametersOnParameters(
-                split=-1,
-                schemaType=None,
-            )
         else:
+            # ["parameters"][0]["schema"]
             getParamHook = AddParametersOnParameters(
                 split=-1,
                 schemaType="string",
                 ignoreKeys=["queryId"],
-            )
-            postParamHook = AddParametersOnBody(
-                split=-1,
-                schemaType=None,
-                contentType="application/json",
             )
 
         return {
@@ -45,7 +38,11 @@ class Config:
                 key: [
                     SetResponsesHeader(suffix=None),
                     AddPathQueryIdOnParameters(split=-1),
-                    postParamHook,
+                    AddParametersOnBody(
+                        split=-1,
+                        schemaType=None,
+                        contentType="application/json",
+                    ),
                 ]
                 for key in ["post"]
             }
