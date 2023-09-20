@@ -1802,8 +1802,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserUnion'
-      required:
-      - result
     UserTweetsData:
       properties:
         user:
