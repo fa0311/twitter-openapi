@@ -1877,6 +1877,21 @@ components:
       required:
       - viewCount
   securitySchemes:
+    Accept:
+      description: '*/*'
+      in: header
+      name: Accept
+      type: apiKey
+    AcceptEncoding:
+      description: gzip, deflate, br
+      in: header
+      name: Accept-Encoding
+      type: apiKey
+    AcceptLanguage:
+      description: en-US,en;q=0.9
+      in: header
+      name: Accept-Language
+      type: apiKey
     ActiveUser:
       description: 'yes'
       in: header
@@ -1891,6 +1906,11 @@ components:
       description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
       scheme: bearer
       type: http
+    CacheControl:
+      description: no-cache
+      in: header
+      name: Cache-Control
+      type: apiKey
     ClientLanguage:
       description: en
       in: header
@@ -1915,6 +1935,41 @@ components:
       description: document.cookie.split('; ').find(row => row.startsWith('gt='));
       in: header
       name: x-guest-token
+      type: apiKey
+    Pragma:
+      description: no-cache
+      in: header
+      name: Pragma
+      type: apiKey
+    SecChUa:
+      description: '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"'
+      in: header
+      name: Sec-Ch-Ua
+      type: apiKey
+    SecChUaMobile:
+      description: ?0
+      in: header
+      name: Sec-Ch-Ua-Mobile
+      type: apiKey
+    SecChUaPlatform:
+      description: '"Windows"'
+      in: header
+      name: Sec-Ch-Ua-Platform
+      type: apiKey
+    SecFetchDest:
+      description: empty
+      in: header
+      name: Sec-Fetch-Dest
+      type: apiKey
+    SecFetchMode:
+      description: cors
+      in: header
+      name: Sec-Fetch-Mode
+      type: apiKey
+    SecFetchSite:
+      description: same-origin
+      in: header
+      name: Sec-Fetch-Site
       type: apiKey
     UserAgent:
       description: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
@@ -2888,30 +2943,34 @@ paths:
           default: ojPdsZsimiJrUGLR1sjUtA
           example: ojPdsZsimiJrUGLR1sjUtA
           type: string
-      - in: query
-        name: queryId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: ojPdsZsimiJrUGLR1sjUtA
+                  example: ojPdsZsimiJrUGLR1sjUtA
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
         required: true
-        schema:
-          default: ojPdsZsimiJrUGLR1sjUtA
-          example: ojPdsZsimiJrUGLR1sjUtA
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          properties:
-            dark_request:
-              default: false
-              example: false
-              type: boolean
-            tweet_id:
-              default: '1349129669258448897'
-              example: '1349129669258448897'
-              type: string
-          required:
-          - tweet_id
-          - dark_request
-          type: object
       responses:
         '200':
           content:
@@ -2960,152 +3019,166 @@ paths:
           default: 1RyAhNwby-gzGCRVsMxKbQ
           example: 1RyAhNwby-gzGCRVsMxKbQ
           type: string
-      - in: query
-        name: queryId
-        required: true
-        schema:
-          default: 1RyAhNwby-gzGCRVsMxKbQ
-          example: 1RyAhNwby-gzGCRVsMxKbQ
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          properties:
-            dark_request:
-              default: false
-              example: false
-              type: boolean
-            media:
+      requestBody:
+        content:
+          application/json:
+            schema:
               properties:
-                media_entities:
-                  items:
-                    type: object
-                  type: array
-                possibly_sensitive:
-                  default: false
-                  example: false
-                  type: boolean
+                features:
+                  properties:
+                    blue_business_profile_image_shape_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    freedom_of_speech_not_reach_fetch_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    interactive_text_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    longform_notetweets_consumption_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    longform_notetweets_rich_text_read_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    responsive_web_edit_tweet_api_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    responsive_web_enhance_cards_enabled:
+                      default: false
+                      example: false
+                      type: boolean
+                    responsive_web_graphql_exclude_directive_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                      default: false
+                      example: false
+                      type: boolean
+                    responsive_web_graphql_timeline_navigation_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    responsive_web_text_conversations_enabled:
+                      default: false
+                      example: false
+                      type: boolean
+                    standardized_nudges_misinfo:
+                      default: true
+                      example: true
+                      type: boolean
+                    tweet_awards_web_tipping_enabled:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweetypie_unmention_optimization_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    verified_phone_label_enabled:
+                      default: false
+                      example: false
+                      type: boolean
+                    vibe_api_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                    view_counts_everywhere_api_enabled:
+                      default: true
+                      example: true
+                      type: boolean
+                  required:
+                  - tweetypie_unmention_optimization_enabled
+                  - vibe_api_enabled
+                  - responsive_web_edit_tweet_api_enabled
+                  - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+                  - view_counts_everywhere_api_enabled
+                  - longform_notetweets_consumption_enabled
+                  - tweet_awards_web_tipping_enabled
+                  - interactive_text_enabled
+                  - responsive_web_text_conversations_enabled
+                  - longform_notetweets_rich_text_read_enabled
+                  - blue_business_profile_image_shape_enabled
+                  - responsive_web_graphql_exclude_directive_enabled
+                  - verified_phone_label_enabled
+                  - freedom_of_speech_not_reach_fetch_enabled
+                  - standardized_nudges_misinfo
+                  - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+                  - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+                  - responsive_web_graphql_timeline_navigation_enabled
+                  - responsive_web_enhance_cards_enabled
+                  type: object
+                queryId:
+                  default: 1RyAhNwby-gzGCRVsMxKbQ
+                  example: 1RyAhNwby-gzGCRVsMxKbQ
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    media:
+                      properties:
+                        media_entities:
+                          items:
+                            properties:
+                              media_id:
+                                default: '1111111111111111111'
+                                example: '1111111111111111111'
+                                type: string
+                              tagged_users:
+                                items:
+                                  type: object
+                                type: array
+                            required:
+                            - media_id
+                            - tagged_users
+                            type: object
+                          type: array
+                        possibly_sensitive:
+                          default: false
+                          example: false
+                          type: boolean
+                      required:
+                      - media_entities
+                      - possibly_sensitive
+                      type: object
+                    semantic_annotation_ids:
+                      items:
+                        type: object
+                      type: array
+                    tweet_text:
+                      default: test
+                      example: test
+                      type: string
+                  required:
+                  - tweet_text
+                  - media
+                  - semantic_annotation_ids
+                  - dark_request
+                  type: object
               required:
-              - media_entities
-              - possibly_sensitive
-              type: object
-            semantic_annotation_ids:
-              items:
-                type: object
-              type: array
-            tweet_text:
-              default: test
-              example: test
-              type: string
-          required:
-          - tweet_text
-          - media
-          - semantic_annotation_ids
-          - dark_request
-          type: object
-      - in: query
-        name: features
+              - queryId
+              - variables
+              - features
+        description: body
         required: true
-        schema:
-          properties:
-            blue_business_profile_image_shape_enabled:
-              default: true
-              example: true
-              type: boolean
-            freedom_of_speech_not_reach_fetch_enabled:
-              default: true
-              example: true
-              type: boolean
-            graphql_is_translatable_rweb_tweet_is_translatable_enabled:
-              default: true
-              example: true
-              type: boolean
-            interactive_text_enabled:
-              default: true
-              example: true
-              type: boolean
-            longform_notetweets_consumption_enabled:
-              default: true
-              example: true
-              type: boolean
-            longform_notetweets_rich_text_read_enabled:
-              default: true
-              example: true
-              type: boolean
-            responsive_web_edit_tweet_api_enabled:
-              default: true
-              example: true
-              type: boolean
-            responsive_web_enhance_cards_enabled:
-              default: false
-              example: false
-              type: boolean
-            responsive_web_graphql_exclude_directive_enabled:
-              default: true
-              example: true
-              type: boolean
-            responsive_web_graphql_skip_user_profile_image_extensions_enabled:
-              default: false
-              example: false
-              type: boolean
-            responsive_web_graphql_timeline_navigation_enabled:
-              default: true
-              example: true
-              type: boolean
-            responsive_web_text_conversations_enabled:
-              default: false
-              example: false
-              type: boolean
-            standardized_nudges_misinfo:
-              default: true
-              example: true
-              type: boolean
-            tweet_awards_web_tipping_enabled:
-              default: false
-              example: false
-              type: boolean
-            tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
-              default: false
-              example: false
-              type: boolean
-            tweetypie_unmention_optimization_enabled:
-              default: true
-              example: true
-              type: boolean
-            verified_phone_label_enabled:
-              default: false
-              example: false
-              type: boolean
-            vibe_api_enabled:
-              default: true
-              example: true
-              type: boolean
-            view_counts_everywhere_api_enabled:
-              default: true
-              example: true
-              type: boolean
-          required:
-          - tweetypie_unmention_optimization_enabled
-          - vibe_api_enabled
-          - responsive_web_edit_tweet_api_enabled
-          - graphql_is_translatable_rweb_tweet_is_translatable_enabled
-          - view_counts_everywhere_api_enabled
-          - longform_notetweets_consumption_enabled
-          - tweet_awards_web_tipping_enabled
-          - interactive_text_enabled
-          - responsive_web_text_conversations_enabled
-          - longform_notetweets_rich_text_read_enabled
-          - blue_business_profile_image_shape_enabled
-          - responsive_web_graphql_exclude_directive_enabled
-          - verified_phone_label_enabled
-          - freedom_of_speech_not_reach_fetch_enabled
-          - standardized_nudges_misinfo
-          - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
-          - responsive_web_graphql_skip_user_profile_image_extensions_enabled
-          - responsive_web_graphql_timeline_navigation_enabled
-          - responsive_web_enhance_cards_enabled
-          type: object
       responses:
         '200':
           content:
@@ -3154,30 +3227,34 @@ paths:
           default: iQtK4dl5hBmXewYZuEOKVw
           example: iQtK4dl5hBmXewYZuEOKVw
           type: string
-      - in: query
-        name: queryId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: iQtK4dl5hBmXewYZuEOKVw
+                  example: iQtK4dl5hBmXewYZuEOKVw
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    source_tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - source_tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
         required: true
-        schema:
-          default: iQtK4dl5hBmXewYZuEOKVw
-          example: iQtK4dl5hBmXewYZuEOKVw
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          properties:
-            dark_request:
-              default: false
-              example: false
-              type: boolean
-            source_tweet_id:
-              default: '1349129669258448897'
-              example: '1349129669258448897'
-              type: string
-          required:
-          - source_tweet_id
-          - dark_request
-          type: object
       responses:
         '200':
           content:
@@ -3226,30 +3303,34 @@ paths:
           default: VaenaVgh5q5ih7kvyVjgtg
           example: VaenaVgh5q5ih7kvyVjgtg
           type: string
-      - in: query
-        name: queryId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: VaenaVgh5q5ih7kvyVjgtg
+                  example: VaenaVgh5q5ih7kvyVjgtg
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
         required: true
-        schema:
-          default: VaenaVgh5q5ih7kvyVjgtg
-          example: VaenaVgh5q5ih7kvyVjgtg
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          properties:
-            dark_request:
-              default: false
-              example: false
-              type: boolean
-            tweet_id:
-              default: '1349129669258448897'
-              example: '1349129669258448897'
-              type: string
-          required:
-          - tweet_id
-          - dark_request
-          type: object
       responses:
         '200':
           content:
@@ -3298,30 +3379,34 @@ paths:
           default: lI07N6Otwv1PhnEgXILM7A
           example: lI07N6Otwv1PhnEgXILM7A
           type: string
-      - in: query
-        name: queryId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: lI07N6Otwv1PhnEgXILM7A
+                  example: lI07N6Otwv1PhnEgXILM7A
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
         required: true
-        schema:
-          default: lI07N6Otwv1PhnEgXILM7A
-          example: lI07N6Otwv1PhnEgXILM7A
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          properties:
-            dark_request:
-              default: false
-              example: false
-              type: boolean
-            tweet_id:
-              default: '1349129669258448897'
-              example: '1349129669258448897'
-              type: string
-          required:
-          - tweet_id
-          - dark_request
-          type: object
       responses:
         '200':
           content:
@@ -5661,30 +5746,34 @@ paths:
           default: ZYKSe-w7KEslx3JhSIk5LA
           example: ZYKSe-w7KEslx3JhSIk5LA
           type: string
-      - in: query
-        name: queryId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: ZYKSe-w7KEslx3JhSIk5LA
+                  example: ZYKSe-w7KEslx3JhSIk5LA
+                  type: string
+                variables:
+                  properties:
+                    dark_request:
+                      default: false
+                      example: false
+                      type: boolean
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  - dark_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
         required: true
-        schema:
-          default: ZYKSe-w7KEslx3JhSIk5LA
-          example: ZYKSe-w7KEslx3JhSIk5LA
-          type: string
-      - in: query
-        name: variables
-        required: true
-        schema:
-          properties:
-            dark_request:
-              default: false
-              example: false
-              type: boolean
-            tweet_id:
-              default: '1349129669258448897'
-              example: '1349129669258448897'
-              type: string
-          required:
-          - tweet_id
-          - dark_request
-          type: object
       responses:
         '200':
           content:
@@ -6833,6 +6922,17 @@ security:
 - BearerAuth: []
 - ActiveUser: []
 - ClientLanguage: []
+- Accept: []
+- AcceptEncoding: []
+- AcceptLanguage: []
+- CacheControl: []
+- Pragma: []
+- SecChUa: []
+- SecChUaMobile: []
+- SecChUaPlatform: []
+- SecFetchDest: []
+- SecFetchMode: []
+- SecFetchSite: []
 servers:
 - url: https://twitter.com/i/api
 tags:

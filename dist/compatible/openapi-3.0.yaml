@@ -1877,6 +1877,21 @@ components:
       required:
       - viewCount
   securitySchemes:
+    Accept:
+      description: '*/*'
+      in: header
+      name: Accept
+      type: apiKey
+    AcceptEncoding:
+      description: gzip, deflate, br
+      in: header
+      name: Accept-Encoding
+      type: apiKey
+    AcceptLanguage:
+      description: en-US,en;q=0.9
+      in: header
+      name: Accept-Language
+      type: apiKey
     ActiveUser:
       description: 'yes'
       in: header
@@ -1891,6 +1906,11 @@ components:
       description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
       scheme: bearer
       type: http
+    CacheControl:
+      description: no-cache
+      in: header
+      name: Cache-Control
+      type: apiKey
     ClientLanguage:
       description: en
       in: header
@@ -1915,6 +1935,41 @@ components:
       description: document.cookie.split('; ').find(row => row.startsWith('gt='));
       in: header
       name: x-guest-token
+      type: apiKey
+    Pragma:
+      description: no-cache
+      in: header
+      name: Pragma
+      type: apiKey
+    SecChUa:
+      description: '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"'
+      in: header
+      name: Sec-Ch-Ua
+      type: apiKey
+    SecChUaMobile:
+      description: ?0
+      in: header
+      name: Sec-Ch-Ua-Mobile
+      type: apiKey
+    SecChUaPlatform:
+      description: '"Windows"'
+      in: header
+      name: Sec-Ch-Ua-Platform
+      type: apiKey
+    SecFetchDest:
+      description: empty
+      in: header
+      name: Sec-Fetch-Dest
+      type: apiKey
+    SecFetchMode:
+      description: cors
+      in: header
+      name: Sec-Fetch-Mode
+      type: apiKey
+    SecFetchSite:
+      description: same-origin
+      in: header
+      name: Sec-Fetch-Site
       type: apiKey
     UserAgent:
       description: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
@@ -2988,6 +3043,18 @@ paths:
                       properties:
                         media_entities:
                           items:
+                            properties:
+                              media_id:
+                                default: '1111111111111111111'
+                                example: '1111111111111111111'
+                                type: string
+                              tagged_users:
+                                items:
+                                  type: object
+                                type: array
+                            required:
+                            - media_id
+                            - tagged_users
                             type: object
                           type: array
                         possibly_sensitive:
@@ -5025,6 +5092,17 @@ security:
 - BearerAuth: []
 - ActiveUser: []
 - ClientLanguage: []
+- Accept: []
+- AcceptEncoding: []
+- AcceptLanguage: []
+- CacheControl: []
+- Pragma: []
+- SecChUa: []
+- SecChUaMobile: []
+- SecChUaPlatform: []
+- SecFetchDest: []
+- SecFetchMode: []
+- SecFetchSite: []
 servers:
 - url: https://twitter.com/i/api
 tags:
