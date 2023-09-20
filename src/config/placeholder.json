@@ -587,7 +587,12 @@
     "variables": {
       "tweet_text": "test",
       "media": {
-        "media_entities": [],
+        "media_entities": [
+          {
+            "media_id": "1111111111111111111",
+            "tagged_users": []
+          }
+        ],
         "possibly_sensitive": false
       },
       "semantic_annotation_ids": [],
