@@ -93,7 +93,6 @@ components:
       - ctaBehavior
       - callbacks
       - clientEventInfo
-      - buttonStyle
     CreateRetweet:
       properties:
         result:
