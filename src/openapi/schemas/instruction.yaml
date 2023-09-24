@@ -256,7 +256,6 @@ components:
         - ctaBehavior
         - callbacks
         - clientEventInfo
-        - buttonStyle
       properties:
         Text:
           type: string
