@@ -500,9 +500,11 @@ components:
       # required:
       #   - "status"
       properties:
+        reason:
+          type: string # enum Dmcaed
         status:
           type: string
-          enum: [Available]
+          enum: [Available, Unavailable]
 
     MediaSizes:
       required:

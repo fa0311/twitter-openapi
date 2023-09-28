@@ -1860,9 +1860,12 @@ components:
       - users
     extMediaAvailability:
       properties:
+        reason:
+          type: string
         status:
           enum:
           - Available
+          - Unavailable
           type: string
     mediaStats:
       properties:
