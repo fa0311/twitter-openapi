@@ -6,6 +6,95 @@ components:
           type: boolean
       required:
       - monetizable
+    BirdwatchEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/BirdwatchEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - toIndex
+      - ref
+    BirdwatchEntityRef:
+      properties:
+        type:
+          enum:
+          - TimelineUrl
+          type: string
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - type
+      - url
+      - urlType
+    BirdwatchPivot:
+      properties:
+        destinationUrl:
+          format: uri
+          type: string
+        footer:
+          $ref: '#/components/schemas/BirdwatchPivotFooter'
+        iconType:
+          enum:
+          - BirdwatchV1Icon
+          type: string
+        note:
+          $ref: '#/components/schemas/BirdwatchPivotNote'
+        shorttitle:
+          type: string
+        subtitle:
+          $ref: '#/components/schemas/BirdwatchPivotSubtitle'
+        title:
+          type: string
+        visualStyle:
+          enum:
+          - Default
+          type: string
+      required:
+      - destinationUrl
+      - footer
+      - note
+      - subtitle
+      - title
+      - shorttitle
+      - iconType
+    BirdwatchPivotFooter:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/BirdwatchEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
+    BirdwatchPivotNote:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
+    BirdwatchPivotSubtitle:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/BirdwatchEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
     BookmarksResponse:
       properties:
         data:
@@ -60,6 +149,7 @@ components:
       - TimelineUser
       - TimelinePrompt
       - TimelineMessagePrompt
+      - TimelineCommunity
       type: string
     ContentUnion:
       discriminator:
@@ -427,6 +517,7 @@ components:
     ItemContentUnion:
       discriminator:
         mapping":
+          TimelineCommunity: '#/components/schemas/TimelineCommunity'
           TimelineMessagePrompt: '#/components/schemas/TimelineMessagePrompt'
           TimelinePrompt: '#/components/schemas/TimelinePrompt'
           TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
@@ -439,6 +530,7 @@ components:
       - $ref: '#/components/schemas/TimelineUser'
       - $ref: '#/components/schemas/TimelinePrompt'
       - $ref: '#/components/schemas/TimelineMessagePrompt'
+      - $ref: '#/components/schemas/TimelineCommunity'
     ItemResult:
       properties:
         __typename:
@@ -679,6 +771,71 @@ components:
       required:
       - entryId
       - item
+    NoteTweet:
+      properties:
+        is_expandable:
+          type: boolean
+        note_tweet_results:
+          $ref: '#/components/schemas/NoteTweetResult'
+      required:
+      - is_expandable
+      - note_tweet_results
+    NoteTweetResult:
+      properties:
+        result:
+          $ref: '#/components/schemas/NoteTweetResultData'
+      required:
+      - result
+    NoteTweetResultData:
+      properties:
+        entity_set:
+          $ref: '#/components/schemas/Entities'
+        id:
+          pattern: ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$
+          type: string
+        media:
+          $ref: '#/components/schemas/NoteTweetResultMedia'
+        richtext:
+          $ref: '#/components/schemas/NoteTweetResultRichText'
+        text:
+          type: string
+      required:
+      - entity_set
+      - id
+      - text
+    NoteTweetResultMedia:
+      properties:
+        inline_media:
+          items:
+            type: object
+          type: array
+      required:
+      - inline_media
+    NoteTweetResultRichText:
+      properties:
+        richtext_tags:
+          items:
+            $ref: '#/components/schemas/NoteTweetResultRichTextTag'
+          type: array
+      required:
+      - richtext_tags
+    NoteTweetResultRichTextTag:
+      properties:
+        from_index:
+          type: integer
+        richtext_types:
+          items:
+            enum:
+            - Bold
+            - Italic
+            type: string
+          type: array
+        to_index:
+          type: integer
+      required:
+      - from_index
+      - to_index
+      - richtext_types
     OneFactorLoginEligibility:
       properties:
         fetchStatus:
@@ -914,6 +1071,11 @@ components:
           $ref: '#/components/schemas/InstructionType'
       required:
       - type
+    TimelineCommunity:
+      additionalProperties: true
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
     TimelineCoverBehavior:
       properties:
         type:
@@ -1176,6 +1338,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        birdwatch_pivot:
+          $ref: '#/components/schemas/BirdwatchPivot'
         card:
           $ref: '#/components/schemas/TweetCard'
         core:
@@ -1189,6 +1353,10 @@ components:
           type: boolean
         legacy:
           $ref: '#/components/schemas/TweetLegacy'
+        note_tweet:
+          $ref: '#/components/schemas/NoteTweet'
+        quick_promote_eligibility:
+          type: object
         quoted_status_result:
           $ref: '#/components/schemas/ItemResult'
         rest_id:
@@ -1465,6 +1633,7 @@ components:
       - TweetTombstone
       - TimelinePrompt
       - TimelineMessagePrompt
+      - TimelineCommunity
       - TweetUnavailable
       - Tweet
       - User
@@ -1860,9 +2029,12 @@ components:
       - users
     extMediaAvailability:
       properties:
+        reason:
+          type: string
         status:
           enum:
           - Available
+          - Unavailable
           type: string
     mediaStats:
       properties:
