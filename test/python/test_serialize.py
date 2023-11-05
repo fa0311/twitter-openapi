@@ -256,29 +256,19 @@ if __name__ == "__main__":
         error_dump(e)
         error_count += 1
 
-    try:
-        logger.info(f"Try: Self TweetDetail Test")
-        kwargs = get_kwargs("TweetDetail", {"focalTweetId": "1720975693524377759"})
-        res = pt.TweetApi(api_client).get_tweet_detail_with_http_info(**kwargs)
-        data = res.data.to_dict()
+    ids = ["1720975693524377759", "1720818185186791678", "1721006592303251551"]
+    for id in ids:
+        try:
+            logger.info(f"Try: Self TweetDetail {id} Test")
+            kwargs = get_kwargs("TweetDetail", {"focalTweetId": id})
+            res = pt.TweetApi(api_client).get_tweet_detail_with_http_info(**kwargs)
+            data = res.data.to_dict()
 
-        rate = match_rate(data, json.loads(res.raw_data))
-        logger.info(f"Match rate: {rate}")
-    except Exception as e:
-        error_dump(e)
-        error_count += 1
-
-    try:
-        logger.info(f"Try: Self TweetDetail Test")
-        kwargs = get_kwargs("TweetDetail", {"focalTweetId": "1720818185186791678"})
-        res = pt.TweetApi(api_client).get_tweet_detail_with_http_info(**kwargs)
-        data = res.data.to_dict()
-
-        rate = match_rate(data, json.loads(res.raw_data))
-        logger.info(f"Match rate: {rate}")
-    except Exception as e:
-        error_dump(e)
-        error_count += 1
+            rate = match_rate(data, json.loads(res.raw_data))
+            logger.info(f"Match rate: {rate}")
+        except Exception as e:
+            error_dump(e)
+            error_count += 1
 
     if error_count > 0:
         exit(1)
