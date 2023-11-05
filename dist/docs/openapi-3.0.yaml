@@ -60,6 +60,7 @@ components:
       - TimelineUser
       - TimelinePrompt
       - TimelineMessagePrompt
+      - TimelineCommunity
       type: string
     ContentUnion:
       discriminator:
@@ -427,6 +428,7 @@ components:
     ItemContentUnion:
       discriminator:
         mapping":
+          TimelineCommunity: '#/components/schemas/TimelineCommunity'
           TimelineMessagePrompt: '#/components/schemas/TimelineMessagePrompt'
           TimelinePrompt: '#/components/schemas/TimelinePrompt'
           TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
@@ -439,6 +441,7 @@ components:
       - $ref: '#/components/schemas/TimelineUser'
       - $ref: '#/components/schemas/TimelinePrompt'
       - $ref: '#/components/schemas/TimelineMessagePrompt'
+      - $ref: '#/components/schemas/TimelineCommunity'
     ItemResult:
       properties:
         __typename:
@@ -914,6 +917,11 @@ components:
           $ref: '#/components/schemas/InstructionType'
       required:
       - type
+    TimelineCommunity:
+      additionalProperties: true
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
     TimelineCoverBehavior:
       properties:
         type:
@@ -1465,6 +1473,7 @@ components:
       - TweetTombstone
       - TimelinePrompt
       - TimelineMessagePrompt
+      - TimelineCommunity
       - TweetUnavailable
       - Tweet
       - User

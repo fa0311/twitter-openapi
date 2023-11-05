@@ -18,6 +18,7 @@ components:
           TweetTombstone,
           TimelinePrompt,
           TimelineMessagePrompt,
+          TimelineCommunity,
           TweetUnavailable,
           Tweet,
           User,

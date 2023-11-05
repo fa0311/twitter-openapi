@@ -125,6 +125,7 @@ components:
         - $ref: "#/components/schemas/TimelineUser"
         - $ref: "#/components/schemas/TimelinePrompt"
         - $ref: "#/components/schemas/TimelineMessagePrompt"
+        - $ref: "#/components/schemas/TimelineCommunity"
 
       discriminator:
         propertyName: __typename
@@ -134,6 +135,7 @@ components:
           TimelineUser: "#/components/schemas/TimelineUser"
           TimelinePrompt: "#/components/schemas/TimelinePrompt"
           TimelineMessagePrompt: "#/components/schemas/TimelineMessagePrompt"
+          TimelineCommunity: "#/components/schemas/TimelineCommunity"
 
     ContentItemType:
       type: string
@@ -144,6 +146,7 @@ components:
           TimelineUser,
           TimelinePrompt,
           TimelineMessagePrompt,
+          TimelineCommunity,
         ]
 
     TimelineTweet:
@@ -214,6 +217,12 @@ components:
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineMessagePrompt
+      additionalProperties: true # todo
+
+    TimelineCommunity:
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineCommunity
       additionalProperties: true # todo
 
     ClientEventInfo:
