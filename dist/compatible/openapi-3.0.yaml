@@ -682,6 +682,71 @@ components:
       required:
       - entryId
       - item
+    NoteTweet:
+      properties:
+        is_expandable:
+          type: boolean
+        note_tweet_results:
+          $ref: '#/components/schemas/NoteTweetResult'
+      required:
+      - is_expandable
+      - note_tweet_results
+    NoteTweetResult:
+      properties:
+        result:
+          $ref: '#/components/schemas/NoteTweetResultData'
+      required:
+      - result
+    NoteTweetResultData:
+      properties:
+        entity_set:
+          $ref: '#/components/schemas/Entities'
+        id:
+          pattern: ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$
+          type: string
+        media:
+          $ref: '#/components/schemas/NoteTweetResultMedia'
+        richtext:
+          $ref: '#/components/schemas/NoteTweetResultRichText'
+        text:
+          type: string
+      required:
+      - entity_set
+      - id
+      - text
+    NoteTweetResultMedia:
+      properties:
+        inline_media:
+          items:
+            type: object
+          type: array
+      required:
+      - inline_media
+    NoteTweetResultRichText:
+      properties:
+        richtext_tags:
+          items:
+            $ref: '#/components/schemas/NoteTweetResultRichTextTag'
+          type: array
+      required:
+      - richtext_tags
+    NoteTweetResultRichTextTag:
+      properties:
+        from_index:
+          type: integer
+        richtext_types:
+          items:
+            enum:
+            - Bold
+            - Italic
+            type: string
+          type: array
+        to_index:
+          type: integer
+      required:
+      - from_index
+      - to_index
+      - richtext_types
     OneFactorLoginEligibility:
       properties:
         fetchStatus:
@@ -1197,6 +1262,10 @@ components:
           type: boolean
         legacy:
           $ref: '#/components/schemas/TweetLegacy'
+        note_tweet:
+          $ref: '#/components/schemas/NoteTweet'
+        quick_promote_eligibility:
+          type: object
         quoted_status_result:
           $ref: '#/components/schemas/ItemResult'
         rest_id:

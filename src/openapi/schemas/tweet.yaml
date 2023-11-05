@@ -74,6 +74,10 @@ components:
           $ref: "#/components/schemas/TweetView"
         quoted_status_result:
           $ref: "./content.yaml#/components/schemas/ItemResult"
+        note_tweet:
+          $ref: "#/components/schemas/NoteTweet"
+        quick_promote_eligibility:
+          type: object
 
     TweetEditControl:
       properties:
@@ -133,6 +137,74 @@ components:
         state:
           type: string
           enum: [EnabledWithCount]
+
+    NoteTweet:
+      required:
+        - "is_expandable"
+        - "note_tweet_results"
+      properties:
+        is_expandable:
+          type: boolean
+        note_tweet_results:
+          $ref: "#/components/schemas/NoteTweetResult"
+
+    NoteTweetResult:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/NoteTweetResultData"
+
+    NoteTweetResultData:
+      required:
+        - "entity_set"
+        - "id"
+        - "text"
+      properties:
+        entity_set:
+          $ref: "#/components/schemas/Entities"
+        id:
+          type: string
+          pattern: "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$" # base64
+        media:
+          $ref: "#/components/schemas/NoteTweetResultMedia"
+        richtext:
+          $ref: "#/components/schemas/NoteTweetResultRichText"
+        text:
+          type: string
+
+    NoteTweetResultMedia:
+      required:
+        - "inline_media"
+      properties:
+        inline_media:
+          type: array
+          items:
+            type: object
+    NoteTweetResultRichText:
+      required:
+        - "richtext_tags"
+      properties:
+        richtext_tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/NoteTweetResultRichTextTag"
+
+    NoteTweetResultRichTextTag:
+      required:
+        - "from_index"
+        - "to_index"
+        - "richtext_types"
+      properties:
+        from_index:
+          type: integer
+        to_index:
+          type: integer
+        richtext_types:
+          type: array
+          items:
+            type: string
+            enum: [Bold, Italic]
 
     TweetCard:
       properties:
