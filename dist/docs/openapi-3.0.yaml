@@ -6,6 +6,95 @@ components:
           type: boolean
       required:
       - monetizable
+    BirdwatchEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/BirdwatchEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - toIndex
+      - ref
+    BirdwatchEntityRef:
+      properties:
+        type:
+          enum:
+          - TimelineUrl
+          type: string
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - type
+      - url
+      - urlType
+    BirdwatchPivot:
+      properties:
+        destinationUrl:
+          format: uri
+          type: string
+        footer:
+          $ref: '#/components/schemas/BirdwatchPivotFooter'
+        iconType:
+          enum:
+          - BirdwatchV1Icon
+          type: string
+        note:
+          $ref: '#/components/schemas/BirdwatchPivotNote'
+        shorttitle:
+          type: string
+        subtitle:
+          $ref: '#/components/schemas/BirdwatchPivotSubtitle'
+        title:
+          type: string
+        visualStyle:
+          enum:
+          - Default
+          type: string
+      required:
+      - destinationUrl
+      - footer
+      - note
+      - subtitle
+      - title
+      - shorttitle
+      - iconType
+    BirdwatchPivotFooter:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/BirdwatchEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
+    BirdwatchPivotNote:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
+    BirdwatchPivotSubtitle:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/BirdwatchEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
     BookmarksResponse:
       properties:
         data:
@@ -1249,6 +1338,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        birdwatch_pivot:
+          $ref: '#/components/schemas/BirdwatchPivot'
         card:
           $ref: '#/components/schemas/TweetCard'
         core:

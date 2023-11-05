@@ -52,6 +52,8 @@ components:
         rest_id:
           type: string
           pattern: "^[0-9]+$"
+        birdwatch_pivot:
+          $ref: "#/components/schemas/BirdwatchPivot"
         core:
           $ref: "./user.yaml#/components/schemas/UserResultCore"
         card:
@@ -205,6 +207,97 @@ components:
           items:
             type: string
             enum: [Bold, Italic]
+
+    BirdwatchPivot:
+      required:
+        - "destinationUrl"
+        - "footer"
+        - "note"
+        - "subtitle"
+        - "title"
+        - "shorttitle"
+        - "iconType"
+      properties:
+        destinationUrl:
+          type: string
+          format: uri
+        footer:
+          $ref: "#/components/schemas/BirdwatchPivotFooter"
+        note:
+          $ref: "#/components/schemas/BirdwatchPivotNote"
+        subtitle:
+          $ref: "#/components/schemas/BirdwatchPivotSubtitle"
+        title:
+          type: string
+        shorttitle:
+          type: string
+        visualStyle:
+          type: string
+          enum: [Default]
+        iconType:
+          type: string
+          enum: [BirdwatchV1Icon]
+
+    BirdwatchPivotFooter:
+      required:
+        - "text"
+        - "entities"
+      properties:
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/BirdwatchEntity"
+
+    BirdwatchEntity:
+      required:
+        - "fromIndex"
+        - "toIndex"
+        - "ref"
+      properties:
+        fromIndex:
+          type: integer
+        toIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/BirdwatchEntityRef"
+
+    BirdwatchEntityRef:
+      required:
+        - "type"
+        - "url"
+        - "urlType"
+      properties:
+        type:
+          type: string
+          enum: [TimelineUrl]
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [ExternalUrl]
+
+    BirdwatchPivotNote:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    BirdwatchPivotSubtitle:
+      required:
+        - "text"
+        - "entities"
+      properties:
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/BirdwatchEntity"
 
     TweetCard:
       properties:
