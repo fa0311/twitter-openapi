@@ -807,10 +807,20 @@ components:
       properties:
         inline_media:
           items:
-            type: object
+            $ref: '#/components/schemas/NoteTweetResultMediaInlineMedia'
           type: array
       required:
       - inline_media
+    NoteTweetResultMediaInlineMedia:
+      properties:
+        index:
+          type: integer
+        media_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - media_id
+      - index
     NoteTweetResultRichText:
       properties:
         richtext_tags:

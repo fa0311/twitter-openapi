@@ -182,7 +182,19 @@ components:
         inline_media:
           type: array
           items:
-            type: object
+            $ref: "#/components/schemas/NoteTweetResultMediaInlineMedia"
+
+    NoteTweetResultMediaInlineMedia:
+      required:
+        - "media_id"
+        - "index"
+      properties:
+        media_id:
+          type: string
+          pattern: "^[0-9]+$"
+        index:
+          type: integer
+
     NoteTweetResultRichText:
       required:
         - "richtext_tags"
