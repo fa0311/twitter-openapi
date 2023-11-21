@@ -60,7 +60,7 @@ components:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
         displayType:
           type: string
-          enum: [Vertical, VerticalConversation]
+          enum: [Vertical, VerticalConversation, Carousel]
         items:
           type: array
           items:

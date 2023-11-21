@@ -256,7 +256,11 @@ if __name__ == "__main__":
         error_dump(e)
         error_count += 1
 
-    ids = ["1720975693524377759", "1720818185186791678", "1721006592303251551"]
+    ids = [
+        "1720975693524377759",
+        "1721006592303251551",
+        "1606661809075019776",
+    ]
     for id in ids:
         try:
             logger.info(f"Try: Self TweetDetail {id} Test")
