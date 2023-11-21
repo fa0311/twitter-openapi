@@ -1270,6 +1270,7 @@ components:
           enum:
           - Vertical
           - VerticalConversation
+          - Carousel
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
