@@ -28,14 +28,14 @@ def get_key(snake_str):
 
 def get_cursor(obj, fn):
     res = []
-    if type(obj) == dict:
+    if isinstance(obj, dict):
         callback = fn(obj)
         if callback is not None:
             res.extend(callback)
         else:
             for v in obj.values():
                 res.extend(get_cursor(v, fn))
-    elif type(obj) == list:
+    elif isinstance(obj, list):
         for v in obj:
             res.extend(get_cursor(v, fn))
     return res
@@ -77,9 +77,8 @@ def match_rate(a, b, key=""):
         return 1
     if a is False and b is None:
         return 1
-    if type(a) != type(b):
-        return match_rate_zero(key)
-    if type(a) == dict and type(b) == dict:
+    if isinstance(a, list):
+        data = [match_rate(a[i], b[i], key=f"{key}[{i}]") for i in range(len(a))]
         if len(a) == 0 and len(b) == 0:
             return 1
         if len(a) == 0 or len(b) == 0:
@@ -88,11 +87,11 @@ def match_rate(a, b, key=""):
         data = [match_rate(a.get(k), b.get(k), key=f"{key}.{k}") for k in a.keys()]
 
         return sum(data) / len(a)
-    if type(a) == list and type(b) == list:
+    if isinstance(a, list) and isinstance(b, list):
         if len(a) == 0 and len(b) == 0:
             return 1
         if len(a) != len(b):
-            return match_rate_zero(a, b, key=key)
+            return match_rate_zero(key)
         data = [match_rate(a[i], b[i], key=f"{key}[{i}]") for i in range(len(a))]
         return sum(data) / len(a)
     if a == b:
@@ -114,7 +113,7 @@ def task_callback(file, thread=True):
         data = pt.__dict__[cache["type"]].from_json(cache["raw"])
         rate = match_rate(data.to_dict(), json.loads(cache["raw"]))
         return rate, file
-    except Exception as e:
+    except Exception:
         if thread:
             return 0, file
         else:
@@ -229,7 +228,7 @@ if __name__ == "__main__":
                 error_count += 1
 
     try:
-        logger.info(f"Try: Self UserByScreenName Test")
+        logger.info("Try: Self UserByScreenName Test")
         kwargs = get_kwargs("UserByScreenName", {"screen_name": "a810810931931"})
         res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
         data = res.data.to_dict()
@@ -244,7 +243,7 @@ if __name__ == "__main__":
         error_count += 1
 
     try:
-        logger.info(f"Try: Self UserTweets Test")
+        logger.info("Try: Self UserTweets Test")
         kwargs = get_kwargs("UserTweets", {"userId": "1180389371481976833"})
         res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
         data = res.data.to_dict()
