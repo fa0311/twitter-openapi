@@ -10,19 +10,25 @@ class HookBase:
             self.PLACEHOLDER = json.load(f)
 
     def placeholder_to_yaml(self, obj, default=False, example=False) -> dict:
-        fn = lambda x: self.placeholder_to_yaml(x, default=default, example=example)
-        if type(obj) is dict:
-            properties = {i: fn(obj[i]) for i in obj}
+        def mine(x):
+            return self.placeholder_to_yaml(x, default=default, example=example)
+
+        def fn(x: str):
+            return x[:-1] if x.endswith("?") else x
+
+        if isinstance(obj, dict):
+            req = {k: v for k, v in obj.items() if not k.endswith("?")}
+            properties = {fn(k): mine(v) for k, v in obj.items()}
             value = {
                 "type": "object",
                 "properties": properties,
             }
-            value.update({"required": [i for i in obj]} if len(obj) > 0 else {})
+            value.update({"required": [i for i in req]} if len(req) > 0 else {})
             value.update({"default": properties} if default else {})
             value.update({"example": properties} if example else {})
             return value
-        elif type(obj) is list and len(obj) > 0:
-            properties = fn(obj[0])
+        elif isinstance(obj, list) and len(obj) > 0:
+            properties = mine(obj[0])
             value = {
                 "type": "array",
                 "items": properties,
@@ -30,7 +36,7 @@ class HookBase:
             value.update({"default": [properties]} if default else {})
             value.update({"example": [properties]} if example else {})
             return value
-        elif type(obj) is list and len(obj) == 0:
+        elif isinstance(obj, list) and len(obj) == 0:
             value = {
                 "type": "array",
                 "items": {"type": "object"},
@@ -38,11 +44,11 @@ class HookBase:
             value.update({"default": []} if default else {})
             value.update({"example": []} if example else {})
             return value
-        elif type(obj) is str:
+        elif isinstance(obj, str):
             return {"type": "string", "example": obj, "default": obj}
-        elif type(obj) is bool:
+        elif isinstance(obj, bool):
             return {"type": "boolean", "example": obj, "default": obj}
-        elif type(obj) is int:
+        elif isinstance(obj, int):
             return {"type": "integer", "example": obj, "default": obj}
 
     def load_component(self, name: str) -> dict:
@@ -112,7 +118,7 @@ class RemoveDiscriminator(SchemasHookBase):
 class SchemasCheck(SchemasHookBase):
     def hook(self, value: dict):
         if value.get("allOf") is not None:
-            print(f"allOf is used")
+            print("allOf is used")
         if value.get("type") is None:
             print("Type is None")
         return value
@@ -211,14 +217,18 @@ class AddParametersOnParameters(RequestHookBase):
 
         for key in data.keys():
             if self.schemaType == "string":
-                example = data[key] if type(data[key]) is str else json.dumps(data[key])
+                example = (
+                    data[key] if isinstance(data[key], str) else json.dumps(data[key])
+                )
                 schema = {
                     "type": "string",
                     "default": example,
                     "example": example,
                 }
             elif self.schemaType == "object":
-                example = data[key] if type(data[key]) is str else json.dumps(data[key])
+                example = (
+                    data[key] if isinstance(data[key], str) else json.dumps(data[key])
+                )
                 schema = {
                     "type": "object",
                     "default": example,
@@ -259,18 +269,18 @@ class AddParametersOnBody(RequestHookBase):
 
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
-        data = self.PLACEHOLDER[self.path_name]
-        data = {key: data[key] for key in data.keys() if key not in self.ignoreKeys}
+        data: dict[str, dict] = self.PLACEHOLDER[self.path_name]
+        data = {k: v for k, v in data.items() if k not in self.ignoreKeys}
 
         if self.schemaType == "string":
-            example = data if type(data) is str else json.dumps(data)
+            example = data if isinstance(data, str) else json.dumps(data)
             schema = {
                 "type": "string",
                 "default": example,
                 "example": example,
             }
         elif self.schemaType == "object":
-            example = data if type(data) is str else json.dumps(data)
+            example = data if isinstance(data, str) else json.dumps(data)
             schema = {
                 "type": "object",
                 "default": example,
@@ -278,10 +288,8 @@ class AddParametersOnBody(RequestHookBase):
             }
         else:
             schema = {
-                "properties": {
-                    i: self.placeholder_to_yaml(data[i]) for i in data.keys()
-                },
-                "required": [i for i in data.keys()],
+                "properties": {k: self.placeholder_to_yaml(v) for k, v in data.items()},
+                "required": [k for k in data.keys()],
             }
         value["requestBody"] = {
             "description": "body",
