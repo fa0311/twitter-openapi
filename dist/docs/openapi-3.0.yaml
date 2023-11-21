@@ -3331,6 +3331,20 @@ paths:
                       - media_entities
                       - possibly_sensitive
                       type: object
+                    reply:
+                      properties:
+                        exclude_reply_user_ids:
+                          items:
+                            type: object
+                          type: array
+                        in_reply_to_tweet_id:
+                          default: '1111111111111111111'
+                          example: '1111111111111111111'
+                          type: string
+                      required:
+                      - in_reply_to_tweet_id
+                      - exclude_reply_user_ids
+                      type: object
                     semantic_annotation_ids:
                       items:
                         type: object

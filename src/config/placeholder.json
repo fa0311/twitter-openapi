@@ -625,6 +625,10 @@
         "possibly_sensitive": false
       },
       "semantic_annotation_ids": [],
+      "reply?": {
+        "in_reply_to_tweet_id": "1111111111111111111",
+        "exclude_reply_user_ids": []
+      },
       "dark_request": false
     },
     "features": {
