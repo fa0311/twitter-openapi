@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
                     save_cache(
                         {
-                            "raw": res.raw_data,
+                            "raw": res.raw_data.decode("utf-8"),
                             "type": res.data.__class__.__name__,
                         }
                     )
