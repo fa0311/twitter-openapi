@@ -1,15 +1,15 @@
-import json
-import os
-import logging
 import base64
-import openapi_client as pt
-from pathlib import Path
-import time
-import glob
-import aenum
 import concurrent.futures
+import glob
+import json
+import logging
+import os
+import time
 import traceback
+from pathlib import Path
 
+import aenum
+import openapi_client as pt
 
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
@@ -96,7 +96,7 @@ def match_rate(a, b, key=""):
         return sum(data) / len(a)
     if a == b:
         return 1
-    return match_rate_zero(a, b, key=key)
+    return match_rate_zero(key)
 
 
 def save_cache(data):
