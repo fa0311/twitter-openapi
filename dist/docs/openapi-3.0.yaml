@@ -759,7 +759,6 @@ components:
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
       required:
-      - clientEventInfo
       - itemContent
     ModuleItem:
       properties:
@@ -1270,6 +1269,7 @@ components:
           enum:
           - Vertical
           - VerticalConversation
+          - VerticalGrid
           - Carousel
           type: string
         entryType:
