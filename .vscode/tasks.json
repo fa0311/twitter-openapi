@@ -8,7 +8,7 @@
         "command": [
           "source .venv/bin/activate;",
           "python3 tools/build.py;",
-          "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python;",
+          "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python-pydantic-v1;",
           "python3 test/python/replace.py;",
           "python3 -m pip install ./python_generated;"
         ]
@@ -17,7 +17,8 @@
         "command": [
           ".venv/Scripts/activate;",
           "python tools/build.py;",
-          "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python;",
+          "scoop reset temurin11-jdk;",
+          "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python-pydantic-v1;",
           "python test/python/replace.py;",
           "python -m pip install ./python_generated;"
         ]
@@ -33,14 +34,14 @@
         "command": [
           "python3 -m venv .venv;",
           ".venv/bin/python3 -m pip install -r requirements.txt;",
-          "wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.1.0/openapi-generator-cli-7.1.0.jar -O openapi-generator-cli.jar;"
+          "wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.2.0/openapi-generator-cli-7.2.0.jar -O openapi-generator-cli.jar;"
         ]
       },
       "windows": {
         "command": [
           "python -m venv .venv;",
           ".venv/Scripts/python -m pip install -r requirements.txt;",
-          "Invoke-WebRequest https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.1.0/openapi-generator-cli-7.1.0.jar -OutFile openapi-generator-cli.jar;"
+          "Invoke-WebRequest https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.2.0/openapi-generator-cli-7.2.0.jar -OutFile openapi-generator-cli.jar;"
         ]
       }
     }
