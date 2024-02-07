@@ -81,6 +81,7 @@ components:
         - "__typename"
         - "cursorType"
         - "value"
+        - "stopOnEmptyResponse"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor
@@ -92,6 +93,9 @@ components:
           $ref: "#/components/schemas/CursorType"
         value:
           type: string
+        stopOnEmptyResponse:
+          type: boolean
+          default: false
 
     # ================= Module =================
 
@@ -163,7 +167,7 @@ components:
           type: string
         tweet_results:
           $ref: "#/components/schemas/ItemResult"
-        SocialContext:
+        socialContext:
           $ref: "#/components/schemas/SocialContext"
         promotedMetadata:
           type: object
@@ -173,7 +177,6 @@ components:
       required:
         - "__typename"
         - "itemType"
-        - "socialContext"
         - "userDisplayType"
         - "user_results"
       properties:
@@ -181,7 +184,7 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineUser
         itemType:
           $ref: "#/components/schemas/ContentItemType" # TimelineUser
-        SocialContext:
+        socialContext:
           $ref: "#/components/schemas/SocialContext"
         userDisplayType:
           type: string
@@ -201,10 +204,24 @@ components:
       properties:
         contextType:
           type: string # enum
+          enum: ["Follow"]
         text:
           type: string
         type:
           type: string # enum
+          enum: ["TimelineGeneralContext"]
+        landingUrl:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
+
+    SocialContextLandingUrl:
+      type: object
+      properties:
+        urlType:
+          type: string # enum
+          enum: ["DeepLink"]
+        Url:
+          type: string # twitter://user?id=900282258736545792
+          format: uri
 
     TimelinePrompt:
       properties:

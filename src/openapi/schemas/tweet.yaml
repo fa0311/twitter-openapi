@@ -80,6 +80,8 @@ components:
           $ref: "#/components/schemas/NoteTweet"
         quick_promote_eligibility:
           type: object
+        unified_card:
+          $ref: "#/components/schemas/UnifiedCard"
 
     TweetEditControl:
       properties:
@@ -220,6 +222,14 @@ components:
             type: string
             enum: [Bold, Italic]
 
+    UnifiedCard:
+      required:
+        - "card_fetch_state"
+      properties:
+        card_fetch_state:
+          type: string
+          enum: [NoCard]
+
     BirdwatchPivot:
       required:
         - "destinationUrl"
@@ -333,6 +343,46 @@ components:
           items:
             $ref: "#/components/schemas/TweetCardLegacyBindingValue"
 
+          # {'platform': {'audience': {'name': 'production'}, 'device': {'name': 'Swift', 'version': '12'}}}
+        card_platform:
+          $ref: "#/components/schemas/TweetCardPlatformData"
+
+    TweetCardPlatformData:
+      required:
+        - "platform"
+      properties:
+        platform:
+          $ref: "#/components/schemas/TweetCardPlatform"
+
+    TweetCardPlatform:
+      required:
+        - "audience"
+        - "device"
+      properties:
+        audience:
+          $ref: "#/components/schemas/TweetCardPlatformAudience"
+        device:
+          $ref: "#/components/schemas/TweetCardPlatformDevice"
+
+    TweetCardPlatformAudience:
+      required:
+        - "name"
+      properties:
+        name:
+          type: string
+          enum: [production]
+
+    TweetCardPlatformDevice:
+      required:
+        - "name"
+        - "version"
+      properties:
+        name:
+          type: string # enum Swift
+        version:
+          type: string
+          pattern: "^[0-9]+$"
+
     TweetCardLegacyBindingValue:
       required:
         - "key"
@@ -427,6 +477,16 @@ components:
           $ref: "#/components/schemas/SelfThread"
         extended_entities:
           $ref: "#/components/schemas/ExtendedEntities"
+        scopes:
+          $ref: "#/components/schemas/TweetLegacyScopes"
+        in_reply_to_screen_name:
+          type: string
+        in_reply_to_status_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        in_reply_to_user_id_str:
+          type: string
+          pattern: "^[0-9]+$"
 
     SelfThread:
       required:
@@ -506,6 +566,8 @@ components:
         # - "features"
         - "sizes"
         - "original_info"
+        - "media_key"
+        - "ext_media_availability"
       properties:
         display_url:
           type: string
@@ -535,6 +597,23 @@ components:
           $ref: "#/components/schemas/MediaSizes"
         original_info:
           $ref: "#/components/schemas/MediaOriginalInfo"
+        media_key:
+          type: string
+        ext_media_availability:
+          $ref: "#/components/schemas/ExtMediaAvailability"
+        video_info:
+          type: object
+          additionalProperties: true # todo
+        additional_media_info:
+          type: object
+          additionalProperties: true # todo
+
+    TweetLegacyScopes:
+      required:
+        - "followers"
+      properties:
+        followers:
+          type: boolean
 
     ExtendedEntities:
       required:
@@ -587,9 +666,9 @@ components:
         additional_media_info:
           $ref: "#/components/schemas/AdditionalMediaInfo"
         mediaStats:
-          $ref: "#/components/schemas/mediaStats"
+          $ref: "#/components/schemas/MediaStats"
         ext_media_availability:
-          $ref: "#/components/schemas/extMediaAvailability"
+          $ref: "#/components/schemas/ExtMediaAvailability"
         features:
           type: object
         sizes:
@@ -666,14 +745,14 @@ components:
         monetizable:
           type: boolean
 
-    mediaStats:
+    MediaStats:
       required:
         - "viewCount"
       properties:
         viewCount:
           type: integer
 
-    extMediaAvailability:
+    ExtMediaAvailability:
       # required:
       #   - "status"
       properties:

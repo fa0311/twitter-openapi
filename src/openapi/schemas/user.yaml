@@ -38,6 +38,7 @@ components:
         - "super_follow_eligible"
         - "super_followed_by"
         - "super_following"
+        - "profile_image_shape"
 
       properties:
         __typename:
@@ -73,6 +74,43 @@ components:
         super_following:
           type: boolean
           default: false
+        profile_image_shape:
+          type: string
+          enum:
+            - "Circle"
+            - "Square"
+        professional:
+          $ref: "#/components/schemas/UserProfessional"
+
+    UserProfessional:
+      required:
+        - "rest_id"
+        - "professional_type"
+        - "category"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        professional_type:
+          type: string
+          enum: ["Business"]
+        category:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserProfessionalCategory"
+
+    UserProfessionalCategory:
+      required:
+        - "id"
+        - "name"
+        - "icon_name"
+      properties:
+        id:
+          type: integer
+        name:
+          type: string # enum
+        icon_name:
+          type: string # IconBriefcaseStroke ?
 
     UserLegacy:
       required:
@@ -219,6 +257,9 @@ components:
         want_retweets:
           type: boolean
           default: false
+        verified_type:
+          type: string
+          enum: ["Business"]
 
     UserUnavailable:
       required:
