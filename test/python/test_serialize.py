@@ -6,11 +6,13 @@ import logging
 import os
 import time
 import traceback
+import warnings
 from pathlib import Path
 
 import aenum
 import openapi_client as pt
 
+warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
 
