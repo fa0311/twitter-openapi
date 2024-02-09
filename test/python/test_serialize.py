@@ -65,12 +65,25 @@ def get_kwargs(key, additional):
     return kwargs
 
 
-def match_rate_zero(a, b, key, fn):
-    fn(a, b, key)
+def match_rate_zero(a, b, base, key):
+    def get(obj, key):
+        if isinstance(obj, list):
+            return get(obj[key[0]], key[1:])
+        if obj.__dict__.get("actual_instance") is not None:
+            return get(obj.actual_instance, key)
+        if len(key) == 0:
+            return obj
+        return get(super_get(obj.__dict__, key[0]), key[1:])
+
+    if STRICT_MODE:
+        obj_name = type(get(base, key[:-1]))
+        obj_key = f"{obj_name.__name__}.{key[-1]}"
+        raise Exception(f"Not defined: {obj_key}\nContents: {b}")
+
     return 0
 
 
-def match_rate(a, b, key="", fn=lambda x: None):
+def match_rate(a, b, base, key=""):
     if isinstance(a, aenum.Enum):
         a = a.value
     if isinstance(b, aenum.Enum):
@@ -83,22 +96,26 @@ def match_rate(a, b, key="", fn=lambda x: None):
         return 1
     if isinstance(a, list) and b is None and len(a) == 0:
         return 1
+    if a is None and isinstance(b, dict) and len(b) == 0:
+        return 1
+    if isinstance(a, dict) and b is None and len(a) == 0:
+        return 1
     if isinstance(a, dict) and isinstance(b, dict):
         if len(a) == 0 and len(b) == 0:
             return 1
         marge_key = set(a.keys()) | set(b.keys())
-        data = [match_rate(a.get(k), b.get(k), [*key, k], fn) for k in marge_key]
+        data = [match_rate(a.get(k), b.get(k), base, [*key, k]) for k in marge_key]
         return sum(data) / len(b)
     if isinstance(a, list) and isinstance(b, list):
         if len(a) == 0 and len(b) == 0:
             return 1
         if len(a) != len(b):
-            return match_rate_zero(a, b, key, fn)
-        data = [match_rate(a[i], b[i], [*key, i], fn) for i in range(len(a))]
+            return match_rate_zero(a, b, base, key)
+        data = [match_rate(a[i], b[i], base, [*key, i]) for i in range(len(a))]
         return sum(data) / len(a)
     if a == b:
         return 1
-    return match_rate_zero(a, b, key, fn)
+    return match_rate_zero(a, b, base, key)
 
 
 def save_cache(data):
@@ -126,25 +143,10 @@ def task_callback(file, thread=True):
             cache = json.load(f)
         data = pt.__dict__[cache["type"]].from_json(cache["raw"])
 
-        def get(obj, key):
-            if isinstance(obj, list):
-                return get(obj[key[0]], key[1:])
-            if obj.__dict__.get("actual_instance") is not None:
-                return get(obj.actual_instance, key)
-            if len(key) == 0:
-                return obj
-            return get(super_get(obj.__dict__, key[0]), key[1:])
-
-        def match_rate_hook(a, b, key):
-            if STRICT_MODE:
-                obj_name = type(get(data, key[:-1]))
-                obj_key = f"{obj_name.__name__}.{key[-1]}"
-                raise Exception(f"Not defined: {obj_key}\nContents: {b}")
-
         rate = match_rate(
             data.to_dict(),
             json.loads(cache["raw"]),
-            fn=match_rate_hook,
+            base=data,
         )
         return rate, file
     except Exception:
@@ -254,7 +256,11 @@ if __name__ == "__main__":
                     new_cursor = set(get_cursor(data, find_cursor)) - cursor_history
                     cursor_list.update(new_cursor)
 
-                    rate = match_rate(data, json.loads(res.raw_data))
+                    rate = match_rate(
+                        data,
+                        json.loads(res.raw_data),
+                        res.data,
+                    )
                     logger.info(f"Match rate: {rate}")
 
                     if data.get("errors") is not None:
@@ -275,7 +281,11 @@ if __name__ == "__main__":
         res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
         data = res.data.to_dict()
 
-        rate = match_rate(data, json.loads(res.raw_data))
+        rate = match_rate(
+            data,
+            json.loads(res.raw_data),
+            res.data,
+        )
         logger.info(f"Match rate: {rate}")
         screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
         if not screen_name == "a810810931931":
@@ -290,7 +300,11 @@ if __name__ == "__main__":
         res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
         data = res.data.to_dict()
 
-        rate = match_rate(data, json.loads(res.raw_data))
+        rate = match_rate(
+            data,
+            json.loads(res.raw_data),
+            res.data,
+        )
         logger.info(f"Match rate: {rate}")
 
     except Exception as e:
@@ -309,7 +323,11 @@ if __name__ == "__main__":
             res = pt.TweetApi(api_client).get_tweet_detail_with_http_info(**kwargs)
             data = res.data.to_dict()
 
-            rate = match_rate(data, json.loads(res.raw_data))
+            rate = match_rate(
+                data,
+                json.loads(res.raw_data),
+                res.data,
+            )
             logger.info(f"Match rate: {rate}")
         except Exception as e:
             error_dump(e)

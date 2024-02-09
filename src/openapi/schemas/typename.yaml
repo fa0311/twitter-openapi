@@ -23,4 +23,11 @@ components:
           Tweet,
           User,
           UserUnavailable,
+          Community,
+          CommunityDeleteActionUnavailable,
+          CommunityJoinAction,
+          CommunityLeaveActionUnavailable,
+          CommunityTweetPinActionUnavailable,
+          CommunityInvitesUnavailable,
+          CommunityJoinRequestsUnavailable,
         ]

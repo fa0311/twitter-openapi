@@ -71,8 +71,10 @@ components:
         header:
           type: object
           additionalProperties: true # todo
-
         clientEventInfo:
+          type: object
+          additionalProperties: true # todo
+        metadata:
           type: object
           additionalProperties: true # todo
 
@@ -96,6 +98,16 @@ components:
         stopOnEmptyResponse:
           type: boolean
           default: false
+        displayTreatment:
+          $ref: "#/components/schemas/DisplayTreatment"
+
+    DisplayTreatment:
+      type: object
+      required:
+        - "actionText"
+      properties:
+        actionText:
+          type: string
 
     # ================= Module =================
 
@@ -172,6 +184,8 @@ components:
         promotedMetadata:
           type: object
           additionalProperties: true # todo
+        highlights:
+          $ref: "#/components/schemas/Highlight"
 
     TimelineUser:
       required:
@@ -218,10 +232,57 @@ components:
       properties:
         urlType:
           type: string # enum
-          enum: ["DeepLink"]
-        Url:
+          enum: ["DeepLink", "UrtEndpoint"]
+        url:
           type: string # twitter://user?id=900282258736545792
           format: uri
+        urtEndpointOptions:
+          $ref: "#/components/schemas/UrtEndpointOptions"
+
+    UrtEndpointOptions:
+      type: object
+      required:
+        - "title"
+        - "requestParams"
+      properties:
+        title:
+          type: string
+        requestParams:
+          type: array
+          items:
+            $ref: "#/components/schemas/UrtEndpointRequestParams"
+
+    UrtEndpointRequestParams:
+      type: object
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+
+    Highlight:
+      type: object
+      required:
+        - "textHighlights"
+      properties:
+        textHighlights:
+          type: array
+          items:
+            $ref: "#/components/schemas/TextHighlight"
+
+    TextHighlight:
+      type: object
+      required:
+        - "startIndex"
+        - "endIndex"
+      properties:
+        startIndex:
+          type: integer
+        endIndex:
+          type: integer
 
     TimelinePrompt:
       properties:

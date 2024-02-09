@@ -2,10 +2,45 @@ components:
   schemas:
     AdditionalMediaInfo:
       properties:
+        call_to_actions:
+          $ref: '#/components/schemas/AdditionalMediaInfoCallToActions'
+        description:
+          type: string
+        embeddable:
+          type: boolean
         monetizable:
           type: boolean
+        source_user:
+          $ref: '#/components/schemas/UserResultCore'
+        title:
+          type: string
       required:
       - monetizable
+    AdditionalMediaInfoCallToActions:
+      properties:
+        visit_site:
+          $ref: '#/components/schemas/AdditionalMediaInfoCallToActionsVisitSite'
+      required:
+      - visit_site
+    AdditionalMediaInfoCallToActionsVisitSite:
+      properties:
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+    AuthorCommunityRelationship:
+      properties:
+        community_results:
+          $ref: '#/components/schemas/Community'
+        role:
+          enum:
+          - Member
+          type: string
+        user_results:
+          $ref: '#/components/schemas/UserResults'
+      required:
+      - community_results
     BirdwatchEntity:
       properties:
         fromIndex:
@@ -136,6 +171,201 @@ components:
       required:
       - create
       type: object
+    Community:
+      properties:
+        result:
+          $ref: '#/components/schemas/CommunityData'
+      required:
+      - result
+    CommunityActions:
+      properties:
+        delete_action_result:
+          $ref: '#/components/schemas/CommunityDeleteActionResult'
+        join_action_result:
+          $ref: '#/components/schemas/CommunityJoinActionResult'
+        leave_action_result:
+          $ref: '#/components/schemas/CommunityLeaveActionResult'
+        pin_action_result:
+          $ref: '#/components/schemas/CommunityPinActionResult'
+      required:
+      - delete_action_result
+      - join_action_result
+      - leave_action_result
+      - pin_action_result
+    CommunityData:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        actions:
+          $ref: '#/components/schemas/CommunityActions'
+        admin_results:
+          $ref: '#/components/schemas/UserResults'
+        created_at:
+          type: integer
+        creator_results:
+          $ref: '#/components/schemas/UserResults'
+        custom_banner_media:
+          additionalProperties: true
+          type: object
+        default_banner_media:
+          additionalProperties: true
+          type: object
+        description:
+          type: string
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        invites_policy:
+          enum:
+          - MemberInvitesAllowed
+          type: string
+        invites_result:
+          $ref: '#/components/schemas/CommunityInvitesResult'
+        is_pinned:
+          type: boolean
+        join_policy:
+          enum:
+          - Open
+          type: string
+        join_requests_result:
+          $ref: '#/components/schemas/CommunityJoinRequestsResult'
+        member_count:
+          type: integer
+        members_facepile_results:
+          items:
+            $ref: '#/components/schemas/UserResults'
+          type: array
+        moderator_count:
+          type: integer
+        name:
+          type: string
+        primary_community_topic:
+          $ref: '#/components/schemas/PrimaryCommunityTopic'
+        question:
+          type: string
+        role:
+          enum:
+          - NonMember
+          type: string
+        rules:
+          items:
+            $ref: '#/components/schemas/CommunityRule'
+          type: array
+        search_tags:
+          items:
+            type: string
+          type: array
+        show_only_users_to_display:
+          items:
+            type: string
+          type: array
+        urls:
+          $ref: '#/components/schemas/CommunityUrls'
+        viewer_relationship:
+          additionalProperties: true
+          type: object
+      required:
+      - __typename
+      - id_str
+      - name
+      - description
+      - question
+      - search_tags
+      - primary_community_topic
+      - actions
+      - admin_results
+      - creator_results
+      - invites_result
+      - join_policy
+      - invites_policy
+      - is_pinned
+      - members_facepile_results
+      - moderator_count
+      - member_count
+      - role
+      - rules
+    CommunityDeleteActionResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        reason:
+          enum:
+          - Unavailable
+          type: string
+      required:
+      - __typename
+      - reason
+    CommunityInvitesResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
+        reason:
+          enum:
+          - Unavailable
+          type: string
+      required:
+      - __typename
+      - reason
+      - message
+    CommunityJoinActionResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
+    CommunityJoinRequestsResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
+    CommunityLeaveActionResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
+        reason:
+          enum:
+          - ViewerNotMember
+          type: string
+      required:
+      - __typename
+      - reason
+      - message
+    CommunityPinActionResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
+    CommunityRule:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
+      - name
+    CommunityUrls:
+      properties:
+        permalink:
+          $ref: '#/components/schemas/CommunityUrlsPermalink'
+      required:
+      - permalink
+    CommunityUrlsPermalink:
+      properties:
+        url:
+          format: uri
+          type: string
+      required:
+      - url
     ContentEntryType:
       enum:
       - TimelineTimelineItem
@@ -291,6 +521,13 @@ components:
           type: object
       required:
       - tweet_results
+    DisplayTreatment:
+      properties:
+        actionText:
+          type: string
+      required:
+      - actionText
+      type: object
     Entities:
       properties:
         hashtags:
@@ -479,6 +716,15 @@ components:
     Hashtag:
       additionalProperties: true
       type: object
+    Highlight:
+      properties:
+        textHighlights:
+          items:
+            $ref: '#/components/schemas/TextHighlight'
+          type: array
+      required:
+      - textHighlights
+      type: object
     HomeTimelineHome:
       properties:
         home_timeline_urt:
@@ -589,6 +835,8 @@ components:
         expanded_url:
           format: uri
           type: string
+        ext_alt_text:
+          type: string
         ext_media_availability:
           $ref: '#/components/schemas/ExtMediaAvailability'
         features:
@@ -609,6 +857,12 @@ components:
           $ref: '#/components/schemas/MediaOriginalInfo'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
+        source_status_id_str:
+          pattern: ^[0-9]+$
+          type: string
+        source_user_id_str:
+          pattern: ^[0-9]+$
+          type: string
         type:
           enum:
           - photo
@@ -643,6 +897,8 @@ components:
         expanded_url:
           format: uri
           type: string
+        ext_alt_text:
+          type: string
         ext_media_availability:
           $ref: '#/components/schemas/ExtMediaAvailability'
         features:
@@ -665,6 +921,12 @@ components:
           $ref: '#/components/schemas/MediaOriginalInfo'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
+        source_status_id_str:
+          pattern: ^[0-9]+$
+          type: string
+        source_user_id_str:
+          pattern: ^[0-9]+$
+          type: string
         type:
           enum:
           - photo
@@ -884,6 +1146,16 @@ components:
         Session:
           $ref: '#/components/schemas/Session'
       type: object
+    PrimaryCommunityTopic:
+      properties:
+        topic_id:
+          pattern: ^[0-9]+$
+          type: string
+        topic_name:
+          type: string
+      required:
+      - topic_id
+      - topic_name
     ProfileResponse:
       properties:
         data:
@@ -896,6 +1168,37 @@ components:
           $ref: '#/components/schemas/UserResultByScreenName'
       required:
       - user_result_by_screen_name
+    QuotedRefResult:
+      properties:
+        result:
+          $ref: '#/components/schemas/QuotedRefResultData'
+      required:
+      - result
+    QuotedRefResultData:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - __typename
+      - rest_id
+    QuotedStatusPermalink:
+      properties:
+        display:
+          format: uri
+          type: string
+        expanded:
+          format: uri
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+      - expanded
+      - display
     Retweet:
       properties:
         legacy:
@@ -1011,14 +1314,38 @@ components:
       type: object
     SocialContextLandingUrl:
       properties:
-        Url:
+        url:
           format: uri
           type: string
         urlType:
           enum:
           - DeepLink
+          - UrtEndpoint
           type: string
+        urtEndpointOptions:
+          $ref: '#/components/schemas/UrtEndpointOptions'
       type: object
+    SuperFollowsReplyUserResult:
+      properties:
+        result:
+          $ref: '#/components/schemas/SuperFollowsReplyUserResultData'
+      required:
+      - result
+    SuperFollowsReplyUserResultData:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        legacy:
+          $ref: '#/components/schemas/SuperFollowsReplyUserResultLegacy'
+      required:
+      - __typename
+      - legacy
+    SuperFollowsReplyUserResultLegacy:
+      properties:
+        screen_name:
+          type: string
+      required:
+      - screen_name
     Symbol:
       additionalProperties: true
       type: object
@@ -1062,6 +1389,16 @@ components:
       - type
       - url
       - urlType
+    TextHighlight:
+      properties:
+        endIndex:
+          type: integer
+        startIndex:
+          type: integer
+      required:
+      - startIndex
+      - endIndex
+      type: object
     Timeline:
       properties:
         instructions:
@@ -1273,6 +1610,8 @@ components:
           $ref: '#/components/schemas/TypeName'
         cursorType:
           $ref: '#/components/schemas/CursorType'
+        displayTreatment:
+          $ref: '#/components/schemas/DisplayTreatment'
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         itemType:
@@ -1331,6 +1670,9 @@ components:
           items:
             $ref: '#/components/schemas/ModuleItem'
           type: array
+        metadata:
+          additionalProperties: true
+          type: object
       required:
       - __typename
       - entryType
@@ -1340,6 +1682,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        highlights:
+          $ref: '#/components/schemas/Highlight'
         itemType:
           $ref: '#/components/schemas/ContentItemType'
         promotedMetadata:
@@ -1395,6 +1739,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        author_community_relationship:
+          $ref: '#/components/schemas/AuthorCommunityRelationship'
         birdwatch_pivot:
           $ref: '#/components/schemas/BirdwatchPivot'
         card:
@@ -1405,6 +1751,8 @@ components:
           $ref: '#/components/schemas/TweetEditControl'
         edit_prespective:
           $ref: '#/components/schemas/TweetEditPrespective'
+        has_birdwatch_notes:
+          type: boolean
         is_translatable:
           default: false
           type: boolean
@@ -1412,8 +1760,12 @@ components:
           $ref: '#/components/schemas/TweetLegacy'
         note_tweet:
           $ref: '#/components/schemas/NoteTweet'
+        previous_counts:
+          $ref: '#/components/schemas/TweetPreviousCounts'
         quick_promote_eligibility:
           type: object
+        quotedRefResult:
+          $ref: '#/components/schemas/QuotedRefResult'
         quoted_status_result:
           $ref: '#/components/schemas/ItemResult'
         rest_id:
@@ -1421,6 +1773,8 @@ components:
           type: string
         source:
           type: string
+        superFollowsReplyUserResult:
+          $ref: '#/components/schemas/SuperFollowsReplyUserResult'
         unified_card:
           $ref: '#/components/schemas/UnifiedCard'
         unmention_data:
@@ -1451,6 +1805,10 @@ components:
           type: string
         url:
           type: string
+        user_refs_results:
+          items:
+            $ref: '#/components/schemas/UserResults'
+          type: array
       required:
       - binding_values
       - name
@@ -1468,14 +1826,36 @@ components:
       properties:
         boolean_value:
           type: boolean
+        image_color_value:
+          additionalProperties: true
+          type: object
+        image_value:
+          $ref: '#/components/schemas/TweetCardLegacyBindingValueDataImage'
         scribe_key:
           type: string
         string_value:
           type: string
         type:
           type: string
+        user_value:
+          $ref: '#/components/schemas/UserValue'
       required:
       - type
+    TweetCardLegacyBindingValueDataImage:
+      properties:
+        alt:
+          type: string
+        height:
+          type: integer
+        url:
+          format: uri
+          type: string
+        width:
+          type: integer
+      required:
+      - height
+      - width
+      - url
     TweetCardPlatform:
       properties:
         audience:
@@ -1585,6 +1965,8 @@ components:
           type: integer
         bookmarked:
           type: boolean
+        conversation_control:
+          additionalProperties: true
         conversation_id_str:
           pattern: ^[0-9]+$
           type: string
@@ -1619,6 +2001,14 @@ components:
           type: boolean
         lang:
           type: string
+        limited_actions:
+          enum:
+          - limited_replies
+          - community_tweet_non_member_public_community
+          - non_compliant
+          type: string
+        place:
+          additionalProperties: true
         possibly_sensitive:
           default: false
           type: boolean
@@ -1627,6 +2017,11 @@ components:
           type: boolean
         quote_count:
           type: integer
+        quoted_status_id_str:
+          pattern: ^[0-9]+$
+          type: string
+        quoted_status_permalink:
+          $ref: '#/components/schemas/QuotedStatusPermalink'
         reply_count:
           type: integer
         retweet_count:
@@ -1666,6 +2061,24 @@ components:
           type: boolean
       required:
       - followers
+    TweetPreviousCounts:
+      properties:
+        bookmark_count:
+          type: integer
+        favorite_count:
+          type: integer
+        quote_count:
+          type: integer
+        reply_count:
+          type: integer
+        retweet_count:
+          type: integer
+      required:
+      - bookmark_count
+      - favorite_count
+      - quote_count
+      - reply_count
+      - retweet_count
     TweetResultByRestIdData:
       properties:
         tweetResult:
@@ -1721,11 +2134,15 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        limitedActionResults:
+          additionalProperties: true
+          type: object
         tweet:
           $ref: '#/components/schemas/Tweet'
       required:
       - __typename
       - tweet
+      - limitedActionResults
     TwitterTimeFormat:
       example: Sat Dec 31 23:59:59 +0000 2023
       pattern: '^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)
@@ -1748,6 +2165,13 @@ components:
       - Tweet
       - User
       - UserUnavailable
+      - Community
+      - CommunityDeleteActionUnavailable
+      - CommunityJoinAction
+      - CommunityLeaveActionUnavailable
+      - CommunityTweetPinActionUnavailable
+      - CommunityInvitesUnavailable
+      - CommunityJoinRequestsUnavailable
       type: string
     UnfavoriteTweet:
       properties:
@@ -1789,6 +2213,28 @@ components:
       - expanded_url
       - display_url
       type: object
+    UrtEndpointOptions:
+      properties:
+        requestParams:
+          items:
+            $ref: '#/components/schemas/UrtEndpointRequestParams'
+          type: array
+        title:
+          type: string
+      required:
+      - title
+      - requestParams
+      type: object
+    UrtEndpointRequestParams:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
+      type: object
     User:
       properties:
         __typename:
@@ -1799,11 +2245,15 @@ components:
         business_account:
           additionalProperties: true
           type: object
+        creator_subscriptions_count:
+          type: integer
         has_graduated_access:
           type: boolean
         has_nft_avatar:
           default: false
           type: boolean
+        highlights_info:
+          $ref: '#/components/schemas/UserHighlightsInfo'
         id:
           pattern: ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$
           type: string
@@ -1831,6 +2281,10 @@ components:
         super_following:
           default: false
           type: boolean
+        user_seed_tweet_count:
+          type: integer
+        verification_info:
+          $ref: '#/components/schemas/UserVerificationInfo'
       required:
       - __typename
       - affiliates_highlighted_label
@@ -1849,6 +2303,15 @@ components:
       required:
       - mediatool_studio_library
       type: object
+    UserHighlightsInfo:
+      properties:
+        can_highlight_tweets:
+          type: boolean
+        highlighted_tweets:
+          type: string
+      required:
+      - can_highlight_tweets
+      - highlighted_tweets
     UserHighlightsTweetsData:
       properties:
         user:
@@ -1990,10 +2453,15 @@ components:
         verified_type:
           enum:
           - Business
+          - Government
           type: string
         want_retweets:
           default: false
           type: boolean
+        withheld_in_countries:
+          items:
+            type: string
+          type: array
       required:
       - blocked_by
       - blocking
@@ -2038,6 +2506,7 @@ components:
         professional_type:
           enum:
           - Business
+          - Creator
           type: string
         rest_id:
           pattern: ^[0-9]+$
@@ -2172,6 +2641,71 @@ components:
       oneOf:
       - $ref: '#/components/schemas/User'
       - $ref: '#/components/schemas/UserUnavailable'
+    UserValue:
+      properties:
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - id_str
+    UserVerificationInfo:
+      properties:
+        is_identity_verified:
+          default: false
+          type: boolean
+        reason:
+          $ref: '#/components/schemas/UserVerificationInfoReason'
+      required:
+      - is_identity_verified
+      - reason
+    UserVerificationInfoReason:
+      properties:
+        description:
+          $ref: '#/components/schemas/UserVerificationInfoReasonDescription'
+        override_verified_year:
+          type: integer
+        verified_since_msec:
+          pattern: ^-?[0-9]+$
+          type: string
+      required:
+      - description
+      - verified_since_msec
+      - override_verified_year
+    UserVerificationInfoReasonDescription:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/UserVerificationInfoReasonDescriptionEntities'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
+    UserVerificationInfoReasonDescriptionEntities:
+      properties:
+        from_index:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/UserVerificationInfoReasonDescriptionEntitiesRef'
+        to_index:
+          type: integer
+      required:
+      - from_index
+      - to_index
+      - ref
+    UserVerificationInfoReasonDescriptionEntitiesRef:
+      properties:
+        url:
+          format: uri
+          type: string
+        url_type:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - url
+      - url_type
     UsersResponse:
       properties:
         data:
