@@ -72,6 +72,8 @@ components:
       - urlType
     BirdwatchPivot:
       properties:
+        callToAction:
+          $ref: '#/components/schemas/BirdwatchPivotCallToAction'
         destinationUrl:
           format: uri
           type: string
@@ -101,6 +103,19 @@ components:
       - title
       - shorttitle
       - iconType
+    BirdwatchPivotCallToAction:
+      properties:
+        destinationUrl:
+          format: uri
+          type: string
+        prompt:
+          type: string
+        title:
+          type: string
+      required:
+      - prompt
+      - title
+      - destinationUrl
     BirdwatchPivotFooter:
       properties:
         entities:
@@ -680,6 +695,14 @@ components:
           $ref: '#/components/schemas/FavoriteTweet'
       required:
       - data
+    FeedbackInfo:
+      properties:
+        feedbackKeys:
+          items:
+            type: string
+          type: array
+      required:
+      - feedbackType
     FollowResponse:
       properties:
         data:
@@ -1302,6 +1325,7 @@ components:
         contextType:
           enum:
           - Follow
+          - Pin
           type: string
         landingUrl:
           $ref: '#/components/schemas/SocialContextLandingUrl'
@@ -1660,6 +1684,8 @@ components:
           type: string
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
+        feedbackInfo:
+          $ref: '#/components/schemas/FeedbackInfo'
         footer:
           additionalProperties: true
           type: object
@@ -1959,6 +1985,80 @@ components:
           $ref: '#/components/schemas/TimelineV2'
       required:
       - favoriters_timeline
+    TweetInterstitial:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        displayType:
+          enum:
+          - NonCompliant
+          type: string
+        revealText:
+          $ref: '#/components/schemas/TweetInterstitialRevealText'
+        text:
+          $ref: '#/components/schemas/TweetInterstitialText'
+      required:
+      - __typename
+      - displayType
+      - text
+      - revealText
+    TweetInterstitialRevealText:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/TweetInterstitialTextEntity'
+          type: array
+        rtl:
+          type: boolean
+        text:
+          type: string
+      required:
+      - rtl
+      - text
+      - entities
+    TweetInterstitialText:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/TweetInterstitialTextEntity'
+          type: array
+        rtl:
+          type: boolean
+        text:
+          type: string
+      required:
+      - rtl
+      - text
+      - entities
+    TweetInterstitialTextEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/TweetInterstitialTextEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - toIndex
+      - ref
+    TweetInterstitialTextEntityRef:
+      properties:
+        type:
+          enum:
+          - TimelineUrl
+          type: string
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - type
+      - url
+      - urlType
     TweetLegacy:
       properties:
         bookmark_count:
@@ -2006,6 +2106,7 @@ components:
           - limited_replies
           - community_tweet_non_member_public_community
           - non_compliant
+          - dynamic_product_ad
           type: string
         place:
           additionalProperties: true
@@ -2139,6 +2240,8 @@ components:
           type: object
         tweet:
           $ref: '#/components/schemas/Tweet'
+        tweetInterstitial:
+          $ref: '#/components/schemas/TweetInterstitial'
       required:
       - __typename
       - tweet
@@ -2156,6 +2259,7 @@ components:
       - TimelineUser
       - TimelineTimelineCursor
       - TweetWithVisibilityResults
+      - ContextualTweetInterstitial
       - TimelineTimelineModule
       - TweetTombstone
       - TimelinePrompt
@@ -2259,6 +2363,8 @@ components:
           type: string
         is_blue_verified:
           default: false
+          type: boolean
+        is_profile_translatable:
           type: boolean
         legacy:
           $ref: '#/components/schemas/UserLegacy'
@@ -2657,7 +2763,6 @@ components:
           $ref: '#/components/schemas/UserVerificationInfoReason'
       required:
       - is_identity_verified
-      - reason
     UserVerificationInfoReason:
       properties:
         description:
