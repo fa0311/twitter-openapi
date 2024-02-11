@@ -32,6 +32,85 @@ components:
         limitedActionResults:
           type: object
           additionalProperties: true # todo
+        tweetInterstitial:
+          $ref: "#/components/schemas/TweetInterstitial"
+
+    # {'__typename': 'ContextualTweetInterstitial', 'displayType': 'NonCompliant', 'text': {'rtl': False, 'text': 'This Post violated the X Rules. However, X has determined that it may be in the public’s interest for the Post to remain accessible. Learn more', 'entities': [{'fromIndex': 133, 'toIndex': 143, 'ref': {'type': 'TimelineUrl', 'url': 'https://help.twitter.com/rules-and-policies/public-interest', 'urlType': 'ExternalUrl'}}]}, 'revealText': {'rtl': False, 'text': 'View', 'entities': []}}
+    TweetInterstitial:
+      required:
+        - "__typename"
+        - "displayType"
+        - "text"
+        - "revealText"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ContextualTweetInterstitial
+        displayType:
+          type: string
+          enum: [NonCompliant]
+        text:
+          $ref: "#/components/schemas/TweetInterstitialText"
+        revealText:
+          $ref: "#/components/schemas/TweetInterstitialRevealText"
+
+    TweetInterstitialText:
+      required:
+        - "rtl"
+        - "text"
+        - "entities"
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetInterstitialTextEntity"
+
+    TweetInterstitialTextEntity:
+      required:
+        - "fromIndex"
+        - "toIndex"
+        - "ref"
+      properties:
+        fromIndex:
+          type: integer
+        toIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/TweetInterstitialTextEntityRef"
+
+    TweetInterstitialTextEntityRef:
+      required:
+        - "type"
+        - "url"
+        - "urlType"
+      properties:
+        type:
+          type: string
+          enum: [TimelineUrl]
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [ExternalUrl]
+
+    TweetInterstitialRevealText:
+      required:
+        - "rtl"
+        - "text"
+        - "entities"
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetInterstitialTextEntity"
 
     TweetTombstone: #remove tweet
       properties:
@@ -557,6 +636,8 @@ components:
         iconType:
           type: string
           enum: [BirdwatchV1Icon]
+        callToAction:
+          $ref: "#/components/schemas/BirdwatchPivotCallToAction"
 
     BirdwatchPivotFooter:
       required:
@@ -618,6 +699,21 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/BirdwatchEntity"
+
+    BirdwatchPivotCallToAction:
+      # {'prompt': 'Do you find this helpful?', 'title': 'Rate it', 'destinationUrl': 'https://twitter.com/i/birdwatch/n/1710821689636934115'}
+      required:
+        - "prompt"
+        - "title"
+        - "destinationUrl"
+      properties:
+        prompt:
+          type: string
+        title:
+          type: string
+        destinationUrl:
+          type: string
+          format: uri
 
     TweetCard:
       properties:
@@ -833,6 +929,7 @@ components:
             - "limited_replies"
             - "community_tweet_non_member_public_community"
             - "non_compliant"
+            - "dynamic_product_ad"
         place:
           additionalProperties: true # todo
 

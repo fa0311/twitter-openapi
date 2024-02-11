@@ -28,7 +28,7 @@
       "env": {
         "ERROR_UNCATCHED": "True",
         "STRICT_MODE": "True",
-        "MULTI_THREAD": "False"
+        "MULTI_THREAD": "True"
       }
     }
   ]

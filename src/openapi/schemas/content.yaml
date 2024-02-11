@@ -77,6 +77,8 @@ components:
         metadata:
           type: object
           additionalProperties: true # todo
+        feedbackInfo:
+          $ref: "#/components/schemas/FeedbackInfo"
 
     TimelineTimelineCursor:
       required:
@@ -130,6 +132,15 @@ components:
           $ref: "#/components/schemas/ClientEventInfo"
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
+
+    FeedbackInfo:
+      required:
+        - "feedbackType"
+      properties:
+        feedbackKeys:
+          type: array
+          items:
+            type: string
 
     # ================= ContentItem =================
 
@@ -218,7 +229,7 @@ components:
       properties:
         contextType:
           type: string # enum
-          enum: ["Follow"]
+          enum: ["Follow", "Pin"]
         text:
           type: string
         type:

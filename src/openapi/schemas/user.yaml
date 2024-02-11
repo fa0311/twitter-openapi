@@ -89,6 +89,8 @@ components:
           type: integer
         verification_info:
           $ref: "#/components/schemas/UserVerificationInfo"
+        is_profile_translatable:
+          type: boolean
 
     UserProfessional:
       required:
@@ -133,8 +135,6 @@ components:
     UserVerificationInfo:
       required:
         - "is_identity_verified"
-        - "reason"
-
       properties:
         is_identity_verified:
           type: boolean
