@@ -35,7 +35,6 @@ components:
         tweetInterstitial:
           $ref: "#/components/schemas/TweetInterstitial"
 
-    # {'__typename': 'ContextualTweetInterstitial', 'displayType': 'NonCompliant', 'text': {'rtl': False, 'text': 'This Post violated the X Rules. However, X has determined that it may be in the public’s interest for the Post to remain accessible. Learn more', 'entities': [{'fromIndex': 133, 'toIndex': 143, 'ref': {'type': 'TimelineUrl', 'url': 'https://help.twitter.com/rules-and-policies/public-interest', 'urlType': 'ExternalUrl'}}]}, 'revealText': {'rtl': False, 'text': 'View', 'entities': []}}
     TweetInterstitial:
       required:
         - "__typename"

@@ -543,6 +543,13 @@ components:
       required:
       - actionText
       type: object
+    DisplayType:
+      enum:
+      - Vertical
+      - VerticalConversation
+      - VerticalGrid
+      - Carousel
+      type: string
     Entities:
       properties:
         hashtags:
@@ -1691,12 +1698,7 @@ components:
           additionalProperties: true
           type: object
         displayType:
-          enum:
-          - Vertical
-          - VerticalConversation
-          - VerticalGrid
-          - Carousel
-          type: string
+          $ref: '#/components/schemas/DisplayType'
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         feedbackInfo:
