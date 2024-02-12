@@ -38,6 +38,7 @@ components:
         - "super_follow_eligible"
         - "super_followed_by"
         - "super_following"
+        - "profile_image_shape"
 
       properties:
         __typename:
@@ -73,6 +74,125 @@ components:
         super_following:
           type: boolean
           default: false
+        profile_image_shape:
+          type: string
+          enum:
+            - "Circle"
+            - "Square"
+            - "Hexagon"
+        professional:
+          $ref: "#/components/schemas/UserProfessional"
+        user_seed_tweet_count:
+          type: integer
+        highlights_info:
+          $ref: "#/components/schemas/UserHighlightsInfo"
+        creator_subscriptions_count:
+          type: integer
+        verification_info:
+          $ref: "#/components/schemas/UserVerificationInfo"
+        is_profile_translatable:
+          type: boolean
+
+    UserProfessional:
+      required:
+        - "rest_id"
+        - "professional_type"
+        - "category"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        professional_type:
+          type: string
+          enum: ["Business", "Creator"]
+        category:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserProfessionalCategory"
+
+    UserProfessionalCategory:
+      required:
+        - "id"
+        - "name"
+        - "icon_name"
+      properties:
+        id:
+          type: integer
+        name:
+          type: string # enum
+        icon_name:
+          type: string # IconBriefcaseStroke ?
+
+    UserHighlightsInfo:
+      required:
+        - "can_highlight_tweets"
+        - "highlighted_tweets"
+      properties:
+        can_highlight_tweets:
+          type: boolean
+        highlighted_tweets:
+          type: string
+
+    UserVerificationInfo:
+      required:
+        - "is_identity_verified"
+      properties:
+        is_identity_verified:
+          type: boolean
+          default: false
+        reason:
+          $ref: "#/components/schemas/UserVerificationInfoReason"
+
+    UserVerificationInfoReason:
+      required:
+        - "description"
+        - "verified_since_msec"
+        - "override_verified_year"
+      properties:
+        description:
+          $ref: "#/components/schemas/UserVerificationInfoReasonDescription"
+        verified_since_msec:
+          type: string
+          pattern: "^-?[0-9]+$"
+        override_verified_year:
+          type: integer
+
+    UserVerificationInfoReasonDescription:
+      required:
+        - "text"
+        - "entities"
+      properties:
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserVerificationInfoReasonDescriptionEntities"
+
+    UserVerificationInfoReasonDescriptionEntities:
+      required:
+        - "from_index"
+        - "to_index"
+        - "ref"
+      properties:
+        from_index:
+          type: integer
+        to_index:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/UserVerificationInfoReasonDescriptionEntitiesRef"
+
+    UserVerificationInfoReasonDescriptionEntitiesRef:
+      required:
+        - "url"
+        - "url_type"
+      properties:
+        url:
+          type: string
+          format: uri
+        url_type:
+          type: string
+          enum: ["ExternalUrl"]
 
     UserLegacy:
       required:
@@ -219,6 +339,13 @@ components:
         want_retweets:
           type: boolean
           default: false
+        verified_type:
+          type: string
+          enum: ["Business", "Government"]
+        withheld_in_countries:
+          type: array
+          items:
+            type: string # enum DE
 
     UserUnavailable:
       required:

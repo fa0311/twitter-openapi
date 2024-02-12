@@ -26,7 +26,9 @@
       "justMyCode": false,
       "preLaunchTask": "build-task",
       "env": {
-        "ERROR_UNCATCHED": "True"
+        "ERROR_UNCATCHED": "True",
+        "STRICT_MODE": "True",
+        "MULTI_THREAD": "True"
       }
     }
   ]

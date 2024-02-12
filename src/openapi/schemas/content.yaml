@@ -71,16 +71,21 @@ components:
         header:
           type: object
           additionalProperties: true # todo
-
         clientEventInfo:
           type: object
           additionalProperties: true # todo
+        metadata:
+          type: object
+          additionalProperties: true # todo
+        feedbackInfo:
+          $ref: "#/components/schemas/FeedbackInfo"
 
     TimelineTimelineCursor:
       required:
         - "__typename"
         - "cursorType"
         - "value"
+        - "stopOnEmptyResponse"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor
@@ -91,6 +96,19 @@ components:
         cursorType:
           $ref: "#/components/schemas/CursorType"
         value:
+          type: string
+        stopOnEmptyResponse:
+          type: boolean
+          default: false
+        displayTreatment:
+          $ref: "#/components/schemas/DisplayTreatment"
+
+    DisplayTreatment:
+      type: object
+      required:
+        - "actionText"
+      properties:
+        actionText:
           type: string
 
     # ================= Module =================
@@ -114,6 +132,15 @@ components:
           $ref: "#/components/schemas/ClientEventInfo"
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
+
+    FeedbackInfo:
+      required:
+        - "feedbackType"
+      properties:
+        feedbackKeys:
+          type: array
+          items:
+            type: string
 
     # ================= ContentItem =================
 
@@ -163,17 +190,18 @@ components:
           type: string
         tweet_results:
           $ref: "#/components/schemas/ItemResult"
-        SocialContext:
-          $ref: "#/components/schemas/SocialContext"
+        socialContext:
+          $ref: "#/components/schemas/SocialContextUnion"
         promotedMetadata:
           type: object
           additionalProperties: true # todo
+        highlights:
+          $ref: "#/components/schemas/Highlight"
 
     TimelineUser:
       required:
         - "__typename"
         - "itemType"
-        - "socialContext"
         - "userDisplayType"
         - "user_results"
       properties:
@@ -181,8 +209,8 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineUser
         itemType:
           $ref: "#/components/schemas/ContentItemType" # TimelineUser
-        SocialContext:
-          $ref: "#/components/schemas/SocialContext"
+        socialContext:
+          $ref: "#/components/schemas/SocialContextUnion"
         userDisplayType:
           type: string
           enum: [User, UserDetailed, SubscribableUser]
@@ -196,15 +224,122 @@ components:
         result:
           $ref: "./tweet.yaml#/components/schemas/TweetUnion"
 
-    SocialContext:
+    SocialContextUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineGeneralContext"
+        - $ref: "#/components/schemas/TimelineTopicContext"
+      discriminator:
+        propertyName: type
+        mapping": # deprecated
+          TimelineGeneralContext: "#/components/schemas/TimelineGeneralContext"
+          TimelineTopicContext: "#/components/schemas/TimelineTopicContext"
+    
+    SocialContextUnionType:
+      type: string
+      enum: 
+        - TimelineGeneralContext
+        - TimelineTopicContext
+
+
+    TimelineGeneralContext:
       type: object
       properties:
+        type:
+          $ref: "#/components/schemas/SocialContextUnionType"
         contextType:
           type: string # enum
+          enum: ["Follow", "Pin", "Like", "Location", "Sparkle"]
         text:
           type: string
+        landingUrl:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
+
+    TimelineTopicContext:
+      type: object
+      properties:
         type:
+          $ref: "#/components/schemas/SocialContextUnionType"
+        topic:
+          $ref: "#/components/schemas/TopicContext"
+        functionalityType:
+          type: string
+          enum: ["Basic"]
+    
+    TopicContext:
+      type: object
+      properties:
+        id:
+          type: string
+        topic_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon_url:
+          type: string
+          format: uri
+        following:
+          type: boolean
+        not_interested:
+          type: boolean
+        
+    SocialContextLandingUrl:
+      type: object
+      properties:
+        urlType:
           type: string # enum
+          enum: ["DeepLink", "UrtEndpoint"]
+        url:
+          type: string # twitter://user?id=900282258736545792
+          format: uri
+        urtEndpointOptions:
+          $ref: "#/components/schemas/UrtEndpointOptions"
+
+    UrtEndpointOptions:
+      type: object
+      required:
+        - "title"
+        - "requestParams"
+      properties:
+        title:
+          type: string
+        requestParams:
+          type: array
+          items:
+            $ref: "#/components/schemas/UrtEndpointRequestParams"
+
+    UrtEndpointRequestParams:
+      type: object
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+
+    Highlight:
+      type: object
+      required:
+        - "textHighlights"
+      properties:
+        textHighlights:
+          type: array
+          items:
+            $ref: "#/components/schemas/TextHighlight"
+
+    TextHighlight:
+      type: object
+      required:
+        - "startIndex"
+        - "endIndex"
+      properties:
+        startIndex:
+          type: integer
+        endIndex:
+          type: integer
 
     TimelinePrompt:
       properties:

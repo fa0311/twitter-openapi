@@ -23,11 +23,94 @@ components:
       required:
         - "__typename"
         - "tweet"
+        - "limitedActionResults"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
         tweet:
           $ref: "#/components/schemas/Tweet"
+        limitedActionResults:
+          type: object
+          additionalProperties: true # todo
+        tweetInterstitial:
+          $ref: "#/components/schemas/TweetInterstitial"
+
+    # {'__typename': 'ContextualTweetInterstitial', 'displayType': 'NonCompliant', 'text': {'rtl': False, 'text': 'This Post violated the X Rules. However, X has determined that it may be in the public’s interest for the Post to remain accessible. Learn more', 'entities': [{'fromIndex': 133, 'toIndex': 143, 'ref': {'type': 'TimelineUrl', 'url': 'https://help.twitter.com/rules-and-policies/public-interest', 'urlType': 'ExternalUrl'}}]}, 'revealText': {'rtl': False, 'text': 'View', 'entities': []}}
+    TweetInterstitial:
+      required:
+        - "__typename"
+        - "displayType"
+        - "text"
+        - "revealText"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ContextualTweetInterstitial
+        displayType:
+          type: string
+          enum: [NonCompliant]
+        text:
+          $ref: "#/components/schemas/TweetInterstitialText"
+        revealText:
+          $ref: "#/components/schemas/TweetInterstitialRevealText"
+
+    TweetInterstitialText:
+      required:
+        - "rtl"
+        - "text"
+        - "entities"
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetInterstitialTextEntity"
+
+    TweetInterstitialTextEntity:
+      required:
+        - "fromIndex"
+        - "toIndex"
+        - "ref"
+      properties:
+        fromIndex:
+          type: integer
+        toIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/TweetInterstitialTextEntityRef"
+
+    TweetInterstitialTextEntityRef:
+      required:
+        - "type"
+        - "url"
+        - "urlType"
+      properties:
+        type:
+          type: string
+          enum: [TimelineUrl]
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [ExternalUrl]
+
+    TweetInterstitialRevealText:
+      required:
+        - "rtl"
+        - "text"
+        - "entities"
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetInterstitialTextEntity"
 
     TweetTombstone: #remove tweet
       properties:
@@ -45,7 +128,6 @@ components:
         # - "source"
         # - "legacy"
         - "views"
-
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # null | Tweet
@@ -80,6 +162,18 @@ components:
           $ref: "#/components/schemas/NoteTweet"
         quick_promote_eligibility:
           type: object
+        unified_card:
+          $ref: "#/components/schemas/UnifiedCard"
+        previous_counts:
+          $ref: "#/components/schemas/TweetPreviousCounts"
+        quotedRefResult:
+          $ref: "#/components/schemas/QuotedRefResult"
+        superFollowsReplyUserResult:
+          $ref: "#/components/schemas/SuperFollowsReplyUserResult"
+        has_birdwatch_notes:
+          type: boolean
+        author_community_relationship:
+          $ref: "#/components/schemas/AuthorCommunityRelationship"
 
     TweetEditControl:
       properties:
@@ -220,6 +314,299 @@ components:
             type: string
             enum: [Bold, Italic]
 
+    UnifiedCard:
+      required:
+        - "card_fetch_state"
+      properties:
+        card_fetch_state:
+          type: string
+          enum: [NoCard]
+
+    TweetPreviousCounts:
+      required:
+        - "bookmark_count"
+        - "favorite_count"
+        - "quote_count"
+        - "reply_count"
+        - "retweet_count"
+      properties:
+        bookmark_count:
+          type: integer
+        favorite_count:
+          type: integer
+        quote_count:
+          type: integer
+        reply_count:
+          type: integer
+        retweet_count:
+          type: integer
+
+    QuotedRefResult:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/QuotedRefResultData"
+
+    QuotedRefResultData:
+      required:
+        - "__typename"
+        - "rest_id"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # Tweet
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    SuperFollowsReplyUserResult:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/SuperFollowsReplyUserResultData"
+
+    SuperFollowsReplyUserResultData:
+      required:
+        - "__typename"
+        - "legacy"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        legacy:
+          $ref: "#/components/schemas/SuperFollowsReplyUserResultLegacy"
+
+    SuperFollowsReplyUserResultLegacy:
+      required:
+        - "screen_name"
+      properties:
+        screen_name:
+          type: string
+
+    AuthorCommunityRelationship:
+      required:
+        - "community_results"
+      properties:
+        community_results:
+          $ref: "#/components/schemas/Community"
+        role:
+          type: string
+          enum: [Member]
+        user_results:
+          $ref: "user.yaml#/components/schemas/UserResults"
+
+    Community:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/CommunityData"
+
+    CommunityData:
+      required:
+        - "__typename"
+        - "id_str"
+        - "name"
+        - "description"
+        - "question"
+        - "search_tags"
+        - "primary_community_topic"
+        - "actions"
+        - "admin_results"
+        - "creator_results"
+        - "invites_result"
+        - "join_policy"
+        - "invites_policy"
+        - "is_pinned"
+        - "members_facepile_results"
+        - "moderator_count"
+        - "member_count"
+        - "role"
+        - "rules"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # Community
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: integer
+        question:
+          type: string
+        search_tags:
+          type: array
+          items:
+            type: string
+        primary_community_topic:
+          $ref: "#/components/schemas/PrimaryCommunityTopic"
+        actions:
+          $ref: "#/components/schemas/CommunityActions"
+        admin_results:
+          $ref: "user.yaml#/components/schemas/UserResults"
+        creator_results:
+          $ref: "user.yaml#/components/schemas/UserResults"
+        invites_result:
+          $ref: "#/components/schemas/CommunityInvitesResult"
+        join_requests_result:
+          $ref: "#/components/schemas/CommunityJoinRequestsResult"
+        join_policy:
+          type: string
+          enum: [Open]
+        invites_policy:
+          type: string
+          enum: [MemberInvitesAllowed]
+        is_pinned:
+          type: boolean
+        members_facepile_results:
+          type: array
+          items:
+            $ref: "user.yaml#/components/schemas/UserResults"
+        moderator_count:
+          type: integer
+        member_count:
+          type: integer
+        role:
+          type: string
+          enum: [NonMember]
+        rules:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityRule"
+        show_only_users_to_display:
+          type: array
+          items:
+            type: string
+        urls:
+          $ref: "#/components/schemas/CommunityUrls"
+        default_banner_media:
+          type: object
+          additionalProperties: true # todo
+        custom_banner_media:
+          type: object
+          additionalProperties: true # todo
+        viewer_relationship:
+          type: object
+          additionalProperties: true # todo
+
+    PrimaryCommunityTopic:
+      required:
+        - "topic_id"
+        - "topic_name"
+      properties:
+        topic_id:
+          type: string
+          pattern: "^[0-9]+$"
+        topic_name:
+          type: string
+
+    CommunityActions:
+      required:
+        - "delete_action_result"
+        - "join_action_result"
+        - "leave_action_result"
+        - "pin_action_result"
+      properties:
+        delete_action_result:
+          $ref: "#/components/schemas/CommunityDeleteActionResult"
+        join_action_result:
+          $ref: "#/components/schemas/CommunityJoinActionResult"
+        leave_action_result:
+          $ref: "#/components/schemas/CommunityLeaveActionResult"
+        pin_action_result:
+          $ref: "#/components/schemas/CommunityPinActionResult"
+
+    CommunityDeleteActionResult:
+      required:
+        - "__typename"
+        - "reason"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityDeleteActionUnavailable
+        reason:
+          type: string
+          enum: [Unavailable]
+
+    CommunityJoinActionResult:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityJoinAction
+
+    CommunityLeaveActionResult:
+      required:
+        - "__typename"
+        - "reason"
+        - "message"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityLeaveActionUnavailable
+        reason:
+          type: string
+          enum: [ViewerNotMember]
+        message:
+          type: string
+
+    CommunityPinActionResult:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityTweetPinActionUnavailable
+
+    CommunityInvitesResult:
+      required:
+        - "__typename"
+        - "reason"
+        - "message"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityInvitesUnavailable
+        reason:
+          type: string
+          enum: [Unavailable]
+        message:
+          type: string
+
+    CommunityJoinRequestsResult:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityJoinRequestsUnavailable
+
+    CommunityRule:
+      required:
+        - "rest_id"
+        - "name"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        name:
+          type: string
+        description:
+          type: string
+
+    CommunityUrls:
+      required:
+        - "permalink"
+      properties:
+        permalink:
+          $ref: "#/components/schemas/CommunityUrlsPermalink"
+
+    CommunityUrlsPermalink:
+      required:
+        - "url"
+      properties:
+        url:
+          type: string
+          format: uri
+
     BirdwatchPivot:
       required:
         - "destinationUrl"
@@ -249,6 +636,8 @@ components:
         iconType:
           type: string
           enum: [BirdwatchV1Icon]
+        callToAction:
+          $ref: "#/components/schemas/BirdwatchPivotCallToAction"
 
     BirdwatchPivotFooter:
       required:
@@ -311,6 +700,21 @@ components:
           items:
             $ref: "#/components/schemas/BirdwatchEntity"
 
+    BirdwatchPivotCallToAction:
+      # {'prompt': 'Do you find this helpful?', 'title': 'Rate it', 'destinationUrl': 'https://twitter.com/i/birdwatch/n/1710821689636934115'}
+      required:
+        - "prompt"
+        - "title"
+        - "destinationUrl"
+      properties:
+        prompt:
+          type: string
+        title:
+          type: string
+        destinationUrl:
+          type: string
+          format: uri
+
     TweetCard:
       properties:
         rest_id:
@@ -333,6 +737,50 @@ components:
           items:
             $ref: "#/components/schemas/TweetCardLegacyBindingValue"
 
+          # {'platform': {'audience': {'name': 'production'}, 'device': {'name': 'Swift', 'version': '12'}}}
+        card_platform:
+          $ref: "#/components/schemas/TweetCardPlatformData"
+        user_refs_results:
+          type: array
+          items:
+            $ref: "user.yaml#/components/schemas/UserResults"
+
+    TweetCardPlatformData:
+      required:
+        - "platform"
+      properties:
+        platform:
+          $ref: "#/components/schemas/TweetCardPlatform"
+
+    TweetCardPlatform:
+      required:
+        - "audience"
+        - "device"
+      properties:
+        audience:
+          $ref: "#/components/schemas/TweetCardPlatformAudience"
+        device:
+          $ref: "#/components/schemas/TweetCardPlatformDevice"
+
+    TweetCardPlatformAudience:
+      required:
+        - "name"
+      properties:
+        name:
+          type: string
+          enum: [production]
+
+    TweetCardPlatformDevice:
+      required:
+        - "name"
+        - "version"
+      properties:
+        name:
+          type: string # enum Swift
+        version:
+          type: string
+          pattern: "^[0-9]+$"
+
     TweetCardLegacyBindingValue:
       required:
         - "key"
@@ -354,6 +802,37 @@ components:
         scribe_key:
           type: string
         type:
+          type: string
+        image_value:
+          $ref: "#/components/schemas/TweetCardLegacyBindingValueDataImage"
+        image_color_value:
+          type: object
+          additionalProperties: true # todo
+        user_value:
+          $ref: "#/components/schemas/UserValue"
+
+    UserValue:
+      required:
+        - "id_str"
+      properties:
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+
+    TweetCardLegacyBindingValueDataImage:
+      required:
+        - "height"
+        - "width"
+        - "url"
+      properties:
+        height:
+          type: integer
+        width:
+          type: integer
+        url:
+          type: string
+          format: uri
+        alt:
           type: string
 
     TweetLegacy:
@@ -427,6 +906,32 @@ components:
           $ref: "#/components/schemas/SelfThread"
         extended_entities:
           $ref: "#/components/schemas/ExtendedEntities"
+        scopes:
+          $ref: "#/components/schemas/TweetLegacyScopes"
+        in_reply_to_screen_name:
+          type: string
+        in_reply_to_status_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        in_reply_to_user_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        quoted_status_permalink:
+          $ref: "#/components/schemas/QuotedStatusPermalink"
+        quoted_status_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        conversation_control:
+          additionalProperties: true # todo
+        limited_actions:
+          type: string
+          enum:
+            - "limited_replies"
+            - "community_tweet_non_member_public_community"
+            - "non_compliant"
+            - "dynamic_product_ad"
+        place:
+          additionalProperties: true # todo
 
     SelfThread:
       required:
@@ -506,6 +1011,8 @@ components:
         # - "features"
         - "sizes"
         - "original_info"
+        - "media_key"
+        - "ext_media_availability"
       properties:
         display_url:
           type: string
@@ -535,6 +1042,47 @@ components:
           $ref: "#/components/schemas/MediaSizes"
         original_info:
           $ref: "#/components/schemas/MediaOriginalInfo"
+        media_key:
+          type: string
+        ext_media_availability:
+          $ref: "#/components/schemas/ExtMediaAvailability"
+        video_info:
+          type: object
+          additionalProperties: true # todo
+        additional_media_info:
+          type: object
+          additionalProperties: true # todo
+        source_user_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        source_status_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        ext_alt_text:
+          type: string
+
+    TweetLegacyScopes:
+      required:
+        - "followers"
+      properties:
+        followers:
+          type: boolean
+
+    QuotedStatusPermalink:
+      required:
+        - "url"
+        - "expanded"
+        - "display"
+      properties:
+        url:
+          type: string
+          format: uri
+        expanded:
+          type: string
+          format: uri
+        display:
+          type: string
+          format: uri
 
     ExtendedEntities:
       required:
@@ -587,9 +1135,9 @@ components:
         additional_media_info:
           $ref: "#/components/schemas/AdditionalMediaInfo"
         mediaStats:
-          $ref: "#/components/schemas/mediaStats"
+          $ref: "#/components/schemas/MediaStats"
         ext_media_availability:
-          $ref: "#/components/schemas/extMediaAvailability"
+          $ref: "#/components/schemas/ExtMediaAvailability"
         features:
           type: object
         sizes:
@@ -598,6 +1146,14 @@ components:
           $ref: "#/components/schemas/MediaOriginalInfo"
         video_info:
           $ref: "#/components/schemas/MediaVideoInfo"
+        source_user_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        source_status_id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        ext_alt_text:
+          type: string
 
     MediaOriginalInfo:
       required:
@@ -665,15 +1221,40 @@ components:
       properties:
         monetizable:
           type: boolean
+        source_user:
+          $ref: "./user.yaml#/components/schemas/UserResultCore"
+        title: # null character
+          type: string
+        description: # null character
+          type: string
+        embeddable:
+          type: boolean
+        call_to_actions:
+          $ref: "#/components/schemas/AdditionalMediaInfoCallToActions"
 
-    mediaStats:
+    AdditionalMediaInfoCallToActions:
+      required:
+        - "visit_site"
+      properties:
+        visit_site:
+          $ref: "#/components/schemas/AdditionalMediaInfoCallToActionsVisitSite"
+
+    AdditionalMediaInfoCallToActionsVisitSite:
+      required:
+        - "url"
+      properties:
+        url:
+          type: string
+          format: uri
+
+    MediaStats:
       required:
         - "viewCount"
       properties:
         viewCount:
           type: integer
 
-    extMediaAvailability:
+    ExtMediaAvailability:
       # required:
       #   - "status"
       properties:
