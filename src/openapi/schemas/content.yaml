@@ -191,7 +191,7 @@ components:
         tweet_results:
           $ref: "#/components/schemas/ItemResult"
         socialContext:
-          $ref: "#/components/schemas/SocialContext"
+          $ref: "#/components/schemas/SocialContextUnion"
         promotedMetadata:
           type: object
           additionalProperties: true # todo
@@ -210,7 +210,7 @@ components:
         itemType:
           $ref: "#/components/schemas/ContentItemType" # TimelineUser
         socialContext:
-          $ref: "#/components/schemas/SocialContext"
+          $ref: "#/components/schemas/SocialContextUnion"
         userDisplayType:
           type: string
           enum: [User, UserDetailed, SubscribableUser]
@@ -224,20 +224,66 @@ components:
         result:
           $ref: "./tweet.yaml#/components/schemas/TweetUnion"
 
-    SocialContext:
+    SocialContextUnion:
+      oneOf:
+        - $ref: "#/components/schemas/TimelineGeneralContext"
+        - $ref: "#/components/schemas/TimelineTopicContext"
+      discriminator:
+        propertyName: type
+        mapping": # deprecated
+          TimelineGeneralContext: "#/components/schemas/TimelineGeneralContext"
+          TimelineTopicContext: "#/components/schemas/TimelineTopicContext"
+    
+    SocialContextUnionType:
+      type: string
+      enum: 
+        - TimelineGeneralContext
+        - TimelineTopicContext
+
+
+    TimelineGeneralContext:
       type: object
       properties:
+        type:
+          $ref: "#/components/schemas/SocialContextUnionType"
         contextType:
           type: string # enum
-          enum: ["Follow", "Pin"]
+          enum: ["Follow", "Pin", "Like", "Location", "Sparkle"]
         text:
           type: string
-        type:
-          type: string # enum
-          enum: ["TimelineGeneralContext"]
         landingUrl:
           $ref: "#/components/schemas/SocialContextLandingUrl"
 
+    TimelineTopicContext:
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/SocialContextUnionType"
+        topic:
+          $ref: "#/components/schemas/TopicContext"
+        functionalityType:
+          type: string
+          enum: ["Basic"]
+    
+    TopicContext:
+      type: object
+      properties:
+        id:
+          type: string
+        topic_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon_url:
+          type: string
+          format: uri
+        following:
+          type: boolean
+        not_interested:
+          type: boolean
+        
     SocialContextLandingUrl:
       type: object
       properties:

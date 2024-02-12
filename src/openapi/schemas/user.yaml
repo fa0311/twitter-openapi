@@ -79,6 +79,7 @@ components:
           enum:
             - "Circle"
             - "Square"
+            - "Hexagon"
         professional:
           $ref: "#/components/schemas/UserProfessional"
         user_seed_tweet_count:

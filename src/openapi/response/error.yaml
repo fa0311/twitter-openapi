@@ -32,6 +32,7 @@ components:
         - kind
         - name
         - source
+        - retry_after
         - tracing
       properties:
         message:
@@ -54,6 +55,8 @@ components:
           type: string
         source:
           type: string
+        retry_after:
+          type: integer
         tracing:
           $ref: "#/components/schemas/Tracing"
 
