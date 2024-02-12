@@ -1320,22 +1320,6 @@ components:
       - userFeatures
       - isSuperFollowSubscriber
       type: object
-    SocialContext:
-      properties:
-        contextType:
-          enum:
-          - Follow
-          - Pin
-          type: string
-        landingUrl:
-          $ref: '#/components/schemas/SocialContextLandingUrl'
-        text:
-          type: string
-        type:
-          enum:
-          - TimelineGeneralContext
-          type: string
-      type: object
     SocialContextLandingUrl:
       properties:
         url:
@@ -1349,6 +1333,20 @@ components:
         urtEndpointOptions:
           $ref: '#/components/schemas/UrtEndpointOptions'
       type: object
+    SocialContextUnion:
+      discriminator:
+        mapping":
+          TimelineGeneralContext: '#/components/schemas/TimelineGeneralContext'
+          TimelineTopicContext: '#/components/schemas/TimelineTopicContext'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/TimelineGeneralContext'
+      - $ref: '#/components/schemas/TimelineTopicContext'
+    SocialContextUnionType:
+      enum:
+      - TimelineGeneralContext
+      - TimelineTopicContext
+      type: string
     SuperFollowsReplyUserResult:
       properties:
         result:
@@ -1497,6 +1495,23 @@ components:
           type: string
       required:
       - type
+    TimelineGeneralContext:
+      properties:
+        contextType:
+          enum:
+          - Follow
+          - Pin
+          - Like
+          - Location
+          - Sparkle
+          type: string
+        landingUrl:
+          $ref: '#/components/schemas/SocialContextLandingUrl'
+        text:
+          type: string
+        type:
+          $ref: '#/components/schemas/SocialContextUnionType'
+      type: object
     TimelineHalfCover:
       properties:
         dismissible:
@@ -1704,6 +1719,17 @@ components:
       - entryType
       - displayType
       - clientEventInfo
+    TimelineTopicContext:
+      properties:
+        functionalityType:
+          enum:
+          - Basic
+          type: string
+        topic:
+          $ref: '#/components/schemas/TopicContext'
+        type:
+          $ref: '#/components/schemas/SocialContextUnionType'
+      type: object
     TimelineTweet:
       properties:
         __typename:
@@ -1716,7 +1742,7 @@ components:
           additionalProperties: true
           type: object
         socialContext:
-          $ref: '#/components/schemas/SocialContext'
+          $ref: '#/components/schemas/SocialContextUnion'
         tweetDisplayType:
           type: string
         tweet_results:
@@ -1733,7 +1759,7 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentItemType'
         socialContext:
-          $ref: '#/components/schemas/SocialContext'
+          $ref: '#/components/schemas/SocialContextUnion'
         userDisplayType:
           enum:
           - User
@@ -1753,6 +1779,24 @@ components:
           $ref: '#/components/schemas/Timeline'
       required:
       - timeline
+    TopicContext:
+      properties:
+        description:
+          type: string
+        following:
+          type: boolean
+        icon_url:
+          format: uri
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        not_interested:
+          type: boolean
+        topic_id:
+          type: string
+      type: object
     Tracing:
       properties:
         trace_id:
@@ -2374,6 +2418,7 @@ components:
           enum:
           - Circle
           - Square
+          - Hexagon
           type: string
         rest_id:
           pattern: ^[0-9]+$
