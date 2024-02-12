@@ -59,8 +59,7 @@ components:
         entryType:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
         displayType:
-          type: string
-          enum: [Vertical, VerticalConversation, VerticalGrid, Carousel]
+           $ref: "#/components/schemas/DisplayType"
         items:
           type: array
           items:
@@ -112,6 +111,14 @@ components:
           type: string
 
     # ================= Module =================
+
+    DisplayType:
+      type: string
+      enum:
+        - Vertical
+        - VerticalConversation
+        - VerticalGrid
+        - Carousel
 
     ModuleItem:
       required:
