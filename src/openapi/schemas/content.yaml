@@ -139,6 +139,8 @@ components:
           $ref: "#/components/schemas/ClientEventInfo"
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
+        feedbackInfo:
+          $ref: "#/components/schemas/FeedbackInfo"
 
     FeedbackInfo:
       required:

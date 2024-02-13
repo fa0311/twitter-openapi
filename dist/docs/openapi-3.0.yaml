@@ -1075,6 +1075,8 @@ components:
       properties:
         clientEventInfo:
           $ref: '#/components/schemas/ClientEventInfo'
+        feedbackInfo:
+          $ref: '#/components/schemas/FeedbackInfo'
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
       required:
