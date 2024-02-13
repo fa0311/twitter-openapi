@@ -231,7 +231,9 @@ components:
           pattern: "^[0-9]+$"
         state:
           type: string
-          enum: [EnabledWithCount]
+          enum:
+            - Enabled
+            - EnabledWithCount
 
     NoteTweet:
       required:

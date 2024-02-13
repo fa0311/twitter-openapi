@@ -1511,6 +1511,7 @@ components:
           - Like
           - Location
           - Sparkle
+          - Conversation
           type: string
         landingUrl:
           $ref: '#/components/schemas/SocialContextLandingUrl'
@@ -2273,6 +2274,7 @@ components:
           type: string
         state:
           enum:
+          - Enabled
           - EnabledWithCount
           type: string
       required:
