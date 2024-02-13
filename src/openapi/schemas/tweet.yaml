@@ -23,7 +23,6 @@ components:
       required:
         - "__typename"
         - "tweet"
-        - "limitedActionResults"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
@@ -120,13 +119,6 @@ components:
     Tweet:
       required:
         - "rest_id"
-        # If the tweet has been edited, this property does not exist.
-        # - "core"
-        - "edit_control"
-        - "is_translatable"
-        # - "source"
-        # - "legacy"
-        - "views"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # null | Tweet
@@ -347,18 +339,7 @@ components:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/QuotedRefResultData"
-
-    QuotedRefResultData:
-      required:
-        - "__typename"
-        - "rest_id"
-      properties:
-        __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # Tweet
-        rest_id:
-          type: string
-          pattern: "^[0-9]+$"
+          $ref: "#/components/schemas/TweetUnion"
 
     SuperFollowsReplyUserResult:
       required:
@@ -1061,6 +1042,8 @@ components:
           pattern: "^[0-9]+$"
         ext_alt_text:
           type: string
+        sensitive_media_warning:
+          $ref: "#/components/schemas/SensitiveMediaWarning"
 
     TweetLegacyScopes:
       required:
@@ -1155,6 +1138,8 @@ components:
           pattern: "^[0-9]+$"
         ext_alt_text:
           type: string
+        sensitive_media_warning:
+          $ref: "#/components/schemas/SensitiveMediaWarning"
 
     MediaOriginalInfo:
       required:
@@ -1264,6 +1249,22 @@ components:
         status:
           type: string
           enum: [Available, Unavailable]
+
+    SensitiveMediaWarning:
+      required:
+        - "adult_content"
+        - "graphic_violence"
+        - "other"
+      properties:
+        adult_content:
+          type: boolean
+          default: false
+        graphic_violence:
+          type: boolean
+          default: false
+        other:
+          type: boolean
+          default: false
 
     MediaSizes:
       required:

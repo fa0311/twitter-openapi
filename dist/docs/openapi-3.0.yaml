@@ -885,6 +885,8 @@ components:
           type: string
         original_info:
           $ref: '#/components/schemas/MediaOriginalInfo'
+        sensitive_media_warning:
+          $ref: '#/components/schemas/SensitiveMediaWarning'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         source_status_id_str:
@@ -949,6 +951,8 @@ components:
           type: string
         original_info:
           $ref: '#/components/schemas/MediaOriginalInfo'
+        sensitive_media_warning:
+          $ref: '#/components/schemas/SensitiveMediaWarning'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         source_status_id_str:
@@ -1203,19 +1207,9 @@ components:
     QuotedRefResult:
       properties:
         result:
-          $ref: '#/components/schemas/QuotedRefResultData'
+          $ref: '#/components/schemas/TweetUnion'
       required:
       - result
-    QuotedRefResultData:
-      properties:
-        __typename:
-          $ref: '#/components/schemas/TypeName'
-        rest_id:
-          pattern: ^[0-9]+$
-          type: string
-      required:
-      - __typename
-      - rest_id
     QuotedStatusPermalink:
       properties:
         display:
@@ -1277,6 +1271,21 @@ components:
           type: string
       required:
       - id_str
+    SensitiveMediaWarning:
+      properties:
+        adult_content:
+          default: false
+          type: boolean
+        graphic_violence:
+          default: false
+          type: boolean
+        other:
+          default: false
+          type: boolean
+      required:
+      - adult_content
+      - graphic_violence
+      - other
     Session:
       properties:
         SsoInitTokens:
@@ -1859,9 +1868,6 @@ components:
           $ref: '#/components/schemas/TweetView'
       required:
       - rest_id
-      - edit_control
-      - is_translatable
-      - views
     TweetCard:
       properties:
         legacy:
@@ -2295,7 +2301,6 @@ components:
       required:
       - __typename
       - tweet
-      - limitedActionResults
     TwitterTimeFormat:
       example: Sat Dec 31 23:59:59 +0000 2023
       pattern: '^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)
