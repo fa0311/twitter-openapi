@@ -263,6 +263,7 @@ components:
             - "Location"
             - "Sparkle"
             - "Conversation"
+            - "List"
         text:
           type: string
         landingUrl:
@@ -303,7 +304,7 @@ components:
       properties:
         urlType:
           type: string # enum
-          enum: ["DeepLink", "UrtEndpoint"]
+          enum: ["DeepLink", "UrtEndpoint", "ExternalUrl"]
         url:
           type: string # twitter://user?id=900282258736545792
           format: uri
