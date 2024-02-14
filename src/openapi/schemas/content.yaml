@@ -59,7 +59,7 @@ components:
         entryType:
           $ref: "#/components/schemas/ContentEntryType" # TimelineTimelineCursor
         displayType:
-           $ref: "#/components/schemas/DisplayType"
+          $ref: "#/components/schemas/DisplayType"
         items:
           type: array
           items:
@@ -139,6 +139,8 @@ components:
           $ref: "#/components/schemas/ClientEventInfo"
         itemContent:
           $ref: "#/components/schemas/ItemContentUnion"
+        feedbackInfo:
+          $ref: "#/components/schemas/FeedbackInfo"
 
     FeedbackInfo:
       required:
@@ -240,13 +242,12 @@ components:
         mapping": # deprecated
           TimelineGeneralContext: "#/components/schemas/TimelineGeneralContext"
           TimelineTopicContext: "#/components/schemas/TimelineTopicContext"
-    
+
     SocialContextUnionType:
       type: string
-      enum: 
+      enum:
         - TimelineGeneralContext
         - TimelineTopicContext
-
 
     TimelineGeneralContext:
       type: object
@@ -255,7 +256,14 @@ components:
           $ref: "#/components/schemas/SocialContextUnionType"
         contextType:
           type: string # enum
-          enum: ["Follow", "Pin", "Like", "Location", "Sparkle"]
+          enum:
+            - "Follow"
+            - "Pin"
+            - "Like"
+            - "Location"
+            - "Sparkle"
+            - "Conversation"
+            - "List"
         text:
           type: string
         landingUrl:
@@ -271,7 +279,7 @@ components:
         functionalityType:
           type: string
           enum: ["Basic"]
-    
+
     TopicContext:
       type: object
       properties:
@@ -290,13 +298,13 @@ components:
           type: boolean
         not_interested:
           type: boolean
-        
+
     SocialContextLandingUrl:
       type: object
       properties:
         urlType:
           type: string # enum
-          enum: ["DeepLink", "UrtEndpoint"]
+          enum: ["DeepLink", "UrtEndpoint", "ExternalUrl"]
         url:
           type: string # twitter://user?id=900282258736545792
           format: uri

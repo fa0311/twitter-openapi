@@ -23,7 +23,6 @@ components:
       required:
         - "__typename"
         - "tweet"
-        - "limitedActionResults"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
@@ -120,13 +119,6 @@ components:
     Tweet:
       required:
         - "rest_id"
-        # If the tweet has been edited, this property does not exist.
-        # - "core"
-        - "edit_control"
-        - "is_translatable"
-        # - "source"
-        # - "legacy"
-        - "views"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # null | Tweet
@@ -231,7 +223,9 @@ components:
           pattern: "^[0-9]+$"
         state:
           type: string
-          enum: [EnabledWithCount]
+          enum:
+            - Enabled
+            - EnabledWithCount
 
     NoteTweet:
       required:
@@ -341,22 +335,9 @@ components:
           type: integer
 
     QuotedRefResult:
-      required:
-        - "result"
       properties:
         result:
-          $ref: "#/components/schemas/QuotedRefResultData"
-
-    QuotedRefResultData:
-      required:
-        - "__typename"
-        - "rest_id"
-      properties:
-        __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # Tweet
-        rest_id:
-          type: string
-          pattern: "^[0-9]+$"
+          $ref: "#/components/schemas/TweetUnion"
 
     SuperFollowsReplyUserResult:
       required:
@@ -409,7 +390,6 @@ components:
         - "description"
         - "question"
         - "search_tags"
-        - "primary_community_topic"
         - "actions"
         - "admin_results"
         - "creator_results"
@@ -663,21 +643,21 @@ components:
         ref:
           $ref: "#/components/schemas/BirdwatchEntityRef"
 
-    BirdwatchEntityRef:
+    BirdwatchEntityRef: # Union
       required:
         - "type"
-        - "url"
-        - "urlType"
       properties:
         type:
           type: string
-          enum: [TimelineUrl]
+          enum: [TimelineUrl, TimelineRichTextHashtag]
         url:
           type: string
           format: uri
         urlType:
           type: string
           enum: [ExternalUrl]
+        text:
+          type: string
 
     BirdwatchPivotNote:
       required:
@@ -929,6 +909,7 @@ components:
             - "community_tweet_non_member_public_community"
             - "non_compliant"
             - "dynamic_product_ad"
+            - "stale_tweet"
         place:
           additionalProperties: true # todo
 
@@ -1059,6 +1040,8 @@ components:
           pattern: "^[0-9]+$"
         ext_alt_text:
           type: string
+        sensitive_media_warning:
+          $ref: "#/components/schemas/SensitiveMediaWarning"
 
     TweetLegacyScopes:
       required:
@@ -1153,6 +1136,8 @@ components:
           pattern: "^[0-9]+$"
         ext_alt_text:
           type: string
+        sensitive_media_warning:
+          $ref: "#/components/schemas/SensitiveMediaWarning"
 
     MediaOriginalInfo:
       required:
@@ -1232,13 +1217,13 @@ components:
           $ref: "#/components/schemas/AdditionalMediaInfoCallToActions"
 
     AdditionalMediaInfoCallToActions:
-      required:
-        - "visit_site"
       properties:
         visit_site:
-          $ref: "#/components/schemas/AdditionalMediaInfoCallToActionsVisitSite"
+          $ref: "#/components/schemas/AdditionalMediaInfoCallToActionsUrl"
+        watch_now:
+          $ref: "#/components/schemas/AdditionalMediaInfoCallToActionsUrl"
 
-    AdditionalMediaInfoCallToActionsVisitSite:
+    AdditionalMediaInfoCallToActionsUrl:
       required:
         - "url"
       properties:
@@ -1262,6 +1247,22 @@ components:
         status:
           type: string
           enum: [Available, Unavailable]
+
+    SensitiveMediaWarning:
+      required:
+        - "adult_content"
+        - "graphic_violence"
+        - "other"
+      properties:
+        adult_content:
+          type: boolean
+          default: false
+        graphic_violence:
+          type: boolean
+          default: false
+        other:
+          type: boolean
+          default: false
 
     MediaSizes:
       required:

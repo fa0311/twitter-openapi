@@ -19,10 +19,10 @@ components:
     AdditionalMediaInfoCallToActions:
       properties:
         visit_site:
-          $ref: '#/components/schemas/AdditionalMediaInfoCallToActionsVisitSite'
-      required:
-      - visit_site
-    AdditionalMediaInfoCallToActionsVisitSite:
+          $ref: '#/components/schemas/AdditionalMediaInfoCallToActionsUrl'
+        watch_now:
+          $ref: '#/components/schemas/AdditionalMediaInfoCallToActionsUrl'
+    AdditionalMediaInfoCallToActionsUrl:
       properties:
         url:
           format: uri
@@ -55,9 +55,12 @@ components:
       - ref
     BirdwatchEntityRef:
       properties:
+        text:
+          type: string
         type:
           enum:
           - TimelineUrl
+          - TimelineRichTextHashtag
           type: string
         url:
           format: uri
@@ -68,8 +71,6 @@ components:
           type: string
       required:
       - type
-      - url
-      - urlType
     BirdwatchPivot:
       properties:
         callToAction:
@@ -286,7 +287,6 @@ components:
       - description
       - question
       - search_tags
-      - primary_community_topic
       - actions
       - admin_results
       - creator_results
@@ -885,6 +885,8 @@ components:
           type: string
         original_info:
           $ref: '#/components/schemas/MediaOriginalInfo'
+        sensitive_media_warning:
+          $ref: '#/components/schemas/SensitiveMediaWarning'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         source_status_id_str:
@@ -949,6 +951,8 @@ components:
           type: string
         original_info:
           $ref: '#/components/schemas/MediaOriginalInfo'
+        sensitive_media_warning:
+          $ref: '#/components/schemas/SensitiveMediaWarning'
         sizes:
           $ref: '#/components/schemas/MediaSizes'
         source_status_id_str:
@@ -1075,6 +1079,8 @@ components:
       properties:
         clientEventInfo:
           $ref: '#/components/schemas/ClientEventInfo'
+        feedbackInfo:
+          $ref: '#/components/schemas/FeedbackInfo'
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
       required:
@@ -1201,19 +1207,7 @@ components:
     QuotedRefResult:
       properties:
         result:
-          $ref: '#/components/schemas/QuotedRefResultData'
-      required:
-      - result
-    QuotedRefResultData:
-      properties:
-        __typename:
-          $ref: '#/components/schemas/TypeName'
-        rest_id:
-          pattern: ^[0-9]+$
-          type: string
-      required:
-      - __typename
-      - rest_id
+          $ref: '#/components/schemas/TweetUnion'
     QuotedStatusPermalink:
       properties:
         display:
@@ -1275,6 +1269,21 @@ components:
           type: string
       required:
       - id_str
+    SensitiveMediaWarning:
+      properties:
+        adult_content:
+          default: false
+          type: boolean
+        graphic_violence:
+          default: false
+          type: boolean
+        other:
+          default: false
+          type: boolean
+      required:
+      - adult_content
+      - graphic_violence
+      - other
     Session:
       properties:
         SsoInitTokens:
@@ -1336,6 +1345,7 @@ components:
           enum:
           - DeepLink
           - UrtEndpoint
+          - ExternalUrl
           type: string
         urtEndpointOptions:
           $ref: '#/components/schemas/UrtEndpointOptions'
@@ -1511,6 +1521,8 @@ components:
           - Like
           - Location
           - Sparkle
+          - Conversation
+          - List
           type: string
         landingUrl:
           $ref: '#/components/schemas/SocialContextLandingUrl'
@@ -1856,9 +1868,6 @@ components:
           $ref: '#/components/schemas/TweetView'
       required:
       - rest_id
-      - edit_control
-      - is_translatable
-      - views
     TweetCard:
       properties:
         legacy:
@@ -2153,6 +2162,7 @@ components:
           - community_tweet_non_member_public_community
           - non_compliant
           - dynamic_product_ad
+          - stale_tweet
           type: string
         place:
           additionalProperties: true
@@ -2273,6 +2283,7 @@ components:
           type: string
         state:
           enum:
+          - Enabled
           - EnabledWithCount
           type: string
       required:
@@ -2291,7 +2302,6 @@ components:
       required:
       - __typename
       - tweet
-      - limitedActionResults
     TwitterTimeFormat:
       example: Sat Dec 31 23:59:59 +0000 2023
       pattern: '^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)

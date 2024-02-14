@@ -294,27 +294,38 @@ if __name__ == "__main__":
         error_dump(e)
         error_count += 1
 
-    try:
-        logger.info("Try: Self UserTweets Test")
-        kwargs = get_kwargs("UserTweets", {"userId": "1180389371481976833"})
-        res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
-        data = res.data.to_dict()
+    ids = [
+        "1180389371481976833",
+        "900282258736545792",
+        "1212617657003859968",
+        "2455740283",
+        "2326837940",
+    ]
+    for id in ids:
+        try:
+            logger.info("Try: Self UserTweets Test")
+            kwargs = get_kwargs("UserTweets", {"userId": id})
+            res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
+            data = res.data.to_dict()
 
-        rate = match_rate(
-            data,
-            json.loads(res.raw_data),
-            res.data,
-        )
-        logger.info(f"Match rate: {rate}")
+            rate = match_rate(
+                data,
+                json.loads(res.raw_data),
+                res.data,
+            )
+            logger.info(f"Match rate: {rate}")
 
-    except Exception as e:
-        error_dump(e)
-        error_count += 1
+        except Exception as e:
+            error_dump(e)
+            error_count += 1
 
     ids = [
         "1720975693524377759",
         "1721006592303251551",
-        "1606661809075019776",
+        "1739194269477331076",
+        "1697450269259522256",
+        "1697450278742884799",
+        "1749500209061663043",
     ]
     for id in ids:
         try:
