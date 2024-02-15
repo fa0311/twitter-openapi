@@ -93,6 +93,6 @@ class Config:
             ),
             "compatible_discriminator": self.hooks_generator(
                 queryParameterJson=False,
-                removelegacyDiscriminatorBehavior=True,
+                removeLegacyDiscriminatorBehavior=True,
             ),
         }
