@@ -1,5 +1,6 @@
-import yaml
 import json
+
+import yaml
 
 
 class HookBase:
@@ -190,6 +191,13 @@ class AddPathQueryIdOnParameters(RequestHookBase):
                 },
             }
         )
+        return path, value
+
+
+class RemoveErrorHandle(RequestHookBase):
+    def hook(self, path: str, value: dict):
+        content = value["responses"]["200"]["content"]["application/json"]
+        content["schema"] = content["schema"]["oneOf"][0]
         return path, value
 
 
