@@ -1,11 +1,23 @@
-from hooks import *
+from hooks import (
+    AddParametersOnBody,
+    AddParametersOnContent,
+    AddParametersOnParameters,
+    AddPathQueryIdOnParameters,
+    AddSecuritySchemesOnSecuritySchemes,
+    RemoveErrorHandle,
+    SetResponsesHeader,
+)
 
 
 class Config:
     OUTPUT_DIR = "dist/{0}"
     INPUT_DIR = "src/openapi"
 
-    def hooks_generator(self, queryParameterJson=True):
+    def hooks_generator(
+        self,
+        queryParameterJson=True,
+        removeLegacyDiscriminatorBehavior=False,
+    ):
         # https://stackoverflow.com/questions/34820064/defining-an-api-with-swagger-get-call-that-uses-json-in-parameters/45223964
         if queryParameterJson:
             # ["parameters"][0]["content"]["application/json"]["schema"]
@@ -22,6 +34,11 @@ class Config:
                 ignoreKeys=["queryId"],
             )
 
+        # https://github.com/OpenAPITools/openapi-generator/issues/15373
+        additionalHooks = []
+        if removeLegacyDiscriminatorBehavior:
+            additionalHooks.append(RemoveErrorHandle())
+
         return {
             "openapi": [AddSecuritySchemesOnSecuritySchemes()],
             "schemas": [],
@@ -31,6 +48,7 @@ class Config:
                     SetResponsesHeader(suffix=None),
                     AddPathQueryIdOnParameters(split=-1),
                     getParamHook,
+                    *additionalHooks,
                 ]
                 for key in ["default", "user", "users", "user-list", "tweet"]
             }
@@ -70,5 +88,11 @@ class Config:
     def main(self):
         return {
             "docs": self.hooks_generator(),
-            "compatible": self.hooks_generator(queryParameterJson=False),
+            "compatible": self.hooks_generator(
+                queryParameterJson=False,
+            ),
+            "compatible_discriminator": self.hooks_generator(
+                queryParameterJson=False,
+                removelegacyDiscriminatorBehavior=True,
+            ),
         }
