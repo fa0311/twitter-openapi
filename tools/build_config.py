@@ -61,6 +61,7 @@ class Config:
                         schemaType=None,
                         contentType="application/json",
                     ),
+                    *additionalHooks,
                 ]
                 for key in ["post"]
             }
@@ -93,6 +94,6 @@ class Config:
             ),
             "compatible_discriminator": self.hooks_generator(
                 queryParameterJson=False,
-                removelegacyDiscriminatorBehavior=True,
+                removeLegacyDiscriminatorBehavior=True,
             ),
         }
