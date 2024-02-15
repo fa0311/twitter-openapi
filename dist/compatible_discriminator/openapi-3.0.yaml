@@ -3888,9 +3888,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/CreateRetweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/CreateRetweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4115,9 +4113,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/CreateTweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/CreateTweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4191,9 +4187,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/DeleteRetweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/DeleteRetweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4267,9 +4261,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/DeleteTweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/DeleteTweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4343,9 +4335,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/FavoriteTweetResponseData'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/FavoriteTweetResponseData'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -5498,9 +5488,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UnfavoriteTweetResponseData'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UnfavoriteTweetResponseData'
           description: Successful operation
           headers:
             x-connection-hash:

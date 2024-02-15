@@ -61,6 +61,7 @@ class Config:
                         schemaType=None,
                         contentType="application/json",
                     ),
+                    *additionalHooks,
                 ]
                 for key in ["post"]
             }
