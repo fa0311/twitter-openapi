@@ -927,6 +927,7 @@ components:
         - "symbols"
         - "user_mentions"
         - "urls"
+        - "timestamps"
       properties:
         hashtags:
           type: array
@@ -948,6 +949,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Media"
+        timestamps:
+          type: array
+          items:
+            $ref: "#/components/schemas/Timestamp"
 
     Hashtag:
       type: object
@@ -1293,3 +1298,18 @@ components:
         resize:
           type: string
           enum: [crop, fit]
+
+    Timestamp:
+      required:
+        - "indices"
+        - "seconds"
+        - "text"
+      properties:
+        indices:
+          type: array
+          items:
+            type: integer
+        seconds:
+          type: integer
+        text:
+          type: string
