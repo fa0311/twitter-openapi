@@ -150,7 +150,7 @@ components:
           $ref: "#/components/schemas/InstructionType" # TimelineTerminateTimeline
         direction:
           type: string
-          enum: [Top, Bottom]
+          enum: [Top, Bottom, TopAndBottom]
 
     TimelineAddEntry:
       required:
