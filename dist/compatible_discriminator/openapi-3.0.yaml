@@ -1660,6 +1660,7 @@ components:
           enum:
           - Top
           - Bottom
+          - TopAndBottom
           type: string
         type:
           $ref: '#/components/schemas/InstructionType'

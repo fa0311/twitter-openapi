@@ -927,7 +927,6 @@ components:
         - "symbols"
         - "user_mentions"
         - "urls"
-        - "timestamps"
       properties:
         hashtags:
           type: array
