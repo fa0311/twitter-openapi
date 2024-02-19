@@ -9,7 +9,6 @@
           "source .venv/bin/activate;",
           "python3 tools/build.py;",
           "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python;",
-          "python3 test/python/replace.py;",
           "python3 -m pip install ./python_generated;"
         ]
       },
@@ -19,7 +18,6 @@
           "python tools/build.py;",
           "scoop reset temurin11-jdk;",
           "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python;",
-          "python test/python/replace.py;",
           "python -m pip install ./python_generated;"
         ]
       }
