@@ -28,7 +28,8 @@
       "env": {
         "ERROR_UNCATCHED": "True",
         "STRICT_MODE": "True",
-        "MULTI_THREAD": "True"
+        "MULTI_THREAD": "True",
+        "CUESOR_TEST_COUNT": "3"
       }
     }
   ]

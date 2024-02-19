@@ -356,3 +356,5 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # UserUnavailable
         reason:
           type: string
+        message:
+          type: string
