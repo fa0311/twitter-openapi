@@ -680,7 +680,6 @@ components:
             $ref: "#/components/schemas/BirdwatchEntity"
 
     BirdwatchPivotCallToAction:
-      # {'prompt': 'Do you find this helpful?', 'title': 'Rate it', 'destinationUrl': 'https://twitter.com/i/birdwatch/n/1710821689636934115'}
       required:
         - "prompt"
         - "title"
@@ -906,10 +905,11 @@ components:
           type: string
           enum:
             - "limited_replies"
-            - "community_tweet_non_member_public_community"
             - "non_compliant"
             - "dynamic_product_ad"
             - "stale_tweet"
+            - "community_tweet_non_member_public_community"
+            - "community_tweet_non_member_closed_community"
         place:
           additionalProperties: true # todo
 
