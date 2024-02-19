@@ -564,6 +564,10 @@ components:
           items:
             $ref: '#/components/schemas/Symbol'
           type: array
+        timestamps:
+          items:
+            $ref: '#/components/schemas/Timestamp'
+          type: array
         urls:
           items:
             $ref: '#/components/schemas/Url'
@@ -1793,6 +1797,20 @@ components:
           $ref: '#/components/schemas/Timeline'
       required:
       - timeline
+    Timestamp:
+      properties:
+        indices:
+          items:
+            type: integer
+          type: array
+        seconds:
+          type: integer
+        text:
+          type: string
+      required:
+      - indices
+      - seconds
+      - text
     TopicContext:
       properties:
         description:
@@ -2159,10 +2177,11 @@ components:
         limited_actions:
           enum:
           - limited_replies
-          - community_tweet_non_member_public_community
           - non_compliant
           - dynamic_product_ad
           - stale_tweet
+          - community_tweet_non_member_public_community
+          - community_tweet_non_member_closed_community
           type: string
         place:
           additionalProperties: true
@@ -2790,6 +2809,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
         reason:
           type: string
       required:
