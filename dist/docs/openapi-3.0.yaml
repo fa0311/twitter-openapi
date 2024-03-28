@@ -29,6 +29,100 @@ components:
           type: string
       required:
       - url
+    Article:
+      properties:
+        article_results:
+          $ref: '#/components/schemas/ArticleResults'
+      required:
+      - article_results
+    ArticleCoverMedia:
+      properties:
+        id:
+          type: string
+        media_id:
+          pattern: ^[0-9]+$
+          type: string
+        media_info:
+          $ref: '#/components/schemas/ArticleCoverMediaInfo'
+        media_key:
+          type: string
+      required:
+      - id
+      - media_key
+      - media_id
+      - media_info
+    ArticleCoverMediaColorInfo:
+      properties:
+        palette:
+          items:
+            $ref: '#/components/schemas/ArticleCoverMediaColorInfoPalette'
+          type: array
+      required:
+      - palette
+    ArticleCoverMediaColorInfoPalette:
+      properties:
+        percentage:
+          type: number
+        rgb:
+          $ref: '#/components/schemas/ArticleCoverMediaColorInfoPaletteRGB'
+      required:
+      - percentage
+      - rgb
+    ArticleCoverMediaColorInfoPaletteRGB:
+      properties:
+        blue:
+          type: integer
+        green:
+          type: integer
+        red:
+          type: integer
+      required:
+      - blue
+      - green
+      - red
+    ArticleCoverMediaInfo:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        color_info:
+          $ref: '#/components/schemas/ArticleCoverMediaColorInfo'
+        original_img_height:
+          type: integer
+        original_img_url:
+          format: uri
+          type: string
+        original_img_width:
+          type: integer
+      required:
+      - original_img_height
+      - original_img_width
+      - original_img_url
+      - color_info
+    ArticleResult:
+      properties:
+        cover_media:
+          $ref: '#/components/schemas/ArticleCoverMedia'
+        id:
+          type: string
+        preview_text:
+          type: string
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        title:
+          type: string
+      required:
+      - rest_id
+      - id
+      - title
+      - preview_text
+      - cover_media
+    ArticleResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/ArticleResult'
+      required:
+      - result
     AuthorCommunityRelationship:
       properties:
         community_results:
@@ -1763,6 +1857,11 @@ components:
         socialContext:
           $ref: '#/components/schemas/SocialContextUnion'
         tweetDisplayType:
+          enum:
+          - Tweet
+          - SelfThread
+          - MediaGrid
+          - CondensedTweet
           type: string
         tweet_results:
           $ref: '#/components/schemas/ItemResult'
@@ -1842,6 +1941,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        article:
+          $ref: '#/components/schemas/Article'
         author_community_relationship:
           $ref: '#/components/schemas/AuthorCommunityRelationship'
         birdwatch_pivot:
@@ -2352,6 +2453,7 @@ components:
       - CommunityTweetPinActionUnavailable
       - CommunityInvitesUnavailable
       - CommunityJoinRequestsUnavailable
+      - ApiImage
       type: string
     UnfavoriteTweet:
       properties:

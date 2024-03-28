@@ -31,4 +31,5 @@ components:
           CommunityTweetPinActionUnavailable,
           CommunityInvitesUnavailable,
           CommunityJoinRequestsUnavailable,
+          ApiImage,
         ]

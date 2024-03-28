@@ -9,7 +9,7 @@ import traceback
 import warnings
 from pathlib import Path
 
-import aenum
+from enum import Enum
 import openapi_client as pt
 
 warnings.filterwarnings("ignore")
@@ -84,9 +84,9 @@ def match_rate_zero(a, b, base, key):
 
 
 def match_rate(a, b, base, key=""):
-    if isinstance(a, aenum.Enum):
+    if isinstance(a, Enum):
         a = a.value
-    if isinstance(b, aenum.Enum):
+    if isinstance(b, Enum):
         b = b.value
     if a is None and b is False:
         return 1
