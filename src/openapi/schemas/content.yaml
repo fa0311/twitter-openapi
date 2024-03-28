@@ -197,6 +197,7 @@ components:
           $ref: "#/components/schemas/ContentItemType" # TimelineTweet
         tweetDisplayType:
           type: string
+          enum: [Tweet, SelfThread, MediaGrid, CondensedTweet]
         tweet_results:
           $ref: "#/components/schemas/ItemResult"
         socialContext:
