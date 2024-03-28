@@ -165,6 +165,8 @@ components:
           type: boolean
         author_community_relationship:
           $ref: "#/components/schemas/AuthorCommunityRelationship"
+        article:
+          $ref: "#/components/schemas/Article"
 
     TweetEditControl:
       properties:
@@ -1312,3 +1314,105 @@ components:
           type: integer
         text:
           type: string
+
+    Article:
+      required:
+        - "article_results"
+      properties:
+        article_results:
+          $ref: "#/components/schemas/ArticleResults"
+
+    ArticleResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/ArticleResult"
+
+    ArticleResult:
+      required:
+        - "rest_id"
+        - "id"
+        - "title"
+        - "preview_text"
+        - "cover_media"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        id:
+          type: string
+        title:
+          type: string
+        preview_text:
+          type: string
+        cover_media:
+          $ref: "#/components/schemas/ArticleCoverMedia"
+
+    ArticleCoverMedia:
+      required:
+        - "id"
+        - "media_key"
+        - "media_id"
+        - "media_info"
+      properties:
+        id:
+          type: string
+        media_key:
+          type: string
+        media_id:
+          type: string
+          pattern: "^[0-9]+$"
+        media_info:
+          $ref: "#/components/schemas/ArticleCoverMediaInfo"
+
+    ArticleCoverMediaInfo:
+      required:
+        - "original_img_height"
+        - "original_img_width"
+        - "original_img_url"
+        - "color_info"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiImage
+        original_img_height:
+          type: integer
+        original_img_width:
+          type: integer
+        original_img_url:
+          type: string
+          format: uri
+        color_info:
+          $ref: "#/components/schemas/ArticleCoverMediaColorInfo"
+
+    ArticleCoverMediaColorInfo:
+      required:
+        - "palette"
+      properties:
+        palette:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleCoverMediaColorInfoPalette"
+
+    ArticleCoverMediaColorInfoPalette:
+      required:
+        - "percentage"
+        - "rgb"
+      properties:
+        percentage:
+          type: number
+        rgb:
+          $ref: "#/components/schemas/ArticleCoverMediaColorInfoPaletteRGB"
+
+    ArticleCoverMediaColorInfoPaletteRGB:
+      required:
+        - "blue"
+        - "green"
+        - "red"
+      properties:
+        blue:
+          type: integer
+        green:
+          type: integer
+        red:
+          type: integer
