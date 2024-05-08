@@ -57,20 +57,20 @@ paths:
             type: string
             default: "en-US,en;q=0.9"
             description: "en-US,en;q=0.9"
-        - name: Cache-Control
-          in: header
-          required: true
-          schema:
-            type: string
-            default: "no-cache"
-            description: "no-cache"
-        - name: Pragma
-          in: header
-          required: true
-          schema:
-            type: string
-            default: "no-cache"
-            description: "no-cache"
+        # - name: Cache-Control
+        #   in: header
+        #   required: true
+        #   schema:
+        #     type: string
+        #     default: "no-cache"
+        #     description: "no-cache"
+        # - name: Pragma
+        #   in: header
+        #   required: true
+        #   schema:
+        #     type: string
+        #     default: "no-cache"
+        #     description: "no-cache"
         - name: Sec-Ch-Ua
           in: header
           required: true
@@ -113,6 +113,20 @@ paths:
             type: string
             default: "same-origin"
             description: "same-origin"
+        - name: Referer
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "https://twitter.com/home"
+            description: "https://twitter.com/home"
+        - name: Priority
+          in: header
+          required: true
+          schema:
+            type: string
+            default: "u=1, i"
+            description: "u=1, i"
 
       responses:
         "200":
@@ -156,16 +170,16 @@ components:
       in: header
       name: Accept-Language
       type: apiKey
-    CacheControl:
-      description: "no-cache"
-      in: header
-      name: Cache-Control
-      type: apiKey
-    Pragma:
-      description: "no-cache"
-      in: header
-      name: Pragma
-      type: apiKey
+    # CacheControl:
+    #   description: "no-cache"
+    #   in: header
+    #   name: Cache-Control
+    #   type: apiKey
+    # Pragma:
+    #   description: "no-cache"
+    #   in: header
+    #   name: Pragma
+    #   type: apiKey
     SecChUa:
       description: '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"'
       in: header
@@ -196,6 +210,16 @@ components:
       in: header
       name: Sec-Fetch-Site
       type: apiKey
+    Referer:
+      description: "https://twitter.com/home"
+      in: header
+      name: Referer
+      type: apiKey
+    Priority:
+      description: "u=1, i"
+      in: header
+      name: Priority
+      type: apiKey
 
 security:
   - UserAgent: []
@@ -205,11 +229,13 @@ security:
   - Accept: []
   - AcceptEncoding: []
   - AcceptLanguage: []
-  - CacheControl: []
-  - Pragma: []
+  # - CacheControl: []
+  # - Pragma: []
   - SecChUa: []
   - SecChUaMobile: []
   - SecChUaPlatform: []
   - SecFetchDest: []
   - SecFetchMode: []
   - SecFetchSite: []
+  - Referer: []
+  - Priority: []
