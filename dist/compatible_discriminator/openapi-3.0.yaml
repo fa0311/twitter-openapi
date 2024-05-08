@@ -3036,11 +3036,6 @@ components:
       description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
       scheme: bearer
       type: http
-    CacheControl:
-      description: no-cache
-      in: header
-      name: Cache-Control
-      type: apiKey
     ClientLanguage:
       description: en
       in: header
@@ -3066,10 +3061,15 @@ components:
       in: header
       name: x-guest-token
       type: apiKey
-    Pragma:
-      description: no-cache
+    Priority:
+      description: u=1, i
       in: header
-      name: Pragma
+      name: Priority
+      type: apiKey
+    Referer:
+      description: https://twitter.com/home
+      in: header
+      name: Referer
       type: apiKey
     SecChUa:
       description: '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"'
@@ -4833,46 +4833,52 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: IjTuxEFmAb6DvzycVz4fHg
-          example: IjTuxEFmAb6DvzycVz4fHg
+          default: eL8vHLgEw2ZL9X9dKdakLQ
+          example: eL8vHLgEw2ZL9X9dKdakLQ
           type: string
       - in: query
         name: variables
         required: true
         schema:
           default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch"}'
+            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"]}'
           example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch"}'
+            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"]}'
           type: string
       - in: query
         name: features
         required: true
         schema:
-          default: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+          default: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
-          example: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          example: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       responses:
         '200':
@@ -4917,8 +4923,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: AmMFotx7L4P3QnyOM3bCRA
-          example: AmMFotx7L4P3QnyOM3bCRA
+          default: q1x0puFIVMzsbx2Yoh-usA
+          example: q1x0puFIVMzsbx2Yoh-usA
           type: string
       - in: query
         name: variables
@@ -4935,30 +4941,36 @@ paths:
         name: features
         required: true
         schema:
-          default: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+          default: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
-          example: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          example: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       responses:
         '200':
@@ -5089,44 +5101,52 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HjsWc-nwwHKYwHenbHm-tw
-          example: HjsWc-nwwHKYwHenbHm-tw
+          default: eL8vHLgEw2ZL9X9dKdakLQ
+          example: eL8vHLgEw2ZL9X9dKdakLQ
           type: string
       - in: query
         name: variables
         required: true
         schema:
-          default: '{"listId": "1539453138322673664", "count": 20}'
-          example: '{"listId": "1539453138322673664", "count": 20}'
+          default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
+            true}'
+          example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
+            true}'
           type: string
       - in: query
         name: features
         required: true
         schema:
-          default: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+          default: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
-          example: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          example: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       responses:
         '200':
@@ -5397,8 +5417,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: B9_KmbkLhXt6jRwGjJrweg
-          example: B9_KmbkLhXt6jRwGjJrweg
+          default: zJvfJs3gSbrVhC0MKjt_OQ
+          example: zJvfJs3gSbrVhC0MKjt_OQ
           type: string
       - in: query
         name: variables
@@ -5417,37 +5437,45 @@ paths:
         name: features
         required: true
         schema:
-          default: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+          default: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
-          example: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          example: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "tweetypie_unmention_optimization_enabled":
             true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
             true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       - in: query
         name: fieldToggles
         required: true
         schema:
-          default: '{"withArticleRichContentState": false}'
-          example: '{"withArticleRichContentState": false}'
+          default: '{"withArticleRichContentState": true, "withArticlePlainText":
+            false}'
+          example: '{"withArticleRichContentState": true, "withArticlePlainText":
+            false}'
           type: string
       responses:
         '200':
@@ -5492,8 +5520,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: MWY3AO9_I3rcP_L2A4FR4A
-          example: MWY3AO9_I3rcP_L2A4FR4A
+          default: 7xflPyRiUxGVbJd4uWmbfg
+          example: 7xflPyRiUxGVbJd4uWmbfg
           type: string
       - in: query
         name: variables
@@ -5508,31 +5536,46 @@ paths:
         name: features
         required: true
         schema:
-          default: '{"creator_subscriptions_tweet_preview_api_enabled": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+          default: '{"creator_subscriptions_tweet_preview_api_enabled": true, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "articles_preview_enabled":
             true, "tweetypie_unmention_optimization_enabled": true, "responsive_web_edit_tweet_api_enabled":
             true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
             "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
-            true, "verified_phone_label_enabled": false, "responsive_web_media_download_video_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "rweb_tipjar_consumption_enabled":
+            true, "responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
             false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
             false, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_enhance_cards_enabled":
             false}'
-          example: '{"creator_subscriptions_tweet_preview_api_enabled": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+          example: '{"creator_subscriptions_tweet_preview_api_enabled": true, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "articles_preview_enabled":
             true, "tweetypie_unmention_optimization_enabled": true, "responsive_web_edit_tweet_api_enabled":
             true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
             "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "tweet_with_visibility_results_prefer_gql_media_interstitial_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
-            true, "verified_phone_label_enabled": false, "responsive_web_media_download_video_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "rweb_tipjar_consumption_enabled":
+            true, "responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
             false, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
             false, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withArticleRichContentState": true, "withArticlePlainText":
+            false}'
+          example: '{"withArticleRichContentState": true, "withArticlePlainText":
             false}'
           type: string
       responses:
@@ -6219,14 +6262,14 @@ security:
 - Accept: []
 - AcceptEncoding: []
 - AcceptLanguage: []
-- CacheControl: []
-- Pragma: []
 - SecChUa: []
 - SecChUaMobile: []
 - SecChUaPlatform: []
 - SecFetchDest: []
 - SecFetchMode: []
 - SecFetchSite: []
+- Referer: []
+- Priority: []
 servers:
 - url: https://twitter.com/i/api
 tags:
