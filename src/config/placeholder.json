@@ -79,11 +79,10 @@
     }
   },
   "ListLatestTweetsTimeline": {
-    "queryId": "eL8vHLgEw2ZL9X9dKdakLQ",
+    "queryId": "GX5ovLTwyoN1Td13GHvhIg",
     "variables": {
-      "count": 20,
-      "includePromotedContent": true,
-      "latestControlAvailable": true
+      "listId": "1539453138322673664",
+      "count": 20
     },
     "features": {
       "rweb_tipjar_consumption_enabled": true,
