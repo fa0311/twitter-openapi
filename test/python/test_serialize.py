@@ -284,7 +284,7 @@ if __name__ == "__main__":
 
     try:
         logger.info("Try: Self UserByScreenName Test")
-        kwargs = get_kwargs("UserByScreenName", {"screen_name": "a810810931931"})
+        kwargs = get_kwargs("UserByScreenName", {"screen_name": "NxWDOyLMd483329"})
         res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
         data = res.data.to_dict()
 
@@ -295,14 +295,14 @@ if __name__ == "__main__":
         )
         logger.info(f"Match rate: {rate}")
         screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
-        if not screen_name == "a810810931931":
+        if not screen_name == "NxWDOyLMd483329":
             raise Exception("UserByScreenName failed")
     except Exception as e:
         error_dump(e)
         error_count += 1
 
     ids = [
-        "1180389371481976833",
+        # "1180389371481976833", banned
         "900282258736545792",
         "1212617657003859968",
         "2455740283",
