@@ -39,7 +39,6 @@ components:
         - "super_followed_by"
         - "super_following"
         - "profile_image_shape"
-        - "tipjar_settings"
 
       properties:
         __typename:
@@ -95,6 +94,8 @@ components:
           type: boolean
         tipjar_settings:
           $ref: "#/components/schemas/UserTipJarSettings"
+        legacy_extended_profile:
+          $ref: "#/components/schemas/UserLegacyExtendedProfile"
 
     UserProfessional:
       required:
@@ -213,6 +214,32 @@ components:
           type: string
         gofundme_handle:
           type: string # uri
+
+    UserLegacyExtendedProfile:
+      properties:
+        birthdate:
+          $ref: "#/components/schemas/UserLegacyExtendedProfileBirthdate"
+
+    UserLegacyExtendedProfileBirthdate:
+      required:
+        - "day"
+        - "month"
+        - "year"
+        - "visibility"
+        - "year_visibility"
+      properties:
+        day:
+          type: integer
+        month:
+          type: integer
+        year:
+          type: integer
+        visibility:
+          type: string
+          enum: ["Self", "Public", "MutualFollow", "Followers", "Following"]
+        year_visibility:
+          type: string
+          enum: ["Self", "Public", "MutualFollow", "Followers", "Following"]
 
     UserLegacy:
       required:

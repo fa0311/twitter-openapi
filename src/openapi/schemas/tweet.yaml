@@ -33,6 +33,8 @@ components:
           additionalProperties: true # todo
         tweetInterstitial:
           $ref: "#/components/schemas/TweetInterstitial"
+        mediaVisibilityResults:
+          $ref: "#/components/schemas/MediaVisibilityResults"
 
     TweetInterstitial:
       required:
@@ -94,6 +96,26 @@ components:
         urlType:
           type: string
           enum: [ExternalUrl]
+
+    MediaVisibilityResults:
+      required:
+        - "blurred_image_interstitial"
+      properties:
+        blurred_image_interstitial:
+          $ref: "#/components/schemas/MediaVisibilityResultsBlurredImageInterstitial"
+
+    MediaVisibilityResultsBlurredImageInterstitial:
+      required:
+        - "opacity"
+        - "text"
+        - "title"
+      properties:
+        opacity:
+          type: number
+        text:
+          $ref: "#/components/schemas/TweetInterstitialText"
+        title:
+          $ref: "#/components/schemas/TweetInterstitialText"
 
     TweetInterstitialRevealText:
       required:
@@ -999,7 +1021,6 @@ components:
         - "original_info"
         - "media_key"
         - "ext_media_availability"
-        - "media_results"
       properties:
         display_url:
           type: string
@@ -1098,7 +1119,6 @@ components:
         # - "features"
         - "sizes"
         - "original_info"
-        - "media_results"
       properties:
         display_url:
           type: string
@@ -1345,7 +1365,6 @@ components:
         - "preview_text"
         - "cover_media"
         - "metadata"
-        - "lifecycle_state"
       properties:
         rest_id:
           type: string
