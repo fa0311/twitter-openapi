@@ -11,6 +11,7 @@ from enum import Enum
 from pathlib import Path
 
 import openapi_client as pt
+import urllib3
 
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
@@ -216,11 +217,17 @@ if __name__ == "__main__":
         },
     )
 
+    latest_user_agent_res = urllib3.PoolManager().request(
+        "GET",
+        "https://raw.githubusercontent.com/fa0311/latest-user-agent/main/output.json",
+    )
+
+    latest_user_agent = json.loads(latest_user_agent_res.data.decode("utf-8"))
+
     api_conf.access_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
 
     api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
-    api_client.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
-
+    api_client.user_agent = latest_user_agent["chrome"]
     error_count = 0
 
     for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
