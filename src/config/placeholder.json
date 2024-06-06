@@ -756,6 +756,18 @@
       "dark_request": false
     }
   },
+  "CreateBookmark": {
+    "queryId": "aoDbu3RHznuiSkQ9aNM67Q",
+    "variables": {
+      "tweet_id": "1349129669258448897"
+    }
+  },
+  "DeleteBookmark": {
+    "queryId": "Wlmlj2-xzyS1GN3a6cj-mQ",
+    "variables": {
+      "tweet_id": "1349129669258448897"
+    }
+  },
   "#=====v1.1====": {
     "url": "https://twitter.com/i/api/1.1/"
   },

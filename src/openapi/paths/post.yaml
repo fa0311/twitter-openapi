@@ -100,6 +100,38 @@ paths:
       tags:
         - "post"
 
+  /graphql/{pathQueryId}/CreateBookmark:
+    post:
+      operationId: postCreateBookmark
+      description: create Bookmark
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/CreateBookmarkResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+      tags:
+        - "post"
+
+  /graphql/{pathQueryId}/DeleteBookmark:
+    post:
+      operationId: postDeleteBookmark
+      description: delete Bookmark
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/DeleteBookmarkResponse"
+                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+      tags:
+        - "post"
+
 components:
   schemas:
     FavoriteTweetResponseData:
@@ -256,3 +288,31 @@ components:
       properties:
         tweet_results:
           type: object
+
+    CreateBookmarkResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CreateBookmarkResponseData"
+
+    CreateBookmarkResponseData:
+      required:
+        - "tweet_bookmark_put"
+      properties:
+        tweet_bookmark_put:
+          type: string
+
+    DeleteBookmarkResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/DeleteBookmarkResponseData"
+
+    DeleteBookmarkResponseData:
+      required:
+        - "tweet_bookmark_delete"
+      properties:
+        tweet_bookmark_delete:
+          type: string
