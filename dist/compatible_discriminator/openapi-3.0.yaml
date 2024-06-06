@@ -140,7 +140,6 @@ components:
       - preview_text
       - cover_media
       - metadata
-      - lifecycle_state
     ArticleResults:
       properties:
         result:
@@ -546,6 +545,18 @@ components:
       - ctaBehavior
       - callbacks
       - clientEventInfo
+    CreateBookmarkResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateBookmarkResponseData'
+      required:
+      - data
+    CreateBookmarkResponseData:
+      properties:
+        tweet_bookmark_put:
+          type: string
+      required:
+      - tweet_bookmark_put
     CreateRetweet:
       properties:
         result:
@@ -610,6 +621,18 @@ components:
       - ShowMoreThreads
       - Gap
       type: string
+    DeleteBookmarkResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteBookmarkResponseData'
+      required:
+      - data
+    DeleteBookmarkResponseData:
+      properties:
+        tweet_bookmark_delete:
+          type: string
+      required:
+      - tweet_bookmark_delete
     DeleteRetweet:
       properties:
         result:
@@ -1043,7 +1066,6 @@ components:
       - original_info
       - media_key
       - ext_media_availability
-      - media_results
     MediaExtended:
       properties:
         additional_media_info:
@@ -1112,7 +1134,6 @@ components:
       - url
       - sizes
       - original_info
-      - media_results
     MediaOriginalInfo:
       properties:
         focus_rects:
@@ -1217,6 +1238,24 @@ components:
       required:
       - content_type
       - url
+    MediaVisibilityResults:
+      properties:
+        blurred_image_interstitial:
+          $ref: '#/components/schemas/MediaVisibilityResultsBlurredImageInterstitial'
+      required:
+      - blurred_image_interstitial
+    MediaVisibilityResultsBlurredImageInterstitial:
+      properties:
+        opacity:
+          type: number
+        text:
+          $ref: '#/components/schemas/TweetInterstitialText'
+        title:
+          $ref: '#/components/schemas/TweetInterstitialText'
+      required:
+      - opacity
+      - text
+      - title
     ModuleEntry:
       properties:
         clientEventInfo:
@@ -2460,6 +2499,8 @@ components:
         limitedActionResults:
           additionalProperties: true
           type: object
+        mediaVisibilityResults:
+          $ref: '#/components/schemas/MediaVisibilityResults'
         tweet:
           $ref: '#/components/schemas/Tweet'
         tweetInterstitial:
@@ -2590,6 +2631,8 @@ components:
           type: boolean
         legacy:
           $ref: '#/components/schemas/UserLegacy'
+        legacy_extended_profile:
+          $ref: '#/components/schemas/UserLegacyExtendedProfile'
         professional:
           $ref: '#/components/schemas/UserProfessional'
         profile_image_shape:
@@ -2627,7 +2670,6 @@ components:
       - super_followed_by
       - super_following
       - profile_image_shape
-      - tipjar_settings
     UserFeatures:
       properties:
         mediatool_studio_library:
@@ -2826,6 +2868,40 @@ components:
       - translator_type
       - verified
       - want_retweets
+    UserLegacyExtendedProfile:
+      properties:
+        birthdate:
+          $ref: '#/components/schemas/UserLegacyExtendedProfileBirthdate'
+    UserLegacyExtendedProfileBirthdate:
+      properties:
+        day:
+          type: integer
+        month:
+          type: integer
+        visibility:
+          enum:
+          - Self
+          - Public
+          - MutualFollow
+          - Followers
+          - Following
+          type: string
+        year:
+          type: integer
+        year_visibility:
+          enum:
+          - Self
+          - Public
+          - MutualFollow
+          - Followers
+          - Following
+          type: string
+      required:
+      - day
+      - month
+      - year
+      - visibility
+      - year_visibility
     UserMention:
       additionalProperties: true
       type: object
@@ -4030,6 +4106,75 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/CreateBookmark:
+    post:
+      description: create Bookmark
+      operationId: postCreateBookmark
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: aoDbu3RHznuiSkQ9aNM67Q
+          example: aoDbu3RHznuiSkQ9aNM67Q
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: aoDbu3RHznuiSkQ9aNM67Q
+                  example: aoDbu3RHznuiSkQ9aNM67Q
+                  type: string
+                variables:
+                  properties:
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBookmarkResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
   /graphql/{pathQueryId}/CreateRetweet:
     post:
       description: create Retweet
@@ -4301,6 +4446,75 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateTweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
+  /graphql/{pathQueryId}/DeleteBookmark:
+    post:
+      description: delete Bookmark
+      operationId: postDeleteBookmark
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: Wlmlj2-xzyS1GN3a6cj-mQ
+          example: Wlmlj2-xzyS1GN3a6cj-mQ
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: Wlmlj2-xzyS1GN3a6cj-mQ
+                  example: Wlmlj2-xzyS1GN3a6cj-mQ
+                  type: string
+                variables:
+                  properties:
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBookmarkResponse'
           description: Successful operation
           headers:
             x-connection-hash:
