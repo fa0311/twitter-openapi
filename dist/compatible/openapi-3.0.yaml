@@ -29,6 +29,12 @@ components:
           type: string
       required:
       - url
+    AllowDownloadStatus:
+      properties:
+        allow_download:
+          type: boolean
+      required:
+      - allow_download
     Article:
       properties:
         article_results:
@@ -98,12 +104,28 @@ components:
       - original_img_width
       - original_img_url
       - color_info
+    ArticleLifecycleState:
+      properties:
+        modified_at_secs:
+          type: integer
+      required:
+      - modified_at_secs
+    ArticleMetadata:
+      properties:
+        first_published_at_secs:
+          type: integer
+      required:
+      - first_published_at_secs
     ArticleResult:
       properties:
         cover_media:
           $ref: '#/components/schemas/ArticleCoverMedia'
         id:
           type: string
+        lifecycle_state:
+          $ref: '#/components/schemas/ArticleLifecycleState'
+        metadata:
+          $ref: '#/components/schemas/ArticleMetadata'
         preview_text:
           type: string
         rest_id:
@@ -117,6 +139,8 @@ components:
       - title
       - preview_text
       - cover_media
+      - metadata
+      - lifecycle_state
     ArticleResults:
       properties:
         result:
@@ -955,8 +979,9 @@ components:
     Media:
       properties:
         additional_media_info:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/AdditionalMediaInfo'
+        allow_download_status:
+          $ref: '#/components/schemas/AllowDownloadStatus'
         display_url:
           format: uri
           type: string
@@ -978,6 +1003,8 @@ components:
           type: array
         media_key:
           type: string
+        media_results:
+          $ref: '#/components/schemas/MediaResults'
         media_url_https:
           format: uri
           type: string
@@ -1003,8 +1030,7 @@ components:
           format: uri
           type: string
         video_info:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/MediaVideoInfo'
       required:
       - display_url
       - expanded_url
@@ -1017,10 +1043,13 @@ components:
       - original_info
       - media_key
       - ext_media_availability
+      - media_results
     MediaExtended:
       properties:
         additional_media_info:
           $ref: '#/components/schemas/AdditionalMediaInfo'
+        allow_download_status:
+          $ref: '#/components/schemas/AllowDownloadStatus'
         display_url:
           format: uri
           type: string
@@ -1044,6 +1073,8 @@ components:
           $ref: '#/components/schemas/MediaStats'
         media_key:
           type: string
+        media_results:
+          $ref: '#/components/schemas/MediaResults'
         media_url_https:
           format: uri
           type: string
@@ -1081,6 +1112,7 @@ components:
       - url
       - sizes
       - original_info
+      - media_results
     MediaOriginalInfo:
       properties:
         focus_rects:
@@ -1110,6 +1142,18 @@ components:
       - w
       - h
       type: object
+    MediaResult:
+      properties:
+        media_key:
+          type: string
+      required:
+      - media_key
+    MediaResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/MediaResult'
+      required:
+      - result
     MediaSize:
       properties:
         h:
@@ -2566,6 +2610,8 @@ components:
         super_following:
           default: false
           type: boolean
+        tipjar_settings:
+          $ref: '#/components/schemas/UserTipJarSettings'
         user_seed_tweet_count:
           type: integer
         verification_info:
@@ -2581,6 +2627,7 @@ components:
       - super_followed_by
       - super_following
       - profile_image_shape
+      - tipjar_settings
     UserFeatures:
       properties:
         mediatool_studio_library:
@@ -2881,6 +2928,22 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserUnion'
+    UserTipJarSettings:
+      properties:
+        bitcoin_handle:
+          type: string
+        cash_app_handle:
+          type: string
+        ethereum_handle:
+          type: string
+        gofundme_handle:
+          type: string
+        is_enabled:
+          type: boolean
+        patreon_handle:
+          type: string
+        venmo_handle:
+          type: string
     UserTweetsData:
       properties:
         user:
@@ -5127,17 +5190,15 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: eL8vHLgEw2ZL9X9dKdakLQ
-          example: eL8vHLgEw2ZL9X9dKdakLQ
+          default: GX5ovLTwyoN1Td13GHvhIg
+          example: GX5ovLTwyoN1Td13GHvhIg
           type: string
       - in: query
         name: variables
         required: true
         schema:
-          default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true}'
-          example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true}'
+          default: '{"listId": "1539453138322673664", "count": 20}'
+          example: '{"listId": "1539453138322673664", "count": 20}'
           type: string
       - in: query
         name: features

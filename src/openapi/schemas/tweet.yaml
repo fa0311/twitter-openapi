@@ -999,6 +999,7 @@ components:
         - "original_info"
         - "media_key"
         - "ext_media_availability"
+        - "media_results"
       properties:
         display_url:
           type: string
@@ -1033,11 +1034,9 @@ components:
         ext_media_availability:
           $ref: "#/components/schemas/ExtMediaAvailability"
         video_info:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/MediaVideoInfo"
         additional_media_info:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/AdditionalMediaInfo"
         source_user_id_str:
           type: string
           pattern: "^[0-9]+$"
@@ -1048,6 +1047,10 @@ components:
           type: string
         sensitive_media_warning:
           $ref: "#/components/schemas/SensitiveMediaWarning"
+        allow_download_status:
+          $ref: "#/components/schemas/AllowDownloadStatus"
+        media_results:
+          $ref: "#/components/schemas/MediaResults"
 
     TweetLegacyScopes:
       required:
@@ -1095,6 +1098,7 @@ components:
         # - "features"
         - "sizes"
         - "original_info"
+        - "media_results"
       properties:
         display_url:
           type: string
@@ -1144,6 +1148,10 @@ components:
           type: string
         sensitive_media_warning:
           $ref: "#/components/schemas/SensitiveMediaWarning"
+        allow_download_status:
+          $ref: "#/components/schemas/AllowDownloadStatus"
+        media_results:
+          $ref: "#/components/schemas/MediaResults"
 
     MediaOriginalInfo:
       required:
@@ -1336,6 +1344,8 @@ components:
         - "title"
         - "preview_text"
         - "cover_media"
+        - "metadata"
+        - "lifecycle_state"
       properties:
         rest_id:
           type: string
@@ -1348,6 +1358,10 @@ components:
           type: string
         cover_media:
           $ref: "#/components/schemas/ArticleCoverMedia"
+        metadata:
+          $ref: "#/components/schemas/ArticleMetadata"
+        lifecycle_state:
+          $ref: "#/components/schemas/ArticleLifecycleState"
 
     ArticleCoverMedia:
       required:
@@ -1416,3 +1430,38 @@ components:
           type: integer
         red:
           type: integer
+
+    ArticleMetadata:
+      required:
+        - "first_published_at_secs"
+      properties:
+        first_published_at_secs:
+          type: integer
+
+    ArticleLifecycleState:
+      required:
+        - "modified_at_secs"
+      properties:
+        modified_at_secs:
+          type: integer
+
+    AllowDownloadStatus:
+      required:
+        - "allow_download"
+      properties:
+        allow_download:
+          type: boolean
+
+    MediaResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/MediaResult"
+
+    MediaResult:
+      required:
+        - "media_key"
+      properties:
+        media_key:
+          type: string
