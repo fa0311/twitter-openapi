@@ -29,6 +29,12 @@ components:
           type: string
       required:
       - url
+    AllowDownloadStatus:
+      properties:
+        allow_download:
+          type: boolean
+      required:
+      - allow_download
     Article:
       properties:
         article_results:
@@ -98,12 +104,28 @@ components:
       - original_img_width
       - original_img_url
       - color_info
+    ArticleLifecycleState:
+      properties:
+        modified_at_secs:
+          type: integer
+      required:
+      - modified_at_secs
+    ArticleMetadata:
+      properties:
+        first_published_at_secs:
+          type: integer
+      required:
+      - first_published_at_secs
     ArticleResult:
       properties:
         cover_media:
           $ref: '#/components/schemas/ArticleCoverMedia'
         id:
           type: string
+        lifecycle_state:
+          $ref: '#/components/schemas/ArticleLifecycleState'
+        metadata:
+          $ref: '#/components/schemas/ArticleMetadata'
         preview_text:
           type: string
         rest_id:
@@ -117,6 +139,7 @@ components:
       - title
       - preview_text
       - cover_media
+      - metadata
     ArticleResults:
       properties:
         result:
@@ -522,6 +545,18 @@ components:
       - ctaBehavior
       - callbacks
       - clientEventInfo
+    CreateBookmarkResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateBookmarkResponseData'
+      required:
+      - data
+    CreateBookmarkResponseData:
+      properties:
+        tweet_bookmark_put:
+          type: string
+      required:
+      - tweet_bookmark_put
     CreateRetweet:
       properties:
         result:
@@ -586,6 +621,18 @@ components:
       - ShowMoreThreads
       - Gap
       type: string
+    DeleteBookmarkResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteBookmarkResponseData'
+      required:
+      - data
+    DeleteBookmarkResponseData:
+      properties:
+        tweet_bookmark_delete:
+          type: string
+      required:
+      - tweet_bookmark_delete
     DeleteRetweet:
       properties:
         result:
@@ -955,8 +1002,9 @@ components:
     Media:
       properties:
         additional_media_info:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/AdditionalMediaInfo'
+        allow_download_status:
+          $ref: '#/components/schemas/AllowDownloadStatus'
         display_url:
           format: uri
           type: string
@@ -978,6 +1026,8 @@ components:
           type: array
         media_key:
           type: string
+        media_results:
+          $ref: '#/components/schemas/MediaResults'
         media_url_https:
           format: uri
           type: string
@@ -1003,8 +1053,7 @@ components:
           format: uri
           type: string
         video_info:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/MediaVideoInfo'
       required:
       - display_url
       - expanded_url
@@ -1021,6 +1070,8 @@ components:
       properties:
         additional_media_info:
           $ref: '#/components/schemas/AdditionalMediaInfo'
+        allow_download_status:
+          $ref: '#/components/schemas/AllowDownloadStatus'
         display_url:
           format: uri
           type: string
@@ -1044,6 +1095,8 @@ components:
           $ref: '#/components/schemas/MediaStats'
         media_key:
           type: string
+        media_results:
+          $ref: '#/components/schemas/MediaResults'
         media_url_https:
           format: uri
           type: string
@@ -1110,6 +1163,18 @@ components:
       - w
       - h
       type: object
+    MediaResult:
+      properties:
+        media_key:
+          type: string
+      required:
+      - media_key
+    MediaResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/MediaResult'
+      required:
+      - result
     MediaSize:
       properties:
         h:
@@ -1173,6 +1238,24 @@ components:
       required:
       - content_type
       - url
+    MediaVisibilityResults:
+      properties:
+        blurred_image_interstitial:
+          $ref: '#/components/schemas/MediaVisibilityResultsBlurredImageInterstitial'
+      required:
+      - blurred_image_interstitial
+    MediaVisibilityResultsBlurredImageInterstitial:
+      properties:
+        opacity:
+          type: number
+        text:
+          $ref: '#/components/schemas/TweetInterstitialText'
+        title:
+          $ref: '#/components/schemas/TweetInterstitialText'
+      required:
+      - opacity
+      - text
+      - title
     ModuleEntry:
       properties:
         clientEventInfo:
@@ -2416,6 +2499,8 @@ components:
         limitedActionResults:
           additionalProperties: true
           type: object
+        mediaVisibilityResults:
+          $ref: '#/components/schemas/MediaVisibilityResults'
         tweet:
           $ref: '#/components/schemas/Tweet'
         tweetInterstitial:
@@ -2546,6 +2631,8 @@ components:
           type: boolean
         legacy:
           $ref: '#/components/schemas/UserLegacy'
+        legacy_extended_profile:
+          $ref: '#/components/schemas/UserLegacyExtendedProfile'
         professional:
           $ref: '#/components/schemas/UserProfessional'
         profile_image_shape:
@@ -2566,6 +2653,8 @@ components:
         super_following:
           default: false
           type: boolean
+        tipjar_settings:
+          $ref: '#/components/schemas/UserTipJarSettings'
         user_seed_tweet_count:
           type: integer
         verification_info:
@@ -2779,6 +2868,40 @@ components:
       - translator_type
       - verified
       - want_retweets
+    UserLegacyExtendedProfile:
+      properties:
+        birthdate:
+          $ref: '#/components/schemas/UserLegacyExtendedProfileBirthdate'
+    UserLegacyExtendedProfileBirthdate:
+      properties:
+        day:
+          type: integer
+        month:
+          type: integer
+        visibility:
+          enum:
+          - Self
+          - Public
+          - MutualFollow
+          - Followers
+          - Following
+          type: string
+        year:
+          type: integer
+        year_visibility:
+          enum:
+          - Self
+          - Public
+          - MutualFollow
+          - Followers
+          - Following
+          type: string
+      required:
+      - day
+      - month
+      - year
+      - visibility
+      - year_visibility
     UserMention:
       additionalProperties: true
       type: object
@@ -2881,6 +3004,22 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/UserUnion'
+    UserTipJarSettings:
+      properties:
+        bitcoin_handle:
+          type: string
+        cash_app_handle:
+          type: string
+        ethereum_handle:
+          type: string
+        gofundme_handle:
+          type: string
+        is_enabled:
+          type: boolean
+        patreon_handle:
+          type: string
+        venmo_handle:
+          type: string
     UserTweetsData:
       properties:
         user:
@@ -3969,6 +4108,77 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/CreateBookmark:
+    post:
+      description: create Bookmark
+      operationId: postCreateBookmark
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: aoDbu3RHznuiSkQ9aNM67Q
+          example: aoDbu3RHznuiSkQ9aNM67Q
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: aoDbu3RHznuiSkQ9aNM67Q
+                  example: aoDbu3RHznuiSkQ9aNM67Q
+                  type: string
+                variables:
+                  properties:
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/CreateBookmarkResponse'
+                - $ref: '#/components/schemas/Errors'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
   /graphql/{pathQueryId}/CreateRetweet:
     post:
       description: create Retweet
@@ -4243,6 +4453,77 @@ paths:
               schema:
                 oneOf:
                 - $ref: '#/components/schemas/CreateTweetResponse'
+                - $ref: '#/components/schemas/Errors'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
+  /graphql/{pathQueryId}/DeleteBookmark:
+    post:
+      description: delete Bookmark
+      operationId: postDeleteBookmark
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: Wlmlj2-xzyS1GN3a6cj-mQ
+          example: Wlmlj2-xzyS1GN3a6cj-mQ
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: Wlmlj2-xzyS1GN3a6cj-mQ
+                  example: Wlmlj2-xzyS1GN3a6cj-mQ
+                  type: string
+                variables:
+                  properties:
+                    tweet_id:
+                      default: '1349129669258448897'
+                      example: '1349129669258448897'
+                      type: string
+                  required:
+                  - tweet_id
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/DeleteBookmarkResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
           headers:
@@ -5127,17 +5408,15 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: eL8vHLgEw2ZL9X9dKdakLQ
-          example: eL8vHLgEw2ZL9X9dKdakLQ
+          default: GX5ovLTwyoN1Td13GHvhIg
+          example: GX5ovLTwyoN1Td13GHvhIg
           type: string
       - in: query
         name: variables
         required: true
         schema:
-          default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true}'
-          example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true}'
+          default: '{"listId": "1539453138322673664", "count": 20}'
+          example: '{"listId": "1539453138322673664", "count": 20}'
           type: string
       - in: query
         name: features

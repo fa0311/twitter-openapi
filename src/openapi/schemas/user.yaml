@@ -92,6 +92,10 @@ components:
           $ref: "#/components/schemas/UserVerificationInfo"
         is_profile_translatable:
           type: boolean
+        tipjar_settings:
+          $ref: "#/components/schemas/UserTipJarSettings"
+        legacy_extended_profile:
+          $ref: "#/components/schemas/UserLegacyExtendedProfile"
 
     UserProfessional:
       required:
@@ -193,6 +197,49 @@ components:
         url_type:
           type: string
           enum: ["ExternalUrl"]
+
+    UserTipJarSettings:
+      properties:
+        is_enabled:
+          type: boolean
+        patreon_handle:
+          type: string
+        bitcoin_handle:
+          type: string
+        ethereum_handle:
+          type: string
+        cash_app_handle:
+          type: string
+        venmo_handle:
+          type: string
+        gofundme_handle:
+          type: string # uri
+
+    UserLegacyExtendedProfile:
+      properties:
+        birthdate:
+          $ref: "#/components/schemas/UserLegacyExtendedProfileBirthdate"
+
+    UserLegacyExtendedProfileBirthdate:
+      required:
+        - "day"
+        - "month"
+        - "year"
+        - "visibility"
+        - "year_visibility"
+      properties:
+        day:
+          type: integer
+        month:
+          type: integer
+        year:
+          type: integer
+        visibility:
+          type: string
+          enum: ["Self", "Public", "MutualFollow", "Followers", "Following"]
+        year_visibility:
+          type: string
+          enum: ["Self", "Public", "MutualFollow", "Followers", "Following"]
 
     UserLegacy:
       required:
