@@ -991,7 +991,6 @@ components:
       required:
         - "url"
         - "indices"
-        - "expanded_url"
         - "display_url"
       properties:
         display_url:

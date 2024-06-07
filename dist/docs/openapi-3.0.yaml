@@ -2577,7 +2577,6 @@ components:
       required:
       - url
       - indices
-      - expanded_url
       - display_url
       type: object
     UrtEndpointOptions:
