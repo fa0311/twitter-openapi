@@ -8672,6 +8672,7 @@ security:
 - Referer: []
 - Priority: []
 servers:
+- url: https://x.com/i/api
 - url: https://twitter.com/i/api
 tags:
 - description: Responses containing User objects.

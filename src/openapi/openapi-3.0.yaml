@@ -11,6 +11,7 @@ info:
     url: https://github.com/fa0311/twitter-openapi#license
   version: 0.0.1
 servers:
+  - url: https://x.com/i/api
   - url: https://twitter.com/i/api
 
 paths: {}
