@@ -7,9 +7,7 @@
       "latestControlAvailable": true,
       "requestContext": "launch",
       "withCommunity": true,
-      "seenTweetIds": [
-        "1349129669258448897"
-      ]
+      "seenTweetIds": ["1349129669258448897"]
     },
     "features": {
       "rweb_tipjar_consumption_enabled": true,
@@ -46,9 +44,7 @@
       "includePromotedContent": true,
       "latestControlAvailable": true,
       "requestContext": "launch",
-      "seenTweetIds": [
-        "1349129669258448897"
-      ]
+      "seenTweetIds": ["1349129669258448897"]
     },
     "features": {
       "rweb_tipjar_consumption_enabled": true,
@@ -156,9 +152,7 @@
   "UsersByRestIds": {
     "queryId": "itEhGywpgX9b3GJCzOtSrA",
     "variables": {
-      "userIds": [
-        "44196397"
-      ]
+      "userIds": ["44196397"]
     },
     "features": {
       "responsive_web_graphql_exclude_directive_enabled": true,

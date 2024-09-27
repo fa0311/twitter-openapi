@@ -1,6 +1,7 @@
 import base64
 import concurrent.futures
 import glob
+import inspect
 import json
 import logging
 import os
@@ -180,6 +181,8 @@ if __name__ == "__main__":
             f'cookie.json not found. Please run `{"; ".join(commands)}` first.'
         )
 
+    if isinstance(cookies, list):
+        cookies = {k["name"]: k["value"] for k in cookies}
     cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
     with open("src/config/placeholder.json", "r") as f:
@@ -231,7 +234,7 @@ if __name__ == "__main__":
     error_count = 0
 
     for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
-        for props, fn in x.__dict__.items():
+        for props, fn in inspect.getmembers(x):
             if not callable(fn):
                 continue
             if props.startswith("__") or not props.endswith("_with_http_info"):

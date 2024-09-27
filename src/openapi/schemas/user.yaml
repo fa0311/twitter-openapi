@@ -96,6 +96,8 @@ components:
           $ref: "#/components/schemas/UserTipJarSettings"
         legacy_extended_profile:
           $ref: "#/components/schemas/UserLegacyExtendedProfile"
+        has_hidden_likes_on_profile:
+          type: boolean
 
     UserProfessional:
       required:

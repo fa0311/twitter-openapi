@@ -277,7 +277,21 @@ components:
       properties:
         type:
           type: string
-          enum: [TimelineCoverBehaviorDismiss]
+          enum: [TimelineCoverBehaviorDismiss, TimelineCoverBehaviorNavigate]
+        url:
+          type: TimelineCoverBehaviorUrl
+
+    TimelineCoverBehaviorUrl:
+      required:
+        - "url"
+        - "url_type"
+      properties:
+        url:
+          type: string
+          format: uri
+        url_type:
+          type: string
+          enum: ["ExternalUrl"]
 
     Callback:
       required:

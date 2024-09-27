@@ -1464,8 +1464,6 @@ components:
           type: integer
 
     AllowDownloadStatus:
-      required:
-        - "allow_download"
       properties:
         allow_download:
           type: boolean
