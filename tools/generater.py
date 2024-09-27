@@ -67,6 +67,7 @@ def main():
             body_json_str = body_match.group(1).replace("\\", "")
             body_json = json.loads(body_json_str)
             features = body_json.get("features", None)
+            variables = body_json.get("variables", None)
         else:
             # GET リクエストの場合、まず URL を抽出
             url_match = re.search(r'"(https?://[^"]+)"', fetch_code)
@@ -87,6 +88,7 @@ def main():
             features_json_str = query_dict.get("features", [None])[0]
             if features_json_str is None:
                 features = None
+                variables = None
             else:
                 try:
                     features = json.loads(features_json_str)
@@ -95,22 +97,32 @@ def main():
                         "features の JSON パースに失敗しました。features は None として続行します。"
                     )
                     features = None
+                    variables = None
 
-        # features を JSON としてフォーマットした後、Python の dict として正しい形式に変換
-        # " を ' に置換し、true/false を True/False に置換
-
-        # 生成するコードをフォーマット
-
-        # ファイルに書き込む
         with open("./src/config/placeholder.json", "r") as f:
             placeholder = json.load(f)
 
+        def check(a, b, msg):
+            if isinstance(a, dict) and isinstance(b, dict):
+                for k in {*a.keys(), *b.keys()}:
+                    if k not in b:
+                        print(f"{msg} key: {k} が存在しません。")
+                    elif k not in a:
+                        print(f"{msg} key: {k} が存在しません。")
+                    else:
+                        check(a[k], b[k], msg)
+
+        check(
+            variables,
+            placeholder.get(endpoint, {}).get("variables", {}),
+            f"{endpoint} の variables が不一致です。",
+        )
+
         with open("./src/config/placeholder.json", "w") as f:
-            placeholder[endpoint] = {
-                **placeholder.get(endpoint, {}),
-                "queryId": query_id,
-                "features": features,
-            }
+            placeholder[endpoint] = placeholder.get(endpoint, {})
+            placeholder[endpoint]["queryId"] = query_id
+            if features:
+                placeholder[endpoint]["features"] = features
             json.dump(placeholder, f, indent=4)
 
 

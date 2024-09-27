@@ -189,6 +189,8 @@ components:
           $ref: "#/components/schemas/AuthorCommunityRelationship"
         article:
           $ref: "#/components/schemas/Article"
+        community_results:
+          $ref: "#/components/schemas/Community"
 
     TweetEditControl:
       properties:
