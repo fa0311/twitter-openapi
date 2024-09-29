@@ -14,7 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/ProfileResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
 

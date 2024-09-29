@@ -14,7 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/FavoriteTweetResponseData"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -30,7 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/UnfavoriteTweetResponseData"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -46,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/CreateRetweetResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -62,7 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/DeleteRetweetResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -78,7 +78,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/CreateTweetResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -94,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/DeleteTweetResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -110,7 +110,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/CreateBookmarkResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -126,7 +126,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/DeleteBookmarkResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:

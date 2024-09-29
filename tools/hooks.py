@@ -222,7 +222,7 @@ class AddPathQueryIdOnParameters(RequestHookBase):
 class RemoveErrorHandle(RequestHookBase):
     def hook(self, path: str, value: dict):
         content = value["responses"]["200"]["content"]["application/json"]
-        content["schema"] = content["schema"]["oneOf"][0]
+        content["schema"] = content["schema"]["anyOf"][0]
         return path, value
 
 

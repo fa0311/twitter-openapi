@@ -4140,7 +4140,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/BookmarksResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4211,7 +4211,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/CreateBookmarkResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4287,7 +4287,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/CreateRetweetResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4529,7 +4529,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/CreateTweetResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4600,7 +4600,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/DeleteBookmarkResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4676,7 +4676,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/DeleteRetweetResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4752,7 +4752,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/DeleteTweetResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -4823,7 +4823,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/FavoriteTweetResponseData'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -5009,7 +5009,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/TweetFavoritersResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -5205,7 +5205,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/FollowResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -5401,7 +5401,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/FollowResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -5597,7 +5597,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/FollowResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -5805,7 +5805,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/TimelineResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -6018,7 +6018,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/TimelineResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -6234,7 +6234,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserTweetsResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -6425,7 +6425,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/ListLatestTweetsTimelineResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -6495,7 +6495,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/ProfileResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -6689,7 +6689,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/TweetRetweetersResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -6890,7 +6890,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/SearchTimelineResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -7135,7 +7135,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/TweetDetailResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -7365,7 +7365,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/TweetResultByRestIdResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -7439,7 +7439,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UnfavoriteTweetResponseData'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -7560,7 +7560,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -7710,7 +7710,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -7911,7 +7911,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserHighlightsTweetsResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -8127,7 +8127,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserTweetsResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -8338,7 +8338,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserTweetsResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -8549,7 +8549,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UserTweetsResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -8647,7 +8647,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                 - $ref: '#/components/schemas/UsersResponse'
                 - $ref: '#/components/schemas/Errors'
           description: Successful operation
@@ -8687,8 +8687,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/OtherResponse'
+                $ref: '#/components/schemas/OtherResponse'
           description: Successful operation
       tags:
       - other

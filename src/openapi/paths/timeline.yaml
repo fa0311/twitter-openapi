@@ -14,7 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/TimelineResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -30,7 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/TimelineResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -46,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/ListLatestTweetsTimelineResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:
@@ -62,7 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
+                anyOf:
                   - $ref: "#/components/schemas/SearchTimelineResponse"
                   - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
       tags:

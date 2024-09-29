@@ -6520,8 +6520,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/OtherResponse'
+                $ref: '#/components/schemas/OtherResponse'
           description: Successful operation
       tags:
       - other
