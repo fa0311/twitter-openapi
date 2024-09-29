@@ -1,6 +1,7 @@
 import base64
 import concurrent.futures
 import glob
+import inspect
 import json
 import logging
 import os
@@ -180,6 +181,8 @@ if __name__ == "__main__":
             f'cookie.json not found. Please run `{"; ".join(commands)}` first.'
         )
 
+    if isinstance(cookies, list):
+        cookies = {k["name"]: k["value"] for k in cookies}
     cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
     with open("src/config/placeholder.json", "r") as f:
@@ -208,6 +211,15 @@ if __name__ == "__main__":
         task_callback(file, thread=False)
         logger.info(f"Match rate: {rate}")
 
+    for file in glob.glob("other/**/*.json", recursive=True):
+        with open(file, "r") as f:
+            data = json.load(f)
+
+        try:
+            _ = pt.Errors.from_dict(data)
+        except Exception as e:
+            error_dump(e)
+
     api_conf = pt.Configuration(
         api_key={
             "ClientLanguage": "en",
@@ -231,7 +243,7 @@ if __name__ == "__main__":
     error_count = 0
 
     for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
-        for props, fn in x.__dict__.items():
+        for props, fn in inspect.getmembers(x):
             if not callable(fn):
                 continue
             if props.startswith("__") or not props.endswith("_with_http_info"):
@@ -284,7 +296,7 @@ if __name__ == "__main__":
 
     try:
         logger.info("Try: Self UserByScreenName Test")
-        kwargs = get_kwargs("UserByScreenName", {"screen_name": "NxWDOyLMd483329"})
+        kwargs = get_kwargs("UserByScreenName", {"screen_name": "ptcpz3"})
         res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
         data = res.data.to_dict()
 
@@ -295,7 +307,7 @@ if __name__ == "__main__":
         )
         logger.info(f"Match rate: {rate}")
         screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
-        if not screen_name == "NxWDOyLMd483329":
+        if not screen_name == "ptcpz3":
             raise Exception("UserByScreenName failed")
     except Exception as e:
         error_dump(e)
@@ -330,10 +342,12 @@ if __name__ == "__main__":
         "1720975693524377759",
         "1721006592303251551",
         "1739194269477331076",
-        "1697450269259522256",
-        "1697450278742884799",
+        # "1697450269259522256",
+        # "1697450278742884799",
         "1749500209061663043",
         "1759056048764469303",
+        "1349129669258448897",
+        "1810188416812019999",
     ]
     for id in ids:
         try:
@@ -341,6 +355,13 @@ if __name__ == "__main__":
             kwargs = get_kwargs("TweetDetail", {"focalTweetId": id})
             res = pt.TweetApi(api_client).get_tweet_detail_with_http_info(**kwargs)
             data = res.data.to_dict()
+
+            save_cache(
+                {
+                    "raw": res.raw_data.decode("utf-8"),
+                    "type": res.data.__class__.__name__,
+                }
+            )
 
             rate = match_rate(
                 data,

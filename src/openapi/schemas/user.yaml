@@ -35,9 +35,6 @@ components:
         - "is_blue_verified"
         - "legacy"
         - "rest_id"
-        - "super_follow_eligible"
-        - "super_followed_by"
-        - "super_following"
         - "profile_image_shape"
 
       properties:
@@ -50,13 +47,11 @@ components:
           type: boolean
         has_nft_avatar:
           type: boolean
-          default: false
         id:
           type: string
           pattern: "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$" # base64
         is_blue_verified:
           type: boolean
-          default: false
         legacy:
           $ref: "#/components/schemas/UserLegacy"
         rest_id:
@@ -67,13 +62,10 @@ components:
           additionalProperties: true # todo
         super_follow_eligible:
           type: boolean
-          default: false
         super_followed_by:
           type: boolean
-          default: false
         super_following:
           type: boolean
-          default: false
         profile_image_shape:
           type: string
           enum:
@@ -96,6 +88,10 @@ components:
           $ref: "#/components/schemas/UserTipJarSettings"
         legacy_extended_profile:
           $ref: "#/components/schemas/UserLegacyExtendedProfile"
+        has_hidden_likes_on_profile:
+          type: boolean
+        premium_gifting_eligible:
+          type: boolean
 
     UserProfessional:
       required:
@@ -143,7 +139,6 @@ components:
       properties:
         is_identity_verified:
           type: boolean
-          default: false
         reason:
           $ref: "#/components/schemas/UserVerificationInfoReason"
 
@@ -214,6 +209,8 @@ components:
           type: string
         gofundme_handle:
           type: string # uri
+        bandcamp_handle:
+          type: string # uri
 
     UserLegacyExtendedProfile:
       properties:
@@ -243,10 +240,6 @@ components:
 
     UserLegacy:
       required:
-        - "blocked_by"
-        - "blocking"
-        - "can_dm"
-        - "can_media_tag"
         - "created_at"
         - "default_profile"
         - "default_profile_image"
@@ -254,52 +247,39 @@ components:
         - "entities"
         - "fast_followers_count"
         - "favourites_count"
-        # 31 # - "follow_request_sent"
-        # 31 #  - "followed_by"
         - "followers_count"
-        # 31 #  - "following"
         - "friends_count"
         - "has_custom_timelines"
         - "is_translator"
         - "listed_count"
         - "location"
         - "media_count"
-        - "muting"
         - "name"
         - "normal_followers_count"
-        # 31 #  - "notifications"
         - "pinned_tweet_ids_str"
         - "possibly_sensitive"
         - "profile_image_url_https"
         - "profile_interstitial_type"
-        # 31 #  - "protected"
         - "screen_name"
         - "status"
         - "statuses_count"
         - "translator_type"
         - "verified"
-        - "want_retweets"
       properties:
         blocked_by:
           type: boolean
-          default: false
         blocking:
           type: boolean
-          default: false
         can_dm:
           type: boolean
-          default: false
         can_media_tag:
           type: boolean
-          default: false
         created_at:
           $ref: "./general.yaml#/components/schemas/TwitterTimeFormat"
         default_profile:
           type: boolean
-          default: false
         default_profile_image:
           type: boolean
-          default: false
         description:
           type: string
         entities:
@@ -309,54 +289,40 @@ components:
           type: integer
         favourites_count:
           type: integer
-          default: 0
         follow_request_sent:
           type: boolean
-          default: false
         followed_by:
           type: boolean
-          default: false
         followers_count:
           type: integer
-          default: 0
         following:
           type: boolean
-          default: false
         friends_count:
           type: integer
-          default: 0
         has_custom_timelines:
           type: boolean
-          default: false
         is_translator:
           type: boolean
-          default: false
         listed_count:
           type: integer
-          default: 0
         location:
           type: string
         media_count:
           type: integer
-          default: 0
         muting:
           type: boolean
-          default: false
         name:
           type: string
         normal_followers_count:
           type: integer
-          default: 0
         notifications:
           type: boolean
-          default: false
         pinned_tweet_ids_str:
           type: array
           items:
             type: string
         possibly_sensitive:
           type: boolean
-          default: false
         profile_banner_extensions:
           type: object
         profile_banner_url:
@@ -371,12 +337,10 @@ components:
           type: string
         protected:
           type: boolean
-          default: false
         screen_name:
           type: string
         statuses_count:
           type: integer
-          default: 0
         translator_type:
           type: string
         url:
@@ -385,7 +349,6 @@ components:
           type: boolean
         want_retweets:
           type: boolean
-          default: false
         verified_type:
           type: string
           enum: ["Business", "Government"]

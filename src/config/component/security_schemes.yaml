@@ -11,7 +11,7 @@ paths:
           required: true
           schema:
             type: string
-            default: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+            default: "Not Implemented"
             description: "UserAgent, some APIs may be rejected if changed."
         - name: authorization
           in: header
@@ -118,8 +118,8 @@ paths:
           required: true
           schema:
             type: string
-            default: "https://twitter.com/home"
-            description: "https://twitter.com/home"
+            default: "https://x.com/home"
+            description: "https://x.com/home"
         - name: Priority
           in: header
           required: true
@@ -135,7 +135,7 @@ paths:
 components:
   securitySchemes:
     UserAgent:
-      description: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+      description: "Not Implemented"
       in: header
       name: user-agent
       type: apiKey
@@ -211,7 +211,7 @@ components:
       name: Sec-Fetch-Site
       type: apiKey
     Referer:
-      description: "https://twitter.com/home"
+      description: "https://x.com/home"
       in: header
       name: Referer
       type: apiKey

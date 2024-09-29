@@ -6,6 +6,7 @@ from hooks import (
     AddSecuritySchemesOnSecuritySchemes,
     RemoveErrorHandle,
     SetResponsesHeader,
+    SetUserAgentOnSecuritySchemes,
 )
 
 
@@ -40,7 +41,10 @@ class Config:
             additionalHooks.append(RemoveErrorHandle())
 
         return {
-            "openapi": [AddSecuritySchemesOnSecuritySchemes()],
+            "openapi": [
+                AddSecuritySchemesOnSecuritySchemes(),
+                SetUserAgentOnSecuritySchemes(),
+            ],
             "schemas": [],
             "other": [],
             "request": {

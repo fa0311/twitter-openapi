@@ -4,3 +4,4 @@ cookie.json
 *_generated
 *.jar
 cache/
+tools/input.js

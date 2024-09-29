@@ -12,12 +12,14 @@ components:
         - $ref: "#/components/schemas/Tweet"
         - $ref: "#/components/schemas/TweetWithVisibilityResults"
         - $ref: "#/components/schemas/TweetTombstone"
+        - $ref: "#/components/schemas/TweetUnavailable"
       discriminator:
         propertyName: __typename
         mapping": # deprecated
           Tweet: "#/components/schemas/Tweet"
           TweetWithVisibilityResults: "#/components/schemas/TweetWithVisibilityResults"
           TweetTombstone: "#/components/schemas/TweetTombstone"
+          TweetUnavailable: "#/components/schemas/TweetUnavailable"
 
     TweetWithVisibilityResults:
       required:
@@ -138,6 +140,13 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
       additionalProperties: true # todo
 
+    TweetUnavailable: # nsfw tweet
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TweetUnavailable
+        reason:
+          type: string
+
     Tweet:
       required:
         - "rest_id"
@@ -162,7 +171,6 @@ components:
           $ref: "#/components/schemas/TweetEditPrespective"
         is_translatable:
           type: boolean
-          default: false
         source:
           type: string # html (<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>)
         legacy:
@@ -189,6 +197,8 @@ components:
           $ref: "#/components/schemas/AuthorCommunityRelationship"
         article:
           $ref: "#/components/schemas/Article"
+        community_results:
+          $ref: "#/components/schemas/Community"
 
     TweetEditControl:
       properties:
@@ -884,10 +894,8 @@ components:
           type: string # enum
         possibly_sensitive:
           type: boolean
-          default: false
         possibly_sensitive_editable:
           type: boolean
-          default: false
         quote_count:
           type: integer
         reply_count:
@@ -1289,13 +1297,10 @@ components:
       properties:
         adult_content:
           type: boolean
-          default: false
         graphic_violence:
           type: boolean
-          default: false
         other:
           type: boolean
-          default: false
 
     MediaSizes:
       required:
@@ -1464,8 +1469,6 @@ components:
           type: integer
 
     AllowDownloadStatus:
-      required:
-        - "allow_download"
       properties:
         allow_download:
           type: boolean

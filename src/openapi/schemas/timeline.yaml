@@ -7,8 +7,6 @@ paths: {}
 components:
   schemas:
     TimelineV2:
-      required:
-        - "timeline"
       properties:
         timeline:
           $ref: "#/components/schemas/Timeline"
