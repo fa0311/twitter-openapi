@@ -709,7 +709,7 @@
         "exclude_reply_user_ids": []
       },
       "dark_request": false,
-      "disallowed_reply_options": false
+      "disallowed_reply_options?": {}
     },
     "features": {
       "communities_web_enable_tweet_community_results_fetch": true,
