@@ -4468,9 +4468,8 @@ paths:
                       example: false
                       type: boolean
                     disallowed_reply_options:
-                      default: false
-                      example: false
-                      type: boolean
+                      properties: {}
+                      type: object
                     media:
                       properties:
                         media_entities:
@@ -4524,7 +4523,6 @@ paths:
                   - media
                   - semantic_annotation_ids
                   - dark_request
-                  - disallowed_reply_options
                   type: object
               required:
               - queryId
