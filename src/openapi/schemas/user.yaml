@@ -218,6 +218,8 @@ components:
           type: string
         gofundme_handle:
           type: string # uri
+        bandcamp_handle:
+          type: string # uri
 
     UserLegacyExtendedProfile:
       properties:

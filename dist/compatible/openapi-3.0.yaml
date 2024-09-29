@@ -3022,6 +3022,8 @@ components:
           $ref: '#/components/schemas/UserUnion'
     UserTipJarSettings:
       properties:
+        bandcamp_handle:
+          type: string
         bitcoin_handle:
           type: string
         cash_app_handle:
