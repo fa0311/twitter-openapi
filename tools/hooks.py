@@ -1,5 +1,6 @@
 import json
 
+import urllib3
 import yaml
 
 
@@ -60,6 +61,13 @@ class HookBase:
         with open("src/config/placeholder.json", mode="r", encoding="utf-8") as f:
             return yaml.safe_load(f)
 
+    def load_user_agent(self) -> str:
+        user_agent = urllib3.PoolManager().request(
+            "GET",
+            "https://raw.githubusercontent.com/fa0311/latest-user-agent/main/output.json",
+        )
+        return json.loads(user_agent.data)["chrome-fetch"]
+
 
 # HookBase extends
 
@@ -106,6 +114,14 @@ class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
         return value
 
 
+class SetUserAgentOnSecuritySchemes(OpenapiHookBase):
+    def hook(self, value: dict):
+        value = super().hook(value)
+        param = value["components"]["securitySchemes"]
+        param["UserAgent"]["description"] = self.load_user_agent()
+        return value
+
+
 # SchemasHookBase extends
 
 
@@ -143,6 +159,15 @@ class RequiredCheck(SchemasHookBase):
 
 
 class AddSecuritySchemesOnHeader(RequestHookBase):
+    def hook(self, path: str, value: dict):
+        path, value = super().hook(path, value)
+        component = self.load_component("security_schemes")
+        param = component["paths"]["/parameters"]["get"]["parameters"]
+        value["parameters"].extend(param)
+        return path, value
+
+
+class SetUserAgentOnHeader(RequestHookBase):
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
         component = self.load_component("security_schemes")
