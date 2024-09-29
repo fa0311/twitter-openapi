@@ -240,8 +240,6 @@ components:
 
     UserLegacy:
       required:
-        - "can_dm"
-        - "can_media_tag"
         - "created_at"
         - "default_profile"
         - "default_profile_image"
@@ -267,7 +265,6 @@ components:
         - "statuses_count"
         - "translator_type"
         - "verified"
-        - "want_retweets"
       properties:
         blocked_by:
           type: boolean

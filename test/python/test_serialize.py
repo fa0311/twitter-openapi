@@ -296,7 +296,7 @@ if __name__ == "__main__":
 
     try:
         logger.info("Try: Self UserByScreenName Test")
-        kwargs = get_kwargs("UserByScreenName", {"screen_name": "NxWDOyLMd483329"})
+        kwargs = get_kwargs("UserByScreenName", {"screen_name": "ptcpz3"})
         res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(**kwargs)
         data = res.data.to_dict()
 
@@ -307,7 +307,7 @@ if __name__ == "__main__":
         )
         logger.info(f"Match rate: {rate}")
         screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
-        if not screen_name == "NxWDOyLMd483329":
+        if not screen_name == "ptcpz3":
             raise Exception("UserByScreenName failed")
     except Exception as e:
         error_dump(e)
@@ -346,6 +346,8 @@ if __name__ == "__main__":
         # "1697450278742884799",
         "1749500209061663043",
         "1759056048764469303",
+        "1349129669258448897",
+        "1810188416812019999",
     ]
     for id in ids:
         try:

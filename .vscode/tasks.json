@@ -16,7 +16,6 @@
         "command": [
           ".venv/Scripts/activate;",
           "python tools/build.py;",
-          "scoop reset temurin11-jdk;",
           "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python;",
           "python -m pip install ./python_generated;"
         ]

@@ -19,6 +19,8 @@ if __name__ == "__main__":
     if Path("cookie.json").exists():
         with open("cookie.json", "r") as f:
             cookies = json.load(f)
+    if isinstance(cookies, list):
+        cookies = {k["name"]: k["value"] for k in cookies}
     cookies_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
 
     with open("src/config/placeholder.json", "r") as f:
