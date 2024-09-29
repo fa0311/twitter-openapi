@@ -15,6 +15,15 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Error"
+        data:
+          $ref: "#/components/schemas/ErrorsData"
+
+    ErrorsData:
+      type: object
+      properties:
+        user:
+          type: string # always null
+          pattern: "dummy"
 
     Error:
       type: object

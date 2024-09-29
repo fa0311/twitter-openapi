@@ -780,12 +780,20 @@ components:
       type: object
     Errors:
       properties:
+        data:
+          $ref: '#/components/schemas/ErrorsData'
         errors:
           items:
             $ref: '#/components/schemas/Error'
           type: array
       required:
       - errors
+      type: object
+    ErrorsData:
+      properties:
+        user:
+          pattern: dummy
+          type: string
       type: object
     ExtMediaAvailability:
       properties:
@@ -8687,8 +8695,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/OtherResponse'
+                $ref: '#/components/schemas/OtherResponse'
           description: Successful operation
       tags:
       - other
