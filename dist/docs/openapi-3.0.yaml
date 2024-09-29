@@ -1422,13 +1422,10 @@ components:
     SensitiveMediaWarning:
       properties:
         adult_content:
-          default: false
           type: boolean
         graphic_violence:
-          default: false
           type: boolean
         other:
-          default: false
           type: boolean
       required:
       - adult_content
@@ -1841,7 +1838,6 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentEntryType'
         stopOnEmptyResponse:
-          default: false
           type: boolean
         value:
           type: string
@@ -1849,7 +1845,6 @@ components:
       - __typename
       - cursorType
       - value
-      - stopOnEmptyResponse
     TimelineTimelineItem:
       properties:
         __typename:
@@ -2025,7 +2020,6 @@ components:
         has_birdwatch_notes:
           type: boolean
         is_translatable:
-          default: false
           type: boolean
         legacy:
           $ref: '#/components/schemas/TweetLegacy'
@@ -2355,10 +2349,8 @@ components:
         place:
           additionalProperties: true
         possibly_sensitive:
-          default: false
           type: boolean
         possibly_sensitive_editable:
-          default: false
           type: boolean
         quote_count:
           type: integer
@@ -2610,7 +2602,6 @@ components:
         has_hidden_likes_on_profile:
           type: boolean
         has_nft_avatar:
-          default: false
           type: boolean
         highlights_info:
           $ref: '#/components/schemas/UserHighlightsInfo'
@@ -2618,7 +2609,6 @@ components:
           pattern: ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$
           type: string
         is_blue_verified:
-          default: false
           type: boolean
         is_profile_translatable:
           type: boolean
@@ -2640,13 +2630,10 @@ components:
           pattern: ^[0-9]+$
           type: string
         super_follow_eligible:
-          default: false
           type: boolean
         super_followed_by:
-          default: false
           type: boolean
         super_following:
-          default: false
           type: boolean
         tipjar_settings:
           $ref: '#/components/schemas/UserTipJarSettings'
@@ -2661,9 +2648,6 @@ components:
       - is_blue_verified
       - legacy
       - rest_id
-      - super_follow_eligible
-      - super_followed_by
-      - super_following
       - profile_image_shape
     UserFeatures:
       properties:
@@ -2717,24 +2701,18 @@ components:
     UserLegacy:
       properties:
         blocked_by:
-          default: false
           type: boolean
         blocking:
-          default: false
           type: boolean
         can_dm:
-          default: false
           type: boolean
         can_media_tag:
-          default: false
           type: boolean
         created_at:
           $ref: '#/components/schemas/TwitterTimeFormat'
         default_profile:
-          default: false
           type: boolean
         default_profile_image:
-          default: false
           type: boolean
         description:
           type: string
@@ -2744,54 +2722,40 @@ components:
         fast_followers_count:
           type: integer
         favourites_count:
-          default: 0
           type: integer
         follow_request_sent:
-          default: false
           type: boolean
         followed_by:
-          default: false
           type: boolean
         followers_count:
-          default: 0
           type: integer
         following:
-          default: false
           type: boolean
         friends_count:
-          default: 0
           type: integer
         has_custom_timelines:
-          default: false
           type: boolean
         is_translator:
-          default: false
           type: boolean
         listed_count:
-          default: 0
           type: integer
         location:
           type: string
         media_count:
-          default: 0
           type: integer
         muting:
-          default: false
           type: boolean
         name:
           type: string
         normal_followers_count:
-          default: 0
           type: integer
         notifications:
-          default: false
           type: boolean
         pinned_tweet_ids_str:
           items:
             type: string
           type: array
         possibly_sensitive:
-          default: false
           type: boolean
         profile_banner_extensions:
           type: object
@@ -2806,12 +2770,10 @@ components:
         profile_interstitial_type:
           type: string
         protected:
-          default: false
           type: boolean
         screen_name:
           type: string
         statuses_count:
-          default: 0
           type: integer
         translator_type:
           type: string
@@ -2825,15 +2787,12 @@ components:
           - Government
           type: string
         want_retweets:
-          default: false
           type: boolean
         withheld_in_countries:
           items:
             type: string
           type: array
       required:
-      - blocked_by
-      - blocking
       - can_dm
       - can_media_tag
       - created_at
@@ -2850,7 +2809,6 @@ components:
       - listed_count
       - location
       - media_count
-      - muting
       - name
       - normal_followers_count
       - pinned_tweet_ids_str
@@ -3074,7 +3032,6 @@ components:
     UserVerificationInfo:
       properties:
         is_identity_verified:
-          default: false
           type: boolean
         reason:
           $ref: '#/components/schemas/UserVerificationInfoReason'

@@ -171,7 +171,6 @@ components:
           $ref: "#/components/schemas/TweetEditPrespective"
         is_translatable:
           type: boolean
-          default: false
         source:
           type: string # html (<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>)
         legacy:
@@ -895,10 +894,8 @@ components:
           type: string # enum
         possibly_sensitive:
           type: boolean
-          default: false
         possibly_sensitive_editable:
           type: boolean
-          default: false
         quote_count:
           type: integer
         reply_count:
@@ -1300,13 +1297,10 @@ components:
       properties:
         adult_content:
           type: boolean
-          default: false
         graphic_violence:
           type: boolean
-          default: false
         other:
           type: boolean
-          default: false
 
     MediaSizes:
       required:

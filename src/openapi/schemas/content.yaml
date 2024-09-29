@@ -84,7 +84,6 @@ components:
         - "__typename"
         - "cursorType"
         - "value"
-        - "stopOnEmptyResponse"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTimelineCursor
@@ -98,7 +97,6 @@ components:
           type: string
         stopOnEmptyResponse:
           type: boolean
-          default: false
         displayTreatment:
           $ref: "#/components/schemas/DisplayTreatment"
 
