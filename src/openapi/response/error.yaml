@@ -4,22 +4,17 @@ info:
   version: 0.0.1
 
 paths: {}
-
 components:
   schemas:
-    ErrorResponse:
+    Errors:
       type: object
       required:
         - errors
-        - data
       properties:
         errors:
-          $ref: "#/components/schemas/Errors"
-
-    Errors:
-      type: array
-      items:
-        $ref: "#/components/schemas/Error"
+          type: array
+          items:
+            $ref: "#/components/schemas/Error"
 
     Error:
       type: object
@@ -32,7 +27,6 @@ components:
         - kind
         - name
         - source
-        - retry_after
         - tracing
       properties:
         message:
@@ -46,7 +40,7 @@ components:
           items:
             type: string
         extensions:
-          $ref: "#/components/schemas/Extensions"
+          $ref: "#/components/schemas/ErrorExtensions"
         code:
           type: integer
         kind:
@@ -71,7 +65,7 @@ components:
         column:
           type: integer
 
-    Extensions:
+    ErrorExtensions:
       type: object
       required:
         - name
@@ -84,6 +78,8 @@ components:
           type: string
         source:
           type: string
+        retry_after:
+          type: integer
         code:
           type: integer
         kind:
@@ -98,3 +94,4 @@ components:
       properties:
         trace_id:
           type: string
+          pattern: "^[0-9a-f]{16}$"

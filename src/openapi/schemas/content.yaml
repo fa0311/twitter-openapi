@@ -230,7 +230,7 @@ components:
     ItemResult:
       properties:
         __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # null | TimelineTweet
+          $ref: "./typename.yaml#/components/schemas/TypeName" # null | TimelineTweet | TweetUnavailable
         result:
           $ref: "./tweet.yaml#/components/schemas/TweetUnion"
 

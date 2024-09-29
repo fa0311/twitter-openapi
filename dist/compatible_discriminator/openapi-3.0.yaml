@@ -755,7 +755,6 @@ components:
       - kind
       - name
       - source
-      - retry_after
       - tracing
       type: object
     ErrorExtensions:
@@ -775,18 +774,9 @@ components:
       required:
       - name
       - source
-      - retry_after
       - code
       - kind
       - tracing
-      type: object
-    ErrorResponse:
-      properties:
-        errors:
-          $ref: '#/components/schemas/Errors'
-      required:
-      - errors
-      - data
       type: object
     Errors:
       properties:
@@ -814,25 +804,6 @@ components:
           type: array
       required:
       - media
-    Extensions:
-      properties:
-        code:
-          type: integer
-        kind:
-          type: string
-        name:
-          type: string
-        source:
-          type: string
-        tracing:
-          $ref: '#/components/schemas/Tracing'
-      required:
-      - name
-      - source
-      - code
-      - kind
-      - tracing
-      type: object
     FavoriteTweet:
       properties:
         favorite_tweet:
@@ -2482,17 +2453,25 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+    TweetUnavailable:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        reason:
+          type: string
     TweetUnion:
       discriminator:
         mapping":
           Tweet: '#/components/schemas/Tweet'
           TweetTombstone: '#/components/schemas/TweetTombstone'
+          TweetUnavailable: '#/components/schemas/TweetUnavailable'
           TweetWithVisibilityResults: '#/components/schemas/TweetWithVisibilityResults'
         propertyName: __typename
       oneOf:
       - $ref: '#/components/schemas/Tweet'
       - $ref: '#/components/schemas/TweetWithVisibilityResults'
       - $ref: '#/components/schemas/TweetTombstone'
+      - $ref: '#/components/schemas/TweetUnavailable'
     TweetView:
       properties:
         count:

@@ -211,6 +211,15 @@ if __name__ == "__main__":
         task_callback(file, thread=False)
         logger.info(f"Match rate: {rate}")
 
+    for file in glob.glob("other/**/*.json", recursive=True):
+        with open(file, "r") as f:
+            data = json.load(f)
+
+        try:
+            _ = pt.Errors.from_dict(data)
+        except Exception as e:
+            error_dump(e)
+
     api_conf = pt.Configuration(
         api_key={
             "ClientLanguage": "en",
@@ -344,6 +353,13 @@ if __name__ == "__main__":
             kwargs = get_kwargs("TweetDetail", {"focalTweetId": id})
             res = pt.TweetApi(api_client).get_tweet_detail_with_http_info(**kwargs)
             data = res.data.to_dict()
+
+            save_cache(
+                {
+                    "raw": res.raw_data.decode("utf-8"),
+                    "type": res.data.__class__.__name__,
+                }
+            )
 
             rate = match_rate(
                 data,

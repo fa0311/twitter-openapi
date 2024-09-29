@@ -12,12 +12,14 @@ components:
         - $ref: "#/components/schemas/Tweet"
         - $ref: "#/components/schemas/TweetWithVisibilityResults"
         - $ref: "#/components/schemas/TweetTombstone"
+        - $ref: "#/components/schemas/TweetUnavailable"
       discriminator:
         propertyName: __typename
         mapping": # deprecated
           Tweet: "#/components/schemas/Tweet"
           TweetWithVisibilityResults: "#/components/schemas/TweetWithVisibilityResults"
           TweetTombstone: "#/components/schemas/TweetTombstone"
+          TweetUnavailable: "#/components/schemas/TweetUnavailable"
 
     TweetWithVisibilityResults:
       required:
@@ -137,6 +139,13 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TweetWithVisibilityResults
       additionalProperties: true # todo
+
+    TweetUnavailable: # nsfw tweet
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TweetUnavailable
+        reason:
+          type: string
 
     Tweet:
       required:
