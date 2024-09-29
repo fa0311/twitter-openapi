@@ -1040,5 +1040,11 @@
     "features": {
       "responsive_web_graphql_timeline_navigation_enabled": true
     }
+  },
+  "UsersVerifiedAvatars": {
+    "queryId": "aLfvAoX6xy2ojqzOnkbrIA",
+    "features": {
+      "responsive_web_graphql_timeline_navigation_enabled": true
+    }
   }
 }
