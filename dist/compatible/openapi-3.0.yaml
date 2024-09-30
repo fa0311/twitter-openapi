@@ -2320,7 +2320,7 @@ components:
         bookmarked:
           type: boolean
         conversation_control:
-          $ref: '#/components/schemas/ConversationControl'
+          additionalProperties: true
         conversation_id_str:
           pattern: ^[0-9]+$
           type: string
@@ -4373,17 +4373,12 @@ paths:
                       type: string
                     conversation_control:
                       properties:
-                        conversation_control:
-                          properties:
-                            mode:
-                              default: Community
-                              example: Community
-                              type: string
-                          required:
-                          - mode
-                          type: object
+                        mode:
+                          default: Community
+                          example: Community
+                          type: string
                       required:
-                      - conversation_control
+                      - mode
                       type: object
                     dark_request:
                       default: false

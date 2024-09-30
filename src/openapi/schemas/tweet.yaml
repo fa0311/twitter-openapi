@@ -932,7 +932,7 @@ components:
           type: string
           pattern: "^[0-9]+$"
         conversation_control:
-          $ref: "#/components/schemas/ConversationControl"
+          additionalProperties: true # todo
         limited_actions:
           type: string
           enum:
