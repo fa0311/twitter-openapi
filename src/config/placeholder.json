@@ -698,7 +698,7 @@
         "media_entities": [
           {
             "media_id": "1111111111111111111",
-            "tagged_users": []
+            "tagged_users": ["44196397"]
           }
         ],
         "possibly_sensitive": false
@@ -709,7 +709,13 @@
         "exclude_reply_user_ids": []
       },
       "dark_request": false,
-      "disallowed_reply_options?": {}
+      "disallowed_reply_options?": {},
+      "conversation_control?": {
+        "conversation_control": {
+          "mode": "Community"
+        }
+      },
+      "attachment_url?": "https://x.com/elonmusk/status/1349129669258448897"
     },
     "features": {
       "communities_web_enable_tweet_community_results_fetch": true,
@@ -1046,5 +1052,21 @@
     "features": {
       "responsive_web_graphql_timeline_navigation_enabled": true
     }
+  },
+  "CreateDraftTweet": {
+    "queryId": "cH9HZWz_EW9gnswvA4ZRiQ",
+    "variables": {
+      "post_tweet_request": {
+        "attachment_url": "https://x.com/elonmusk/status/1349129669258448897",
+        "auto_populate_reply_metadata": false,
+        "status": "test",
+        "exclude_reply_user_ids": [],
+        "media_ids": []
+      }
+    }
+  },
+  "FetchDraftTweets": {
+    "queryId": "fMp3izG_gCZKVk3Aa1vVKw",
+    "ascending": false
   }
 }
