@@ -522,6 +522,16 @@ components:
       - $ref: '#/components/schemas/TimelineTimelineItem'
       - $ref: '#/components/schemas/TimelineTimelineModule'
       - $ref: '#/components/schemas/TimelineTimelineCursor'
+    ConversationControl:
+      properties:
+        mode:
+          enum:
+          - Community
+          - Verified
+          - ByInvitation
+          type: string
+      required:
+      - mode
     CoverCta:
       properties:
         Text:
@@ -2310,7 +2320,7 @@ components:
         bookmarked:
           type: boolean
         conversation_control:
-          additionalProperties: true
+          $ref: '#/components/schemas/ConversationControl'
         conversation_id_str:
           pattern: ^[0-9]+$
           type: string
@@ -4463,6 +4473,24 @@ paths:
                   type: string
                 variables:
                   properties:
+                    attachment_url:
+                      default: https://x.com/elonmusk/status/1349129669258448897
+                      example: https://x.com/elonmusk/status/1349129669258448897
+                      type: string
+                    conversation_control:
+                      properties:
+                        conversation_control:
+                          properties:
+                            mode:
+                              default: Community
+                              example: Community
+                              type: string
+                          required:
+                          - mode
+                          type: object
+                      required:
+                      - conversation_control
+                      type: object
                     dark_request:
                       default: false
                       example: false
@@ -4481,7 +4509,9 @@ paths:
                                 type: string
                               tagged_users:
                                 items:
-                                  type: object
+                                  default: '44196397'
+                                  example: '44196397'
+                                  type: string
                                 type: array
                             required:
                             - media_id

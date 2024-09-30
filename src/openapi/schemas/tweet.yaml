@@ -932,7 +932,7 @@ components:
           type: string
           pattern: "^[0-9]+$"
         conversation_control:
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ConversationControl"
         limited_actions:
           type: string
           enum:
@@ -1331,6 +1331,14 @@ components:
         resize:
           type: string
           enum: [crop, fit]
+
+    ConversationControl:
+      required:
+        - "mode"
+      properties:
+        mode:
+          type: string
+          enum: [Community, Verified, ByInvitation]
 
     Timestamp:
       required:
