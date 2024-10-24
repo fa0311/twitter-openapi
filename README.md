@@ -15,9 +15,6 @@ Twitter OpenAPI(Swagger) specification
 openapi-generator-cli generate -g <language> -i https://raw.githubusercontent.com/fa0311/twitter-openapi/main/dist/docs/openapi-3.0.yaml -o ./generated
 ```
 
-There are several outputs, but the one that best follows the OpenAPI specification is `dist/docs`.  
-However, some Generators may use a syntax that is not supported.  
-
 There are several outputs, but the one that most closely follows the OpenAPI specification is `dist/docs`.
 However, a lot of syntax that is not supported by some generators is used.
 Therefore, it is recommended to use `dist/compatible` or `dist/compatible_discriminator`.
