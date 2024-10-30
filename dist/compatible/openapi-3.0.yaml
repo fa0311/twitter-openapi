@@ -1703,6 +1703,7 @@ components:
           - Sparkle
           - Conversation
           - List
+          - Community
           type: string
         landingUrl:
           $ref: '#/components/schemas/SocialContextLandingUrl'
@@ -3211,7 +3212,7 @@ components:
       type: apiKey
     UserAgent:
       description: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/129.0.0.0 Safari/537.36
+        Gecko) Chrome/130.0.0.0 Safari/537.36
       in: header
       name: user-agent
       type: apiKey
@@ -4002,8 +4003,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: QUjXply7fA7fk05FRyajEg
-          example: QUjXply7fA7fk05FRyajEg
+          default: L7vvM2UluPgWOW4GDvWyvw
+          example: L7vvM2UluPgWOW4GDvWyvw
           type: string
       - in: query
         name: variables
@@ -4788,8 +4789,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: LLkw5EcVutJL6y-2gkz22A
-          example: LLkw5EcVutJL6y-2gkz22A
+          default: riUYr3PwuHNe4tCmzjPNrg
+          example: riUYr3PwuHNe4tCmzjPNrg
           type: string
       - in: query
         name: variables
@@ -4804,30 +4805,34 @@ paths:
         name: features
         required: true
         schema:
-          default: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
-            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
-            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+          default: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
+            "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
-          example: '{"responsive_web_graphql_exclude_directive_enabled": true, "verified_phone_label_enabled":
-            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
-            true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
-            false, "c9s_tweet_anatomy_moderator_badge_enabled": true, "tweetypie_unmention_optimization_enabled":
-            true, "responsive_web_edit_tweet_api_enabled": true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
-            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
+          example: '{"rweb_tipjar_consumption_enabled": true, "responsive_web_graphql_exclude_directive_enabled":
+            true, "verified_phone_label_enabled": false, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_graphql_skip_user_profile_image_extensions_enabled":
+            false, "communities_web_enable_tweet_community_results_fetch": true, "c9s_tweet_anatomy_moderator_badge_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
+            "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
-            "tweet_awards_web_tipping_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
-            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            "tweet_awards_web_tipping_enabled": false, "creator_subscriptions_quote_tweet_preview_enabled":
+            false, "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
+            true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
-            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_media_download_video_enabled":
-            false, "responsive_web_enhance_cards_enabled": false}'
+            true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
+            false}'
           type: string
       responses:
         '200':
@@ -5144,8 +5149,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: DiTkXJgLqBBxCs7zaYsbtA
-          example: DiTkXJgLqBBxCs7zaYsbtA
+          default: HyuV8ml52TYmyUjyrDq1CQ
+          example: HyuV8ml52TYmyUjyrDq1CQ
           type: string
       - in: query
         name: variables
@@ -5234,19 +5239,19 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HJFjzBgCs16TqxewQOeLNg
-          example: HJFjzBgCs16TqxewQOeLNg
+          default: E6AtJXVPtK7nIHAntKc5fA
+          example: E6AtJXVPtK7nIHAntKc5fA
           type: string
       - in: query
         name: variables
         required: true
         schema:
           default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch", "withCommunity": true, "seenTweetIds":
-            ["1349129669258448897"]}'
+            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"],
+            "withCommunity": true}'
           example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch", "withCommunity": true, "seenTweetIds":
-            ["1349129669258448897"]}'
+            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"],
+            "withCommunity": true}'
           type: string
       - in: query
         name: features
@@ -5326,8 +5331,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: aeJWz--kknVBOl7wQ7gh7Q
-          example: aeJWz--kknVBOl7wQ7gh7Q
+          default: px6_YxfWkXo0odY84iqqmw
+          example: px6_YxfWkXo0odY84iqqmw
           type: string
       - in: query
         name: variables
@@ -5372,6 +5377,13 @@ paths:
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
             true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
             false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withArticlePlainText": false}'
+          example: '{"withArticlePlainText": false}'
           type: string
       responses:
         '200':
@@ -5418,8 +5430,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: Pa45JvqZuKcW1plybfgBlQ
-          example: Pa45JvqZuKcW1plybfgBlQ
+          default: f-Lsj0rHCztXcgdo585UUw
+          example: f-Lsj0rHCztXcgdo585UUw
           type: string
       - in: query
         name: variables
@@ -5566,8 +5578,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 8019obfgnveiPiJuS2Rtow
-          example: 8019obfgnveiPiJuS2Rtow
+          default: rPcOnVhyaTBQrVgPuY7x7A
+          example: rPcOnVhyaTBQrVgPuY7x7A
           type: string
       - in: query
         name: variables
@@ -5656,8 +5668,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: UN1i3zUiCWa-6r-Uaho4fw
-          example: UN1i3zUiCWa-6r-Uaho4fw
+          default: MJpyQGqgklrVl_0X9gNy3A
+          example: MJpyQGqgklrVl_0X9gNy3A
           type: string
       - in: query
         name: variables
@@ -5746,21 +5758,21 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: QuBlQ6SxNAQCt6-kBiCXCQ
-          example: QuBlQ6SxNAQCt6-kBiCXCQ
+          default: nBS-WpgA6ZG0CyNHD517JQ
+          example: nBS-WpgA6ZG0CyNHD517JQ
           type: string
       - in: query
         name: variables
         required: true
         schema:
           default: '{"focalTweetId": "1349129669258448897", "referrer": "home", "with_rux_injections":
-            false, "includePromotedContent": true, "withCommunity": true, "withQuickPromoteEligibilityTweetFields":
-            true, "withBirdwatchNotes": true, "withVoice": true, "withV2Timeline":
-            true}'
+            false, "rankingMode": "Relevance", "includePromotedContent": true, "withCommunity":
+            true, "withQuickPromoteEligibilityTweetFields": true, "withBirdwatchNotes":
+            true, "withVoice": true}'
           example: '{"focalTweetId": "1349129669258448897", "referrer": "home", "with_rux_injections":
-            false, "includePromotedContent": true, "withCommunity": true, "withQuickPromoteEligibilityTweetFields":
-            true, "withBirdwatchNotes": true, "withVoice": true, "withV2Timeline":
-            true}'
+            false, "rankingMode": "Relevance", "includePromotedContent": true, "withCommunity":
+            true, "withQuickPromoteEligibilityTweetFields": true, "withBirdwatchNotes":
+            true, "withVoice": true}'
           type: string
       - in: query
         name: features
@@ -5800,9 +5812,9 @@ paths:
         required: true
         schema:
           default: '{"withArticleRichContentState": true, "withArticlePlainText":
-            false}'
+            false, "withGrokAnalyze": false, "withDisallowedReplyControls": false}'
           example: '{"withArticleRichContentState": true, "withArticlePlainText":
-            false}'
+            false, "withGrokAnalyze": false, "withDisallowedReplyControls": false}'
           type: string
       responses:
         '200':
@@ -6096,15 +6108,15 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: Yka-W8dz7RaEuQNkroPkYw
-          example: Yka-W8dz7RaEuQNkroPkYw
+          default: BQ6xjFU6Mgm-WhEP3OiT9w
+          example: BQ6xjFU6Mgm-WhEP3OiT9w
           type: string
       - in: query
         name: variables
         required: true
         schema:
-          default: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
-          example: '{"screen_name": "elonmusk", "withSafetyModeUserFields": true}'
+          default: '{"screen_name": "elonmusk"}'
+          example: '{"screen_name": "elonmusk"}'
           type: string
       - in: query
         name: features
@@ -6269,8 +6281,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: dexO_2tohK86JDudXXG3Yw
-          example: dexO_2tohK86JDudXXG3Yw
+          default: HaouMjBviBKKTYZGV_9qtg
+          example: HaouMjBviBKKTYZGV_9qtg
           type: string
       - in: query
         name: variables
@@ -6315,6 +6327,13 @@ paths:
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
             true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
             false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withArticlePlainText": false}'
+          example: '{"withArticlePlainText": false}'
           type: string
       responses:
         '200':
@@ -6361,8 +6380,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: E3opETHurmVJflFsUBVuUQ
-          example: E3opETHurmVJflFsUBVuUQ
+          default: Tg82Ez_kxVaJf7OPbUdbCg
+          example: Tg82Ez_kxVaJf7OPbUdbCg
           type: string
       - in: query
         name: variables
@@ -6407,6 +6426,13 @@ paths:
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
             true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
             false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withArticlePlainText": false}'
+          example: '{"withArticlePlainText": false}'
           type: string
       responses:
         '200':
@@ -6453,8 +6479,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: bt4TKuFz4T7Ckk-VvQVSow
-          example: bt4TKuFz4T7Ckk-VvQVSow
+          default: HmWGzuzXoI6uFqqX6QNhEg
+          example: HmWGzuzXoI6uFqqX6QNhEg
           type: string
       - in: query
         name: variables
@@ -6497,6 +6523,13 @@ paths:
             true, "rweb_video_timestamps_enabled": true, "longform_notetweets_rich_text_read_enabled":
             true, "longform_notetweets_inline_media_enabled": true, "responsive_web_enhance_cards_enabled":
             false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withArticlePlainText": false}'
+          example: '{"withArticlePlainText": false}'
           type: string
       responses:
         '200':
@@ -6543,8 +6576,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: GYBpHkmyXjeuX9IeNJmweA
-          example: GYBpHkmyXjeuX9IeNJmweA
+          default: lc85bOG5T3IIS4u485VtBg
+          example: lc85bOG5T3IIS4u485VtBg
           type: string
       - in: query
         name: variables

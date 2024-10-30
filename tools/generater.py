@@ -16,7 +16,7 @@ from rich.rule import Rule
 def main():
     print(Rule(characters="="))
     print(
-        "Chrome DevTools の Network タブで「表示されているものをすべてfetch としてコピー」したコードを`input.js`に貼り付けてください。"
+        "Chrome DevTools の Network タブで検索窓に「graphql」と入力し「表示されているものをすべてfetch としてコピー」したコードを`input.js`に貼り付けてください。"
     )
     print("Enter を押すと続行します。")
     print(Rule(characters="="))
@@ -68,6 +68,7 @@ def main():
             body_json = json.loads(body_json_str)
             features = body_json.get("features", None)
             variables = body_json.get("variables", None)
+            fieldToggles = body_json.get("fieldToggles", None)
         else:
             # GET リクエストの場合、まず URL を抽出
             url_match = re.search(r'"(https?://[^"]+)"', fetch_code)
@@ -88,16 +89,38 @@ def main():
             features_json_str = query_dict.get("features", [None])[0]
             if features_json_str is None:
                 features = None
-                variables = None
             else:
                 try:
                     features = json.loads(features_json_str)
                 except json.JSONDecodeError:
+                    features = None
                     print(
                         "features の JSON パースに失敗しました。features は None として続行します。"
                     )
-                    features = None
+
+            variables_json_str = query_dict.get("variables", [None])[0]
+            if variables_json_str is None:
+                variables = None
+            else:
+                try:
+                    variables = json.loads(variables_json_str)
+                except json.JSONDecodeError:
                     variables = None
+                    print(
+                        "variables の JSON パースに失敗しました。variables は None として続行します。"
+                    )
+
+            fieldToggles_json_str = query_dict.get("fieldToggles", [None])[0]
+            if fieldToggles_json_str is None:
+                fieldToggles = None
+            else:
+                try:
+                    fieldToggles = json.loads(fieldToggles_json_str)
+                except json.JSONDecodeError:
+                    fieldToggles = None
+                    print(
+                        "fieldToggles の JSON パースに失敗しました。fieldToggles は None として続行します。"
+                    )
 
         with open("./src/config/placeholder.json", "r") as f:
             placeholder = json.load(f)
@@ -123,6 +146,8 @@ def main():
             placeholder[endpoint]["queryId"] = query_id
             if features:
                 placeholder[endpoint]["features"] = features
+            if fieldToggles:
+                placeholder[endpoint]["fieldToggles"] = fieldToggles
             json.dump(placeholder, f, indent=4)
 
 
