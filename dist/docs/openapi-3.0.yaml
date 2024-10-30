@@ -2914,8 +2914,6 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/UserResults'
-      required:
-      - user
     UserResultByScreenName:
       properties:
         id:

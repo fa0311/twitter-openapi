@@ -62,8 +62,6 @@ components:
           $ref: "#/components/schemas/UserResponseData"
 
     UserResponseData:
-      required:
-        - "user"
       properties:
         user:
           $ref: "./../schemas/user.yaml#/components/schemas/UserResults"
