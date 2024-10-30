@@ -263,6 +263,7 @@ components:
             - "Sparkle"
             - "Conversation"
             - "List"
+            - "Community"
         text:
           type: string
         landingUrl:
