@@ -10,6 +10,7 @@ import traceback
 import warnings
 from enum import Enum
 from pathlib import Path
+from typing import Any
 
 import openapi_client as pt
 import urllib3
@@ -158,6 +159,21 @@ def task_callback(file, thread=True):
             raise
 
 
+def kebab_to_upper_camel(text: dict[str, Any]) -> dict[str, Any]:
+    res = {}
+    for key, value in text.items():
+        new_key = "".join(
+            [x.capitalize() for x in key.replace("x-twitter-", "").split("-")]
+        )
+        res[new_key] = value
+    return res
+
+
+def get_header(data: dict, name: str):
+    ignore = ["host", "connection"]
+    return {key: value for key, value in data[name].items() if key not in ignore}
+
+
 def error_dump(e):
     if ERROR_UNCATCHED:
         raise
@@ -219,27 +235,35 @@ if __name__ == "__main__":
             _ = pt.Errors.from_dict(data)
         except Exception as e:
             error_dump(e)
-
-    api_conf = pt.Configuration(
-        api_key={
-            "ClientLanguage": "en",
-            "ActiveUser": "yes",
-            "AuthType": "OAuth2Session",
-            "CsrfToken": cookies["ct0"],
-        },
-    )
-
+    access_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+    twitter_url = "https://x.com/home"
     latest_user_agent_res = urllib3.PoolManager().request(
         "GET",
-        "https://raw.githubusercontent.com/fa0311/latest-user-agent/main/output.json",
+        "https://raw.githubusercontent.com/fa0311/latest-user-agent/refs/heads/main/header.json",
     )
-
     latest_user_agent = json.loads(latest_user_agent_res.data.decode("utf-8"))
-
-    api_conf.access_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
-
+    api_conf = pt.Configuration(
+        api_key={
+            **kebab_to_upper_camel(
+                {
+                    **get_header(latest_user_agent, "chrome-fetch"),
+                    "sec-ch-ua-platform": '"Windows"',
+                    "accept-encoding": "identity",
+                    "pragma": "no-cache",
+                    "referer": twitter_url,
+                    "priority": "u=1, i",
+                    "authorization": f"Bearer {access_token}",
+                    "x-twitter-auth-type": "OAuth2Session",
+                    "x-twitter-client-language": "en",
+                    "x-twitter-active-user": "yes",
+                    "x-twitter-csrf-token": cookies["ct0"],
+                },
+            ),
+        },
+    )
+    api_conf.access_token = access_token
     api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
-    api_client.user_agent = latest_user_agent["chrome"]
+    api_client.user_agent = get_header(latest_user_agent, "chrome-fetch")["user-agent"]
     error_count = 0
 
     for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
@@ -348,6 +372,7 @@ if __name__ == "__main__":
         "1759056048764469303",
         "1349129669258448897",
         "1810188416812019999",
+        "1851981523207299417",
     ]
     for id in ids:
         try:
