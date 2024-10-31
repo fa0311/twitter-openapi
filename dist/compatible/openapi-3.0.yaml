@@ -151,6 +151,7 @@ components:
         role:
           enum:
           - Member
+          - Moderator
           type: string
         user_results:
           $ref: '#/components/schemas/UserResults'
@@ -400,7 +401,6 @@ components:
       - id_str
       - name
       - description
-      - question
       - search_tags
       - actions
       - admin_results
@@ -628,6 +628,7 @@ components:
       - ShowMore
       - ShowMoreThreads
       - Gap
+      - ShowMoreThreadsPrompt
       type: string
     DeleteBookmarkResponse:
       properties:
@@ -688,6 +689,8 @@ components:
     DisplayTreatment:
       properties:
         actionText:
+          type: string
+        labelText:
           type: string
       required:
       - actionText
