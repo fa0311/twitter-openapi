@@ -18,7 +18,8 @@ class HookBase:
             return x[:-1] if x.endswith("?") else x
 
         if isinstance(obj, dict):
-            req = {k: v for k, v in obj.items() if not k.endswith("?")}
+            ignore_req = [k[:-1] for k in obj.keys() if k.endswith("?")]
+            req = [k for k in obj.keys() if fn(k) not in ignore_req]
             properties = {fn(k): mine(v) for k, v in obj.items()}
             value = {
                 "type": "object",
