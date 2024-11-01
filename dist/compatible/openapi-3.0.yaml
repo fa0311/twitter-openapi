@@ -4431,7 +4431,6 @@ paths:
                           example: false
                           type: boolean
                       required:
-                      - media_entities
                       - possibly_sensitive
                       type: object
                     reply:
@@ -4461,7 +4460,6 @@ paths:
                   - media
                   - semantic_annotation_ids
                   - dark_request
-                  - disallowed_reply_options
                   type: object
               required:
               - queryId
