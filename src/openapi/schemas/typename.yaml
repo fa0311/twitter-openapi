@@ -29,6 +29,7 @@ components:
           CommunityJoinAction,
           CommunityLeaveActionUnavailable,
           CommunityTweetPinActionUnavailable,
+          CommunityTweetUnpinActionUnavailable,
           CommunityInvitesUnavailable,
           CommunityJoinRequestsUnavailable,
           ApiImage,

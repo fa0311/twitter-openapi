@@ -319,11 +319,8 @@ components:
           $ref: '#/components/schemas/CommunityLeaveActionResult'
         pin_action_result:
           $ref: '#/components/schemas/CommunityPinActionResult'
-      required:
-      - delete_action_result
-      - join_action_result
-      - leave_action_result
-      - pin_action_result
+        unpin_action_result:
+          $ref: '#/components/schemas/CommunityUnpinActionResult'
     CommunityData:
       properties:
         __typename:
@@ -471,6 +468,23 @@ components:
           $ref: '#/components/schemas/TypeName'
       required:
       - __typename
+    CommunityRelationship:
+      properties:
+        actions:
+          $ref: '#/components/schemas/CommunityActions'
+        id:
+          type: string
+        moderation_state:
+          additionalProperties: true
+          type: object
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - id
+      - rest_id
+      - moderation_state
+      - actions
     CommunityRule:
       properties:
         description:
@@ -483,6 +497,12 @@ components:
       required:
       - rest_id
       - name
+    CommunityUnpinActionResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
     CommunityUrls:
       properties:
         permalink:
@@ -2031,6 +2051,8 @@ components:
           $ref: '#/components/schemas/BirdwatchPivot'
         card:
           $ref: '#/components/schemas/TweetCard'
+        community_relationship:
+          $ref: '#/components/schemas/CommunityRelationship'
         community_results:
           $ref: '#/components/schemas/Community'
         core:
@@ -2542,6 +2564,7 @@ components:
       - CommunityJoinAction
       - CommunityLeaveActionUnavailable
       - CommunityTweetPinActionUnavailable
+      - CommunityTweetUnpinActionUnavailable
       - CommunityInvitesUnavailable
       - CommunityJoinRequestsUnavailable
       - ApiImage
@@ -4432,6 +4455,7 @@ paths:
                   - media
                   - semantic_annotation_ids
                   - dark_request
+                  - disallowed_reply_options
                   type: object
               required:
               - queryId

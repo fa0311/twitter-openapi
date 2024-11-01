@@ -710,7 +710,8 @@
     "variables": {
       "tweet_text": "test",
       "media": {
-        "media_entities": [
+        "media_entities": [],
+        "media_entities?": [
           {
             "media_id": "1111111111111111111",
             "tagged_users": ["44196397"]
@@ -724,6 +725,7 @@
         "exclude_reply_user_ids": []
       },
       "dark_request": false,
+      "disallowed_reply_options": null,
       "disallowed_reply_options?": {},
       "conversation_control?": {
         "mode": "Community"

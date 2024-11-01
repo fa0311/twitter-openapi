@@ -193,6 +193,8 @@ components:
           $ref: "#/components/schemas/SuperFollowsReplyUserResult"
         has_birdwatch_notes:
           type: boolean
+        community_relationship:
+          $ref: "#/components/schemas/CommunityRelationship"
         author_community_relationship:
           $ref: "#/components/schemas/AuthorCommunityRelationship"
         article:
@@ -397,6 +399,25 @@ components:
         screen_name:
           type: string
 
+    # {'id': 'VHdlZXRDb21tdW5pdHlSZWxhdGlvbnNoaXA6MTg1MjA1NTM2NDA3MTgyNTY0NQ==', 'rest_id': '1852055364071825645', 'moderation_state': {}, 'actions': {'pin_action_result': {'__typename': 'CommunityTweetPinActionUnavailable'}
+    CommunityRelationship:
+      required:
+        - "id"
+        - "rest_id"
+        - "moderation_state"
+        - "actions"
+      properties:
+        id:
+          type: string
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        moderation_state:
+          type: object
+          additionalProperties: true # todo
+        actions:
+          $ref: "#/components/schemas/CommunityActions"
+
     AuthorCommunityRelationship:
       required:
         - "community_results"
@@ -516,11 +537,8 @@ components:
           type: string
 
     CommunityActions:
-      required:
-        - "delete_action_result"
-        - "join_action_result"
-        - "leave_action_result"
-        - "pin_action_result"
+      # required:
+      #   - "pin_action_result"
       properties:
         delete_action_result:
           $ref: "#/components/schemas/CommunityDeleteActionResult"
@@ -530,6 +548,8 @@ components:
           $ref: "#/components/schemas/CommunityLeaveActionResult"
         pin_action_result:
           $ref: "#/components/schemas/CommunityPinActionResult"
+        unpin_action_result:
+          $ref: "#/components/schemas/CommunityUnpinActionResult"
 
     CommunityDeleteActionResult:
       required:
@@ -569,6 +589,13 @@ components:
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityTweetPinActionUnavailable
+
+    CommunityUnpinActionResult:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityTweetUnpinActionUnavailable
 
     CommunityInvitesResult:
       required:
