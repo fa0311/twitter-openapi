@@ -151,6 +151,7 @@ components:
         role:
           enum:
           - Member
+          - Moderator
           type: string
         user_results:
           $ref: '#/components/schemas/UserResults'
@@ -400,7 +401,6 @@ components:
       - id_str
       - name
       - description
-      - question
       - search_tags
       - actions
       - admin_results
@@ -628,6 +628,7 @@ components:
       - ShowMore
       - ShowMoreThreads
       - Gap
+      - ShowMoreThreadsPrompt
       type: string
     DeleteBookmarkResponse:
       properties:
@@ -688,6 +689,8 @@ components:
     DisplayTreatment:
       properties:
         actionText:
+          type: string
+        labelText:
           type: string
       required:
       - actionText
@@ -3120,7 +3123,7 @@ components:
       name: Accept
       type: apiKey
     AcceptEncoding:
-      description: gzip, deflate, br
+      description: gzip, deflate, br, zstd
       in: header
       name: Accept-Encoding
       type: apiKey
@@ -3148,6 +3151,15 @@ components:
       in: header
       name: x-twitter-client-language
       type: apiKey
+    ClientTransactionId:
+      in: header
+      name: x-client-transaction-id
+      type: apiKey
+    ClientUuid:
+      description: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      in: header
+      name: x-client-uuid
+      type: apiKey
     CookieAuthToken:
       description: HttpOnly cookie
       in: cookie
@@ -3158,8 +3170,13 @@ components:
       in: cookie
       name: ct0
       type: apiKey
+    CookieGt0:
+      description: document.cookie.split('; ').find(row => row.startsWith('gt0='));
+      in: cookie
+      name: gt0
+      type: apiKey
     CsrfToken:
-      description: ''
+      description: document.cookie.split('; ').find(row => row.startsWith('ct0='));
       in: header
       name: x-csrf-token
       type: apiKey
@@ -3167,11 +3184,6 @@ components:
       description: document.cookie.split('; ').find(row => row.startsWith('gt='));
       in: header
       name: x-guest-token
-      type: apiKey
-    Priority:
-      description: u=1, i
-      in: header
-      name: Priority
       type: apiKey
     Referer:
       description: https://x.com/home
@@ -3209,8 +3221,8 @@ components:
       name: Sec-Fetch-Site
       type: apiKey
     UserAgent:
-      description: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/130.0.0.0 Safari/537.36
+      description: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/130.0.0.0 Safari/537.36
       in: header
       name: user-agent
       type: apiKey
@@ -3354,27 +3366,24 @@ paths:
         '200':
           description: Successful operation
           headers:
-            status:
-              schema:
-                type: string
-            x-access-level:
-              schema:
-                type: string
-            x-client-event-enabled:
-              schema:
-                type: boolean
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
+            x-rate-limit-limit:
               schema:
-                type: string
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
             x-response-time:
               schema:
                 type: integer
-            x-transaction:
+            x-tfe-preserve-body:
               schema:
-                type: string
+                type: boolean
             x-transaction-id:
               schema:
                 type: string
@@ -3470,27 +3479,24 @@ paths:
         '200':
           description: Successful operation
           headers:
-            status:
-              schema:
-                type: string
-            x-access-level:
-              schema:
-                type: string
-            x-client-event-enabled:
-              schema:
-                type: boolean
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
+            x-rate-limit-limit:
               schema:
-                type: string
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
             x-response-time:
               schema:
                 type: integer
-            x-transaction:
+            x-tfe-preserve-body:
               schema:
-                type: string
+                type: boolean
             x-transaction-id:
               schema:
                 type: string
@@ -3586,27 +3592,24 @@ paths:
         '200':
           description: Successful operation
           headers:
-            status:
-              schema:
-                type: string
-            x-access-level:
-              schema:
-                type: string
-            x-client-event-enabled:
-              schema:
-                type: boolean
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
+            x-rate-limit-limit:
               schema:
-                type: string
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
             x-response-time:
               schema:
                 type: integer
-            x-transaction:
+            x-tfe-preserve-body:
               schema:
-                type: string
+                type: boolean
             x-transaction-id:
               schema:
                 type: string
@@ -3666,27 +3669,24 @@ paths:
         '200':
           description: Successful operation
           headers:
-            status:
-              schema:
-                type: string
-            x-access-level:
-              schema:
-                type: string
-            x-client-event-enabled:
-              schema:
-                type: boolean
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
+            x-rate-limit-limit:
               schema:
-                type: string
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
             x-response-time:
               schema:
                 type: integer
-            x-transaction:
+            x-tfe-preserve-body:
               schema:
-                type: string
+                type: boolean
             x-transaction-id:
               schema:
                 type: string
@@ -3963,27 +3963,24 @@ paths:
         '200':
           description: Successful operation
           headers:
-            status:
-              schema:
-                type: string
-            x-access-level:
-              schema:
-                type: string
-            x-client-event-enabled:
-              schema:
-                type: boolean
             x-connection-hash:
               schema:
                 type: string
-            x-content-type-options:
+            x-rate-limit-limit:
               schema:
-                type: string
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
             x-response-time:
               schema:
                 type: integer
-            x-transaction:
+            x-tfe-preserve-body:
               schema:
-                type: string
+                type: boolean
             x-transaction-id:
               schema:
                 type: string
@@ -6587,26 +6584,28 @@ paths:
       tags:
       - other
 security:
-- CsrfToken: []
-- CookieCt0: []
-- GuestToken: []
-- CookieAuthToken: []
-- AuthType: []
-- UserAgent: []
-- BearerAuth: []
-- ActiveUser: []
-- ClientLanguage: []
 - Accept: []
 - AcceptEncoding: []
 - AcceptLanguage: []
+- Referer: []
 - SecChUa: []
 - SecChUaMobile: []
 - SecChUaPlatform: []
 - SecFetchDest: []
 - SecFetchMode: []
 - SecFetchSite: []
-- Referer: []
-- Priority: []
+- UserAgent: []
+- BearerAuth: []
+- ClientTransactionId: []
+- ClientUuid: []
+- CsrfToken: []
+- GuestToken: []
+- ActiveUser: []
+- AuthType: []
+- ClientLanguage: []
+- CookieCt0: []
+- CookieAuthToken: []
+- CookieGt0: []
 servers:
 - url: https://x.com/i/api
 - url: https://twitter.com/i/api

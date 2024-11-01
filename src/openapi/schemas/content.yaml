@@ -25,7 +25,7 @@ components:
 
     CursorType:
       type: string
-      enum: [Top, Bottom, ShowMore, ShowMoreThreads, Gap] # Gap???
+      enum: [Top, Bottom, ShowMore, ShowMoreThreads, Gap, ShowMoreThreadsPrompt] # Gap???
 
     TimelineTimelineItem:
       required:
@@ -106,6 +106,8 @@ components:
         - "actionText"
       properties:
         actionText:
+          type: string
+        labelText:
           type: string
 
     # ================= Module =================

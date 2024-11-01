@@ -405,7 +405,7 @@ components:
           $ref: "#/components/schemas/Community"
         role:
           type: string
-          enum: [Member]
+          enum: [Member, Moderator]
         user_results:
           $ref: "user.yaml#/components/schemas/UserResults"
 
@@ -422,7 +422,6 @@ components:
         - "id_str"
         - "name"
         - "description"
-        - "question"
         - "search_tags"
         - "actions"
         - "admin_results"

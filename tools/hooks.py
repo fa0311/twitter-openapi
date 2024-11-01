@@ -1,6 +1,5 @@
 import json
 
-import urllib3
 import yaml
 
 
@@ -61,12 +60,12 @@ class HookBase:
         with open("src/config/placeholder.json", mode="r", encoding="utf-8") as f:
             return yaml.safe_load(f)
 
-    def load_user_agent(self) -> str:
-        user_agent = urllib3.PoolManager().request(
-            "GET",
-            "https://raw.githubusercontent.com/fa0311/latest-user-agent/main/output.json",
-        )
-        return json.loads(user_agent.data)["chrome-fetch"]
+    # def load_user_agent(self) -> str:
+    #     user_agent = urllib3.PoolManager().request(
+    #         "GET",
+    #         "https://raw.githubusercontent.com/fa0311/latest-user-agent/main/output.json",
+    #     )
+    #     return json.loads(user_agent.data)["chrome-fetch"]
 
 
 # HookBase extends
@@ -104,22 +103,22 @@ class RequestHookBase(HookBase):
 # OpenapiHookBase extends
 
 
-class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
-    def hook(self, value: dict):
-        value = super().hook(value)
-        component = self.load_component("security_schemes")
-        param = component["components"]["securitySchemes"]
-        value["components"]["securitySchemes"].update(param)
-        value["security"].extend(component["security"])
-        return value
+# class AddSecuritySchemesOnSecuritySchemes(OpenapiHookBase):
+#     def hook(self, value: dict):
+#         value = super().hook(value)
+#         component = self.load_component("security_schemes")
+#         param = component["components"]["securitySchemes"]
+#         value["components"]["securitySchemes"].update(param)
+#         value["security"].extend(component["security"])
+#         return value
 
 
-class SetUserAgentOnSecuritySchemes(OpenapiHookBase):
-    def hook(self, value: dict):
-        value = super().hook(value)
-        param = value["components"]["securitySchemes"]
-        param["UserAgent"]["description"] = self.load_user_agent()
-        return value
+# class SetUserAgentOnSecuritySchemes(OpenapiHookBase):
+#     def hook(self, value: dict):
+#         value = super().hook(value)
+#         param = value["components"]["securitySchemes"]
+#         param["UserAgent"]["description"] = self.load_user_agent()
+#         return value
 
 
 # SchemasHookBase extends
@@ -158,22 +157,22 @@ class RequiredCheck(SchemasHookBase):
 # RequestHookBase extends
 
 
-class AddSecuritySchemesOnHeader(RequestHookBase):
-    def hook(self, path: str, value: dict):
-        path, value = super().hook(path, value)
-        component = self.load_component("security_schemes")
-        param = component["paths"]["/parameters"]["get"]["parameters"]
-        value["parameters"].extend(param)
-        return path, value
+# class AddSecuritySchemesOnHeader(RequestHookBase):
+#     def hook(self, path: str, value: dict):
+#         path, value = super().hook(path, value)
+#         component = self.load_component("security_schemes")
+#         param = component["paths"]["/parameters"]["get"]["parameters"]
+#         value["parameters"].extend(param)
+#         return path, value
 
 
-class SetUserAgentOnHeader(RequestHookBase):
-    def hook(self, path: str, value: dict):
-        path, value = super().hook(path, value)
-        component = self.load_component("security_schemes")
-        param = component["paths"]["/parameters"]["get"]["parameters"]
-        value["parameters"].extend(param)
-        return path, value
+# class SetUserAgentOnHeader(RequestHookBase):
+#     def hook(self, path: str, value: dict):
+#         path, value = super().hook(path, value)
+#         component = self.load_component("security_schemes")
+#         param = component["paths"]["/parameters"]["get"]["parameters"]
+#         value["parameters"].extend(param)
+#         return path, value
 
 
 class ReplaceQueryIdPlaceholder(RequestHookBase):
@@ -186,13 +185,12 @@ class ReplaceQueryIdPlaceholder(RequestHookBase):
 class SetResponsesHeader(RequestHookBase):
     suffix: str
 
-    def __init__(self, suffix: str | None = None):
+    def __init__(self):
         super().__init__()
-        self.suffix = "" if suffix is None else "_" + suffix
 
     def hook(self, path: str, value: dict):
         path, value = super().hook(path, value)
-        component = self.load_component("response_header" + self.suffix)
+        component = self.load_component("response_header")
         value["responses"]["200"]["headers"] = component["components"]["headers"]
         return path, value
 

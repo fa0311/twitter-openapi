@@ -3,10 +3,8 @@ from hooks import (
     AddParametersOnContent,
     AddParametersOnParameters,
     AddPathQueryIdOnParameters,
-    AddSecuritySchemesOnSecuritySchemes,
     RemoveErrorHandle,
     SetResponsesHeader,
-    SetUserAgentOnSecuritySchemes,
 )
 
 
@@ -41,15 +39,12 @@ class Config:
             additionalHooks.append(RemoveErrorHandle())
 
         return {
-            "openapi": [
-                AddSecuritySchemesOnSecuritySchemes(),
-                SetUserAgentOnSecuritySchemes(),
-            ],
+            "openapi": [],
             "schemas": [],
             "other": [],
             "request": {
                 key: [
-                    SetResponsesHeader(suffix=None),
+                    SetResponsesHeader(),
                     AddPathQueryIdOnParameters(split=-1),
                     getParamHook,
                     *additionalHooks,
@@ -58,7 +53,7 @@ class Config:
             }
             | {
                 key: [
-                    SetResponsesHeader(suffix=None),
+                    SetResponsesHeader(),
                     AddPathQueryIdOnParameters(split=-1),
                     AddParametersOnBody(
                         split=-1,
@@ -71,14 +66,14 @@ class Config:
             }
             | {
                 key: [
-                    SetResponsesHeader(suffix="legacy"),
+                    SetResponsesHeader(),
                     AddParametersOnParameters(split=2, schemaType=None),
                 ]
                 for key in ["v1.1-get", "v2.0-get"]
             }
             | {
                 key: [
-                    SetResponsesHeader(suffix="legacy"),
+                    SetResponsesHeader(),
                     AddParametersOnBody(
                         split=2,
                         schemaType=None,
