@@ -19,42 +19,144 @@ components:
   schemas: {}
 
   securitySchemes:
+    Accept:
+      description: "*/*"
+      in: header
+      name: Accept
+      type: apiKey
+    AcceptEncoding:
+      description: "gzip, deflate, br, zstd"
+      in: header
+      name: Accept-Encoding
+      type: apiKey
+    AcceptLanguage:
+      description: "en-US,en;q=0.9"
+      in: header
+      name: Accept-Language
+      type: apiKey
+    Referer:
+      description: "https://x.com/home"
+      in: header
+      name: Referer
+      type: apiKey
+    SecChUa:
+      description: '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"'
+      in: header
+      name: Sec-Ch-Ua
+      type: apiKey
+    SecChUaMobile:
+      description: "?0"
+      in: header
+      name: Sec-Ch-Ua-Mobile
+      type: apiKey
+    SecChUaPlatform:
+      description: '"Windows"'
+      in: header
+      name: Sec-Ch-Ua-Platform
+      type: apiKey
+    SecFetchDest:
+      description: "empty"
+      in: header
+      name: Sec-Fetch-Dest
+      type: apiKey
+    SecFetchMode:
+      description: "cors"
+      in: header
+      name: Sec-Fetch-Mode
+      type: apiKey
+    SecFetchSite:
+      description: "same-origin"
+      in: header
+      name: Sec-Fetch-Site
+      type: apiKey
+    UserAgent:
+      description: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+      in: header
+      name: user-agent
+      type: apiKey
+    BearerAuth:
+      description: AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA
+      scheme: bearer
+      type: http
+    ClientTransactionId:
+      type: apiKey
+      in: header
+      name: x-client-transaction-id
+    ClientUuid:
+      type: apiKey
+      in: header
+      name: x-client-uuid
+      description: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     CsrfToken:
       type: apiKey
       in: header
       name: x-csrf-token
-      description: ""
-
-    CookieCt0:
-      type: apiKey
-      in: cookie
-      name: ct0
       description: "document.cookie.split('; ').find(row => row.startsWith('ct0='));"
-
     GuestToken:
       type: apiKey
       in: header
       name: x-guest-token
       description: "document.cookie.split('; ').find(row => row.startsWith('gt='));"
-
-    CookieAuthToken:
+    ActiveUser:
+      description: "yes"
+      in: header
+      name: x-twitter-active-user
       type: apiKey
-      in: cookie
-      name: auth_token
-      description: "HttpOnly cookie"
-
     AuthType:
       type: apiKey
       in: header
       name: x-twitter-auth-type
       description: "OAuth2Session if you are logged in"
+    ClientLanguage:
+      description: en
+      in: header
+      name: x-twitter-client-language
+      type: apiKey
+    CookieAuthToken:
+      type: apiKey
+      in: cookie
+      name: auth_token
+      description: "HttpOnly cookie"
+    CookieCt0:
+      type: apiKey
+      in: cookie
+      name: ct0
+      description: "document.cookie.split('; ').find(row => row.startsWith('ct0='));"
+    CookieGt0:
+      type: apiKey
+      in: cookie
+      name: gt0
+      description: "document.cookie.split('; ').find(row => row.startsWith('gt0='));"
 
 security:
+  # Browser Schemes
+  - Accept: []
+  - AcceptEncoding: []
+  - AcceptLanguage: []
+  - Referer: []
+  - SecChUa: []
+  - SecChUaMobile: []
+  - SecChUaPlatform: []
+  - SecFetchDest: []
+  - SecFetchMode: []
+  - SecFetchSite: []
+  # Other Auth Schemes
+  - UserAgent: []
+  - BearerAuth: []
+  # X Schemes
+  - ClientTransactionId: []
+  - ClientUuid: []
   - CsrfToken: []
-  - CookieCt0: []
   - GuestToken: []
-  - CookieAuthToken: []
+  # Twitter Schemes
+  - ActiveUser: []
   - AuthType: []
+  - ClientLanguage: []
+  # Cookie Schemes
+  - CookieCt0: []
+  - CookieAuthToken: []
+  - CookieGt0: []
+
 tags:
   - name: user
     description: Responses containing User objects.

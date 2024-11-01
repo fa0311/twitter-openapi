@@ -162,9 +162,7 @@ def task_callback(file, thread=True):
 def kebab_to_upper_camel(text: dict[str, Any]) -> dict[str, Any]:
     res = {}
     for key, value in text.items():
-        new_key = "".join(
-            [x.capitalize() for x in key.replace("x-twitter-", "").split("-")]
-        )
+        new_key = "".join([x.capitalize() for x in remove_prefix(key).split("-")])
         res[new_key] = value
     return res
 
@@ -172,6 +170,14 @@ def kebab_to_upper_camel(text: dict[str, Any]) -> dict[str, Any]:
 def get_header(data: dict, name: str):
     ignore = ["host", "connection"]
     return {key: value for key, value in data[name].items() if key not in ignore}
+
+
+def remove_prefix(text: str) -> str:
+    if text.startswith("x-twitter-"):
+        return text[10:]
+    if text.startswith("x-"):
+        return text[2:]
+    return text
 
 
 def error_dump(e):
@@ -243,23 +249,19 @@ if __name__ == "__main__":
     )
     latest_user_agent = json.loads(latest_user_agent_res.data.decode("utf-8"))
     api_conf = pt.Configuration(
-        api_key={
-            **kebab_to_upper_camel(
-                {
-                    **get_header(latest_user_agent, "chrome-fetch"),
-                    "sec-ch-ua-platform": '"Windows"',
-                    "accept-encoding": "identity",
-                    "pragma": "no-cache",
-                    "referer": twitter_url,
-                    "priority": "u=1, i",
-                    "authorization": f"Bearer {access_token}",
-                    "x-twitter-auth-type": "OAuth2Session",
-                    "x-twitter-client-language": "en",
-                    "x-twitter-active-user": "yes",
-                    "x-twitter-csrf-token": cookies["ct0"],
-                },
-            ),
-        },
+        api_key=kebab_to_upper_camel(
+            {
+                **get_header(latest_user_agent, "chrome-fetch"),
+                "sec-ch-ua-platform": '"Windows"',
+                "accept-encoding": "identity",
+                "referer": twitter_url,
+                "authorization": f"Bearer {access_token}",
+                "x-twitter-auth-type": "OAuth2Session",
+                "x-twitter-client-language": "en",
+                "x-twitter-active-user": "yes",
+                "x-csrf-token": cookies["ct0"],
+            },
+        ),
     )
     api_conf.access_token = access_token
     api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
