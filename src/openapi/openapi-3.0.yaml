@@ -34,6 +34,11 @@ components:
       in: header
       name: Accept-Language
       type: apiKey
+    Priority:
+      description: "u=1, i"
+      in: header
+      name: Priority
+      type: apiKey
     Referer:
       description: "https://x.com/home"
       in: header
@@ -133,6 +138,7 @@ security:
   - Accept: []
   - AcceptEncoding: []
   - AcceptLanguage: []
+  - Priority: []
   - Referer: []
   - SecChUa: []
   - SecChUaMobile: []

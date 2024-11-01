@@ -255,6 +255,7 @@ if __name__ == "__main__":
                 "sec-ch-ua-platform": '"Windows"',
                 "accept-encoding": "identity",
                 "referer": twitter_url,
+                "priority": "u=1, i",
                 "authorization": f"Bearer {access_token}",
                 "x-twitter-auth-type": "OAuth2Session",
                 "x-twitter-client-language": "en",
