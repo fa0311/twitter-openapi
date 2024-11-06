@@ -1468,10 +1468,6 @@ components:
           type: boolean
         other:
           type: boolean
-      required:
-      - adult_content
-      - graphic_violence
-      - other
     Session:
       properties:
         SsoInitTokens:
