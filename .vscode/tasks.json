@@ -4,6 +4,14 @@
     {
       "label": "build-task",
       "type": "shell",
+      "osx": {
+        "command": [
+          "source .venv/bin/activate;",
+          "python3 tools/build.py;",
+          "java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python;",
+          "python3 -m pip install ./python_generated;"
+        ]
+      },
       "linux": {
         "command": [
           "source .venv/bin/activate;",
@@ -26,6 +34,13 @@
       "type": "shell",
       "runOptions": {
         "runOn": "folderOpen"
+      },
+      "osx": {
+        "command": [
+          "python3.10 -m venv .venv;",
+          ".venv/bin/python3 -m pip install -r requirements.txt;",
+          "curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.9.0/openapi-generator-cli-7.9.0.jar -o openapi-generator-cli.jar;"
+        ]
       },
       "linux": {
         "command": [
