@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/FollowResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/FollowResponse"
       tags:
         - "user-list"
 
@@ -30,9 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/FollowResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/FollowResponse"
       tags:
         - "user-list"
 
@@ -46,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/FollowResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/FollowResponse"
       tags:
         - "user-list"
 
@@ -60,10 +54,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/FollowResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     FollowResponseData:
-      required:
-        - "user"
       properties:
         user:
           $ref: "#/components/schemas/FollowResponseUser"

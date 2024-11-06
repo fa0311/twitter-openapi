@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/TimelineResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/TimelineResponse"
       tags:
         - "tweet"
 
@@ -30,9 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/TimelineResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/TimelineResponse"
       tags:
         - "tweet"
 
@@ -46,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/ListLatestTweetsTimelineResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/ListLatestTweetsTimelineResponse"
       tags:
         - "tweet"
 
@@ -62,9 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/SearchTimelineResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/SearchTimelineResponse"
       tags:
         - "tweet"
 
@@ -76,10 +68,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/HomeTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     HomeTimelineResponseData:
-      required:
-        - "home"
       properties:
         home:
           $ref: "#/components/schemas/HomeTimelineHome"
@@ -97,10 +91,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/ListTweetsTimelineData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     ListTweetsTimelineData:
-      required:
-        - "list"
       properties:
         list:
           $ref: "#/components/schemas/ListTweetsTimelineList"
@@ -123,10 +119,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/SearchTimelineData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     SearchTimelineData:
-      required:
-        - "search_by_raw_query"
       properties:
         search_by_raw_query:
           $ref: "#/components/schemas/SearchByRawQuery"

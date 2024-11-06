@@ -14,24 +14,22 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/BookmarksResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/BookmarksResponse"
       tags:
         - "tweet"
 
 components:
   schemas:
     BookmarksResponse:
-      required:
-        - "data"
       properties:
         data:
           $ref: "#/components/schemas/BookmarksResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     BookmarksResponseData:
-      required:
-        - "bookmark_timeline_v2"
       properties:
         bookmark_timeline_v2:
           $ref: "#/components/schemas/BookmarksTimeline"

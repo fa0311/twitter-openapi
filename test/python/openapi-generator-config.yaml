@@ -1,4 +1,4 @@
-inputSpec: dist/compatible_discriminator/openapi-3.0.yaml
+inputSpec: dist/compatible/openapi-3.0.yaml
 outputDir: python_generated
 
 useOneOfDiscriminatorLookup: true

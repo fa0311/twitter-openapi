@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserTweetsResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserTweetsResponse"
       tags:
         - "tweet"
 
@@ -30,9 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserTweetsResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserTweetsResponse"
       tags:
         - "tweet"
 
@@ -46,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserHighlightsTweetsResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserHighlightsTweetsResponse"
       tags:
         - "tweet"
 
@@ -62,9 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserTweetsResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserTweetsResponse"
       tags:
         - "tweet"
 
@@ -78,9 +70,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserTweetsResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserTweetsResponse"
       tags:
         - "tweet"
 
@@ -92,10 +82,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/UserTweetsData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     UserTweetsData:
-      required:
-        - "user"
       properties:
         user:
           $ref: "#/components/schemas/UserTweetsUser"
@@ -123,10 +115,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/UserHighlightsTweetsData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     UserHighlightsTweetsData:
-      required:
-        - "user"
       properties:
         user:
           $ref: "#/components/schemas/UserHighlightsTweetsUser"

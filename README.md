@@ -17,9 +17,8 @@ openapi-generator-cli generate -g <language> -i https://raw.githubusercontent.co
 
 There are several outputs, but the one that most closely follows the OpenAPI specification is `dist/docs`.
 However, a lot of syntax that is not supported by some generators is used.
-Therefore, it is recommended to use `dist/compatible` or `dist/compatible_discriminator`.
 
-You can also modify the hook to make the generated results more user-friendly. [build_config.py](./tools/build_config.py)  
+You can also modify the hook to make the generated results more user-friendly. [build_config.py](./tools/build_config.py)
 
 Note that the license also inherits to the output.
 

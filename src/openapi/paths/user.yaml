@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserResponse"
       tags:
         - "user"
 
@@ -30,9 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UserResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UserResponse"
       tags:
         - "user"
 
@@ -46,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UsersResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UsersResponse"
       tags:
         - "users"
 
@@ -60,6 +54,10 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/UserResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     UserResponseData:
       properties:
@@ -72,10 +70,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/UsersResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     UsersResponseData:
-      required:
-        - "users"
       properties:
         users:
           type: array
