@@ -268,7 +268,7 @@ components:
           $ref: '#/components/schemas/BookmarksResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
     BookmarksResponseData:
       properties:
@@ -579,7 +579,7 @@ components:
           $ref: '#/components/schemas/CreateBookmarkResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -599,7 +599,7 @@ components:
           $ref: '#/components/schemas/CreateRetweetResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -625,7 +625,7 @@ components:
           $ref: '#/components/schemas/CreateTweetResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -662,7 +662,7 @@ components:
           $ref: '#/components/schemas/DeleteBookmarkResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -684,7 +684,7 @@ components:
           $ref: '#/components/schemas/DeleteRetweetResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -704,7 +704,7 @@ components:
           $ref: '#/components/schemas/DeleteTweetResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -765,7 +765,28 @@ components:
       - symbols
       - user_mentions
       - urls
-    Error:
+    ErrorExtensions:
+      properties:
+        code:
+          type: integer
+        kind:
+          type: string
+        name:
+          type: string
+        retry_after:
+          type: integer
+        source:
+          type: string
+        tracing:
+          $ref: '#/components/schemas/Tracing'
+      required:
+      - name
+      - source
+      - code
+      - kind
+      - tracing
+      type: object
+    ErrorResponse:
       properties:
         code:
           type: integer
@@ -802,27 +823,6 @@ components:
       - source
       - tracing
       type: object
-    ErrorExtensions:
-      properties:
-        code:
-          type: integer
-        kind:
-          type: string
-        name:
-          type: string
-        retry_after:
-          type: integer
-        source:
-          type: string
-        tracing:
-          $ref: '#/components/schemas/Tracing'
-      required:
-      - name
-      - source
-      - code
-      - kind
-      - tracing
-      type: object
     ExtMediaAvailability:
       properties:
         reason:
@@ -850,7 +850,7 @@ components:
           $ref: '#/components/schemas/FavoriteTweet'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -868,7 +868,7 @@ components:
           $ref: '#/components/schemas/FollowResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -980,7 +980,7 @@ components:
           $ref: '#/components/schemas/ListTweetsTimelineData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -1388,7 +1388,7 @@ components:
           $ref: '#/components/schemas/ProfileResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -1452,7 +1452,7 @@ components:
           $ref: '#/components/schemas/SearchTimelineData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -1801,7 +1801,7 @@ components:
           $ref: '#/components/schemas/HomeTimelineResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2204,7 +2204,7 @@ components:
           $ref: '#/components/schemas/TweetDetailResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2264,7 +2264,7 @@ components:
           $ref: '#/components/schemas/TweetFavoritersResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2477,7 +2477,7 @@ components:
           $ref: '#/components/schemas/TweetResultByRestIdData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2487,7 +2487,7 @@ components:
           $ref: '#/components/schemas/TweetRetweetersResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2590,7 +2590,7 @@ components:
           $ref: '#/components/schemas/UnfavoriteTweet'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2733,7 +2733,7 @@ components:
           $ref: '#/components/schemas/UserHighlightsTweetsData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -2951,7 +2951,7 @@ components:
           $ref: '#/components/schemas/UserResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -3044,7 +3044,7 @@ components:
           $ref: '#/components/schemas/UserTweetsData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
@@ -3152,7 +3152,7 @@ components:
           $ref: '#/components/schemas/UsersResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorResponse'
           type: array
       required:
       - data
