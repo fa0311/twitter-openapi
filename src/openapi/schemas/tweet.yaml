@@ -1316,10 +1316,6 @@ components:
           enum: [Available, Unavailable]
 
     SensitiveMediaWarning:
-      required:
-        - "adult_content"
-        - "graphic_violence"
-        - "other"
       properties:
         adult_content:
           type: boolean

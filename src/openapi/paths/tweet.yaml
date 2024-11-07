@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/TweetDetailResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/TweetDetailResponse"
       tags:
         - "tweet"
 
@@ -30,9 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/TweetResultByRestIdResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/TweetResultByRestIdResponse"
       # tags:
       #   - "tweet"
 
@@ -46,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/TweetFavoritersResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/TweetFavoritersResponse"
       tags:
         - "user-list"
 
@@ -62,9 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/TweetRetweetersResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/TweetRetweetersResponse"
       tags:
         - "user-list"
 
@@ -76,10 +68,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/TweetDetailResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     TweetDetailResponseData:
-      required:
-        - "threaded_conversation_with_injections_v2"
       properties:
         threaded_conversation_with_injections_v2:
           $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
@@ -90,10 +84,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/TweetResultByRestIdData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     TweetResultByRestIdData:
-      required:
-        - "tweetResult"
       properties:
         tweetResult:
           $ref: "./../schemas/content.yaml#/components/schemas/ItemResult"
@@ -104,10 +100,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/TweetFavoritersResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     TweetFavoritersResponseData:
-      required:
-        - "favoriters_timeline"
       properties:
         favoriters_timeline:
           $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineV2"
@@ -118,10 +116,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/TweetRetweetersResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     TweetRetweetersResponseData:
-      required:
-        - "retweeters_timeline"
       properties:
         retweeters_timeline:
           $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineV2"

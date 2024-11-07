@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/FavoriteTweetResponseData"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/FavoriteTweetResponse"
       tags:
         - "post"
 
@@ -30,9 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/UnfavoriteTweetResponseData"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/UnfavoriteTweetResponse"
       tags:
         - "post"
 
@@ -46,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/CreateRetweetResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/CreateRetweetResponse"
       tags:
         - "post"
 
@@ -62,9 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/DeleteRetweetResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/DeleteRetweetResponse"
       tags:
         - "post"
 
@@ -78,9 +70,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/CreateTweetResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/CreateTweetResponse"
       tags:
         - "post"
 
@@ -94,9 +84,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/DeleteTweetResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/DeleteTweetResponse"
       tags:
         - "post"
 
@@ -110,9 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/CreateBookmarkResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/CreateBookmarkResponse"
       tags:
         - "post"
 
@@ -126,38 +112,43 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/DeleteBookmarkResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/DeleteBookmarkResponse"
       tags:
         - "post"
 
 components:
   schemas:
-    FavoriteTweetResponseData:
+    # ---Favorite---
+    FavoriteTweetResponse:
       required:
         - "data"
       properties:
         data:
           $ref: "#/components/schemas/FavoriteTweet"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     FavoriteTweet:
-      required:
-        - "favorite_tweet"
       properties:
         favorite_tweet:
           type: string
 
-    UnfavoriteTweetResponseData:
+    # ---Unfavorite---
+
+    UnfavoriteTweetResponse:
       required:
         - "data"
       properties:
         data:
           $ref: "#/components/schemas/UnfavoriteTweet"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     UnfavoriteTweet:
-      required:
-        - "unfavorite_tweet"
       properties:
         unfavorite_tweet:
           type: string
@@ -170,10 +161,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/CreateRetweetResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     CreateRetweetResponseData:
-      required:
-        - "create_retweet"
       properties:
         create_retweet:
           $ref: "#/components/schemas/CreateRetweetResponseResult"
@@ -208,19 +201,23 @@ components:
             full_text:
               type: string
 
+    # ---DeleteRetweet---
+
     DeleteRetweetResponse:
       required:
         - "data"
       properties:
         data:
           $ref: "#/components/schemas/DeleteRetweetResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     DeleteRetweetResponseData:
-      required:
-        - "unretweet"
       properties:
         create_retweet:
-          $ref: "#/components/schemas/CreateRetweetResponseResult"
+          $ref: "#/components/schemas/DeleteRetweetResponseResult"
 
     DeleteRetweetResponseResult:
       required:
@@ -246,10 +243,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/CreateTweetResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     CreateTweetResponseData:
-      required:
-        - "create_tweet"
       properties:
         create_tweet:
           $ref: "#/components/schemas/CreateTweetResponseResult"
@@ -268,16 +267,20 @@ components:
         result:
           $ref: "./../schemas/tweet.yaml#/components/schemas/Tweet"
 
+    # ---DeleteTweet---
+
     DeleteTweetResponse:
       required:
         - "data"
       properties:
         data:
           $ref: "#/components/schemas/DeleteTweetResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     DeleteTweetResponseData:
-      required:
-        - "delete_tweet"
       properties:
         delete_retweet:
           $ref: "#/components/schemas/DeleteTweetResponseResult"
@@ -289,19 +292,25 @@ components:
         tweet_results:
           type: object
 
+    # ---Bookmark---
+
     CreateBookmarkResponse:
       required:
         - "data"
       properties:
         data:
           $ref: "#/components/schemas/CreateBookmarkResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     CreateBookmarkResponseData:
-      required:
-        - "tweet_bookmark_put"
       properties:
         tweet_bookmark_put:
           type: string
+
+    # ---DeleteBookmark---
 
     DeleteBookmarkResponse:
       required:
@@ -309,10 +318,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/DeleteBookmarkResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     DeleteBookmarkResponseData:
-      required:
-        - "tweet_bookmark_delete"
       properties:
         tweet_bookmark_delete:
           type: string

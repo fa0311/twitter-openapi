@@ -238,7 +238,7 @@ if __name__ == "__main__":
             data = json.load(f)
 
         try:
-            _ = pt.Errors.from_dict(data)
+            _ = pt.TweetDetailResponse.from_dict(data)
         except Exception as e:
             error_dump(e)
     access_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"

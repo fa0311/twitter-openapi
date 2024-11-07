@@ -14,13 +14,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/OtherResponse"
+                $ref: "#/components/schemas/OtherObjectAll"
       tags:
         - "other"
 
 components:
   schemas:
-    OtherResponse:
+    OtherObjectAll:
       type: object
       properties:
         Session:

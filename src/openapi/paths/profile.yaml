@@ -14,9 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/ProfileResponse"
-                  - $ref: "./../schemas/error.yaml#/components/schemas/Errors"
+                $ref: "#/components/schemas/ProfileResponse"
 
 components:
   schemas:
@@ -26,10 +24,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/ProfileResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/Error"
 
     ProfileResponseData:
-      required:
-        - "user_result_by_screen_name"
       properties:
         user_result_by_screen_name:
           $ref: "#/components/schemas/UserResultByScreenName"

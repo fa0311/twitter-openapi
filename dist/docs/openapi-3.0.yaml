@@ -266,14 +266,14 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/BookmarksResponseData'
-      required:
-      - data
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
     BookmarksResponseData:
       properties:
         bookmark_timeline_v2:
           $ref: '#/components/schemas/BookmarksTimeline'
-      required:
-      - bookmark_timeline_v2
     BookmarksTimeline:
       properties:
         timeline:
@@ -577,14 +577,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/CreateBookmarkResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     CreateBookmarkResponseData:
       properties:
         tweet_bookmark_put:
           type: string
-      required:
-      - tweet_bookmark_put
     CreateRetweet:
       properties:
         result:
@@ -595,14 +597,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/CreateRetweetResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     CreateRetweetResponseData:
       properties:
         create_retweet:
           $ref: '#/components/schemas/CreateRetweetResponseResult'
-      required:
-      - create_retweet
     CreateRetweetResponseResult:
       properties:
         retweet_results:
@@ -619,14 +623,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/CreateTweetResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     CreateTweetResponseData:
       properties:
         create_tweet:
           $ref: '#/components/schemas/CreateTweetResponseResult'
-      required:
-      - create_tweet
     CreateTweetResponseResult:
       properties:
         tweet_results:
@@ -654,14 +660,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/DeleteBookmarkResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     DeleteBookmarkResponseData:
       properties:
         tweet_bookmark_delete:
           type: string
-      required:
-      - tweet_bookmark_delete
     DeleteRetweet:
       properties:
         result:
@@ -674,14 +682,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/DeleteRetweetResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     DeleteRetweetResponseData:
       properties:
         create_retweet:
-          $ref: '#/components/schemas/CreateRetweetResponseResult'
-      required:
-      - unretweet
+          $ref: '#/components/schemas/DeleteRetweetResponseResult'
     DeleteRetweetResponseResult:
       properties:
         retweet_results:
@@ -692,14 +702,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/DeleteTweetResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     DeleteTweetResponseData:
       properties:
         delete_retweet:
           $ref: '#/components/schemas/DeleteTweetResponseResult'
-      required:
-      - delete_tweet
     DeleteTweetResponseResult:
       properties:
         tweet_results:
@@ -811,23 +823,6 @@ components:
       - kind
       - tracing
       type: object
-    Errors:
-      properties:
-        data:
-          $ref: '#/components/schemas/ErrorsData'
-        errors:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-      required:
-      - errors
-      type: object
-    ErrorsData:
-      properties:
-        user:
-          pattern: dummy
-          type: string
-      type: object
     ExtMediaAvailability:
       properties:
         reason:
@@ -849,12 +844,14 @@ components:
       properties:
         favorite_tweet:
           type: string
-      required:
-      - favorite_tweet
-    FavoriteTweetResponseData:
+    FavoriteTweetResponse:
       properties:
         data:
           $ref: '#/components/schemas/FavoriteTweet'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     FeedbackInfo:
@@ -869,14 +866,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/FollowResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     FollowResponseData:
       properties:
         user:
           $ref: '#/components/schemas/FollowResponseUser'
-      required:
-      - user
     FollowResponseResult:
       properties:
         __typename:
@@ -920,8 +919,6 @@ components:
       properties:
         home:
           $ref: '#/components/schemas/HomeTimelineHome'
-      required:
-      - home
     InstructionType:
       enum:
       - TimelineAddEntries
@@ -981,6 +978,10 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ListTweetsTimelineData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     ListTweetsTimeline:
@@ -991,8 +992,6 @@ components:
       properties:
         list:
           $ref: '#/components/schemas/ListTweetsTimelineList'
-      required:
-      - list
     ListTweetsTimelineList:
       properties:
         tweets_timeline:
@@ -1368,7 +1367,7 @@ components:
       required:
       - fetchStatus
       type: object
-    OtherResponse:
+    OtherObjectAll:
       properties:
         Session:
           $ref: '#/components/schemas/Session'
@@ -1387,14 +1386,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ProfileResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     ProfileResponseData:
       properties:
         user_result_by_screen_name:
           $ref: '#/components/schemas/UserResultByScreenName'
-      required:
-      - user_result_by_screen_name
     QuotedRefResult:
       properties:
         result:
@@ -1445,12 +1446,14 @@ components:
       properties:
         search_by_raw_query:
           $ref: '#/components/schemas/SearchByRawQuery'
-      required:
-      - search_by_raw_query
     SearchTimelineResponse:
       properties:
         data:
           $ref: '#/components/schemas/SearchTimelineData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     SelfThread:
@@ -1468,10 +1471,6 @@ components:
           type: boolean
         other:
           type: boolean
-      required:
-      - adult_content
-      - graphic_violence
-      - other
     Session:
       properties:
         SsoInitTokens:
@@ -1800,6 +1799,10 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/HomeTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     TimelineShowAlert:
@@ -2199,14 +2202,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/TweetDetailResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     TweetDetailResponseData:
       properties:
         threaded_conversation_with_injections_v2:
           $ref: '#/components/schemas/Timeline'
-      required:
-      - threaded_conversation_with_injections_v2
     TweetEditControl:
       properties:
         edit_control_initial:
@@ -2257,14 +2262,16 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/TweetFavoritersResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     TweetFavoritersResponseData:
       properties:
         favoriters_timeline:
           $ref: '#/components/schemas/TimelineV2'
-      required:
-      - favoriters_timeline
     TweetInterstitial:
       properties:
         __typename:
@@ -2464,26 +2471,30 @@ components:
       properties:
         tweetResult:
           $ref: '#/components/schemas/ItemResult'
-      required:
-      - tweetResult
     TweetResultByRestIdResponse:
       properties:
         data:
           $ref: '#/components/schemas/TweetResultByRestIdData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     TweetRetweetersResponse:
       properties:
         data:
           $ref: '#/components/schemas/TweetRetweetersResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     TweetRetweetersResponseData:
       properties:
         retweeters_timeline:
           $ref: '#/components/schemas/TimelineV2'
-      required:
-      - retweeters_timeline
     TweetTombstone:
       additionalProperties: true
       properties:
@@ -2573,12 +2584,14 @@ components:
       properties:
         unfavorite_tweet:
           type: string
-      required:
-      - unfavorite_tweet
-    UnfavoriteTweetResponseData:
+    UnfavoriteTweetResponse:
       properties:
         data:
           $ref: '#/components/schemas/UnfavoriteTweet'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     UnifiedCard:
@@ -2714,12 +2727,14 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/UserHighlightsTweetsUser'
-      required:
-      - user
     UserHighlightsTweetsResponse:
       properties:
         data:
           $ref: '#/components/schemas/UserHighlightsTweetsData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     UserHighlightsTweetsResult:
@@ -2934,6 +2949,10 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/UserResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     UserResponseData:
@@ -3019,12 +3038,14 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/UserTweetsUser'
-      required:
-      - user
     UserTweetsResponse:
       properties:
         data:
           $ref: '#/components/schemas/UserTweetsData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     UserTweetsResult:
@@ -3129,6 +3150,10 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/UsersResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
       required:
       - data
     UsersResponseData:
@@ -3137,8 +3162,6 @@ components:
           items:
             $ref: '#/components/schemas/UserResults'
           type: array
-      required:
-      - users
   securitySchemes:
     Accept:
       description: '*/*'
@@ -4182,9 +4205,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/BookmarksResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/BookmarksResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4253,9 +4274,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/CreateBookmarkResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/CreateBookmarkResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4329,9 +4348,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/CreateRetweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/CreateRetweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4583,9 +4600,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/CreateTweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/CreateTweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4654,9 +4669,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/DeleteBookmarkResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/DeleteBookmarkResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4730,9 +4743,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/DeleteRetweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/DeleteRetweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4806,9 +4817,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/DeleteTweetResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/DeleteTweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -4877,9 +4886,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/FavoriteTweetResponseData'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/FavoriteTweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -5073,9 +5080,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TweetFavoritersResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/TweetFavoritersResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -5269,9 +5274,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/FollowResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/FollowResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -5465,9 +5468,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/FollowResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/FollowResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -5661,9 +5662,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/FollowResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/FollowResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -5869,9 +5868,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TimelineResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/TimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -6082,9 +6079,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TimelineResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/TimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -6312,9 +6307,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserTweetsResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserTweetsResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -6503,9 +6496,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/ListLatestTweetsTimelineResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/ListLatestTweetsTimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -6573,9 +6564,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/ProfileResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/ProfileResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -6767,9 +6756,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TweetRetweetersResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/TweetRetweetersResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -6968,9 +6955,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/SearchTimelineResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/SearchTimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -7223,9 +7208,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TweetDetailResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/TweetDetailResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -7453,9 +7436,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TweetResultByRestIdResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/TweetResultByRestIdResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -7527,9 +7508,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UnfavoriteTweetResponseData'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UnfavoriteTweetResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -7648,9 +7627,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -7793,9 +7770,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -7994,9 +7969,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserHighlightsTweetsResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserHighlightsTweetsResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -8224,9 +8197,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserTweetsResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserTweetsResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -8449,9 +8420,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserTweetsResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserTweetsResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -8674,9 +8643,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UserTweetsResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UserTweetsResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -8772,9 +8739,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/UsersResponse'
-                - $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/UsersResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -8812,7 +8777,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OtherResponse'
+                $ref: '#/components/schemas/OtherObjectAll'
           description: Successful operation
       tags:
       - other

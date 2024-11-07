@@ -125,11 +125,11 @@ class RequestHookBase(HookBase):
 # SchemasHookBase extends
 
 
-class RemoveDiscriminator(SchemasHookBase):
-    def hook(self, value: dict):
-        if value.get("discriminator") is not None:
-            del value["discriminator"]
-        return value
+# class RemoveDiscriminator(SchemasHookBase):
+#     def hook(self, value: dict):
+#         if value.get("discriminator") is not None:
+#             del value["discriminator"]
+#         return value
 
 
 class SchemasCheck(SchemasHookBase):
@@ -218,11 +218,11 @@ class AddPathQueryIdOnParameters(RequestHookBase):
         return path, value
 
 
-class RemoveErrorHandle(RequestHookBase):
-    def hook(self, path: str, value: dict):
-        content = value["responses"]["200"]["content"]["application/json"]
-        content["schema"] = content["schema"]["oneOf"][0]
-        return path, value
+# class RemoveErrorHandle(RequestHookBase):
+#     def hook(self, path: str, value: dict):
+#         content = value["responses"]["200"]["content"]["application/json"]
+#         content["schema"] = content["schema"]["oneOf"][0]
+#         return path, value
 
 
 # OnParameters
