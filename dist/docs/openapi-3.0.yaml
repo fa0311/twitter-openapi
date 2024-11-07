@@ -274,6 +274,8 @@ components:
       properties:
         bookmark_timeline_v2:
           $ref: '#/components/schemas/BookmarksTimeline'
+      required:
+      - bookmark_timeline_v2
     BookmarksTimeline:
       properties:
         timeline:
