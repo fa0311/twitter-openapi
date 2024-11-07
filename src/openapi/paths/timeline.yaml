@@ -71,7 +71,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     HomeTimelineResponseData:
       properties:
@@ -94,7 +94,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     ListTweetsTimelineData:
       properties:
@@ -122,7 +122,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     SearchTimelineData:
       properties:

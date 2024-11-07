@@ -128,7 +128,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     FavoriteTweet:
       properties:
@@ -146,7 +146,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     UnfavoriteTweet:
       properties:
@@ -164,7 +164,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     CreateRetweetResponseData:
       properties:
@@ -212,7 +212,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     DeleteRetweetResponseData:
       properties:
@@ -246,7 +246,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     CreateTweetResponseData:
       properties:
@@ -278,7 +278,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     DeleteTweetResponseData:
       properties:
@@ -303,7 +303,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     CreateBookmarkResponseData:
       properties:
@@ -321,7 +321,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     DeleteBookmarkResponseData:
       properties:

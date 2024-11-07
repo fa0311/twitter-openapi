@@ -6,7 +6,7 @@ info:
 paths: {}
 components:
   schemas:
-    Error:
+    ErrorResponse:
       type: object
       required:
         - message

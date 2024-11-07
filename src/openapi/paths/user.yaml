@@ -57,7 +57,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     UserResponseData:
       properties:
@@ -73,7 +73,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     UsersResponseData:
       properties:

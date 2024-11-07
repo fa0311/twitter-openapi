@@ -71,7 +71,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     TweetDetailResponseData:
       properties:
@@ -87,7 +87,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     TweetResultByRestIdData:
       properties:
@@ -103,7 +103,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     TweetFavoritersResponseData:
       properties:
@@ -119,7 +119,7 @@ components:
         errors:
           type: array
           items:
-            $ref: "./../response/error.yaml#/components/schemas/Error"
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     TweetRetweetersResponseData:
       properties:
