@@ -667,7 +667,7 @@ components:
           type: string
         visualStyle:
           type: string
-          enum: [Default]
+          enum: [Default, Tentative]
         iconType:
           type: string
           enum: [BirdwatchV1Icon]
