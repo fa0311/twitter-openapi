@@ -146,7 +146,6 @@ components:
       required:
         - "description"
         - "verified_since_msec"
-        - "override_verified_year"
       properties:
         description:
           $ref: "#/components/schemas/UserVerificationInfoReasonDescription"
