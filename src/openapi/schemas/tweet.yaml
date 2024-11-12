@@ -649,11 +649,7 @@ components:
     BirdwatchPivot:
       required:
         - "destinationUrl"
-        - "footer"
-        - "note"
-        - "subtitle"
         - "title"
-        - "shorttitle"
         - "iconType"
       properties:
         destinationUrl:
