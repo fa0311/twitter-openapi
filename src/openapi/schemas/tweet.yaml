@@ -488,10 +488,10 @@ components:
           $ref: "#/components/schemas/CommunityJoinRequestsResult"
         join_policy:
           type: string
-          enum: [Open]
+          enum: [Open, RestrictedJoinRequestsRequireModeratorApproval]
         invites_policy:
           type: string
-          enum: [MemberInvitesAllowed]
+          enum: [MemberInvitesAllowed, ModeratorInvitesAllowed]
         is_pinned:
           type: boolean
         members_facepile_results:

@@ -27,6 +27,7 @@ components:
           Community,
           CommunityDeleteActionUnavailable,
           CommunityJoinAction,
+          CommunityJoinActionUnavailable,
           CommunityLeaveActionUnavailable,
           CommunityTweetPinActionUnavailable,
           CommunityTweetUnpinActionUnavailable,
