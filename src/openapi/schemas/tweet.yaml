@@ -426,7 +426,7 @@ components:
           $ref: "#/components/schemas/Community"
         role:
           type: string
-          enum: [Member, Moderator]
+          enum: [Member, Moderator, Admin]
         user_results:
           $ref: "user.yaml#/components/schemas/UserResults"
 
@@ -964,6 +964,7 @@ components:
             - "stale_tweet"
             - "community_tweet_non_member_public_community"
             - "community_tweet_non_member_closed_community"
+            - "blocked_viewer"
         place:
           additionalProperties: true # todo
 
