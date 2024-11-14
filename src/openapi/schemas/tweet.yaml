@@ -543,7 +543,7 @@ components:
         delete_action_result:
           $ref: "#/components/schemas/CommunityDeleteActionResult"
         join_action_result:
-          $ref: "#/components/schemas/CommunityJoinActionResult"
+          $ref: "#/components/schemas/CommunityJoinActionUnion"
         leave_action_result:
           $ref: "#/components/schemas/CommunityLeaveActionResult"
         pin_action_result:
@@ -562,12 +562,36 @@ components:
           type: string
           enum: [Unavailable]
 
+    CommunityJoinActionUnion:
+      oneOf:
+        - $ref: "#/components/schemas/CommunityJoinActionResult"
+        - $ref: "#/components/schemas/CommunityJoinActionUnavailable"
+      discriminator:
+        propertyName: __typename
+        mapping: # deprecated
+          CommunityJoinAction: "#/components/schemas/CommunityJoinActionResult"
+          CommunityJoinActionUnavailable: "#/components/schemas/CommunityJoinActionUnavailable"
+
     CommunityJoinActionResult:
       required:
         - "__typename"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityJoinAction
+
+    CommunityJoinActionUnavailable:
+      required:
+        - "__typename"
+        - "reason"
+        - "message"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityJoinActionUnavailable
+        reason:
+          type: string
+          enum: [ViewerRequestRequired]
+        message:
+          type: string
 
     CommunityLeaveActionResult:
       required:

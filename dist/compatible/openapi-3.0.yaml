@@ -152,6 +152,7 @@ components:
           enum:
           - Member
           - Moderator
+          - Admin
           type: string
         user_results:
           $ref: '#/components/schemas/UserResults'
@@ -211,14 +212,11 @@ components:
         visualStyle:
           enum:
           - Default
+          - Tentative
           type: string
       required:
       - destinationUrl
-      - footer
-      - note
-      - subtitle
       - title
-      - shorttitle
       - iconType
     BirdwatchPivotCallToAction:
       properties:
@@ -316,7 +314,7 @@ components:
         delete_action_result:
           $ref: '#/components/schemas/CommunityDeleteActionResult'
         join_action_result:
-          $ref: '#/components/schemas/CommunityJoinActionResult'
+          $ref: '#/components/schemas/CommunityJoinActionUnion'
         leave_action_result:
           $ref: '#/components/schemas/CommunityLeaveActionResult'
         pin_action_result:
@@ -349,6 +347,7 @@ components:
         invites_policy:
           enum:
           - MemberInvitesAllowed
+          - ModeratorInvitesAllowed
           type: string
         invites_result:
           $ref: '#/components/schemas/CommunityInvitesResult'
@@ -357,6 +356,7 @@ components:
         join_policy:
           enum:
           - Open
+          - RestrictedJoinRequestsRequireModeratorApproval
           type: string
         join_requests_result:
           $ref: '#/components/schemas/CommunityJoinRequestsResult'
@@ -444,6 +444,29 @@ components:
           $ref: '#/components/schemas/TypeName'
       required:
       - __typename
+    CommunityJoinActionUnavailable:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
+        reason:
+          enum:
+          - ViewerRequestRequired
+          type: string
+      required:
+      - __typename
+      - reason
+      - message
+    CommunityJoinActionUnion:
+      discriminator:
+        mapping:
+          CommunityJoinAction: '#/components/schemas/CommunityJoinActionResult'
+          CommunityJoinActionUnavailable: '#/components/schemas/CommunityJoinActionUnavailable'
+        propertyName: __typename
+      oneOf:
+      - $ref: '#/components/schemas/CommunityJoinActionResult'
+      - $ref: '#/components/schemas/CommunityJoinActionUnavailable'
     CommunityJoinRequestsResult:
       properties:
         __typename:
@@ -2398,6 +2421,7 @@ components:
           - stale_tweet
           - community_tweet_non_member_public_community
           - community_tweet_non_member_closed_community
+          - blocked_viewer
           type: string
         place:
           additionalProperties: true
@@ -2575,6 +2599,7 @@ components:
       - Community
       - CommunityDeleteActionUnavailable
       - CommunityJoinAction
+      - CommunityJoinActionUnavailable
       - CommunityLeaveActionUnavailable
       - CommunityTweetPinActionUnavailable
       - CommunityTweetUnpinActionUnavailable
@@ -3112,7 +3137,6 @@ components:
       required:
       - description
       - verified_since_msec
-      - override_verified_year
     UserVerificationInfoReasonDescription:
       properties:
         entities:
