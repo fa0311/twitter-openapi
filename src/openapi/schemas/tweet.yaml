@@ -426,7 +426,7 @@ components:
           $ref: "#/components/schemas/Community"
         role:
           type: string
-          enum: [Member, Moderator]
+          enum: [Member, Moderator, Admin]
         user_results:
           $ref: "user.yaml#/components/schemas/UserResults"
 
@@ -488,10 +488,10 @@ components:
           $ref: "#/components/schemas/CommunityJoinRequestsResult"
         join_policy:
           type: string
-          enum: [Open]
+          enum: [Open, RestrictedJoinRequestsRequireModeratorApproval]
         invites_policy:
           type: string
-          enum: [MemberInvitesAllowed]
+          enum: [MemberInvitesAllowed, ModeratorInvitesAllowed]
         is_pinned:
           type: boolean
         members_facepile_results:
@@ -649,11 +649,7 @@ components:
     BirdwatchPivot:
       required:
         - "destinationUrl"
-        - "footer"
-        - "note"
-        - "subtitle"
         - "title"
-        - "shorttitle"
         - "iconType"
       properties:
         destinationUrl:
@@ -671,7 +667,7 @@ components:
           type: string
         visualStyle:
           type: string
-          enum: [Default]
+          enum: [Default, Tentative]
         iconType:
           type: string
           enum: [BirdwatchV1Icon]
@@ -968,6 +964,7 @@ components:
             - "stale_tweet"
             - "community_tweet_non_member_public_community"
             - "community_tweet_non_member_closed_community"
+            - "blocked_viewer"
         place:
           additionalProperties: true # todo
 
