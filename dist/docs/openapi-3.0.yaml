@@ -314,7 +314,7 @@ components:
         delete_action_result:
           $ref: '#/components/schemas/CommunityDeleteActionResult'
         join_action_result:
-          $ref: '#/components/schemas/CommunityJoinActionUnion'
+          $ref: '#/components/schemas/CommunityJoinActionResultUnion'
         leave_action_result:
           $ref: '#/components/schemas/CommunityLeaveActionResult'
         pin_action_result:
@@ -438,12 +438,21 @@ components:
       - __typename
       - reason
       - message
-    CommunityJoinActionResult:
+    CommunityJoinAction:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
       required:
       - __typename
+    CommunityJoinActionResultUnion:
+      discriminator:
+        mapping:
+          CommunityJoinAction: '#/components/schemas/CommunityJoinAction'
+          CommunityJoinActionUnavailable: '#/components/schemas/CommunityJoinActionUnavailable'
+        propertyName: __typename
+      oneOf:
+      - $ref: '#/components/schemas/CommunityJoinAction'
+      - $ref: '#/components/schemas/CommunityJoinActionUnavailable'
     CommunityJoinActionUnavailable:
       properties:
         __typename:
@@ -458,15 +467,6 @@ components:
       - __typename
       - reason
       - message
-    CommunityJoinActionUnion:
-      discriminator:
-        mapping:
-          CommunityJoinAction: '#/components/schemas/CommunityJoinActionResult'
-          CommunityJoinActionUnavailable: '#/components/schemas/CommunityJoinActionUnavailable'
-        propertyName: __typename
-      oneOf:
-      - $ref: '#/components/schemas/CommunityJoinActionResult'
-      - $ref: '#/components/schemas/CommunityJoinActionUnavailable'
     CommunityJoinRequestsResult:
       properties:
         __typename:
