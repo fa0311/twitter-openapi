@@ -2934,7 +2934,6 @@ components:
       required:
       - day
       - month
-      - year
       - visibility
       - year_visibility
     UserMention:
