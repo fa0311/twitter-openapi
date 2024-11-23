@@ -828,9 +828,8 @@ components:
         name:
           type: string
         path:
-          items:
-            type: string
-          type: array
+          items: {}
+          type: list
         retry_after:
           type: integer
         source:
@@ -2728,7 +2727,6 @@ components:
           $ref: '#/components/schemas/UserVerificationInfo'
       required:
       - __typename
-      - affiliates_highlighted_label
       - id
       - is_blue_verified
       - legacy
@@ -2936,7 +2934,6 @@ components:
       required:
       - day
       - month
-      - year
       - visibility
       - year_visibility
     UserMention:
@@ -3058,6 +3055,8 @@ components:
         is_enabled:
           type: boolean
         patreon_handle:
+          type: string
+        pay_pal_handle:
           type: string
         venmo_handle:
           type: string
