@@ -30,7 +30,6 @@ components:
     User:
       required:
         - "__typename"
-        - "affiliates_highlighted_label"
         - "id"
         - "is_blue_verified"
         - "legacy"
@@ -210,6 +209,8 @@ components:
           type: string # uri
         bandcamp_handle:
           type: string # uri
+        pay_pal_handle:
+          type: string
 
     UserLegacyExtendedProfile:
       properties:
