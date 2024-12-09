@@ -2066,6 +2066,13 @@ components:
       required:
       - trace_id
       type: object
+    TrendResults:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
     Tweet:
       properties:
         __typename:
@@ -2111,6 +2118,8 @@ components:
           type: string
         superFollowsReplyUserResult:
           $ref: '#/components/schemas/SuperFollowsReplyUserResult'
+        trend_results:
+          $ref: '#/components/schemas/TrendResults'
         unified_card:
           $ref: '#/components/schemas/UnifiedCard'
         unmention_data:
@@ -4949,8 +4958,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: riUYr3PwuHNe4tCmzjPNrg
-          example: riUYr3PwuHNe4tCmzjPNrg
+          default: SWISk9hiWaVt5zV3fqV_bw
+          example: SWISk9hiWaVt5zV3fqV_bw
           type: string
       - content:
           application/json:
@@ -5020,6 +5029,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -5037,6 +5054,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -5073,14 +5094,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -5143,8 +5167,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: OSXFkKmGvfw_6pGgGtkWFg
-          example: OSXFkKmGvfw_6pGgGtkWFg
+          default: rd0HT86NA6Agak-976_cvQ
+          example: rd0HT86NA6Agak-976_cvQ
           type: string
       - content:
           application/json:
@@ -5214,6 +5238,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -5231,6 +5263,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -5267,14 +5303,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -5337,8 +5376,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 52sUpz5G7XvESPWgKW9i9Q
-          example: 52sUpz5G7XvESPWgKW9i9Q
+          default: so8w-PY4tao-QRdxaY1bxw
+          example: so8w-PY4tao-QRdxaY1bxw
           type: string
       - content:
           application/json:
@@ -5408,6 +5447,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -5425,6 +5472,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -5461,14 +5512,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -5531,8 +5585,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 7oQrdmth4zE3EtD42ZxgOA
-          example: 7oQrdmth4zE3EtD42ZxgOA
+          default: diPomBD-OlP2YJ8gxI02Ig
+          example: diPomBD-OlP2YJ8gxI02Ig
           type: string
       - content:
           application/json:
@@ -5602,6 +5656,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -5619,6 +5681,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -5655,14 +5721,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -5725,8 +5794,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HyuV8ml52TYmyUjyrDq1CQ
-          example: HyuV8ml52TYmyUjyrDq1CQ
+          default: UfVanvi6BR1qWBYfN-VXIw
+          example: UfVanvi6BR1qWBYfN-VXIw
           type: string
       - content:
           application/json:
@@ -5808,6 +5877,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -5825,6 +5902,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -5861,14 +5942,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -5931,8 +6015,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: E6AtJXVPtK7nIHAntKc5fA
-          example: E6AtJXVPtK7nIHAntKc5fA
+          default: s6ERr8UxkyzBx5YundNsXw
+          example: s6ERr8UxkyzBx5YundNsXw
           type: string
       - content:
           application/json:
@@ -6019,6 +6103,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -6036,6 +6128,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -6072,14 +6168,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -6142,8 +6241,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: px6_YxfWkXo0odY84iqqmw
-          example: px6_YxfWkXo0odY84iqqmw
+          default: xs7VjB9OdKI4xQxOXUptpg
+          example: xs7VjB9OdKI4xQxOXUptpg
           type: string
       - content:
           application/json:
@@ -6233,6 +6332,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -6250,6 +6357,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -6286,14 +6397,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -6370,8 +6484,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: f-Lsj0rHCztXcgdo585UUw
-          example: f-Lsj0rHCztXcgdo585UUw
+          default: f-F9zCUgaJDQ9ubKsuntiw
+          example: f-F9zCUgaJDQ9ubKsuntiw
           type: string
       - content:
           application/json:
@@ -6436,6 +6550,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -6453,6 +6575,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -6489,14 +6615,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -6625,8 +6754,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: rPcOnVhyaTBQrVgPuY7x7A
-          example: rPcOnVhyaTBQrVgPuY7x7A
+          default: 3MyyRvMN07laZ4oN3VTrbg
+          example: 3MyyRvMN07laZ4oN3VTrbg
           type: string
       - content:
           application/json:
@@ -6696,6 +6825,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -6713,6 +6850,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -6749,14 +6890,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -6819,8 +6963,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: MJpyQGqgklrVl_0X9gNy3A
-          example: MJpyQGqgklrVl_0X9gNy3A
+          default: fnkladLRj_7bB0PwaOtymA
+          example: fnkladLRj_7bB0PwaOtymA
           type: string
       - content:
           application/json:
@@ -6895,6 +7039,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -6912,6 +7064,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -6948,14 +7104,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -7018,8 +7177,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: nBS-WpgA6ZG0CyNHD517JQ
-          example: nBS-WpgA6ZG0CyNHD517JQ
+          default: 4RQRdTWjKwZIaGrTX_7wWA
+          example: 4RQRdTWjKwZIaGrTX_7wWA
           type: string
       - content:
           application/json:
@@ -7119,6 +7278,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -7136,6 +7303,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -7172,14 +7343,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -7690,8 +7864,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: BQ6xjFU6Mgm-WhEP3OiT9w
-          example: BQ6xjFU6Mgm-WhEP3OiT9w
+          default: QGIw94L0abhuohrr76cSbw
+          example: QGIw94L0abhuohrr76cSbw
           type: string
       - content:
           application/json:
@@ -7722,6 +7896,10 @@ paths:
                 highlights_tweets_tab_ui_enabled:
                   default: true
                   example: true
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
                   type: boolean
                 responsive_web_graphql_exclude_directive_enabled:
                   default: true
@@ -7761,6 +7939,7 @@ paths:
                   type: boolean
               required:
               - hidden_profile_subscriptions_enabled
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
@@ -7833,8 +8012,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: Z-XscDcWUuMO5HalgHf57A
-          example: Z-XscDcWUuMO5HalgHf57A
+          default: wFawO0U8x-oSt8NZbL-KTQ
+          example: wFawO0U8x-oSt8NZbL-KTQ
           type: string
       - content:
           application/json:
@@ -7909,6 +8088,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -7926,6 +8113,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -7962,14 +8153,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -7988,6 +8182,20 @@ paths:
               type: object
         in: query
         name: features
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                withArticlePlainText:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - withArticlePlainText
+              type: object
+        in: query
+        name: fieldToggles
         required: true
       responses:
         '200':
@@ -8032,8 +8240,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HaouMjBviBKKTYZGV_9qtg
-          example: HaouMjBviBKKTYZGV_9qtg
+          default: P8RdP7ecr2tsY6GwouAa_Q
+          example: P8RdP7ecr2tsY6GwouAa_Q
           type: string
       - content:
           application/json:
@@ -8123,6 +8331,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -8140,6 +8356,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -8176,14 +8396,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -8260,8 +8483,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: Tg82Ez_kxVaJf7OPbUdbCg
-          example: Tg82Ez_kxVaJf7OPbUdbCg
+          default: 1mDAyxlBlMp6uokkzihecQ
+          example: 1mDAyxlBlMp6uokkzihecQ
           type: string
       - content:
           application/json:
@@ -8346,6 +8569,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -8363,6 +8594,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -8399,14 +8634,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled
@@ -8483,8 +8721,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HmWGzuzXoI6uFqqX6QNhEg
-          example: HmWGzuzXoI6uFqqX6QNhEg
+          default: mJc6KjBpgpX0cEbWrs7hSw
+          example: mJc6KjBpgpX0cEbWrs7hSw
           type: string
       - content:
           application/json:
@@ -8569,6 +8807,14 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_edit_tweet_api_enabled:
                   default: true
                   example: true
@@ -8586,6 +8832,10 @@ paths:
                   example: false
                   type: boolean
                 responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
                   default: true
                   example: true
                   type: boolean
@@ -8622,14 +8872,17 @@ paths:
                   example: true
                   type: boolean
               required:
+              - profile_label_improvements_pcf_label_in_post_enabled
               - rweb_tipjar_consumption_enabled
               - responsive_web_graphql_exclude_directive_enabled
               - verified_phone_label_enabled
               - creator_subscriptions_tweet_preview_api_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
               - communities_web_enable_tweet_community_results_fetch
               - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
               - articles_preview_enabled
               - responsive_web_edit_tweet_api_enabled
               - graphql_is_translatable_rweb_tweet_is_translatable_enabled

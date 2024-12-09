@@ -201,6 +201,8 @@ components:
           $ref: "#/components/schemas/Article"
         community_results:
           $ref: "#/components/schemas/Community"
+        trend_results:
+          $ref: "#/components/schemas/TrendResults"
 
     TweetEditControl:
       properties:
@@ -1537,3 +1539,11 @@ components:
       properties:
         media_key:
           type: string
+
+    TrendResults:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
