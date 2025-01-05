@@ -21,6 +21,7 @@ components:
           TimelineMessagePrompt,
           TimelineCommunity,
           TweetUnavailable,
+          TweetPreviewDisplay,
           Tweet,
           User,
           UserUnavailable,
