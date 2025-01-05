@@ -91,6 +91,8 @@ components:
           type: boolean
         premium_gifting_eligible:
           type: boolean
+        has_hidden_subscriptions_on_profile:
+          type: boolean
 
     UserProfessional:
       required:

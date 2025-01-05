@@ -13,6 +13,7 @@ components:
         - $ref: "#/components/schemas/TweetWithVisibilityResults"
         - $ref: "#/components/schemas/TweetTombstone"
         - $ref: "#/components/schemas/TweetUnavailable"
+        - $ref: "#/components/schemas/TweetPreviewDisplay"
       discriminator:
         propertyName: __typename
         mapping": # deprecated
@@ -20,6 +21,7 @@ components:
           TweetWithVisibilityResults: "#/components/schemas/TweetWithVisibilityResults"
           TweetTombstone: "#/components/schemas/TweetTombstone"
           TweetUnavailable: "#/components/schemas/TweetUnavailable"
+          TweetPreviewDisplay: "#/components/schemas/TweetPreviewDisplay"
 
     TweetWithVisibilityResults:
       required:
@@ -203,6 +205,12 @@ components:
           $ref: "#/components/schemas/Community"
         trend_results:
           $ref: "#/components/schemas/TrendResults"
+        grok_analysis_followups:
+          type: array
+          items:
+            type: string
+        grok_share_attachment:
+          $ref: "#/components/schemas/GrokShareAttachment"
 
     TweetEditControl:
       properties:
@@ -443,21 +451,21 @@ components:
       required:
         - "__typename"
         - "id_str"
-        - "name"
-        - "description"
-        - "search_tags"
-        - "actions"
-        - "admin_results"
-        - "creator_results"
-        - "invites_result"
-        - "join_policy"
-        - "invites_policy"
-        - "is_pinned"
-        - "members_facepile_results"
-        - "moderator_count"
-        - "member_count"
-        - "role"
-        - "rules"
+        # - "name"
+        # - "description"
+        # - "search_tags"
+        # - "actions"
+        # - "admin_results"
+        # - "creator_results"
+        # - "invites_result"
+        # - "join_policy"
+        # - "invites_policy"
+        # - "is_pinned"
+        # - "members_facepile_results"
+        # - "moderator_count"
+        # - "member_count"
+        # - "role"
+        # - "rules"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # Community
@@ -1547,3 +1555,142 @@ components:
         rest_id:
           type: string
           pattern: "^[0-9]+$"
+
+    GrokShareAttachment:
+      required:
+        - "items"
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/GrokShareAttachmentItem"
+
+    GrokShareAttachmentItem:
+      required:
+        - "media_urls"
+        - message
+      properties:
+        media_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        message:
+          type: string
+
+    TweetPreviewDisplay:
+      required:
+        - "__typename"
+        - "tweet"
+        - "limited_action_results"
+        - "cta"
+
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TweetPreviewDisplay
+        tweet:
+          $ref: "#/components/schemas/TweetPreviewDisplayTweet"
+        limited_action_results:
+          $ref: "#/components/schemas/TweetLimitedActionResults"
+        cta:
+          $ref: "#/components/schemas/TweetPreviewDisplayCta"
+
+    TweetPreviewDisplayTweet:
+      required:
+        - "rest_id"
+        - "text"
+        - "core"
+        - "entities"
+        - "reply_count"
+        - "retweet_count"
+        - "favorite_count"
+        - "bookmark_count"
+        - "quote_count"
+        - "view_count"
+        - "created_at"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        text:
+          type: string
+        core:
+          $ref: "./user.yaml#/components/schemas/UserResultCore"
+        entities:
+          type: object # {}
+          # $ref: "#/components/schemas/Entities"
+        reply_count:
+          type: integer
+        retweet_count:
+          type: integer
+        favorite_count:
+          type: integer
+        bookmark_count:
+          type: integer
+        quote_count:
+          type: integer
+        view_count:
+          $ref: "#/components/schemas/TweetPreviewDisplayTweetViewCount"
+        created_at:
+          $ref: "./general.yaml#/components/schemas/TwitterTimeFormat"
+
+    TweetPreviewDisplayTweetViewCount:
+      required:
+        - "count"
+      properties:
+        count:
+          type: string
+          pattern: "^[0-9]+$"
+
+    TweetLimitedActionResults:
+      required:
+        - "limited_actions"
+      properties:
+        limited_actions:
+          type: array
+          items:
+            $ref: "#/components/schemas/LimitedActionResultsData"
+
+    LimitedActionResultsData:
+      required:
+        - "action"
+      properties:
+        action:
+          type: string
+          enum:
+            - "Reply"
+            - "Retweet"
+            - "QuoteTweet"
+            - "Like"
+            - "React"
+            - "AddToBookmarks"
+            - "AddToMoment"
+            - "PinToProfile"
+            - "ViewHiddenReplies"
+            - "VoteOnPoll"
+            - "ShowRetweetActionMenu"
+            - "ReplyDownVote"
+            - "SendViaDm"
+            - "ViewPostEngagements"
+
+    TweetPreviewDisplayCta:
+      required:
+        - "title"
+        - "url"
+      properties:
+        title:
+          type: string
+        url:
+          $ref: "#/components/schemas/TweetPreviewDisplayCtaUrl"
+
+    TweetPreviewDisplayCtaUrl:
+      required:
+        - "url"
+        - "urlType"
+      properties:
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: ["DeepLink", "UrtEndpoint", "ExternalUrl"]
