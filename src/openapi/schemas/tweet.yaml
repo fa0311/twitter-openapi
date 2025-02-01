@@ -211,6 +211,8 @@ components:
             type: string
         grok_share_attachment:
           $ref: "#/components/schemas/GrokShareAttachment"
+        grok_analysis_button:
+          type: boolean
 
     TweetEditControl:
       properties:

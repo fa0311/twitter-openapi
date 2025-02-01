@@ -20,6 +20,7 @@ components:
           TimelinePrompt,
           TimelineMessagePrompt,
           TimelineCommunity,
+          TimelineTombstone,
           TweetUnavailable,
           TweetPreviewDisplay,
           Tweet,

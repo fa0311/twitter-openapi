@@ -71,8 +71,7 @@ components:
           type: object
           additionalProperties: true # todo
         clientEventInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ClientEventInfo"
         metadata:
           type: object
           additionalProperties: true # todo
@@ -150,6 +149,8 @@ components:
           type: array
           items:
             type: string
+        clientEventInfo:
+          $ref: "#/components/schemas/ClientEventInfo"
 
     # ================= ContentItem =================
 
@@ -161,6 +162,7 @@ components:
         - $ref: "#/components/schemas/TimelinePrompt"
         - $ref: "#/components/schemas/TimelineMessagePrompt"
         - $ref: "#/components/schemas/TimelineCommunity"
+        - $ref: "#/components/schemas/TimelineTombstone"
 
       discriminator:
         propertyName: __typename
@@ -171,6 +173,7 @@ components:
           TimelinePrompt: "#/components/schemas/TimelinePrompt"
           TimelineMessagePrompt: "#/components/schemas/TimelineMessagePrompt"
           TimelineCommunity: "#/components/schemas/TimelineCommunity"
+          TimelineTombstone: "#/components/schemas/TimelineTombstone"
 
     ContentItemType:
       type: string
@@ -182,6 +185,7 @@ components:
           TimelinePrompt,
           TimelineMessagePrompt,
           TimelineCommunity,
+          TimelineTombstone,
         ]
 
     TimelineTweet:
@@ -391,3 +395,58 @@ components:
         details:
           type: object
           additionalProperties: true # todo
+
+    TimelineTombstone:
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTombstone
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineTombstone
+        tombstoneDisplayType:
+          type: string
+          enum: [Inline]
+        tombstoneInfo:
+          $ref: "#/components/schemas/TombstoneInfo"
+
+    TombstoneInfo:
+      type: object
+      properties:
+        text:
+          type: string
+        richText:
+          $ref: "#/components/schemas/TombstoneRichText"
+
+    TombstoneRichText:
+      type: object
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TombstoneEntity"
+
+    TombstoneEntity:
+      type: object
+      properties:
+        fromIndex:
+          type: integer
+        toIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/TombstoneRef"
+
+    TombstoneRef:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [TimelineUrl]
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [ExternalUrl]
