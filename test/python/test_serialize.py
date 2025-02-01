@@ -200,7 +200,7 @@ if __name__ == "__main__":
     else:
         commands = ["python -m pip install tweepy_authlib", "python tools/login.py"]
         raise Exception(
-            f'cookie.json not found. Please run `{"; ".join(commands)}` first.'
+            f"cookie.json not found. Please run `{'; '.join(commands)}` first."
         )
 
     if isinstance(cookies, list):
@@ -386,6 +386,8 @@ if __name__ == "__main__":
         "1862405433639804958",
         "1869983867521904840",
         "1875050002046726519",
+        "1848219562136801480",
+        "1881993128288399684",
     ]
     for id in ids:
         try:

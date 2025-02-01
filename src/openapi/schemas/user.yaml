@@ -93,6 +93,9 @@ components:
           type: boolean
         has_hidden_subscriptions_on_profile:
           type: boolean
+        parody_commentary_fan_label:
+          type: string
+          enum: ["None", "Parody"]
 
     UserProfessional:
       required:
