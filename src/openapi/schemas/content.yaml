@@ -455,8 +455,6 @@ components:
           type: string
           enum: [ExternalUrl]
 
-    # {"itemType": "TimelineTrend", "__typename": "TimelineTrend", "social_context": {"type": "TimelineGeneralContext", "contextType": "Facepile", "text": "18 hours ago \\u00b7 Sports \\u00b7 64K posts", "contextImageUrls": ["https://pbs.twimg.com/profile_images/1889603596309639168/KSBuQ9vL_normal.png", "https://pbs.twimg.com/profile_images/1638484441101221890/dp7HU1PB_normal.jpg", "https://pbs.twimg.com/profile_images/1605131756310614017/05qwHae-_normal.jpg"]}, "is_ai_trend": true, "name": "Manchester United Unveils Plans for \\u00a32bn Stadium with 100,000 Capacity", "trend_url": {"url": "twitter://trending/1899449402634424550", "urlType": "DeepLink"}, "trend_metadata": {"url": {"url": "twitter://trending/1899449402634424550", "urlType": "DeepLink"}}, "thumbnail_image": {"original_img_url": "https://pbs.twimg.com/media/Glv52LAXgAAzZcC.jpg", "original_img_width": 3072, "original_img_height": 4096}, "images": [{"url": "https://pbs.twimg.com/media/Glv52LAXgAAzZcC.jpg"}]}
-
     TimelineTrend:
       required:
         - "__typename"
