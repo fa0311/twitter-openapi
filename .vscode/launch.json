@@ -31,6 +31,15 @@
         "MULTI_THREAD": "True",
         "CUESOR_TEST_COUNT": "3"
       }
+    },
+    {
+      "name": "test-guest",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "test/python/test_serialize_guest.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "preLaunchTask": "build-task"
     }
   ]
 }

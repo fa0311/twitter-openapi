@@ -129,6 +129,8 @@ components:
           pattern: "^(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
         item:
           $ref: "#/components/schemas/ModuleEntry"
+        dispensable:
+          type: boolean
 
     ModuleEntry:
       required:
@@ -163,6 +165,7 @@ components:
         - $ref: "#/components/schemas/TimelineMessagePrompt"
         - $ref: "#/components/schemas/TimelineCommunity"
         - $ref: "#/components/schemas/TimelineTombstone"
+        - $ref: "#/components/schemas/TimelineTrend"
 
       discriminator:
         propertyName: __typename
@@ -174,6 +177,7 @@ components:
           TimelineMessagePrompt: "#/components/schemas/TimelineMessagePrompt"
           TimelineCommunity: "#/components/schemas/TimelineCommunity"
           TimelineTombstone: "#/components/schemas/TimelineTombstone"
+          TimelineTrend: "#/components/schemas/TimelineTrend"
 
     ContentItemType:
       type: string
@@ -450,3 +454,60 @@ components:
         urlType:
           type: string
           enum: [ExternalUrl]
+
+    # {"itemType": "TimelineTrend", "__typename": "TimelineTrend", "social_context": {"type": "TimelineGeneralContext", "contextType": "Facepile", "text": "18 hours ago \\u00b7 Sports \\u00b7 64K posts", "contextImageUrls": ["https://pbs.twimg.com/profile_images/1889603596309639168/KSBuQ9vL_normal.png", "https://pbs.twimg.com/profile_images/1638484441101221890/dp7HU1PB_normal.jpg", "https://pbs.twimg.com/profile_images/1605131756310614017/05qwHae-_normal.jpg"]}, "is_ai_trend": true, "name": "Manchester United Unveils Plans for \\u00a32bn Stadium with 100,000 Capacity", "trend_url": {"url": "twitter://trending/1899449402634424550", "urlType": "DeepLink"}, "trend_metadata": {"url": {"url": "twitter://trending/1899449402634424550", "urlType": "DeepLink"}}, "thumbnail_image": {"original_img_url": "https://pbs.twimg.com/media/Glv52LAXgAAzZcC.jpg", "original_img_width": 3072, "original_img_height": 4096}, "images": [{"url": "https://pbs.twimg.com/media/Glv52LAXgAAzZcC.jpg"}]}
+
+    TimelineTrend:
+      required:
+        - "__typename"
+        - "itemType"
+        - "name"
+        - "trend_url"
+        - "trend_metadata"
+        - "thumbnail_image"
+        - "images"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTrend
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineTrend
+        social_context:
+          $ref: "#/components/schemas/SocialContextUnion"
+        is_ai_trend:
+          type: boolean
+        name:
+          type: string
+        trend_url:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
+        trend_metadata:
+          $ref: "#/components/schemas/TrendMetadata"
+        thumbnail_image:
+          $ref: "#/components/schemas/ThumbnailImage"
+        images:
+          type: array
+          items:
+            $ref: "#/components/schemas/TrendImage"
+
+    TrendMetadata:
+      type: object
+      properties:
+        url:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
+
+    ThumbnailImage:
+      type: object
+      properties:
+        original_img_url:
+          type: string
+          format: uri
+        original_img_width:
+          type: integer
+        original_img_height:
+          type: integer
+
+    TrendImage:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
