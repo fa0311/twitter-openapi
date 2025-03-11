@@ -2841,6 +2841,7 @@ components:
       - TimelineMessagePrompt
       - TimelineCommunity
       - TimelineTombstone
+      - TimelineTrend
       - TweetUnavailable
       - TweetPreviewDisplay
       - Tweet
