@@ -18,19 +18,19 @@ paths:
       tags:
         - "tweet"
 
-  # /graphql/{pathQueryId}/TweetResultByRestId:
-  #   get:
-  #     operationId: getTweetResultByRestId
-  #     description: get TweetResultByRestId
-  #     responses:
-  #       "200":
-  #         description: Successful operation
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/TweetResultByRestIdResponse"
-  #     # tags:
-  #     #   - "tweet"
+  /graphql/{pathQueryId}/TweetResultByRestId:
+    get:
+      operationId: getTweetResultByRestId
+      description: get TweetResultByRestId
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TweetResultByRestIdResponse"
+      # tags:
+      #   - "tweet"
 
   /graphql/{pathQueryId}/Favoriters:
     get:
