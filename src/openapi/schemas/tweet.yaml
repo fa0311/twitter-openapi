@@ -1549,6 +1549,18 @@ components:
       properties:
         media_key:
           type: string
+        grok_image_annotation:
+          $ref: "#/components/schemas/GrokImageAnnotation"
+
+    GrokImageAnnotation:
+      required:
+        - "prompt"
+        - "upsampled_prompt"
+      properties:
+        prompt:
+          type: string
+        upsampled_prompt:
+          type: string
 
     TrendResults:
       required:

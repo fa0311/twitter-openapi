@@ -95,7 +95,7 @@ components:
           type: boolean
         parody_commentary_fan_label:
           type: string
-          enum: ["None", "Parody"]
+          enum: ["None", "Parody", "Commentary"]
 
     UserProfessional:
       required:
