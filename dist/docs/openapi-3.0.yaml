@@ -3349,12 +3349,11 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
-        timeline:
-          $ref: '#/components/schemas/TimelineV2'
         timeline_v2:
           $ref: '#/components/schemas/TimelineV2'
       required:
       - __typename
+      - timeline_v2
     UserTweetsUser:
       properties:
         result:
@@ -4352,6 +4351,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/ztCdjqsvvdL0dE8R5ME0hQ/Bookmarks
+              example: /i/api/graphql/ztCdjqsvvdL0dE8R5ME0hQ/Bookmarks
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 count:
                   default: 20
@@ -4588,6 +4605,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/aoDbu3RHznuiSkQ9aNM67Q/CreateBookmark
+                  example: /i/api/graphql/aoDbu3RHznuiSkQ9aNM67Q/CreateBookmark
+                  type: string
                 queryId:
                   default: aoDbu3RHznuiSkQ9aNM67Q
                   example: aoDbu3RHznuiSkQ9aNM67Q
@@ -4602,6 +4627,8 @@ paths:
                   - tweet_id
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -4657,6 +4684,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet
+                  example: /i/api/graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet
+                  type: string
                 queryId:
                   default: ojPdsZsimiJrUGLR1sjUtA
                   example: ojPdsZsimiJrUGLR1sjUtA
@@ -4676,6 +4711,8 @@ paths:
                   - dark_request
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -4731,6 +4768,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/xT36w0XM3A8jDynpkram2A/CreateTweet
+                  example: /i/api/graphql/xT36w0XM3A8jDynpkram2A/CreateTweet
+                  type: string
                 features:
                   properties:
                     articles_preview_enabled:
@@ -4927,6 +4972,8 @@ paths:
                   - dark_request
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
               - features
@@ -4983,6 +5030,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/Wlmlj2-xzyS1GN3a6cj-mQ/DeleteBookmark
+                  example: /i/api/graphql/Wlmlj2-xzyS1GN3a6cj-mQ/DeleteBookmark
+                  type: string
                 queryId:
                   default: Wlmlj2-xzyS1GN3a6cj-mQ
                   example: Wlmlj2-xzyS1GN3a6cj-mQ
@@ -4997,6 +5052,8 @@ paths:
                   - tweet_id
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -5052,6 +5109,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet
+                  example: /i/api/graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet
+                  type: string
                 queryId:
                   default: iQtK4dl5hBmXewYZuEOKVw
                   example: iQtK4dl5hBmXewYZuEOKVw
@@ -5071,6 +5136,8 @@ paths:
                   - dark_request
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -5126,6 +5193,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet
+                  example: /i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet
+                  type: string
                 queryId:
                   default: VaenaVgh5q5ih7kvyVjgtg
                   example: VaenaVgh5q5ih7kvyVjgtg
@@ -5145,6 +5220,8 @@ paths:
                   - dark_request
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -5200,6 +5277,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet
+                  example: /i/api/graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet
+                  type: string
                 queryId:
                   default: lI07N6Otwv1PhnEgXILM7A
                   example: lI07N6Otwv1PhnEgXILM7A
@@ -5214,6 +5299,8 @@ paths:
                   - tweet_id
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -5264,6 +5351,24 @@ paths:
           default: q-g2cgR9LuLM6rvXQ-oxFw
           example: q-g2cgR9LuLM6rvXQ-oxFw
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/q-g2cgR9LuLM6rvXQ-oxFw/Favoriters
+              example: /i/api/graphql/q-g2cgR9LuLM6rvXQ-oxFw/Favoriters
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -5506,6 +5611,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/jqZ0_HJBA6mnu18iTZYm9w/Followers
+              example: /i/api/graphql/jqZ0_HJBA6mnu18iTZYm9w/Followers
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 count:
                   default: 20
@@ -5742,6 +5865,24 @@ paths:
           default: Ba2FhuJKy1jPCGz80ouhzg
           example: Ba2FhuJKy1jPCGz80ouhzg
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/Ba2FhuJKy1jPCGz80ouhzg/FollowersYouKnow
+              example: /i/api/graphql/Ba2FhuJKy1jPCGz80ouhzg/FollowersYouKnow
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -5984,6 +6125,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/4QHbs4wmzgtU91f-t96_Eg/Following
+              example: /i/api/graphql/4QHbs4wmzgtU91f-t96_Eg/Following
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 count:
                   default: 20
@@ -6220,6 +6379,24 @@ paths:
           default: nMyTQqsJiUGBKLGNSQamAA
           example: nMyTQqsJiUGBKLGNSQamAA
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/nMyTQqsJiUGBKLGNSQamAA/HomeLatestTimeline
+              example: /i/api/graphql/nMyTQqsJiUGBKLGNSQamAA/HomeLatestTimeline
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -6471,6 +6648,24 @@ paths:
           default: ci_OQZ2k0rG0Ax_lXRiWVA
           example: ci_OQZ2k0rG0Ax_lXRiWVA
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/ci_OQZ2k0rG0Ax_lXRiWVA/HomeTimeline
+              example: /i/api/graphql/ci_OQZ2k0rG0Ax_lXRiWVA/HomeTimeline
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -6727,6 +6922,24 @@ paths:
           default: uxjTlmrTI61zreSIV1urbw
           example: uxjTlmrTI61zreSIV1urbw
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/uxjTlmrTI61zreSIV1urbw/Likes
+              example: /i/api/graphql/uxjTlmrTI61zreSIV1urbw/Likes
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -6998,6 +7211,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/LSefrrxhpeX8HITbKfWz9g/ListLatestTweetsTimeline
+              example: /i/api/graphql/LSefrrxhpeX8HITbKfWz9g/ListLatestTweetsTimeline
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 count:
                   default: 20
@@ -7232,6 +7463,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/-0XdHI-mrHWBQd8-oLo1aA/ProfileSpotlightsQuery
+              example: /i/api/graphql/-0XdHI-mrHWBQd8-oLo1aA/ProfileSpotlightsQuery
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 screen_name:
                   default: elonmusk
@@ -7295,6 +7544,24 @@ paths:
           default: jyA1POBpkjVzqwOD7_6Jtw
           example: jyA1POBpkjVzqwOD7_6Jtw
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/jyA1POBpkjVzqwOD7_6Jtw/Retweeters
+              example: /i/api/graphql/jyA1POBpkjVzqwOD7_6Jtw/Retweeters
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -7534,6 +7801,24 @@ paths:
           default: fL2MBiqXPk5pSrOS5ACLdA
           example: fL2MBiqXPk5pSrOS5ACLdA
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/fL2MBiqXPk5pSrOS5ACLdA/SearchTimeline
+              example: /i/api/graphql/fL2MBiqXPk5pSrOS5ACLdA/SearchTimeline
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -7778,6 +8063,24 @@ paths:
           default: b9Yw90FMr_zUb8DvA8r2ug
           example: b9Yw90FMr_zUb8DvA8r2ug
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/b9Yw90FMr_zUb8DvA8r2ug/TweetDetail
+              example: /i/api/graphql/b9Yw90FMr_zUb8DvA8r2ug/TweetDetail
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -8079,6 +8382,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/7xflPyRiUxGVbJd4uWmbfg/TweetResultByRestId
+              example: /i/api/graphql/7xflPyRiUxGVbJd4uWmbfg/TweetResultByRestId
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 includePromotedContent:
                   default: false
@@ -8307,6 +8628,14 @@ paths:
           application/json:
             schema:
               properties:
+                '@method':
+                  default: POST
+                  example: POST
+                  type: string
+                '@path':
+                  default: /i/api/graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet
+                  example: /i/api/graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet
+                  type: string
                 queryId:
                   default: ZYKSe-w7KEslx3JhSIk5LA
                   example: ZYKSe-w7KEslx3JhSIk5LA
@@ -8326,6 +8655,8 @@ paths:
                   - dark_request
                   type: object
               required:
+              - '@path'
+              - '@method'
               - queryId
               - variables
         description: body
@@ -8376,6 +8707,24 @@ paths:
           default: tD8zKvQzwY3kdx5yz6YmOw
           example: tD8zKvQzwY3kdx5yz6YmOw
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/tD8zKvQzwY3kdx5yz6YmOw/UserByRestId
+              example: /i/api/graphql/tD8zKvQzwY3kdx5yz6YmOw/UserByRestId
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -8495,6 +8844,24 @@ paths:
           default: 32pL5BWe9WKeSK1MoPvFQQ
           example: 32pL5BWe9WKeSK1MoPvFQQ
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/32pL5BWe9WKeSK1MoPvFQQ/UserByScreenName
+              example: /i/api/graphql/32pL5BWe9WKeSK1MoPvFQQ/UserByScreenName
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -8643,6 +9010,24 @@ paths:
           default: y0aDPjeWFCpvY3GOmGXKhQ
           example: y0aDPjeWFCpvY3GOmGXKhQ
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/y0aDPjeWFCpvY3GOmGXKhQ/UserHighlightsTweets
+              example: /i/api/graphql/y0aDPjeWFCpvY3GOmGXKhQ/UserHighlightsTweets
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -8901,6 +9286,24 @@ paths:
           default: 8B9DqlaGvYyOvTCzzZWtNA
           example: 8B9DqlaGvYyOvTCzzZWtNA
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/8B9DqlaGvYyOvTCzzZWtNA/UserMedia
+              example: /i/api/graphql/8B9DqlaGvYyOvTCzzZWtNA/UserMedia
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
@@ -9172,6 +9575,24 @@ paths:
       - content:
           application/json:
             schema:
+              default: /i/api/graphql/M3Hpkrb8pjWkEuGdLeXMOA/UserTweets
+              example: /i/api/graphql/M3Hpkrb8pjWkEuGdLeXMOA/UserTweets
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
               properties:
                 count:
                   default: 40
@@ -9420,6 +9841,287 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/UserTweetsAndReplies:
+    get:
+      description: get user replies tweets
+      operationId: getUserTweetsAndReplies
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: pz0IHaV_t7T4HJavqqqcIA
+          example: pz0IHaV_t7T4HJavqqqcIA
+          type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/pz0IHaV_t7T4HJavqqqcIA/UserTweetsAndReplies
+              example: /i/api/graphql/pz0IHaV_t7T4HJavqqqcIA/UserTweetsAndReplies
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 40
+                  example: 40
+                  type: integer
+                includePromotedContent:
+                  default: true
+                  example: true
+                  type: boolean
+                userId:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+                withCommunity:
+                  default: true
+                  example: true
+                  type: boolean
+                withVoice:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - userId
+              - count
+              - includePromotedContent
+              - withCommunity
+              - withVoice
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                articles_preview_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                c9s_tweet_anatomy_moderator_badge_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                communities_web_enable_tweet_community_results_fetch:
+                  default: true
+                  example: true
+                  type: boolean
+                creator_subscriptions_quote_tweet_preview_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_exclude_directive_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analysis_button_from_backend:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_grok_analyze_post_followups_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_image_annotation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_share_attachment_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_show_grok_translated_post:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_jetfuel_frame:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_tipjar_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_video_screen_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - rweb_video_screen_enabled
+              - profile_label_improvements_pcf_label_in_post_enabled
+              - rweb_tipjar_consumption_enabled
+              - responsive_web_graphql_exclude_directive_enabled
+              - verified_phone_label_enabled
+              - creator_subscriptions_tweet_preview_api_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
+              - communities_web_enable_tweet_community_results_fetch
+              - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
+              - responsive_web_grok_analyze_post_followups_enabled
+              - responsive_web_jetfuel_frame
+              - responsive_web_grok_share_attachment_enabled
+              - articles_preview_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - responsive_web_grok_show_grok_translated_post
+              - responsive_web_grok_analysis_button_from_backend
+              - creator_subscriptions_quote_tweet_preview_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_grok_image_annotation_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                withArticlePlainText:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - withArticlePlainText
+              type: object
+        in: query
+        name: fieldToggles
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
   /graphql/{pathQueryId}/UsersByRestIds:
     get:
       description: get users by rest ids
@@ -9432,6 +10134,24 @@ paths:
           default: PyRggX3LQweP9nSF6PHliA
           example: PyRggX3LQweP9nSF6PHliA
           type: string
+      - content:
+          application/json:
+            schema:
+              default: /i/api/graphql/PyRggX3LQweP9nSF6PHliA/UsersByRestIds
+              example: /i/api/graphql/PyRggX3LQweP9nSF6PHliA/UsersByRestIds
+              type: string
+        in: query
+        name: '@path'
+        required: true
+      - content:
+          application/json:
+            schema:
+              default: GET
+              example: GET
+              type: string
+        in: query
+        name: '@method'
+        required: true
       - content:
           application/json:
             schema:
