@@ -3,20 +3,25 @@ import re
 from urllib.parse import urlencode, urlparse
 
 import openapi_client as pt
+import requests
 import urllib3
+from x_client_transaction import ClientTransaction
+from x_client_transaction.utils import handle_x_migration
 
 
 def get_kwargs(key, additional):
-    kwargs = {"path_query_id": placeholder[key]["queryId"]}
+    kwargs = {"path_query_id": placeholder[key]["queryId"], "_headers": {}}
     if placeholder[key].get("variables") is not None:
         kwargs["variables"] = json.dumps(placeholder[key]["variables"] | additional)
     if placeholder[key].get("features") is not None:
         kwargs["features"] = json.dumps(placeholder[key]["features"])
     if placeholder[key].get("fieldToggles") is not None:
         kwargs["field_toggles"] = json.dumps(placeholder[key]["fieldToggles"])
+    if placeholder[key].get("@path") is not None:
+        kwargs["_headers"]["x-client-transaction-id"] = ct.generate_transaction_id(
+            method=placeholder[key]["@method"], path=placeholder[key]["@path"]
+        )
     return kwargs
-
-
 
 
 class SessionManager:
@@ -25,43 +30,50 @@ class SessionManager:
         self.http = urllib3.PoolManager()
         self.chorome_header = json.loads(self.http.request("GET", header).data)
 
-    
     def child(self):
-        return SessionManagerChild(self.http,self.chorome_header)
+        return SessionManagerChild(self.http, self.chorome_header)
+
 
 class SessionManagerChild:
     def __init__(self, http, chorome_header) -> None:
         self.http = http
         self.chorome_header = chorome_header
         self.session = {}
-        
+
     def cookie_normalize(self, cookie: list[str]) -> dict[str, str]:
-        value = {x.split("; ")[0].split("=")[0]: x.split("; ")[0].split("=")[1] for x in cookie}
+        value = {
+            x.split("; ")[0].split("=")[0]: x.split("; ")[0].split("=")[1]
+            for x in cookie
+        }
         return {key: value[key] for key in value if len(value[key]) > 0}
 
     def cookie_to_str(self, cookie: dict[str, str]) -> str:
         return "; ".join([f"{key}={value}" for key, value in cookie.items()])
-    
+
     def getHader(self, additionals={}) -> dict[str, str]:
         ignore = ["host", "connection"]
-        base = {key: value for key, value in self.chorome_header["chrome"].items() if key not in ignore}
+        base = {
+            key: value
+            for key, value in self.chorome_header["chrome"].items()
+            if key not in ignore
+        }
         return base | {"cookie": self.cookie_to_str(self.session)} | additionals
-    
+
     def update_normalize(self, cookie: list[str]):
         self.update(self.cookie_normalize(cookie))
-    
+
     def update(self, cookie: dict[str, str]):
         self.session.update(cookie)
-    
+
     def pop(self, key: str):
         self.session.pop(key)
-    
+
     def get(self, key: str):
         return self.session.get(key)
-    
+
     def to_str(self):
         return self.cookie_to_str(self.session)
-        
+
 
 def get_guest_token():
     twitter_url = "https://x.com/elonmusk"
@@ -69,9 +81,7 @@ def get_guest_token():
     chrome = SessionManager()
     x = chrome.child()
     twitter = chrome.child()
-    
 
-    
     def regex(str: str, **kwargs) -> str:
         return str.format(
             quote=r"[\'\"]",
@@ -79,21 +89,30 @@ def get_guest_token():
             dot=r"\.",
             any=r".*?",
             target=r"([\s\S]*?)",
-            **kwargs
+            **kwargs,
         )
-    
 
-    def redirect(method: str, url: str, body: str = None, headers: dict[str, str] = {}) -> urllib3.HTTPResponse:
+    def redirect(
+        method: str, url: str, body: str = None, headers: dict[str, str] = {}
+    ) -> urllib3.HTTPResponse:
         for _ in range(10):
             if urlparse(url).netloc == "x.com":
-                res = http.request(method, url, headers=x.getHader(headers), body=body, redirect=False)
+                res = http.request(
+                    method, url, headers=x.getHader(headers), body=body, redirect=False
+                )
                 x.update_normalize(res.headers._container["set-cookie"][1:])
             elif urlparse(url).netloc == "twitter.com":
-                res = http.request(method, url, headers=twitter.getHader(headers), body=body, redirect=False)
+                res = http.request(
+                    method,
+                    url,
+                    headers=twitter.getHader(headers),
+                    body=body,
+                    redirect=False,
+                )
                 twitter.update_normalize(res.headers._container["set-cookie"][1:])
             else:
                 raise Exception("Invalid domain")
-        
+
             method = "GET"
             body = None
             headers = {}
@@ -109,7 +128,7 @@ def get_guest_token():
                     url = f"{domain}{new_path}"
                 else:
                     url = new_path
-            
+
             elif re.findall(regex(location), res.data.decode()):
                 url = re.findall(regex(location), res.data.decode())[0]
             elif re.findall(regex(submit), res.data.decode()):
@@ -118,7 +137,7 @@ def get_guest_token():
                 input_html = re.findall(regex(input), form_html[0][1])
                 method = "POST"
                 url = form_html[0][0]
-                body = urlencode({k:v for k,v in input_html})
+                body = urlencode({k: v for k, v in input_html})
                 headers = {"content-type": "application/x-www-form-urlencoded"}
             elif res.status == 200:
                 return res
@@ -126,19 +145,17 @@ def get_guest_token():
                 raise Exception("Failed to redirect")
         else:
             raise Exception("Failed to redirect")
-    
+
     res = redirect("GET", twitter_url)
     reg = "document{dot}cookie{space}={space}{quote}{target}{quote}"
-    if  re.findall(regex(reg), res.data.decode()):
+    if re.findall(regex(reg), res.data.decode()):
         find = re.findall(regex(reg), res.data.decode())
         x.update_normalize(find)
 
     if x.get("gt") is None:
         raise Exception("Failed to get guest token")
 
-    
     return x
-
 
 
 if __name__ == "__main__":
@@ -167,15 +184,33 @@ if __name__ == "__main__":
     api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
     api_client.user_agent = latest_user_agent["chrome-fetch"]
 
-    res = pt.TweetApi(api_client).get_user_tweets_with_http_info(
-        **get_kwargs("UserTweets", {}),
-    ).model_dump_json()
-    res = pt.TweetApi(api_client).get_user_highlights_tweets_with_http_info(
-        **get_kwargs("UserHighlightsTweets", {}),
-    ).model_dump_json()
-    res = pt.DefaultApi(api_client).get_tweet_result_by_rest_id_with_http_info(
-        **get_kwargs("TweetResultByRestId", {}),
-    ).model_dump_json()
-    res = pt.UserApi(api_client).get_user_by_screen_name_with_http_info(
-        **get_kwargs("UserByScreenName", {})
-    ).model_dump_json()
+    session = requests.Session()
+    session.headers = latest_user_agent["chrome"]
+    ct = ClientTransaction(handle_x_migration(session))
+
+    res = (
+        pt.TweetApi(api_client)
+        .get_user_tweets_with_http_info(
+            **get_kwargs("UserTweets", {}),
+        )
+        .model_dump_json()
+    )
+    res = (
+        pt.TweetApi(api_client)
+        .get_user_highlights_tweets_with_http_info(
+            **get_kwargs("UserHighlightsTweets", {}),
+        )
+        .model_dump_json()
+    )
+    res = (
+        pt.DefaultApi(api_client)
+        .get_tweet_result_by_rest_id_with_http_info(
+            **get_kwargs("TweetResultByRestId", {}),
+        )
+        .model_dump_json()
+    )
+    res = (
+        pt.UserApi(api_client)
+        .get_user_by_screen_name_with_http_info(**get_kwargs("UserByScreenName", {}))
+        .model_dump_json()
+    )

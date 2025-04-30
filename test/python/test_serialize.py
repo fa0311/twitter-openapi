@@ -13,7 +13,10 @@ from pathlib import Path
 from typing import Any
 
 import openapi_client as pt
+import requests
 import urllib3
+from x_client_transaction import ClientTransaction
+from x_client_transaction.utils import handle_x_migration
 
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
@@ -58,13 +61,17 @@ def find_name(x):
 
 
 def get_kwargs(key, additional):
-    kwargs = {"path_query_id": placeholder[key]["queryId"]}
+    kwargs = {"path_query_id": placeholder[key]["queryId"], "_headers": {}}
     if placeholder[key].get("variables") is not None:
         kwargs["variables"] = json.dumps(placeholder[key]["variables"] | additional)
     if placeholder[key].get("features") is not None:
         kwargs["features"] = json.dumps(placeholder[key]["features"])
     if placeholder[key].get("fieldToggles") is not None:
         kwargs["field_toggles"] = json.dumps(placeholder[key]["fieldToggles"])
+    if placeholder[key].get("@path") is not None:
+        kwargs["_headers"]["x-client-transaction-id"] = ct.generate_transaction_id(
+            method=placeholder[key]["@method"], path=placeholder[key]["@path"]
+        )
     return kwargs
 
 
@@ -267,6 +274,12 @@ if __name__ == "__main__":
     api_conf.access_token = access_token
     api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
     api_client.user_agent = get_header(latest_user_agent, "chrome-fetch")["user-agent"]
+
+    session = requests.Session()
+    session.headers = get_header(latest_user_agent, "chrome")
+
+    ct = ClientTransaction(handle_x_migration(session))
+
     error_count = 0
 
     for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
@@ -354,7 +367,10 @@ if __name__ == "__main__":
         try:
             logger.info("Try: Self UserTweets Test")
             kwargs = get_kwargs("UserTweets", {"userId": id})
-            res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
+            headers = get_header()
+            res = pt.TweetApi(api_client).get_user_tweets_with_http_info(
+                _headers=headers, **kwargs
+            )
             data = res.data.to_dict()
 
             rate = match_rate(
@@ -388,7 +404,7 @@ if __name__ == "__main__":
         "1875050002046726519",
         "1848219562136801480",
         "1881993128288399684",
-        "1899104692577489182"
+        "1899104692577489182",
     ]
     for id in ids:
         try:
