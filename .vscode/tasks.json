@@ -40,7 +40,7 @@
           "python3.10 -m venv .venv;",
           ".venv/bin/python3 -m pip install -r requirements.txt;",
           "pip install urllib3>=2.1.0;",
-          "curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.12.0/openapi-generator-cli-7.12.0.jar -o openapi-generator-cli.jar;"
+          "curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.13.0/openapi-generator-cli-7.13.0.jar -o openapi-generator-cli.jar;"
         ]
       },
       "linux": {
@@ -48,7 +48,7 @@
           "python3 -m venv .venv;",
           ".venv/bin/python3 -m pip install -r requirements.txt;",
           "pip install urllib3>=2.1.0;",
-          "wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.12.0/openapi-generator-cli-7.12.0.jar -O openapi-generator-cli.jar;"
+          "wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.13.0/openapi-generator-cli-7.13.0.jar -O openapi-generator-cli.jar;"
         ]
       },
       "windows": {
@@ -56,7 +56,7 @@
           "python -m venv .venv;",
           ".venv/Scripts/python -m pip install -r requirements.txt;",
           "pip install urllib3>=2.1.0;",
-          "Invoke-WebRequest https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.12.0/openapi-generator-cli-7.12.0.jar -OutFile openapi-generator-cli.jar;"
+          "Invoke-WebRequest https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.13.0/openapi-generator-cli-7.13.0.jar -OutFile openapi-generator-cli.jar;"
         ]
       }
     }
