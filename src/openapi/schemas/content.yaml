@@ -276,6 +276,7 @@ components:
             - "Conversation"
             - "List"
             - "Community"
+            - "Facepile"
         text:
           type: string
         landingUrl:
@@ -458,12 +459,9 @@ components:
     TimelineTrend:
       required:
         - "__typename"
-        - "itemType"
         - "name"
         - "trend_url"
         - "trend_metadata"
-        - "thumbnail_image"
-        - "images"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTrend

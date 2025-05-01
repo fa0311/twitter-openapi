@@ -60,6 +60,12 @@ def find_name(x):
         return [x["name"]]
 
 
+def get_transaction_id(key):
+    return ct.generate_transaction_id(
+        method=placeholder[key]["@method"], path=placeholder[key]["@path"]
+    )
+
+
 def get_kwargs(key, additional):
     kwargs = {"path_query_id": placeholder[key]["queryId"], "_headers": {}}
     if placeholder[key].get("variables") is not None:
@@ -69,9 +75,7 @@ def get_kwargs(key, additional):
     if placeholder[key].get("fieldToggles") is not None:
         kwargs["field_toggles"] = json.dumps(placeholder[key]["fieldToggles"])
     if placeholder[key].get("@path") is not None:
-        kwargs["_headers"]["x-client-transaction-id"] = ct.generate_transaction_id(
-            method=placeholder[key]["@method"], path=placeholder[key]["@path"]
-        )
+        kwargs["_headers"]["x-client-transaction-id"] = get_transaction_id(key)
     return kwargs
 
 
@@ -367,10 +371,7 @@ if __name__ == "__main__":
         try:
             logger.info("Try: Self UserTweets Test")
             kwargs = get_kwargs("UserTweets", {"userId": id})
-            headers = get_header()
-            res = pt.TweetApi(api_client).get_user_tweets_with_http_info(
-                _headers=headers, **kwargs
-            )
+            res = pt.TweetApi(api_client).get_user_tweets_with_http_info(**kwargs)
             data = res.data.to_dict()
 
             rate = match_rate(

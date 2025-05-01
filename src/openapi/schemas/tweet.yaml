@@ -709,6 +709,8 @@ components:
           enum: [BirdwatchV1Icon]
         callToAction:
           $ref: "#/components/schemas/BirdwatchPivotCallToAction"
+        titleDetail:
+          type: string
 
     BirdwatchPivotFooter:
       required:
@@ -1582,7 +1584,7 @@ components:
     GrokShareAttachmentItem:
       required:
         - "media_urls"
-        - message
+        - "message"
       properties:
         media_urls:
           type: array
@@ -1591,6 +1593,15 @@ components:
             format: uri
         message:
           type: string
+        analysis_post_id_results:
+          $ref: "#/components/schemas/AnalysisResults"
+
+    AnalysisResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/Tweet"
 
     TweetPreviewDisplay:
       required:

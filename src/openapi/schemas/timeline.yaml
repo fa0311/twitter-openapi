@@ -6,7 +6,7 @@ info:
 paths: {}
 components:
   schemas:
-    TimelineV2:
+    TimelineResult:
       properties:
         timeline:
           $ref: "#/components/schemas/Timeline"
