@@ -166,6 +166,7 @@ components:
         - $ref: "#/components/schemas/TimelineCommunity"
         - $ref: "#/components/schemas/TimelineTombstone"
         - $ref: "#/components/schemas/TimelineTrend"
+        - $ref: "#/components/schemas/TimelineNotification"
 
       discriminator:
         propertyName: __typename
@@ -178,6 +179,7 @@ components:
           TimelineCommunity: "#/components/schemas/TimelineCommunity"
           TimelineTombstone: "#/components/schemas/TimelineTombstone"
           TimelineTrend: "#/components/schemas/TimelineTrend"
+          TimelineNotification: "#/components/schemas/TimelineNotification"
 
     ContentItemType:
       type: string
@@ -190,6 +192,8 @@ components:
           TimelineMessagePrompt,
           TimelineCommunity,
           TimelineTombstone,
+          TimelineTrend,
+          TimelineNotification,
         ]
 
     TimelineTweet:
@@ -507,3 +511,53 @@ components:
         url:
           type: string
           format: uri
+
+    TimelineNotification:
+      required:
+        - "__typename"
+        - "itemType"
+        - "id"
+        - "notification_icon"
+        - "rich_message"
+        - "notification_url"
+        - "template"
+        - "timestamp_ms"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineNotification
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineNotification
+        id:
+          type: string
+        notification_icon:
+          type: string # enum milestone_icon
+        rich_message:
+          $ref: "#/components/schemas/RichMessage"
+        notification_url:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
+        template:
+          $ref: "#/components/schemas/NotificationTemplate"
+        timestamp_ms:
+          type: string # 2025-05-05T01:18:21.657Z
+
+    RichMessage:
+      type: object
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+
+    NotificationTemplate:
+      type: object
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # NotificationTemplate
+        target_objects:
+          type: array
+          items:
+            type: object
+        from_users:
+          type: array
+          items:
+            type: object

@@ -22,6 +22,8 @@ components:
           TimelineCommunity,
           TimelineTombstone,
           TimelineTrend,
+          TimelineNotification,
+          TimelineNotificationAggregateUserActions,
           TweetUnavailable,
           TweetPreviewDisplay,
           Tweet,

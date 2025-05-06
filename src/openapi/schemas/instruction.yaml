@@ -16,6 +16,8 @@ components:
         - $ref: "#/components/schemas/TimelineShowAlert"
         - $ref: "#/components/schemas/TimelineTerminateTimeline"
         - $ref: "#/components/schemas/TimelineShowCover"
+        - $ref: "#/components/schemas/TimelineClearEntriesUnreadState"
+        - $ref: "#/components/schemas/TimelineMarkEntriesUnreadGreaterThanSortIndex"
 
       discriminator:
         propertyName: type
@@ -28,6 +30,8 @@ components:
           TimelineShowAlert: "#/components/schemas/TimelineShowAlert"
           TimelineTerminateTimeline: "#/components/schemas/TimelineTerminateTimeline"
           TimelineShowCover: "#/components/schemas/TimelineShowCover"
+          TimelineClearEntriesUnreadState: "#/components/schemas/TimelineClearEntriesUnreadState"
+          TimelineMarkEntriesUnreadGreaterThanSortIndex: "#/components/schemas/TimelineMarkEntriesUnreadGreaterThanSortIndex"
 
     InstructionType:
       type: string
@@ -41,6 +45,8 @@ components:
           TimelineShowAlert,
           TimelineTerminateTimeline,
           TimelineShowCover,
+          TimelineClearEntriesUnreadState,
+          TimelineMarkEntriesUnreadGreaterThanSortIndex,
         ]
 
     TimelineAddEntries:
@@ -309,3 +315,20 @@ components:
         action:
           type: string
           enum: [primary_cta]
+
+    TimelineClearEntriesUnreadState:
+      required:
+        - type
+      properties:
+        type:
+          $ref: "#/components/schemas/InstructionType" # TimelineClearEntriesUnreadState
+
+    TimelineMarkEntriesUnreadGreaterThanSortIndex:
+      required:
+        - type
+      properties:
+        type:
+          $ref: "#/components/schemas/InstructionType" # TimelineMarkEntriesUnreadGreaterThanSortIndex
+        sort_index:
+          type: string
+          pattern: "[0-9]+$"
