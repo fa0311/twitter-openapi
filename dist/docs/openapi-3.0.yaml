@@ -600,6 +600,8 @@ components:
       - TimelineMessagePrompt
       - TimelineCommunity
       - TimelineTombstone
+      - TimelineTrend
+      - TimelineNotification
       type: string
     ContentUnion:
       discriminator:
@@ -1033,6 +1035,8 @@ components:
       - TimelineShowAlert
       - TimelineTerminateTimeline
       - TimelineShowCover
+      - TimelineClearEntriesUnreadState
+      - TimelineMarkEntriesUnreadGreaterThanSortIndex
       type: string
     InstructionUnion:
       discriminator:
@@ -1040,6 +1044,8 @@ components:
           TimelineAddEntries: '#/components/schemas/TimelineAddEntries'
           TimelineAddToModule: '#/components/schemas/TimelineAddToModule'
           TimelineClearCache: '#/components/schemas/TimelineClearCache'
+          TimelineClearEntriesUnreadState: '#/components/schemas/TimelineClearEntriesUnreadState'
+          TimelineMarkEntriesUnreadGreaterThanSortIndex: '#/components/schemas/TimelineMarkEntriesUnreadGreaterThanSortIndex'
           TimelinePinEntry: '#/components/schemas/TimelinePinEntry'
           TimelineReplaceEntry: '#/components/schemas/TimelineReplaceEntry'
           TimelineShowAlert: '#/components/schemas/TimelineShowAlert'
@@ -1055,11 +1061,14 @@ components:
       - $ref: '#/components/schemas/TimelineShowAlert'
       - $ref: '#/components/schemas/TimelineTerminateTimeline'
       - $ref: '#/components/schemas/TimelineShowCover'
+      - $ref: '#/components/schemas/TimelineClearEntriesUnreadState'
+      - $ref: '#/components/schemas/TimelineMarkEntriesUnreadGreaterThanSortIndex'
     ItemContentUnion:
       discriminator:
         mapping":
           TimelineCommunity: '#/components/schemas/TimelineCommunity'
           TimelineMessagePrompt: '#/components/schemas/TimelineMessagePrompt'
+          TimelineNotification: '#/components/schemas/TimelineNotification'
           TimelinePrompt: '#/components/schemas/TimelinePrompt'
           TimelineTimelineCursor: '#/components/schemas/TimelineTimelineCursor'
           TimelineTombstone: '#/components/schemas/TimelineTombstone'
@@ -1076,6 +1085,7 @@ components:
       - $ref: '#/components/schemas/TimelineCommunity'
       - $ref: '#/components/schemas/TimelineTombstone'
       - $ref: '#/components/schemas/TimelineTrend'
+      - $ref: '#/components/schemas/TimelineNotification'
     ItemResult:
       properties:
         __typename:
@@ -1513,6 +1523,60 @@ components:
       - from_index
       - to_index
       - richtext_types
+    NotificationTemplate:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        from_users:
+          items:
+            type: object
+          type: array
+        target_objects:
+          items:
+            type: object
+          type: array
+      type: object
+    NotificationsResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        notification_timeline:
+          $ref: '#/components/schemas/TimelineResult'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - __typename
+      - rest_id
+      - notification_timeline
+    NotificationsTimelineData:
+      properties:
+        viewer_v2:
+          $ref: '#/components/schemas/NotificationsViewerV2'
+      required:
+      - viewer_v2
+    NotificationsTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationsTimelineData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    NotificationsUserResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/NotificationsResult'
+      required:
+      - result
+    NotificationsViewerV2:
+      properties:
+        user_results:
+          $ref: '#/components/schemas/NotificationsUserResults'
+      required:
+      - user_results
     OneFactorLoginEligibility:
       properties:
         fetchStatus:
@@ -1604,6 +1668,13 @@ components:
       required:
       - rest_id
       - legacy
+    RichMessage:
+      properties:
+        rtl:
+          type: boolean
+        text:
+          type: string
+      type: object
     SearchByRawQuery:
       properties:
         search_timeline:
@@ -1872,6 +1943,12 @@ components:
           $ref: '#/components/schemas/InstructionType'
       required:
       - type
+    TimelineClearEntriesUnreadState:
+      properties:
+        type:
+          $ref: '#/components/schemas/InstructionType'
+      required:
+      - type
     TimelineCommunity:
       additionalProperties: true
       properties:
@@ -1951,11 +2028,47 @@ components:
       - secondaryText
       - impressionCallbacks
       - dismissible
+    TimelineMarkEntriesUnreadGreaterThanSortIndex:
+      properties:
+        sort_index:
+          pattern: '[0-9]+$'
+          type: string
+        type:
+          $ref: '#/components/schemas/InstructionType'
+      required:
+      - type
     TimelineMessagePrompt:
       additionalProperties: true
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+    TimelineNotification:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        id:
+          type: string
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+        notification_icon:
+          type: string
+        notification_url:
+          $ref: '#/components/schemas/SocialContextLandingUrl'
+        rich_message:
+          $ref: '#/components/schemas/RichMessage'
+        template:
+          $ref: '#/components/schemas/NotificationTemplate'
+        timestamp_ms:
+          type: string
+      required:
+      - __typename
+      - itemType
+      - id
+      - notification_icon
+      - rich_message
+      - notification_url
+      - template
+      - timestamp_ms
     TimelinePinEntry:
       properties:
         entry:
@@ -1994,6 +2107,8 @@ components:
       - data
     TimelineResult:
       properties:
+        id:
+          type: string
         timeline:
           $ref: '#/components/schemas/Timeline'
     TimelineShowAlert:
@@ -2957,6 +3072,8 @@ components:
       - TimelineCommunity
       - TimelineTombstone
       - TimelineTrend
+      - TimelineNotification
+      - TimelineNotificationAggregateUserActions
       - TweetUnavailable
       - TweetPreviewDisplay
       - Tweet
@@ -8068,6 +8185,235 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListLatestTweetsTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
+  /graphql/{pathQueryId}/NotificationsTimeline:
+    get:
+      description: get notification list. timeline_type:[All, Verified, Mentions]
+      operationId: getNotificationsTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: GquVPn-SKYxKLgLsRPpJ6g
+          example: GquVPn-SKYxKLgLsRPpJ6g
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                count:
+                  default: 20
+                  example: 20
+                  type: integer
+                timeline_type:
+                  default: All
+                  example: All
+                  type: string
+              required:
+              - timeline_type
+              - count
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                articles_preview_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                c9s_tweet_anatomy_moderator_badge_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                communities_web_enable_tweet_community_results_fetch:
+                  default: true
+                  example: true
+                  type: boolean
+                creator_subscriptions_quote_tweet_preview_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_enhance_cards_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_skip_user_profile_image_extensions_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analysis_button_from_backend:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_grok_analyze_post_followups_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_image_annotation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_share_attachment_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_show_grok_translated_post:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_jetfuel_frame:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_tipjar_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_video_screen_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_awards_web_tipping_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - rweb_video_screen_enabled
+              - profile_label_improvements_pcf_label_in_post_enabled
+              - rweb_tipjar_consumption_enabled
+              - verified_phone_label_enabled
+              - creator_subscriptions_tweet_preview_api_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_graphql_skip_user_profile_image_extensions_enabled
+              - premium_content_api_read_enabled
+              - communities_web_enable_tweet_community_results_fetch
+              - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
+              - responsive_web_grok_analyze_post_followups_enabled
+              - responsive_web_jetfuel_frame
+              - responsive_web_grok_share_attachment_enabled
+              - articles_preview_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - tweet_awards_web_tipping_enabled
+              - responsive_web_grok_show_grok_translated_post
+              - responsive_web_grok_analysis_button_from_backend
+              - creator_subscriptions_quote_tweet_preview_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_grok_image_annotation_enabled
+              - responsive_web_enhance_cards_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationsTimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
