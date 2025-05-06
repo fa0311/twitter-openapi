@@ -51,7 +51,7 @@ components:
         - "entryType"
         - "displayType"
         # - "items"
-        - "clientEventInfo"
+        # - "clientEventInfo"
       properties:
         __typename:
           type: string
@@ -126,7 +126,7 @@ components:
       properties:
         entryId:
           type: string
-          pattern: "^(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
+          pattern: "^(([a-zA-Z]+|[0-9]+|[0-9a-f]+)(-|$))+"
         item:
           $ref: "#/components/schemas/ModuleEntry"
         dispensable:
@@ -233,7 +233,7 @@ components:
           $ref: "#/components/schemas/SocialContextUnion"
         userDisplayType:
           type: string
-          enum: [User, UserDetailed, SubscribableUser]
+          enum: [User, UserDetailed, SubscribableUser, UserConcise]
         user_results:
           $ref: "./user.yaml#/components/schemas/UserResults"
 
@@ -395,7 +395,7 @@ components:
         element:
           type: string
           # august-2023-privacy-prompt-candidate
-          # pattern: "(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
+          # pattern: "^(([a-zA-Z]+|[0-9]+|[0-9a-f]+)(-|$))+"
           # pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$"
         details:
           type: object

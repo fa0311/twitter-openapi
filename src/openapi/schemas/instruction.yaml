@@ -162,7 +162,7 @@ components:
           $ref: "./content.yaml#/components/schemas/ContentUnion"
         entryId:
           type: string
-          pattern: "^(([a-z]+|[0-9]+|[0-9a-f]+)(-|$))+"
+          pattern: "^(([a-zA-Z]+|[0-9]+|[0-9a-f]+)(-|$))+"
         sortIndex:
           type: string
           pattern: "[0-9]+$"

@@ -60,6 +60,48 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/CommunityTweetsTimeline:
+    get:
+      operationId: getCommunityTweetsTimeline
+      description: get tweet list of community. rankingMode:[Recency, Relevance]
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunityTweetsTimelineResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/CommunityMediaTimeline:
+    get:
+      operationId: getCommunityMediaTimeline
+      description: get media list of community
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunityMediaTimelineResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/CommunityAboutTimeline:
+    get:
+      operationId: getCommunityAboutTimeline
+      description: get about of community
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunityAboutTimelineResponse"
+      tags:
+        - "tweet"
+
 components:
   schemas:
     TimelineResponse:
@@ -74,6 +116,8 @@ components:
             $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     HomeTimelineResponseData:
+      required:
+        - "home"
       properties:
         home:
           $ref: "#/components/schemas/HomeTimelineHome"
@@ -97,6 +141,8 @@ components:
             $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     ListTweetsTimelineData:
+      required:
+        - "list"
       properties:
         list:
           $ref: "#/components/schemas/ListTweetsTimelineList"
@@ -106,12 +152,7 @@ components:
         - "tweets_timeline"
       properties:
         tweets_timeline:
-          $ref: "#/components/schemas/ListTweetsTimeline"
-
-    ListTweetsTimeline:
-      properties:
-        timeline:
-          $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
+          $ref: "#/components/schemas/TimelineResult"
 
     SearchTimelineResponse:
       required:
@@ -125,6 +166,8 @@ components:
             $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
 
     SearchTimelineData:
+      required:
+        - "search_by_raw_query"
       properties:
         search_by_raw_query:
           $ref: "#/components/schemas/SearchByRawQuery"
@@ -142,3 +185,109 @@ components:
       properties:
         timeline:
           $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
+
+    CommunityTweetsTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/RankedCommunityTweetData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    RankedCommunityTweetData:
+      required:
+        - "communityResults"
+      properties:
+        communityResults:
+          $ref: "#/components/schemas/RankedCommunityResults"
+
+    RankedCommunityResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/RankedCommunityResult"
+
+    RankedCommunityResult:
+      required:
+        - "__typename"
+        - "ranked_community_timeline"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # Community
+        ranked_community_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    CommunityMediaTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/MediaCommunityTweetData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    MediaCommunityTweetData:
+      required:
+        - "__typename"
+        - "communityResults"
+      properties:
+        communityResults:
+          $ref: "#/components/schemas/MediaCommunityResults"
+
+    MediaCommunityResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/MediaCommunityResult"
+
+    MediaCommunityResult:
+      required:
+        - "__typename"
+        - "community_media_timeline"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # Community
+        community_media_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    CommunityAboutTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/AboutCommunityTweetData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    AboutCommunityTweetData:
+      required:
+        - "communityResults"
+      properties:
+        communityResults:
+          $ref: "#/components/schemas/AboutCommunityResults"
+
+    AboutCommunityResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/AboutCommunityResult"
+
+    AboutCommunityResult:
+      required:
+        - "__typename"
+        - "about_timeline"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # Community
+        about_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
