@@ -4968,14 +4968,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/aoDbu3RHznuiSkQ9aNM67Q/CreateBookmark
-                  example: /i/api/graphql/aoDbu3RHznuiSkQ9aNM67Q/CreateBookmark
-                  type: string
                 queryId:
                   default: aoDbu3RHznuiSkQ9aNM67Q
                   example: aoDbu3RHznuiSkQ9aNM67Q
@@ -4990,8 +4982,6 @@ paths:
                   - tweet_id
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body
@@ -5047,14 +5037,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet
-                  example: /i/api/graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet
-                  type: string
                 queryId:
                   default: ojPdsZsimiJrUGLR1sjUtA
                   example: ojPdsZsimiJrUGLR1sjUtA
@@ -5074,8 +5056,6 @@ paths:
                   - dark_request
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body
@@ -5131,14 +5111,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/IID9x6WsdMnTlXnzXGq8ng/CreateTweet
-                  example: /i/api/graphql/IID9x6WsdMnTlXnzXGq8ng/CreateTweet
-                  type: string
                 features:
                   properties:
                     articles_preview_enabled:
@@ -5370,8 +5342,6 @@ paths:
                   - dark_request
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
               - features
@@ -5428,14 +5398,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/Wlmlj2-xzyS1GN3a6cj-mQ/DeleteBookmark
-                  example: /i/api/graphql/Wlmlj2-xzyS1GN3a6cj-mQ/DeleteBookmark
-                  type: string
                 queryId:
                   default: Wlmlj2-xzyS1GN3a6cj-mQ
                   example: Wlmlj2-xzyS1GN3a6cj-mQ
@@ -5450,8 +5412,6 @@ paths:
                   - tweet_id
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body
@@ -5507,14 +5467,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet
-                  example: /i/api/graphql/iQtK4dl5hBmXewYZuEOKVw/DeleteRetweet
-                  type: string
                 queryId:
                   default: iQtK4dl5hBmXewYZuEOKVw
                   example: iQtK4dl5hBmXewYZuEOKVw
@@ -5534,8 +5486,6 @@ paths:
                   - dark_request
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body
@@ -5591,14 +5541,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet
-                  example: /i/api/graphql/VaenaVgh5q5ih7kvyVjgtg/DeleteTweet
-                  type: string
                 queryId:
                   default: VaenaVgh5q5ih7kvyVjgtg
                   example: VaenaVgh5q5ih7kvyVjgtg
@@ -5618,8 +5560,6 @@ paths:
                   - dark_request
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body
@@ -5675,14 +5615,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet
-                  example: /i/api/graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet
-                  type: string
                 queryId:
                   default: lI07N6Otwv1PhnEgXILM7A
                   example: lI07N6Otwv1PhnEgXILM7A
@@ -5697,8 +5629,6 @@ paths:
                   - tweet_id
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body
@@ -7083,14 +7013,6 @@ paths:
           application/json:
             schema:
               properties:
-                '@method':
-                  default: POST
-                  example: POST
-                  type: string
-                '@path':
-                  default: /i/api/graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet
-                  example: /i/api/graphql/ZYKSe-w7KEslx3JhSIk5LA/UnfavoriteTweet
-                  type: string
                 queryId:
                   default: ZYKSe-w7KEslx3JhSIk5LA
                   example: ZYKSe-w7KEslx3JhSIk5LA
@@ -7110,8 +7032,6 @@ paths:
                   - dark_request
                   type: object
               required:
-              - '@path'
-              - '@method'
               - queryId
               - variables
         description: body

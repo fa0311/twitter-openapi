@@ -48,6 +48,7 @@ class Config:
                         split=-1,
                         schemaType=None,
                         contentType="application/json",
+                        ignoreKeys=["@path", "@method"],
                     ),
                 ]
                 for key in ["post"]
@@ -66,6 +67,7 @@ class Config:
                         split=2,
                         schemaType=None,
                         contentType="application/x-www-form-urlencoded",
+                        ignoreKeys=["@path", "@method"],
                     ),
                 ]
                 for key in ["v1.1-post", "v2.0-post"]
