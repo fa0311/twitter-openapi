@@ -285,6 +285,11 @@ components:
           type: string
         landingUrl:
           $ref: "#/components/schemas/SocialContextLandingUrl"
+        contextImageUrls:
+          type: array
+          items:
+            type: string
+            format: uri
 
     TimelineTopicContext:
       type: object
