@@ -143,6 +143,8 @@ def main():
 
         with open("./src/config/placeholder.json", "w") as f:
             placeholder[endpoint] = placeholder.get(endpoint, {})
+            placeholder[endpoint]["@path"] = f"/i/api/graphql/{query_id}/{endpoint}"
+            placeholder[endpoint]["@method"] = method
             placeholder[endpoint]["queryId"] = query_id
             if features:
                 placeholder[endpoint]["features"] = features

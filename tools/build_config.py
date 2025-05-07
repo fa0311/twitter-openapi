@@ -18,14 +18,14 @@ class Config:
             getParamHook = AddParametersOnContent(
                 split=-1,
                 contentType="application/json",
-                ignoreKeys=["queryId"],
+                ignoreKeys=["queryId", "@path", "@method"],
             )
         else:
             # ["parameters"][0]["schema"]
             getParamHook = AddParametersOnParameters(
                 split=-1,
                 schemaType="string",
-                ignoreKeys=["queryId"],
+                ignoreKeys=["queryId", "@path", "@method"],
             )
 
         return {

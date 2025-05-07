@@ -709,6 +709,8 @@ components:
           enum: [BirdwatchV1Icon]
         callToAction:
           $ref: "#/components/schemas/BirdwatchPivotCallToAction"
+        titleDetail:
+          type: string
 
     BirdwatchPivotFooter:
       required:
@@ -1549,6 +1551,18 @@ components:
       properties:
         media_key:
           type: string
+        grok_image_annotation:
+          $ref: "#/components/schemas/GrokImageAnnotation"
+
+    GrokImageAnnotation:
+      required:
+        - "prompt"
+        - "upsampled_prompt"
+      properties:
+        prompt:
+          type: string
+        upsampled_prompt:
+          type: string
 
     TrendResults:
       required:
@@ -1570,7 +1584,7 @@ components:
     GrokShareAttachmentItem:
       required:
         - "media_urls"
-        - message
+        - "message"
       properties:
         media_urls:
           type: array
@@ -1579,6 +1593,15 @@ components:
             format: uri
         message:
           type: string
+        analysis_post_id_results:
+          $ref: "#/components/schemas/AnalysisResults"
+
+    AnalysisResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/Tweet"
 
     TweetPreviewDisplay:
       required:

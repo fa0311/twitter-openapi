@@ -97,9 +97,19 @@ components:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/UserTweetsResult"
+          $ref: "#/components/schemas/UserTweetsResultV1"
 
-    UserTweetsResult:
+    UserTweetsResultV1:
+      required:
+        - "__typename"
+        - "timeline"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    UserTweetsResultV2:
       required:
         - "__typename"
         - "timeline_v2"
@@ -107,7 +117,7 @@ components:
         __typename:
           $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
         timeline_v2:
-          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineV2"
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
 
     UserHighlightsTweetsResponse:
       required:
