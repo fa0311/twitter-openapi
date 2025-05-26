@@ -180,6 +180,7 @@ components:
           - Member
           - Moderator
           - Admin
+          - NonMember
           type: string
         user_results:
           $ref: '#/components/schemas/UserResults'
@@ -875,8 +876,11 @@ components:
         name:
           type: string
         path:
-          items: {}
-          type: list
+          items:
+            oneOf:
+            - type: string
+            - type: integer
+          type: array
         retry_after:
           type: integer
         source:
@@ -1962,7 +1966,7 @@ components:
           - TimelineCoverBehaviorNavigate
           type: string
         url:
-          type: TimelineCoverBehaviorUrl
+          $ref: '#/components/schemas/TimelineCoverBehaviorUrl'
       required:
       - type
     TimelineCoverBehaviorUrl:
