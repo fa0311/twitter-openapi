@@ -285,7 +285,7 @@ components:
           type: string
           enum: [TimelineCoverBehaviorDismiss, TimelineCoverBehaviorNavigate]
         url:
-          type: TimelineCoverBehaviorUrl
+          $ref: "#/components/schemas/TimelineCoverBehaviorUrl"
 
     TimelineCoverBehaviorUrl:
       required:
