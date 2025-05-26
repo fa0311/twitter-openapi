@@ -26,8 +26,11 @@ components:
           items:
             $ref: "#/components/schemas/Location"
         path:
-          type: list
-          items: {} #List[Union[str,int]]
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
         extensions:
           $ref: "#/components/schemas/ErrorExtensions"
         code:
