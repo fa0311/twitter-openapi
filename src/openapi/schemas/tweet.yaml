@@ -438,7 +438,7 @@ components:
           $ref: "#/components/schemas/Community"
         role:
           type: string
-          enum: [Member, Moderator, Admin]
+          enum: [Member, Moderator, Admin, NonMember]
         user_results:
           $ref: "user.yaml#/components/schemas/UserResults"
 
