@@ -322,6 +322,7 @@ components:
         media_count:
           type: integer
         muting:
+          type: boolean
         normal_followers_count:
           type: integer
         notifications:
