@@ -242,9 +242,21 @@ components:
           type: string
           enum: ["Self", "Public", "MutualFollow", "Followers", "Following"]
 
-    UserLegacy:
+    UserLegacyCore:
       required:
         - "created_at"
+        - "name"
+        - "screen_name"
+      properties:
+        created_at:
+          $ref: "./general.yaml#/components/schemas/TwitterTimeFormat"
+        name:
+          type: string
+        screen_name:
+          type: string
+    UserLegacy:
+      required:
+        - "core"
         - "default_profile"
         - "default_profile_image"
         - "description"
@@ -258,13 +270,11 @@ components:
         - "listed_count"
         - "location"
         - "media_count"
-        - "name"
         - "normal_followers_count"
         - "pinned_tweet_ids_str"
         - "possibly_sensitive"
         - "profile_image_url_https"
         - "profile_interstitial_type"
-        - "screen_name"
         - "status"
         - "statuses_count"
         - "translator_type"
@@ -278,8 +288,6 @@ components:
           type: boolean
         can_media_tag:
           type: boolean
-        created_at:
-          $ref: "./general.yaml#/components/schemas/TwitterTimeFormat"
         default_profile:
           type: boolean
         default_profile_image:
@@ -314,9 +322,6 @@ components:
         media_count:
           type: integer
         muting:
-          type: boolean
-        name:
-          type: string
         normal_followers_count:
           type: integer
         notifications:
@@ -341,8 +346,8 @@ components:
           type: string
         protected:
           type: boolean
-        screen_name:
-          type: string
+        core:
+          $ref: "#/components/schemas/UserLegacyCore"
         statuses_count:
           type: integer
         translator_type:
