@@ -46,6 +46,20 @@ paths:
       tags:
         - "user-list"
 
+  /graphql/{pathQueryId}/BlueVerifiedFollowers:
+    get:
+      operationId: getBlueVerifiedFollowers
+      description: "get blue verified followers"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowResponse"
+      tags:
+        - "user-list"
+
 components:
   schemas:
     FollowResponse:
