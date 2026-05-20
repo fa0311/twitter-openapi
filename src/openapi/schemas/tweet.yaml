@@ -217,6 +217,10 @@ components:
           type: string
         post_video_description:
           type: string
+        grok_translated_post_with_availability:
+          $ref: "#/components/schemas/GrokTranslatedPostWithAvailability"
+        grok_annotations:
+          $ref: "#/components/schemas/GrokAnnotation"
 
     TweetEditControl:
       properties:
@@ -937,7 +941,6 @@ components:
         - "conversation_id_str"
         - "created_at"
         - "display_text_range"
-        - "entities"
         - "favorite_count"
         - "favorited"
         - "full_text"
@@ -1009,6 +1012,10 @@ components:
         in_reply_to_user_id_str:
           type: string
           pattern: "^[0-9]+$"
+        # time_zone:
+        #   type: string
+        # utc_offset:
+        #   type: integer
         quoted_status_permalink:
           $ref: "#/components/schemas/QuotedStatusPermalink"
         quoted_status_id_str:
@@ -1028,6 +1035,10 @@ components:
             - "blocked_viewer"
         place:
           additionalProperties: true # todo
+        # withheld_description:
+        #   type: string
+        # withheld_scope:
+        #   type: string
 
     SelfThread:
       required:
@@ -1038,11 +1049,11 @@ components:
           pattern: "^[0-9]+$"
 
     Entities:
-      required:
-        - "hashtags"
-        - "symbols"
-        - "user_mentions"
-        - "urls"
+      # required:
+      #   - "hashtags"
+      #   - "symbols"
+      #   - "user_mentions"
+      #   - "urls"
       properties:
         hashtags:
           type: array
@@ -1636,6 +1647,18 @@ components:
       properties:
         result:
           $ref: "#/components/schemas/Tweet"
+
+    GrokTranslatedPostWithAvailability:
+      required:
+        - "is_available"
+      properties:
+        is_available:
+          type: boolean
+
+    GrokAnnotation:
+      properties:
+        is_image_editable_by_grok:
+          type: boolean
 
     TweetPreviewDisplay:
       required:

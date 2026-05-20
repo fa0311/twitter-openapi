@@ -35,7 +35,6 @@ components:
         - "legacy"
         - "rest_id"
         - "profile_image_shape"
-
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # User
@@ -116,6 +115,10 @@ components:
           $ref: "#/components/schemas/ProfileBio"
         profile_description_language:
           type: string
+        super_follows_user_profile:
+          $ref: "#/components/schemas/UserProfile"
+        verified_user_profiles:
+          $ref: "#/components/schemas/UserProfile"
 
     UserCore:
       required:
@@ -290,12 +293,15 @@ components:
         - "listed_count"
         - "media_count"
         - "normal_followers_count"
-        - "pinned_tweet_ids_str"
         - "possibly_sensitive"
         - "profile_interstitial_type"
         - "status"
         - "statuses_count"
         - "translator_type"
+        - time_zone
+        - "utc_offset"
+        - withheld_description
+        - withheld_scope
       properties:
         blocked_by:
           type: boolean
@@ -387,6 +393,14 @@ components:
           type: array
           items:
             type: string # enum DE
+        time_zone:
+          type: string
+        utc_offset:
+          type: integer
+        withheld_description:
+          type: string
+        withheld_scope:
+          type: string
 
     UserUnavailable:
       required:
@@ -463,3 +477,17 @@ components:
       properties:
         description:
           type: string
+
+    UserProfile:
+      required:
+        - "super_follows_user_profile"
+      properties:
+        super_follows_user_profile:
+          $ref: "#/components/schemas/SuperFollowUserProfile"
+
+    SuperFollowUserProfile:
+      required:
+        - "is_active"
+      properties:
+        is_active:
+          type: boolean
