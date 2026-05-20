@@ -40,4 +40,5 @@ components:
           CommunityJoinRequestsUnavailable,
           CommunityUnavailable,
           ApiImage,
+          CommunityUnavailable,
         ]

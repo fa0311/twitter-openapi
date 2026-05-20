@@ -22,7 +22,7 @@ def main():
     print(Rule(characters="="))
     input()
 
-    with open("./tools/input.js", "r") as f:
+    with open("./tools/input.js", "r", encoding="utf-8") as f:
         fetch_code_raw = f.read()
 
     print(Rule(characters="="))
@@ -40,12 +40,16 @@ def main():
     fetch_code_list.append(code)
 
     for fetch_code in fetch_code_list:
+        if "https://x.com/i/api/1.1/graphql/user_flow.json" in fetch_code:
+            continue
+
         # query_idとendpointを抽出
         query_id_match = re.search(r'/i/api/graphql/([^/]+)/([^"?]+)', fetch_code)
         if not query_id_match:
             print("query_id と endpoint の抽出に失敗しました。")
+            print(fetch_code[:100] + "...")
             print(Rule(characters="="))
-            return
+            continue
         query_id = query_id_match.group(1)
         endpoint = query_id_match.group(2)
 
