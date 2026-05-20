@@ -7,7 +7,7 @@ info:
   contact:
     email: yuki@yuki0311.com
   license:
-    name: custom license or AGPL-3.0-or-later
+    name: LicenseRef-Custom OR AGPL-3.0-or-later
     url: https://github.com/fa0311/twitter-openapi#license
   version: 0.0.1
 servers:

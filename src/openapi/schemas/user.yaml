@@ -35,7 +35,6 @@ components:
         - "legacy"
         - "rest_id"
         - "profile_image_shape"
-
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # User
@@ -95,13 +94,51 @@ components:
           type: boolean
         parody_commentary_fan_label:
           type: string
-          enum: ["None", "Parody", "Commentary"]
+          enum: ["None", "Parody", "Commentary", "Fan"]
+        relationship_perspectives:
+          $ref: "#/components/schemas/UserRelationshipPerspectives"
+        avatar:
+          $ref: "#/components/schemas/UserAvatar"
+        core:
+          $ref: "#/components/schemas/UserCore"
+        dm_permissions:
+          $ref: "#/components/schemas/UserDmPermissions"
+        media_permissions:
+          $ref: "#/components/schemas/UserMediaPermissions"
+        privacy:
+          $ref: "#/components/schemas/UserPrivacy"
+        verification:
+          $ref: "#/components/schemas/UserVerification"
+        location:
+          $ref: "#/components/schemas/UserLocation"
+        profile_bio:
+          $ref: "#/components/schemas/ProfileBio"
+        profile_description_language:
+          type: string
+        super_follows_user_profile:
+          $ref: "#/components/schemas/UserProfile"
+        verified_user_profiles:
+          $ref: "#/components/schemas/UserProfile"
+        profile_sort_enabled:
+          type: boolean
+
+    UserCore:
+      required:
+        - "created_at"
+        - "name"
+        - "screen_name"
+      properties:
+        created_at:
+          $ref: "./general.yaml#/components/schemas/TwitterTimeFormat"
+        name:
+          type: string
+        screen_name:
+          type: string
 
     UserProfessional:
       required:
         - "rest_id"
         - "professional_type"
-        - "category"
       properties:
         rest_id:
           type: string
@@ -244,7 +281,6 @@ components:
 
     UserLegacy:
       required:
-        - "created_at"
         - "default_profile"
         - "default_profile_image"
         - "description"
@@ -256,19 +292,17 @@ components:
         - "has_custom_timelines"
         - "is_translator"
         - "listed_count"
-        - "location"
         - "media_count"
-        - "name"
         - "normal_followers_count"
-        - "pinned_tweet_ids_str"
         - "possibly_sensitive"
-        - "profile_image_url_https"
         - "profile_interstitial_type"
-        - "screen_name"
         - "status"
         - "statuses_count"
         - "translator_type"
-        - "verified"
+        - time_zone
+        - "utc_offset"
+        - withheld_description
+        - withheld_scope
       properties:
         blocked_by:
           type: boolean
@@ -360,6 +394,14 @@ components:
           type: array
           items:
             type: string # enum DE
+        time_zone:
+          type: string
+        utc_offset:
+          type: integer
+        withheld_description:
+          type: string
+        withheld_scope:
+          type: string
 
     UserUnavailable:
       required:
@@ -372,3 +414,81 @@ components:
           type: string
         message:
           type: string
+
+    UserRelationshipPerspectives:
+      properties:
+        blocking:
+          type: boolean
+        blocked_by:
+          type: boolean
+        following:
+          type: boolean
+        followed_by:
+          type: boolean
+
+    UserAvatar:
+      required:
+        - "image_url"
+      properties:
+        image_url:
+          type: string
+          format: uri
+
+    UserDmPermissions:
+      required:
+        - "can_dm"
+      properties:
+        can_dm:
+          type: boolean
+
+    UserMediaPermissions:
+      required:
+        - "can_media_tag"
+      properties:
+        can_media_tag:
+          type: boolean
+
+    UserPrivacy:
+      required:
+        - "protected"
+      properties:
+        protected:
+          type: boolean
+
+    UserVerification:
+      required:
+        - "verified"
+      properties:
+        verified:
+          type: boolean
+        verified_type:
+          type: string
+          enum: ["Business", "Government"]
+
+    UserLocation:
+      required:
+        - "location"
+      properties:
+        location:
+          type: string
+
+    ProfileBio:
+      required:
+        - "description"
+      properties:
+        description:
+          type: string
+
+    UserProfile:
+      required:
+        - "super_follows_user_profile"
+      properties:
+        super_follows_user_profile:
+          $ref: "#/components/schemas/SuperFollowUserProfile"
+
+    SuperFollowUserProfile:
+      required:
+        - "is_active"
+      properties:
+        is_active:
+          type: boolean

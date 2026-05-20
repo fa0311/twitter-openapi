@@ -38,5 +38,7 @@ components:
           CommunityTweetUnpinActionUnavailable,
           CommunityInvitesUnavailable,
           CommunityJoinRequestsUnavailable,
+          CommunityUnavailable,
           ApiImage,
+          TimelineRichTextUser,
         ]

@@ -146,6 +146,8 @@ components:
         displayLocation:
           type: string
           enum: [Top] # which else?
+        clientEventInfo:
+          $ref: "./content.yaml#/components/schemas/ClientEventInfo"
 
     TimelineTerminateTimeline:
       required:

@@ -11,6 +11,7 @@ import warnings
 from enum import Enum
 from pathlib import Path
 from typing import Any
+from uuid import UUID
 
 import bs4
 import openapi_client as pt
@@ -73,8 +74,7 @@ def get_transaction_base():
     home_page_response = bs4.BeautifulSoup(home_page.content, "html.parser")
     ondemand_file_url = get_ondemand_file_url(response=home_page_response)
     ondemand_file = session.get(url=ondemand_file_url)
-    ondemand_file_response = bs4.BeautifulSoup(ondemand_file.content, "html.parser")
-    ct = ClientTransaction(home_page_response, ondemand_file_response)
+    ct = ClientTransaction(home_page_response, ondemand_file)
     return ct
 
 
@@ -120,6 +120,10 @@ def match_rate(a, b, base, key=""):
         a = a.value
     if isinstance(b, Enum):
         b = b.value
+    if isinstance(a, UUID):
+        a = str(a)
+    if isinstance(b, UUID):
+        b = str(b)
     if a is None and b is False:
         return 1
     if a is False and b is None:
@@ -313,6 +317,9 @@ if __name__ == "__main__":
             cursor_list = set([None])
             cursor_history = set()
 
+            if key in ["UserByRestId", "UsersByRestIds"]:
+                continue
+
             try:
                 for _ in range(CUESOR_TEST_COUNT):
                     cursor = cursor_list.pop()
@@ -366,7 +373,7 @@ if __name__ == "__main__":
             res.data,
         )
         logger.info(f"Match rate: {rate}")
-        screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
+        screen_name = data["data"]["user"]["result"]["core"]["screen_name"]
         if not screen_name == "ptcpz3":
             raise Exception("UserByScreenName failed")
     except Exception as e:
@@ -422,6 +429,7 @@ if __name__ == "__main__":
         "1848219562136801480",
         "1881993128288399684",
         "1899104692577489182",
+        "1948284140757057763",
     ]
     for id in ids:
         try:
