@@ -202,7 +202,7 @@ components:
         article:
           $ref: "#/components/schemas/Article"
         community_results:
-          $ref: "#/components/schemas/Community"
+          $ref: "#/components/schemas/CommunityResult"
         trend_results:
           $ref: "#/components/schemas/TrendResults"
         grok_analysis_followups:
@@ -213,6 +213,10 @@ components:
           $ref: "#/components/schemas/GrokShareAttachment"
         grok_analysis_button:
           type: boolean
+        post_image_description:
+          type: string
+        post_video_description:
+          type: string
 
     TweetEditControl:
       properties:
@@ -397,14 +401,22 @@ components:
     SuperFollowsReplyUserResultData:
       required:
         - "__typename"
-        - "legacy"
       properties:
         __typename:
           $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
-        legacy:
-          $ref: "#/components/schemas/SuperFollowsReplyUserResultLegacy"
+        # legacy:
+        #   $ref: "#/components/schemas/SuperFollowsReplyUserResultLegacy"
+        core:
+          $ref: "#/components/schemas/SuperFollowsReplyUserResultCore"
 
     SuperFollowsReplyUserResultLegacy:
+      required:
+        - "screen_name"
+      properties:
+        screen_name:
+          type: string
+
+    SuperFollowsReplyUserResultCore:
       required:
         - "screen_name"
       properties:
@@ -435,39 +447,42 @@ components:
         - "community_results"
       properties:
         community_results:
-          $ref: "#/components/schemas/Community"
+          $ref: "#/components/schemas/CommunityResult"
         role:
           type: string
           enum: [Member, Moderator, Admin, NonMember]
         user_results:
           $ref: "user.yaml#/components/schemas/UserResults"
 
-    Community:
+    CommunityResult:
       required:
         - "result"
       properties:
         result:
-          $ref: "#/components/schemas/CommunityData"
+          $ref: "#/components/schemas/CommunityUnion"
 
-    CommunityData:
+    CommunityUnion:
+      oneOf:
+        - $ref: "#/components/schemas/Community"
+        - $ref: "#/components/schemas/CommunityUnavailable"
+
+      discriminator:
+        propertyName: __typename
+        mapping": # deprecated
+          Community: "#/components/schemas/Community"
+          CommunityUnavailable: "#/components/schemas/CommunityUnavailable"
+
+    CommunityUnavailable:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityUnavailable
+
+    Community:
       required:
         - "__typename"
         - "id_str"
-        # - "name"
-        # - "description"
-        # - "search_tags"
-        # - "actions"
-        # - "admin_results"
-        # - "creator_results"
-        # - "invites_result"
-        # - "join_policy"
-        # - "invites_policy"
-        # - "is_pinned"
-        # - "members_facepile_results"
-        # - "moderator_count"
-        # - "member_count"
-        # - "role"
-        # - "rules"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # Community
@@ -711,6 +726,9 @@ components:
           $ref: "#/components/schemas/BirdwatchPivotCallToAction"
         titleDetail:
           type: string
+        footerIconType:
+          type: string
+          enum: [BirdwatchEyeOff]
 
     BirdwatchPivotFooter:
       required:
@@ -760,6 +778,11 @@ components:
         rest_id:
           type: string
           pattern: "^[0-9]+$"
+        language:
+          type: string
+          # enum: [ja, en]
+        is_community_note_translatable:
+          type: boolean
 
     BirdwatchPivotSubtitle:
       required:
@@ -1140,6 +1163,9 @@ components:
           $ref: "#/components/schemas/AllowDownloadStatus"
         media_results:
           $ref: "#/components/schemas/MediaResults"
+        grok_post_id:
+          type: string
+          format: uuid
 
     TweetLegacyScopes:
       required:
@@ -1240,6 +1266,9 @@ components:
           $ref: "#/components/schemas/AllowDownloadStatus"
         media_results:
           $ref: "#/components/schemas/MediaResults"
+        grok_post_id:
+          type: string
+          format: uuid
 
     MediaOriginalInfo:
       required:
@@ -1595,6 +1624,11 @@ components:
           type: string
         analysis_post_id_results:
           $ref: "#/components/schemas/AnalysisResults"
+        deepsearch_headers:
+          type: array
+          items:
+            type: object
+            additionalProperties: true # todo
 
     AnalysisResults:
       required:
