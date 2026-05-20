@@ -141,14 +141,37 @@ components:
           type: integer
       required:
       - first_published_at_secs
+    ArticlePreview:
+      properties:
+        article_id:
+          type: integer
+        cover_media:
+          $ref: '#/components/schemas/ArticleCoverMedia'
+        preview_text:
+          type: string
+        title:
+          type: string
+      required:
+      - article_id
+      - title
+      - preview_text
     ArticleResult:
       properties:
+        content_state:
+          additionalProperties: true
+          type: object
         cover_media:
           $ref: '#/components/schemas/ArticleCoverMedia'
         id:
           type: string
+        is_grok_summary_eligible:
+          type: boolean
         lifecycle_state:
           $ref: '#/components/schemas/ArticleLifecycleState'
+        media_entities:
+          items:
+            $ref: '#/components/schemas/ArticleCoverMedia'
+          type: array
         metadata:
           $ref: '#/components/schemas/ArticleMetadata'
         preview_text:
@@ -163,7 +186,6 @@ components:
       - id
       - title
       - preview_text
-      - cover_media
       - metadata
     ArticleResults:
       properties:
@@ -232,6 +254,7 @@ components:
         iconType:
           enum:
           - BirdwatchV1Icon
+          - BirdwatchCameraVideo
           type: string
         note:
           $ref: '#/components/schemas/BirdwatchPivotNote'
@@ -278,6 +301,8 @@ components:
       - entities
     BirdwatchPivotNote:
       properties:
+        grok_translated_community_note_with_availability:
+          $ref: '#/components/schemas/GrokTranslatedCommunityNoteWithAvailability'
         is_community_note_translatable:
           type: boolean
         language:
@@ -417,7 +442,6 @@ components:
           type: object
       required:
       - __typename
-      - id_str
     CommunityAboutTimelineResponse:
       properties:
         data:
@@ -609,6 +633,33 @@ components:
           type: string
       required:
       - url
+    ContentDisclosure:
+      properties:
+        advertising_disclosure:
+          $ref: '#/components/schemas/ContentDisclosureAdvertisingDisclosure'
+        ai_generated_disclosure:
+          $ref: '#/components/schemas/ContentDisclosureAiGeneratedDisclosure'
+    ContentDisclosureAdvertisingDisclosure:
+      properties:
+        is_paid_promotion:
+          type: boolean
+      required:
+      - is_paid_promotion
+    ContentDisclosureAiGeneratedDisclosure:
+      properties:
+        ai_generated_detection_source:
+          enum:
+          - C2paClient
+          - ContentDisclosureAiGeneratedDisclosure
+          - UserDeclared
+          type: string
+        can_edit:
+          type: boolean
+        has_ai_generated_media:
+          type: boolean
+      required:
+      - can_edit
+      - has_ai_generated_media
     ContentEntryType:
       enum:
       - TimelineTimelineItem
@@ -840,6 +891,10 @@ components:
           items:
             $ref: '#/components/schemas/Media'
           type: array
+        smarttags:
+          items:
+            $ref: '#/components/schemas/Smarttag'
+          type: array
         symbols:
           items:
             $ref: '#/components/schemas/Symbol'
@@ -996,6 +1051,41 @@ components:
       properties:
         is_image_editable_by_grok:
           type: boolean
+    GrokEntity:
+      properties:
+        from_index:
+          type: string
+        ref:
+          $ref: '#/components/schemas/GrokEntityRef'
+        to_index:
+          type: string
+      required:
+      - from_index
+      - to_index
+      - ref
+    GrokEntityRef:
+      properties:
+        display_url:
+          type: string
+        expanded_url:
+          format: uri
+          type: string
+        text:
+          type: string
+        type:
+          enum:
+          - TimelineUrl
+          - TimelineRichTextHashtag
+          type: string
+        url:
+          format: uri
+          type: string
+        url_type:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - type
     GrokImageAnnotation:
       properties:
         prompt:
@@ -1032,8 +1122,52 @@ components:
       required:
       - media_urls
       - message
+    GrokTranslatedCommunityNote:
+      properties:
+        destination_language:
+          type: string
+        rich_text_entities:
+          items:
+            $ref: '#/components/schemas/GrokEntity'
+          type: array
+        source_language:
+          type: string
+        translation:
+          type: string
+        translation_available:
+          type: boolean
+      required:
+      - source_language
+      - destination_language
+      - translation
+      - translation_available
+    GrokTranslatedCommunityNoteWithAvailability:
+      properties:
+        data:
+          $ref: '#/components/schemas/GrokTranslatedCommunityNote'
+        is_available:
+          type: boolean
+      required:
+      - is_available
+    GrokTranslatedPost:
+      properties:
+        associated_data:
+          additionalProperties: true
+          type: object
+        destination_language:
+          type: string
+        entities:
+          $ref: '#/components/schemas/Entities'
+        preview_translation:
+          type: string
+        source_language:
+          type: string
+        translation:
+          type: string
     GrokTranslatedPostWithAvailability:
       properties:
+        data:
+          $ref: '#/components/schemas/GrokTranslatedPost'
         is_available:
           type: boolean
       required:
@@ -1498,7 +1632,6 @@ components:
         note_tweet_results:
           $ref: '#/components/schemas/NoteTweetResult'
       required:
-      - is_expandable
       - note_tweet_results
     NoteTweetResult:
       properties:
@@ -1632,6 +1765,78 @@ components:
         Session:
           $ref: '#/components/schemas/Session'
       type: object
+    PostCta:
+      properties:
+        action_url:
+          format: uri
+          type: string
+        background_color:
+          type: string
+        show_chevron:
+          type: boolean
+        stroke_color:
+          type: string
+        title_text:
+          $ref: '#/components/schemas/PostCtaTitleText'
+      required:
+      - action_url
+      - background_color
+      - show_chevron
+      - stroke_color
+      - title_text
+    PostCtaTitleText:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/PostCtaTitleTextEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
+    PostCtaTitleTextEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/PostCtaTitleTextEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - toIndex
+      - ref
+    PostCtaTitleTextEntityRef:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        user_results:
+          $ref: '#/components/schemas/PostCtaUserResults'
+      required:
+      - __typename
+    PostCtaUserResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/PostCtaUserResultsResult'
+      required:
+      - result
+    PostCtaUserResultsAvatar:
+      properties:
+        image_url:
+          format: uri
+          type: string
+      required:
+      - image_url
+    PostCtaUserResultsResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        avatar:
+          $ref: '#/components/schemas/PostCtaUserResultsAvatar'
+      required:
+      - __typename
+      - avatar
     PrimaryCommunityTopic:
       properties:
         topic_id:
@@ -1819,6 +2024,27 @@ components:
       - userFeatures
       - isSuperFollowSubscriber
       type: object
+    Smarttag:
+      properties:
+        indices:
+          items:
+            type: integer
+          type: array
+        tag:
+          $ref: '#/components/schemas/SmarttagTag'
+        text:
+          type: string
+      required:
+      - indices
+      - tag
+      - text
+    SmarttagTag:
+      properties:
+        info:
+          additionalProperties: true
+          type: object
+      required:
+      - info
     SocialContextLandingUrl:
       properties:
         url:
@@ -2182,6 +2408,8 @@ components:
           enum:
           - NewTweets
           type: string
+        clientEventInfo:
+          $ref: '#/components/schemas/ClientEventInfo'
         colorConfig:
           additionalProperties: true
           type: object
@@ -2524,6 +2752,8 @@ components:
           $ref: '#/components/schemas/CommunityRelationship'
         community_results:
           $ref: '#/components/schemas/CommunityResult'
+        content_disclosure:
+          $ref: '#/components/schemas/ContentDisclosure'
         core:
           $ref: '#/components/schemas/UserResultCore'
         edit_control:
@@ -2550,6 +2780,8 @@ components:
           $ref: '#/components/schemas/TweetLegacy'
         note_tweet:
           $ref: '#/components/schemas/NoteTweet'
+        postCta:
+          $ref: '#/components/schemas/TweetPostCta'
         post_image_description:
           type: string
         post_video_description:
@@ -2763,6 +2995,7 @@ components:
         displayType:
           enum:
           - NonCompliant
+          - EntireTweet
           type: string
         revealText:
           $ref: '#/components/schemas/TweetInterstitialRevealText'
@@ -2941,6 +3174,23 @@ components:
           type: array
       required:
       - limited_actions
+    TweetPostCta:
+      properties:
+        display_locations:
+          items:
+            enum:
+            - TweetDetails
+            - ForYouTimeline
+            - RepliesTimeline
+            type: string
+          type: array
+        post_cta:
+          $ref: '#/components/schemas/PostCta'
+        scribe_id:
+          type: string
+      required:
+      - display_locations
+      - post_cta
     TweetPreviewDisplay:
       properties:
         __typename:
@@ -2981,6 +3231,8 @@ components:
       - urlType
     TweetPreviewDisplayTweet:
       properties:
+        article_preview:
+          $ref: '#/components/schemas/ArticlePreview'
         bookmark_count:
           type: integer
         core:
@@ -3160,8 +3412,9 @@ components:
       - CommunityTweetUnpinActionUnavailable
       - CommunityInvitesUnavailable
       - CommunityJoinRequestsUnavailable
-      - ApiImage
       - CommunityUnavailable
+      - ApiImage
+      - TimelineRichTextUser
       type: string
     UnfavoriteTweet:
       properties:
@@ -3292,6 +3545,8 @@ components:
           - Square
           - Hexagon
           type: string
+        profile_sort_enabled:
+          type: boolean
         relationship_perspectives:
           $ref: '#/components/schemas/UserRelationshipPerspectives'
         rest_id:
@@ -3594,7 +3849,6 @@ components:
       required:
       - rest_id
       - professional_type
-      - category
     UserProfessionalCategory:
       properties:
         icon_name:

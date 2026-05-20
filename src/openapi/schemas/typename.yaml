@@ -40,5 +40,5 @@ components:
           CommunityJoinRequestsUnavailable,
           CommunityUnavailable,
           ApiImage,
-          CommunityUnavailable,
+          TimelineRichTextUser,
         ]

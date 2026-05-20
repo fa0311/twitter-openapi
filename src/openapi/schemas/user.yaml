@@ -119,6 +119,8 @@ components:
           $ref: "#/components/schemas/UserProfile"
         verified_user_profiles:
           $ref: "#/components/schemas/UserProfile"
+        profile_sort_enabled:
+          type: boolean
 
     UserCore:
       required:
@@ -137,7 +139,6 @@ components:
       required:
         - "rest_id"
         - "professional_type"
-        - "category"
       properties:
         rest_id:
           type: string

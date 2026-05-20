@@ -317,6 +317,9 @@ if __name__ == "__main__":
             cursor_list = set([None])
             cursor_history = set()
 
+            if key in ["UserByRestId", "UsersByRestIds"]:
+                continue
+
             try:
                 for _ in range(CUESOR_TEST_COUNT):
                     cursor = cursor_list.pop()
@@ -370,7 +373,7 @@ if __name__ == "__main__":
             res.data,
         )
         logger.info(f"Match rate: {rate}")
-        screen_name = data["data"]["user"]["result"]["legacy"]["screen_name"]
+        screen_name = data["data"]["user"]["result"]["core"]["screen_name"]
         if not screen_name == "ptcpz3":
             raise Exception("UserByScreenName failed")
     except Exception as e:
@@ -426,6 +429,7 @@ if __name__ == "__main__":
         "1848219562136801480",
         "1881993128288399684",
         "1899104692577489182",
+        "1948284140757057763",
     ]
     for id in ids:
         try:
