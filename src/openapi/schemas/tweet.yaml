@@ -51,7 +51,7 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # ContextualTweetInterstitial
         displayType:
           type: string
-          enum: [NonCompliant]
+          enum: [NonCompliant, EntireTweet]
         text:
           $ref: "#/components/schemas/TweetInterstitialText"
         revealText:
@@ -285,7 +285,6 @@ components:
 
     NoteTweet:
       required:
-        - "is_expandable"
         - "note_tweet_results"
       properties:
         is_expandable:
@@ -486,7 +485,22 @@ components:
     Community:
       required:
         - "__typename"
-        - "id_str"
+        # - "id_str"
+        # - "name"
+        # - "description"
+        # - "search_tags"
+        # - "actions"
+        # - "admin_results"
+        # - "creator_results"
+        # - "invites_result"
+        # - "join_policy"
+        # - "invites_policy"
+        # - "is_pinned"
+        # - "members_facepile_results"
+        # - "moderator_count"
+        # - "member_count"
+        # - "role"
+        # - "rules"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # Community
@@ -1472,7 +1486,6 @@ components:
         - "id"
         - "title"
         - "preview_text"
-        - "cover_media"
         - "metadata"
       properties:
         rest_id:
@@ -1490,6 +1503,8 @@ components:
           $ref: "#/components/schemas/ArticleMetadata"
         lifecycle_state:
           $ref: "#/components/schemas/ArticleLifecycleState"
+        # todo: content_state (#101)
+        # todo: media_entities (#101)
 
     ArticleCoverMedia:
       required:
