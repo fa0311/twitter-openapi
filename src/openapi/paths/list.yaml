@@ -1,0 +1,259 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /graphql/{pathQueryId}/ListByRestId:
+    get:
+      operationId: getListByRestId
+      description: get list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/ListMembers:
+    get:
+      operationId: getListMembers
+      description: get list members
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListMembersResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/ListSubscribers:
+    get:
+      operationId: getListSubscribers
+      description: get list subscribers (followers)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListSubscribersResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/ListOwnerships:
+    get:
+      operationId: getListOwnerships
+      description: get the lists a user owns (add/remove from Lists dialog)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "./usertweets.yaml#/components/schemas/UserTweetsResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/ListCreationRecommendedUsers:
+    get:
+      operationId: getListCreationRecommendedUsers
+      description: get recommended members while creating a list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListRecommendedUsersResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/ListEditRecommendedUsers:
+    get:
+      operationId: getListEditRecommendedUsers
+      description: get recommended members while editing a list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListRecommendedUsersResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/CreateList:
+    post:
+      operationId: postCreateList
+      description: create list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+      tags:
+        - "post"
+
+  /graphql/{pathQueryId}/DeleteList:
+    post:
+      operationId: postDeleteList
+      description: delete list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteListResponse"
+      tags:
+        - "post"
+
+  /graphql/{pathQueryId}/ListAddMember:
+    post:
+      operationId: postListAddMember
+      description: add a member to a list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+      tags:
+        - "post"
+
+  /graphql/{pathQueryId}/ListRemoveMember:
+    post:
+      operationId: postListRemoveMember
+      description: remove a member from a list
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListResponse"
+      tags:
+        - "post"
+
+components:
+  schemas:
+    ListResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ListResponseData:
+      required:
+        - "list"
+      properties:
+        list:
+          $ref: "./../schemas/list.yaml#/components/schemas/TwitterList"
+
+    ListMembersResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListMembersResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ListMembersResponseData:
+      required:
+        - "list"
+      properties:
+        list:
+          $ref: "#/components/schemas/ListMembersList"
+
+    ListMembersList:
+      required:
+        - "members_timeline"
+      properties:
+        members_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ListSubscribersResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListSubscribersResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ListSubscribersResponseData:
+      required:
+        - "list"
+      properties:
+        list:
+          $ref: "#/components/schemas/ListSubscribersList"
+
+    ListSubscribersList:
+      required:
+        - "subscribers_timeline"
+      properties:
+        subscribers_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ListRecommendedUsersResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListRecommendedUsersResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ListRecommendedUsersResponseData:
+      required:
+        - "list"
+      properties:
+        list:
+          $ref: "#/components/schemas/ListRecommendedUsersList"
+
+    ListRecommendedUsersList:
+      required:
+        - "recommended_users"
+      properties:
+        recommended_users:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    DeleteListResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/DeleteListResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    DeleteListResponseData:
+      required:
+        - "list_delete"
+      properties:
+        list_delete:
+          type: string
+

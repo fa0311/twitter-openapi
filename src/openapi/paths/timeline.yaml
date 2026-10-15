@@ -116,6 +116,62 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/ConnectTabTimeline:
+    get:
+      operationId: getConnectTabTimeline
+      description: get the Connect tab (who to follow) timeline
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectTabTimelineResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/CommunityDiscoveryTimeline:
+    get:
+      operationId: getCommunityDiscoveryTimeline
+      description: get the communities discovery timeline
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunityDiscoveryTimelineResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/GenericTimelineById:
+    get:
+      operationId: getGenericTimelineById
+      description: get a generic timeline by its id (explore tabs)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericTimelineByIdResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/ExplorePage:
+    get:
+      operationId: getExplorePage
+      description: get the explore page (segmented timelines)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExplorePageResponse"
+      tags:
+        - "tweet"
+
 components:
   schemas:
     TimelineResponse:
@@ -351,3 +407,137 @@ components:
           pattern: "^[0-9]+$"
         notification_timeline:
           $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ConnectTabTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ConnectTabTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ConnectTabTimelineResponseData:
+      required:
+        - "connect_tab_timeline"
+      properties:
+        connect_tab_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    CommunityDiscoveryTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CommunityDiscoveryTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    CommunityDiscoveryTimelineResponseData:
+      required:
+        - "viewer"
+      properties:
+        viewer:
+          $ref: "#/components/schemas/CommunityDiscoveryTimelineViewer"
+
+    CommunityDiscoveryTimelineViewer:
+      required:
+        - "community_discovery_timeline"
+      properties:
+        community_discovery_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    GenericTimelineByIdResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/GenericTimelineByIdResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    GenericTimelineByIdResponseData:
+      required:
+        - "timeline"
+      properties:
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ExplorePageResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ExplorePageResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ExplorePageResponseData:
+      required:
+        - "explore_page"
+      properties:
+        explore_page:
+          $ref: "#/components/schemas/ExplorePage"
+
+    ExplorePage:
+      required:
+        - "body"
+        - "id"
+      properties:
+        body:
+          $ref: "#/components/schemas/ExplorePageBody"
+        id:
+          type: string
+
+    ExplorePageBody:
+      required:
+        - "__typename"
+        - "initialTimeline"
+        - "timelines"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # SegmentedTimelines
+        initialTimeline:
+          $ref: "#/components/schemas/ExploreTimeline"
+        timelines:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExploreTimeline"
+
+    ExploreTimeline:
+      required:
+        - "id"
+        - "labelText"
+        - "refreshIntervalSec"
+        - "scribeConfig"
+        - "timeline"
+      properties:
+        id:
+          type: string
+        labelText:
+          type: string
+        refreshIntervalSec:
+          type: integer
+        scribeConfig:
+          $ref: "#/components/schemas/ExploreTimelineScribeConfig"
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ExploreTimelineScribeConfig:
+      required:
+        - "page"
+        - "section"
+      properties:
+        page:
+          type: string
+        section:
+          type: string
+

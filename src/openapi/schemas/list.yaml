@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+paths: {}
+components:
+  schemas:
+    TwitterList:
+      required:
+        - "created_at"
+        - "default_banner_media"
+        - "default_banner_media_results"
+        - "description"
+        - "facepile_urls"
+        - "following"
+        - "id"
+        - "id_str"
+        - "is_member"
+        - "member_count"
+        - "mode"
+        - "muting"
+        - "name"
+        - "pinning"
+        - "subscriber_count"
+        - "user_results"
+      properties:
+        created_at:
+          type: integer
+        default_banner_media:
+          $ref: "#/components/schemas/ListBannerMedia"
+        default_banner_media_results:
+          type: object
+          additionalProperties: true # {} observed
+        description:
+          type: string
+        facepile_urls:
+          type: array
+          items:
+            type: string
+        followers_context:
+          type: string
+        following:
+          type: boolean
+        id:
+          type: string
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        is_member:
+          type: boolean
+        member_count:
+          type: integer
+        members_context:
+          type: string
+        mode:
+          type: string
+          enum: [Public, Private]
+        muting:
+          type: boolean
+        name:
+          type: string
+        pinning:
+          type: boolean
+        subscriber_count:
+          type: integer
+        user_results:
+          $ref: "user.yaml#/components/schemas/UserResults"
+
+    ListBannerMedia:
+      required:
+        - "media_info"
+      properties:
+        media_info:
+          $ref: "#/components/schemas/ListBannerMediaInfo"
+
+    ListBannerMediaInfo:
+      required:
+        - "original_img_height"
+        - "original_img_url"
+        - "original_img_width"
+        - "salient_rect"
+      properties:
+        original_img_height:
+          type: integer
+        original_img_url:
+          type: string
+        original_img_width:
+          type: integer
+        salient_rect:
+          $ref: "#/components/schemas/ListBannerMediaSalientRect"
+
+    ListBannerMediaSalientRect:
+      required:
+        - "height"
+        - "left"
+        - "top"
+        - "width"
+      properties:
+        height:
+          type: integer
+        left:
+          type: integer
+        top:
+          type: integer
+        width:
+          type: integer

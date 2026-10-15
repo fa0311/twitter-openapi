@@ -167,6 +167,9 @@ components:
         - $ref: "#/components/schemas/TimelineTombstone"
         - $ref: "#/components/schemas/TimelineTrend"
         - $ref: "#/components/schemas/TimelineNotification"
+        - $ref: "#/components/schemas/TimelineFrame"
+        - $ref: "#/components/schemas/TimelineTwitterList"
+        - $ref: "#/components/schemas/TimelineLabel"
 
       discriminator:
         propertyName: __typename
@@ -180,6 +183,9 @@ components:
           TimelineTombstone: "#/components/schemas/TimelineTombstone"
           TimelineTrend: "#/components/schemas/TimelineTrend"
           TimelineNotification: "#/components/schemas/TimelineNotification"
+          TimelineFrame: "#/components/schemas/TimelineFrame"
+          TimelineTwitterList: "#/components/schemas/TimelineTwitterList"
+          TimelineLabel: "#/components/schemas/TimelineLabel"
 
     ContentItemType:
       type: string
@@ -194,6 +200,9 @@ components:
           TimelineTombstone,
           TimelineTrend,
           TimelineNotification,
+          TimelineFrame,
+          TimelineTwitterList,
+          TimelineLabel,
         ]
 
     TimelineTweet:
@@ -336,7 +345,6 @@ components:
     UrtEndpointOptions:
       type: object
       required:
-        - "title"
         - "requestParams"
       properties:
         title:
@@ -480,6 +488,9 @@ components:
           $ref: "#/components/schemas/SocialContextUnion"
         is_ai_trend:
           type: boolean
+        rank:
+          type: string # "1", "2", ... position in the trends timeline (GenericTimelineById)
+          pattern: "^[0-9]+$"
         name:
           type: string
         trend_url:
@@ -498,6 +509,8 @@ components:
       properties:
         url:
           $ref: "#/components/schemas/SocialContextLandingUrl"
+        domain_context:
+          type: string # "Trending in Japan", "Music · Trending"
 
     ThumbnailImage:
       type: object
@@ -566,3 +579,50 @@ components:
           type: array
           items:
             type: object
+
+    TimelineFrame:
+      required:
+        - "__typename"
+        - "itemType"
+        - "height"
+        - "payload"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineFrame
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineFrame
+        height:
+          type: integer
+        payload:
+          type: string
+
+    TimelineTwitterList:
+      required:
+        - "__typename"
+        - "itemType"
+        - "list"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineTwitterList
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineTwitterList
+        displayType:
+          type: string
+        list:
+          $ref: "./list.yaml#/components/schemas/TwitterList"
+
+    TimelineLabel:
+      required:
+        - "__typename"
+        - "itemType"
+        - "text"
+        - "url"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineLabel
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineLabel
+        text:
+          type: string
+        url:
+          $ref: "#/components/schemas/SocialContextLandingUrl"

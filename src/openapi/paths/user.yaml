@@ -46,6 +46,20 @@ paths:
       tags:
         - "users"
 
+  /graphql/{pathQueryId}/ViewerBadgeCounts:
+    get:
+      operationId: getViewerBadgeCounts
+      description: get the unread badge counts of the viewer
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ViewerBadgeCountsResponse"
+      tags:
+        - "user"
+
 components:
   schemas:
     UserResponse:
@@ -81,3 +95,65 @@ components:
           type: array
           items:
             $ref: "./../schemas/user.yaml#/components/schemas/UserResults"
+
+    ViewerBadgeCountsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ViewerBadgeCountsResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ViewerBadgeCountsResponseData:
+      required:
+        - "viewer_v2"
+      properties:
+        viewer_v2:
+          $ref: "#/components/schemas/ViewerBadgeCountsViewer"
+
+    ViewerBadgeCountsViewer:
+      required:
+        - "user_results"
+      properties:
+        user_results:
+          $ref: "#/components/schemas/ViewerBadgeCountsUserResults"
+
+    ViewerBadgeCountsUserResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/ViewerBadgeCountsResult"
+
+    ViewerBadgeCountsResult:
+      required:
+        - "__typename"
+        - "badge_counts"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        badge_counts:
+          $ref: "#/components/schemas/BadgeCounts"
+
+    BadgeCounts:
+      required:
+        - "dm_unread_count"
+        - "is_from_urt"
+        - "ntab_unread_count"
+        - "total_unread_count"
+        - "xchat_unread_count"
+      properties:
+        dm_unread_count:
+          type: integer
+        is_from_urt:
+          type: boolean
+        ntab_unread_count:
+          type: integer
+        total_unread_count:
+          type: integer
+        xchat_unread_count:
+          type: integer
+
