@@ -1955,7 +1955,6 @@ components:
           type: string
       required:
       - rest_id
-      - legacy
     RichMessage:
       properties:
         rtl:

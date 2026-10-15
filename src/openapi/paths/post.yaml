@@ -188,7 +188,6 @@ components:
     Retweet:
       required:
         - "rest_id"
-        - "legacy"
       properties:
         rest_id:
           type: string
