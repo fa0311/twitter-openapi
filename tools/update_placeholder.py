@@ -58,6 +58,11 @@ PAGES = [
     "/i/grok",
     "/i/lists",
     "/compose/post",
+    "/i/connect_people",
+    "/i/communitynotes",
+    "/i/trends",
+    "/i/communities/suggested",
+    f"/{USER}/superfollows",
 ]
 # pages under the logged-in user's own screen name are added at runtime (likes etc.)
 SELF_PAGES = ["{me}/likes", "{me}/lists"]  # {me} is the profile link, "/<screen_name>"
@@ -132,6 +137,12 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
             print(f"visit {path}")
             page.goto(f"https://x.com{path}")
             page.wait_for_timeout(6000)
+            for tab in page.locator('[role="tab"]').all():  # Following, Media, Latest, ... are not reachable by URL
+                try:
+                    tab.click(timeout=3000)
+                    page.wait_for_timeout(3000)
+                except Exception:
+                    pass
         browser.close()
     return recorded
 
