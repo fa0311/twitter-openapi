@@ -1,0 +1,44 @@
+name: live-test
+
+# Nightly strict run of the live serialization test: every response of every
+# GraphQL operation in placeholder.json is deserialized with the generated
+# Python client and compared field by field, so a field X adds or removes
+# shows up here first.
+
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+env:
+  OPENAPI_GENERATOR_VERSION: 7.26.0
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          enable-cache: true
+      - uses: fa0311/twitter-secrets@main
+        with:
+          age-key: ${{ secrets.SOPS_AGE_KEY }}
+      - name: Get OpenAPI Generator
+        run: wget -q https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/${OPENAPI_GENERATOR_VERSION}/openapi-generator-cli-${OPENAPI_GENERATOR_VERSION}.jar -O openapi-generator-cli.jar
+      - name: Build and generate
+        run: |
+          uv run python tools/build.py
+          java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python
+          uv pip install ./python_generated
+      - name: Strict live test
+        run: uv run python test/python/test_serialize.py
+        env:
+          STRICT_MODE: "True"
+          ERROR_UNCATCHED: "False"
+          SLEEP_TIME: 1
+          CUESOR_TEST_COUNT: 2
