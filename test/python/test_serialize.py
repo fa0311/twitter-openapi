@@ -36,14 +36,8 @@ PROXY_LIST = [x.strip() for x in os.environ.get("PROXY_LIST", "").splitlines() i
 
 
 def get_proxy():
-    # one HTTP CONNECT proxy URL per line (http://user:pass@host:port); legacy host:port:user:pass means the same
-    if not PROXY_LIST:
-        return None
-    proxy = random.choice(PROXY_LIST)
-    if "://" not in proxy:
-        host, port, username, password = proxy.split(":")
-        proxy = f"http://{username}:{password}@{host}:{port}"
-    return proxy
+    # one HTTP CONNECT proxy URL per line (http://user:pass@host:port)
+    return random.choice(PROXY_LIST) if PROXY_LIST else None
 
 
 def get_key(snake_str):
