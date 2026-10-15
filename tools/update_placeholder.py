@@ -162,10 +162,12 @@ def read_relay(path: str) -> dict[str, dict]:
 
 
 def check_variables(name: str, placeholder: dict, recorded: dict):
-    for key in placeholder.keys() | recorded.keys():
-        if key not in placeholder:
-            print(f"{name}: variables.{key} is new ({recorded[key]!r})")
-        elif key not in recorded:
+    """Report key drift only; values are the maintainer's business (a trailing ? marks an optional key)."""
+    known = {key.rstrip("?") for key in placeholder}
+    for key in recorded.keys() - known:
+        print(f"{name}: variables.{key} is new ({recorded[key]!r})")
+    for key in placeholder.keys() - recorded.keys():
+        if not key.endswith("?"):
             print(f"{name}: variables.{key} is not sent anymore")
 
 
