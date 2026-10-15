@@ -181,6 +181,12 @@ components:
           $ref: "#/components/schemas/TweetView"
         quoted_status_result:
           $ref: "./content.yaml#/components/schemas/ItemResult"
+        nested_quoted_tweet_results:
+          $ref: "./content.yaml#/components/schemas/ItemResult"
+        cashtag_attachments:
+          type: array
+          items:
+            $ref: "#/components/schemas/CashtagAttachment"
         note_tweet:
           $ref: "#/components/schemas/NoteTweet"
         quick_promote_eligibility:
@@ -225,6 +231,13 @@ components:
           $ref: "#/components/schemas/ContentDisclosure"
         postCta:
           $ref: "#/components/schemas/TweetPostCta"
+
+    CashtagAttachment:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
 
     TweetEditControl:
       properties:
@@ -789,6 +802,9 @@ components:
         urlType:
           type: string
           enum: [ExternalUrl]
+        expandedUrl:
+          type: string
+          format: uri
         text:
           type: string
 
@@ -1001,6 +1017,10 @@ components:
         id_str:
           type: string
           pattern: "^[0-9]+$"
+        path:
+          type: array
+          items:
+            type: string
 
     TweetCardLegacyBindingValueDataImage:
       required:
@@ -1248,6 +1268,8 @@ components:
           $ref: "#/components/schemas/MediaVideoInfo"
         additional_media_info:
           $ref: "#/components/schemas/AdditionalMediaInfo"
+        source_user_results:
+          $ref: "./user.yaml#/components/schemas/UserResults"
         source_user_id_str:
           type: string
           pattern: "^[0-9]+$"
@@ -1339,6 +1361,8 @@ components:
           format: uri
         additional_media_info:
           $ref: "#/components/schemas/AdditionalMediaInfo"
+        source_user_results:
+          $ref: "./user.yaml#/components/schemas/UserResults"
         mediaStats:
           $ref: "#/components/schemas/MediaStats"
         ext_media_availability:
@@ -1831,6 +1855,7 @@ components:
             - C2paClient
             - ContentDisclosureAiGeneratedDisclosure
             - UserDeclared
+            - GrokSignature
         can_edit:
           type: boolean
         has_ai_generated_media:

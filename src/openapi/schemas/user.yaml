@@ -32,7 +32,6 @@ components:
         - "__typename"
         - "id"
         - "is_blue_verified"
-        - "legacy"
         - "rest_id"
         - "profile_image_shape"
       properties:
@@ -121,6 +120,101 @@ components:
           $ref: "#/components/schemas/UserProfile"
         profile_sort_enabled:
           type: boolean
+        action_counts:
+          $ref: "#/components/schemas/UserActionCounts"
+        banner:
+          $ref: "#/components/schemas/UserBanner"
+        follow_request_sent:
+          type: boolean
+        is_verified_organization:
+          type: boolean
+        notifications_settings:
+          $ref: "#/components/schemas/UserNotificationsSettings"
+        pinned_items:
+          $ref: "#/components/schemas/UserPinnedItems"
+        possibly_sensitive:
+          type: boolean
+        profile_metadata:
+          $ref: "#/components/schemas/UserProfileMetadata"
+        profile_translation:
+          $ref: "#/components/schemas/UserProfileTranslation"
+        relationship_counts:
+          $ref: "#/components/schemas/UserRelationshipCounts"
+        tweet_counts:
+          $ref: "#/components/schemas/UserTweetCounts"
+        website:
+          $ref: "#/components/schemas/UserWebsite"
+
+    UserActionCounts:
+      required:
+        - "favorites_count"
+      properties:
+        favorites_count:
+          type: integer
+
+    UserBanner:
+      required:
+        - "image_url"
+      properties:
+        image_url:
+          type: string
+          format: uri
+
+    UserNotificationsSettings:
+      required:
+        - "notifications_enabled"
+      properties:
+        notifications_enabled:
+          type: boolean
+
+    UserPinnedItems:
+      properties:
+        tweet_ids_str:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+
+    UserProfileMetadata:
+      required:
+        - "profile_interstitial_type"
+      properties:
+        profile_interstitial_type:
+          type: string
+
+    UserProfileTranslation:
+      required:
+        - "translator_type"
+      properties:
+        translator_type:
+          type: string
+
+    UserRelationshipCounts:
+      required:
+        - "followers"
+        - "following"
+      properties:
+        followers:
+          type: integer
+        following:
+          type: integer
+
+    UserTweetCounts:
+      required:
+        - "tweets"
+        - "media_tweets"
+      properties:
+        tweets:
+          type: integer
+        media_tweets:
+          type: integer
+
+    UserWebsite:
+      required:
+        - "url"
+      properties:
+        url:
+          type: string
 
     UserCore:
       required:
@@ -425,6 +519,10 @@ components:
           type: boolean
         followed_by:
           type: boolean
+        live_following:
+          type: boolean
+        muting:
+          type: boolean
 
     UserAvatar:
       required:
@@ -478,6 +576,28 @@ components:
       properties:
         description:
           type: string
+        entities:
+          $ref: "#/components/schemas/ProfileBioEntities"
+        withheld_in_countries:
+          type: array
+          items:
+            type: string
+
+    ProfileBioEntities:
+      required:
+        - "description"
+      properties:
+        description:
+          $ref: "#/components/schemas/ProfileBioEntitiesUrls"
+        url:
+          $ref: "#/components/schemas/ProfileBioEntitiesUrls"
+
+    ProfileBioEntitiesUrls:
+      properties:
+        urls:
+          type: array
+          items:
+            $ref: "./tweet.yaml#/components/schemas/Url"
 
     UserProfile:
       required:
