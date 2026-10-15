@@ -1,15 +1,16 @@
-"""Sync src/config/placeholder.json with the current X frontend.
+"""Sync src/config/placeholder.json with the requests the X frontend really sends.
 
-    uv run tools/update_placeholder.py                        # queryId/features from TwitterInternalAPIDocument
-    uv run tools/update_placeholder.py --browser              # also record the real requests x.com makes (needs cookie.json)
-    uv run tools/update_placeholder.py --relay requests.ndjson  # also apply requests exported from twitter_api_safe_relay
+    uv run tools/update_placeholder.py --browser                 # record x.com with the cookies in cookie.json
+    uv run tools/update_placeholder.py --relay requests.ndjson   # apply requests exported from twitter_api_safe_relay
+    uv run tools/update_placeholder.py --browser --relay requests.ndjson
 
-The static step covers every GraphQL entry. The browser step replaces the DevTools
-"copy all as fetch" workflow: it opens x.com with the cookies in cookie.json, visits a
-set of pages and records queryId / method / features / fieldToggles exactly as the
-frontend sends them, then warns when the recorded variables differ from the placeholder.
-The relay step reads the NDJSON that the twitter_api_safe_relay dashboard exports
-(one hooked API client request per line), which also covers mutations triggered by hand.
+The browser step replaces the DevTools "copy all as fetch" workflow: it opens x.com with the
+cookies in cookie.json, visits a set of pages and records queryId / method / features /
+fieldToggles exactly as the frontend sends them, then warns when the recorded variables differ
+from the placeholder. The relay step reads the NDJSON that the twitter_api_safe_relay dashboard
+exports (one hooked API client request per line), which also covers mutations triggered by hand.
+Only recorded operations are touched: the entries that were not recorded are listed at the end
+and have to be checked by hand.
 """
 
 import argparse
@@ -24,7 +25,6 @@ import requests
 
 PLACEHOLDER = Path("src/config/placeholder.json")
 COOKIE = Path("cookie.json")
-GRAPHQL_JSON = "https://raw.githubusercontent.com/fa0311/TwitterInternalAPIDocument/develop/docs/json/GraphQL.json"
 HEADER_JSON = "https://raw.githubusercontent.com/fa0311/latest-user-agent/refs/heads/main/header.json"
 GRAPHQL_PATH = re.compile(r"/i/api/graphql/(?P<query_id>[^/]+)/(?P<name>[^/?]+)")
 
@@ -63,39 +63,8 @@ PAGES = [
 SELF_PAGES = ["/{me}/likes", "/{me}/lists"]
 
 
-def load_json(source: str):
-    if source.startswith("http"):
-        return requests.get(source, timeout=60).json()
-    return json.load(Path(source).open(encoding="utf-8"))
-
-
 def is_graphql(entry) -> bool:
     return isinstance(entry, dict) and "@path" in entry
-
-
-def sync_static(placeholder: dict, graphql_json: str) -> list[str]:
-    docs = {e["exports"]["operationName"]: e["exports"] for e in load_json(graphql_json)}
-    changed = []
-    for name, entry in placeholder.items():
-        if not is_graphql(entry) or name not in docs:
-            continue
-        doc = docs[name]
-        values = doc["metadata"].get("featureSwitch", {})
-        features = {
-            key: values[key]["value"] == "true" if key in values else entry.get("features", {}).get(key, False)
-            for key in doc["metadata"]["featureSwitches"]
-        }
-        before = json.dumps([entry["queryId"], entry.get("features")], sort_keys=True)
-        entry["queryId"] = doc["queryId"]
-        entry["@path"] = f"/i/api/graphql/{doc['queryId']}/{name}"
-        if doc["metadata"]["featureSwitches"]:
-            entry["features"] = features
-        if before != json.dumps([entry["queryId"], entry.get("features")], sort_keys=True):
-            changed.append(name)
-    missing = [name for name, entry in placeholder.items() if is_graphql(entry) and name not in docs]
-    if missing:
-        print(f"not in TwitterInternalAPIDocument: {', '.join(missing)}")
-    return changed
 
 
 def parse_request(method: str, url: str, body: str | None) -> dict:
@@ -135,7 +104,7 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
         for c in cookies
         if c.get("domain", ".x.com").endswith("x.com")
     ]
-    user_agent = load_json(HEADER_JSON)["chrome"]["user-agent"]
+    user_agent = requests.get(HEADER_JSON, timeout=60).json()["chrome"]["user-agent"]
 
     recorded: dict[str, dict] = {}
 
@@ -167,39 +136,6 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
     return recorded
 
 
-def check_variables(name: str, placeholder: dict, recorded: dict):
-    for key in placeholder.keys() | recorded.keys():
-        if key not in placeholder:
-            print(f"{name}: variables.{key} is new ({recorded[key]!r})")
-        elif key not in recorded:
-            print(f"{name}: variables.{key} is not sent anymore")
-
-
-def apply_recorded(placeholder: dict, recorded: dict[str, dict]) -> list[str]:
-    changed = []
-    for name, entry in placeholder.items():
-        if not is_graphql(entry) or name not in recorded:
-            continue
-        hit = recorded[name]
-        before = json.dumps(entry, sort_keys=True)
-        entry["@path"] = hit["@path"]
-        entry["@method"] = hit["@method"]
-        entry["queryId"] = hit["queryId"]
-        for key in ["features", "fieldToggles"]:
-            if key in hit:
-                entry[key] = hit[key]
-        if "variables" in hit and "variables" in entry:
-            check_variables(name, entry["variables"], hit["variables"])
-        if before != json.dumps(entry, sort_keys=True):
-            changed.append(name)
-    print(f"recorded {len(recorded)} operations, {len(set(recorded) - set(placeholder))} not in placeholder")
-    return changed
-
-
-def sync_browser(placeholder: dict, pages: list[str]) -> list[str]:
-    return apply_recorded(placeholder, record_requests(pages))
-
-
 def read_relay(path: str) -> dict[str, dict]:
     """Requests exported by the twitter_api_safe_relay dashboard: the X web client's own request objects."""
     recorded: dict[str, dict] = {}
@@ -225,27 +161,54 @@ def read_relay(path: str) -> dict[str, dict]:
     return recorded
 
 
-def sync_relay(placeholder: dict, path: str) -> list[str]:
-    return apply_recorded(placeholder, read_relay(path))
+def check_variables(name: str, placeholder: dict, recorded: dict):
+    for key in placeholder.keys() | recorded.keys():
+        if key not in placeholder:
+            print(f"{name}: variables.{key} is new ({recorded[key]!r})")
+        elif key not in recorded:
+            print(f"{name}: variables.{key} is not sent anymore")
+
+
+def apply_recorded(placeholder: dict, recorded: dict[str, dict]) -> list[str]:
+    changed = []
+    for name, entry in placeholder.items():
+        if not is_graphql(entry) or name not in recorded:
+            continue
+        hit = recorded[name]
+        before = json.dumps(entry, sort_keys=True)
+        entry["@path"] = hit["@path"]
+        entry["@method"] = hit["@method"]
+        entry["queryId"] = hit["queryId"]
+        for key in ["features", "fieldToggles"]:
+            if key in hit:
+                entry[key] = hit[key]
+        if "variables" in hit and "variables" in entry:
+            check_variables(name, entry["variables"], hit["variables"])
+        if before != json.dumps(entry, sort_keys=True):
+            changed.append(name)
+    return changed
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--browser", action="store_true", help="also record requests from x.com using cookie.json")
+    parser.add_argument("--browser", action="store_true", help="record requests from x.com using cookie.json")
     parser.add_argument("--page", action="append", help="extra page path to visit (repeatable)")
     parser.add_argument("--relay", metavar="NDJSON", help="requests exported from the twitter_api_safe_relay dashboard")
-    parser.add_argument("--graphql-json", default=GRAPHQL_JSON, help="TwitterInternalAPIDocument GraphQL.json (URL or path)")
     args = parser.parse_args()
+    if not args.browser and not args.relay:
+        parser.error("nothing to do: pass --browser and/or --relay")
 
     placeholder = json.load(PLACEHOLDER.open(encoding="utf-8"))
-    changed = sync_static(placeholder, args.graphql_json)
-    print(f"static: updated {len(changed)} entries")
+    recorded: dict[str, dict] = {}
     if args.browser:
-        changed = sync_browser(placeholder, PAGES + (args.page or []))
-        print(f"browser: updated {len(changed)} entries: {', '.join(changed)}")
+        recorded.update(record_requests(PAGES + (args.page or [])))
     if args.relay:
-        changed = sync_relay(placeholder, args.relay)
-        print(f"relay: updated {len(changed)} entries: {', '.join(changed)}")
+        recorded.update(read_relay(args.relay))  # requests made by hand win over the page visits
+    changed = apply_recorded(placeholder, recorded)
+    names = [name for name, entry in placeholder.items() if is_graphql(entry)]
+    print(f"recorded {len(recorded)} operations, updated {len(changed)}: {', '.join(changed)}")
+    print(f"recorded but not in placeholder: {', '.join(sorted(set(recorded) - set(names)))}")
+    print(f"not recorded, left as is: {', '.join(name for name in names if name not in recorded)}")
     with PLACEHOLDER.open("w", encoding="utf-8") as f:
         json.dump(placeholder, f, indent=4)
 
