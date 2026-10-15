@@ -20,11 +20,13 @@ jobs:
       - uses: fa0311/twitter-secrets@main
         with:
           age-key: ${{ secrets.SOPS_AGE_KEY }}
-      - name: Sync placeholder.json from TwitterInternalAPIDocument
-        run: uv run tools/update_placeholder.py
+      - name: Install Chromium
+        run: uv run playwright install --with-deps chromium
+      - name: Sync placeholder.json from TwitterInternalAPIDocument and record requests from x.com
+        run: uv run tools/update_placeholder.py --browser
       - uses: peter-evans/create-pull-request@v8
         with:
           branch: update-placeholder
           title: Update placeholder.json
           commit-message: Update placeholder.json
-          body: queryId / features synced from TwitterInternalAPIDocument `develop`. Run `uv run tools/update_placeholder.py --browser` locally to refresh variables and fieldToggles from a real session.
+          body: queryId / features synced from TwitterInternalAPIDocument `develop`, then method / features / fieldToggles recorded from a logged-in x.com session (`tools/update_placeholder.py --browser`). Check the job log for `variables` drift messages.
