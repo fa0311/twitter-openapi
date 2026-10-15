@@ -61,7 +61,7 @@
     },
     "HomeLatestTimeline": {
         "@path": "/i/api/graphql/NmDBT3APtNxDpMqIEauu7A/HomeLatestTimeline",
-        "@method": "POST",
+        "@method": "GET",
         "queryId": "NmDBT3APtNxDpMqIEauu7A",
         "variables": {
             "count": 20,
@@ -70,7 +70,8 @@
             "requestContext": "launch",
             "seenTweetIds": [
                 "1349129669258448897"
-            ]
+            ],
+            "enableRanking": false
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -113,6 +114,9 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "fieldToggles": {
+            "withPayments": false
         }
     },
     "ListLatestTweetsTimeline": {
@@ -171,7 +175,8 @@
         "@method": "GET",
         "queryId": "AMIBMjtxEEATh4z8V9GtRg",
         "variables": {
-            "screen_name": "elonmusk"
+            "screen_name": "elonmusk",
+            "withGrokTranslatedBio": true
         },
         "features": {
             "hidden_profile_subscriptions_enabled": true,
@@ -829,7 +834,8 @@
             "tweetId": "1691730070669517096",
             "withCommunity": false,
             "includePromotedContent": false,
-            "withVoice": false
+            "withVoice": false,
+            "withBirdwatchNotes": true
         },
         "features": {
             "creator_subscriptions_tweet_preview_api_enabled": true,
@@ -887,7 +893,9 @@
             "rawQuery": "elonmusk",
             "count": 20,
             "querySource": "typed_query",
-            "product": "Top"
+            "product": "Top",
+            "withGrokTranslatedBio": true,
+            "withQuickPromoteEligibilityTweetFields": false
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -939,7 +947,8 @@
         "variables": {
             "tweetId": "1349129669258448897",
             "count": 20,
-            "includePromotedContent": true
+            "includePromotedContent": true,
+            "enableRanking": true
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -991,7 +1000,8 @@
         "variables": {
             "tweetId": "1349129669258448897",
             "count": 20,
-            "includePromotedContent": true
+            "includePromotedContent": true,
+            "enableRanking": true
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -1043,7 +1053,8 @@
         "variables": {
             "userId": "44196397",
             "count": 20,
-            "includePromotedContent": false
+            "includePromotedContent": false,
+            "withGrokTranslatedBio": true
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -1095,7 +1106,8 @@
         "variables": {
             "userId": "44196397",
             "count": 20,
-            "includePromotedContent": false
+            "includePromotedContent": false,
+            "withGrokTranslatedBio": true
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -1147,7 +1159,8 @@
         "variables": {
             "userId": "44196397",
             "count": 20,
-            "includePromotedContent": false
+            "includePromotedContent": false,
+            "withGrokTranslatedBio": true
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -1199,7 +1212,8 @@
         "variables": {
             "userId": "44196397",
             "count": 20,
-            "includePromotedContent": false
+            "includePromotedContent": false,
+            "withGrokTranslatedBio": true
         },
         "features": {
             "rweb_video_screen_enabled": false,
@@ -2916,6 +2930,7 @@
             "responsive_web_enhance_cards_enabled": false
         },
         "fieldToggles": {
+            "withPayments": false,
             "withArticlePlainText": false
         }
     },
