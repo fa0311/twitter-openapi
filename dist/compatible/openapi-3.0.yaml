@@ -8287,6 +8287,224 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/UserOriginalsTimeline:
+    get:
+      description: get user tweets (profile posts tab)
+      operationId: getUserOriginalsTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: QLGv_wL7wziqsHhU0K100w
+          example: QLGv_wL7wziqsHhU0K100w
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            true, "withQuickPromoteEligibilityTweetFields": true, "withVoice": true}'
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            true, "withQuickPromoteEligibilityTweetFields": true, "withVoice": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withPayments": false, "withArticlePlainText": false}'
+          example: '{"withPayments": false, "withArticlePlainText": false}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
+  /graphql/{pathQueryId}/UserRepliesTimeline:
+    get:
+      description: get user tweets and replies (profile replies tab)
+      operationId: getUserRepliesTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: X9Te-FyiGcoV2qNrnx9w3w
+          example: X9Te-FyiGcoV2qNrnx9w3w
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            true, "withCommunity": true, "withVoice": true}'
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            true, "withCommunity": true, "withVoice": true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withPayments": false, "withArticlePlainText": false}'
+          example: '{"withPayments": false, "withArticlePlainText": false}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
   /graphql/{pathQueryId}/UserTweets:
     get:
       description: get user tweets
@@ -8470,6 +8688,117 @@ paths:
         schema:
           default: '{"withArticlePlainText": false}'
           example: '{"withArticlePlainText": false}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
+  /graphql/{pathQueryId}/UserVideoTimeline:
+    get:
+      description: get user media (profile media tab)
+      operationId: getUserVideoTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: oAFGPinlLUFMoa3u70mnAw
+          example: oAFGPinlLUFMoa3u70mnAw
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
+            true}'
+          example: '{"userId": "44196397", "count": 40, "includePromotedContent":
+            false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
+            true}'
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withPayments": false, "withArticlePlainText": false}'
+          example: '{"withPayments": false, "withArticlePlainText": false}'
           type: string
       responses:
         '200':

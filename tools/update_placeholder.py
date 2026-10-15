@@ -1,12 +1,15 @@
 """Sync src/config/placeholder.json with the current X frontend.
 
-    uv run tools/update_placeholder.py            # queryId/features from TwitterInternalAPIDocument
-    uv run tools/update_placeholder.py --browser  # also record the real requests x.com makes (needs cookie.json)
+    uv run tools/update_placeholder.py                        # queryId/features from TwitterInternalAPIDocument
+    uv run tools/update_placeholder.py --browser              # also record the real requests x.com makes (needs cookie.json)
+    uv run tools/update_placeholder.py --relay requests.ndjson  # also apply requests exported from twitter_api_safe_relay
 
 The static step covers every GraphQL entry. The browser step replaces the DevTools
 "copy all as fetch" workflow: it opens x.com with the cookies in cookie.json, visits a
 set of pages and records queryId / method / features / fieldToggles exactly as the
 frontend sends them, then warns when the recorded variables differ from the placeholder.
+The relay step reads the NDJSON that the twitter_api_safe_relay dashboard exports
+(one hooked API client request per line), which also covers mutations triggered by hand.
 """
 
 import argparse
@@ -160,8 +163,7 @@ def check_variables(name: str, placeholder: dict, recorded: dict):
             print(f"{name}: variables.{key} is not sent anymore")
 
 
-def sync_browser(placeholder: dict, pages: list[str]) -> list[str]:
-    recorded = record_requests(pages)
+def apply_recorded(placeholder: dict, recorded: dict[str, dict]) -> list[str]:
     changed = []
     for name, entry in placeholder.items():
         if not is_graphql(entry) or name not in recorded:
@@ -182,10 +184,44 @@ def sync_browser(placeholder: dict, pages: list[str]) -> list[str]:
     return changed
 
 
+def sync_browser(placeholder: dict, pages: list[str]) -> list[str]:
+    return apply_recorded(placeholder, record_requests(pages))
+
+
+def read_relay(path: str) -> dict[str, dict]:
+    """Requests exported by the twitter_api_safe_relay dashboard: the X web client's own request objects."""
+    recorded: dict[str, dict] = {}
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        request = json.loads(line)
+        match = re.fullmatch(r"/graphql/(?P<query_id>[^/]+)/(?P<name>[^/?]+)", request["path"])
+        if match is None or match["name"] in recorded:
+            continue
+        if request["method"] == "GET":
+            params = request.get("params", {})
+            payload = {key: json.loads(params[key]) for key in ["variables", "features", "fieldToggles"] if key in params}
+        else:
+            data = request.get("data", {})
+            payload = {key: data[key] for key in ["variables", "features", "fieldToggles"] if key in data}
+        recorded[match["name"]] = {
+            "@path": f"/i/api{request['path']}",
+            "@method": request["method"],
+            "queryId": match["query_id"],
+            **payload,
+        }
+    return recorded
+
+
+def sync_relay(placeholder: dict, path: str) -> list[str]:
+    return apply_recorded(placeholder, read_relay(path))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--browser", action="store_true", help="also record requests from x.com using cookie.json")
     parser.add_argument("--page", action="append", help="extra page path to visit (repeatable)")
+    parser.add_argument("--relay", metavar="NDJSON", help="requests exported from the twitter_api_safe_relay dashboard")
     parser.add_argument("--graphql-json", default=GRAPHQL_JSON, help="TwitterInternalAPIDocument GraphQL.json (URL or path)")
     args = parser.parse_args()
 
@@ -195,6 +231,9 @@ def main():
     if args.browser:
         changed = sync_browser(placeholder, PAGES + (args.page or []))
         print(f"browser: updated {len(changed)} entries: {', '.join(changed)}")
+    if args.relay:
+        changed = sync_relay(placeholder, args.relay)
+        print(f"relay: updated {len(changed)} entries: {', '.join(changed)}")
     with PLACEHOLDER.open("w", encoding="utf-8") as f:
         json.dump(placeholder, f, indent=4)
 
