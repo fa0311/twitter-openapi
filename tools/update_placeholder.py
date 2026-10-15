@@ -111,11 +111,7 @@ def get_proxy():
     proxies = [x.strip() for x in os.environ.get("PROXY_LIST", "").splitlines() if x.strip()]
     if not proxies:
         return None
-    proxy = random.choice(proxies)
-    if "://" not in proxy:  # legacy host:port:user:pass
-        host, port, username, password = proxy.split(":")
-        proxy = f"http://{username}:{password}@{host}:{port}"
-    parsed = urlparse(proxy)
+    parsed = urlparse(random.choice(proxies))
     return {"server": f"{parsed.scheme}://{parsed.hostname}:{parsed.port}", "username": parsed.username, "password": parsed.password}
 
 
