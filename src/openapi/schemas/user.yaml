@@ -112,6 +112,8 @@ components:
           $ref: "#/components/schemas/UserLocation"
         profile_bio:
           $ref: "#/components/schemas/ProfileBio"
+        grok_translated_bio_with_availability:
+          $ref: "#/components/schemas/GrokTranslatedBioWithAvailability"
         profile_description_language:
           type: string
         super_follows_user_profile:
@@ -582,6 +584,31 @@ components:
           type: array
           items:
             type: string
+
+    GrokTranslatedBioWithAvailability:
+      required:
+        - "is_available"
+      properties:
+        is_available:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/GrokTranslatedBio"
+
+    GrokTranslatedBio:
+      required:
+        - "destination_language"
+        - "entities"
+        - "source_language"
+        - "translation"
+      properties:
+        destination_language:
+          type: string
+        entities:
+          $ref: "#/components/schemas/Entities"
+        source_language:
+          type: string
+        translation:
+          type: string
 
     ProfileBioEntities:
       required:

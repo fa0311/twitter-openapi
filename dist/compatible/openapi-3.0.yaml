@@ -1131,6 +1131,29 @@ components:
       required:
       - media_urls
       - message
+    GrokTranslatedBio:
+      properties:
+        destination_language:
+          type: string
+        entities:
+          $ref: '#/components/schemas/Entities'
+        source_language:
+          type: string
+        translation:
+          type: string
+      required:
+      - destination_language
+      - entities
+      - source_language
+      - translation
+    GrokTranslatedBioWithAvailability:
+      properties:
+        data:
+          $ref: '#/components/schemas/GrokTranslatedBio'
+        is_available:
+          type: boolean
+      required:
+      - is_available
     GrokTranslatedCommunityNote:
       properties:
         destination_language:
@@ -3542,6 +3565,8 @@ components:
           $ref: '#/components/schemas/UserDmPermissions'
         follow_request_sent:
           type: boolean
+        grok_translated_bio_with_availability:
+          $ref: '#/components/schemas/GrokTranslatedBioWithAvailability'
         has_graduated_access:
           type: boolean
         has_hidden_likes_on_profile:
@@ -5177,9 +5202,9 @@ paths:
         required: true
         schema:
           default: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           example: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           type: string
       - in: query
         name: features
@@ -6439,9 +6464,9 @@ paths:
         required: true
         schema:
           default: '{"tweetId": "1349129669258448897", "count": 20, "includePromotedContent":
-            true}'
+            true, "enableRanking": true}'
           example: '{"tweetId": "1349129669258448897", "count": 20, "includePromotedContent":
-            true}'
+            true, "enableRanking": true}'
           type: string
       - in: query
         name: features
@@ -6541,9 +6566,9 @@ paths:
         required: true
         schema:
           default: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           example: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           type: string
       - in: query
         name: features
@@ -6643,9 +6668,9 @@ paths:
         required: true
         schema:
           default: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           example: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           type: string
       - in: query
         name: features
@@ -6745,9 +6770,9 @@ paths:
         required: true
         schema:
           default: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           example: '{"userId": "44196397", "count": 20, "includePromotedContent":
-            false}'
+            false, "withGrokTranslatedBio": true}'
           type: string
       - in: query
         name: features
@@ -6847,9 +6872,11 @@ paths:
         required: true
         schema:
           default: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"]}'
+            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"],
+            "enableRanking": false}'
           example: '{"count": 20, "includePromotedContent": true, "latestControlAvailable":
-            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"]}'
+            true, "requestContext": "launch", "seenTweetIds": ["1349129669258448897"],
+            "enableRanking": false}'
           type: string
       - in: query
         name: features
@@ -6897,6 +6924,13 @@ paths:
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
             true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
             true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: fieldToggles
+        required: true
+        schema:
+          default: '{"withPayments": false}'
+          example: '{"withPayments": false}'
           type: string
       responses:
         '200':
@@ -7429,9 +7463,9 @@ paths:
         required: true
         schema:
           default: '{"tweetId": "1349129669258448897", "count": 20, "includePromotedContent":
-            true}'
+            true, "enableRanking": true}'
           example: '{"tweetId": "1349129669258448897", "count": 20, "includePromotedContent":
-            true}'
+            true, "enableRanking": true}'
           type: string
       - in: query
         name: features
@@ -7531,9 +7565,11 @@ paths:
         required: true
         schema:
           default: '{"rawQuery": "elonmusk", "count": 20, "querySource": "typed_query",
-            "product": "Top"}'
+            "product": "Top", "withGrokTranslatedBio": true, "withQuickPromoteEligibilityTweetFields":
+            false}'
           example: '{"rawQuery": "elonmusk", "count": 20, "querySource": "typed_query",
-            "product": "Top"}'
+            "product": "Top", "withGrokTranslatedBio": true, "withQuickPromoteEligibilityTweetFields":
+            false}'
           type: string
       - in: query
         name: features
@@ -7750,9 +7786,9 @@ paths:
         required: true
         schema:
           default: '{"tweetId": "1691730070669517096", "withCommunity": false, "includePromotedContent":
-            false, "withVoice": false}'
+            false, "withVoice": false, "withBirdwatchNotes": true}'
           example: '{"tweetId": "1691730070669517096", "withCommunity": false, "includePromotedContent":
-            false, "withVoice": false}'
+            false, "withVoice": false, "withBirdwatchNotes": true}'
           type: string
       - in: query
         name: features
@@ -8004,8 +8040,8 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"screen_name": "elonmusk"}'
-          example: '{"screen_name": "elonmusk"}'
+          default: '{"screen_name": "elonmusk", "withGrokTranslatedBio": true}'
+          example: '{"screen_name": "elonmusk", "withGrokTranslatedBio": true}'
           type: string
       - in: query
         name: features

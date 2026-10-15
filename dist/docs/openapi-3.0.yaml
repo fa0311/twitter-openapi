@@ -1131,6 +1131,29 @@ components:
       required:
       - media_urls
       - message
+    GrokTranslatedBio:
+      properties:
+        destination_language:
+          type: string
+        entities:
+          $ref: '#/components/schemas/Entities'
+        source_language:
+          type: string
+        translation:
+          type: string
+      required:
+      - destination_language
+      - entities
+      - source_language
+      - translation
+    GrokTranslatedBioWithAvailability:
+      properties:
+        data:
+          $ref: '#/components/schemas/GrokTranslatedBio'
+        is_available:
+          type: boolean
+      required:
+      - is_available
     GrokTranslatedCommunityNote:
       properties:
         destination_language:
@@ -3542,6 +3565,8 @@ components:
           $ref: '#/components/schemas/UserDmPermissions'
         follow_request_sent:
           type: boolean
+        grok_translated_bio_with_availability:
+          $ref: '#/components/schemas/GrokTranslatedBioWithAvailability'
         has_graduated_access:
           type: boolean
         has_hidden_likes_on_profile:
@@ -5188,10 +5213,15 @@ paths:
                   default: '44196397'
                   example: '44196397'
                   type: string
+                withGrokTranslatedBio:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - userId
               - count
               - includePromotedContent
+              - withGrokTranslatedBio
               type: object
         in: query
         name: variables
@@ -7331,6 +7361,10 @@ paths:
                   default: 20
                   example: 20
                   type: integer
+                enableRanking:
+                  default: true
+                  example: true
+                  type: boolean
                 includePromotedContent:
                   default: true
                   example: true
@@ -7343,6 +7377,7 @@ paths:
               - tweetId
               - count
               - includePromotedContent
+              - enableRanking
               type: object
         in: query
         name: variables
@@ -7618,10 +7653,15 @@ paths:
                   default: '44196397'
                   example: '44196397'
                   type: string
+                withGrokTranslatedBio:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - userId
               - count
               - includePromotedContent
+              - withGrokTranslatedBio
               type: object
         in: query
         name: variables
@@ -7897,10 +7937,15 @@ paths:
                   default: '44196397'
                   example: '44196397'
                   type: string
+                withGrokTranslatedBio:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - userId
               - count
               - includePromotedContent
+              - withGrokTranslatedBio
               type: object
         in: query
         name: variables
@@ -8176,10 +8221,15 @@ paths:
                   default: '44196397'
                   example: '44196397'
                   type: string
+                withGrokTranslatedBio:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - userId
               - count
               - includePromotedContent
+              - withGrokTranslatedBio
               type: object
         in: query
         name: variables
@@ -8447,6 +8497,10 @@ paths:
                   default: 20
                   example: 20
                   type: integer
+                enableRanking:
+                  default: false
+                  example: false
+                  type: boolean
                 includePromotedContent:
                   default: true
                   example: true
@@ -8471,6 +8525,7 @@ paths:
               - latestControlAvailable
               - requestContext
               - seenTweetIds
+              - enableRanking
               type: object
         in: query
         name: variables
@@ -8683,6 +8738,20 @@ paths:
               type: object
         in: query
         name: features
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                withPayments:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - withPayments
+              type: object
+        in: query
+        name: fieldToggles
         required: true
       responses:
         '200':
@@ -9975,6 +10044,10 @@ paths:
                   default: 20
                   example: 20
                   type: integer
+                enableRanking:
+                  default: true
+                  example: true
+                  type: boolean
                 includePromotedContent:
                   default: true
                   example: true
@@ -9987,6 +10060,7 @@ paths:
               - tweetId
               - count
               - includePromotedContent
+              - enableRanking
               type: object
         in: query
         name: variables
@@ -10266,11 +10340,21 @@ paths:
                   default: elonmusk
                   example: elonmusk
                   type: string
+                withGrokTranslatedBio:
+                  default: true
+                  example: true
+                  type: boolean
+                withQuickPromoteEligibilityTweetFields:
+                  default: false
+                  example: false
+                  type: boolean
               required:
               - rawQuery
               - count
               - querySource
               - product
+              - withGrokTranslatedBio
+              - withQuickPromoteEligibilityTweetFields
               type: object
         in: query
         name: variables
@@ -10900,6 +10984,10 @@ paths:
                   default: '1691730070669517096'
                   example: '1691730070669517096'
                   type: string
+                withBirdwatchNotes:
+                  default: true
+                  example: true
+                  type: boolean
                 withCommunity:
                   default: false
                   example: false
@@ -10913,6 +11001,7 @@ paths:
               - withCommunity
               - includePromotedContent
               - withVoice
+              - withBirdwatchNotes
               type: object
         in: query
         name: variables
@@ -11400,8 +11489,13 @@ paths:
                   default: elonmusk
                   example: elonmusk
                   type: string
+                withGrokTranslatedBio:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - screen_name
+              - withGrokTranslatedBio
               type: object
         in: query
         name: variables
