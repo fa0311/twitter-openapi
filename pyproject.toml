@@ -1,0 +1,29 @@
+[project]
+name = "twitter-openapi"
+version = "0.0.0"
+description = "Twitter OpenAPI(Swagger) specification"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0.3",
+    "tqdm>=4.70.1",
+]
+
+[dependency-groups]
+dev = ["ruff"]
+test = [
+    "beautifulsoup4>=4.15.0",
+    "requests>=2.34.2",
+    "urllib3>=2.5.0",
+    "xclienttransaction>=1.0.3",
+]
+tools = [
+    "playwright>=1.60.0",
+]
+
+[tool.uv]
+package = false
+default-groups = ["dev", "test", "tools"]
+
+[tool.ruff]
+line-length = 88

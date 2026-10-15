@@ -1,6 +1,0 @@
-aenum
-PyYAML
-tqdm
-XClientTransaction
-requests
-rich

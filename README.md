@@ -29,9 +29,22 @@ Note that the license also inherits to the output.
 ### build
 
 ```shell
-python -V # Python 3.10.8
-pip install -r requirements.txt
-python tools/build.py
+uv run python tools/build.py
+```
+
+### update placeholder.json
+
+```shell
+uv run tools/update_placeholder.py            # queryId / features from TwitterInternalAPIDocument
+uv run tools/update_placeholder.py --browser  # also record real requests with cookie.json (playwright)
+```
+
+### test
+
+```shell
+java -jar openapi-generator-cli.jar generate -c test/python/openapi-generator-config.yaml -g python
+uv pip install ./python_generated
+STRICT_MODE=True uv run python test/python/test_serialize.py  # needs cookie.json
 ```
 
 ## License
