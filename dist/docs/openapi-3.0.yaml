@@ -940,7 +940,6 @@ components:
       - source
       - code
       - kind
-      - tracing
       type: object
     ErrorResponse:
       properties:
