@@ -328,7 +328,9 @@ if __name__ == "__main__":
             cursor_list = set([None])
             cursor_history = set()
 
-            if key in ["UserByRestId", "UsersByRestIds"]:
+            if key in ["UserByRestId", "UsersByRestIds"]:  # Cloudflare 403 outside a browser
+                continue
+            if key == "ListByRestId":  # X answers 200 plus a BadRequestError for list.default_banner_media_results on every list
                 continue
 
             try:
