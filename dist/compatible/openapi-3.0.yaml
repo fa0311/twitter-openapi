@@ -803,6 +803,29 @@ components:
       properties:
         tweet_bookmark_put:
           type: string
+    CreateDraftTweetResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateDraftTweetResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    CreateDraftTweetResponseData:
+      properties:
+        tweet:
+          $ref: '#/components/schemas/CreateDraftTweetResponseTweet'
+      required:
+      - tweet
+    CreateDraftTweetResponseTweet:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
     CreateRetweet:
       properties:
         result:
@@ -886,6 +909,22 @@ components:
       properties:
         tweet_bookmark_delete:
           type: string
+    DeleteDraftTweetsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteDraftTweetsResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    DeleteDraftTweetsResponseData:
+      properties:
+        draft_tweets_batch_delete:
+          type: string
+      required:
+      - draft_tweets_batch_delete
     DeleteListResponse:
       properties:
         data:
@@ -966,6 +1005,77 @@ components:
       - VerticalGrid
       - Carousel
       type: string
+    DraftList:
+      properties:
+        response_data:
+          items:
+            $ref: '#/components/schemas/DraftTweet'
+          type: array
+      required:
+      - response_data
+    DraftTweet:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        tweet_create_request:
+          $ref: '#/components/schemas/DraftTweetCreateRequest'
+        user_results:
+          $ref: '#/components/schemas/DraftTweetUserResults'
+      required:
+      - rest_id
+      - tweet_create_request
+      - user_results
+    DraftTweetCreateRequest:
+      properties:
+        auto_populate_reply_metadata:
+          type: boolean
+        exclude_reply_user_ids:
+          items:
+            type: string
+          type: array
+        media_ids:
+          items:
+            type: string
+          type: array
+        status:
+          type: string
+        thread_tweets:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+        type:
+          type: string
+      required:
+      - auto_populate_reply_metadata
+      - exclude_reply_user_ids
+      - media_ids
+      - status
+      - thread_tweets
+      - type
+    DraftTweetUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - __typename
+      - rest_id
+    DraftTweetUserResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/DraftTweetUser'
+      required:
+      - result
+    DraftTweetsViewer:
+      properties:
+        draft_list:
+          $ref: '#/components/schemas/DraftList'
+      required:
+      - draft_list
     Entities:
       properties:
         hashtags:
@@ -1161,6 +1271,38 @@ components:
           type: array
       required:
       - feedbackType
+    FetchDraftTweetsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/FetchDraftTweetsResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    FetchDraftTweetsResponseData:
+      properties:
+        viewer:
+          $ref: '#/components/schemas/DraftTweetsViewer'
+      required:
+      - viewer
+    FetchScheduledTweetsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/FetchScheduledTweetsResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    FetchScheduledTweetsResponseData:
+      properties:
+        viewer:
+          $ref: '#/components/schemas/ScheduledTweetsViewer'
+      required:
+      - viewer
     FollowResponse:
       properties:
         data:
@@ -2264,6 +2406,15 @@ components:
         text:
           type: string
       type: object
+    ScheduledTweetsViewer:
+      properties:
+        scheduled_tweet_list:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+      required:
+      - scheduled_tweet_list
     SearchByRawQuery:
       properties:
         search_timeline:
@@ -6391,6 +6542,100 @@ paths:
                 type: string
       tags:
       - post
+  /graphql/{pathQueryId}/CreateDraftTweet:
+    post:
+      description: save a draft
+      operationId: postCreateDraftTweet
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: cH9HZWz_EW9gnswvA4ZRiQ
+          example: cH9HZWz_EW9gnswvA4ZRiQ
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: cH9HZWz_EW9gnswvA4ZRiQ
+                  example: cH9HZWz_EW9gnswvA4ZRiQ
+                  type: string
+                variables:
+                  properties:
+                    post_tweet_request:
+                      properties:
+                        auto_populate_reply_metadata:
+                          default: false
+                          example: false
+                          type: boolean
+                        exclude_reply_user_ids:
+                          items:
+                            type: object
+                          type: array
+                        media_ids:
+                          items:
+                            type: object
+                          type: array
+                        status:
+                          default: test
+                          example: test
+                          type: string
+                        thread_tweets:
+                          items:
+                            type: object
+                          type: array
+                      required:
+                      - auto_populate_reply_metadata
+                      - status
+                      - exclude_reply_user_ids
+                      - media_ids
+                      - thread_tweets
+                      type: object
+                  required:
+                  - post_tweet_request
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDraftTweetResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
   /graphql/{pathQueryId}/CreateList:
     post:
       description: create list
@@ -6970,6 +7215,77 @@ paths:
                 type: string
       tags:
       - post
+  /graphql/{pathQueryId}/DeleteDraftTweets:
+    post:
+      description: delete drafts
+      operationId: postDeleteDraftTweets
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: h0rzaIYc9-v3zTQvx1J8OA
+          example: h0rzaIYc9-v3zTQvx1J8OA
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                queryId:
+                  default: h0rzaIYc9-v3zTQvx1J8OA
+                  example: h0rzaIYc9-v3zTQvx1J8OA
+                  type: string
+                variables:
+                  properties:
+                    draft_tweet_ids:
+                      items:
+                        default: '2110784080107495424'
+                        example: '2110784080107495424'
+                        type: string
+                      type: array
+                  required:
+                  - draft_tweet_ids
+                  type: object
+              required:
+              - queryId
+              - variables
+        description: body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteDraftTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - post
   /graphql/{pathQueryId}/DeleteList:
     post:
       description: delete list
@@ -7458,6 +7774,112 @@ paths:
                 type: string
       tags:
       - user-list
+  /graphql/{pathQueryId}/FetchDraftTweets:
+    get:
+      description: get drafts (unsent posts)
+      operationId: getFetchDraftTweets
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: L9RqKWmAWxK6vGtR3Qdsxw
+          example: L9RqKWmAWxK6vGtR3Qdsxw
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"ascending": false}'
+          example: '{"ascending": false}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchDraftTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user
+  /graphql/{pathQueryId}/FetchScheduledTweets:
+    get:
+      description: get scheduled posts
+      operationId: getFetchScheduledTweets
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: H2elmT2R9DLhWoo0DZFNkA
+          example: H2elmT2R9DLhWoo0DZFNkA
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"ascending": true}'
+          example: '{"ascending": true}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchScheduledTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user
   /graphql/{pathQueryId}/Followers:
     get:
       description: get user list of followers
