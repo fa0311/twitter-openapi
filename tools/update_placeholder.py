@@ -5,8 +5,9 @@
 
 The catalog (packages/server/requests.ndjson in fa0311/twitter_api_safe_relay, also served by a
 running relay at /requests.ndjson) holds the X web client's own request objects, one per
-operation, recorded with twitter-api-safe-dump. For every operation in the catalog, queryId /
-@method / features / fieldToggles are overwritten with exactly what the frontend sent; variables
+operation, recorded with twitter-api-safe-dump. For every operation in the catalog that carries a
+recording date (recordedAt), queryId / @method / features / fieldToggles are overwritten with exactly
+what the frontend sent and the date is printed; lines of unknown age are never applied. variables
 are never overwritten, only key drift is printed (a trailing ? marks an optional key). Operations
 missing from the catalog are left untouched and listed at the end.
 """
@@ -29,12 +30,16 @@ def read_catalog(source: str) -> dict[tuple[str, str], dict]:
     """(operation, method) -> placeholder-shaped entry; the frontend uses both GET and POST for some operations."""
     text = requests.get(source, timeout=60).text if source.startswith("http") else Path(source).read_text(encoding="utf-8")
     recorded: dict[tuple[str, str], dict] = {}
+    unstamped: set[str] = set()
     for line in text.splitlines():
         if not line.strip():
             continue
         request = json.loads(line)
         match = re.fullmatch(r"/graphql/(?P<query_id>[^/]+)/(?P<name>[^/?]+)", request["path"])
         if match is None or (match["name"], request["method"]) in recorded:
+            continue
+        if "recordedAt" not in request:  # kept from an older catalog, age unknown: never applied to placeholder.json
+            unstamped.add(match["name"])
             continue
         if request["method"] == "GET":
             params = request.get("params", {})
@@ -46,8 +51,11 @@ def read_catalog(source: str) -> dict[tuple[str, str], dict]:
             "@path": f"/i/api{request['path']}",
             "@method": request["method"],
             "queryId": match["query_id"],
+            "recordedAt": request["recordedAt"],
             **payload,
         }
+    if unstamped:
+        print(f"not applied, recording date unknown: {', '.join(sorted(unstamped))}")
     return recorded
 
 
@@ -81,7 +89,7 @@ def apply_recorded(placeholder: dict, recorded: dict[tuple[str, str], dict]) -> 
         if "variables" in hit and "variables" in entry:
             check_variables(name, entry["variables"], hit["variables"])
         if before != json.dumps(entry, sort_keys=True):
-            changed.append(name)
+            changed.append(f"{name} ({hit['recordedAt'][:10]})")
     return changed
 
 
