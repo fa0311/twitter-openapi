@@ -1705,7 +1705,10 @@
     "DataSaverMode": {
         "@path": "/i/api/graphql/xF6sXnKJfS2AOylzxRjf6A/DataSaverMode",
         "@method": "GET",
-        "queryId": "xF6sXnKJfS2AOylzxRjf6A"
+        "queryId": "xF6sXnKJfS2AOylzxRjf6A",
+        "variables": {
+            "device_id": "Windows/Chrome"
+        }
     },
     "PinnedTimelines": {
         "@path": "/i/api/graphql/8J1r9u3VjUveEdTY4WUTwQ/PinnedTimelines",
@@ -1717,12 +1720,14 @@
             "rweb_tipjar_consumption_enabled": false,
             "verified_phone_label_enabled": false,
             "responsive_web_graphql_timeline_navigation_enabled": true
-        }
+        },
+        "variables": {}
     },
     "getAltTextPromptPreference": {
         "@path": "/i/api/graphql/PFIxTk8owMoZgiMccP0r4g/getAltTextPromptPreference",
         "@method": "GET",
-        "queryId": "PFIxTk8owMoZgiMccP0r4g"
+        "queryId": "PFIxTk8owMoZgiMccP0r4g",
+        "variables": {}
     },
     "ExploreSidebar": {
         "@path": "/i/api/graphql/bY118dk8ns_5JzfzIMeiBw/ExploreSidebar",
@@ -1769,7 +1774,8 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
-        }
+        },
+        "variables": {}
     },
     "useFetchProfileBlocks_profileExistsQuery": {
         "@path": "/i/api/graphql/Z2BA99jFw6TxaJM5v7Irmg/useFetchProfileBlocks_profileExistsQuery",
@@ -1821,17 +1827,22 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "cursor": ""
         }
     },
     "CommunitiesCreateButtonQuery": {
         "@path": "/i/api/graphql/ScODPHsG2d28Xr-rDSBThg/CommunitiesCreateButtonQuery",
         "@method": "GET",
-        "queryId": "ScODPHsG2d28Xr-rDSBThg"
+        "queryId": "ScODPHsG2d28Xr-rDSBThg",
+        "variables": {}
     },
     "CarouselQuery": {
         "@path": "/i/api/graphql/7gBMELiDhLZ_MtyTElxYsA/CarouselQuery",
         "@method": "GET",
-        "queryId": "7gBMELiDhLZ_MtyTElxYsA"
+        "queryId": "7gBMELiDhLZ_MtyTElxYsA",
+        "variables": {}
     },
     "CommunitiesRankedTimeline": {
         "@path": "/i/api/graphql/B-mLs6i8q2a_IG8JnWlUkQ/CommunitiesRankedTimeline",
@@ -1929,7 +1940,8 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
-        }
+        },
+        "variables": {}
     },
     "BirdwatchFetchAuthenticatedUserProfile": {
         "@path": "/i/api/graphql/kD74-qBfrdRT5rO9YOl57g/BirdwatchFetchAuthenticatedUserProfile",
@@ -1939,7 +1951,8 @@
             "responsive_web_birdwatch_top_contributor_enabled": true,
             "responsive_web_birdwatch_mobile_nav_setting_enabled": false,
             "responsive_web_birdwatch_note_limit_enabled": true
-        }
+        },
+        "variables": {}
     },
     "useRelayDelegateDataPendingQuery": {
         "@path": "/i/api/graphql/0d3YLrCrAvgiPrMFGc33SA/useRelayDelegateDataPendingQuery",
@@ -1980,7 +1993,10 @@
         "@path": "/i/api/graphql/L9RqKWmAWxK6vGtR3Qdsxw/FetchDraftTweets",
         "@method": "GET",
         "queryId": "L9RqKWmAWxK6vGtR3Qdsxw",
-        "ascending": false
+        "ascending": false,
+        "variables": {
+            "ascending": false
+        }
     },
     "useFetchAnalyticsQuery": {
         "@path": "/i/api/graphql/5JkoDLRvQrXv2QV4U5gKFg/useFetchAnalyticsQuery",
@@ -2055,7 +2071,8 @@
     "BirdwatchFetchAliasSelfSelectStatus": {
         "@path": "/i/api/graphql/LUEdtkcpBlGktUtms4BvwA/BirdwatchFetchAliasSelfSelectStatus",
         "@method": "GET",
-        "queryId": "LUEdtkcpBlGktUtms4BvwA"
+        "queryId": "LUEdtkcpBlGktUtms4BvwA",
+        "variables": {}
     },
     "BirdwatchFetchContributorNotesSlice": {
         "@path": "/i/api/graphql/I-tH41siP78FjfJEqdUPhQ/BirdwatchFetchContributorNotesSlice",
@@ -2112,6 +2129,9 @@
         "queryId": "id9iGfEQF47W1kvRBHUmRQ",
         "features": {
             "responsive_web_birdwatch_top_contributor_enabled": true
+        },
+        "variables": {
+            "alias": "me"
         }
     },
     "BirdwatchFetchPublicData": {
@@ -2120,7 +2140,8 @@
         "queryId": "T4Qdev0aBeS9tK9v4TkgQg",
         "features": {
             "responsive_web_birdwatch_note_request_download_enabled": true
-        }
+        },
+        "variables": {}
     },
     "ListsManagementPageTimeline": {
         "@path": "/i/api/graphql/FMDRDwDKo_nl4kT_AKWOCg/ListsManagementPageTimeline",
@@ -2167,6 +2188,9 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "count": 100
         }
     },
     "useFetchProfileSections_canViewExpandedProfileQuery": {
@@ -2203,6 +2227,9 @@
         "features": {
             "c9s_list_members_action_api_enabled": false,
             "c9s_superc9s_indication_enabled": false
+        },
+        "variables": {
+            "communityId": "1493446837214187523"
         }
     },
     "CommunityHashtagsTimeline": {
@@ -2265,7 +2292,8 @@
     "TopicCarouselQuery": {
         "@path": "/i/api/graphql/byVjaS0CUtBqAao_lhZFgA/TopicCarouselQuery",
         "@method": "GET",
-        "queryId": "byVjaS0CUtBqAao_lhZFgA"
+        "queryId": "byVjaS0CUtBqAao_lhZFgA",
+        "variables": {}
     },
     "CommunitiesExploreTimeline": {
         "@path": "/i/api/graphql/Dv5noA3XlcegYD_nIRs0lA/CommunitiesExploreTimeline",
@@ -2312,6 +2340,10 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "count": 20,
+            "withCommunity": true
         }
     },
     "BookmarkSearchTimeline": {
@@ -2359,6 +2391,10 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "rawQuery": "test",
+            "count": 20
         }
     },
     "CommunityDiscoveryTimeline": {
@@ -2406,12 +2442,19 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "withCommunity": true
         }
     },
     "CommunitiesSearchQuery": {
-        "@path": "/i/api/graphql/daVUkhfHn7-Z8llpYVKJSw/CommunitiesSearchQuery",
+        "@path": "/i/api/graphql/HKgnJbw10TZW41Na4ToaSw/CommunitiesSearchQuery",
         "@method": "GET",
-        "queryId": "daVUkhfHn7-Z8llpYVKJSw"
+        "queryId": "HKgnJbw10TZW41Na4ToaSw",
+        "variables": {
+            "query": "test",
+            "cursor": null
+        }
     },
     "GlobalCommunitiesPostSearchTimeline": {
         "@path": "/i/api/graphql/z3OlkLD0_MFgCvUXcN1XeA/GlobalCommunitiesPostSearchTimeline",
@@ -2458,6 +2501,10 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "rawQuery": "test",
+            "count": 20
         }
     },
     "GlobalCommunitiesLatestPostSearchTimeline": {
@@ -2505,14 +2552,22 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "rawQuery": "test",
+            "count": 20
         }
     },
     "membersSliceTimeline_Query": {
-        "@path": "/i/api/graphql/V7OdnMvujMPsCctT_daznQ/membersSliceTimeline_Query",
+        "@path": "/i/api/graphql/woAp_YdzAdqnWDrqLTNpAw/membersSliceTimeline_Query",
         "@method": "GET",
-        "queryId": "V7OdnMvujMPsCctT_daznQ",
+        "queryId": "woAp_YdzAdqnWDrqLTNpAw",
         "features": {
             "responsive_web_graphql_timeline_navigation_enabled": true
+        },
+        "variables": {
+            "communityId": "1493446837214187523",
+            "cursor": null
         }
     },
     "CombinedLists": {
@@ -2560,12 +2615,19 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "userId": "44196397",
+            "count": 100
         }
     },
     "FetchScheduledTweets": {
         "@path": "/i/api/graphql/H2elmT2R9DLhWoo0DZFNkA/FetchScheduledTweets",
         "@method": "GET",
-        "queryId": "H2elmT2R9DLhWoo0DZFNkA"
+        "queryId": "H2elmT2R9DLhWoo0DZFNkA",
+        "variables": {
+            "ascending": true
+        }
     },
     "BlueVerifiedProfileEditCalloutQuery": {
         "@path": "/i/api/graphql/myAwUDICwB5gFdJhNB7xsg/BlueVerifiedProfileEditCalloutQuery",
@@ -2707,6 +2769,10 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "listId": "1141162794290520064",
+            "count": 20
         }
     },
     "ListSearchTimeline": {
@@ -2754,6 +2820,10 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "rawQuery": "test",
+            "count": 20
         }
     },
     "useTotalAdCampaignsForUserQuery": {
@@ -2835,7 +2905,8 @@
     "GrokHome": {
         "@path": "/i/api/graphql/QAPGIKJVaPXYD-gO9kxc9w/GrokHome",
         "@method": "GET",
-        "queryId": "QAPGIKJVaPXYD-gO9kxc9w"
+        "queryId": "QAPGIKJVaPXYD-gO9kxc9w",
+        "variables": {}
     },
     "PremiumContentQuery": {
         "@path": "/i/api/graphql/7EJhmp1R3-rjp-3cLCWUbQ/PremiumContentQuery",
@@ -2843,11 +2914,14 @@
         "queryId": "7EJhmp1R3-rjp-3cLCWUbQ"
     },
     "useFetchProductSubscriptionsQuery": {
-        "@path": "/i/api/graphql/Jm0Xa2s6HVvspSC2Xr0zEA/useFetchProductSubscriptionsQuery",
+        "@path": "/i/api/graphql/SPJ9o9QzEK2l1Bh1vcgX6A/useFetchProductSubscriptionsQuery",
         "@method": "GET",
-        "queryId": "Jm0Xa2s6HVvspSC2Xr0zEA",
+        "queryId": "SPJ9o9QzEK2l1Bh1vcgX6A",
         "features": {
             "subscriptions_management_fetch_next_billing_time": true
+        },
+        "variables": {
+            "fetchPrices": true
         }
     },
     "useSubscriptionProductDetailsQuery": {
@@ -2859,9 +2933,13 @@
         }
     },
     "usePricesQuery": {
-        "@path": "/i/api/graphql/_1X_iKPfDIUTC6mnDJS5TA/usePricesQuery",
+        "@path": "/i/api/graphql/_Xc8ub2M0szTPSj4UOIvCw/usePricesQuery",
         "@method": "GET",
-        "queryId": "_1X_iKPfDIUTC6mnDJS5TA"
+        "queryId": "_Xc8ub2M0szTPSj4UOIvCw",
+        "variables": {
+            "rest_id": "prod_P67yo9jgLohMHV",
+            "partnership_id": null
+        }
     },
     "VOCardsQuery": {
         "@path": "/i/api/graphql/nsVPuj1x3k3I7Bi9LHBScA/VOCardsQuery",
@@ -2871,17 +2949,20 @@
     "useVerifiedOrgFeatureHelperQuery": {
         "@path": "/i/api/graphql/o8dabL5ri3RA6DPrG5Bo_g/useVerifiedOrgFeatureHelperQuery",
         "@method": "GET",
-        "queryId": "o8dabL5ri3RA6DPrG5Bo_g"
+        "queryId": "o8dabL5ri3RA6DPrG5Bo_g",
+        "variables": {}
     },
     "useProductSkuQuery": {
         "@path": "/i/api/graphql/J4jkAy2kC6O59mP-94xOzA/useProductSkuQuery",
         "@method": "GET",
-        "queryId": "J4jkAy2kC6O59mP-94xOzA"
+        "queryId": "J4jkAy2kC6O59mP-94xOzA",
+        "variables": {}
     },
     "CommunityBoostFetchPublicData": {
         "@path": "/i/api/graphql/mtel1c9ozKWaWr9-D2wMwg/CommunityBoostFetchPublicData",
         "@method": "GET",
-        "queryId": "mtel1c9ozKWaWr9-D2wMwg"
+        "queryId": "mtel1c9ozKWaWr9-D2wMwg",
+        "variables": {}
     },
     "UserSuperFollowTweets": {
         "@path": "/i/api/graphql/SgMBGaLeFpBoPYftpsn8fw/UserSuperFollowTweets",
@@ -2932,17 +3013,25 @@
         "fieldToggles": {
             "withPayments": false,
             "withArticlePlainText": false
+        },
+        "variables": {
+            "userId": "44196397",
+            "count": 20,
+            "includePromotedContent": true,
+            "withVoice": true
         }
     },
     "AuthenticatePeriscope": {
         "@path": "/i/api/graphql/r7VUmxbfqNkx7uwjgONSNw/AuthenticatePeriscope",
         "@method": "GET",
-        "queryId": "r7VUmxbfqNkx7uwjgONSNw"
+        "queryId": "r7VUmxbfqNkx7uwjgONSNw",
+        "variables": {}
     },
     "CreatorStudioTabBarItemQuery": {
         "@path": "/i/api/graphql/1KZj_GRTxmPaSrk8jIb1Yw/CreatorStudioTabBarItemQuery",
         "@method": "GET",
-        "queryId": "1KZj_GRTxmPaSrk8jIb1Yw"
+        "queryId": "1KZj_GRTxmPaSrk8jIb1Yw",
+        "variables": {}
     },
     "xChatDmSettingsQuery": {
         "@path": "/i/api/graphql/mRmm_3aCzCcbpzBkhyhCDg/xChatDmSettingsQuery",
@@ -2957,7 +3046,8 @@
     "usePremiumPaywallOnLoadMutation": {
         "@path": "/i/api/graphql/F6gikc1Bwzry7oHMrdrYzg/usePremiumPaywallOnLoadMutation",
         "@method": "POST",
-        "queryId": "F6gikc1Bwzry7oHMrdrYzg"
+        "queryId": "F6gikc1Bwzry7oHMrdrYzg",
+        "variables": {}
     },
     "CreateList": {
         "@path": "/i/api/graphql/zdGzorOEOslDL4XEbe2INw/CreateList",
@@ -3063,6 +3153,10 @@
             "responsive_web_grok_imagine_annotation_enabled": true,
             "responsive_web_grok_community_note_auto_translation_is_enabled": true,
             "responsive_web_enhance_cards_enabled": false
+        },
+        "variables": {
+            "count": 20,
+            "context": "{}"
         }
     }
 }
