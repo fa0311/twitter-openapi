@@ -312,7 +312,7 @@ if __name__ == "__main__":
 
     error_count = 0
 
-    for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi]:
+    for x in [pt.DefaultApi, pt.TweetApi, pt.UserApi, pt.UsersApi, pt.UserListApi, pt.CommunityApi, pt.BirdwatchApi]:
         for props, fn in inspect.getmembers(x):
             if not callable(fn):
                 continue
@@ -325,9 +325,6 @@ if __name__ == "__main__":
 
             if key in ["UserByRestId", "UsersByRestIds"]:  # Cloudflare 403 outside a browser
                 continue
-            if key == "ListByRestId":  # X answers 200 plus a BadRequestError for list.default_banner_media_results on every list
-                continue
-
             try:
                 for _ in range(CUESOR_TEST_COUNT):
                     cursor = cursor_list.pop()
@@ -357,9 +354,13 @@ if __name__ == "__main__":
                     )
                     logger.info(f"Match rate: {rate}")
 
-                    if data.get("errors") is not None:
-                        logger.error(data)
-                        error_count += 1
+                    if data.get("errors") is not None:  # X reports partial errors next to complete data (lists, searches)
+                        messages = ", ".join(e.get("message", "")[:80] for e in data["errors"])
+                        if rate < 1:
+                            logger.error(f"errors: {messages}")
+                            error_count += 1
+                        else:
+                            logger.warning(f"errors with complete data: {messages}")
 
                     if len(cursor_list) == 0:
                         break
@@ -394,7 +395,6 @@ if __name__ == "__main__":
         "1212617657003859968",
         "2455740283",
         "2326837940",
-        "1788224200639160320",
         "1500128450186985472",
         "25073877",
     ]

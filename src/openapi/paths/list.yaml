@@ -143,6 +143,47 @@ paths:
                 $ref: "#/components/schemas/ListResponse"
       tags:
         - "post"
+  /graphql/{pathQueryId}/ListSearchTimeline:
+    get:
+      operationId: getListSearchTimeline
+      description: search lists
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListSearchTimelineResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/CombinedLists:
+    get:
+      operationId: getCombinedLists
+      description: lists a user owns or follows
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "./usertweets.yaml#/components/schemas/UserTweetsResponse"
+      tags:
+        - "user-list"
+
+  /graphql/{pathQueryId}/ListsManagementPageTimeline:
+    get:
+      operationId: getListsManagementPageTimeline
+      description: the account's lists management page
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListsManagementPageTimelineResponse"
+      tags:
+        - "user-list"
 
 components:
   schemas:
@@ -257,3 +298,52 @@ components:
         list_delete:
           type: string
 
+    ListSearchTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListSearchTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ListSearchTimelineResponseData:
+      required:
+        - "search_by_raw_query"
+      properties:
+        search_by_raw_query:
+          $ref: "#/components/schemas/ListSearch"
+
+    ListSearch:
+      required:
+        - "list_search_timeline"
+      properties:
+        list_search_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ListsManagementPageTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ListsManagementPageTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ListsManagementPageTimelineResponseData:
+      required:
+        - "viewer"
+      properties:
+        viewer:
+          $ref: "#/components/schemas/ListsManagementViewer"
+
+    ListsManagementViewer:
+      required:
+        - "list_management_timeline"
+      properties:
+        list_management_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"

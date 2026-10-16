@@ -171,6 +171,33 @@ paths:
                 $ref: "#/components/schemas/ExplorePageResponse"
       tags:
         - "tweet"
+  /graphql/{pathQueryId}/BookmarkSearchTimeline:
+    get:
+      operationId: getBookmarkSearchTimeline
+      description: search the account's bookmarks
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookmarkSearchTimelineResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/ExploreSidebar:
+    get:
+      operationId: getExploreSidebar
+      description: the explore sidebar (trends)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExploreSidebarResponse"
+      tags:
+        - "tweet"
 
 components:
   schemas:
@@ -539,3 +566,45 @@ components:
         section:
           type: string
 
+    BookmarkSearchTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BookmarkSearchTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    BookmarkSearchTimelineResponseData:
+      required:
+        - "search_by_raw_query"
+      properties:
+        search_by_raw_query:
+          $ref: "#/components/schemas/BookmarkSearch"
+
+    BookmarkSearch:
+      required:
+        - "bookmarks_search_timeline"
+      properties:
+        bookmarks_search_timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    ExploreSidebarResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/ExploreSidebarResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    ExploreSidebarResponseData:
+      required:
+        - "explore_sidebar"
+      properties:
+        explore_sidebar:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"

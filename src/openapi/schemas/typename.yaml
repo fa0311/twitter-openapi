@@ -14,6 +14,7 @@ components:
           TimelineFrame,
           TimelineTwitterList,
           TimelineLabel,
+          TimelineEventSummary,
           TimelineTimelineItem,
           TimelineUser,
           TimelineTimelineCursor,
@@ -46,6 +47,8 @@ components:
           ApiImage,
           ApiMedia,
           CommunityUserDefaultModerationState,
+          CommunityHashtagSlice,
+          CommunityListMembersAction,
           CtaLimitedActionPrompt,
           TimelineRichTextUser,
         ]

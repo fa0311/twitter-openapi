@@ -1,0 +1,288 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /graphql/{pathQueryId}/AuthenticatePeriscope:
+    get:
+      operationId: getAuthenticatePeriscope
+      description: a Periscope (live video) token for the account
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthenticatePeriscopeResponse"
+      tags:
+        - "default"
+
+  /graphql/{pathQueryId}/CreatorStudioTabBarItemQuery:
+    get:
+      operationId: getCreatorStudioTabBarItemQuery
+      description: audience rewards tasks shown in Creator Studio
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreatorStudioTabBarItemQueryResponse"
+      tags:
+        - "default"
+
+  /graphql/{pathQueryId}/DataSaverMode:
+    get:
+      operationId: getDataSaverMode
+      description: data saver setting of the account
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataSaverModeResponse"
+      tags:
+        - "default"
+
+  /graphql/{pathQueryId}/GrokHome:
+    get:
+      operationId: getGrokHome
+      description: "Grok home: model options, prompts and eligibility"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GrokHomeResponse"
+      tags:
+        - "default"
+
+  /graphql/{pathQueryId}/PinnedTimelines:
+    get:
+      operationId: getPinnedTimelines
+      description: the account's pinned timelines
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PinnedTimelinesResponse"
+      tags:
+        - "default"
+
+components:
+  schemas:
+    AuthenticatePeriscopeResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/AuthenticatePeriscopeResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    AuthenticatePeriscopeResponseData:
+      required:
+        - "authenticate_periscope"
+      properties:
+        authenticate_periscope:
+          type: string
+
+    CreatorStudioTabBarItemQueryResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CreatorStudioTabBarItemQueryResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    CreatorStudioTabBarItemQueryResponseData:
+      required:
+        - "xpayments_audience_rewards_tasks"
+      properties:
+        xpayments_audience_rewards_tasks:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+
+    DataSaverModeResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/DataSaverModeResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    DataSaverModeResponseData:
+      required:
+        - "viewer"
+      properties:
+        viewer:
+          type: object
+          properties: {} # always {}
+
+    GrokHomeResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/GrokHomeResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    GrokHomeResponseData:
+      required:
+        - "grok_home"
+      properties:
+        grok_home:
+          $ref: "#/components/schemas/GrokHome"
+
+    GrokHome:
+      required:
+        - "default_grok_mode"
+        - "default_grok_model_option_id"
+        - "eligible_for_grok"
+        - "free_access_enabled"
+        - "grok_model_options"
+        - "grok_version"
+        - "ineligible_reasons"
+        - "layout"
+      properties:
+        default_grok_mode:
+          type: string
+        default_grok_model_option_id:
+          type: string
+        eligible_for_grok:
+          type: boolean
+        free_access_enabled:
+          type: boolean
+        grok_model_options:
+          type: array
+          items:
+            $ref: "#/components/schemas/GrokModelOption"
+        grok_version:
+          type: string
+        ineligible_reasons:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+        layout:
+          $ref: "#/components/schemas/GrokHomeLayout"
+
+    GrokModelOption:
+      required:
+        - "description"
+        - "icon_name"
+        - "id"
+        - "is_analyze_enabled"
+        - "is_enabled"
+        - "is_enhance_enabled"
+        - "mode"
+        - "name"
+      properties:
+        description:
+          type: string
+        icon_name:
+          type: string
+        id:
+          type: string
+        is_analyze_enabled:
+          type: boolean
+        is_enabled:
+          type: boolean
+        is_enhance_enabled:
+          type: boolean
+        mode:
+          type: string
+        name:
+          type: string
+
+    GrokHomeLayout:
+      required:
+        - "name"
+        - "sections"
+      properties:
+        name:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: "#/components/schemas/GrokHomeLayoutSection"
+
+    GrokHomeLayoutSection:
+      required:
+        - "prompts"
+        - "section_type"
+      properties:
+        prompts:
+          type: array
+          items:
+            $ref: "#/components/schemas/GrokHomePrompt"
+        section_type:
+          type: string
+
+    GrokHomePrompt:
+      required:
+        - "display_body"
+        - "display_label"
+        - "filter_key"
+        - "icon_name"
+        - "prompt"
+        - "prompt_id"
+      properties:
+        display_body:
+          type: string
+        display_label:
+          type: string
+        filter_key:
+          type: string
+        icon_name:
+          type: string
+        prompt:
+          type: string
+        prompt_id:
+          type: string
+
+    PinnedTimelinesResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/PinnedTimelinesResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    PinnedTimelinesResponseData:
+      required:
+        - "pinned_timelines"
+      properties:
+        pinned_timelines:
+          $ref: "#/components/schemas/PinnedTimelines"
+
+    PinnedTimelines:
+      required:
+        - "pinned_timelines"
+      properties:
+        pinned_timelines:
+          type: array
+          items:
+            type: object
+            properties: {} # always []

@@ -59,6 +59,19 @@ paths:
                 $ref: "#/components/schemas/ViewerBadgeCountsResponse"
       tags:
         - "user"
+  /graphql/{pathQueryId}/UsersVerifiedAvatars:
+    get:
+      operationId: getUsersVerifiedAvatars
+      description: verified-avatar users by ids
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersVerifiedAvatarsResponse"
+      tags:
+        - "users"
 
 components:
   schemas:
@@ -157,3 +170,53 @@ components:
         xchat_unread_count:
           type: integer
 
+    UsersVerifiedAvatarsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/UsersVerifiedAvatarsResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    UsersVerifiedAvatarsResponseData:
+      required:
+        - "usersResults"
+      properties:
+        usersResults:
+          type: array
+          items:
+            $ref: "#/components/schemas/VerifiedAvatarUserResults"
+
+    VerifiedAvatarUserResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/VerifiedAvatarUser"
+
+    VerifiedAvatarUser: # partial user
+      required:
+        - "__typename"
+        - "affiliates_highlighted_label"
+        - "is_blue_verified"
+        - "profile_image_shape"
+        - "rest_id"
+        - "verification"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        affiliates_highlighted_label:
+          $ref: "./../schemas/user.yaml#/components/schemas/AffiliatesHighlightedLabel"
+        is_blue_verified:
+          type: boolean
+        profile_image_shape:
+          type: string
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        verification:
+          type: object
+          properties: {} # always {}
