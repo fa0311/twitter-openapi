@@ -271,6 +271,7 @@ components:
         footerIconType:
           enum:
           - BirdwatchEyeOff
+          - BirdwatchLevelLow
           type: string
         iconType:
           enum:
