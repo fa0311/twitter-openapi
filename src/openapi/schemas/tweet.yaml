@@ -762,7 +762,7 @@ components:
           type: string
         footerIconType:
           type: string
-          enum: [BirdwatchEyeOff]
+          enum: [BirdwatchEyeOff, BirdwatchLevelLow]
 
     BirdwatchPivotFooter:
       required:
