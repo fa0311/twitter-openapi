@@ -116,6 +116,34 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/UserRepostsTimeline:
+    get:
+      operationId: getUserRepostsTimeline
+      description: get user reposts (profile reposts tab)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTweetsResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/UserSuperFollowTweets:
+    get:
+      operationId: getUserSuperFollowTweets
+      description: get user super follow tweets (subscriptions tab)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTweetsResponse"
+      tags:
+        - "tweet"
+
 components:
   schemas:
     UserTweetsResponse:

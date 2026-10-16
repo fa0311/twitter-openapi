@@ -1,0 +1,231 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /graphql/{pathQueryId}/FetchDraftTweets:
+    get:
+      operationId: getFetchDraftTweets
+      description: get drafts (unsent posts)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FetchDraftTweetsResponse"
+      tags:
+        - "user"
+
+  /graphql/{pathQueryId}/FetchScheduledTweets:
+    get:
+      operationId: getFetchScheduledTweets
+      description: get scheduled posts
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FetchScheduledTweetsResponse"
+      tags:
+        - "user"
+
+  /graphql/{pathQueryId}/CreateDraftTweet:
+    post:
+      operationId: postCreateDraftTweet
+      description: save a draft
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateDraftTweetResponse"
+      tags:
+        - "post"
+
+  /graphql/{pathQueryId}/DeleteDraftTweets:
+    post:
+      operationId: postDeleteDraftTweets
+      description: delete drafts
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteDraftTweetsResponse"
+      tags:
+        - "post"
+
+components:
+  schemas:
+    FetchDraftTweetsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/FetchDraftTweetsResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    FetchDraftTweetsResponseData:
+      required:
+        - "viewer"
+      properties:
+        viewer:
+          $ref: "#/components/schemas/DraftTweetsViewer"
+
+    DraftTweetsViewer:
+      required:
+        - "draft_list"
+      properties:
+        draft_list:
+          $ref: "#/components/schemas/DraftList"
+
+    DraftList:
+      required:
+        - "response_data"
+      properties:
+        response_data:
+          type: array
+          items:
+            $ref: "#/components/schemas/DraftTweet"
+
+    DraftTweet:
+      required:
+        - "rest_id"
+        - "tweet_create_request"
+        - "user_results"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        tweet_create_request:
+          $ref: "#/components/schemas/DraftTweetCreateRequest"
+        user_results:
+          $ref: "#/components/schemas/DraftTweetUserResults"
+
+    DraftTweetCreateRequest:
+      required:
+        - "auto_populate_reply_metadata"
+        - "exclude_reply_user_ids"
+        - "media_ids"
+        - "status"
+        - "thread_tweets"
+        - "type"
+      properties:
+        auto_populate_reply_metadata:
+          type: boolean
+        exclude_reply_user_ids:
+          type: array
+          items:
+            type: string
+        media_ids:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        thread_tweets:
+          type: array
+          items:
+            type: object
+            additionalProperties: true # todo: only empty threads observed
+        type:
+          type: string # PostTweetRequest
+
+    DraftTweetUserResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/DraftTweetUser"
+
+    DraftTweetUser:
+      required:
+        - "__typename"
+        - "rest_id"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    FetchScheduledTweetsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/FetchScheduledTweetsResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    FetchScheduledTweetsResponseData:
+      required:
+        - "viewer"
+      properties:
+        viewer:
+          $ref: "#/components/schemas/ScheduledTweetsViewer"
+
+    ScheduledTweetsViewer:
+      required:
+        - "scheduled_tweet_list"
+      properties:
+        scheduled_tweet_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: true # todo: only an empty list observed
+
+    CreateDraftTweetResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CreateDraftTweetResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    CreateDraftTweetResponseData:
+      required:
+        - "tweet"
+      properties:
+        tweet:
+          $ref: "#/components/schemas/CreateDraftTweetResponseTweet"
+
+    CreateDraftTweetResponseTweet:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    DeleteDraftTweetsResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/DeleteDraftTweetsResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    DeleteDraftTweetsResponseData:
+      required:
+        - "draft_tweets_batch_delete"
+      properties:
+        draft_tweets_batch_delete:
+          type: string
+

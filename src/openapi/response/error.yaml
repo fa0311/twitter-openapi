@@ -17,7 +17,6 @@ components:
         - kind
         - name
         - source
-        - tracing
       properties:
         message:
           type: string
