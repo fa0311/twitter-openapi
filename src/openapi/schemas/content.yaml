@@ -788,10 +788,24 @@ components:
           $ref: "#/components/schemas/TrendMetadata"
         thumbnail_image:
           $ref: "#/components/schemas/ThumbnailImage"
+        grouped_trends:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupedTrend" # related trends shown under a trend (ExplorePage, 2026-10-16)
         images:
           type: array
           items:
             $ref: "#/components/schemas/TrendImage"
+
+    GroupedTrend:
+      required:
+        - "name"
+        - "url"
+      properties:
+        name:
+          type: string
+        url:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
 
     TrendMetadata:
       type: object

@@ -1325,7 +1325,6 @@ components:
       required:
       - name
       - source
-      - code
       - kind
       type: object
     ErrorResponse:
@@ -1361,7 +1360,6 @@ components:
       - locations
       - path
       - extensions
-      - code
       - kind
       - name
       - source
@@ -1763,6 +1761,15 @@ components:
           type: boolean
       required:
       - is_available
+    GroupedTrend:
+      properties:
+        name:
+          type: string
+        url:
+          $ref: '#/components/schemas/SocialContextLandingUrl'
+      required:
+      - name
+      - url
     Hashtag:
       properties:
         indices:
@@ -2821,8 +2828,6 @@ components:
       properties:
         timeline:
           $ref: '#/components/schemas/Timeline'
-      required:
-      - timeline
     SearchTimelineData:
       properties:
         search_by_raw_query:
@@ -3663,6 +3668,10 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        grouped_trends:
+          items:
+            $ref: '#/components/schemas/GroupedTrend'
+          type: array
         images:
           items:
             $ref: '#/components/schemas/TrendImage'
