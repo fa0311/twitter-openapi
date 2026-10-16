@@ -250,11 +250,9 @@ components:
           $ref: "#/components/schemas/SearchTimeline"
 
     SearchTimeline:
-      required:
-        - "timeline"
       properties:
         timeline:
-          $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline"
+          $ref: "./../schemas/timeline.yaml#/components/schemas/Timeline" # absent when the query fails (search_timeline is {} and errors is set)
 
     CommunityTweetsTimelineResponse:
       required:

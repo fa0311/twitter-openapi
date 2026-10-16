@@ -13,7 +13,6 @@ components:
         - locations
         - path
         - extensions
-        - code
         - kind
         - name
         - source
@@ -33,7 +32,7 @@ components:
         extensions:
           $ref: "#/components/schemas/ErrorExtensions"
         code:
-          type: integer
+          type: integer # absent on query validation errors (InvalidArgument) and Internal errors
         kind:
           type: string
         name:
@@ -61,7 +60,6 @@ components:
       required:
         - name
         - source
-        - code
         - kind
       properties:
         name:
@@ -71,7 +69,7 @@ components:
         retry_after:
           type: integer
         code:
-          type: integer
+          type: integer # absent on query validation errors (InvalidArgument) and Internal errors
         kind:
           type: string
         tracing:
