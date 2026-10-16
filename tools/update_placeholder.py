@@ -142,17 +142,17 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
             print(f"visit {path}")
             page.goto(f"https://x.com{path}")
             page.wait_for_timeout(6000)
+            if path in SEARCH_BOXES:  # before the tabs: the box belongs to the first tab
+                page.locator(f'[aria-label="{SEARCH_BOXES[path]}"]').first.click()
+                page.get_by_placeholder(SEARCH_BOXES[path]).first.fill("test")
+                page.keyboard.press("Enter")
+                page.wait_for_timeout(6000)
             for tab in page.locator('[role="tab"]').all():  # Following, Media, Latest, ... are not reachable by URL
                 try:
                     tab.click(timeout=3000)
                     page.wait_for_timeout(3000)
                 except Exception:
                     pass
-            if path in SEARCH_BOXES:
-                page.get_by_label(SEARCH_BOXES[path]).first.click()
-                page.get_by_placeholder(SEARCH_BOXES[path]).first.fill("test")
-                page.keyboard.press("Enter")
-                page.wait_for_timeout(6000)
         browser.close()
     return recorded
 
