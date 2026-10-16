@@ -240,7 +240,7 @@
         "@method": "GET",
         "queryId": "mzoqrVGwk-YTSGME1dRfXQ",
         "variables": {
-            "screen_name": "ptcpz3"
+            "screen_name": "elonmusk"
         },
         "features": {}
     },
@@ -653,7 +653,7 @@
         "@method": "GET",
         "queryId": "mu4us66Q6RRNOywVQhGtRg",
         "variables": {
-            "userId": "1787148517779406848",
+            "userId": "44196397",
             "count": 20,
             "includePromotedContent": false,
             "withClientEventToken": false,
@@ -831,7 +831,7 @@
         "@method": "GET",
         "queryId": "xZfFqfOmKQu_OXekGI59mg",
         "variables": {
-            "tweetId": "1691730070669517096",
+            "tweetId": "1349129669258448897",
             "withCommunity": false,
             "includePromotedContent": false,
             "withVoice": false,
@@ -1976,7 +1976,7 @@
         },
         "variables": {
             "userIds": [
-                "1787148517779406848"
+                "44196397"
             ]
         }
     },
@@ -2294,7 +2294,7 @@
         "@method": "GET",
         "queryId": "BuWF9hiwmUyFdGo3J4DqbA",
         "variables": {
-            "screenName": "ptcpz3",
+            "screenName": "elonmusk",
             "promptPurpose": "x_vo_business_promotion"
         }
     },
@@ -2831,7 +2831,7 @@
         "@method": "GET",
         "queryId": "f1u5dCI80zd4-YFYSkVCVQ",
         "variables": {
-            "userId": "1787148517779406848",
+            "userId": "44196397",
             "isListMemberTargetUserId": "44196397",
             "count": 20
         },
