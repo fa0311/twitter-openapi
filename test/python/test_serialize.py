@@ -14,6 +14,7 @@ from typing import Any
 from uuid import UUID
 
 import random
+import urllib.parse
 
 import openapi_client as pt
 import requests
@@ -31,6 +32,12 @@ SLEEP_TIME = float(os.environ.get("SLEEP", "0"))
 CUESOR_TEST_COUNT = int(os.environ.get("CUESOR_TEST_COUNT", "3"))
 STRICT_MODE = os.environ.get("STRICT_MODE", "false").lower() == "true"
 MULTI_THREAD = os.environ.get("MULTI_THREAD", "true").lower() == "true"
+PROXY_LIST = [x.strip() for x in os.environ.get("PROXY_LIST", "").splitlines() if x.strip()]
+
+
+def get_proxy():
+    # one HTTP CONNECT proxy URL per line (http://user:pass@host:port)
+    return random.choice(PROXY_LIST) if PROXY_LIST else None
 
 
 def get_key(snake_str):
@@ -297,11 +304,16 @@ if __name__ == "__main__":
         ),
     )
     api_conf.access_token = access_token
+    api_conf.proxy = get_proxy()
+    if api_conf.proxy:  # urllib3's ProxyManager ignores the credentials in the URL
+        auth = urllib.parse.urlparse(api_conf.proxy)
+        api_conf.proxy_headers = urllib3.make_headers(proxy_basic_auth=f"{auth.username}:{auth.password}")
     api_client = pt.ApiClient(configuration=api_conf, cookie=cookies_str)
     api_client.user_agent = get_header(latest_user_agent, "chrome-fetch")["user-agent"]
 
     session = requests.Session()
     session.headers = get_header(latest_user_agent, "chrome")
+    session.proxies = {"http": api_conf.proxy, "https": api_conf.proxy} if api_conf.proxy else {}
 
     error_count = 0
 
