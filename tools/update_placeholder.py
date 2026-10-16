@@ -95,7 +95,7 @@ def get_proxy():
     return {"server": f"{parsed.scheme}://{parsed.hostname}:{parsed.port}", "username": parsed.username, "password": parsed.password}
 
 
-def record_requests(pages: list[str]) -> dict[str, dict]:
+def record_requests(pages: list[str]) -> dict[tuple[str, str], dict]:
     from playwright.sync_api import sync_playwright
 
     cookies = json.load(COOKIE.open(encoding="utf-8"))
@@ -117,13 +117,13 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
     ]
     user_agent = requests.get(HEADER_JSON, timeout=60).json()["chrome"]["user-agent"]
 
-    recorded: dict[str, dict] = {}
+    recorded: dict[tuple[str, str], dict] = {}  # (operation, method): the frontend uses GET and POST for some operations
 
     def on_request(request):
         match = GRAPHQL_PATH.search(request.url)
-        if match is None or match["name"] in recorded:
+        if match is None or (match["name"], request.method) in recorded:
             return
-        recorded[match["name"]] = {
+        recorded[(match["name"], request.method)] = {
             "@path": f"/i/api/graphql/{match['query_id']}/{match['name']}",
             "@method": request.method,
             "queryId": match["query_id"],
@@ -158,16 +158,16 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
     return recorded
 
 
-def read_relay(path: str) -> dict[str, dict]:
+def read_relay(path: str) -> dict[tuple[str, str], dict]:
     """requests.ndjson from twitter_api_safe_relay (a file, or a URL such as the relay's /requests.ndjson): the X web client's own request objects."""
     text = requests.get(path, timeout=60).text if path.startswith("http") else Path(path).read_text(encoding="utf-8")
-    recorded: dict[str, dict] = {}
+    recorded: dict[tuple[str, str], dict] = {}
     for line in text.splitlines():
         if not line.strip():
             continue
         request = json.loads(line)
         match = re.fullmatch(r"/graphql/(?P<query_id>[^/]+)/(?P<name>[^/?]+)", request["path"])
-        if match is None or match["name"] in recorded:
+        if match is None or (match["name"], request["method"]) in recorded:
             continue
         if request["method"] == "GET":
             params = request.get("params", {})
@@ -175,7 +175,7 @@ def read_relay(path: str) -> dict[str, dict]:
         else:
             data = request.get("data", {})
             payload = {key: data[key] for key in ["variables", "features", "fieldToggles"] if key in data}
-        recorded[match["name"]] = {
+        recorded[(match["name"], request["method"])] = {
             "@path": f"/i/api{request['path']}",
             "@method": request["method"],
             "queryId": match["query_id"],
@@ -194,12 +194,16 @@ def check_variables(name: str, placeholder: dict, recorded: dict):
             print(f"{name}: variables.{key} is not sent anymore")
 
 
-def apply_recorded(placeholder: dict, recorded: dict[str, dict]) -> list[str]:
+def apply_recorded(placeholder: dict, recorded: dict[tuple[str, str], dict]) -> list[str]:
+    """Overwrite with the recorded request; when the frontend used both GET and POST, the placeholder keeps its method."""
+    by_name: dict[str, dict] = {}
+    for (name, method), hit in recorded.items():
+        by_name.setdefault(name, hit)
     changed = []
     for name, entry in placeholder.items():
-        if not is_graphql(entry) or name not in recorded:
+        if not is_graphql(entry) or name not in by_name:
             continue
-        hit = recorded[name]
+        hit = recorded.get((name, entry.get("@method")), by_name[name])
         before = json.dumps(entry, sort_keys=True)
         entry["@path"] = hit["@path"]
         entry["@method"] = hit["@method"]
@@ -224,16 +228,17 @@ def main():
         parser.error("nothing to do: pass --browser and/or --relay")
 
     placeholder = json.load(PLACEHOLDER.open(encoding="utf-8"))
-    recorded: dict[str, dict] = {}
+    recorded: dict[tuple[str, str], dict] = {}
     if args.browser:
         recorded.update(record_requests(PAGES + (args.page or [])))
     if args.relay:
         recorded.update(read_relay(args.relay))  # requests made by hand win over the page visits
     changed = apply_recorded(placeholder, recorded)
     names = [name for name, entry in placeholder.items() if is_graphql(entry)]
-    print(f"recorded {len(recorded)} operations, updated {len(changed)}: {', '.join(changed)}")
-    print(f"recorded but not in placeholder: {', '.join(sorted(set(recorded) - set(names)))}")
-    print(f"not recorded, left as is: {', '.join(name for name in names if name not in recorded)}")
+    seen = {name for name, _ in recorded}
+    print(f"recorded {len(seen)} operations, updated {len(changed)}: {', '.join(changed)}")
+    print(f"recorded but not in placeholder: {', '.join(sorted(seen - set(names)))}")
+    print(f"not recorded, left as is: {', '.join(name for name in names if name not in seen)}")
     with PLACEHOLDER.open("w", encoding="utf-8") as f:
         json.dump(placeholder, f, indent=4)
 
