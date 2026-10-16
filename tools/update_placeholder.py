@@ -63,6 +63,7 @@ PAGES = [
     "/i/trends",
     "/i/communities/suggested",
     f"/{USER}/superfollows",
+    f"/{USER}/lists",  # CombinedLists
 ]
 # pages under the logged-in user's own screen name are added at runtime (likes etc.)
 SELF_PAGES = ["{me}/likes", "{me}/lists"]  # {me} is the profile link, "/<screen_name>"
