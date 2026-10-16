@@ -2016,11 +2016,6 @@
             "responsive_web_tweet_analytics_m3_enabled": false
         }
     },
-    "DMPinnedInboxQuery": {
-        "@path": "/i/api/graphql/sIC-NZ_cqXLO_WH4jDWFQA/DMPinnedInboxQuery",
-        "@method": "GET",
-        "queryId": "sIC-NZ_cqXLO_WH4jDWFQA"
-    },
     "GenericTimelineById": {
         "@path": "/i/api/graphql/cW93hZ3nlNYbYcUROF5r5A/GenericTimelineById",
         "@method": "GET",
@@ -2654,29 +2649,6 @@
             "responsive_web_graphql_timeline_navigation_enabled": true
         }
     },
-    "DMConversationSearchTabPeopleQuery": {
-        "@path": "/i/api/graphql/qno3lU4_eSHtSFoWQUhEag/DMConversationSearchTabPeopleQuery",
-        "@method": "GET",
-        "queryId": "qno3lU4_eSHtSFoWQUhEag"
-    },
-    "DMConversationSearchTabGroupsQuery": {
-        "@path": "/i/api/graphql/8D8KoSq5q9d5Su3emu2dwg/DMConversationSearchTabGroupsQuery",
-        "@method": "GET",
-        "queryId": "8D8KoSq5q9d5Su3emu2dwg"
-    },
-    "DMMessageSearchTabQuery": {
-        "@path": "/i/api/graphql/3zPYEgyjKBqi4Re_74J2AA/DMMessageSearchTabQuery",
-        "@method": "GET",
-        "queryId": "3zPYEgyjKBqi4Re_74J2AA",
-        "features": {
-            "profile_label_improvements_pcf_label_in_post_enabled": true,
-            "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
-            "responsive_web_graphql_timeline_navigation_enabled": true,
-            "responsive_web_grok_image_annotation_enabled": true,
-            "rweb_tipjar_consumption_enabled": true,
-            "verified_phone_label_enabled": false
-        }
-    },
     "ListMembers": {
         "@path": "/i/api/graphql/yQ_0-CTekcCY2oFRTskpSw/ListMembers",
         "@method": "GET",
@@ -2941,11 +2913,6 @@
             "partnership_id": null
         }
     },
-    "VOCardsQuery": {
-        "@path": "/i/api/graphql/nsVPuj1x3k3I7Bi9LHBScA/VOCardsQuery",
-        "@method": "GET",
-        "queryId": "nsVPuj1x3k3I7Bi9LHBScA"
-    },
     "useVerifiedOrgFeatureHelperQuery": {
         "@path": "/i/api/graphql/o8dabL5ri3RA6DPrG5Bo_g/useVerifiedOrgFeatureHelperQuery",
         "@method": "GET",
@@ -3032,16 +2999,6 @@
         "@method": "GET",
         "queryId": "1KZj_GRTxmPaSrk8jIb1Yw",
         "variables": {}
-    },
-    "xChatDmSettingsQuery": {
-        "@path": "/i/api/graphql/mRmm_3aCzCcbpzBkhyhCDg/xChatDmSettingsQuery",
-        "@method": "GET",
-        "queryId": "mRmm_3aCzCcbpzBkhyhCDg"
-    },
-    "useDirectCallSetupQuery": {
-        "@path": "/i/api/graphql/zCYojd6h_gVXYjFlaAk4bA/useDirectCallSetupQuery",
-        "@method": "GET",
-        "queryId": "zCYojd6h_gVXYjFlaAk4bA"
     },
     "usePremiumPaywallOnLoadMutation": {
         "@path": "/i/api/graphql/F6gikc1Bwzry7oHMrdrYzg/usePremiumPaywallOnLoadMutation",
