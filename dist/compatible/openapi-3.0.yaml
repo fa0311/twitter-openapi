@@ -87,7 +87,7 @@ components:
         __typename:
           $ref: '#/components/schemas/TypeName'
         color_info:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfo'
+          $ref: '#/components/schemas/MediaColorInfo'
         original_img_height:
           type: integer
         original_img_url:
@@ -96,7 +96,7 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: '#/components/schemas/ListBannerMediaSalientRect'
+          $ref: '#/components/schemas/MediaSalientRect'
       required:
       - __typename
       - color_info
@@ -145,41 +145,12 @@ components:
       - media_key
       - media_id
       - media_info
-    ArticleCoverMediaColorInfo:
-      properties:
-        palette:
-          items:
-            $ref: '#/components/schemas/ArticleCoverMediaColorInfoPalette'
-          type: array
-      required:
-      - palette
-    ArticleCoverMediaColorInfoPalette:
-      properties:
-        percentage:
-          type: number
-        rgb:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfoPaletteRGB'
-      required:
-      - percentage
-      - rgb
-    ArticleCoverMediaColorInfoPaletteRGB:
-      properties:
-        blue:
-          type: integer
-        green:
-          type: integer
-        red:
-          type: integer
-      required:
-      - blue
-      - green
-      - red
     ArticleCoverMediaInfo:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
         color_info:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfo'
+          $ref: '#/components/schemas/MediaColorInfo'
         original_img_height:
           type: integer
         original_img_url:
@@ -465,8 +436,6 @@ components:
       - urlParams
     ClientEventInfo:
       properties:
-        action:
-          type: string
         component:
           type: string
         details:
@@ -596,7 +565,7 @@ components:
         __typename:
           $ref: '#/components/schemas/TypeName'
         color_info:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfo'
+          $ref: '#/components/schemas/MediaColorInfo'
         original_img_height:
           type: integer
         original_img_url:
@@ -605,7 +574,7 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: '#/components/schemas/ListBannerMediaSalientRect'
+          $ref: '#/components/schemas/MediaSalientRect'
       required:
       - color_info
       - original_img_height
@@ -1068,14 +1037,26 @@ components:
           - SeeConversation
           type: string
         headline:
-          $ref: '#/components/schemas/Text'
+          $ref: '#/components/schemas/CtaLimitedActionPromptText'
         subtext:
-          $ref: '#/components/schemas/Text'
+          $ref: '#/components/schemas/CtaLimitedActionPromptText'
       required:
       - __typename
       - cta_type
       - headline
       - subtext
+    CtaLimitedActionPromptText:
+      properties:
+        entities:
+          items:
+            properties: {}
+            type: object
+          type: array
+        text:
+          type: string
+      required:
+      - entities
+      - text
     CursorType:
       enum:
       - Top
@@ -1487,7 +1468,7 @@ components:
             type: string
           type: array
         clientEventInfo:
-          $ref: '#/components/schemas/ClientEventInfo'
+          $ref: '#/components/schemas/FeedbackClientEventInfo'
         confirmation:
           type: string
         confirmationDisplayType:
@@ -1527,10 +1508,21 @@ components:
       required:
       - key
       - value
+    FeedbackClientEventInfo:
+      properties:
+        action:
+          type: string
+        component:
+          type: string
+        element:
+          type: string
+      required:
+      - action
+      - element
     FeedbackInfo:
       properties:
         clientEventInfo:
-          $ref: '#/components/schemas/ClientEventInfo'
+          $ref: '#/components/schemas/FeedbackClientEventInfo'
         feedbackKeys:
           items:
             type: string
@@ -1874,6 +1866,15 @@ components:
           $ref: '#/components/schemas/TypeName'
         result:
           $ref: '#/components/schemas/TweetUnion'
+    JetfuelAttachment:
+      properties:
+        height:
+          type: integer
+        payload:
+          type: string
+      required:
+      - height
+      - payload
     KeyValue:
       properties:
         key:
@@ -1895,12 +1896,26 @@ components:
       required:
       - url
       - urlType
-    LimitedActionResultsData:
+    LimitedAction:
       properties:
         action:
           type: string
         prompt:
           $ref: '#/components/schemas/CtaLimitedActionPrompt'
+      required:
+      - action
+    LimitedActionResults:
+      properties:
+        limited_actions:
+          items:
+            $ref: '#/components/schemas/LimitedAction'
+          type: array
+      required:
+      - limited_actions
+    LimitedActionResultsData:
+      properties:
+        action:
+          type: string
       required:
       - action
     ListBannerMedia:
@@ -1918,7 +1933,7 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: '#/components/schemas/ListBannerMediaSalientRect'
+          $ref: '#/components/schemas/MediaSalientRect'
       required:
       - original_img_height
       - original_img_url
@@ -1928,21 +1943,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/ApiMedia'
-    ListBannerMediaSalientRect:
-      properties:
-        height:
-          type: integer
-        left:
-          type: integer
-        top:
-          type: integer
-        width:
-          type: integer
-      required:
-      - height
-      - left
-      - top
-      - width
     ListLatestTweetsTimelineResponse:
       properties:
         data:
@@ -2129,6 +2129,35 @@ components:
       - original_info
       - media_key
       - ext_media_availability
+    MediaColorInfo:
+      properties:
+        palette:
+          items:
+            $ref: '#/components/schemas/MediaColorInfoPalette'
+          type: array
+      required:
+      - palette
+    MediaColorInfoPalette:
+      properties:
+        percentage:
+          type: number
+        rgb:
+          $ref: '#/components/schemas/MediaColorInfoPaletteRGB'
+      required:
+      - percentage
+      - rgb
+    MediaColorInfoPaletteRGB:
+      properties:
+        blue:
+          type: integer
+        green:
+          type: integer
+        red:
+          type: integer
+      required:
+      - blue
+      - green
+      - red
     MediaCommunityResult:
       properties:
         __typename:
@@ -2267,6 +2296,21 @@ components:
           $ref: '#/components/schemas/MediaResult'
       required:
       - result
+    MediaSalientRect:
+      properties:
+        height:
+          type: integer
+        left:
+          type: integer
+        top:
+          type: integer
+        width:
+          type: integer
+      required:
+      - height
+      - left
+      - top
+      - width
     MediaSize:
       properties:
         h:
@@ -2348,31 +2392,6 @@ components:
       - opacity
       - text
       - title
-    MentionResults:
-      properties:
-        result:
-          $ref: '#/components/schemas/MentionUser'
-      required:
-      - result
-    MentionUser:
-      properties:
-        __typename:
-          $ref: '#/components/schemas/TypeName'
-        core:
-          $ref: '#/components/schemas/MentionUserCore'
-        rest_id:
-          pattern: ^[0-9]+$
-          type: string
-      required:
-      - __typename
-      - core
-      - rest_id
-    MentionUserCore:
-      properties:
-        screen_name:
-          type: string
-      required:
-      - screen_name
     ModuleEntry:
       properties:
         clientEventInfo:
@@ -3007,17 +3026,9 @@ components:
       - ref
     TextEntityRef:
       properties:
-        expandedUrl:
-          format: uri
-          type: string
-        mention_results:
-          $ref: '#/components/schemas/MentionResults'
-        screen_name:
-          type: string
         type:
           enum:
           - TimelineUrl
-          - TimelineRichTextMention
           type: string
         url:
           format: uri
@@ -3028,6 +3039,8 @@ components:
           type: string
       required:
       - type
+      - url
+      - urlType
     TextHighlight:
       properties:
         endIndex:
@@ -3333,8 +3346,7 @@ components:
         clientEventInfo:
           $ref: '#/components/schemas/ClientEventInfo'
         colorConfig:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/TimelineShowAlertColorConfig'
         displayDurationMs:
           type: integer
         displayLocation:
@@ -3342,18 +3354,9 @@ components:
           - Top
           type: string
         iconDisplayInfo:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/TimelineShowAlertIconDisplayInfo'
         richText:
-          properties:
-            entities:
-              items:
-                additionalProperties: true
-                type: object
-              type: array
-            text:
-              type: string
-          type: object
+          $ref: '#/components/schemas/TimelineShowAlertRichText'
         triggerDelayMs:
           type: integer
         type:
@@ -3361,12 +3364,50 @@ components:
         usersResults:
           items:
             $ref: '#/components/schemas/UserResults'
-          nullable: true
           type: array
       required:
       - type
-      - usersResults
+      - alertType
+      - triggerDelayMs
+      - displayDurationMs
       - richText
+      - iconDisplayInfo
+      - colorConfig
+      - displayLocation
+      - clientEventInfo
+    TimelineShowAlertColorConfig:
+      properties:
+        background:
+          type: string
+        border:
+          type: string
+        text:
+          type: string
+      required:
+      - background
+      - border
+      - text
+    TimelineShowAlertIconDisplayInfo:
+      properties:
+        icon:
+          type: string
+        tint:
+          type: string
+      required:
+      - icon
+      - tint
+    TimelineShowAlertRichText:
+      properties:
+        entities:
+          items:
+            properties: {}
+            type: object
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
     TimelineShowCover:
       properties:
         clientEventInfo:
@@ -3725,6 +3766,8 @@ components:
           type: boolean
         is_translatable:
           type: boolean
+        jetfuel_attachment:
+          $ref: '#/components/schemas/JetfuelAttachment'
         legacy:
           $ref: '#/components/schemas/TweetLegacy'
         nested_quoted_tweet_results:
@@ -3803,7 +3846,7 @@ components:
         boolean_value:
           type: boolean
         image_color_value:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfo'
+          $ref: '#/components/schemas/MediaColorInfo'
         image_value:
           $ref: '#/components/schemas/TweetCardLegacyBindingValueDataImage'
         scribe_key:
@@ -4314,7 +4357,7 @@ components:
         __typename:
           $ref: '#/components/schemas/TypeName'
         limitedActionResults:
-          $ref: '#/components/schemas/TweetLimitedActionResults'
+          $ref: '#/components/schemas/LimitedActionResults'
         mediaVisibilityResults:
           $ref: '#/components/schemas/MediaVisibilityResults'
         tweet:
@@ -4717,9 +4760,9 @@ components:
         description:
           type: string
         longDescription:
-          $ref: '#/components/schemas/Text'
+          $ref: '#/components/schemas/UserLabelText'
         url:
-          $ref: '#/components/schemas/LandingUrl'
+          $ref: '#/components/schemas/UserLabelUrl'
         userLabelDisplayType:
           enum:
           - Badge
@@ -4740,6 +4783,80 @@ components:
           type: string
       required:
       - url
+    UserLabelMentionResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/UserLabelMentionUser'
+      required:
+      - result
+    UserLabelMentionUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        core:
+          $ref: '#/components/schemas/UserLabelMentionUserCore'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - __typename
+      - core
+      - rest_id
+    UserLabelMentionUserCore:
+      properties:
+        screen_name:
+          type: string
+      required:
+      - screen_name
+    UserLabelText:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/UserLabelTextEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - entities
+      - text
+    UserLabelTextEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/UserLabelTextEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - ref
+      - toIndex
+    UserLabelTextEntityRef:
+      properties:
+        mention_results:
+          $ref: '#/components/schemas/UserLabelMentionResults'
+        screen_name:
+          type: string
+        type:
+          enum:
+          - TimelineRichTextMention
+          type: string
+      required:
+      - mention_results
+      - screen_name
+      - type
+    UserLabelUrl:
+      properties:
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - DeepLink
+          type: string
+      required:
+      - url
+      - urlType
     UserLegacy:
       properties:
         blocked_by:
@@ -4961,15 +5078,12 @@ components:
           enum:
           - Business
           - Creator
-          nullable: true
           type: string
         rest_id:
-          nullable: true
           pattern: ^[0-9]+$
           type: string
       required:
       - rest_id
-      - professional_type
     UserProfessionalCategory:
       properties:
         icon_name:

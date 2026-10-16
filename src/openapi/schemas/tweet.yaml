@@ -33,7 +33,7 @@ components:
         tweet:
           $ref: "#/components/schemas/Tweet"
         limitedActionResults:
-          $ref: "#/components/schemas/TweetLimitedActionResults"
+          $ref: "#/components/schemas/LimitedActionResults"
         tweetInterstitial:
           $ref: "#/components/schemas/TweetInterstitial"
         mediaVisibilityResults:
@@ -174,6 +174,8 @@ components:
           type: boolean
         source:
           type: string # html (<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>)
+        jetfuel_attachment:
+          $ref: "#/components/schemas/JetfuelAttachment"
         legacy:
           $ref: "#/components/schemas/TweetLegacy"
         views:
@@ -230,6 +232,16 @@ components:
           $ref: "#/components/schemas/ContentDisclosure"
         postCta:
           $ref: "#/components/schemas/TweetPostCta"
+
+    JetfuelAttachment: # responsive_web_jetfuel_frame; an opaque frame payload (seen on an NFL live chat card)
+      required:
+        - "height"
+        - "payload"
+      properties:
+        height:
+          type: integer
+        payload:
+          type: string
 
     CashtagAttachment:
       required:
@@ -607,7 +619,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # ApiImage
         color_info:
-          $ref: "#/components/schemas/ArticleCoverMediaColorInfo"
+          $ref: "./media.yaml#/components/schemas/MediaColorInfo"
         original_img_height:
           type: integer
         original_img_url:
@@ -616,7 +628,7 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: "./list.yaml#/components/schemas/ListBannerMediaSalientRect"
+          $ref: "./media.yaml#/components/schemas/MediaSalientRect"
 
     CommunityViewerRelationship:
       required:
@@ -1046,7 +1058,7 @@ components:
         image_value:
           $ref: "#/components/schemas/TweetCardLegacyBindingValueDataImage"
         image_color_value:
-          $ref: "#/components/schemas/ArticleCoverMediaColorInfo"
+          $ref: "./media.yaml#/components/schemas/MediaColorInfo"
         user_value:
           $ref: "#/components/schemas/UserValue"
 
@@ -1807,39 +1819,7 @@ components:
           type: string
           format: uri
         color_info:
-          $ref: "#/components/schemas/ArticleCoverMediaColorInfo"
-
-    ArticleCoverMediaColorInfo:
-      required:
-        - "palette"
-      properties:
-        palette:
-          type: array
-          items:
-            $ref: "#/components/schemas/ArticleCoverMediaColorInfoPalette"
-
-    ArticleCoverMediaColorInfoPalette:
-      required:
-        - "percentage"
-        - "rgb"
-      properties:
-        percentage:
-          type: number
-        rgb:
-          $ref: "#/components/schemas/ArticleCoverMediaColorInfoPaletteRGB"
-
-    ArticleCoverMediaColorInfoPaletteRGB:
-      required:
-        - "blue"
-        - "green"
-        - "red"
-      properties:
-        blue:
-          type: integer
-        green:
-          type: integer
-        red:
-          type: integer
+          $ref: "./media.yaml#/components/schemas/MediaColorInfo"
 
     ArticleMetadata:
       required:
@@ -2196,10 +2176,26 @@ components:
       required:
         - "action"
       properties:
-        prompt:
-          $ref: "#/components/schemas/CtaLimitedActionPrompt"
         action:
-          type: string # Reply, Retweet, QuoteTweet, Like, React, AddToBookmarks, AddToMoment, PinToProfile, ViewHiddenReplies, VoteOnPoll, ShowRetweetActionMenu, ReplyDownVote, SendViaDm, ViewPostEngagements, CopyLink, ShareTweetVia, ... (X keeps adding UI actions)
+          type: string # Reply, Retweet, QuoteTweet, Like, React, AddToBookmarks, AddToMoment, PinToProfile, ViewHiddenReplies, VoteOnPoll, ShowRetweetActionMenu, ReplyDownVote, SendViaDm, ViewPostEngagements, CopyLink, ... (X keeps adding UI actions)
+
+    LimitedActionResults: # TweetWithVisibilityResults.limitedActionResults
+      required:
+        - "limited_actions"
+      properties:
+        limited_actions:
+          type: array
+          items:
+            $ref: "#/components/schemas/LimitedAction"
+
+    LimitedAction:
+      required:
+        - "action"
+      properties:
+        action:
+          type: string # same values as LimitedActionResultsData.action, plus ShareTweetVia
+        prompt:
+          $ref: "#/components/schemas/CtaLimitedActionPrompt" # Reply only
 
     CtaLimitedActionPrompt:
       required:
@@ -2214,9 +2210,22 @@ components:
           type: string
           enum: [SeeConversation]
         headline:
-          $ref: "./instruction.yaml#/components/schemas/Text"
+          $ref: "#/components/schemas/CtaLimitedActionPromptText"
         subtext:
-          $ref: "./instruction.yaml#/components/schemas/Text"
+          $ref: "#/components/schemas/CtaLimitedActionPromptText"
+
+    CtaLimitedActionPromptText:
+      required:
+        - "entities"
+        - "text"
+      properties:
+        entities:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+        text:
+          type: string
 
     TweetPreviewDisplayCta:
       required:

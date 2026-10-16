@@ -202,7 +202,7 @@ components:
         - "feedbackKeys"
       properties:
         clientEventInfo:
-          $ref: "#/components/schemas/ClientEventInfo"
+          $ref: "#/components/schemas/FeedbackClientEventInfo"
         feedbackKeys:
           type: array
           items:
@@ -459,10 +459,20 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineCommunity
       additionalProperties: true # todo
 
-    ClientEventInfo:
+    FeedbackClientEventInfo: # feedbackInfo and responseObjects.feedbackActions
+      required:
+        - "action"
+        - "element"
       properties:
         action:
-          type: string # click, on feedback entries
+          type: string # click
+        component:
+          type: string
+        element:
+          type: string
+
+    ClientEventInfo:
+      properties:
         component:
           # enum half_cover
           type: string

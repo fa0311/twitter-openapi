@@ -233,18 +233,15 @@ components:
     UserProfessional:
       required:
         - "rest_id"
-        - "professional_type"
       properties:
         id:
           type: string
         rest_id:
           type: string
           pattern: "^[0-9]+$"
-          nullable: true # null seen in a Likes timeline (2026-10-16)
         professional_type:
           type: string
-          enum: ["Business", "Creator"]
-          nullable: true # null seen in a Likes timeline (2026-10-16)
+          enum: ["Business", "Creator"] # absent on some accounts (HomeTimeline, 2026-10-16)
         category:
           type: array
           items:
@@ -628,9 +625,9 @@ components:
         description:
           type: string
         longDescription:
-          $ref: "./instruction.yaml#/components/schemas/Text"
+          $ref: "#/components/schemas/UserLabelText"
         url:
-          $ref: "./content.yaml#/components/schemas/LandingUrl"
+          $ref: "#/components/schemas/UserLabelUrl"
         userLabelDisplayType:
           type: string
           enum: [Badge]
@@ -645,6 +642,85 @@ components:
         url:
           type: string
           format: uri
+
+    UserLabelUrl:
+      required:
+        - "url"
+        - "urlType"
+      properties:
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [DeepLink]
+
+    UserLabelText:
+      required:
+        - "entities"
+        - "text"
+      properties:
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserLabelTextEntity"
+        text:
+          type: string
+
+    UserLabelTextEntity:
+      required:
+        - "fromIndex"
+        - "ref"
+        - "toIndex"
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/UserLabelTextEntityRef"
+        toIndex:
+          type: integer
+
+    UserLabelTextEntityRef:
+      required:
+        - "mention_results"
+        - "screen_name"
+        - "type"
+      properties:
+        mention_results:
+          $ref: "#/components/schemas/UserLabelMentionResults"
+        screen_name:
+          type: string
+        type:
+          type: string
+          enum: [TimelineRichTextMention]
+
+    UserLabelMentionResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/UserLabelMentionUser"
+
+    UserLabelMentionUser:
+      required:
+        - "__typename"
+        - "core"
+        - "rest_id"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # User
+        core:
+          $ref: "#/components/schemas/UserLabelMentionUserCore"
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    UserLabelMentionUserCore:
+      required:
+        - "screen_name"
+      properties:
+        screen_name:
+          type: string
 
     ProfileBioEntities:
       required:

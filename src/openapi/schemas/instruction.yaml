@@ -111,8 +111,14 @@ components:
     TimelineShowAlert:
       required:
         - type
-        - usersResults
+        - alertType
+        - triggerDelayMs
+        - displayDurationMs
         - richText
+        - iconDisplayInfo
+        - colorConfig
+        - displayLocation
+        - clientEventInfo
       properties:
         type:
           $ref: "#/components/schemas/InstructionType" # TimelineShowAlert
@@ -122,33 +128,58 @@ components:
         triggerDelayMs:
           type: integer
         displayDurationMs:
-          type: integer
+          type: integer # -1
         usersResults:
           type: array
-          nullable: true
           items:
-            $ref: "./user.yaml#/components/schemas/UserResults"
+            $ref: "./user.yaml#/components/schemas/UserResults" # absent on most alerts
         richText:
-          type: object
-          properties:
-            text:
-              type: string
-            entities:
-              type: array
-              items:
-                type: object
-                additionalProperties: true # todo
+          $ref: "#/components/schemas/TimelineShowAlertRichText"
         iconDisplayInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/TimelineShowAlertIconDisplayInfo"
         colorConfig:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/TimelineShowAlertColorConfig"
         displayLocation:
           type: string
           enum: [Top] # which else?
         clientEventInfo:
           $ref: "./content.yaml#/components/schemas/ClientEventInfo"
+
+    TimelineShowAlertRichText:
+      required:
+        - text
+        - entities
+      properties:
+        text:
+          type: string
+        entities:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+
+    TimelineShowAlertIconDisplayInfo:
+      required:
+        - icon
+        - tint
+      properties:
+        icon:
+          type: string # UpArrow
+        tint:
+          type: string # White
+
+    TimelineShowAlertColorConfig:
+      required:
+        - background
+        - border
+        - text
+      properties:
+        background:
+          type: string # TwitterBlue
+        border:
+          type: string # White
+        text:
+          type: string # White
 
     TimelineTerminateTimeline:
       required:
@@ -246,51 +277,18 @@ components:
     TextEntityRef:
       required:
         - type
+        - url
+        - urlType
       properties:
         type:
           type: string
-          enum: [TimelineUrl, TimelineRichTextMention]
-        expandedUrl:
-          type: string
-          format: uri
+          enum: [TimelineUrl]
         url:
           type: string
           format: uri
         urlType:
           type: string
           enum: [ExternalUrl]
-        mention_results:
-          $ref: "#/components/schemas/MentionResults"
-        screen_name:
-          type: string
-
-    MentionResults:
-      required:
-        - result
-      properties:
-        result:
-          $ref: "#/components/schemas/MentionUser"
-
-    MentionUser:
-      required:
-        - __typename
-        - core
-        - rest_id
-      properties:
-        __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # User
-        core:
-          $ref: "#/components/schemas/MentionUserCore"
-        rest_id:
-          type: string
-          pattern: "^[0-9]+$"
-
-    MentionUserCore:
-      required:
-        - screen_name
-      properties:
-        screen_name:
-          type: string
 
     CoverCta:
       required:

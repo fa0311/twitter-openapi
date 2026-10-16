@@ -79,50 +79,7 @@ components:
     ListBannerMediaResults:
       properties:
         result:
-          $ref: "#/components/schemas/ApiMedia" # absent for lists without a banner
-
-    ApiMedia:
-      required:
-        - "__typename"
-        - "id"
-        - "media_id"
-        - "media_info"
-        - "media_key"
-      properties:
-        __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiMedia
-        id:
-          type: string
-        media_id:
-          type: string
-          pattern: "^[0-9]+$"
-        media_info:
-          $ref: "#/components/schemas/ApiImage"
-        media_key:
-          type: string
-
-    ApiImage:
-      required:
-        - "__typename"
-        - "color_info"
-        - "original_img_height"
-        - "original_img_url"
-        - "original_img_width"
-        - "salient_rect"
-      properties:
-        __typename:
-          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiImage
-        color_info:
-          $ref: "./tweet.yaml#/components/schemas/ArticleCoverMediaColorInfo"
-        original_img_height:
-          type: integer
-        original_img_url:
-          type: string
-          format: uri
-        original_img_width:
-          type: integer
-        salient_rect:
-          $ref: "#/components/schemas/ListBannerMediaSalientRect"
+          $ref: "./media.yaml#/components/schemas/ApiMedia" # absent for lists without a banner
 
     ListBannerMediaInfo:
       required:
@@ -138,20 +95,5 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: "#/components/schemas/ListBannerMediaSalientRect"
+          $ref: "./media.yaml#/components/schemas/MediaSalientRect"
 
-    ListBannerMediaSalientRect:
-      required:
-        - "height"
-        - "left"
-        - "top"
-        - "width"
-      properties:
-        height:
-          type: integer
-        left:
-          type: integer
-        top:
-          type: integer
-        width:
-          type: integer

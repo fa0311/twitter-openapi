@@ -78,7 +78,7 @@ components:
           items:
             type: string
         clientEventInfo:
-          $ref: "./../schemas/content.yaml#/components/schemas/ClientEventInfo"
+          $ref: "./content.yaml#/components/schemas/FeedbackClientEventInfo"
         confirmation:
           type: string
         confirmationDisplayType:

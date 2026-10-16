@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+paths: {}
+components:
+  schemas:
+    ApiMedia:
+      required:
+        - "__typename"
+        - "id"
+        - "media_id"
+        - "media_info"
+        - "media_key"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiMedia
+        id:
+          type: string
+        media_id:
+          type: string
+          pattern: "^[0-9]+$"
+        media_info:
+          $ref: "#/components/schemas/ApiImage"
+        media_key:
+          type: string
+
+    ApiImage:
+      required:
+        - "__typename"
+        - "color_info"
+        - "original_img_height"
+        - "original_img_url"
+        - "original_img_width"
+        - "salient_rect"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiImage
+        color_info:
+          $ref: "#/components/schemas/MediaColorInfo"
+        original_img_height:
+          type: integer
+        original_img_url:
+          type: string
+          format: uri
+        original_img_width:
+          type: integer
+        salient_rect:
+          $ref: "#/components/schemas/MediaSalientRect"
+
+    MediaColorInfo:
+      required:
+        - "palette"
+      properties:
+        palette:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaColorInfoPalette"
+
+    MediaColorInfoPalette:
+      required:
+        - "percentage"
+        - "rgb"
+      properties:
+        percentage:
+          type: number
+        rgb:
+          $ref: "#/components/schemas/MediaColorInfoPaletteRGB"
+
+    MediaColorInfoPaletteRGB:
+      required:
+        - "blue"
+        - "green"
+        - "red"
+      properties:
+        blue:
+          type: integer
+        green:
+          type: integer
+        red:
+          type: integer
+
+    MediaSalientRect:
+      required:
+        - "height"
+        - "left"
+        - "top"
+        - "width"
+      properties:
+        height:
+          type: integer
+        left:
+          type: integer
+        top:
+          type: integer
+        width:
+          type: integer
