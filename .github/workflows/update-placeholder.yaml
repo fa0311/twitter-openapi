@@ -1,8 +1,6 @@
 name: update-placeholder
 
 on:
-  schedule:
-    - cron: "0 22 * * *"
   workflow_dispatch:
 
 permissions:
