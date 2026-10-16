@@ -1,0 +1,30 @@
+name: update-placeholder
+
+on:
+  schedule:
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          enable-cache: true
+      - uses: fa0311/twitter-secrets@main
+        with:
+          age-key: ${{ secrets.SOPS_AGE_KEY }}
+      - name: Sync placeholder.json from TwitterInternalAPIDocument
+        run: uv run tools/update_placeholder.py
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          branch: update-placeholder
+          title: Update placeholder.json
+          commit-message: Update placeholder.json
+          body: queryId / features synced from TwitterInternalAPIDocument `develop`. Run `uv run tools/update_placeholder.py --browser` locally to refresh variables and fieldToggles from a real session.

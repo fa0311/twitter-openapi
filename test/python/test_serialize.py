@@ -13,16 +13,13 @@ from pathlib import Path
 from typing import Any
 from uuid import UUID
 
-import bs4
+import random
+
 import openapi_client as pt
 import requests
 import urllib3
 from x_client_transaction import ClientTransaction
-from x_client_transaction.utils import (
-    generate_headers,
-    get_ondemand_file_url,
-    handle_x_migration,
-)
+from x_client_transaction.constants import ADDITIONAL_RANDOM_NUMBER, DEFAULT_KEYWORD
 
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
@@ -66,16 +63,21 @@ def find_name(x):
         return [x["name"]]
 
 
+PAIR_URL = "https://raw.githubusercontent.com/fa0311/x-client-transaction-id-pair-dict/refs/heads/main/pair.json"
+
+
+class PairClientTransaction(ClientTransaction):
+    def __init__(self, verification: str, animation_key: str):
+        self.random_keyword = DEFAULT_KEYWORD
+        self.random_number = ADDITIONAL_RANDOM_NUMBER
+        self.key = verification
+        self.key_bytes = self.get_key_bytes(key=verification)
+        self.animation_key = animation_key
+
+
 def get_transaction_base():
-    session = requests.Session()
-    session.headers = generate_headers()
-    home_page_response = handle_x_migration(session=session)
-    home_page = session.get(url="https://x.com")
-    home_page_response = bs4.BeautifulSoup(home_page.content, "html.parser")
-    ondemand_file_url = get_ondemand_file_url(response=home_page_response)
-    ondemand_file = session.get(url=ondemand_file_url)
-    ct = ClientTransaction(home_page_response, ondemand_file)
-    return ct
+    pair = random.choice(requests.get(PAIR_URL).json())
+    return PairClientTransaction(pair["verification"], pair["animationKey"])
 
 
 def get_transaction_id(key, ct=get_transaction_base()):
@@ -231,10 +233,7 @@ if __name__ == "__main__":
         data = base64.b64decode(TWITTER_SESSION).decode("utf-8")
         cookies = json.loads(data)
     else:
-        commands = ["python -m pip install tweepy_authlib", "python tools/login.py"]
-        raise Exception(
-            f"cookie.json not found. Please run `{'; '.join(commands)}` first."
-        )
+        raise Exception("cookie.json not found. Export the x.com cookies from your browser first.")
 
     if isinstance(cookies, list):
         cookies = {k["name"]: k["value"] for k in cookies}

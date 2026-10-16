@@ -1,4 +1,5 @@
 import json
+import random
 import re
 from urllib.parse import urlencode, urlparse
 
@@ -6,7 +7,23 @@ import openapi_client as pt
 import requests
 import urllib3
 from x_client_transaction import ClientTransaction
-from x_client_transaction.utils import handle_x_migration
+from x_client_transaction.constants import ADDITIONAL_RANDOM_NUMBER, DEFAULT_KEYWORD
+
+PAIR_URL = "https://raw.githubusercontent.com/fa0311/x-client-transaction-id-pair-dict/refs/heads/main/pair.json"
+
+
+class PairClientTransaction(ClientTransaction):
+    def __init__(self, verification: str, animation_key: str):
+        self.random_keyword = DEFAULT_KEYWORD
+        self.random_number = ADDITIONAL_RANDOM_NUMBER
+        self.key = verification
+        self.key_bytes = self.get_key_bytes(key=verification)
+        self.animation_key = animation_key
+
+
+def get_transaction_base():
+    pair = random.choice(requests.get(PAIR_URL).json())
+    return PairClientTransaction(pair["verification"], pair["animationKey"])
 
 
 def get_kwargs(key, additional):
@@ -186,7 +203,7 @@ if __name__ == "__main__":
 
     session = requests.Session()
     session.headers = latest_user_agent["chrome"]
-    ct = ClientTransaction(handle_x_migration(session))
+    ct = get_transaction_base()
 
     res = (
         pt.TweetApi(api_client)

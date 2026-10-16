@@ -74,6 +74,8 @@ components:
           $ref: "#/components/schemas/UserResultPrivacy"
         relationship_perspectives:
           $ref: "#/components/schemas/UserResultRelationshipPerspectives"
+        is_verified_organization:
+          type: boolean
 
     UserResultByScreenNameCore:
       required:

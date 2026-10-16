@@ -125,6 +125,7 @@ components:
           type: integer
         usersResults:
           type: array
+          nullable: true
           items:
             $ref: "./user.yaml#/components/schemas/UserResults"
         richText:

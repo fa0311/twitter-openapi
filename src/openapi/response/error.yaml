@@ -64,7 +64,6 @@ components:
         - source
         - code
         - kind
-        - tracing
       properties:
         name:
           type: string

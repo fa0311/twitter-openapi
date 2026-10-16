@@ -60,6 +60,48 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/UserOriginalsTimeline:
+    get:
+      operationId: getUserOriginalsTimeline
+      description: "get user tweets (profile posts tab)"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTweetsResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/UserRepliesTimeline:
+    get:
+      operationId: getUserRepliesTimeline
+      description: "get user tweets and replies (profile replies tab)"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTweetsResponse"
+      tags:
+        - "tweet"
+
+  /graphql/{pathQueryId}/UserVideoTimeline:
+    get:
+      operationId: getUserVideoTimeline
+      description: "get user media (profile media tab)"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTweetsResponse"
+      tags:
+        - "tweet"
+
   /graphql/{pathQueryId}/Likes:
     get:
       operationId: getLikes
