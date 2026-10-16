@@ -64,9 +64,13 @@ PAGES = [
     "/i/communities/suggested",
     f"/{USER}/superfollows",
     f"/{USER}/lists",  # CombinedLists
+    "/i/lists/search?q=test",  # ListSearchTimeline
+    "/i/communities/suggested?q=test",  # CommunitiesSearchQuery, GlobalCommunities*PostSearchTimeline
 ]
 # pages under the logged-in user's own screen name are added at runtime (likes etc.)
 SELF_PAGES = ["{me}/likes", "{me}/lists"]  # {me} is the profile link, "/<screen_name>"
+# page-local search boxes that only open on click: path -> aria-label of the button / placeholder of the input
+SEARCH_BOXES = {"/i/bookmarks": "Search Bookmarks"}  # BookmarkSearchTimeline
 
 
 def is_graphql(entry) -> bool:
@@ -144,6 +148,11 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
                     page.wait_for_timeout(3000)
                 except Exception:
                     pass
+            if path in SEARCH_BOXES:
+                page.get_by_label(SEARCH_BOXES[path]).first.click()
+                page.get_by_placeholder(SEARCH_BOXES[path]).first.fill("test")
+                page.keyboard.press("Enter")
+                page.wait_for_timeout(6000)
         browser.close()
     return recorded
 
