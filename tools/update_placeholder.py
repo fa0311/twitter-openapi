@@ -1,14 +1,15 @@
 """Sync src/config/placeholder.json with the requests the X frontend really sends.
 
     uv run tools/update_placeholder.py --browser                 # record x.com with the cookies in cookie.json
-    uv run tools/update_placeholder.py --relay requests.ndjson   # apply requests exported from twitter_api_safe_relay
+    uv run tools/update_placeholder.py --relay requests.ndjson   # apply twitter_api_safe_relay's catalog (file or URL)
     uv run tools/update_placeholder.py --browser --relay requests.ndjson
 
 The browser step replaces the DevTools "copy all as fetch" workflow: it opens x.com with the
 cookies in cookie.json, visits a set of pages and records queryId / method / features /
 fieldToggles exactly as the frontend sends them, then warns when the recorded variables differ
-from the placeholder. The relay step reads the NDJSON that the twitter_api_safe_relay dashboard
-exports (one hooked API client request per line), which also covers mutations triggered by hand.
+from the placeholder. The relay step reads twitter_api_safe_relay's requests.ndjson (one hooked API client request per
+line, recorded with twitter-api-safe-dump or exported from the dashboard), which also covers
+mutations triggered by hand.
 Only recorded operations are touched: the entries that were not recorded are listed at the end
 and have to be checked by hand.
 """
@@ -158,9 +159,10 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
 
 
 def read_relay(path: str) -> dict[str, dict]:
-    """Requests exported by the twitter_api_safe_relay dashboard: the X web client's own request objects."""
+    """requests.ndjson from twitter_api_safe_relay (a file, or a URL such as the relay's /requests.ndjson): the X web client's own request objects."""
+    text = requests.get(path, timeout=60).text if path.startswith("http") else Path(path).read_text(encoding="utf-8")
     recorded: dict[str, dict] = {}
-    for line in Path(path).read_text(encoding="utf-8").splitlines():
+    for line in text.splitlines():
         if not line.strip():
             continue
         request = json.loads(line)
@@ -216,7 +218,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--browser", action="store_true", help="record requests from x.com using cookie.json")
     parser.add_argument("--page", action="append", help="extra page path to visit (repeatable)")
-    parser.add_argument("--relay", metavar="NDJSON", help="requests exported from the twitter_api_safe_relay dashboard")
+    parser.add_argument("--relay", metavar="NDJSON", help="twitter_api_safe_relay requests.ndjson (file or URL)")
     args = parser.parse_args()
     if not args.browser and not args.relay:
         parser.error("nothing to do: pass --browser and/or --relay")

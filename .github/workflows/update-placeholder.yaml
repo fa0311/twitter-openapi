@@ -21,7 +21,7 @@ jobs:
       - name: Install Chromium
         run: uv run playwright install --with-deps chromium
       - name: Record requests from x.com
-        run: uv run tools/update_placeholder.py --browser
+        run: uv run tools/update_placeholder.py --browser --relay https://raw.githubusercontent.com/fa0311/twitter_api_safe_relay/main/packages/server/requests.ndjson
       - uses: peter-evans/create-pull-request@v8
         with:
           branch: update-placeholder
