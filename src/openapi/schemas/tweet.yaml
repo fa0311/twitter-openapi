@@ -570,6 +570,8 @@ components:
         invites_policy:
           type: string
           enum: [MemberInvitesAllowed, ModeratorInvitesAllowed]
+        is_nsfw:
+          type: boolean # on CommunityDiscoveryTimeline and community search items
         is_pinned:
           type: boolean
         members_facepile_results:

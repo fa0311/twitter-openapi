@@ -485,6 +485,8 @@ components:
           type: string
         invites_result:
           $ref: '#/components/schemas/CommunityInvitesResult'
+        is_nsfw:
+          type: boolean
         is_pinned:
           type: boolean
         join_policy:
@@ -3127,10 +3129,17 @@ components:
       required:
       - type
     TimelineCommunity:
-      additionalProperties: true
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        community_results:
+          $ref: '#/components/schemas/CommunityResult'
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+      required:
+      - __typename
+      - community_results
+      - itemType
     TimelineCoverBehavior:
       properties:
         type:
@@ -3250,10 +3259,94 @@ components:
       required:
       - type
     TimelineMessagePrompt:
-      additionalProperties: true
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        content:
+          $ref: '#/components/schemas/TimelineMessagePromptContent'
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+      required:
+      - __typename
+      - content
+      - itemType
+    TimelineMessagePromptButton:
+      properties:
+        action:
+          $ref: '#/components/schemas/TimelineMessagePromptButtonAction'
+        text:
+          type: string
+      required:
+      - action
+      - text
+    TimelineMessagePromptButtonAction:
+      properties:
+        dismissOnClick:
+          type: boolean
+        url:
+          format: uri
+          type: string
+      required:
+      - dismissOnClick
+      - url
+    TimelineMessagePromptContent:
+      properties:
+        bodyRichText:
+          $ref: '#/components/schemas/TimelineMessagePromptRichText'
+        bodyText:
+          type: string
+        contentType:
+          enum:
+          - TimelineInlinePrompt
+          - TimelineCompactPrompt
+          type: string
+        headerText:
+          type: string
+        primaryButtonAction:
+          $ref: '#/components/schemas/TimelineMessagePromptButton'
+      required:
+      - contentType
+      - headerText
+    TimelineMessagePromptRichText:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/TimelineMessagePromptRichTextEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - entities
+      - text
+    TimelineMessagePromptRichTextEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/TimelineMessagePromptRichTextEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - ref
+      - toIndex
+    TimelineMessagePromptRichTextEntityRef:
+      properties:
+        type:
+          enum:
+          - TimelineUrl
+          type: string
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - ExternalUrl
+          type: string
+      required:
+      - type
+      - url
+      - urlType
     TimelineMetadata:
       properties:
         reader_mode_config:
@@ -3299,10 +3392,57 @@ components:
       - type
       - entry
     TimelinePrompt:
-      additionalProperties: true
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        clientEventInfo:
+          $ref: '#/components/schemas/ClientEventInfo'
+        content:
+          $ref: '#/components/schemas/TimelinePromptContent'
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+      required:
+      - __typename
+      - clientEventInfo
+      - content
+      - itemType
+    TimelinePromptCallback:
+      properties:
+        endpoint:
+          type: string
+      required:
+      - endpoint
+    TimelinePromptContent:
+      properties:
+        confirmation:
+          type: string
+        contentType:
+          enum:
+          - TimelineRelevancePrompt
+          type: string
+        displayType:
+          enum:
+          - Compact
+          type: string
+        isRelevantCallback:
+          $ref: '#/components/schemas/TimelinePromptCallback'
+        isRelevantText:
+          type: string
+        notRelevantCallback:
+          $ref: '#/components/schemas/TimelinePromptCallback'
+        notRelevantText:
+          type: string
+        title:
+          type: string
+      required:
+      - confirmation
+      - contentType
+      - displayType
+      - isRelevantCallback
+      - isRelevantText
+      - notRelevantCallback
+      - notRelevantText
+      - title
     TimelineReplaceEntry:
       properties:
         entry:

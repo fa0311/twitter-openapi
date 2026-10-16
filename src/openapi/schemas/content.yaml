@@ -441,23 +441,163 @@ components:
         endIndex:
           type: integer
 
-    TimelinePrompt:
+    TimelinePrompt: # "Is this post relevant to your search?" in SearchTimeline
+      required:
+        - "__typename"
+        - "clientEventInfo"
+        - "content"
+        - "itemType"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelinePrompt
-      additionalProperties: true # todo
+        clientEventInfo:
+          $ref: "#/components/schemas/ClientEventInfo"
+        content:
+          $ref: "#/components/schemas/TimelinePromptContent"
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelinePrompt
 
-    TimelineMessagePrompt:
+    TimelinePromptContent:
+      required:
+        - "confirmation"
+        - "contentType"
+        - "displayType"
+        - "isRelevantCallback"
+        - "isRelevantText"
+        - "notRelevantCallback"
+        - "notRelevantText"
+        - "title"
+      properties:
+        confirmation:
+          type: string
+        contentType:
+          type: string
+          enum: [TimelineRelevancePrompt]
+        displayType:
+          type: string
+          enum: [Compact]
+        isRelevantCallback:
+          $ref: "#/components/schemas/TimelinePromptCallback"
+        isRelevantText:
+          type: string
+        notRelevantCallback:
+          $ref: "#/components/schemas/TimelinePromptCallback"
+        notRelevantText:
+          type: string
+        title:
+          type: string
+
+    TimelinePromptCallback:
+      required:
+        - "endpoint"
+      properties:
+        endpoint:
+          type: string # /2/timeline/feedback.json?feedback_type=...
+
+    TimelineMessagePrompt: # subscription upsell on UserSuperFollowTweets, Community Notes explainers
+      required:
+        - "__typename"
+        - "content"
+        - "itemType"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineMessagePrompt
-      additionalProperties: true # todo
+        content:
+          $ref: "#/components/schemas/TimelineMessagePromptContent"
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineMessagePrompt
+
+    TimelineMessagePromptContent:
+      required:
+        - "contentType"
+        - "headerText"
+      properties:
+        bodyRichText:
+          $ref: "#/components/schemas/TimelineMessagePromptRichText"
+        bodyText:
+          type: string
+        contentType:
+          type: string
+          enum: [TimelineInlinePrompt, TimelineCompactPrompt]
+        headerText:
+          type: string
+        primaryButtonAction:
+          $ref: "#/components/schemas/TimelineMessagePromptButton"
+
+    TimelineMessagePromptRichText:
+      required:
+        - "entities"
+        - "text"
+      properties:
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/TimelineMessagePromptRichTextEntity"
+        text:
+          type: string
+
+    TimelineMessagePromptRichTextEntity:
+      required:
+        - "fromIndex"
+        - "ref"
+        - "toIndex"
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/TimelineMessagePromptRichTextEntityRef"
+        toIndex:
+          type: integer
+
+    TimelineMessagePromptRichTextEntityRef:
+      required:
+        - "type"
+        - "url"
+        - "urlType"
+      properties:
+        type:
+          type: string
+          enum: [TimelineUrl]
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [ExternalUrl]
+
+    TimelineMessagePromptButton:
+      required:
+        - "action"
+        - "text"
+      properties:
+        action:
+          $ref: "#/components/schemas/TimelineMessagePromptButtonAction"
+        text:
+          type: string
+
+    TimelineMessagePromptButtonAction:
+      required:
+        - "dismissOnClick"
+        - "url"
+      properties:
+        dismissOnClick:
+          type: boolean
+        url:
+          type: string
+          format: uri
 
     TimelineCommunity:
+      required:
+        - "__typename"
+        - "community_results"
+        - "itemType"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineCommunity
-      additionalProperties: true # todo
+        community_results:
+          $ref: "./tweet.yaml#/components/schemas/CommunityResult"
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineCommunity
 
     FeedbackClientEventInfo: # feedbackInfo and responseObjects.feedbackActions
       required:
