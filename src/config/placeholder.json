@@ -61,7 +61,7 @@
     },
     "HomeLatestTimeline": {
         "@path": "/i/api/graphql/NmDBT3APtNxDpMqIEauu7A/HomeLatestTimeline",
-        "@method": "GET",
+        "@method": "POST",
         "queryId": "NmDBT3APtNxDpMqIEauu7A",
         "variables": {
             "count": 20,
