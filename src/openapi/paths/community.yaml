@@ -1,0 +1,720 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /graphql/{pathQueryId}/CommunitiesFetchOneQuery:
+    get:
+      operationId: getCommunitiesFetchOneQuery
+      description: a community by id (community page)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunitiesFetchOneQueryResponse"
+      tags:
+        - "community"
+
+  /graphql/{pathQueryId}/CommunityQuery:
+    get:
+      operationId: getCommunityQuery
+      description: a community by id (community settings and moderation pages)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunityQueryResponse"
+      tags:
+        - "community"
+
+  /graphql/{pathQueryId}/CommunitiesSearchQuery:
+    get:
+      operationId: getCommunitiesSearchQuery
+      description: search communities. cursor:[slice_info.next_cursor]
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunitiesSearchQueryResponse"
+      tags:
+        - "community"
+
+  /graphql/{pathQueryId}/TopicCarouselQuery:
+    get:
+      operationId: getTopicCarouselQuery
+      description: community topics and subtopics
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TopicCarouselQueryResponse"
+      tags:
+        - "community"
+
+  /graphql/{pathQueryId}/GlobalCommunitiesPostSearchTimeline:
+    get:
+      operationId: getGlobalCommunitiesPostSearchTimeline
+      description: search posts across communities (Top)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GlobalCommunitiesPostSearchTimelineResponse"
+      tags:
+        - "community"
+
+  /graphql/{pathQueryId}/GlobalCommunitiesLatestPostSearchTimeline:
+    get:
+      operationId: getGlobalCommunitiesLatestPostSearchTimeline
+      description: search posts across communities (Latest)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GlobalCommunitiesLatestPostSearchTimelineResponse"
+      tags:
+        - "community"
+
+components:
+  schemas:
+    CommunitiesFetchOneQueryResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CommunitiesFetchOneQueryResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    CommunitiesFetchOneQueryResponseData:
+      required:
+        - "communityResults"
+      properties:
+        communityResults:
+          $ref: "#/components/schemas/CommunityPageResults"
+
+    CommunityPageResults:
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "#/components/schemas/CommunityPageCommunity"
+
+    CommunityPageCommunity: # Relay fragment of the community page: Community plus node ids on the result wrappers
+      required:
+        - "__typename"
+        - "actions"
+        - "admin_results"
+        - "created_at"
+        - "creator_results"
+        - "custom_banner_media"
+        - "default_banner_media"
+        - "description"
+        - "id"
+        - "id_str"
+        - "invites_policy"
+        - "invites_result"
+        - "is_nsfw"
+        - "is_pinned"
+        - "join_policy"
+        - "join_requests_result"
+        - "member_count"
+        - "members_facepile_results"
+        - "moderator_count"
+        - "name"
+        - "role"
+        - "rules"
+        - "search_tags"
+        - "viewer_relationship"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # Community
+        actions:
+          $ref: "#/components/schemas/CommunityPageActions"
+        admin_results:
+          $ref: "#/components/schemas/CommunityIdUserResults"
+        created_at:
+          type: integer
+        creator_results:
+          $ref: "#/components/schemas/CommunityIdUserResults"
+        custom_banner_media:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityBannerMedia"
+        default_banner_media:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityBannerMedia"
+        description:
+          type: string
+        id:
+          type: string
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        invites_policy:
+          type: string
+        invites_result:
+          $ref: "#/components/schemas/CommunityPageInvitesResult"
+        is_nsfw:
+          type: boolean
+        is_pinned:
+          type: boolean
+        join_policy:
+          type: string
+        join_requests_result:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityJoinRequestsResult"
+        member_count:
+          type: integer
+        members_facepile_results:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityIdUserResults"
+        moderator_count:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityRelayRule"
+        search_tags:
+          type: array
+          items:
+            type: string
+        viewer_relationship:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityViewerRelationship"
+
+    CommunityPageInvitesResult:
+      required:
+        - "__isCommunityInvitesResult"
+        - "__typename"
+        - "message"
+        - "reason"
+      properties:
+        __isCommunityInvitesResult:
+          type: string # Relay interface marker, CommunityInvitesUnavailable
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityInvitesUnavailable
+        message:
+          type: string
+        reason:
+          type: string
+
+    CommunityPageActions: # the action results carry Relay interface markers (__is...) here
+      required:
+        - "delete_action_result"
+        - "id"
+        - "join_action_result"
+        - "leave_action_result"
+        - "pin_action_result"
+      properties:
+        delete_action_result:
+          $ref: "#/components/schemas/CommunityPageDeleteActionResult"
+        id:
+          type: string
+        join_action_result:
+          $ref: "#/components/schemas/CommunityPageJoinActionResult"
+        leave_action_result:
+          $ref: "#/components/schemas/CommunityPageLeaveActionResult"
+        pin_action_result:
+          $ref: "#/components/schemas/CommunityPagePinActionResult"
+
+    CommunityPageDeleteActionResult:
+      required:
+        - "__isCommunityDeleteActionResult"
+        - "__typename"
+        - "reason"
+      properties:
+        __isCommunityDeleteActionResult:
+          type: string
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityDeleteActionUnavailable
+        reason:
+          type: string
+
+    CommunityPageJoinActionResult:
+      required:
+        - "__isCommunityJoinActionResult"
+        - "__typename"
+      properties:
+        __isCommunityJoinActionResult:
+          type: string
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityJoinAction
+
+    CommunityPageLeaveActionResult:
+      required:
+        - "__isCommunityLeaveActionResult"
+        - "__typename"
+        - "message"
+        - "reason"
+      properties:
+        __isCommunityLeaveActionResult:
+          type: string
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityLeaveActionUnavailable
+        message:
+          type: string
+        reason:
+          type: string
+
+    CommunityPagePinActionResult:
+      required:
+        - "__isCommunityTweetPinActionResult"
+        - "__typename"
+      properties:
+        __isCommunityTweetPinActionResult:
+          type: string
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityTweetPinActionUnavailable
+
+    CommunityRelayRule: # rules of the Relay community pages carry the node id; description only on the settings page
+      required:
+        - "id"
+        - "name"
+        - "rest_id"
+      properties:
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    CommunityIdUserResults:
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "./../schemas/user.yaml#/components/schemas/UserUnion"
+
+    CommunityQueryResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CommunityQueryResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    CommunityQueryResponseData:
+      required:
+        - "communityResults"
+      properties:
+        communityResults:
+          $ref: "#/components/schemas/CommunitySettingsResults"
+
+    CommunitySettingsResults:
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "#/components/schemas/CommunitySettingsCommunity"
+
+    CommunitySettingsCommunity: # Relay fragment of the community settings / moderation pages: partial users
+      required:
+        - "__typename"
+        - "actions"
+        - "created_at"
+        - "creator_results"
+        - "custom_banner_media"
+        - "default_banner_media"
+        - "description"
+        - "id"
+        - "invites_result"
+        - "is_member"
+        - "is_nsfw"
+        - "join_policy"
+        - "join_requests_result"
+        - "member_count"
+        - "members_facepile_results"
+        - "name"
+        - "primary_community_topic"
+        - "rest_id"
+        - "role"
+        - "rules"
+        - "trending_hashtags_slice"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # Community
+        actions:
+          $ref: "#/components/schemas/CommunitySettingsActions"
+        created_at:
+          type: integer
+        creator_results:
+          $ref: "#/components/schemas/CommunitySettingsCreatorResults"
+        custom_banner_media:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityBannerMedia"
+        default_banner_media:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityBannerMedia"
+        description:
+          type: string
+        id:
+          type: string
+        invites_result:
+          $ref: "#/components/schemas/CommunitySettingsInvitesResult"
+        is_member:
+          type: boolean
+        is_nsfw:
+          type: boolean
+        join_policy:
+          type: string
+        join_requests_result:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityJoinRequestsResult"
+        member_count:
+          type: integer
+        members_facepile_results:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityFacepileUserResults"
+        name:
+          type: string
+        primary_community_topic:
+          $ref: "#/components/schemas/CommunityPrimaryTopicName"
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        role:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityRelayRule"
+        trending_hashtags_slice:
+          $ref: "#/components/schemas/CommunityHashtagSlice"
+
+    CommunitySettingsInvitesResult:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityInvitesUnavailable
+
+    CommunitySettingsActions:
+      required:
+        - "id"
+        - "join_action_result"
+        - "list_members_action_result"
+      properties:
+        id:
+          type: string
+        join_action_result:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityJoinActionResultUnion"
+        list_members_action_result:
+          $ref: "#/components/schemas/CommunityListMembersActionResult"
+
+    CommunityListMembersActionResult:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityListMembersAction
+
+    CommunitySettingsCreatorResults:
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "#/components/schemas/CommunitySettingsCreator"
+
+    CommunitySettingsCreator: # partial user
+      required:
+        - "__typename"
+        - "core"
+        - "id"
+        - "is_blue_verified"
+        - "verification"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        core:
+          $ref: "#/components/schemas/CommunitySettingsCreatorCore"
+        id:
+          type: string
+        is_blue_verified:
+          type: boolean
+        verification:
+          $ref: "#/components/schemas/CommunitySettingsCreatorVerification"
+
+    CommunitySettingsCreatorCore:
+      required:
+        - "screen_name"
+      properties:
+        screen_name:
+          type: string
+
+    CommunitySettingsCreatorVerification:
+      required:
+        - "verified"
+      properties:
+        verified:
+          type: boolean
+
+    CommunityFacepileUserResults: # members_facepile_results of the Relay community pages
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "#/components/schemas/CommunityFacepileUser"
+
+    CommunityFacepileUser: # partial user
+      required:
+        - "__typename"
+        - "avatar"
+        - "id"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        avatar:
+          $ref: "./../schemas/user.yaml#/components/schemas/UserAvatar"
+        id:
+          type: string
+
+    CommunityPrimaryTopicName:
+      required:
+        - "topic_name"
+      properties:
+        topic_name:
+          type: string
+
+    CommunityHashtagSlice:
+      required:
+        - "__typename"
+        - "items"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityHashtagSlice
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityHashtag"
+
+    CommunityHashtag:
+      required:
+        - "hashtag"
+        - "id"
+      properties:
+        hashtag:
+          type: string
+        id:
+          type: string
+
+    CommunitiesSearchQueryResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/CommunitiesSearchQueryResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    CommunitiesSearchQueryResponseData:
+      required:
+        - "communities_search_slice"
+      properties:
+        communities_search_slice:
+          $ref: "#/components/schemas/CommunitiesSearchSlice"
+
+    CommunitiesSearchSlice:
+      required:
+        - "items_results"
+        - "slice_info"
+      properties:
+        items_results:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunitySearchResults"
+        slice_info:
+          $ref: "#/components/schemas/SliceInfo"
+
+    SliceInfo:
+      required:
+        - "next_cursor"
+      properties:
+        next_cursor:
+          type: string
+
+    CommunitySearchResults:
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "#/components/schemas/CommunitySearchCommunity"
+
+    CommunitySearchCommunity: # Relay fragment of a community search card
+      required:
+        - "__typename"
+        - "default_banner_media"
+        - "id"
+        - "is_nsfw"
+        - "member_count"
+        - "members_facepile_results"
+        - "name"
+        - "rest_id"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # Community
+        custom_banner_media:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityBannerMedia"
+        default_banner_media:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/CommunityBannerMedia"
+        id:
+          type: string
+        is_nsfw:
+          type: boolean
+        member_count:
+          type: integer
+        members_facepile_results:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityFacepileUserResults"
+        name:
+          type: string
+        primary_community_topic:
+          $ref: "#/components/schemas/CommunityPrimaryTopicName"
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    TopicCarouselQueryResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/TopicCarouselQueryResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    TopicCarouselQueryResponseData:
+      required:
+        - "communityTopicResults"
+      properties:
+        communityTopicResults:
+          $ref: "#/components/schemas/CommunityTopicResults"
+
+    CommunityTopicResults:
+      required:
+        - "community_topics"
+      properties:
+        community_topics:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityTopic"
+
+    CommunityTopic:
+      required:
+        - "subtopics"
+        - "topic_id"
+        - "topic_name"
+      properties:
+        subtopics:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunitySubtopic"
+        topic_id:
+          type: string
+          pattern: "^[0-9]+$"
+        topic_name:
+          type: string
+
+    CommunitySubtopic:
+      required:
+        - "topic_id"
+        - "topic_name"
+      properties:
+        topic_id:
+          type: string
+          pattern: "^[0-9]+$"
+        topic_name:
+          type: string
+
+    GlobalCommunitiesPostSearchTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/GlobalCommunitiesPostSearchTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    GlobalCommunitiesPostSearchTimelineResponseData:
+      required:
+        - "search_by_raw_query"
+      properties:
+        search_by_raw_query:
+          $ref: "#/components/schemas/GlobalCommunitiesPostSearch"
+
+    GlobalCommunitiesPostSearch:
+      required:
+        - "communities_posts_search_page"
+      properties:
+        communities_posts_search_page:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    GlobalCommunitiesLatestPostSearchTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/GlobalCommunitiesLatestPostSearchTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    GlobalCommunitiesLatestPostSearchTimelineResponseData:
+      required:
+        - "search_by_raw_query"
+      properties:
+        search_by_raw_query:
+          $ref: "#/components/schemas/GlobalCommunitiesLatestPostSearch"
+
+    GlobalCommunitiesLatestPostSearch:
+      required:
+        - "communities_latest_posts_search_page"
+      properties:
+        communities_latest_posts_search_page:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"

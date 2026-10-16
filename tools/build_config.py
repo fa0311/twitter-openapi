@@ -38,7 +38,7 @@ class Config:
                     AddPathQueryIdOnParameters(split=-1),
                     getParamHook,
                 ]
-                for key in ["default", "user", "users", "user-list", "tweet"]
+                for key in ["default", "user", "users", "user-list", "tweet", "community", "birdwatch"]
             }
             | {
                 key: [

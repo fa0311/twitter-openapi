@@ -89,6 +89,9 @@ def apply_recorded(placeholder: dict, recorded: dict[tuple[str, str], dict]) -> 
                 entry[key] = hit[key]
         if "variables" in hit and "variables" in entry:
             check_variables(name, entry["variables"], hit["variables"])
+        elif "variables" in hit:  # an entry without variables cannot be called at all (X answers 422)
+            entry["variables"] = hit["variables"]
+            print(f"{name}: variables taken from the catalog ({hit['variables']!r})")
         if before != json.dumps(entry, sort_keys=True):
             changed.append(f"{name} ({hit['recordedAt'][:10]})")
     return changed

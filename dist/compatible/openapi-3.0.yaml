@@ -35,6 +35,8 @@ components:
           type: boolean
         showOverlayOnFirstCard:
           type: boolean
+        unifiedCardOverride:
+          type: string
       required:
       - isQuickPromote
       - renderLegacyWebsiteCard
@@ -227,6 +229,22 @@ components:
           $ref: '#/components/schemas/ArticleResult'
       required:
       - result
+    AuthenticatePeriscopeResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthenticatePeriscopeResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    AuthenticatePeriscopeResponseData:
+      properties:
+        authenticate_periscope:
+          type: string
+      required:
+      - authenticate_periscope
     AuthorCommunityRelationship:
       properties:
         community_results:
@@ -260,6 +278,15 @@ components:
       - ntab_unread_count
       - total_unread_count
       - xchat_unread_count
+    BirdwatchAliasSelfSelectStatus:
+      properties:
+        can_select:
+          type: boolean
+        has_selected:
+          type: boolean
+      required:
+      - can_select
+      - has_selected
     BirdwatchEntity:
       properties:
         fromIndex:
@@ -293,6 +320,124 @@ components:
           type: string
       required:
       - type
+    BirdwatchFetchAliasSelfSelectStatusResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BirdwatchFetchAliasSelfSelectStatusResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    BirdwatchFetchAliasSelfSelectStatusResponseData:
+      properties:
+        authenticated_user_birdwatch_alias_self_select_status:
+          $ref: '#/components/schemas/BirdwatchAliasSelfSelectStatus'
+      required:
+      - authenticated_user_birdwatch_alias_self_select_status
+    BirdwatchFetchAuthenticatedUserProfileResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BirdwatchFetchAuthenticatedUserProfileResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    BirdwatchFetchAuthenticatedUserProfileResponseData:
+      properties:
+        authenticated_user_birdwatch_profile:
+          $ref: '#/components/schemas/BirdwatchProfile'
+      required:
+      - authenticated_user_birdwatch_profile
+    BirdwatchFetchBirdwatchProfileResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BirdwatchFetchBirdwatchProfileResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    BirdwatchFetchBirdwatchProfileResponseData:
+      properties:
+        birdwatch_profile_by_alias:
+          $ref: '#/components/schemas/BirdwatchProfile'
+      required:
+      - birdwatch_profile_by_alias
+    BirdwatchFetchGlobalTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BirdwatchFetchGlobalTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    BirdwatchFetchGlobalTimelineResponseData:
+      properties:
+        viewer:
+          $ref: '#/components/schemas/BirdwatchViewer'
+      required:
+      - viewer
+    BirdwatchFetchPublicDataResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BirdwatchFetchPublicDataResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    BirdwatchFetchPublicDataResponseData:
+      properties:
+        birdwatch_latest_public_data_file_bundle:
+          $ref: '#/components/schemas/BirdwatchPublicDataFileBundle'
+      required:
+      - birdwatch_latest_public_data_file_bundle
+    BirdwatchHomePage:
+      properties:
+        body:
+          $ref: '#/components/schemas/BirdwatchHomePageBody'
+        id:
+          type: string
+        scribeConfig:
+          $ref: '#/components/schemas/ScribeConfig'
+      required:
+      - body
+      - id
+      - scribeConfig
+    BirdwatchHomePageBody:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        initialTimeline:
+          $ref: '#/components/schemas/BirdwatchHomeTimeline'
+        timelines:
+          items:
+            $ref: '#/components/schemas/BirdwatchHomeTimeline'
+          type: array
+      required:
+      - __typename
+      - initialTimeline
+      - timelines
+    BirdwatchHomeTimeline:
+      properties:
+        id:
+          type: string
+        labelText:
+          type: string
+        timeline:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - id
+      - labelText
+      - timeline
     BirdwatchPivot:
       properties:
         callToAction:
@@ -379,6 +524,70 @@ components:
       required:
       - text
       - entities
+    BirdwatchProfile:
+      properties:
+        alias:
+          type: string
+      required:
+      - alias
+    BirdwatchPublicDataFile:
+      properties:
+        created_at:
+          type: integer
+        urls:
+          items:
+            format: uri
+            type: string
+          type: array
+      required:
+      - created_at
+      - urls
+    BirdwatchPublicDataFileBundle:
+      properties:
+        bat_signals:
+          $ref: '#/components/schemas/BirdwatchPublicDataFile'
+        note_status_history:
+          $ref: '#/components/schemas/BirdwatchPublicDataFile'
+        notes:
+          $ref: '#/components/schemas/BirdwatchPublicDataFile'
+        ratings:
+          $ref: '#/components/schemas/BirdwatchPublicDataFile'
+        user_enrollment:
+          $ref: '#/components/schemas/BirdwatchPublicDataFile'
+      required:
+      - bat_signals
+      - note_status_history
+      - notes
+      - ratings
+      - user_enrollment
+    BirdwatchViewer:
+      properties:
+        birdwatch_home_page:
+          $ref: '#/components/schemas/BirdwatchHomePage'
+      required:
+      - birdwatch_home_page
+    BookmarkSearch:
+      properties:
+        bookmarks_search_timeline:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - bookmarks_search_timeline
+    BookmarkSearchTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BookmarkSearchTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    BookmarkSearchTimelineResponseData:
+      properties:
+        search_by_raw_query:
+          $ref: '#/components/schemas/BookmarkSearch'
+      required:
+      - search_by_raw_query
     BookmarksResponse:
       properties:
         data:
@@ -446,10 +655,10 @@ components:
       properties:
         conversationDetails:
           $ref: '#/components/schemas/ConversationDetails'
+        notificationDetails:
+          $ref: '#/components/schemas/NotificationDetails'
         timelinesDetails:
           $ref: '#/components/schemas/TimelinesDetails'
-      required:
-      - timelinesDetails
     CommunitiesActions:
       properties:
         create:
@@ -457,6 +666,49 @@ components:
       required:
       - create
       type: object
+    CommunitiesFetchOneQueryResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CommunitiesFetchOneQueryResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    CommunitiesFetchOneQueryResponseData:
+      properties:
+        communityResults:
+          $ref: '#/components/schemas/CommunityPageResults'
+      required:
+      - communityResults
+    CommunitiesSearchQueryResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CommunitiesSearchQueryResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    CommunitiesSearchQueryResponseData:
+      properties:
+        communities_search_slice:
+          $ref: '#/components/schemas/CommunitiesSearchSlice'
+      required:
+      - communities_search_slice
+    CommunitiesSearchSlice:
+      properties:
+        items_results:
+          items:
+            $ref: '#/components/schemas/CommunitySearchResults'
+          type: array
+        slice_info:
+          $ref: '#/components/schemas/SliceInfo'
+      required:
+      - items_results
+      - slice_info
     Community:
       properties:
         __typename:
@@ -615,6 +867,56 @@ components:
           $ref: '#/components/schemas/TimelineResult'
       required:
       - community_discovery_timeline
+    CommunityFacepileUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        avatar:
+          $ref: '#/components/schemas/UserAvatar'
+        id:
+          type: string
+      required:
+      - __typename
+      - avatar
+      - id
+    CommunityFacepileUserResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/CommunityFacepileUser'
+      required:
+      - id
+      - result
+    CommunityHashtag:
+      properties:
+        hashtag:
+          type: string
+        id:
+          type: string
+      required:
+      - hashtag
+      - id
+    CommunityHashtagSlice:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        items:
+          items:
+            $ref: '#/components/schemas/CommunityHashtag'
+          type: array
+      required:
+      - __typename
+      - items
+    CommunityIdUserResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/UserUnion'
+      required:
+      - id
+      - result
     CommunityInvitesResult:
       properties:
         __typename:
@@ -678,6 +980,12 @@ components:
       - __typename
       - reason
       - message
+    CommunityListMembersActionResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
     CommunityMediaTimelineResponse:
       properties:
         data:
@@ -694,12 +1002,203 @@ components:
           $ref: '#/components/schemas/TypeName'
       required:
       - __typename
+    CommunityPageActions:
+      properties:
+        delete_action_result:
+          $ref: '#/components/schemas/CommunityPageDeleteActionResult'
+        id:
+          type: string
+        join_action_result:
+          $ref: '#/components/schemas/CommunityPageJoinActionResult'
+        leave_action_result:
+          $ref: '#/components/schemas/CommunityPageLeaveActionResult'
+        pin_action_result:
+          $ref: '#/components/schemas/CommunityPagePinActionResult'
+      required:
+      - delete_action_result
+      - id
+      - join_action_result
+      - leave_action_result
+      - pin_action_result
+    CommunityPageCommunity:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        actions:
+          $ref: '#/components/schemas/CommunityPageActions'
+        admin_results:
+          $ref: '#/components/schemas/CommunityIdUserResults'
+        created_at:
+          type: integer
+        creator_results:
+          $ref: '#/components/schemas/CommunityIdUserResults'
+        custom_banner_media:
+          $ref: '#/components/schemas/CommunityBannerMedia'
+        default_banner_media:
+          $ref: '#/components/schemas/CommunityBannerMedia'
+        description:
+          type: string
+        id:
+          type: string
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        invites_policy:
+          type: string
+        invites_result:
+          $ref: '#/components/schemas/CommunityPageInvitesResult'
+        is_nsfw:
+          type: boolean
+        is_pinned:
+          type: boolean
+        join_policy:
+          type: string
+        join_requests_result:
+          $ref: '#/components/schemas/CommunityJoinRequestsResult'
+        member_count:
+          type: integer
+        members_facepile_results:
+          items:
+            $ref: '#/components/schemas/CommunityIdUserResults'
+          type: array
+        moderator_count:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+        rules:
+          items:
+            $ref: '#/components/schemas/CommunityRelayRule'
+          type: array
+        search_tags:
+          items:
+            type: string
+          type: array
+        viewer_relationship:
+          $ref: '#/components/schemas/CommunityViewerRelationship'
+      required:
+      - __typename
+      - actions
+      - admin_results
+      - created_at
+      - creator_results
+      - custom_banner_media
+      - default_banner_media
+      - description
+      - id
+      - id_str
+      - invites_policy
+      - invites_result
+      - is_nsfw
+      - is_pinned
+      - join_policy
+      - join_requests_result
+      - member_count
+      - members_facepile_results
+      - moderator_count
+      - name
+      - role
+      - rules
+      - search_tags
+      - viewer_relationship
+    CommunityPageDeleteActionResult:
+      properties:
+        __isCommunityDeleteActionResult:
+          type: string
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        reason:
+          type: string
+      required:
+      - __isCommunityDeleteActionResult
+      - __typename
+      - reason
+    CommunityPageInvitesResult:
+      properties:
+        __isCommunityInvitesResult:
+          type: string
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
+        reason:
+          type: string
+      required:
+      - __isCommunityInvitesResult
+      - __typename
+      - message
+      - reason
+    CommunityPageJoinActionResult:
+      properties:
+        __isCommunityJoinActionResult:
+          type: string
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __isCommunityJoinActionResult
+      - __typename
+    CommunityPageLeaveActionResult:
+      properties:
+        __isCommunityLeaveActionResult:
+          type: string
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
+        reason:
+          type: string
+      required:
+      - __isCommunityLeaveActionResult
+      - __typename
+      - message
+      - reason
+    CommunityPagePinActionResult:
+      properties:
+        __isCommunityTweetPinActionResult:
+          type: string
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __isCommunityTweetPinActionResult
+      - __typename
+    CommunityPageResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/CommunityPageCommunity'
+      required:
+      - id
+      - result
     CommunityPinActionResult:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
       required:
       - __typename
+    CommunityPrimaryTopicName:
+      properties:
+        topic_name:
+          type: string
+      required:
+      - topic_name
+    CommunityQueryResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CommunityQueryResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    CommunityQueryResponseData:
+      properties:
+        communityResults:
+          $ref: '#/components/schemas/CommunitySettingsResults'
+      required:
+      - communityResults
     CommunityRelationship:
       properties:
         actions:
@@ -716,6 +1215,21 @@ components:
       - rest_id
       - moderation_state
       - actions
+    CommunityRelayRule:
+      properties:
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - id
+      - name
+      - rest_id
     CommunityResult:
       properties:
         result:
@@ -734,6 +1248,219 @@ components:
       required:
       - rest_id
       - name
+    CommunitySearchCommunity:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        custom_banner_media:
+          $ref: '#/components/schemas/CommunityBannerMedia'
+        default_banner_media:
+          $ref: '#/components/schemas/CommunityBannerMedia'
+        id:
+          type: string
+        is_nsfw:
+          type: boolean
+        member_count:
+          type: integer
+        members_facepile_results:
+          items:
+            $ref: '#/components/schemas/CommunityFacepileUserResults'
+          type: array
+        name:
+          type: string
+        primary_community_topic:
+          $ref: '#/components/schemas/CommunityPrimaryTopicName'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - __typename
+      - default_banner_media
+      - id
+      - is_nsfw
+      - member_count
+      - members_facepile_results
+      - name
+      - rest_id
+    CommunitySearchResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/CommunitySearchCommunity'
+      required:
+      - id
+      - result
+    CommunitySettingsActions:
+      properties:
+        id:
+          type: string
+        join_action_result:
+          $ref: '#/components/schemas/CommunityJoinActionResultUnion'
+        list_members_action_result:
+          $ref: '#/components/schemas/CommunityListMembersActionResult'
+      required:
+      - id
+      - join_action_result
+      - list_members_action_result
+    CommunitySettingsCommunity:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        actions:
+          $ref: '#/components/schemas/CommunitySettingsActions'
+        created_at:
+          type: integer
+        creator_results:
+          $ref: '#/components/schemas/CommunitySettingsCreatorResults'
+        custom_banner_media:
+          $ref: '#/components/schemas/CommunityBannerMedia'
+        default_banner_media:
+          $ref: '#/components/schemas/CommunityBannerMedia'
+        description:
+          type: string
+        id:
+          type: string
+        invites_result:
+          $ref: '#/components/schemas/CommunitySettingsInvitesResult'
+        is_member:
+          type: boolean
+        is_nsfw:
+          type: boolean
+        join_policy:
+          type: string
+        join_requests_result:
+          $ref: '#/components/schemas/CommunityJoinRequestsResult'
+        member_count:
+          type: integer
+        members_facepile_results:
+          items:
+            $ref: '#/components/schemas/CommunityFacepileUserResults'
+          type: array
+        name:
+          type: string
+        primary_community_topic:
+          $ref: '#/components/schemas/CommunityPrimaryTopicName'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        role:
+          type: string
+        rules:
+          items:
+            $ref: '#/components/schemas/CommunityRelayRule'
+          type: array
+        trending_hashtags_slice:
+          $ref: '#/components/schemas/CommunityHashtagSlice'
+      required:
+      - __typename
+      - actions
+      - created_at
+      - creator_results
+      - custom_banner_media
+      - default_banner_media
+      - description
+      - id
+      - invites_result
+      - is_member
+      - is_nsfw
+      - join_policy
+      - join_requests_result
+      - member_count
+      - members_facepile_results
+      - name
+      - primary_community_topic
+      - rest_id
+      - role
+      - rules
+      - trending_hashtags_slice
+    CommunitySettingsCreator:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        core:
+          $ref: '#/components/schemas/CommunitySettingsCreatorCore'
+        id:
+          type: string
+        is_blue_verified:
+          type: boolean
+        verification:
+          $ref: '#/components/schemas/CommunitySettingsCreatorVerification'
+      required:
+      - __typename
+      - core
+      - id
+      - is_blue_verified
+      - verification
+    CommunitySettingsCreatorCore:
+      properties:
+        screen_name:
+          type: string
+      required:
+      - screen_name
+    CommunitySettingsCreatorResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/CommunitySettingsCreator'
+      required:
+      - id
+      - result
+    CommunitySettingsCreatorVerification:
+      properties:
+        verified:
+          type: boolean
+      required:
+      - verified
+    CommunitySettingsInvitesResult:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
+    CommunitySettingsResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/CommunitySettingsCommunity'
+      required:
+      - id
+      - result
+    CommunitySubtopic:
+      properties:
+        topic_id:
+          pattern: ^[0-9]+$
+          type: string
+        topic_name:
+          type: string
+      required:
+      - topic_id
+      - topic_name
+    CommunityTopic:
+      properties:
+        subtopics:
+          items:
+            $ref: '#/components/schemas/CommunitySubtopic'
+          type: array
+        topic_id:
+          pattern: ^[0-9]+$
+          type: string
+        topic_name:
+          type: string
+      required:
+      - subtopics
+      - topic_id
+      - topic_name
+    CommunityTopicResults:
+      properties:
+        community_topics:
+          items:
+            $ref: '#/components/schemas/CommunityTopic'
+          type: array
+      required:
+      - community_topics
     CommunityTweetsTimelineResponse:
       properties:
         data:
@@ -850,6 +1577,7 @@ components:
       - TimelineFrame
       - TimelineTwitterList
       - TimelineLabel
+      - TimelineEventSummary
       type: string
     ContentUnion:
       discriminator:
@@ -1022,6 +1750,25 @@ components:
           $ref: '#/components/schemas/CreateTweet'
       required:
       - tweet_results
+    CreatorStudioTabBarItemQueryResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreatorStudioTabBarItemQueryResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    CreatorStudioTabBarItemQueryResponseData:
+      properties:
+        xpayments_audience_rewards_tasks:
+          items:
+            properties: {}
+            type: object
+          type: array
+      required:
+      - xpayments_audience_rewards_tasks
     CtaClientEventInfo:
       properties:
         action:
@@ -1068,6 +1815,23 @@ components:
       - Gap
       - ShowMoreThreadsPrompt
       type: string
+    DataSaverModeResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSaverModeResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    DataSaverModeResponseData:
+      properties:
+        viewer:
+          properties: {}
+          type: object
+      required:
+      - viewer
     DeepsearchHeader:
       properties:
         steps:
@@ -1364,6 +2128,79 @@ components:
       - name
       - source
       type: object
+    EventSummaryAdMetadataContainer:
+      properties:
+        isQuickPromote:
+          type: boolean
+        renderSalesCtaWebsiteCard:
+          type: boolean
+      required:
+      - isQuickPromote
+      - renderSalesCtaWebsiteCard
+    EventSummaryEvent:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
+    EventSummaryMedia:
+      properties:
+        mediaEntity:
+          $ref: '#/components/schemas/EventSummaryMediaEntity'
+        mediaKey:
+          $ref: '#/components/schemas/EventSummaryMediaKey'
+      required:
+      - mediaEntity
+      - mediaKey
+    EventSummaryMediaEntity:
+      properties:
+        tweet_results:
+          $ref: '#/components/schemas/ItemResult'
+        type:
+          type: string
+      required:
+      - tweet_results
+      - type
+    EventSummaryMediaKey:
+      properties:
+        category:
+          type: integer
+        id:
+          type: string
+      required:
+      - category
+      - id
+    EventSummaryPromotedMetadata:
+      properties:
+        adMetadataContainer:
+          $ref: '#/components/schemas/EventSummaryAdMetadataContainer'
+        advertiser_results:
+          $ref: '#/components/schemas/UserResults'
+        disclosureType:
+          type: string
+        impressionId:
+          type: string
+        impressionString:
+          type: string
+        promotedTrend:
+          $ref: '#/components/schemas/PromotedTrend'
+        promotedTrendDescription:
+          type: string
+        promotedTrendName:
+          type: string
+        promotedTrendQueryTerm:
+          type: string
+      required:
+      - adMetadataContainer
+      - advertiser_results
+      - disclosureType
+      - impressionId
+      - impressionString
+      - promotedTrend
+      - promotedTrendDescription
+      - promotedTrendName
+      - promotedTrendQueryTerm
     ExplorePage:
       properties:
         body:
@@ -1403,6 +2240,22 @@ components:
           $ref: '#/components/schemas/ExplorePage'
       required:
       - explore_page
+    ExploreSidebarResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ExploreSidebarResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    ExploreSidebarResponseData:
+      properties:
+        explore_sidebar:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - explore_sidebar
     ExploreTimeline:
       properties:
         id:
@@ -1477,12 +2330,6 @@ components:
           - Inline
           type: string
         feedbackType:
-          enum:
-          - DontLike
-          - GiveFeedback
-          - NotCredible
-          - NotRelevant
-          - SeeFewer
           type: string
         feedbackUrl:
           type: string
@@ -1614,6 +2461,50 @@ components:
           $ref: '#/components/schemas/TimelineResult'
       required:
       - timeline
+    GlobalCommunitiesLatestPostSearch:
+      properties:
+        communities_latest_posts_search_page:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - communities_latest_posts_search_page
+    GlobalCommunitiesLatestPostSearchTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/GlobalCommunitiesLatestPostSearchTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    GlobalCommunitiesLatestPostSearchTimelineResponseData:
+      properties:
+        search_by_raw_query:
+          $ref: '#/components/schemas/GlobalCommunitiesLatestPostSearch'
+      required:
+      - search_by_raw_query
+    GlobalCommunitiesPostSearch:
+      properties:
+        communities_posts_search_page:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - communities_posts_search_page
+    GlobalCommunitiesPostSearchTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/GlobalCommunitiesPostSearchTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    GlobalCommunitiesPostSearchTimelineResponseData:
+      properties:
+        search_by_raw_query:
+          $ref: '#/components/schemas/GlobalCommunitiesPostSearch'
+      required:
+      - search_by_raw_query
     GrokAnnotation:
       properties:
         is_image_editable_by_grok:
@@ -1653,6 +2544,97 @@ components:
           type: string
       required:
       - type
+    GrokHome:
+      properties:
+        default_grok_mode:
+          type: string
+        default_grok_model_option_id:
+          type: string
+        eligible_for_grok:
+          type: boolean
+        free_access_enabled:
+          type: boolean
+        grok_model_options:
+          items:
+            $ref: '#/components/schemas/GrokModelOption'
+          type: array
+        grok_version:
+          type: string
+        ineligible_reasons:
+          items:
+            properties: {}
+            type: object
+          type: array
+        layout:
+          $ref: '#/components/schemas/GrokHomeLayout'
+      required:
+      - default_grok_mode
+      - default_grok_model_option_id
+      - eligible_for_grok
+      - free_access_enabled
+      - grok_model_options
+      - grok_version
+      - ineligible_reasons
+      - layout
+    GrokHomeLayout:
+      properties:
+        name:
+          type: string
+        sections:
+          items:
+            $ref: '#/components/schemas/GrokHomeLayoutSection'
+          type: array
+      required:
+      - name
+      - sections
+    GrokHomeLayoutSection:
+      properties:
+        prompts:
+          items:
+            $ref: '#/components/schemas/GrokHomePrompt'
+          type: array
+        section_type:
+          type: string
+      required:
+      - prompts
+      - section_type
+    GrokHomePrompt:
+      properties:
+        display_body:
+          type: string
+        display_label:
+          type: string
+        filter_key:
+          type: string
+        icon_name:
+          type: string
+        prompt:
+          type: string
+        prompt_id:
+          type: string
+      required:
+      - display_body
+      - display_label
+      - filter_key
+      - icon_name
+      - prompt
+      - prompt_id
+    GrokHomeResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/GrokHomeResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    GrokHomeResponseData:
+      properties:
+        grok_home:
+          $ref: '#/components/schemas/GrokHome'
+      required:
+      - grok_home
     GrokImageAnnotation:
       properties:
         prompt:
@@ -1662,6 +2644,33 @@ components:
       required:
       - prompt
       - upsampled_prompt
+    GrokModelOption:
+      properties:
+        description:
+          type: string
+        icon_name:
+          type: string
+        id:
+          type: string
+        is_analyze_enabled:
+          type: boolean
+        is_enabled:
+          type: boolean
+        is_enhance_enabled:
+          type: boolean
+        mode:
+          type: string
+        name:
+          type: string
+      required:
+      - description
+      - icon_name
+      - id
+      - is_analyze_enabled
+      - is_enabled
+      - is_enhance_enabled
+      - mode
+      - name
     GrokShareAttachment:
       properties:
         items:
@@ -1869,6 +2878,7 @@ components:
       - $ref: '#/components/schemas/TimelineFrame'
       - $ref: '#/components/schemas/TimelineTwitterList'
       - $ref: '#/components/schemas/TimelineLabel'
+      - $ref: '#/components/schemas/TimelineEventSummary'
     ItemResult:
       properties:
         __typename:
@@ -2022,6 +3032,28 @@ components:
           $ref: '#/components/schemas/TwitterList'
       required:
       - list
+    ListSearch:
+      properties:
+        list_search_timeline:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - list_search_timeline
+    ListSearchTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ListSearchTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    ListSearchTimelineResponseData:
+      properties:
+        search_by_raw_query:
+          $ref: '#/components/schemas/ListSearch'
+      required:
+      - search_by_raw_query
     ListSubscribersList:
       properties:
         subscribers_timeline:
@@ -2056,6 +3088,28 @@ components:
           $ref: '#/components/schemas/TimelineResult'
       required:
       - tweets_timeline
+    ListsManagementPageTimelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ListsManagementPageTimelineResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    ListsManagementPageTimelineResponseData:
+      properties:
+        viewer:
+          $ref: '#/components/schemas/ListsManagementViewer'
+      required:
+      - viewer
+    ListsManagementViewer:
+      properties:
+        list_management_timeline:
+          $ref: '#/components/schemas/TimelineResult'
+      required:
+      - list_management_timeline
     Location:
       properties:
         column:
@@ -2414,8 +3468,6 @@ components:
     ModuleFooter:
       properties:
         displayType:
-          enum:
-          - Classic
           type: string
         landingUrl:
           $ref: '#/components/schemas/LandingUrl'
@@ -2530,6 +3582,15 @@ components:
       - from_index
       - to_index
       - richtext_types
+    NotificationDetails:
+      properties:
+        impressionId:
+          type: string
+        metadata:
+          type: string
+      required:
+      - impressionId
+      - metadata
     NotificationTemplate:
       properties:
         __typename:
@@ -2596,6 +3657,31 @@ components:
         Session:
           $ref: '#/components/schemas/Session'
       type: object
+    PinnedTimelines:
+      properties:
+        pinned_timelines:
+          items:
+            properties: {}
+            type: object
+          type: array
+      required:
+      - pinned_timelines
+    PinnedTimelinesResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/PinnedTimelinesResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    PinnedTimelinesResponseData:
+      properties:
+        pinned_timelines:
+          $ref: '#/components/schemas/PinnedTimelines'
+      required:
+      - pinned_timelines
     PostCta:
       properties:
         action_url:
@@ -2736,6 +3822,13 @@ components:
       - clickTrackingInfo
       - impressionId
       - impressionString
+    PromotedTrend:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
     QuotedRefResult:
       properties:
         result:
@@ -2798,11 +3891,43 @@ components:
       - rest_id
     RichMessage:
       properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/RichMessageEntity'
+          type: array
         rtl:
           type: boolean
         text:
           type: string
       type: object
+    RichMessageEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/RichMessageEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - ref
+      - toIndex
+    RichMessageEntityRef:
+      properties:
+        id:
+          pattern: ^[0-9]+$
+          type: string
+        type:
+          enum:
+          - TimelineRichTextUser
+          - TimelineRichTextList
+          type: string
+        url:
+          type: string
+        user_results:
+          $ref: '#/components/schemas/UserResults'
+      required:
+      - type
     ScheduledTweetsViewer:
       properties:
         scheduled_tweet_list:
@@ -2911,6 +4036,12 @@ components:
       - userFeatures
       - isSuperFollowSubscriber
       type: object
+    SliceInfo:
+      properties:
+        next_cursor:
+          type: string
+      required:
+      - next_cursor
     Smarttag:
       properties:
         indices:
@@ -3168,6 +4299,33 @@ components:
       required:
       - url
       - url_type
+    TimelineEventSummary:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        event:
+          $ref: '#/components/schemas/EventSummaryEvent'
+        eventSummaryDisplayType:
+          type: string
+        eventSummaryUrl:
+          $ref: '#/components/schemas/SocialContextLandingUrl'
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+        media:
+          $ref: '#/components/schemas/EventSummaryMedia'
+        promotedMetadata:
+          $ref: '#/components/schemas/EventSummaryPromotedMetadata'
+        title:
+          type: string
+      required:
+      - __typename
+      - event
+      - eventSummaryDisplayType
+      - eventSummaryUrl
+      - itemType
+      - media
+      - promotedMetadata
+      - title
     TimelineFrame:
       properties:
         __typename:
@@ -3668,6 +4826,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        description:
+          type: string
         grouped_trends:
           items:
             $ref: '#/components/schemas/GroupedTrend'
@@ -3682,6 +4842,8 @@ components:
           $ref: '#/components/schemas/ContentItemType'
         name:
           type: string
+        promoted_metadata:
+          $ref: '#/components/schemas/TrendPromotedMetadata'
         rank:
           pattern: ^[0-9]+$
           type: string
@@ -3825,6 +4987,22 @@ components:
         text:
           type: string
       type: object
+    TopicCarouselQueryResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TopicCarouselQueryResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    TopicCarouselQueryResponseData:
+      properties:
+        communityTopicResults:
+          $ref: '#/components/schemas/CommunityTopicResults'
+      required:
+      - communityTopicResults
     TopicContext:
       properties:
         description:
@@ -3861,9 +5039,38 @@ components:
       properties:
         domain_context:
           type: string
+        meta_description:
+          type: string
         url:
           $ref: '#/components/schemas/SocialContextLandingUrl'
       type: object
+    TrendPromotedMetadata:
+      properties:
+        advertiser_results:
+          $ref: '#/components/schemas/UserResults'
+        disclosureType:
+          type: string
+        impressionId:
+          type: string
+        impressionString:
+          type: string
+        promotedTrend:
+          $ref: '#/components/schemas/PromotedTrend'
+        promotedTrendDescription:
+          type: string
+        promotedTrendName:
+          type: string
+        promotedTrendQueryTerm:
+          type: string
+      required:
+      - advertiser_results
+      - disclosureType
+      - impressionId
+      - impressionString
+      - promotedTrend
+      - promotedTrendDescription
+      - promotedTrendName
+      - promotedTrendQueryTerm
     TrendResults:
       properties:
         rest_id:
@@ -4594,6 +5801,7 @@ components:
       - TimelineFrame
       - TimelineTwitterList
       - TimelineLabel
+      - TimelineEventSummary
       - TimelineTimelineItem
       - TimelineUser
       - TimelineTimelineCursor
@@ -4626,6 +5834,8 @@ components:
       - ApiImage
       - ApiMedia
       - CommunityUserDefaultModerationState
+      - CommunityHashtagSlice
+      - CommunityListMembersAction
       - CtaLimitedActionPrompt
       - TimelineRichTextUser
       type: string
@@ -5578,6 +6788,53 @@ components:
           items:
             $ref: '#/components/schemas/UserResults'
           type: array
+    UsersVerifiedAvatarsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/UsersVerifiedAvatarsResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    UsersVerifiedAvatarsResponseData:
+      properties:
+        usersResults:
+          items:
+            $ref: '#/components/schemas/VerifiedAvatarUserResults'
+          type: array
+      required:
+      - usersResults
+    VerifiedAvatarUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        affiliates_highlighted_label:
+          $ref: '#/components/schemas/AffiliatesHighlightedLabel'
+        is_blue_verified:
+          type: boolean
+        profile_image_shape:
+          type: string
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        verification:
+          properties: {}
+          type: object
+      required:
+      - __typename
+      - affiliates_highlighted_label
+      - is_blue_verified
+      - profile_image_shape
+      - rest_id
+      - verification
+    VerifiedAvatarUserResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/VerifiedAvatarUser'
+      required:
+      - result
     ViewerBadgeCountsResponse:
       properties:
         data:
@@ -6493,6 +7750,394 @@ paths:
                 type: string
       tags:
       - v2.0-get
+  /graphql/{pathQueryId}/AuthenticatePeriscope:
+    get:
+      description: a Periscope (live video) token for the account
+      operationId: getAuthenticatePeriscope
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: r7VUmxbfqNkx7uwjgONSNw
+          example: r7VUmxbfqNkx7uwjgONSNw
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticatePeriscopeResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
+  /graphql/{pathQueryId}/BirdwatchFetchAliasSelfSelectStatus:
+    get:
+      description: whether the account can pick / has picked a Community Notes alias
+      operationId: getBirdwatchFetchAliasSelfSelectStatus
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: LUEdtkcpBlGktUtms4BvwA
+          example: LUEdtkcpBlGktUtms4BvwA
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BirdwatchFetchAliasSelfSelectStatusResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - birdwatch
+  /graphql/{pathQueryId}/BirdwatchFetchAuthenticatedUserProfile:
+    get:
+      description: the account's Community Notes profile
+      operationId: getBirdwatchFetchAuthenticatedUserProfile
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: kD74-qBfrdRT5rO9YOl57g
+          example: kD74-qBfrdRT5rO9YOl57g
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"responsive_web_birdwatch_top_contributor_enabled": true, "responsive_web_birdwatch_mobile_nav_setting_enabled":
+            false, "responsive_web_birdwatch_note_limit_enabled": true}'
+          example: '{"responsive_web_birdwatch_top_contributor_enabled": true, "responsive_web_birdwatch_mobile_nav_setting_enabled":
+            false, "responsive_web_birdwatch_note_limit_enabled": true}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BirdwatchFetchAuthenticatedUserProfileResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - birdwatch
+  /graphql/{pathQueryId}/BirdwatchFetchBirdwatchProfile:
+    get:
+      description: a Community Notes profile by alias
+      operationId: getBirdwatchFetchBirdwatchProfile
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: id9iGfEQF47W1kvRBHUmRQ
+          example: id9iGfEQF47W1kvRBHUmRQ
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"responsive_web_birdwatch_top_contributor_enabled": true}'
+          example: '{"responsive_web_birdwatch_top_contributor_enabled": true}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"alias": "me"}'
+          example: '{"alias": "me"}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BirdwatchFetchBirdwatchProfileResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - birdwatch
+  /graphql/{pathQueryId}/BirdwatchFetchGlobalTimeline:
+    get:
+      description: the Community Notes home page (segmented timelines)
+      operationId: getBirdwatchFetchGlobalTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: FAmIZKHUZkuRclhoxxRAuw
+          example: FAmIZKHUZkuRclhoxxRAuw
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "profile_label_improvements_pcf_label_in_post_enabled":
+            true, "responsive_web_profile_redirect_enabled": true, "rweb_tipjar_consumption_enabled":
+            false, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "rweb_cashtags_enabled": true, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "profile_label_improvements_pcf_label_in_post_enabled":
+            true, "responsive_web_profile_redirect_enabled": true, "rweb_tipjar_consumption_enabled":
+            false, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "rweb_cashtags_enabled": true, "creator_subscriptions_tweet_preview_api_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BirdwatchFetchGlobalTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - birdwatch
+  /graphql/{pathQueryId}/BirdwatchFetchPublicData:
+    get:
+      description: download urls of the latest Community Notes public data files
+      operationId: getBirdwatchFetchPublicData
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: T4Qdev0aBeS9tK9v4TkgQg
+          example: T4Qdev0aBeS9tK9v4TkgQg
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"responsive_web_birdwatch_note_request_download_enabled": true}'
+          example: '{"responsive_web_birdwatch_note_request_download_enabled": true}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BirdwatchFetchPublicDataResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - birdwatch
   /graphql/{pathQueryId}/BlueVerifiedFollowers:
     get:
       description: get blue verified followers
@@ -6595,6 +8240,106 @@ paths:
                 type: string
       tags:
       - user-list
+  /graphql/{pathQueryId}/BookmarkSearchTimeline:
+    get:
+      description: search the account's bookmarks
+      operationId: getBookmarkSearchTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: VxJMx0-NXe-GO_4jC1lNhw
+          example: VxJMx0-NXe-GO_4jC1lNhw
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"rawQuery": "test", "count": 20}'
+          example: '{"rawQuery": "test", "count": 20}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookmarkSearchTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
   /graphql/{pathQueryId}/Bookmarks:
     get:
       description: get bookmarks
@@ -6695,6 +8440,227 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/CombinedLists:
+    get:
+      description: lists a user owns or follows
+      operationId: getCombinedLists
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: HoclSXITeTmRfg1TF3G-RQ
+          example: HoclSXITeTmRfg1TF3G-RQ
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"userId": "44196397", "count": 100}'
+          example: '{"userId": "44196397", "count": 100}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTweetsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user-list
+  /graphql/{pathQueryId}/CommunitiesFetchOneQuery:
+    get:
+      description: a community by id (community page)
+      operationId: getCommunitiesFetchOneQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: WP5rIK_ORn3JzCDlDzC1Cg
+          example: WP5rIK_ORn3JzCDlDzC1Cg
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"profile_label_improvements_pcf_label_in_post_enabled": true,
+            "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false}'
+          example: '{"profile_label_improvements_pcf_label_in_post_enabled": true,
+            "responsive_web_graphql_timeline_navigation_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"communityId": "1738874426798870555", "withDmMuting": false,
+            "withGrokTranslatedBio": false, "includeProfessionalCategory": true}'
+          example: '{"communityId": "1738874426798870555", "withDmMuting": false,
+            "withGrokTranslatedBio": false, "includeProfessionalCategory": true}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunitiesFetchOneQueryResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - community
+  /graphql/{pathQueryId}/CommunitiesSearchQuery:
+    get:
+      description: search communities. cursor:[slice_info.next_cursor]
+      operationId: getCommunitiesSearchQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: HKgnJbw10TZW41Na4ToaSw
+          example: HKgnJbw10TZW41Na4ToaSw
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"query": "test", "cursor": null}'
+          example: '{"query": "test", "cursor": null}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunitiesSearchQueryResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - community
   /graphql/{pathQueryId}/CommunityAboutTimeline:
     get:
       description: get about of community
@@ -6997,6 +8963,68 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/CommunityQuery:
+    get:
+      description: a community by id (community settings and moderation pages)
+      operationId: getCommunityQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: -ElI1vg3dYbttVMhBhGdLw
+          example: -ElI1vg3dYbttVMhBhGdLw
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"c9s_list_members_action_api_enabled": false, "c9s_superc9s_indication_enabled":
+            false}'
+          example: '{"c9s_list_members_action_api_enabled": false, "c9s_superc9s_indication_enabled":
+            false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"communityId": "1493446837214187523"}'
+          example: '{"communityId": "1493446837214187523"}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunityQueryResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - community
   /graphql/{pathQueryId}/CommunityTweetsTimeline:
     get:
       description: get tweet list of community. rankingMode:[Recency, Relevance]
@@ -7872,6 +9900,112 @@ paths:
                 type: string
       tags:
       - post
+  /graphql/{pathQueryId}/CreatorStudioTabBarItemQuery:
+    get:
+      description: audience rewards tasks shown in Creator Studio
+      operationId: getCreatorStudioTabBarItemQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 1KZj_GRTxmPaSrk8jIb1Yw
+          example: 1KZj_GRTxmPaSrk8jIb1Yw
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatorStudioTabBarItemQueryResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
+  /graphql/{pathQueryId}/DataSaverMode:
+    get:
+      description: data saver setting of the account
+      operationId: getDataSaverMode
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: xF6sXnKJfS2AOylzxRjf6A
+          example: xF6sXnKJfS2AOylzxRjf6A
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"device_id": "Windows/Chrome"}'
+          example: '{"device_id": "Windows/Chrome"}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSaverModeResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
   /graphql/{pathQueryId}/DeleteBookmark:
     post:
       description: delete Bookmark
@@ -8301,6 +10435,106 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExplorePageResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - tweet
+  /graphql/{pathQueryId}/ExploreSidebar:
+    get:
+      description: the explore sidebar (trends)
+      operationId: getExploreSidebar
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: bY118dk8ns_5JzfzIMeiBw
+          example: bY118dk8ns_5JzfzIMeiBw
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExploreSidebarResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -8928,10 +11162,10 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"timelineId": "VGltZWxpbmU6CwA6AAAAEzE3ODgyMjQyMDA2MzkxNjAzMjAA",
-            "count": 20, "withQuickPromoteEligibilityTweetFields": true}'
-          example: '{"timelineId": "VGltZWxpbmU6CwA6AAAAEzE3ODgyMjQyMDA2MzkxNjAzMjAA",
-            "count": 20, "withQuickPromoteEligibilityTweetFields": true}'
+          default: '{"timelineId": "VGltZWxpbmU6DAC2CwABAAAACHRyZW5kaW5nAAA=", "count":
+            20, "withQuickPromoteEligibilityTweetFields": true}'
+          example: '{"timelineId": "VGltZWxpbmU6DAC2CwABAAAACHRyZW5kaW5nAAA=", "count":
+            20, "withQuickPromoteEligibilityTweetFields": true}'
           type: string
       - in: query
         name: features
@@ -9014,6 +11248,259 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/GlobalCommunitiesLatestPostSearchTimeline:
+    get:
+      description: search posts across communities (Latest)
+      operationId: getGlobalCommunitiesLatestPostSearchTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: XtgLdT7L-zyrDDKH2dO0lw
+          example: XtgLdT7L-zyrDDKH2dO0lw
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"rawQuery": "test", "count": 20}'
+          example: '{"rawQuery": "test", "count": 20}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCommunitiesLatestPostSearchTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - community
+  /graphql/{pathQueryId}/GlobalCommunitiesPostSearchTimeline:
+    get:
+      description: search posts across communities (Top)
+      operationId: getGlobalCommunitiesPostSearchTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: z3OlkLD0_MFgCvUXcN1XeA
+          example: z3OlkLD0_MFgCvUXcN1XeA
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"rawQuery": "test", "count": 20}'
+          example: '{"rawQuery": "test", "count": 20}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalCommunitiesPostSearchTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - community
+  /graphql/{pathQueryId}/GrokHome:
+    get:
+      description: 'Grok home: model options, prompts and eligibility'
+      operationId: getGrokHome
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: QAPGIKJVaPXYD-gO9kxc9w
+          example: QAPGIKJVaPXYD-gO9kxc9w
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrokHomeResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
   /graphql/{pathQueryId}/HomeLatestTimeline:
     get:
       description: get tweet list of timeline
@@ -9252,10 +11739,10 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"userId": "44196397", "count": 20, "includePromotedContent":
+          default: '{"userId": "1787148517779406848", "count": 20, "includePromotedContent":
             false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
             true}'
-          example: '{"userId": "44196397", "count": 20, "includePromotedContent":
+          example: '{"userId": "1787148517779406848", "count": 20, "includePromotedContent":
             false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
             true}'
           type: string
@@ -9933,9 +12420,9 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"userId": "1788224200639160320", "isListMemberTargetUserId":
+          default: '{"userId": "1787148517779406848", "isListMemberTargetUserId":
             "44196397", "count": 20}'
-          example: '{"userId": "1788224200639160320", "isListMemberTargetUserId":
+          example: '{"userId": "1787148517779406848", "isListMemberTargetUserId":
             "44196397", "count": 20}'
           type: string
       - in: query
@@ -10123,6 +12610,106 @@ paths:
                 type: string
       tags:
       - post
+  /graphql/{pathQueryId}/ListSearchTimeline:
+    get:
+      description: search lists
+      operationId: getListSearchTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 9kXBVnbdRxymiEvafaXCQA
+          example: 9kXBVnbdRxymiEvafaXCQA
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"rawQuery": "test", "count": 20}'
+          example: '{"rawQuery": "test", "count": 20}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSearchTimelineResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user-list
   /graphql/{pathQueryId}/ListSubscribers:
     get:
       description: get list subscribers (followers)
@@ -10195,6 +12782,106 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListSubscribersResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user-list
+  /graphql/{pathQueryId}/ListsManagementPageTimeline:
+    get:
+      description: the account's lists management page
+      operationId: getListsManagementPageTimeline
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: FMDRDwDKo_nl4kT_AKWOCg
+          example: FMDRDwDKo_nl4kT_AKWOCg
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          example: '{"rweb_video_screen_enabled": false, "rweb_cashtags_enabled":
+            true, "profile_label_improvements_pcf_label_in_post_enabled": true, "responsive_web_profile_redirect_enabled":
+            true, "rweb_tipjar_consumption_enabled": false, "verified_phone_label_enabled":
+            false, "creator_subscriptions_tweet_preview_api_enabled": true, "responsive_web_graphql_timeline_navigation_enabled":
+            true, "premium_content_api_read_enabled": false, "communities_web_enable_tweet_community_results_fetch":
+            true, "c9s_tweet_anatomy_moderator_badge_enabled": true, "responsive_web_grok_analyze_button_fetch_trends_enabled":
+            false, "responsive_web_grok_analyze_post_followups_enabled": true, "rweb_cashtags_composer_attachment_enabled":
+            true, "responsive_web_jetfuel_frame": true, "rweb_sports_post_context_enabled":
+            true, "responsive_web_grok_share_attachment_enabled": true, "responsive_web_grok_annotations_enabled":
+            true, "articles_preview_enabled": true, "responsive_web_edit_tweet_api_enabled":
+            true, "rweb_conversational_replies_downvote_enabled": false, "graphql_is_translatable_rweb_tweet_is_translatable_enabled":
+            true, "view_counts_everywhere_api_enabled": true, "longform_notetweets_consumption_enabled":
+            true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
+            true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
+            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
+            true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
+            false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
+            true, "responsive_web_grok_imagine_annotation_enabled": true, "responsive_web_grok_community_note_auto_translation_is_enabled":
+            true, "responsive_web_enhance_cards_enabled": false}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"count": 100}'
+          example: '{"count": 100}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListsManagementPageTimelineResponse'
           description: Successful operation
           headers:
             x-connection-hash:
@@ -10323,6 +13010,72 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/PinnedTimelines:
+    get:
+      description: the account's pinned timelines
+      operationId: getPinnedTimelines
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: 8J1r9u3VjUveEdTY4WUTwQ
+          example: 8J1r9u3VjUveEdTY4WUTwQ
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"profile_label_improvements_pcf_label_in_post_enabled": true,
+            "responsive_web_profile_redirect_enabled": true, "rweb_tipjar_consumption_enabled":
+            false, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true}'
+          example: '{"profile_label_improvements_pcf_label_in_post_enabled": true,
+            "responsive_web_profile_redirect_enabled": true, "rweb_tipjar_consumption_enabled":
+            false, "verified_phone_label_enabled": false, "responsive_web_graphql_timeline_navigation_enabled":
+            true}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PinnedTimelinesResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
   /graphql/{pathQueryId}/ProfileSpotlightsQuery:
     get:
       description: get user by screen name
@@ -10339,8 +13092,8 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"screen_name": "elonmusk"}'
-          example: '{"screen_name": "elonmusk"}'
+          default: '{"screen_name": "ptcpz3"}'
+          example: '{"screen_name": "ptcpz3"}'
           type: string
       - in: query
         name: features
@@ -10587,6 +13340,59 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/TopicCarouselQuery:
+    get:
+      description: community topics and subtopics
+      operationId: getTopicCarouselQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: byVjaS0CUtBqAao_lhZFgA
+          example: byVjaS0CUtBqAao_lhZFgA
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{}'
+          example: '{}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicCarouselQueryResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - community
   /graphql/{pathQueryId}/TweetDetail:
     get:
       description: get TweetDetail
@@ -12061,6 +14867,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsersResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - users
+  /graphql/{pathQueryId}/UsersVerifiedAvatars:
+    get:
+      description: verified-avatar users by ids
+      operationId: getUsersVerifiedAvatars
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: O9O_O1iF0QffoOBjB2OGIQ
+          example: O9O_O1iF0QffoOBjB2OGIQ
+          type: string
+      - in: query
+        name: features
+        required: true
+        schema:
+          default: '{"responsive_web_graphql_timeline_navigation_enabled": true}'
+          example: '{"responsive_web_graphql_timeline_navigation_enabled": true}'
+          type: string
+      - in: query
+        name: variables
+        required: true
+        schema:
+          default: '{"userIds": ["1787148517779406848"]}'
+          example: '{"userIds": ["1787148517779406848"]}'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersVerifiedAvatarsResponse'
           description: Successful operation
           headers:
             x-connection-hash:

@@ -81,8 +81,7 @@ components:
         - "text"
       properties:
         displayType:
-          type: string
-          enum: [Classic]
+          type: string # Classic, or an empty string (HomeLatestTimeline, 2026-10-16)
         landingUrl:
           $ref: "#/components/schemas/LandingUrl"
         text:
@@ -226,6 +225,7 @@ components:
         - $ref: "#/components/schemas/TimelineFrame"
         - $ref: "#/components/schemas/TimelineTwitterList"
         - $ref: "#/components/schemas/TimelineLabel"
+        - $ref: "#/components/schemas/TimelineEventSummary"
 
       discriminator:
         propertyName: __typename
@@ -259,6 +259,7 @@ components:
           TimelineFrame,
           TimelineTwitterList,
           TimelineLabel,
+          TimelineEventSummary,
         ]
 
     TimelineTweet:
@@ -625,13 +626,23 @@ components:
           $ref: "#/components/schemas/ClientEventInfoDetails"
 
     ClientEventInfoDetails:
-      required:
-        - "timelinesDetails"
       properties:
         conversationDetails:
           $ref: "#/components/schemas/ConversationDetails"
+        notificationDetails:
+          $ref: "#/components/schemas/NotificationDetails" # NotificationsTimeline items carry this instead of timelinesDetails
         timelinesDetails:
           $ref: "#/components/schemas/TimelinesDetails"
+
+    NotificationDetails:
+      required:
+        - "impressionId"
+        - "metadata"
+      properties:
+        impressionId:
+          type: string
+        metadata:
+          type: string
 
     ConversationDetails:
       required:
@@ -681,6 +692,8 @@ components:
             $ref: "#/components/schemas/KeyValue"
         isQuickPromote:
           type: boolean
+        unifiedCardOverride:
+          type: string # JSON of a unified card (image_multi_dest_carousel_website seen on an ad)
         renderLegacyWebsiteCard:
           type: boolean
         renderSalesCtaWebsiteCard:
@@ -777,6 +790,8 @@ components:
           $ref: "#/components/schemas/SocialContextUnion"
         is_ai_trend:
           type: boolean
+        promoted_metadata:
+          $ref: "#/components/schemas/TrendPromotedMetadata" # promoted trends
         rank:
           type: string # "1", "2", ... position in the trends timeline (GenericTimelineById)
           pattern: "^[0-9]+$"
@@ -792,6 +807,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/GroupedTrend" # related trends shown under a trend (ExplorePage, 2026-10-16)
+        description:
+          type: string # promoted trends
         images:
           type: array
           items:
@@ -812,6 +829,8 @@ components:
       properties:
         url:
           $ref: "#/components/schemas/SocialContextLandingUrl"
+        meta_description:
+          type: string # promoted trends
         domain_context:
           type: string # "Trending in Japan", "Music · Trending"
 
@@ -825,6 +844,149 @@ components:
           type: integer
         original_img_height:
           type: integer
+
+    TrendPromotedMetadata: # promoted trends (TimelineTrend.promoted_metadata)
+      required:
+        - "advertiser_results"
+        - "disclosureType"
+        - "impressionId"
+        - "impressionString"
+        - "promotedTrend"
+        - "promotedTrendDescription"
+        - "promotedTrendName"
+        - "promotedTrendQueryTerm"
+      properties:
+        advertiser_results:
+          $ref: "./user.yaml#/components/schemas/UserResults"
+        disclosureType:
+          type: string # NoDisclosure
+        impressionId:
+          type: string
+        impressionString:
+          type: string
+        promotedTrend:
+          $ref: "#/components/schemas/PromotedTrend"
+        promotedTrendDescription:
+          type: string
+        promotedTrendName:
+          type: string
+        promotedTrendQueryTerm:
+          type: string
+
+    PromotedTrend:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    TimelineEventSummary: # promoted event card on ExplorePage
+      required:
+        - "__typename"
+        - "event"
+        - "eventSummaryDisplayType"
+        - "eventSummaryUrl"
+        - "itemType"
+        - "media"
+        - "promotedMetadata"
+        - "title"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineEventSummary
+        event:
+          $ref: "#/components/schemas/EventSummaryEvent"
+        eventSummaryDisplayType:
+          type: string # Hero
+        eventSummaryUrl:
+          $ref: "#/components/schemas/SocialContextLandingUrl"
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineEventSummary
+        media:
+          $ref: "#/components/schemas/EventSummaryMedia"
+        promotedMetadata:
+          $ref: "#/components/schemas/EventSummaryPromotedMetadata"
+        title:
+          type: string
+
+    EventSummaryEvent:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    EventSummaryMedia:
+      required:
+        - "mediaEntity"
+        - "mediaKey"
+      properties:
+        mediaEntity:
+          $ref: "#/components/schemas/EventSummaryMediaEntity"
+        mediaKey:
+          $ref: "#/components/schemas/EventSummaryMediaKey"
+
+    EventSummaryMediaEntity:
+      required:
+        - "tweet_results"
+        - "type"
+      properties:
+        tweet_results:
+          $ref: "./tweet.yaml#/components/schemas/ItemResult"
+        type:
+          type: string
+
+    EventSummaryMediaKey:
+      required:
+        - "category"
+        - "id"
+      properties:
+        category:
+          type: integer
+        id:
+          type: string
+
+    EventSummaryPromotedMetadata: # TrendPromotedMetadata plus a reduced ad metadata container
+      required:
+        - "adMetadataContainer"
+        - "advertiser_results"
+        - "disclosureType"
+        - "impressionId"
+        - "impressionString"
+        - "promotedTrend"
+        - "promotedTrendDescription"
+        - "promotedTrendName"
+        - "promotedTrendQueryTerm"
+      properties:
+        adMetadataContainer:
+          $ref: "#/components/schemas/EventSummaryAdMetadataContainer"
+        advertiser_results:
+          $ref: "./user.yaml#/components/schemas/UserResults"
+        disclosureType:
+          type: string
+        impressionId:
+          type: string
+        impressionString:
+          type: string
+        promotedTrend:
+          $ref: "#/components/schemas/PromotedTrend"
+        promotedTrendDescription:
+          type: string
+        promotedTrendName:
+          type: string
+        promotedTrendQueryTerm:
+          type: string
+
+    EventSummaryAdMetadataContainer:
+      required:
+        - "isQuickPromote"
+        - "renderSalesCtaWebsiteCard"
+      properties:
+        isQuickPromote:
+          type: boolean
+        renderSalesCtaWebsiteCard:
+          type: boolean
 
     TrendImage:
       type: object
@@ -864,10 +1026,42 @@ components:
     RichMessage:
       type: object
       properties:
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/RichMessageEntity"
         rtl:
           type: boolean
         text:
           type: string
+
+    RichMessageEntity: # a user or a list mentioned in a notification message
+      required:
+        - "fromIndex"
+        - "ref"
+        - "toIndex"
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/RichMessageEntityRef"
+        toIndex:
+          type: integer
+
+    RichMessageEntityRef:
+      required:
+        - "type"
+      properties:
+        type:
+          type: string
+          enum: [TimelineRichTextUser, TimelineRichTextList]
+        user_results:
+          $ref: "./user.yaml#/components/schemas/UserResults" # TimelineRichTextUser
+        id:
+          type: string
+          pattern: "^[0-9]+$" # TimelineRichTextList
+        url:
+          type: string # TimelineRichTextList, a relative path such as i/lists/<id>
 
     NotificationTemplate:
       type: object

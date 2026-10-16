@@ -85,8 +85,7 @@ components:
           type: string
           enum: [BottomSheet, Inline]
         feedbackType:
-          type: string
-          enum: [DontLike, GiveFeedback, NotCredible, NotRelevant, SeeFewer]
+          type: string # DontLike, GiveFeedback, NotCredible, NotRelevant, SeeFewer, Dismiss, ... (X keeps adding)
         feedbackUrl:
           type: string
         hasUndoAction:

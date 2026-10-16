@@ -1,0 +1,264 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /graphql/{pathQueryId}/BirdwatchFetchAliasSelfSelectStatus:
+    get:
+      operationId: getBirdwatchFetchAliasSelfSelectStatus
+      description: whether the account can pick / has picked a Community Notes alias
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BirdwatchFetchAliasSelfSelectStatusResponse"
+      tags:
+        - "birdwatch"
+
+  /graphql/{pathQueryId}/BirdwatchFetchAuthenticatedUserProfile:
+    get:
+      operationId: getBirdwatchFetchAuthenticatedUserProfile
+      description: the account's Community Notes profile
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BirdwatchFetchAuthenticatedUserProfileResponse"
+      tags:
+        - "birdwatch"
+
+  /graphql/{pathQueryId}/BirdwatchFetchBirdwatchProfile:
+    get:
+      operationId: getBirdwatchFetchBirdwatchProfile
+      description: a Community Notes profile by alias
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BirdwatchFetchBirdwatchProfileResponse"
+      tags:
+        - "birdwatch"
+
+  /graphql/{pathQueryId}/BirdwatchFetchGlobalTimeline:
+    get:
+      operationId: getBirdwatchFetchGlobalTimeline
+      description: the Community Notes home page (segmented timelines)
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BirdwatchFetchGlobalTimelineResponse"
+      tags:
+        - "birdwatch"
+
+  /graphql/{pathQueryId}/BirdwatchFetchPublicData:
+    get:
+      operationId: getBirdwatchFetchPublicData
+      description: download urls of the latest Community Notes public data files
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BirdwatchFetchPublicDataResponse"
+      tags:
+        - "birdwatch"
+
+components:
+  schemas:
+    BirdwatchFetchAliasSelfSelectStatusResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BirdwatchFetchAliasSelfSelectStatusResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    BirdwatchFetchAliasSelfSelectStatusResponseData:
+      required:
+        - "authenticated_user_birdwatch_alias_self_select_status"
+      properties:
+        authenticated_user_birdwatch_alias_self_select_status:
+          $ref: "#/components/schemas/BirdwatchAliasSelfSelectStatus"
+
+    BirdwatchAliasSelfSelectStatus:
+      required:
+        - "can_select"
+        - "has_selected"
+      properties:
+        can_select:
+          type: boolean
+        has_selected:
+          type: boolean
+
+    BirdwatchFetchAuthenticatedUserProfileResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BirdwatchFetchAuthenticatedUserProfileResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    BirdwatchFetchAuthenticatedUserProfileResponseData:
+      required:
+        - "authenticated_user_birdwatch_profile"
+      properties:
+        authenticated_user_birdwatch_profile:
+          $ref: "#/components/schemas/BirdwatchProfile"
+
+    BirdwatchFetchBirdwatchProfileResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BirdwatchFetchBirdwatchProfileResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    BirdwatchFetchBirdwatchProfileResponseData:
+      required:
+        - "birdwatch_profile_by_alias"
+      properties:
+        birdwatch_profile_by_alias:
+          $ref: "#/components/schemas/BirdwatchProfile"
+
+    BirdwatchProfile:
+      required:
+        - "alias"
+      properties:
+        alias:
+          type: string
+
+    BirdwatchFetchGlobalTimelineResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BirdwatchFetchGlobalTimelineResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    BirdwatchFetchGlobalTimelineResponseData:
+      required:
+        - "viewer"
+      properties:
+        viewer:
+          $ref: "#/components/schemas/BirdwatchViewer"
+
+    BirdwatchViewer:
+      required:
+        - "birdwatch_home_page"
+      properties:
+        birdwatch_home_page:
+          $ref: "#/components/schemas/BirdwatchHomePage"
+
+    BirdwatchHomePage:
+      required:
+        - "body"
+        - "id"
+        - "scribeConfig"
+      properties:
+        body:
+          $ref: "#/components/schemas/BirdwatchHomePageBody"
+        id:
+          type: string
+        scribeConfig:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/ScribeConfig"
+
+    BirdwatchHomePageBody:
+      required:
+        - "__typename"
+        - "initialTimeline"
+        - "timelines"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # SegmentedTimelines
+        initialTimeline:
+          $ref: "#/components/schemas/BirdwatchHomeTimeline"
+        timelines:
+          type: array
+          items:
+            $ref: "#/components/schemas/BirdwatchHomeTimeline"
+
+    BirdwatchHomeTimeline:
+      required:
+        - "id"
+        - "labelText"
+        - "timeline"
+      properties:
+        id:
+          type: string
+        labelText:
+          type: string
+        timeline:
+          $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult" # only the id for the tabs that are not loaded
+
+    BirdwatchFetchPublicDataResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BirdwatchFetchPublicDataResponseData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+    BirdwatchFetchPublicDataResponseData:
+      required:
+        - "birdwatch_latest_public_data_file_bundle"
+      properties:
+        birdwatch_latest_public_data_file_bundle:
+          $ref: "#/components/schemas/BirdwatchPublicDataFileBundle"
+
+    BirdwatchPublicDataFileBundle:
+      required:
+        - "bat_signals"
+        - "note_status_history"
+        - "notes"
+        - "ratings"
+        - "user_enrollment"
+      properties:
+        bat_signals:
+          $ref: "#/components/schemas/BirdwatchPublicDataFile"
+        note_status_history:
+          $ref: "#/components/schemas/BirdwatchPublicDataFile"
+        notes:
+          $ref: "#/components/schemas/BirdwatchPublicDataFile"
+        ratings:
+          $ref: "#/components/schemas/BirdwatchPublicDataFile"
+        user_enrollment:
+          $ref: "#/components/schemas/BirdwatchPublicDataFile"
+
+    BirdwatchPublicDataFile:
+      required:
+        - "created_at"
+        - "urls"
+      properties:
+        created_at:
+          type: integer
+        urls:
+          type: array
+          items:
+            type: string
+            format: uri
