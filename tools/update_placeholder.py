@@ -14,6 +14,8 @@ The relay step reads the NDJSON that the twitter_api_safe_relay dashboard export
 
 import argparse
 import json
+import os
+import random
 import re
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -104,6 +106,15 @@ def parse_request(method: str, url: str, body: str | None) -> dict:
     return {key: data[key] for key in ["variables", "features", "fieldToggles"] if key in data}
 
 
+def get_proxy():
+    """PROXY_LIST: one HTTP CONNECT proxy URL per line (http://user:pass@host:port), as in the other repositories."""
+    proxies = [x.strip() for x in os.environ.get("PROXY_LIST", "").splitlines() if x.strip()]
+    if not proxies:
+        return None
+    parsed = urlparse(random.choice(proxies))
+    return {"server": f"{parsed.scheme}://{parsed.hostname}:{parsed.port}", "username": parsed.username, "password": parsed.password}
+
+
 def record_requests(pages: list[str]) -> dict[str, dict]:
     from playwright.sync_api import sync_playwright
 
@@ -140,16 +151,17 @@ def record_requests(pages: list[str]) -> dict[str, dict]:
         }
 
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(proxy=get_proxy())
         context = browser.new_context(user_agent=user_agent, viewport={"width": 1280, "height": 900})
         context.add_cookies(cookies)
         page = context.new_page()
+        page.set_default_navigation_timeout(120000)  # the proxies are slow
         page.on("request", on_request)
         page.goto("https://x.com/home")
-        me = page.get_attribute('a[data-testid="AppTabBar_Profile_Link"]', "href", timeout=60000)
+        me = page.get_attribute('a[data-testid="AppTabBar_Profile_Link"]', "href", timeout=120000)
         for path in pages + [path.format(me=me) for path in SELF_PAGES if me]:
             print(f"visit {path}")
-            page.goto(f"https://x.com{path}", timeout=60000)
+            page.goto(f"https://x.com{path}")
             page.wait_for_timeout(6000)
         browser.close()
     return recorded
