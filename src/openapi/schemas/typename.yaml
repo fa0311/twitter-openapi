@@ -44,5 +44,8 @@ components:
           CommunityJoinRequestsUnavailable,
           CommunityUnavailable,
           ApiImage,
+          ApiMedia,
+          CommunityUserDefaultModerationState,
+          CtaLimitedActionPrompt,
           TimelineRichTextUser,
         ]

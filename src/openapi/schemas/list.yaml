@@ -26,11 +26,14 @@ components:
       properties:
         created_at:
           type: integer
+        custom_banner_media:
+          $ref: "#/components/schemas/ListBannerMedia"
+        custom_banner_media_results:
+          $ref: "#/components/schemas/ListBannerMediaResults"
         default_banner_media:
           $ref: "#/components/schemas/ListBannerMedia"
         default_banner_media_results:
-          type: object
-          additionalProperties: true # {} observed
+          $ref: "#/components/schemas/ListBannerMediaResults"
         description:
           type: string
         facepile_urls:
@@ -73,6 +76,11 @@ components:
         media_info:
           $ref: "#/components/schemas/ListBannerMediaInfo"
 
+    ListBannerMediaResults:
+      properties:
+        result:
+          $ref: "./media.yaml#/components/schemas/ApiMedia" # absent for lists without a banner
+
     ListBannerMediaInfo:
       required:
         - "original_img_height"
@@ -87,20 +95,5 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: "#/components/schemas/ListBannerMediaSalientRect"
+          $ref: "./media.yaml#/components/schemas/MediaSalientRect"
 
-    ListBannerMediaSalientRect:
-      required:
-        - "height"
-        - "left"
-        - "top"
-        - "width"
-      properties:
-        height:
-          type: integer
-        left:
-          type: integer
-        top:
-          type: integer
-        width:
-          type: integer

@@ -38,8 +38,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # User
         affiliates_highlighted_label:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/AffiliatesHighlightedLabel"
         has_graduated_access:
           type: boolean
         has_nft_avatar:
@@ -56,7 +55,7 @@ components:
           pattern: "^[0-9]+$"
         business_account:
           type: object
-          additionalProperties: true # todo
+          properties: {} # always {}
         super_follow_eligible:
           type: boolean
         super_followed_by:
@@ -234,14 +233,15 @@ components:
     UserProfessional:
       required:
         - "rest_id"
-        - "professional_type"
       properties:
+        id:
+          type: string
         rest_id:
           type: string
           pattern: "^[0-9]+$"
         professional_type:
           type: string
-          enum: ["Business", "Creator"]
+          enum: ["Business", "Creator"] # absent on some accounts (HomeTimeline, 2026-10-16)
         category:
           type: array
           items:
@@ -417,8 +417,7 @@ components:
         description:
           type: string
         entities:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ProfileBioEntities"
         fast_followers_count:
           type: integer
         favourites_count:
@@ -608,6 +607,119 @@ components:
         source_language:
           type: string
         translation:
+          type: string
+
+    AffiliatesHighlightedLabel:
+      properties:
+        label:
+          $ref: "#/components/schemas/UserLabel"
+
+    UserLabel:
+      required:
+        - "badge"
+        - "description"
+        - "userLabelType"
+      properties:
+        badge:
+          $ref: "#/components/schemas/UserLabelBadge"
+        description:
+          type: string
+        longDescription:
+          $ref: "#/components/schemas/UserLabelText"
+        url:
+          $ref: "#/components/schemas/UserLabelUrl"
+        userLabelDisplayType:
+          type: string
+          enum: [Badge]
+        userLabelType:
+          type: string
+          enum: [AutomatedLabel, BusinessLabel]
+
+    UserLabelBadge:
+      required:
+        - "url"
+      properties:
+        url:
+          type: string
+          format: uri
+
+    UserLabelUrl:
+      required:
+        - "url"
+        - "urlType"
+      properties:
+        url:
+          type: string
+          format: uri
+        urlType:
+          type: string
+          enum: [DeepLink]
+
+    UserLabelText:
+      required:
+        - "entities"
+        - "text"
+      properties:
+        entities:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserLabelTextEntity"
+        text:
+          type: string
+
+    UserLabelTextEntity:
+      required:
+        - "fromIndex"
+        - "ref"
+        - "toIndex"
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: "#/components/schemas/UserLabelTextEntityRef"
+        toIndex:
+          type: integer
+
+    UserLabelTextEntityRef:
+      required:
+        - "mention_results"
+        - "screen_name"
+        - "type"
+      properties:
+        mention_results:
+          $ref: "#/components/schemas/UserLabelMentionResults"
+        screen_name:
+          type: string
+        type:
+          type: string
+          enum: [TimelineRichTextMention]
+
+    UserLabelMentionResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/UserLabelMentionUser"
+
+    UserLabelMentionUser:
+      required:
+        - "__typename"
+        - "core"
+        - "rest_id"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # User
+        core:
+          $ref: "#/components/schemas/UserLabelMentionUserCore"
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    UserLabelMentionUserCore:
+      required:
+        - "screen_name"
+      properties:
+        screen_name:
           type: string
 
     ProfileBioEntities:

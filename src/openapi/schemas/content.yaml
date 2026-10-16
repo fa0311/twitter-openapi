@@ -42,8 +42,7 @@ components:
         clientEventInfo:
           $ref: "#/components/schemas/ClientEventInfo"
         feedbackInfo:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/FeedbackInfo"
 
     TimelineTimelineModule:
       required:
@@ -65,18 +64,73 @@ components:
           items:
             $ref: "#/components/schemas/ModuleItem"
         footer:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ModuleFooter"
         header:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ModuleHeader"
         clientEventInfo:
           $ref: "#/components/schemas/ClientEventInfo"
         metadata:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ModuleMetadata"
         feedbackInfo:
           $ref: "#/components/schemas/FeedbackInfo"
+
+    ModuleFooter:
+      required:
+        - "displayType"
+        - "landingUrl"
+        - "text"
+      properties:
+        displayType:
+          type: string
+          enum: [Classic]
+        landingUrl:
+          $ref: "#/components/schemas/LandingUrl"
+        text:
+          type: string
+
+    ModuleHeader:
+      required:
+        - "displayType"
+        - "text"
+      properties:
+        displayType:
+          type: string
+          enum: [Classic]
+        sticky:
+          type: boolean
+        text:
+          type: string
+
+    ModuleMetadata:
+      required:
+        - "conversationMetadata"
+      properties:
+        conversationMetadata:
+          $ref: "#/components/schemas/ConversationMetadata"
+
+    ConversationMetadata:
+      required:
+        - "allTweetIds"
+        - "enableDeduplication"
+      properties:
+        allTweetIds:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+        enableDeduplication:
+          type: boolean
+
+    LandingUrl:
+      required:
+        - "url"
+        - "urlType"
+      properties:
+        url:
+          type: string
+        urlType:
+          type: string
+          enum: [DeepLink, ExternalUrl]
 
     TimelineTimelineCursor:
       required:
@@ -145,14 +199,16 @@ components:
 
     FeedbackInfo:
       required:
-        - "feedbackType"
+        - "feedbackKeys"
       properties:
+        clientEventInfo:
+          $ref: "#/components/schemas/FeedbackClientEventInfo"
         feedbackKeys:
           type: array
           items:
             type: string
-        clientEventInfo:
-          $ref: "#/components/schemas/ClientEventInfo"
+        feedbackMetadata:
+          type: string
 
     # ================= ContentItem =================
 
@@ -224,8 +280,7 @@ components:
         socialContext:
           $ref: "#/components/schemas/SocialContextUnion"
         promotedMetadata:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/PromotedMetadata"
         highlights:
           $ref: "#/components/schemas/Highlight"
         hasModeratedReplies:
@@ -404,6 +459,18 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineCommunity
       additionalProperties: true # todo
 
+    FeedbackClientEventInfo: # feedbackInfo and responseObjects.feedbackActions
+      required:
+        - "action"
+        - "element"
+      properties:
+        action:
+          type: string # click
+        component:
+          type: string
+        element:
+          type: string
+
     ClientEventInfo:
       properties:
         component:
@@ -415,8 +482,90 @@ components:
           # pattern: "^(([a-zA-Z]+|[0-9]+|[0-9a-f]+)(-|$))+"
           # pattern: "^(january|february|march|april|may|june|july|august|september|october|november|december)-[0-9]{4}-([a-z]-)+[a-z]+$"
         details:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ClientEventInfoDetails"
+
+    ClientEventInfoDetails:
+      required:
+        - "timelinesDetails"
+      properties:
+        conversationDetails:
+          $ref: "#/components/schemas/ConversationDetails"
+        timelinesDetails:
+          $ref: "#/components/schemas/TimelinesDetails"
+
+    ConversationDetails:
+      required:
+        - "conversationSection"
+      properties:
+        conversationSection:
+          type: string
+          enum: [HighQuality]
+
+    TimelinesDetails:
+      properties:
+        controllerData:
+          type: string
+        injectionType:
+          type: string
+        sourceData:
+          type: string
+
+    PromotedMetadata:
+      required:
+        - "adMetadataContainer"
+        - "advertiser_results"
+        - "clickTrackingInfo"
+        - "impressionId"
+        - "impressionString"
+      properties:
+        adMetadataContainer:
+          $ref: "#/components/schemas/AdMetadataContainer"
+        advertiser_results:
+          $ref: "./user.yaml#/components/schemas/UserResults"
+        clickTrackingInfo:
+          $ref: "#/components/schemas/ClickTrackingInfo"
+        impressionId:
+          type: string
+        impressionString:
+          type: string
+
+    AdMetadataContainer:
+      required:
+        - "isQuickPromote"
+        - "renderLegacyWebsiteCard"
+        - "renderSalesCtaWebsiteCard"
+      properties:
+        destinationUrlParams:
+          type: array
+          items:
+            $ref: "#/components/schemas/KeyValue"
+        isQuickPromote:
+          type: boolean
+        renderLegacyWebsiteCard:
+          type: boolean
+        renderSalesCtaWebsiteCard:
+          type: boolean
+        showOverlayOnFirstCard:
+          type: boolean
+
+    ClickTrackingInfo:
+      required:
+        - "urlParams"
+      properties:
+        urlParams:
+          type: array
+          items:
+            $ref: "#/components/schemas/KeyValue"
+
+    KeyValue:
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          type: string
 
     TimelineTombstone:
       properties:

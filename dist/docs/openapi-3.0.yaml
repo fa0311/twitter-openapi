@@ -21,6 +21,24 @@ components:
           $ref: '#/components/schemas/AboutCommunityResults'
       required:
       - communityResults
+    AdMetadataContainer:
+      properties:
+        destinationUrlParams:
+          items:
+            $ref: '#/components/schemas/KeyValue'
+          type: array
+        isQuickPromote:
+          type: boolean
+        renderLegacyWebsiteCard:
+          type: boolean
+        renderSalesCtaWebsiteCard:
+          type: boolean
+        showOverlayOnFirstCard:
+          type: boolean
+      required:
+      - isQuickPromote
+      - renderLegacyWebsiteCard
+      - renderSalesCtaWebsiteCard
     AdditionalMediaInfo:
       properties:
         call_to_actions:
@@ -50,6 +68,10 @@ components:
           type: string
       required:
       - url
+    AffiliatesHighlightedLabel:
+      properties:
+        label:
+          $ref: '#/components/schemas/UserLabel'
     AllowDownloadStatus:
       properties:
         allow_download:
@@ -60,6 +82,47 @@ components:
           $ref: '#/components/schemas/Tweet'
       required:
       - result
+    ApiImage:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        color_info:
+          $ref: '#/components/schemas/MediaColorInfo'
+        original_img_height:
+          type: integer
+        original_img_url:
+          format: uri
+          type: string
+        original_img_width:
+          type: integer
+        salient_rect:
+          $ref: '#/components/schemas/MediaSalientRect'
+      required:
+      - __typename
+      - color_info
+      - original_img_height
+      - original_img_url
+      - original_img_width
+      - salient_rect
+    ApiMedia:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        id:
+          type: string
+        media_id:
+          pattern: ^[0-9]+$
+          type: string
+        media_info:
+          $ref: '#/components/schemas/ApiImage'
+        media_key:
+          type: string
+      required:
+      - __typename
+      - id
+      - media_id
+      - media_info
+      - media_key
     Article:
       properties:
         article_results:
@@ -82,41 +145,12 @@ components:
       - media_key
       - media_id
       - media_info
-    ArticleCoverMediaColorInfo:
-      properties:
-        palette:
-          items:
-            $ref: '#/components/schemas/ArticleCoverMediaColorInfoPalette'
-          type: array
-      required:
-      - palette
-    ArticleCoverMediaColorInfoPalette:
-      properties:
-        percentage:
-          type: number
-        rgb:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfoPaletteRGB'
-      required:
-      - percentage
-      - rgb
-    ArticleCoverMediaColorInfoPaletteRGB:
-      properties:
-        blue:
-          type: integer
-        green:
-          type: integer
-        red:
-          type: integer
-      required:
-      - blue
-      - green
-      - red
     ArticleCoverMediaInfo:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
         color_info:
-          $ref: '#/components/schemas/ArticleCoverMediaColorInfo'
+          $ref: '#/components/schemas/MediaColorInfo'
         original_img_height:
           type: integer
         original_img_url:
@@ -378,15 +412,44 @@ components:
           type: string
       required:
       - rest_id
+    CashtagInfo:
+      properties:
+        name:
+          type: string
+        ticker:
+          type: string
+        tradable_platforms:
+          items:
+            type: string
+          type: array
+      required:
+      - name
+      - ticker
+      - tradable_platforms
+    ClickTrackingInfo:
+      properties:
+        urlParams:
+          items:
+            $ref: '#/components/schemas/KeyValue'
+          type: array
+      required:
+      - urlParams
     ClientEventInfo:
       properties:
         component:
           type: string
         details:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ClientEventInfoDetails'
         element:
           type: string
+    ClientEventInfoDetails:
+      properties:
+        conversationDetails:
+          $ref: '#/components/schemas/ConversationDetails'
+        timelinesDetails:
+          $ref: '#/components/schemas/TimelinesDetails'
+      required:
+      - timelinesDetails
     CommunitiesActions:
       properties:
         create:
@@ -407,11 +470,9 @@ components:
         creator_results:
           $ref: '#/components/schemas/UserResults'
         custom_banner_media:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/CommunityBannerMedia'
         default_banner_media:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/CommunityBannerMedia'
         description:
           type: string
         id_str:
@@ -466,8 +527,7 @@ components:
         urls:
           $ref: '#/components/schemas/CommunityUrls'
         viewer_relationship:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/CommunityViewerRelationship'
       required:
       - __typename
     CommunityAboutTimelineResponse:
@@ -492,6 +552,34 @@ components:
           $ref: '#/components/schemas/CommunityPinActionResult'
         unpin_action_result:
           $ref: '#/components/schemas/CommunityUnpinActionResult'
+    CommunityBannerMedia:
+      properties:
+        id:
+          type: string
+        media_info:
+          $ref: '#/components/schemas/CommunityBannerMediaInfo'
+      required:
+      - media_info
+    CommunityBannerMediaInfo:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        color_info:
+          $ref: '#/components/schemas/MediaColorInfo'
+        original_img_height:
+          type: integer
+        original_img_url:
+          format: uri
+          type: string
+        original_img_width:
+          type: integer
+        salient_rect:
+          $ref: '#/components/schemas/MediaSalientRect'
+      required:
+      - color_info
+      - original_img_height
+      - original_img_url
+      - original_img_width
     CommunityDeleteActionResult:
       properties:
         __typename:
@@ -598,6 +686,12 @@ components:
           type: array
       required:
       - data
+    CommunityModerationState:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+      required:
+      - __typename
     CommunityPinActionResult:
       properties:
         __typename:
@@ -611,8 +705,7 @@ components:
         id:
           type: string
         moderation_state:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/CommunityModerationState'
         rest_id:
           pattern: ^[0-9]+$
           type: string
@@ -683,6 +776,14 @@ components:
           type: string
       required:
       - url
+    CommunityViewerRelationship:
+      properties:
+        id:
+          type: string
+        moderation_state:
+          $ref: '#/components/schemas/CommunityModerationState'
+      required:
+      - moderation_state
     ConnectTabTimelineResponse:
       properties:
         data:
@@ -761,14 +862,54 @@ components:
       - $ref: '#/components/schemas/TimelineTimelineCursor'
     ConversationControl:
       properties:
-        mode:
-          enum:
-          - Community
-          - Verified
-          - ByInvitation
+        conversation_owner_results:
+          $ref: '#/components/schemas/ConversationOwnerResults'
+        policy:
           type: string
       required:
-      - mode
+      - conversation_owner_results
+      - policy
+    ConversationDetails:
+      properties:
+        conversationSection:
+          enum:
+          - HighQuality
+          type: string
+      required:
+      - conversationSection
+    ConversationMetadata:
+      properties:
+        allTweetIds:
+          items:
+            pattern: ^[0-9]+$
+            type: string
+          type: array
+        enableDeduplication:
+          type: boolean
+      required:
+      - allTweetIds
+      - enableDeduplication
+    ConversationOwner:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        core:
+          $ref: '#/components/schemas/ConversationOwnerCore'
+      required:
+      - __typename
+      - core
+    ConversationOwnerCore:
+      properties:
+        screen_name:
+          type: string
+      required:
+      - screen_name
+    ConversationOwnerResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/ConversationOwner'
+      required:
+      - result
     CoverCta:
       properties:
         Text:
@@ -887,6 +1028,35 @@ components:
           type: string
       required:
       - action
+    CtaLimitedActionPrompt:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        cta_type:
+          enum:
+          - SeeConversation
+          type: string
+        headline:
+          $ref: '#/components/schemas/CtaLimitedActionPromptText'
+        subtext:
+          $ref: '#/components/schemas/CtaLimitedActionPromptText'
+      required:
+      - __typename
+      - cta_type
+      - headline
+      - subtext
+    CtaLimitedActionPromptText:
+      properties:
+        entities:
+          items:
+            properties: {}
+            type: object
+          type: array
+        text:
+          type: string
+      required:
+      - entities
+      - text
     CursorType:
       enum:
       - Top
@@ -896,6 +1066,35 @@ components:
       - Gap
       - ShowMoreThreadsPrompt
       type: string
+    DeepsearchHeader:
+      properties:
+        steps:
+          items:
+            $ref: '#/components/schemas/DeepsearchStep'
+          type: array
+      required:
+      - steps
+    DeepsearchStep:
+      properties:
+        web_results:
+          items:
+            $ref: '#/components/schemas/DeepsearchWebResult'
+          type: array
+        x_post_ids:
+          items:
+            pattern: ^[0-9]+$
+            type: string
+          type: array
+      required:
+      - web_results
+      - x_post_ids
+    DeepsearchWebResult:
+      properties:
+        url:
+          format: uri
+          type: string
+      required:
+      - url
     DeleteBookmarkResponse:
       properties:
         data:
@@ -1262,16 +1461,76 @@ components:
           type: array
       required:
       - data
+    FeedbackAction:
+      properties:
+        childKeys:
+          items:
+            type: string
+          type: array
+        clientEventInfo:
+          $ref: '#/components/schemas/FeedbackClientEventInfo'
+        confirmation:
+          type: string
+        confirmationDisplayType:
+          enum:
+          - BottomSheet
+          - Inline
+          type: string
+        feedbackType:
+          enum:
+          - DontLike
+          - GiveFeedback
+          - NotCredible
+          - NotRelevant
+          - SeeFewer
+          type: string
+        feedbackUrl:
+          type: string
+        hasUndoAction:
+          type: boolean
+        icon:
+          enum:
+          - Frown
+          type: string
+        prompt:
+          type: string
+      required:
+      - confirmation
+      - feedbackType
+      - hasUndoAction
+      - prompt
+    FeedbackActionEntry:
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/FeedbackAction'
+      required:
+      - key
+      - value
+    FeedbackClientEventInfo:
+      properties:
+        action:
+          type: string
+        component:
+          type: string
+        element:
+          type: string
+      required:
+      - action
+      - element
     FeedbackInfo:
       properties:
         clientEventInfo:
-          $ref: '#/components/schemas/ClientEventInfo'
+          $ref: '#/components/schemas/FeedbackClientEventInfo'
         feedbackKeys:
           items:
             type: string
           type: array
+        feedbackMetadata:
+          type: string
       required:
-      - feedbackType
+      - feedbackKeys
     FetchDraftTweetsResponse:
       properties:
         data:
@@ -1417,8 +1676,7 @@ components:
           $ref: '#/components/schemas/AnalysisResults'
         deepsearch_headers:
           items:
-            additionalProperties: true
-            type: object
+            $ref: '#/components/schemas/DeepsearchHeader'
           type: array
         media_urls:
           items:
@@ -1483,7 +1741,7 @@ components:
     GrokTranslatedPost:
       properties:
         associated_data:
-          additionalProperties: true
+          properties: {}
           type: object
         destination_language:
           type: string
@@ -1504,8 +1762,16 @@ components:
       required:
       - is_available
     Hashtag:
-      additionalProperties: true
-      type: object
+      properties:
+        indices:
+          items:
+            type: integer
+          type: array
+        text:
+          type: string
+      required:
+      - indices
+      - text
     Highlight:
       properties:
         textHighlights:
@@ -1600,24 +1866,55 @@ components:
           $ref: '#/components/schemas/TypeName'
         result:
           $ref: '#/components/schemas/TweetUnion'
+    JetfuelAttachment:
+      properties:
+        height:
+          type: integer
+        payload:
+          type: string
+      required:
+      - height
+      - payload
+    KeyValue:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
+    LandingUrl:
+      properties:
+        url:
+          type: string
+        urlType:
+          enum:
+          - DeepLink
+          - ExternalUrl
+          type: string
+      required:
+      - url
+      - urlType
+    LimitedAction:
+      properties:
+        action:
+          type: string
+        prompt:
+          $ref: '#/components/schemas/CtaLimitedActionPrompt'
+      required:
+      - action
+    LimitedActionResults:
+      properties:
+        limited_actions:
+          items:
+            $ref: '#/components/schemas/LimitedAction'
+          type: array
+      required:
+      - limited_actions
     LimitedActionResultsData:
       properties:
         action:
-          enum:
-          - Reply
-          - Retweet
-          - QuoteTweet
-          - Like
-          - React
-          - AddToBookmarks
-          - AddToMoment
-          - PinToProfile
-          - ViewHiddenReplies
-          - VoteOnPoll
-          - ShowRetweetActionMenu
-          - ReplyDownVote
-          - SendViaDm
-          - ViewPostEngagements
           type: string
       required:
       - action
@@ -1636,27 +1933,16 @@ components:
         original_img_width:
           type: integer
         salient_rect:
-          $ref: '#/components/schemas/ListBannerMediaSalientRect'
+          $ref: '#/components/schemas/MediaSalientRect'
       required:
       - original_img_height
       - original_img_url
       - original_img_width
       - salient_rect
-    ListBannerMediaSalientRect:
+    ListBannerMediaResults:
       properties:
-        height:
-          type: integer
-        left:
-          type: integer
-        top:
-          type: integer
-        width:
-          type: integer
-      required:
-      - height
-      - left
-      - top
-      - width
+        result:
+          $ref: '#/components/schemas/ApiMedia'
     ListLatestTweetsTimelineResponse:
       properties:
         data:
@@ -1843,6 +2129,35 @@ components:
       - original_info
       - media_key
       - ext_media_availability
+    MediaColorInfo:
+      properties:
+        palette:
+          items:
+            $ref: '#/components/schemas/MediaColorInfoPalette'
+          type: array
+      required:
+      - palette
+    MediaColorInfoPalette:
+      properties:
+        percentage:
+          type: number
+        rgb:
+          $ref: '#/components/schemas/MediaColorInfoPaletteRGB'
+      required:
+      - percentage
+      - rgb
+    MediaColorInfoPaletteRGB:
+      properties:
+        blue:
+          type: integer
+        green:
+          type: integer
+        red:
+          type: integer
+      required:
+      - blue
+      - green
+      - red
     MediaCommunityResult:
       properties:
         __typename:
@@ -1981,6 +2296,21 @@ components:
           $ref: '#/components/schemas/MediaResult'
       required:
       - result
+    MediaSalientRect:
+      properties:
+        height:
+          type: integer
+        left:
+          type: integer
+        top:
+          type: integer
+        width:
+          type: integer
+      required:
+      - height
+      - left
+      - top
+      - width
     MediaSize:
       properties:
         h:
@@ -2072,6 +2402,33 @@ components:
           $ref: '#/components/schemas/ItemContentUnion'
       required:
       - itemContent
+    ModuleFooter:
+      properties:
+        displayType:
+          enum:
+          - Classic
+          type: string
+        landingUrl:
+          $ref: '#/components/schemas/LandingUrl'
+        text:
+          type: string
+      required:
+      - displayType
+      - landingUrl
+      - text
+    ModuleHeader:
+      properties:
+        displayType:
+          enum:
+          - Classic
+          type: string
+        sticky:
+          type: boolean
+        text:
+          type: string
+      required:
+      - displayType
+      - text
     ModuleItem:
       properties:
         dispensable:
@@ -2084,6 +2441,12 @@ components:
       required:
       - entryId
       - item
+    ModuleMetadata:
+      properties:
+        conversationMetadata:
+          $ref: '#/components/schemas/ConversationMetadata'
+      required:
+      - conversationMetadata
     NoteTweet:
       properties:
         is_expandable:
@@ -2346,6 +2709,24 @@ components:
       properties:
         user_result_by_screen_name:
           $ref: '#/components/schemas/UserResultByScreenName'
+    PromotedMetadata:
+      properties:
+        adMetadataContainer:
+          $ref: '#/components/schemas/AdMetadataContainer'
+        advertiser_results:
+          $ref: '#/components/schemas/UserResults'
+        clickTrackingInfo:
+          $ref: '#/components/schemas/ClickTrackingInfo'
+        impressionId:
+          type: string
+        impressionString:
+          type: string
+      required:
+      - adMetadataContainer
+      - advertiser_results
+      - clickTrackingInfo
+      - impressionId
+      - impressionString
     QuotedRefResult:
       properties:
         result:
@@ -2386,6 +2767,12 @@ components:
           $ref: '#/components/schemas/RankedCommunityResults'
       required:
       - communityResults
+    ReaderModeConfig:
+      properties:
+        is_reader_mode_available:
+          type: boolean
+      required:
+      - is_reader_mode_available
     Retweet:
       properties:
         legacy:
@@ -2416,6 +2803,12 @@ components:
           type: array
       required:
       - scheduled_tweet_list
+    ScribeConfig:
+      properties:
+        page:
+          type: string
+      required:
+      - page
     SearchByRawQuery:
       properties:
         search_timeline:
@@ -2528,10 +2921,13 @@ components:
     SmarttagTag:
       properties:
         info:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/SmarttagTagInfo'
       required:
       - info
+    SmarttagTagInfo:
+      properties:
+        info:
+          $ref: '#/components/schemas/CashtagInfo'
     SocialContextLandingUrl:
       properties:
         url:
@@ -2593,8 +2989,18 @@ components:
       required:
       - screen_name
     Symbol:
-      additionalProperties: true
-      type: object
+      properties:
+        indices:
+          items:
+            type: integer
+          type: array
+        tag:
+          $ref: '#/components/schemas/SmarttagTag'
+        text:
+          type: string
+      required:
+      - indices
+      - text
     Text:
       properties:
         entities:
@@ -2662,11 +3068,9 @@ components:
             $ref: '#/components/schemas/InstructionUnion'
           type: array
         metadata:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/TimelineMetadata'
         responseObjects:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/TimelineResponseObjects'
       required:
       - instructions
     TimelineAddEntries:
@@ -2850,6 +3254,14 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+    TimelineMetadata:
+      properties:
+        reader_mode_config:
+          $ref: '#/components/schemas/ReaderModeConfig'
+        scribeConfig:
+          $ref: '#/components/schemas/ScribeConfig'
+      required:
+      - scribeConfig
     TimelineNotification:
       properties:
         __typename:
@@ -2913,6 +3325,12 @@ components:
           type: array
       required:
       - data
+    TimelineResponseObjects:
+      properties:
+        feedbackActions:
+          items:
+            $ref: '#/components/schemas/FeedbackActionEntry'
+          type: array
     TimelineResult:
       properties:
         id:
@@ -2928,8 +3346,7 @@ components:
         clientEventInfo:
           $ref: '#/components/schemas/ClientEventInfo'
         colorConfig:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/TimelineShowAlertColorConfig'
         displayDurationMs:
           type: integer
         displayLocation:
@@ -2937,18 +3354,9 @@ components:
           - Top
           type: string
         iconDisplayInfo:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/TimelineShowAlertIconDisplayInfo'
         richText:
-          properties:
-            entities:
-              items:
-                additionalProperties: true
-                type: object
-              type: array
-            text:
-              type: string
-          type: object
+          $ref: '#/components/schemas/TimelineShowAlertRichText'
         triggerDelayMs:
           type: integer
         type:
@@ -2956,12 +3364,50 @@ components:
         usersResults:
           items:
             $ref: '#/components/schemas/UserResults'
-          nullable: true
           type: array
       required:
       - type
-      - usersResults
+      - alertType
+      - triggerDelayMs
+      - displayDurationMs
       - richText
+      - iconDisplayInfo
+      - colorConfig
+      - displayLocation
+      - clientEventInfo
+    TimelineShowAlertColorConfig:
+      properties:
+        background:
+          type: string
+        border:
+          type: string
+        text:
+          type: string
+      required:
+      - background
+      - border
+      - text
+    TimelineShowAlertIconDisplayInfo:
+      properties:
+        icon:
+          type: string
+        tint:
+          type: string
+      required:
+      - icon
+      - tint
+    TimelineShowAlertRichText:
+      properties:
+        entities:
+          items:
+            properties: {}
+            type: object
+          type: array
+        text:
+          type: string
+      required:
+      - text
+      - entities
     TimelineShowCover:
       properties:
         clientEventInfo:
@@ -3016,8 +3462,7 @@ components:
         entryType:
           $ref: '#/components/schemas/ContentEntryType'
         feedbackInfo:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/FeedbackInfo'
         itemContent:
           $ref: '#/components/schemas/ItemContentUnion'
       required:
@@ -3038,18 +3483,15 @@ components:
         feedbackInfo:
           $ref: '#/components/schemas/FeedbackInfo'
         footer:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ModuleFooter'
         header:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ModuleHeader'
         items:
           items:
             $ref: '#/components/schemas/ModuleItem'
           type: array
         metadata:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ModuleMetadata'
       required:
       - __typename
       - entryType
@@ -3118,8 +3560,7 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentItemType'
         promotedMetadata:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/PromotedMetadata'
         socialContext:
           $ref: '#/components/schemas/SocialContextUnion'
         tweetDisplayType:
@@ -3172,6 +3613,14 @@ components:
       - itemType
       - userDisplayType
       - user_results
+    TimelinesDetails:
+      properties:
+        controllerData:
+          type: string
+        injectionType:
+          type: string
+        sourceData:
+          type: string
     Timestamp:
       properties:
         indices:
@@ -3317,6 +3766,8 @@ components:
           type: boolean
         is_translatable:
           type: boolean
+        jetfuel_attachment:
+          $ref: '#/components/schemas/JetfuelAttachment'
         legacy:
           $ref: '#/components/schemas/TweetLegacy'
         nested_quoted_tweet_results:
@@ -3349,7 +3800,7 @@ components:
         unified_card:
           $ref: '#/components/schemas/UnifiedCard'
         unmention_data:
-          additionalProperties: true
+          properties: {}
           type: object
         views:
           $ref: '#/components/schemas/TweetView'
@@ -3395,8 +3846,7 @@ components:
         boolean_value:
           type: boolean
         image_color_value:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/MediaColorInfo'
         image_value:
           $ref: '#/components/schemas/TweetCardLegacyBindingValueDataImage'
         scribe_key:
@@ -3613,7 +4063,7 @@ components:
         bookmarked:
           type: boolean
         conversation_control:
-          additionalProperties: true
+          $ref: '#/components/schemas/ConversationControl'
         conversation_id_str:
           pattern: ^[0-9]+$
           type: string
@@ -3907,8 +4357,7 @@ components:
         __typename:
           $ref: '#/components/schemas/TypeName'
         limitedActionResults:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/LimitedActionResults'
         mediaVisibilityResults:
           $ref: '#/components/schemas/MediaVisibilityResults'
         tweet:
@@ -3922,11 +4371,14 @@ components:
       properties:
         created_at:
           type: integer
+        custom_banner_media:
+          $ref: '#/components/schemas/ListBannerMedia'
+        custom_banner_media_results:
+          $ref: '#/components/schemas/ListBannerMediaResults'
         default_banner_media:
           $ref: '#/components/schemas/ListBannerMedia'
         default_banner_media_results:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ListBannerMediaResults'
         description:
           type: string
         facepile_urls:
@@ -4023,6 +4475,9 @@ components:
       - CommunityJoinRequestsUnavailable
       - CommunityUnavailable
       - ApiImage
+      - ApiMedia
+      - CommunityUserDefaultModerationState
+      - CtaLimitedActionPrompt
       - TimelineRichTextUser
       type: string
     UnfavoriteTweet:
@@ -4094,14 +4549,13 @@ components:
         action_counts:
           $ref: '#/components/schemas/UserActionCounts'
         affiliates_highlighted_label:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/AffiliatesHighlightedLabel'
         avatar:
           $ref: '#/components/schemas/UserAvatar'
         banner:
           $ref: '#/components/schemas/UserBanner'
         business_account:
-          additionalProperties: true
+          properties: {}
           type: object
         core:
           $ref: '#/components/schemas/UserCore'
@@ -4299,6 +4753,110 @@ components:
           $ref: '#/components/schemas/UserHighlightsTweetsResult'
       required:
       - result
+    UserLabel:
+      properties:
+        badge:
+          $ref: '#/components/schemas/UserLabelBadge'
+        description:
+          type: string
+        longDescription:
+          $ref: '#/components/schemas/UserLabelText'
+        url:
+          $ref: '#/components/schemas/UserLabelUrl'
+        userLabelDisplayType:
+          enum:
+          - Badge
+          type: string
+        userLabelType:
+          enum:
+          - AutomatedLabel
+          - BusinessLabel
+          type: string
+      required:
+      - badge
+      - description
+      - userLabelType
+    UserLabelBadge:
+      properties:
+        url:
+          format: uri
+          type: string
+      required:
+      - url
+    UserLabelMentionResults:
+      properties:
+        result:
+          $ref: '#/components/schemas/UserLabelMentionUser'
+      required:
+      - result
+    UserLabelMentionUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        core:
+          $ref: '#/components/schemas/UserLabelMentionUserCore'
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - __typename
+      - core
+      - rest_id
+    UserLabelMentionUserCore:
+      properties:
+        screen_name:
+          type: string
+      required:
+      - screen_name
+    UserLabelText:
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/UserLabelTextEntity'
+          type: array
+        text:
+          type: string
+      required:
+      - entities
+      - text
+    UserLabelTextEntity:
+      properties:
+        fromIndex:
+          type: integer
+        ref:
+          $ref: '#/components/schemas/UserLabelTextEntityRef'
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - ref
+      - toIndex
+    UserLabelTextEntityRef:
+      properties:
+        mention_results:
+          $ref: '#/components/schemas/UserLabelMentionResults'
+        screen_name:
+          type: string
+        type:
+          enum:
+          - TimelineRichTextMention
+          type: string
+      required:
+      - mention_results
+      - screen_name
+      - type
+    UserLabelUrl:
+      properties:
+        url:
+          format: uri
+          type: string
+        urlType:
+          enum:
+          - DeepLink
+          type: string
+      required:
+      - url
+      - urlType
     UserLegacy:
       properties:
         blocked_by:
@@ -4318,8 +4876,7 @@ components:
         description:
           type: string
         entities:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ProfileBioEntities'
         fast_followers_count:
           type: integer
         favourites_count:
@@ -4470,8 +5027,26 @@ components:
       required:
       - can_media_tag
     UserMention:
-      additionalProperties: true
-      type: object
+      properties:
+        id:
+          pattern: ^[0-9]+$
+          type: string
+        id_str:
+          pattern: ^[0-9]+$
+          type: string
+        indices:
+          items:
+            type: integer
+          type: array
+        name:
+          type: string
+        screen_name:
+          type: string
+      required:
+      - id_str
+      - indices
+      - name
+      - screen_name
     UserNotificationsSettings:
       properties:
         notifications_enabled:
@@ -4497,6 +5072,8 @@ components:
           items:
             $ref: '#/components/schemas/UserProfessionalCategory'
           type: array
+        id:
+          type: string
         professional_type:
           enum:
           - Business
@@ -4507,7 +5084,6 @@ components:
           type: string
       required:
       - rest_id
-      - professional_type
     UserProfessionalCategory:
       properties:
         icon_name:

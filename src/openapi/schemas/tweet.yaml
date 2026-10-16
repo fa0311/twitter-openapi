@@ -33,8 +33,7 @@ components:
         tweet:
           $ref: "#/components/schemas/Tweet"
         limitedActionResults:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/LimitedActionResults"
         tweetInterstitial:
           $ref: "#/components/schemas/TweetInterstitial"
         mediaVisibilityResults:
@@ -166,7 +165,7 @@ components:
           $ref: "#/components/schemas/TweetCard"
         unmention_data:
           type: object
-          additionalProperties: true # todo
+          properties: {} # always {}
         edit_control:
           $ref: "#/components/schemas/TweetEditControl"
         edit_prespective:
@@ -175,6 +174,8 @@ components:
           type: boolean
         source:
           type: string # html (<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>)
+        jetfuel_attachment:
+          $ref: "#/components/schemas/JetfuelAttachment"
         legacy:
           $ref: "#/components/schemas/TweetLegacy"
         views:
@@ -231,6 +232,16 @@ components:
           $ref: "#/components/schemas/ContentDisclosure"
         postCta:
           $ref: "#/components/schemas/TweetPostCta"
+
+    JetfuelAttachment: # responsive_web_jetfuel_frame; an opaque frame payload (seen on an NFL live chat card)
+      required:
+        - "height"
+        - "payload"
+      properties:
+        height:
+          type: integer
+        payload:
+          type: string
 
     CashtagAttachment:
       required:
@@ -456,10 +467,16 @@ components:
           type: string
           pattern: "^[0-9]+$"
         moderation_state:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/CommunityModerationState"
         actions:
           $ref: "#/components/schemas/CommunityActions"
+
+    CommunityModerationState:
+      required:
+        - "__typename"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityUserDefaultModerationState
 
     AuthorCommunityRelationship:
       required:
@@ -577,14 +594,50 @@ components:
         urls:
           $ref: "#/components/schemas/CommunityUrls"
         default_banner_media:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/CommunityBannerMedia"
         custom_banner_media:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/CommunityBannerMedia"
         viewer_relationship:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/CommunityViewerRelationship"
+
+    CommunityBannerMedia:
+      required:
+        - "media_info"
+      properties:
+        id:
+          type: string
+        media_info:
+          $ref: "#/components/schemas/CommunityBannerMediaInfo"
+
+    CommunityBannerMediaInfo:
+      required:
+        - "color_info"
+        - "original_img_height"
+        - "original_img_url"
+        - "original_img_width"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiImage
+        color_info:
+          $ref: "./media.yaml#/components/schemas/MediaColorInfo"
+        original_img_height:
+          type: integer
+        original_img_url:
+          type: string
+          format: uri
+        original_img_width:
+          type: integer
+        salient_rect:
+          $ref: "./media.yaml#/components/schemas/MediaSalientRect"
+
+    CommunityViewerRelationship:
+      required:
+        - "moderation_state"
+      properties:
+        id:
+          type: string
+        moderation_state:
+          $ref: "#/components/schemas/CommunityModerationState"
 
     PrimaryCommunityTopic:
       required:
@@ -1005,8 +1058,7 @@ components:
         image_value:
           $ref: "#/components/schemas/TweetCardLegacyBindingValueDataImage"
         image_color_value:
-          type: object
-          additionalProperties: true # todo
+          $ref: "./media.yaml#/components/schemas/MediaColorInfo"
         user_value:
           $ref: "#/components/schemas/UserValue"
 
@@ -1126,7 +1178,7 @@ components:
           type: string
           pattern: "^[0-9]+$"
         conversation_control:
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/ConversationControl"
         limited_actions:
           type: string
           enum:
@@ -1143,6 +1195,40 @@ components:
         #   type: string
         # withheld_scope:
         #   type: string
+
+    ConversationControl:
+      required:
+        - "conversation_owner_results"
+        - "policy"
+      properties:
+        conversation_owner_results:
+          $ref: "#/components/schemas/ConversationOwnerResults"
+        policy:
+          type: string # ByInvitation, Community, Subscribers, Verified; "Co" was also seen once (2026-10-16)
+
+    ConversationOwnerResults:
+      required:
+        - "result"
+      properties:
+        result:
+          $ref: "#/components/schemas/ConversationOwner"
+
+    ConversationOwner:
+      required:
+        - "__typename"
+        - "core"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # User
+        core:
+          $ref: "#/components/schemas/ConversationOwnerCore"
+
+    ConversationOwnerCore:
+      required:
+        - "screen_name"
+      properties:
+        screen_name:
+          type: string
 
     SelfThread:
       required:
@@ -1189,14 +1275,53 @@ components:
             $ref: "#/components/schemas/Smarttag"
 
     Hashtag:
-      type: object
-      additionalProperties: true # todo
+      required:
+        - "indices"
+        - "text"
+      properties:
+        indices:
+          type: array
+          items:
+            type: integer
+        text:
+          type: string
+
     Symbol:
-      type: object
-      additionalProperties: true # todo
+      required:
+        - "indices"
+        - "text"
+      properties:
+        indices:
+          type: array
+          items:
+            type: integer
+        tag:
+          $ref: "#/components/schemas/SmarttagTag"
+        text:
+          type: string
+
     UserMention:
-      type: object
-      additionalProperties: true # todo
+      required:
+        - "id_str"
+        - "indices"
+        - "name"
+        - "screen_name"
+      properties:
+        id:
+          type: string
+          pattern: "^[0-9]+$"
+        id_str:
+          type: string
+          pattern: "^[0-9]+$"
+        indices:
+          type: array
+          items:
+            type: integer
+        name:
+          type: string
+        screen_name:
+          type: string
+
     Url:
       type: object
       required:
@@ -1541,14 +1666,6 @@ components:
           type: string
           enum: [crop, fit]
 
-    ConversationControl:
-      required:
-        - "mode"
-      properties:
-        mode:
-          type: string
-          enum: [Community, Verified, ByInvitation]
-
     Timestamp:
       required:
         - "indices"
@@ -1584,8 +1701,27 @@ components:
         - "info"
       properties:
         info:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/SmarttagTagInfo"
+
+    SmarttagTagInfo:
+      properties:
+        info:
+          $ref: "#/components/schemas/CashtagInfo" # absent for unknown tickers
+
+    CashtagInfo:
+      required:
+        - "name"
+        - "ticker"
+        - "tradable_platforms"
+      properties:
+        name:
+          type: string
+        ticker:
+          type: string
+        tradable_platforms:
+          type: array
+          items:
+            type: string
 
     Article:
       required:
@@ -1683,39 +1819,7 @@ components:
           type: string
           format: uri
         color_info:
-          $ref: "#/components/schemas/ArticleCoverMediaColorInfo"
-
-    ArticleCoverMediaColorInfo:
-      required:
-        - "palette"
-      properties:
-        palette:
-          type: array
-          items:
-            $ref: "#/components/schemas/ArticleCoverMediaColorInfoPalette"
-
-    ArticleCoverMediaColorInfoPalette:
-      required:
-        - "percentage"
-        - "rgb"
-      properties:
-        percentage:
-          type: number
-        rgb:
-          $ref: "#/components/schemas/ArticleCoverMediaColorInfoPaletteRGB"
-
-    ArticleCoverMediaColorInfoPaletteRGB:
-      required:
-        - "blue"
-        - "green"
-        - "red"
-      properties:
-        blue:
-          type: integer
-        green:
-          type: integer
-        red:
-          type: integer
+          $ref: "./media.yaml#/components/schemas/MediaColorInfo"
 
     ArticleMetadata:
       required:
@@ -1796,8 +1900,39 @@ components:
         deepsearch_headers:
           type: array
           items:
-            type: object
-            additionalProperties: true # todo
+            $ref: "#/components/schemas/DeepsearchHeader"
+
+    DeepsearchHeader:
+      required:
+        - "steps"
+      properties:
+        steps:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeepsearchStep"
+
+    DeepsearchStep:
+      required:
+        - "web_results"
+        - "x_post_ids"
+      properties:
+        web_results:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeepsearchWebResult"
+        x_post_ids:
+          type: array
+          items:
+            type: string
+            pattern: "^[0-9]+$"
+
+    DeepsearchWebResult:
+      required:
+        - "url"
+      properties:
+        url:
+          type: string
+          format: uri
 
     AnalysisResults:
       required:
@@ -1827,7 +1962,7 @@ components:
           $ref: "#/components/schemas/Entities"
         associated_data:
           type: object
-          additionalProperties: true # todo
+          properties: {} # always {}
         preview_translation:
           type: string
 
@@ -2042,22 +2177,55 @@ components:
         - "action"
       properties:
         action:
+          type: string # Reply, Retweet, QuoteTweet, Like, React, AddToBookmarks, AddToMoment, PinToProfile, ViewHiddenReplies, VoteOnPoll, ShowRetweetActionMenu, ReplyDownVote, SendViaDm, ViewPostEngagements, CopyLink, ... (X keeps adding UI actions)
+
+    LimitedActionResults: # TweetWithVisibilityResults.limitedActionResults
+      required:
+        - "limited_actions"
+      properties:
+        limited_actions:
+          type: array
+          items:
+            $ref: "#/components/schemas/LimitedAction"
+
+    LimitedAction:
+      required:
+        - "action"
+      properties:
+        action:
+          type: string # same values as LimitedActionResultsData.action, plus ShareTweetVia
+        prompt:
+          $ref: "#/components/schemas/CtaLimitedActionPrompt" # Reply only
+
+    CtaLimitedActionPrompt:
+      required:
+        - "__typename"
+        - "cta_type"
+        - "headline"
+        - "subtext"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # CtaLimitedActionPrompt
+        cta_type:
           type: string
-          enum:
-            - "Reply"
-            - "Retweet"
-            - "QuoteTweet"
-            - "Like"
-            - "React"
-            - "AddToBookmarks"
-            - "AddToMoment"
-            - "PinToProfile"
-            - "ViewHiddenReplies"
-            - "VoteOnPoll"
-            - "ShowRetweetActionMenu"
-            - "ReplyDownVote"
-            - "SendViaDm"
-            - "ViewPostEngagements"
+          enum: [SeeConversation]
+        headline:
+          $ref: "#/components/schemas/CtaLimitedActionPromptText"
+        subtext:
+          $ref: "#/components/schemas/CtaLimitedActionPromptText"
+
+    CtaLimitedActionPromptText:
+      required:
+        - "entities"
+        - "text"
+      properties:
+        entities:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+        text:
+          type: string
 
     TweetPreviewDisplayCta:
       required:
