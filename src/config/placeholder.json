@@ -240,7 +240,7 @@
         "@method": "GET",
         "queryId": "mzoqrVGwk-YTSGME1dRfXQ",
         "variables": {
-            "screen_name": "elonmusk"
+            "screen_name": "ptcpz3"
         },
         "features": {}
     },
@@ -653,7 +653,7 @@
         "@method": "GET",
         "queryId": "mu4us66Q6RRNOywVQhGtRg",
         "variables": {
-            "userId": "44196397",
+            "userId": "1787148517779406848",
             "count": 20,
             "includePromotedContent": false,
             "withClientEventToken": false,
@@ -1973,6 +1973,11 @@
         "queryId": "O9O_O1iF0QffoOBjB2OGIQ",
         "features": {
             "responsive_web_graphql_timeline_navigation_enabled": true
+        },
+        "variables": {
+            "userIds": [
+                "1787148517779406848"
+            ]
         }
     },
     "CreateDraftTweet": {
@@ -2020,7 +2025,7 @@
         "@method": "GET",
         "queryId": "cW93hZ3nlNYbYcUROF5r5A",
         "variables": {
-            "timelineId": "VGltZWxpbmU6CwA6AAAAEzE3ODgyMjQyMDA2MzkxNjAzMjAA",
+            "timelineId": "VGltZWxpbmU6DAC2CwABAAAACHRyZW5kaW5nAAA=",
             "count": 20,
             "withQuickPromoteEligibilityTweetFields": true
         },
@@ -2217,6 +2222,12 @@
             "responsive_web_profile_redirect_enabled": true,
             "rweb_tipjar_consumption_enabled": false,
             "verified_phone_label_enabled": false
+        },
+        "variables": {
+            "communityId": "1738874426798870555",
+            "withDmMuting": false,
+            "withGrokTranslatedBio": false,
+            "includeProfessionalCategory": true
         }
     },
     "CommunityQuery": {
@@ -2281,7 +2292,11 @@
     "isEligibleForVoButtonUpsellQuery": {
         "@path": "/i/api/graphql/BuWF9hiwmUyFdGo3J4DqbA/isEligibleForVoButtonUpsellQuery",
         "@method": "GET",
-        "queryId": "BuWF9hiwmUyFdGo3J4DqbA"
+        "queryId": "BuWF9hiwmUyFdGo3J4DqbA",
+        "variables": {
+            "screenName": "ptcpz3",
+            "promptPurpose": "x_vo_business_promotion"
+        }
     },
     "isEligibleForAnalyticsUpsellQuery": {
         "@path": "/i/api/graphql/I_tJ_DO6WLqG0em8EQsVVg/isEligibleForAnalyticsUpsellQuery",
@@ -2816,7 +2831,7 @@
         "@method": "GET",
         "queryId": "f1u5dCI80zd4-YFYSkVCVQ",
         "variables": {
-            "userId": "1788224200639160320",
+            "userId": "1787148517779406848",
             "isListMemberTargetUserId": "44196397",
             "count": 20
         },
