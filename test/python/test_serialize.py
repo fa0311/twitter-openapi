@@ -1,4 +1,3 @@
-import base64
 import concurrent.futures
 import glob
 import inspect
@@ -26,7 +25,6 @@ warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("test_serialize")
 
-TWITTER_SESSION = os.environ.get("TWITTER_SESSION", None)
 ERROR_UNCATCHED = os.environ.get("ERROR_UNCATCHED", "false").lower() == "true"
 SLEEP_TIME = float(os.environ.get("SLEEP", "0"))
 CUESOR_TEST_COUNT = int(os.environ.get("CUESOR_TEST_COUNT", "3"))
@@ -236,9 +234,6 @@ if __name__ == "__main__":
     if Path("cookie.json").exists():
         with open("cookie.json", "r") as f:
             cookies = json.load(f)
-    elif TWITTER_SESSION is not None:
-        data = base64.b64decode(TWITTER_SESSION).decode("utf-8")
-        cookies = json.loads(data)
     else:
         raise Exception("cookie.json not found. Export the x.com cookies from your browser first.")
 
