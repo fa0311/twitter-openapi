@@ -15,16 +15,11 @@ jobs:
       - uses: astral-sh/setup-uv@v10.3.0
         with:
           enable-cache: true
-      - uses: fa0311/twitter-secrets@main
-        with:
-          age-key: ${{ secrets.SOPS_AGE_KEY }}
-      - name: Install Chromium
-        run: uv run playwright install --with-deps chromium
-      - name: Sync placeholder.json from TwitterInternalAPIDocument and record requests from x.com
-        run: uv run tools/update_placeholder.py --browser
+      - name: Apply twitter_api_safe_relay's request catalog
+        run: uv run tools/update_placeholder.py https://raw.githubusercontent.com/fa0311/twitter_api_safe_relay/main/packages/server/requests.ndjson
       - uses: peter-evans/create-pull-request@v8
         with:
           branch: update-placeholder
-          title: Update placeholder.json
-          commit-message: Update placeholder.json
-          body: queryId / features synced from TwitterInternalAPIDocument `develop`, then method / features / fieldToggles recorded from a logged-in x.com session (`tools/update_placeholder.py --browser`). Check the job log for `variables` drift messages.
+          commit-message: "placeholder: apply twitter_api_safe_relay's request catalog"
+          title: "placeholder: apply twitter_api_safe_relay's request catalog"
+          body: queryId / method / features / fieldToggles taken from the X web client's own requests (`packages/server/requests.ndjson` in fa0311/twitter_api_safe_relay, recorded with twitter-api-safe-dump). Only operations present in the catalog are touched; the job log lists the operations that are not in the catalog, the catalog operations missing from placeholder.json and the `variables` drift.

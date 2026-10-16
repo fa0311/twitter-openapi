@@ -35,9 +35,7 @@ uv run python tools/build.py
 ### update placeholder.json
 
 ```shell
-uv run tools/update_placeholder.py                          # queryId / features from TwitterInternalAPIDocument
-uv run tools/update_placeholder.py --browser                # also record real requests with cookie.json (playwright)
-uv run tools/update_placeholder.py --relay requests.ndjson  # also apply requests exported from the twitter_api_safe_relay dashboard
+uv run tools/update_placeholder.py https://raw.githubusercontent.com/fa0311/twitter_api_safe_relay/main/packages/server/requests.ndjson
 ```
 
 ### test

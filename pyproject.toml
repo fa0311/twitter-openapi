@@ -18,7 +18,6 @@ test = [
     "xclienttransaction>=1.0.3",
 ]
 tools = [
-    "playwright>=1.60.0",
 ]
 
 [tool.uv]
