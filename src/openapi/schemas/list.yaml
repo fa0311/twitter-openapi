@@ -26,11 +26,14 @@ components:
       properties:
         created_at:
           type: integer
+        custom_banner_media:
+          $ref: "#/components/schemas/ListBannerMedia"
+        custom_banner_media_results:
+          $ref: "#/components/schemas/ListBannerMediaResults"
         default_banner_media:
           $ref: "#/components/schemas/ListBannerMedia"
         default_banner_media_results:
-          type: object
-          additionalProperties: true # {} observed
+          $ref: "#/components/schemas/ListBannerMediaResults"
         description:
           type: string
         facepile_urls:
@@ -72,6 +75,54 @@ components:
       properties:
         media_info:
           $ref: "#/components/schemas/ListBannerMediaInfo"
+
+    ListBannerMediaResults:
+      properties:
+        result:
+          $ref: "#/components/schemas/ApiMedia" # absent for lists without a banner
+
+    ApiMedia:
+      required:
+        - "__typename"
+        - "id"
+        - "media_id"
+        - "media_info"
+        - "media_key"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiMedia
+        id:
+          type: string
+        media_id:
+          type: string
+          pattern: "^[0-9]+$"
+        media_info:
+          $ref: "#/components/schemas/ApiImage"
+        media_key:
+          type: string
+
+    ApiImage:
+      required:
+        - "__typename"
+        - "color_info"
+        - "original_img_height"
+        - "original_img_url"
+        - "original_img_width"
+        - "salient_rect"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # ApiImage
+        color_info:
+          $ref: "./tweet.yaml#/components/schemas/ArticleCoverMediaColorInfo"
+        original_img_height:
+          type: integer
+        original_img_url:
+          type: string
+          format: uri
+        original_img_width:
+          type: integer
+        salient_rect:
+          $ref: "#/components/schemas/ListBannerMediaSalientRect"
 
     ListBannerMediaInfo:
       required:

@@ -22,8 +22,77 @@ components:
           items:
             $ref: "./../schemas/instruction.yaml#/components/schemas/InstructionUnion"
         metadata:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/TimelineMetadata"
         responseObjects:
-          type: object
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/TimelineResponseObjects"
+
+    TimelineMetadata:
+      required:
+        - "scribeConfig"
+      properties:
+        reader_mode_config:
+          $ref: "#/components/schemas/ReaderModeConfig"
+        scribeConfig:
+          $ref: "#/components/schemas/ScribeConfig"
+
+    ReaderModeConfig:
+      required:
+        - "is_reader_mode_available"
+      properties:
+        is_reader_mode_available:
+          type: boolean
+
+    ScribeConfig:
+      required:
+        - "page"
+      properties:
+        page:
+          type: string
+
+    TimelineResponseObjects:
+      properties:
+        feedbackActions:
+          type: array
+          items:
+            $ref: "#/components/schemas/FeedbackActionEntry"
+
+    FeedbackActionEntry:
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          $ref: "#/components/schemas/FeedbackAction"
+
+    FeedbackAction:
+      required:
+        - "confirmation"
+        - "feedbackType"
+        - "hasUndoAction"
+        - "prompt"
+      properties:
+        childKeys:
+          type: array
+          items:
+            type: string
+        clientEventInfo:
+          $ref: "./../schemas/content.yaml#/components/schemas/ClientEventInfo"
+        confirmation:
+          type: string
+        confirmationDisplayType:
+          type: string
+          enum: [BottomSheet, Inline]
+        feedbackType:
+          type: string
+          enum: [DontLike, GiveFeedback, NotCredible, NotRelevant, SeeFewer]
+        feedbackUrl:
+          type: string
+        hasUndoAction:
+          type: boolean
+        icon:
+          type: string
+          enum: [Frown]
+        prompt:
+          type: string

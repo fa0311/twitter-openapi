@@ -246,18 +246,51 @@ components:
     TextEntityRef:
       required:
         - type
-        - url
-        - urlType
       properties:
         type:
           type: string
-          enum: [TimelineUrl]
+          enum: [TimelineUrl, TimelineRichTextMention]
+        expandedUrl:
+          type: string
+          format: uri
         url:
           type: string
           format: uri
         urlType:
           type: string
           enum: [ExternalUrl]
+        mention_results:
+          $ref: "#/components/schemas/MentionResults"
+        screen_name:
+          type: string
+
+    MentionResults:
+      required:
+        - result
+      properties:
+        result:
+          $ref: "#/components/schemas/MentionUser"
+
+    MentionUser:
+      required:
+        - __typename
+        - core
+        - rest_id
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # User
+        core:
+          $ref: "#/components/schemas/MentionUserCore"
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    MentionUserCore:
+      required:
+        - screen_name
+      properties:
+        screen_name:
+          type: string
 
     CoverCta:
       required:
