@@ -82,8 +82,7 @@ components:
         confirmation:
           type: string
         confirmationDisplayType:
-          type: string
-          enum: [BottomSheet, Inline]
+          type: string # BottomSheet, Inline, ... (UI value, X keeps adding)
         feedbackType:
           type: string # DontLike, GiveFeedback, NotCredible, NotRelevant, SeeFewer, Dismiss, ... (X keeps adding)
         feedbackUrl:
@@ -91,7 +90,6 @@ components:
         hasUndoAction:
           type: boolean
         icon:
-          type: string
-          enum: [Frown]
+          type: string # Frown, ... (UI value, X keeps adding)
         prompt:
           type: string

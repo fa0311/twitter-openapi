@@ -589,9 +589,6 @@ components:
         footer:
           $ref: '#/components/schemas/BirdwatchPivotFooter'
         footerIconType:
-          enum:
-          - BirdwatchEyeOff
-          - BirdwatchLevelLow
           type: string
         iconType:
           type: string
@@ -904,6 +901,9 @@ components:
           type: string
         role:
           enum:
+          - Member
+          - Moderator
+          - Admin
           - NonMember
           type: string
         rules:
@@ -979,8 +979,6 @@ components:
         __typename:
           $ref: '#/components/schemas/TypeName'
         reason:
-          enum:
-          - Unavailable
           type: string
       required:
       - __typename
@@ -1064,8 +1062,6 @@ components:
         message:
           type: string
         reason:
-          enum:
-          - Unavailable
           type: string
       required:
       - __typename
@@ -1093,8 +1089,6 @@ components:
         message:
           type: string
         reason:
-          enum:
-          - ViewerRequestRequired
           type: string
       required:
       - __typename
@@ -1113,8 +1107,6 @@ components:
         message:
           type: string
         reason:
-          enum:
-          - ViewerNotMember
           type: string
       required:
       - __typename
@@ -1735,6 +1727,13 @@ components:
         conversation_owner_results:
           $ref: '#/components/schemas/ConversationOwnerResults'
         policy:
+          enum:
+          - ByInvitation
+          - Community
+          - Co
+          - Subscribers
+          - Verified
+          - MyNetwork
           type: string
       required:
       - conversation_owner_results
@@ -1781,8 +1780,6 @@ components:
     CoverCta:
       properties:
         buttonStyle:
-          enum:
-          - Primary
           type: string
         callbacks:
           items:
@@ -1910,8 +1907,6 @@ components:
     CtaClientEventInfo:
       properties:
         action:
-          enum:
-          - primary_cta
           type: string
       required:
       - action
@@ -1920,8 +1915,6 @@ components:
         __typename:
           $ref: '#/components/schemas/TypeName'
         cta_type:
-          enum:
-          - SeeConversation
           type: string
         headline:
           $ref: '#/components/schemas/CtaLimitedActionPromptText'
@@ -2463,9 +2456,6 @@ components:
         confirmation:
           type: string
         confirmationDisplayType:
-          enum:
-          - BottomSheet
-          - Inline
           type: string
         feedbackType:
           type: string
@@ -2474,8 +2464,6 @@ components:
         hasUndoAction:
           type: boolean
         icon:
-          enum:
-          - Frown
           type: string
         prompt:
           type: string
@@ -3061,6 +3049,26 @@ components:
     LimitedAction:
       properties:
         action:
+          enum:
+          - Reply
+          - Retweet
+          - QuoteTweet
+          - Like
+          - React
+          - AddToBookmarks
+          - AddToMoment
+          - PinToProfile
+          - ViewHiddenReplies
+          - VoteOnPoll
+          - ShowRetweetActionMenu
+          - ReplyDownVote
+          - SendViaDm
+          - ViewPostEngagements
+          - CopyLink
+          - ShareTweetVia
+          - Embed
+          - HideCommunityTweet
+          - ViewTweetActivity
           type: string
         prompt:
           $ref: '#/components/schemas/CtaLimitedActionPrompt'
@@ -3077,6 +3085,26 @@ components:
     LimitedActionResultsData:
       properties:
         action:
+          enum:
+          - Reply
+          - Retweet
+          - QuoteTweet
+          - Like
+          - React
+          - AddToBookmarks
+          - AddToMoment
+          - PinToProfile
+          - ViewHiddenReplies
+          - VoteOnPoll
+          - ShowRetweetActionMenu
+          - ReplyDownVote
+          - SendViaDm
+          - ViewPostEngagements
+          - CopyLink
+          - ShareTweetVia
+          - Embed
+          - HideCommunityTweet
+          - ViewTweetActivity
           type: string
       required:
       - action
@@ -3621,8 +3649,6 @@ components:
     ModuleHeader:
       properties:
         displayType:
-          enum:
-          - Classic
           type: string
         socialContext:
           $ref: '#/components/schemas/SocialContextUnion'
@@ -4153,8 +4179,6 @@ components:
         superFollowersCount:
           type: integer
         superFollowsApplicationStatus:
-          enum:
-          - NotStarted
           type: string
         userFeatures:
           $ref: '#/components/schemas/UserFeatures'
@@ -4514,8 +4538,6 @@ components:
         dismissible:
           type: boolean
         halfCoverDisplayType:
-          enum:
-          - Cover
           type: string
         impressionCallbacks:
           items:
@@ -4601,9 +4623,6 @@ components:
         bodyText:
           type: string
         contentType:
-          enum:
-          - TimelineInlinePrompt
-          - TimelineCompactPrompt
           type: string
         headerText:
           type: string
@@ -4722,12 +4741,8 @@ components:
         confirmation:
           type: string
         contentType:
-          enum:
-          - TimelineRelevancePrompt
           type: string
         displayType:
-          enum:
-          - Compact
           type: string
         isRelevantCallback:
           $ref: '#/components/schemas/TimelinePromptCallback'
@@ -4785,8 +4800,6 @@ components:
     TimelineShowAlert:
       properties:
         alertType:
-          enum:
-          - NewTweets
           type: string
         clientEventInfo:
           $ref: '#/components/schemas/ClientEventInfo'
@@ -4795,8 +4808,6 @@ components:
         displayDurationMs:
           type: integer
         displayLocation:
-          enum:
-          - Top
           type: string
         iconDisplayInfo:
           $ref: '#/components/schemas/TimelineShowAlertIconDisplayInfo'
@@ -4948,16 +4959,12 @@ components:
         itemType:
           $ref: '#/components/schemas/ContentItemType'
         tombstoneDisplayType:
-          enum:
-          - Inline
           type: string
         tombstoneInfo:
           $ref: '#/components/schemas/TombstoneInfo'
     TimelineTopicContext:
       properties:
         functionalityType:
-          enum:
-          - Basic
           type: string
         topic:
           $ref: '#/components/schemas/TopicContext'
@@ -5355,6 +5362,12 @@ components:
         string_value:
           type: string
         type:
+          enum:
+          - STRING
+          - IMAGE
+          - USER
+          - BOOLEAN
+          - IMAGE_COLOR
           type: string
         user_value:
           $ref: '#/components/schemas/UserValue'
@@ -5387,8 +5400,6 @@ components:
     TweetCardPlatformAudience:
       properties:
         name:
-          enum:
-          - production
           type: string
       required:
       - name
@@ -5734,10 +5745,6 @@ components:
       properties:
         display_locations:
           items:
-            enum:
-            - TweetDetails
-            - ForYouTimeline
-            - RepliesTimeline
             type: string
           type: array
         post_cta:
@@ -6063,8 +6070,6 @@ components:
     UnifiedCard:
       properties:
         card_fetch_state:
-          enum:
-          - NoCard
           type: string
       required:
       - card_fetch_state
