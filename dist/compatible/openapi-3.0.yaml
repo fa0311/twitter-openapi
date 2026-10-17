@@ -456,6 +456,7 @@ components:
           enum:
           - BirdwatchV1Icon
           - BirdwatchCameraVideo
+          - BirdwatchPhoto
           type: string
         note:
           $ref: '#/components/schemas/BirdwatchPivotNote'
@@ -1642,8 +1643,6 @@ components:
       - result
     CoverCta:
       properties:
-        Text:
-          type: string
         buttonStyle:
           enum:
           - Primary
@@ -1656,6 +1655,8 @@ components:
           $ref: '#/components/schemas/CtaClientEventInfo'
         ctaBehavior:
           $ref: '#/components/schemas/TimelineCoverBehavior'
+        text:
+          type: string
       required:
       - text
       - ctaBehavior
@@ -11739,10 +11740,10 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"userId": "1787148517779406848", "count": 20, "includePromotedContent":
+          default: '{"userId": "44196397", "count": 20, "includePromotedContent":
             false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
             true}'
-          example: '{"userId": "1787148517779406848", "count": 20, "includePromotedContent":
+          example: '{"userId": "44196397", "count": 20, "includePromotedContent":
             false, "withClientEventToken": false, "withBirdwatchNotes": false, "withVoice":
             true}'
           type: string
@@ -12420,10 +12421,10 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"userId": "1787148517779406848", "isListMemberTargetUserId":
-            "44196397", "count": 20}'
-          example: '{"userId": "1787148517779406848", "isListMemberTargetUserId":
-            "44196397", "count": 20}'
+          default: '{"userId": "44196397", "isListMemberTargetUserId": "44196397",
+            "count": 20}'
+          example: '{"userId": "44196397", "isListMemberTargetUserId": "44196397",
+            "count": 20}'
           type: string
       - in: query
         name: features
@@ -13092,8 +13093,8 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"screen_name": "ptcpz3"}'
-          example: '{"screen_name": "ptcpz3"}'
+          default: '{"screen_name": "elonmusk"}'
+          example: '{"screen_name": "elonmusk"}'
           type: string
       - in: query
         name: features
@@ -13526,9 +13527,9 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"tweetId": "1691730070669517096", "withCommunity": false, "includePromotedContent":
+          default: '{"tweetId": "1349129669258448897", "withCommunity": false, "includePromotedContent":
             false, "withVoice": false, "withBirdwatchNotes": true}'
-          example: '{"tweetId": "1691730070669517096", "withCommunity": false, "includePromotedContent":
+          example: '{"tweetId": "1349129669258448897", "withCommunity": false, "includePromotedContent":
             false, "withVoice": false, "withBirdwatchNotes": true}'
           type: string
       - in: query
@@ -14918,8 +14919,8 @@ paths:
         name: variables
         required: true
         schema:
-          default: '{"userIds": ["1787148517779406848"]}'
-          example: '{"userIds": ["1787148517779406848"]}'
+          default: '{"userIds": ["44196397"]}'
+          example: '{"userIds": ["44196397"]}'
           type: string
       responses:
         '200':
