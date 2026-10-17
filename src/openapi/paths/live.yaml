@@ -1,0 +1,390 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /graphql/{pathQueryId}/BroadcastQuery:
+    get:
+      operationId: getBroadcastQuery
+      description: "a live video broadcast by id"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BroadcastResponse"
+      tags:
+        - "default"
+
+  /graphql/{pathQueryId}/AudioSpaceById:
+    get:
+      operationId: getAudioSpaceById
+      description: "a Space by id: metadata, participants and the announcing post"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AudioSpaceResponse"
+      tags:
+        - "default"
+
+components:
+  schemas:
+    BroadcastResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/BroadcastData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+
+    BroadcastData:
+      required:
+        - "broadcast"
+      properties:
+        broadcast:
+          $ref: "#/components/schemas/Broadcast"
+
+    Broadcast:
+      required:
+        - "available_for_replay"
+        - "broadcast_id"
+        - "camera_rotation"
+        - "chat_option"
+        - "end_time"
+        - "height"
+        - "id"
+        - "image_url"
+        - "image_url_medium"
+        - "image_url_small"
+        - "is_high_latency"
+        - "media_key"
+        - "periscope_user"
+        - "ping_time"
+        - "private_chat"
+        - "source"
+        - "start_time"
+        - "state"
+        - "status"
+        - "total_watched"
+        - "total_watching"
+        - "tweet_results"
+        - "user_results"
+        - "version"
+        - "width"
+      properties:
+        available_for_replay:
+          type: boolean
+        broadcast_id:
+          type: string
+        camera_rotation:
+          type: integer
+        chat_option:
+          type: integer
+        edited_replay:
+          $ref: "#/components/schemas/BroadcastEditedReplay"
+        end_time:
+          type: integer
+        height:
+          type: integer
+        id:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        image_url_medium:
+          type: string
+          format: uri
+        image_url_small:
+          type: string
+          format: uri
+        is_high_latency:
+          type: boolean
+        media_key:
+          type: string
+        periscope_user:
+          $ref: "#/components/schemas/BroadcastPeriscopeUser"
+        ping_time:
+          type: integer
+        pre_live_slate_url:
+          type: string
+          format: uri
+        private_chat:
+          type: boolean
+        scheduled_start_time:
+          type: integer
+        source:
+          type: string # LiveCms, ...
+        start_time:
+          type: integer
+        state:
+          type: string # Ended, ...
+        status:
+          type: string # the broadcast title
+        total_watched:
+          type: integer
+        total_watching:
+          type: integer
+        tweet_results:
+          $ref: "./../schemas/content.yaml#/components/schemas/ItemResult" # {} when no announcing post is attached
+        user_results:
+          $ref: "./../schemas/user.yaml#/components/schemas/UserResults"
+        version:
+          type: integer
+        width:
+          type: integer
+
+    BroadcastEditedReplay:
+      required:
+        - "title_edited"
+      properties:
+        title_edited:
+          type: boolean
+
+    BroadcastPeriscopeUser:
+      required:
+        - "display_name"
+        - "profile_image_url"
+        - "rest_id"
+        - "username"
+      properties:
+        display_name:
+          type: string
+        profile_image_url:
+          type: string
+          format: uri
+        rest_id:
+          type: string # a Periscope id, not numeric
+        username:
+          type: string
+
+    AudioSpaceResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/AudioSpaceData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+
+    AudioSpaceData:
+      required:
+        - "audioSpace"
+      properties:
+        audioSpace:
+          $ref: "#/components/schemas/AudioSpace"
+
+    AudioSpace:
+      required:
+        - "is_subscribed"
+        - "metadata"
+        - "participants"
+      properties:
+        is_subscribed:
+          type: boolean
+        metadata:
+          $ref: "#/components/schemas/AudioSpaceMetadata"
+        participants:
+          $ref: "#/components/schemas/AudioSpaceParticipants"
+        sharings:
+          $ref: "#/components/schemas/AudioSpaceSharings"
+
+    AudioSpaceSharings: # only seen empty
+      required:
+        - "items"
+        - "slice_info"
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties: {}
+        slice_info:
+          type: object
+          properties: {}
+
+    AudioSpaceMetadata:
+      required:
+        - "conversation_controls"
+        - "created_at"
+        - "creator_results"
+        - "disallow_join"
+        - "is_employee_only"
+        - "is_locked"
+        - "is_muted"
+        - "is_space_available_for_clipping"
+        - "is_space_available_for_replay"
+        - "max_admin_capacity"
+        - "max_guest_sessions"
+        - "media_key"
+        - "narrow_cast_space_type"
+        - "no_incognito"
+        - "rest_id"
+        - "started_at"
+        - "state"
+        - "title"
+        - "total_live_listeners"
+        - "total_replay_watched"
+        - "tweet_results"
+        - "updated_at"
+      properties:
+        content_type:
+          type: string # visual_audio, ...
+        conversation_controls:
+          type: integer
+        created_at:
+          type: integer
+        creator_results:
+          $ref: "./../schemas/user.yaml#/components/schemas/UserResults"
+        disallow_join:
+          type: boolean
+        ended_at:
+          type: string
+          pattern: "^[0-9]+$"
+        is_employee_only:
+          type: boolean
+        is_locked:
+          type: boolean
+        is_muted:
+          type: boolean
+        is_space_available_for_clipping:
+          type: boolean
+        is_space_available_for_replay:
+          type: boolean
+        max_admin_capacity:
+          type: integer
+        max_guest_sessions:
+          type: integer
+        media_key:
+          type: string
+        mentioned_users:
+          type: array
+          items:
+            $ref: "#/components/schemas/AudioSpaceMentionedUser"
+        narrow_cast_space_type:
+          type: integer
+        no_incognito:
+          type: boolean
+        rest_id:
+          type: string
+        scheduled_start:
+          type: integer
+        started_at:
+          type: integer
+        state:
+          type: string # Running, Ended, ...
+        title:
+          type: string
+        total_live_listeners:
+          type: integer
+        total_replay_watched:
+          type: integer
+        tweet_results:
+          $ref: "./../schemas/content.yaml#/components/schemas/ItemResult"
+        updated_at:
+          type: integer
+
+    AudioSpaceMentionedUser:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+
+    AudioSpaceParticipants:
+      required:
+        - "admins"
+        - "listeners"
+        - "speakers"
+        - "total"
+      properties:
+        admins:
+          type: array
+          items:
+            $ref: "#/components/schemas/AudioSpaceParticipant"
+        listeners:
+          type: array
+          items:
+            $ref: "#/components/schemas/AudioSpaceParticipant"
+        speakers:
+          type: array
+          items:
+            $ref: "#/components/schemas/AudioSpaceParticipant"
+        total:
+          type: integer
+
+    AudioSpaceParticipant:
+      required:
+        - "avatar_url"
+        - "display_name"
+        - "is_muted_by_admin"
+        - "is_muted_by_guest"
+        - "is_verified"
+        - "periscope_user_id"
+        - "twitter_screen_name"
+        - "user_results"
+      properties:
+        avatar_url:
+          type: string
+          format: uri
+        display_name:
+          type: string
+        is_muted_by_admin:
+          type: boolean
+        is_muted_by_guest:
+          type: boolean
+        is_verified:
+          type: boolean
+        periscope_user_id:
+          type: string
+        start:
+          type: integer
+        twitter_screen_name:
+          type: string
+        user_results:
+          $ref: "#/components/schemas/AudioSpaceParticipantUserResults"
+
+    AudioSpaceParticipantUserResults:
+      required:
+        - "rest_id"
+        - "result"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        result:
+          $ref: "#/components/schemas/AudioSpaceParticipantUser"
+
+    AudioSpaceParticipantUser: # a reduced User
+      required:
+        - "__typename"
+        - "identity_profile_labels_highlighted_label"
+        - "is_blue_verified"
+        - "verification"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
+        identity_profile_labels_highlighted_label:
+          $ref: "./../schemas/user.yaml#/components/schemas/IdentityProfileLabelsHighlightedLabel"
+        is_blue_verified:
+          type: boolean
+        verification:
+          $ref: "#/components/schemas/AudioSpaceParticipantVerification"
+
+    AudioSpaceParticipantVerification: # {} unless the account has a verified type
+      properties:
+        verified_type:
+          type: string
+          enum: [Business, Government]

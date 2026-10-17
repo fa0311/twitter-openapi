@@ -614,6 +614,11 @@ components:
         label:
           $ref: "#/components/schemas/UserLabel"
 
+    IdentityProfileLabelsHighlightedLabel:
+      properties:
+        label:
+          $ref: "#/components/schemas/UserLabel"
+
     UserLabel:
       required:
         - "badge"

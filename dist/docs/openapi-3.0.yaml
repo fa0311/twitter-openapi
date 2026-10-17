@@ -1,5 +1,95 @@
 components:
   schemas:
+    AboutAccountData:
+      properties:
+        user_result_by_screen_name:
+          $ref: '#/components/schemas/AboutAccountUserResult'
+      required:
+      - user_result_by_screen_name
+    AboutAccountResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/AboutAccountData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    AboutAccountUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        about_profile:
+          $ref: '#/components/schemas/AboutProfile'
+        affiliates_highlighted_label:
+          $ref: '#/components/schemas/AffiliatesHighlightedLabel'
+        avatar:
+          $ref: '#/components/schemas/UserAvatar'
+        core:
+          $ref: '#/components/schemas/UserCore'
+        id:
+          type: string
+        identity_profile_labels_highlighted_label:
+          $ref: '#/components/schemas/IdentityProfileLabelsHighlightedLabel'
+        is_blue_verified:
+          type: boolean
+        privacy:
+          $ref: '#/components/schemas/UserPrivacy'
+        profile_image_shape:
+          enum:
+          - Circle
+          - Square
+          - Hexagon
+          type: string
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        verification:
+          $ref: '#/components/schemas/UserVerification'
+        verification_info:
+          $ref: '#/components/schemas/AboutAccountVerificationInfo'
+      required:
+      - __typename
+      - rest_id
+      - id
+      - about_profile
+      - affiliates_highlighted_label
+      - avatar
+      - core
+      - identity_profile_labels_highlighted_label
+      - is_blue_verified
+      - privacy
+      - profile_image_shape
+      - verification
+      - verification_info
+    AboutAccountUserResult:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/AboutAccountUser'
+      required:
+      - id
+      - result
+    AboutAccountVerificationInfo:
+      properties:
+        id:
+          type: string
+        reason:
+          $ref: '#/components/schemas/AboutAccountVerificationInfoReason'
+      required:
+      - id
+      - reason
+    AboutAccountVerificationInfoReason:
+      properties:
+        override_verified_year:
+          type: integer
+        verified_since_msec:
+          pattern: ^-?[0-9]+$
+          type: string
+      required:
+      - verified_since_msec
     AboutCommunityResult:
       properties:
         __typename:
@@ -21,6 +111,38 @@ components:
           $ref: '#/components/schemas/AboutCommunityResults'
       required:
       - communityResults
+    AboutProfile:
+      properties:
+        account_based_in:
+          type: string
+        affiliate_username:
+          type: string
+        learn_more_url:
+          format: uri
+          type: string
+        location_accurate:
+          type: boolean
+        source:
+          type: string
+        username_changes:
+          $ref: '#/components/schemas/AboutProfileUsernameChanges'
+      required:
+      - account_based_in
+      - affiliate_username
+      - learn_more_url
+      - location_accurate
+      - source
+      - username_changes
+    AboutProfileUsernameChanges:
+      properties:
+        count:
+          pattern: ^[0-9]+$
+          type: string
+        last_changed_at_msec:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - count
     AdMetadataContainer:
       properties:
         destinationUrlParams:
@@ -74,6 +196,62 @@ components:
       properties:
         label:
           $ref: '#/components/schemas/UserLabel'
+    AiTrend:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        core:
+          $ref: '#/components/schemas/AiTrendCore'
+        id:
+          type: string
+        post_count:
+          pattern: ^[0-9]+$
+          type: string
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        social_proof:
+          items:
+            $ref: '#/components/schemas/AiTrendSocialProof'
+          type: array
+      required:
+      - __typename
+      - id
+      - rest_id
+      - core
+      - post_count
+      - social_proof
+    AiTrendCore:
+      properties:
+        category:
+          type: string
+        created_at_ms:
+          type: integer
+        hook:
+          type: string
+        name:
+          type: string
+      required:
+      - category
+      - created_at_ms
+      - hook
+      - name
+    AiTrendResults:
+      properties:
+        id:
+          type: string
+        result:
+          $ref: '#/components/schemas/AiTrend'
+      required:
+      - id
+      - result
+    AiTrendSocialProof:
+      properties:
+        img_url:
+          format: uri
+          type: string
+      required:
+      - img_url
     AllowDownloadStatus:
       properties:
         allow_download:
@@ -370,6 +548,219 @@ components:
           $ref: '#/components/schemas/ArticleResult'
       required:
       - result
+    AudioSpace:
+      properties:
+        is_subscribed:
+          type: boolean
+        metadata:
+          $ref: '#/components/schemas/AudioSpaceMetadata'
+        participants:
+          $ref: '#/components/schemas/AudioSpaceParticipants'
+        sharings:
+          $ref: '#/components/schemas/AudioSpaceSharings'
+      required:
+      - is_subscribed
+      - metadata
+      - participants
+    AudioSpaceData:
+      properties:
+        audioSpace:
+          $ref: '#/components/schemas/AudioSpace'
+      required:
+      - audioSpace
+    AudioSpaceMentionedUser:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
+    AudioSpaceMetadata:
+      properties:
+        content_type:
+          type: string
+        conversation_controls:
+          type: integer
+        created_at:
+          type: integer
+        creator_results:
+          $ref: '#/components/schemas/UserResults'
+        disallow_join:
+          type: boolean
+        ended_at:
+          pattern: ^[0-9]+$
+          type: string
+        is_employee_only:
+          type: boolean
+        is_locked:
+          type: boolean
+        is_muted:
+          type: boolean
+        is_space_available_for_clipping:
+          type: boolean
+        is_space_available_for_replay:
+          type: boolean
+        max_admin_capacity:
+          type: integer
+        max_guest_sessions:
+          type: integer
+        media_key:
+          type: string
+        mentioned_users:
+          items:
+            $ref: '#/components/schemas/AudioSpaceMentionedUser'
+          type: array
+        narrow_cast_space_type:
+          type: integer
+        no_incognito:
+          type: boolean
+        rest_id:
+          type: string
+        scheduled_start:
+          type: integer
+        started_at:
+          type: integer
+        state:
+          type: string
+        title:
+          type: string
+        total_live_listeners:
+          type: integer
+        total_replay_watched:
+          type: integer
+        tweet_results:
+          $ref: '#/components/schemas/ItemResult'
+        updated_at:
+          type: integer
+      required:
+      - conversation_controls
+      - created_at
+      - creator_results
+      - disallow_join
+      - is_employee_only
+      - is_locked
+      - is_muted
+      - is_space_available_for_clipping
+      - is_space_available_for_replay
+      - max_admin_capacity
+      - max_guest_sessions
+      - media_key
+      - narrow_cast_space_type
+      - no_incognito
+      - rest_id
+      - started_at
+      - state
+      - title
+      - total_live_listeners
+      - total_replay_watched
+      - tweet_results
+      - updated_at
+    AudioSpaceParticipant:
+      properties:
+        avatar_url:
+          format: uri
+          type: string
+        display_name:
+          type: string
+        is_muted_by_admin:
+          type: boolean
+        is_muted_by_guest:
+          type: boolean
+        is_verified:
+          type: boolean
+        periscope_user_id:
+          type: string
+        start:
+          type: integer
+        twitter_screen_name:
+          type: string
+        user_results:
+          $ref: '#/components/schemas/AudioSpaceParticipantUserResults'
+      required:
+      - avatar_url
+      - display_name
+      - is_muted_by_admin
+      - is_muted_by_guest
+      - is_verified
+      - periscope_user_id
+      - twitter_screen_name
+      - user_results
+    AudioSpaceParticipantUser:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        identity_profile_labels_highlighted_label:
+          $ref: '#/components/schemas/IdentityProfileLabelsHighlightedLabel'
+        is_blue_verified:
+          type: boolean
+        verification:
+          $ref: '#/components/schemas/AudioSpaceParticipantVerification'
+      required:
+      - __typename
+      - identity_profile_labels_highlighted_label
+      - is_blue_verified
+      - verification
+    AudioSpaceParticipantUserResults:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+        result:
+          $ref: '#/components/schemas/AudioSpaceParticipantUser'
+      required:
+      - rest_id
+      - result
+    AudioSpaceParticipantVerification:
+      properties:
+        verified_type:
+          enum:
+          - Business
+          - Government
+          type: string
+    AudioSpaceParticipants:
+      properties:
+        admins:
+          items:
+            $ref: '#/components/schemas/AudioSpaceParticipant'
+          type: array
+        listeners:
+          items:
+            $ref: '#/components/schemas/AudioSpaceParticipant'
+          type: array
+        speakers:
+          items:
+            $ref: '#/components/schemas/AudioSpaceParticipant'
+          type: array
+        total:
+          type: integer
+      required:
+      - admins
+      - listeners
+      - speakers
+      - total
+    AudioSpaceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/AudioSpaceData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    AudioSpaceSharings:
+      properties:
+        items:
+          items:
+            properties: {}
+            type: object
+          type: array
+        slice_info:
+          properties: {}
+          type: object
+      required:
+      - items
+      - slice_info
     AuthenticatePeriscopeResponse:
       properties:
         data:
@@ -743,6 +1134,132 @@ components:
           $ref: '#/components/schemas/Timeline'
       required:
       - timeline
+    Broadcast:
+      properties:
+        available_for_replay:
+          type: boolean
+        broadcast_id:
+          type: string
+        camera_rotation:
+          type: integer
+        chat_option:
+          type: integer
+        edited_replay:
+          $ref: '#/components/schemas/BroadcastEditedReplay'
+        end_time:
+          type: integer
+        height:
+          type: integer
+        id:
+          type: string
+        image_url:
+          format: uri
+          type: string
+        image_url_medium:
+          format: uri
+          type: string
+        image_url_small:
+          format: uri
+          type: string
+        is_high_latency:
+          type: boolean
+        media_key:
+          type: string
+        periscope_user:
+          $ref: '#/components/schemas/BroadcastPeriscopeUser'
+        ping_time:
+          type: integer
+        pre_live_slate_url:
+          format: uri
+          type: string
+        private_chat:
+          type: boolean
+        scheduled_start_time:
+          type: integer
+        source:
+          type: string
+        start_time:
+          type: integer
+        state:
+          type: string
+        status:
+          type: string
+        total_watched:
+          type: integer
+        total_watching:
+          type: integer
+        tweet_results:
+          $ref: '#/components/schemas/ItemResult'
+        user_results:
+          $ref: '#/components/schemas/UserResults'
+        version:
+          type: integer
+        width:
+          type: integer
+      required:
+      - available_for_replay
+      - broadcast_id
+      - camera_rotation
+      - chat_option
+      - end_time
+      - height
+      - id
+      - image_url
+      - image_url_medium
+      - image_url_small
+      - is_high_latency
+      - media_key
+      - periscope_user
+      - ping_time
+      - private_chat
+      - source
+      - start_time
+      - state
+      - status
+      - total_watched
+      - total_watching
+      - tweet_results
+      - user_results
+      - version
+      - width
+    BroadcastData:
+      properties:
+        broadcast:
+          $ref: '#/components/schemas/Broadcast'
+      required:
+      - broadcast
+    BroadcastEditedReplay:
+      properties:
+        title_edited:
+          type: boolean
+      required:
+      - title_edited
+    BroadcastPeriscopeUser:
+      properties:
+        display_name:
+          type: string
+        profile_image_url:
+          format: uri
+          type: string
+        rest_id:
+          type: string
+        username:
+          type: string
+      required:
+      - display_name
+      - profile_image_url
+      - rest_id
+      - username
+    BroadcastResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/BroadcastData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
     Callback:
       properties:
         endpoint:
@@ -2631,6 +3148,28 @@ components:
           $ref: '#/components/schemas/GlobalCommunitiesPostSearch'
       required:
       - search_by_raw_query
+    GrokAccountJwt:
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    GrokAccountJwtData:
+      properties:
+        grok_account_jwt:
+          $ref: '#/components/schemas/GrokAccountJwt'
+      required:
+      - grok_account_jwt
+    GrokAccountJwtResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/GrokAccountJwtData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
     GrokAnnotation:
       properties:
         is_image_editable_by_grok:
@@ -2936,6 +3475,10 @@ components:
           $ref: '#/components/schemas/HomeTimelineHome'
       required:
       - home
+    IdentityProfileLabelsHighlightedLabel:
+      properties:
+        label:
+          $ref: '#/components/schemas/UserLabel'
     InstructionType:
       enum:
       - TimelineAddEntries
@@ -4197,6 +4740,33 @@ components:
       - userFeatures
       - isSuperFollowSubscriber
       type: object
+    SidebarUserRecommendation:
+      properties:
+        token:
+          type: string
+        user_results:
+          $ref: '#/components/schemas/UserResults'
+      required:
+      - token
+      - user_results
+    SidebarUserRecommendationsData:
+      properties:
+        sidebar_user_recommendations:
+          items:
+            $ref: '#/components/schemas/SidebarUserRecommendation'
+          type: array
+      required:
+      - sidebar_user_recommendations
+    SidebarUserRecommendationsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/SidebarUserRecommendationsData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
     SliceInfo:
       properties:
         next_cursor:
@@ -4255,6 +4825,45 @@ components:
       - TimelineGeneralContext
       - TimelineTopicContext
       type: string
+    StoryTopic:
+      properties:
+        id:
+          type: string
+        stories:
+          $ref: '#/components/schemas/StoryTopicStories'
+      required:
+      - id
+      - stories
+    StoryTopicData:
+      properties:
+        story_topic:
+          $ref: '#/components/schemas/StoryTopic'
+      required:
+      - story_topic
+    StoryTopicItem:
+      properties:
+        trend_results:
+          $ref: '#/components/schemas/AiTrendResults'
+      required:
+      - trend_results
+    StoryTopicResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/StoryTopicData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      required:
+      - data
+    StoryTopicStories:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/StoryTopicItem'
+          type: array
+      required:
+      - items
     SuperFollowUserProfile:
       properties:
         is_active:
@@ -5950,6 +6559,7 @@ components:
       - TimelineTwitterList
       - TimelineLabel
       - TimelineEventSummary
+      - AiTrend
       - TimelineTimelineItem
       - TimelineUser
       - TimelineTimelineCursor
@@ -7894,6 +8504,351 @@ paths:
                 type: string
       tags:
       - v2.0-get
+  /graphql/{pathQueryId}/AboutAccountQuery:
+    get:
+      description: 'About this account: join date, where the account is based, username
+        changes, verification'
+      operationId: getAboutAccountQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: XRqGa7EeokUU5kppkh13EA
+          example: XRqGa7EeokUU5kppkh13EA
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                screenName:
+                  default: elonmusk
+                  example: elonmusk
+                  type: string
+              required:
+              - screenName
+              type: object
+        in: query
+        name: variables
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboutAccountResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - user
+  /graphql/{pathQueryId}/AudioSpaceById:
+    get:
+      description: 'a Space by id: metadata, participants and the announcing post'
+      operationId: getAudioSpaceById
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: sSuYIbdpe1f2v9AtD-sYeQ
+          example: sSuYIbdpe1f2v9AtD-sYeQ
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  default: 1qxoNYAlYMXJv
+                  example: 1qxoNYAlYMXJv
+                  type: string
+                isMetatagsQuery:
+                  default: true
+                  example: true
+                  type: boolean
+                withListeners:
+                  default: true
+                  example: true
+                  type: boolean
+                withReplays:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - id
+              - isMetatagsQuery
+              - withReplays
+              - withListeners
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                articles_preview_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                c9s_tweet_anatomy_moderator_badge_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                communities_web_enable_tweet_community_results_fetch:
+                  default: true
+                  example: true
+                  type: boolean
+                content_disclosure_ai_generated_indicator_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                content_disclosure_indicator_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                post_ctas_fetch_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analysis_button_from_backend:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_grok_analyze_post_followups_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_annotations_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_community_note_auto_translation_is_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_image_annotation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_imagine_annotation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_share_attachment_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_show_grok_translated_post:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_jetfuel_frame:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_nested_quote_preview_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_profile_redirect_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_cashtags_composer_attachment_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_cashtags_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_conversational_replies_downvote_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                rweb_sports_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_tipjar_consumption_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                spaces_2022_h2_clipping:
+                  default: true
+                  example: true
+                  type: boolean
+                spaces_2022_h2_spaces_communities:
+                  default: true
+                  example: true
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - spaces_2022_h2_spaces_communities
+              - spaces_2022_h2_clipping
+              - creator_subscriptions_tweet_preview_api_enabled
+              - profile_label_improvements_pcf_label_in_post_enabled
+              - responsive_web_profile_redirect_enabled
+              - rweb_tipjar_consumption_enabled
+              - verified_phone_label_enabled
+              - premium_content_api_read_enabled
+              - communities_web_enable_tweet_community_results_fetch
+              - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
+              - responsive_web_grok_analyze_post_followups_enabled
+              - rweb_cashtags_composer_attachment_enabled
+              - responsive_web_jetfuel_frame
+              - rweb_sports_post_context_enabled
+              - responsive_web_grok_share_attachment_enabled
+              - responsive_web_grok_annotations_enabled
+              - articles_preview_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - rweb_conversational_replies_downvote_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - content_disclosure_indicator_enabled
+              - content_disclosure_ai_generated_indicator_enabled
+              - responsive_web_grok_show_grok_translated_post
+              - responsive_web_grok_analysis_button_from_backend
+              - post_ctas_fetch_enabled
+              - rweb_cashtags_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_nested_quote_preview_enabled
+              - responsive_web_grok_image_annotation_enabled
+              - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              - responsive_web_grok_community_note_auto_translation_is_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioSpaceResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
   /graphql/{pathQueryId}/AuthenticatePeriscope:
     get:
       description: a Periscope (live video) token for the account
@@ -9317,6 +10272,265 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/BroadcastQuery:
+    get:
+      description: a live video broadcast by id
+      operationId: getBroadcastQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: NtEAlAR40O3S7Lf8s6XUTQ
+          example: NtEAlAR40O3S7Lf8s6XUTQ
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  default: 1BRKjmPYymWxw
+                  example: 1BRKjmPYymWxw
+                  type: string
+              required:
+              - id
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                articles_preview_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                c9s_tweet_anatomy_moderator_badge_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                communities_web_enable_tweet_community_results_fetch:
+                  default: true
+                  example: true
+                  type: boolean
+                content_disclosure_ai_generated_indicator_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                content_disclosure_indicator_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                creator_subscriptions_tweet_preview_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                freedom_of_speech_not_reach_fetch_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                graphql_is_translatable_rweb_tweet_is_translatable_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                longform_notetweets_inline_media_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                longform_notetweets_rich_text_read_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                post_ctas_fetch_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                premium_content_api_read_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_edit_tweet_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analysis_button_from_backend:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_analyze_button_fetch_trends_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                responsive_web_grok_analyze_post_followups_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_annotations_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_community_note_auto_translation_is_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_image_annotation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_imagine_annotation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_share_attachment_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_grok_show_grok_translated_post:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_jetfuel_frame:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_nested_quote_preview_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_profile_redirect_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_twitter_article_tweet_consumption_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_cashtags_composer_attachment_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_cashtags_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_conversational_replies_downvote_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                rweb_sports_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_tipjar_consumption_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                standardized_nudges_misinfo:
+                  default: true
+                  example: true
+                  type: boolean
+                tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                view_counts_everywhere_api_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+              required:
+              - creator_subscriptions_tweet_preview_api_enabled
+              - premium_content_api_read_enabled
+              - communities_web_enable_tweet_community_results_fetch
+              - c9s_tweet_anatomy_moderator_badge_enabled
+              - responsive_web_grok_analyze_button_fetch_trends_enabled
+              - responsive_web_grok_analyze_post_followups_enabled
+              - rweb_cashtags_composer_attachment_enabled
+              - responsive_web_jetfuel_frame
+              - rweb_sports_post_context_enabled
+              - responsive_web_grok_share_attachment_enabled
+              - responsive_web_grok_annotations_enabled
+              - articles_preview_enabled
+              - profile_label_improvements_pcf_label_in_post_enabled
+              - responsive_web_profile_redirect_enabled
+              - rweb_tipjar_consumption_enabled
+              - verified_phone_label_enabled
+              - responsive_web_edit_tweet_api_enabled
+              - rweb_conversational_replies_downvote_enabled
+              - graphql_is_translatable_rweb_tweet_is_translatable_enabled
+              - view_counts_everywhere_api_enabled
+              - longform_notetweets_consumption_enabled
+              - responsive_web_twitter_article_tweet_consumption_enabled
+              - content_disclosure_indicator_enabled
+              - content_disclosure_ai_generated_indicator_enabled
+              - responsive_web_grok_show_grok_translated_post
+              - responsive_web_grok_analysis_button_from_backend
+              - post_ctas_fetch_enabled
+              - rweb_cashtags_enabled
+              - freedom_of_speech_not_reach_fetch_enabled
+              - standardized_nudges_misinfo
+              - tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled
+              - longform_notetweets_rich_text_read_enabled
+              - longform_notetweets_inline_media_enabled
+              - responsive_web_nested_quote_preview_enabled
+              - responsive_web_grok_image_annotation_enabled
+              - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_grok_community_note_auto_translation_is_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BroadcastResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
   /graphql/{pathQueryId}/CombinedLists:
     get:
       description: lists a user owns or follows
@@ -19541,6 +20755,100 @@ paths:
                 type: string
       tags:
       - tweet
+  /graphql/{pathQueryId}/SidebarUserRecommendations:
+    get:
+      description: who to follow, shown in the sidebar of a profile
+      operationId: getSidebarUserRecommendations
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: BSYrSirC_dVN6R9Q0Mpmvg
+          example: BSYrSirC_dVN6R9Q0Mpmvg
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                profileUserId:
+                  default: '44196397'
+                  example: '44196397'
+                  type: string
+              required:
+              - profileUserId
+              type: object
+        in: query
+        name: variables
+        required: true
+      - content:
+          application/json:
+            schema:
+              properties:
+                profile_label_improvements_pcf_label_in_post_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_graphql_timeline_navigation_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                responsive_web_profile_redirect_enabled:
+                  default: true
+                  example: true
+                  type: boolean
+                rweb_tipjar_consumption_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+                verified_phone_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
+              required:
+              - profile_label_improvements_pcf_label_in_post_enabled
+              - responsive_web_profile_redirect_enabled
+              - rweb_tipjar_consumption_enabled
+              - verified_phone_label_enabled
+              - responsive_web_graphql_timeline_navigation_enabled
+              type: object
+        in: query
+        name: features
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SidebarUserRecommendationsResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - users
   /graphql/{pathQueryId}/TopicCarouselQuery:
     get:
       description: community topics and subtopics
@@ -23593,6 +24901,125 @@ paths:
                 type: string
       tags:
       - user
+  /graphql/{pathQueryId}/grokAccountJwtQuery:
+    get:
+      description: whether the account is linked to a Grok account
+      operationId: getGrokAccountJwtQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: DIW0leeI6-dvMzdOMJki4w
+          example: DIW0leeI6-dvMzdOMJki4w
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        in: query
+        name: variables
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrokAccountJwtResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
+  /graphql/{pathQueryId}/useStoryTopicQuery:
+    get:
+      description: 'AI-written stories of an explore topic (rest_id: For You)'
+      operationId: getUseStoryTopicQuery
+      parameters:
+      - in: path
+        name: pathQueryId
+        required: true
+        schema:
+          default: I3V_Tt32aTZdw7cBdKUJbg
+          example: I3V_Tt32aTZdw7cBdKUJbg
+          type: string
+      - content:
+          application/json:
+            schema:
+              properties:
+                limit:
+                  default: 3
+                  example: 3
+                  type: integer
+                rest_id:
+                  default: For You
+                  example: For You
+                  type: string
+              required:
+              - rest_id
+              - limit
+              type: object
+        in: query
+        name: variables
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoryTopicResponse'
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - default
   /other:
     get:
       description: This is not an actual endpoint

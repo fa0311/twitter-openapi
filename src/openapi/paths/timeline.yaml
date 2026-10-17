@@ -199,6 +199,20 @@ paths:
       tags:
         - "tweet"
 
+  /graphql/{pathQueryId}/useStoryTopicQuery:
+    get:
+      operationId: getUseStoryTopicQuery
+      description: "AI-written stories of an explore topic (rest_id: For You)"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoryTopicResponse"
+      tags:
+        - "default"
+
 components:
   schemas:
     TimelineResponse:
@@ -608,3 +622,108 @@ components:
       properties:
         explore_sidebar:
           $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
+
+    StoryTopicResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/StoryTopicData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+
+    StoryTopicData:
+      required:
+        - "story_topic"
+      properties:
+        story_topic:
+          $ref: "#/components/schemas/StoryTopic"
+
+    StoryTopic:
+      required:
+        - "id"
+        - "stories"
+      properties:
+        id:
+          type: string
+        stories:
+          $ref: "#/components/schemas/StoryTopicStories"
+
+    StoryTopicStories:
+      required:
+        - "items"
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StoryTopicItem"
+
+    StoryTopicItem:
+      required:
+        - "trend_results"
+      properties:
+        trend_results:
+          $ref: "#/components/schemas/AiTrendResults"
+
+    AiTrendResults:
+      required:
+        - "id"
+        - "result"
+      properties:
+        id:
+          type: string
+        result:
+          $ref: "#/components/schemas/AiTrend"
+
+    AiTrend:
+      required:
+        - "__typename"
+        - "id"
+        - "rest_id"
+        - "core"
+        - "post_count"
+        - "social_proof"
+      properties:
+        __typename:
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # AiTrend
+        id:
+          type: string
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
+        core:
+          $ref: "#/components/schemas/AiTrendCore"
+        post_count:
+          type: string
+          pattern: "^[0-9]+$"
+        social_proof:
+          type: array
+          items:
+            $ref: "#/components/schemas/AiTrendSocialProof"
+
+    AiTrendCore:
+      required:
+        - "category"
+        - "created_at_ms"
+        - "hook"
+        - "name"
+      properties:
+        category:
+          type: string # News, Sports, Entertainment, Other, ...
+        created_at_ms:
+          type: integer
+        hook:
+          type: string
+        name:
+          type: string
+
+    AiTrendSocialProof:
+      required:
+        - "img_url"
+      properties:
+        img_url:
+          type: string
+          format: uri
