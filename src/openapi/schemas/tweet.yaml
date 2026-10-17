@@ -255,6 +255,65 @@ components:
         size_variant:
           type: integer
 
+    TweetLegacyPlace: # geo-tagged post (27 recorded)
+      required:
+        - "bounding_box"
+        - "country"
+        - "country_code"
+        - "full_name"
+        - "id"
+        - "name"
+        - "place_type"
+        - "url"
+      properties:
+        bounding_box:
+          $ref: "#/components/schemas/TweetLegacyPlaceBoundingBox"
+        country:
+          type: string
+        country_code:
+          type: string
+        full_name:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        place_type:
+          type: string # city, country, ...
+        url:
+          type: string
+          format: uri
+
+    TweetLegacyPlaceBoundingBox: # GeoJSON
+      required:
+        - "coordinates"
+        - "type"
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+        type:
+          type: string
+          enum: [Polygon]
+
+    TweetLegacyPoint: # GeoJSON
+      required:
+        - "coordinates"
+        - "type"
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: number
+        type:
+          type: string
+          enum: [Point]
+
     TweetEditControl:
       properties:
         edit_tweet_ids:
@@ -332,11 +391,9 @@ components:
         result:
           $ref: "#/components/schemas/NoteTweetResultData"
 
-    NoteTweetResultData:
+    NoteTweetResultData: # sometimes only {id} (UserTweets, 2026-10-17)
       required:
-        - "entity_set"
         - "id"
-        - "text"
       properties:
         entity_set:
           $ref: "#/components/schemas/Entities"
@@ -933,7 +990,12 @@ components:
       properties:
         type:
           type: string
-          enum: [TimelineUrl, TimelineRichTextHashtag]
+          enum: [TimelineUrl, TimelineRichTextHashtag, TimelineRichTextMention]
+        id:
+          type: string # TimelineRichTextMention: user id
+          pattern: "^[0-9]+$"
+        screen_name:
+          type: string # TimelineRichTextMention
         url:
           type: string
           format: uri
@@ -1197,7 +1259,11 @@ components:
             - "community_tweet_non_member_closed_community"
             - "blocked_viewer"
         place:
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/TweetLegacyPlace"
+        coordinates:
+          $ref: "#/components/schemas/TweetLegacyPoint" # [longitude, latitude]
+        geo:
+          $ref: "#/components/schemas/TweetLegacyPoint" # [latitude, longitude]
         # withheld_description:
         #   type: string
         # withheld_scope:

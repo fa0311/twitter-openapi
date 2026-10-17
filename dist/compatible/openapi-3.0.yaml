@@ -2666,12 +2666,18 @@ components:
         expanded_url:
           format: uri
           type: string
+        id:
+          pattern: ^[0-9]+$
+          type: string
+        screen_name:
+          type: string
         text:
           type: string
         type:
           enum:
           - TimelineUrl
           - TimelineRichTextHashtag
+          - TimelineRichTextMention
           type: string
         url:
           format: uri
@@ -3673,9 +3679,7 @@ components:
         text:
           type: string
       required:
-      - entity_set
       - id
-      - text
     NoteTweetResultMedia:
       properties:
         inline_media:
@@ -5564,6 +5568,8 @@ components:
         conversation_id_str:
           pattern: ^[0-9]+$
           type: string
+        coordinates:
+          $ref: '#/components/schemas/TweetLegacyPoint'
         created_at:
           $ref: '#/components/schemas/TwitterTimeFormat'
         display_text_range:
@@ -5580,6 +5586,8 @@ components:
           type: boolean
         full_text:
           type: string
+        geo:
+          $ref: '#/components/schemas/TweetLegacyPoint'
         id_str:
           pattern: ^[0-9]+$
           type: string
@@ -5606,7 +5614,7 @@ components:
           - blocked_viewer
           type: string
         place:
-          additionalProperties: true
+          $ref: '#/components/schemas/TweetLegacyPlace'
         possibly_sensitive:
           type: boolean
         possibly_sensitive_editable:
@@ -5650,6 +5658,64 @@ components:
       - retweeted
       - user_id_str
       - id_str
+    TweetLegacyPlace:
+      properties:
+        bounding_box:
+          $ref: '#/components/schemas/TweetLegacyPlaceBoundingBox'
+        country:
+          type: string
+        country_code:
+          type: string
+        full_name:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        place_type:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - bounding_box
+      - country
+      - country_code
+      - full_name
+      - id
+      - name
+      - place_type
+      - url
+    TweetLegacyPlaceBoundingBox:
+      properties:
+        coordinates:
+          items:
+            items:
+              items:
+                type: number
+              type: array
+            type: array
+          type: array
+        type:
+          enum:
+          - Polygon
+          type: string
+      required:
+      - coordinates
+      - type
+    TweetLegacyPoint:
+      properties:
+        coordinates:
+          items:
+            type: number
+          type: array
+        type:
+          enum:
+          - Point
+          type: string
+      required:
+      - coordinates
+      - type
     TweetLegacyScopes:
       properties:
         followers:
