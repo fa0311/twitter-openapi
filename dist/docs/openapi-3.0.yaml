@@ -131,6 +131,48 @@ components:
           $ref: '#/components/schemas/ArticleResults'
       required:
       - article_results
+    ArticleContentBlock:
+      properties:
+        data:
+          properties: {}
+          type: object
+        entityRanges:
+          items:
+            properties: {}
+            type: object
+          type: array
+        inlineStyleRanges:
+          items:
+            properties: {}
+            type: object
+          type: array
+        key:
+          type: string
+        text:
+          type: string
+        type:
+          type: string
+      required:
+      - data
+      - entityRanges
+      - inlineStyleRanges
+      - key
+      - text
+      - type
+    ArticleContentState:
+      properties:
+        blocks:
+          items:
+            $ref: '#/components/schemas/ArticleContentBlock'
+          type: array
+        entityMap:
+          items:
+            properties: {}
+            type: object
+          type: array
+      required:
+      - blocks
+      - entityMap
     ArticleCoverMedia:
       properties:
         id:
@@ -194,8 +236,7 @@ components:
     ArticleResult:
       properties:
         content_state:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ArticleContentState'
         cover_media:
           $ref: '#/components/schemas/ArticleCoverMedia'
         id:
@@ -214,6 +255,8 @@ components:
           type: string
         rest_id:
           pattern: ^[0-9]+$
+          type: string
+        summary_text:
           type: string
         title:
           type: string
@@ -453,10 +496,6 @@ components:
           - BirdwatchLevelLow
           type: string
         iconType:
-          enum:
-          - BirdwatchV1Icon
-          - BirdwatchCameraVideo
-          - BirdwatchPhoto
           type: string
         note:
           $ref: '#/components/schemas/BirdwatchPivotNote'
@@ -620,6 +659,8 @@ components:
       properties:
         rest_id:
           type: string
+        size_variant:
+          type: integer
       required:
       - rest_id
     CashtagInfo:
@@ -1603,8 +1644,6 @@ components:
     ConversationDetails:
       properties:
         conversationSection:
-          enum:
-          - HighQuality
           type: string
       required:
       - conversationSection
@@ -2644,7 +2683,6 @@ components:
           type: string
       required:
       - prompt
-      - upsampled_prompt
     GrokModelOption:
       properties:
         description:
@@ -3352,8 +3390,6 @@ components:
           $ref: '#/components/schemas/GrokImageAnnotation'
         media_key:
           type: string
-      required:
-      - media_key
     MediaResults:
       properties:
         result:
@@ -3484,6 +3520,8 @@ components:
           enum:
           - Classic
           type: string
+        socialContext:
+          $ref: '#/components/schemas/SocialContextUnion'
         sticky:
           type: boolean
         text:
@@ -4358,6 +4396,7 @@ components:
           - Sparkle
           - Conversation
           - List
+          - TextOnly
           - Community
           - Facepile
           type: string
@@ -5161,6 +5200,9 @@ components:
           type: object
         views:
           $ref: '#/components/schemas/TweetView'
+        voiceInfo:
+          properties: {}
+          type: object
       required:
       - rest_id
     TweetCard:
@@ -6099,7 +6141,6 @@ components:
         timeline:
           $ref: '#/components/schemas/UserHighlightsTweetsTimeline'
       required:
-      - timeline
       - __typename
     UserHighlightsTweetsTimeline:
       properties:
@@ -6654,7 +6695,6 @@ components:
           $ref: '#/components/schemas/TimelineResult'
       required:
       - __typename
-      - timeline
     UserTweetsResultV2:
       properties:
         __typename:

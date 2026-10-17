@@ -166,6 +166,9 @@ components:
         unmention_data:
           type: object
           properties: {} # always {}
+        voiceInfo:
+          type: object
+          properties: {} # always {} (TweetDetail, 2026-10-17)
         edit_control:
           $ref: "#/components/schemas/TweetEditControl"
         edit_prespective:
@@ -249,6 +252,8 @@ components:
       properties:
         rest_id:
           type: string
+        size_variant:
+          type: integer
 
     TweetEditControl:
       properties:
@@ -810,7 +815,7 @@ components:
           enum: [Default, Tentative]
         iconType:
           type: string
-          enum: [BirdwatchV1Icon, BirdwatchCameraVideo, BirdwatchPhoto]
+          # BirdwatchV1Icon, BirdwatchCameraVideo, BirdwatchPhoto, BirdwatchLink, ... (X keeps adding)
         callToAction:
           $ref: "#/components/schemas/BirdwatchPivotCallToAction"
         titleDetail:
@@ -1764,9 +1769,10 @@ components:
           $ref: "#/components/schemas/ArticleLifecycleState"
         is_grok_summary_eligible:
           type: boolean
+        summary_text:
+          type: string
         content_state:
-          type: object
-          additionalProperties: true # todo draft.js ?
+          $ref: "#/components/schemas/ArticleContentState"
         media_entities:
           type: array
           items:
@@ -1823,6 +1829,50 @@ components:
         color_info:
           $ref: "./media.yaml#/components/schemas/MediaColorInfo"
 
+    ArticleContentState: # draft.js; typed from a plain-text article (unstyled blocks, no entities)
+      required:
+        - "blocks"
+        - "entityMap"
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentBlock"
+        entityMap:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+
+    ArticleContentBlock:
+      required:
+        - "data"
+        - "entityRanges"
+        - "inlineStyleRanges"
+        - "key"
+        - "text"
+        - "type"
+      properties:
+        data:
+          type: object
+          properties: {} # always {}
+        entityRanges:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+        inlineStyleRanges:
+          type: array
+          items:
+            type: object
+            properties: {} # always []
+        key:
+          type: string
+        text:
+          type: string
+        type:
+          type: string # unstyled
+
     ArticleMetadata:
       required:
         - "first_published_at_secs"
@@ -1849,9 +1899,7 @@ components:
         result:
           $ref: "#/components/schemas/MediaResult"
 
-    MediaResult:
-      required:
-        - "media_key"
+    MediaResult: # {} on some media (UserTweetsAndReplies, 2026-10-17)
       properties:
         media_key:
           type: string
@@ -1861,12 +1909,11 @@ components:
     GrokImageAnnotation:
       required:
         - "prompt"
-        - "upsampled_prompt"
       properties:
         prompt:
           type: string
         upsampled_prompt:
-          type: string
+          type: string # absent on some annotations (SearchTimeline, 2026-10-17)
 
     TrendResults:
       required:
