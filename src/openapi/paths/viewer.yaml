@@ -74,6 +74,20 @@ paths:
       tags:
         - "default"
 
+  /graphql/{pathQueryId}/grokAccountJwtQuery:
+    get:
+      operationId: getGrokAccountJwtQuery
+      description: "whether the account is linked to a Grok account"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GrokAccountJwtResponse"
+      tags:
+        - "default"
+
 components:
   schemas:
     AuthenticatePeriscopeResponse:
@@ -286,3 +300,29 @@ components:
           items:
             type: object
             properties: {} # always []
+
+    GrokAccountJwtResponse:
+      required:
+        - "data"
+      properties:
+        data:
+          $ref: "#/components/schemas/GrokAccountJwtData"
+        errors:
+          type: array
+          items:
+            $ref: "./../response/error.yaml#/components/schemas/ErrorResponse"
+
+
+    GrokAccountJwtData:
+      required:
+        - "grok_account_jwt"
+      properties:
+        grok_account_jwt:
+          $ref: "#/components/schemas/GrokAccountJwt"
+
+    GrokAccountJwt:
+      required:
+        - "status"
+      properties:
+        status:
+          type: string # NOT_LINKED, ...

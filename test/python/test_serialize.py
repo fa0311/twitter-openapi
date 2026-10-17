@@ -40,7 +40,9 @@ def get_proxy():
 
 def get_key(snake_str):
     components = snake_str.split("_")
-    return "".join(x.title() for x in components[1:])
+    key = "".join(x.title() for x in components[1:])
+    by_lower = {name.lower(): name for name in placeholder}  # some operations start lowercase (useStoryTopicQuery, grokAccountJwtQuery)
+    return by_lower.get(key.lower(), key)
 
 
 def get_cursor(obj, fn):
