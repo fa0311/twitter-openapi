@@ -172,11 +172,10 @@ components:
     UserTweetsResultV1:
       required:
         - "__typename"
-        - "timeline"
       properties:
         __typename:
           $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
-        timeline:
+        timeline: # absent when the result is a UserUnavailable
           $ref: "./../schemas/timeline.yaml#/components/schemas/TimelineResult"
 
     UserTweetsResultV2:
@@ -214,11 +213,10 @@ components:
 
     UserHighlightsTweetsResult:
       required:
-        - "timeline"
         - "__typename"
       properties:
         timeline:
-          $ref: "#/components/schemas/UserHighlightsTweetsTimeline"
+          $ref: "#/components/schemas/UserHighlightsTweetsTimeline" # absent when the result is a UserUnavailable
         __typename:
           $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # User
 

@@ -95,6 +95,8 @@ components:
         displayType:
           type: string
           enum: [Classic]
+        socialContext:
+          $ref: "#/components/schemas/SocialContextUnion" # "Sourced from across X" on TweetDetail modules
         sticky:
           type: boolean
         text:
@@ -344,6 +346,7 @@ components:
             - "Sparkle"
             - "Conversation"
             - "List"
+            - "TextOnly"
             - "Community"
             - "Facepile"
         text:
@@ -649,8 +652,7 @@ components:
         - "conversationSection"
       properties:
         conversationSection:
-          type: string
-          enum: [HighQuality]
+          type: string # HighQuality, RelatedTweet, ... (X keeps adding)
 
     TimelinesDetails:
       properties:

@@ -166,6 +166,9 @@ components:
         unmention_data:
           type: object
           properties: {} # always {}
+        voiceInfo:
+          type: object
+          properties: {} # always {} (TweetDetail, 2026-10-17)
         edit_control:
           $ref: "#/components/schemas/TweetEditControl"
         edit_prespective:
@@ -249,6 +252,67 @@ components:
       properties:
         rest_id:
           type: string
+        size_variant:
+          type: integer
+
+    TweetLegacyPlace: # geo-tagged post (27 recorded)
+      required:
+        - "bounding_box"
+        - "country"
+        - "country_code"
+        - "full_name"
+        - "id"
+        - "name"
+        - "place_type"
+        - "url"
+      properties:
+        bounding_box:
+          $ref: "#/components/schemas/TweetLegacyPlaceBoundingBox"
+        country:
+          type: string
+        country_code:
+          type: string
+        full_name:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        place_type:
+          type: string # city, country, ...
+        url:
+          type: string
+          format: uri
+
+    TweetLegacyPlaceBoundingBox: # GeoJSON
+      required:
+        - "coordinates"
+        - "type"
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+        type:
+          type: string
+          enum: [Polygon]
+
+    TweetLegacyPoint: # GeoJSON
+      required:
+        - "coordinates"
+        - "type"
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: number
+        type:
+          type: string
+          enum: [Point]
 
     TweetEditControl:
       properties:
@@ -327,11 +391,9 @@ components:
         result:
           $ref: "#/components/schemas/NoteTweetResultData"
 
-    NoteTweetResultData:
+    NoteTweetResultData: # sometimes only {id} (UserTweets, 2026-10-17)
       required:
-        - "entity_set"
         - "id"
-        - "text"
       properties:
         entity_set:
           $ref: "#/components/schemas/Entities"
@@ -810,7 +872,7 @@ components:
           enum: [Default, Tentative]
         iconType:
           type: string
-          enum: [BirdwatchV1Icon, BirdwatchCameraVideo, BirdwatchPhoto]
+          # BirdwatchV1Icon, BirdwatchCameraVideo, BirdwatchPhoto, BirdwatchLink, ... (X keeps adding)
         callToAction:
           $ref: "#/components/schemas/BirdwatchPivotCallToAction"
         titleDetail:
@@ -928,7 +990,12 @@ components:
       properties:
         type:
           type: string
-          enum: [TimelineUrl, TimelineRichTextHashtag]
+          enum: [TimelineUrl, TimelineRichTextHashtag, TimelineRichTextMention]
+        id:
+          type: string # TimelineRichTextMention: user id
+          pattern: "^[0-9]+$"
+        screen_name:
+          type: string # TimelineRichTextMention
         url:
           type: string
           format: uri
@@ -1192,7 +1259,11 @@ components:
             - "community_tweet_non_member_closed_community"
             - "blocked_viewer"
         place:
-          additionalProperties: true # todo
+          $ref: "#/components/schemas/TweetLegacyPlace"
+        coordinates:
+          $ref: "#/components/schemas/TweetLegacyPoint" # [longitude, latitude]
+        geo:
+          $ref: "#/components/schemas/TweetLegacyPoint" # [latitude, longitude]
         # withheld_description:
         #   type: string
         # withheld_scope:
@@ -1764,9 +1835,10 @@ components:
           $ref: "#/components/schemas/ArticleLifecycleState"
         is_grok_summary_eligible:
           type: boolean
+        summary_text:
+          type: string
         content_state:
-          type: object
-          additionalProperties: true # todo draft.js ?
+          $ref: "#/components/schemas/ArticleContentState"
         media_entities:
           type: array
           items:
@@ -1823,6 +1895,151 @@ components:
         color_info:
           $ref: "./media.yaml#/components/schemas/MediaColorInfo"
 
+    ArticleContentState: # draft.js
+      required:
+        - "blocks"
+        - "entityMap"
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentBlock"
+        entityMap:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentEntity"
+
+    ArticleContentBlock:
+      required:
+        - "data"
+        - "entityRanges"
+        - "inlineStyleRanges"
+        - "key"
+        - "text"
+        - "type"
+      properties:
+        data:
+          $ref: "#/components/schemas/ArticleContentBlockData"
+        entityRanges:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentEntityRange"
+        inlineStyleRanges:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentInlineStyleRange"
+        key:
+          type: string
+        text:
+          type: string
+        type:
+          type: string # unstyled, atomic, unordered-list-item, ... (draft.js block types)
+
+    ArticleContentBlockData: # {} on most blocks
+      properties:
+        mentions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentTextRange"
+        urls:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentTextRange"
+
+    ArticleContentTextRange:
+      required:
+        - "fromIndex"
+        - "text"
+        - "toIndex"
+      properties:
+        fromIndex:
+          type: integer
+        text:
+          type: string
+        toIndex:
+          type: integer
+
+    ArticleContentEntityRange:
+      required:
+        - "key"
+        - "length"
+        - "offset"
+      properties:
+        key:
+          type: integer # index into entityMap
+        length:
+          type: integer
+        offset:
+          type: integer
+
+    ArticleContentInlineStyleRange:
+      required:
+        - "length"
+        - "offset"
+        - "style"
+      properties:
+        length:
+          type: integer
+        offset:
+          type: integer
+        style:
+          type: string
+          enum: [Bold, Italic]
+
+    ArticleContentEntity:
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          $ref: "#/components/schemas/ArticleContentEntityValue"
+
+    ArticleContentEntityValue:
+      required:
+        - "data"
+        - "mutability"
+        - "type"
+      properties:
+        data:
+          $ref: "#/components/schemas/ArticleContentEntityData"
+        mutability:
+          type: string # Immutable
+        type:
+          type: string
+          enum: [MEDIA, TWEMOJI, TWEET]
+
+    ArticleContentEntityData: # MEDIA: entityKey + mediaItems (+ caption), TWEMOJI: url, TWEET: tweetId
+      properties:
+        caption:
+          type: string
+        entityKey:
+          type: string
+        mediaItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentMediaItem"
+        tweetId:
+          type: string
+          pattern: "^[0-9]+$"
+        url:
+          type: string
+
+    ArticleContentMediaItem:
+      required:
+        - "localMediaId"
+        - "mediaCategory"
+        - "mediaId"
+      properties:
+        localMediaId:
+          type: string
+        mediaCategory:
+          type: string # DraftTweetImage
+        mediaId:
+          type: string
+          pattern: "^[0-9]+$"
+
     ArticleMetadata:
       required:
         - "first_published_at_secs"
@@ -1849,9 +2066,7 @@ components:
         result:
           $ref: "#/components/schemas/MediaResult"
 
-    MediaResult:
-      required:
-        - "media_key"
+    MediaResult: # {} on some media (UserTweetsAndReplies, 2026-10-17)
       properties:
         media_key:
           type: string
@@ -1861,12 +2076,11 @@ components:
     GrokImageAnnotation:
       required:
         - "prompt"
-        - "upsampled_prompt"
       properties:
         prompt:
           type: string
         upsampled_prompt:
-          type: string
+          type: string # absent on some annotations (SearchTimeline, 2026-10-17)
 
     TrendResults:
       required:

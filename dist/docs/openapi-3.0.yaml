@@ -131,6 +131,146 @@ components:
           $ref: '#/components/schemas/ArticleResults'
       required:
       - article_results
+    ArticleContentBlock:
+      properties:
+        data:
+          $ref: '#/components/schemas/ArticleContentBlockData'
+        entityRanges:
+          items:
+            $ref: '#/components/schemas/ArticleContentEntityRange'
+          type: array
+        inlineStyleRanges:
+          items:
+            $ref: '#/components/schemas/ArticleContentInlineStyleRange'
+          type: array
+        key:
+          type: string
+        text:
+          type: string
+        type:
+          type: string
+      required:
+      - data
+      - entityRanges
+      - inlineStyleRanges
+      - key
+      - text
+      - type
+    ArticleContentBlockData:
+      properties:
+        mentions:
+          items:
+            $ref: '#/components/schemas/ArticleContentTextRange'
+          type: array
+        urls:
+          items:
+            $ref: '#/components/schemas/ArticleContentTextRange'
+          type: array
+    ArticleContentEntity:
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ArticleContentEntityValue'
+      required:
+      - key
+      - value
+    ArticleContentEntityData:
+      properties:
+        caption:
+          type: string
+        entityKey:
+          type: string
+        mediaItems:
+          items:
+            $ref: '#/components/schemas/ArticleContentMediaItem'
+          type: array
+        tweetId:
+          pattern: ^[0-9]+$
+          type: string
+        url:
+          type: string
+    ArticleContentEntityRange:
+      properties:
+        key:
+          type: integer
+        length:
+          type: integer
+        offset:
+          type: integer
+      required:
+      - key
+      - length
+      - offset
+    ArticleContentEntityValue:
+      properties:
+        data:
+          $ref: '#/components/schemas/ArticleContentEntityData'
+        mutability:
+          type: string
+        type:
+          enum:
+          - MEDIA
+          - TWEMOJI
+          - TWEET
+          type: string
+      required:
+      - data
+      - mutability
+      - type
+    ArticleContentInlineStyleRange:
+      properties:
+        length:
+          type: integer
+        offset:
+          type: integer
+        style:
+          enum:
+          - Bold
+          - Italic
+          type: string
+      required:
+      - length
+      - offset
+      - style
+    ArticleContentMediaItem:
+      properties:
+        localMediaId:
+          type: string
+        mediaCategory:
+          type: string
+        mediaId:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - localMediaId
+      - mediaCategory
+      - mediaId
+    ArticleContentState:
+      properties:
+        blocks:
+          items:
+            $ref: '#/components/schemas/ArticleContentBlock'
+          type: array
+        entityMap:
+          items:
+            $ref: '#/components/schemas/ArticleContentEntity'
+          type: array
+      required:
+      - blocks
+      - entityMap
+    ArticleContentTextRange:
+      properties:
+        fromIndex:
+          type: integer
+        text:
+          type: string
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - text
+      - toIndex
     ArticleCoverMedia:
       properties:
         id:
@@ -194,8 +334,7 @@ components:
     ArticleResult:
       properties:
         content_state:
-          additionalProperties: true
-          type: object
+          $ref: '#/components/schemas/ArticleContentState'
         cover_media:
           $ref: '#/components/schemas/ArticleCoverMedia'
         id:
@@ -214,6 +353,8 @@ components:
           type: string
         rest_id:
           pattern: ^[0-9]+$
+          type: string
+        summary_text:
           type: string
         title:
           type: string
@@ -453,10 +594,6 @@ components:
           - BirdwatchLevelLow
           type: string
         iconType:
-          enum:
-          - BirdwatchV1Icon
-          - BirdwatchCameraVideo
-          - BirdwatchPhoto
           type: string
         note:
           $ref: '#/components/schemas/BirdwatchPivotNote'
@@ -620,6 +757,8 @@ components:
       properties:
         rest_id:
           type: string
+        size_variant:
+          type: integer
       required:
       - rest_id
     CashtagInfo:
@@ -1603,8 +1742,6 @@ components:
     ConversationDetails:
       properties:
         conversationSection:
-          enum:
-          - HighQuality
           type: string
       required:
       - conversationSection
@@ -2529,12 +2666,18 @@ components:
         expanded_url:
           format: uri
           type: string
+        id:
+          pattern: ^[0-9]+$
+          type: string
+        screen_name:
+          type: string
         text:
           type: string
         type:
           enum:
           - TimelineUrl
           - TimelineRichTextHashtag
+          - TimelineRichTextMention
           type: string
         url:
           format: uri
@@ -2644,7 +2787,6 @@ components:
           type: string
       required:
       - prompt
-      - upsampled_prompt
     GrokModelOption:
       properties:
         description:
@@ -3352,8 +3494,6 @@ components:
           $ref: '#/components/schemas/GrokImageAnnotation'
         media_key:
           type: string
-      required:
-      - media_key
     MediaResults:
       properties:
         result:
@@ -3484,6 +3624,8 @@ components:
           enum:
           - Classic
           type: string
+        socialContext:
+          $ref: '#/components/schemas/SocialContextUnion'
         sticky:
           type: boolean
         text:
@@ -3537,9 +3679,7 @@ components:
         text:
           type: string
       required:
-      - entity_set
       - id
-      - text
     NoteTweetResultMedia:
       properties:
         inline_media:
@@ -4358,6 +4498,7 @@ components:
           - Sparkle
           - Conversation
           - List
+          - TextOnly
           - Community
           - Facepile
           type: string
@@ -5161,6 +5302,9 @@ components:
           type: object
         views:
           $ref: '#/components/schemas/TweetView'
+        voiceInfo:
+          properties: {}
+          type: object
       required:
       - rest_id
     TweetCard:
@@ -5424,6 +5568,8 @@ components:
         conversation_id_str:
           pattern: ^[0-9]+$
           type: string
+        coordinates:
+          $ref: '#/components/schemas/TweetLegacyPoint'
         created_at:
           $ref: '#/components/schemas/TwitterTimeFormat'
         display_text_range:
@@ -5440,6 +5586,8 @@ components:
           type: boolean
         full_text:
           type: string
+        geo:
+          $ref: '#/components/schemas/TweetLegacyPoint'
         id_str:
           pattern: ^[0-9]+$
           type: string
@@ -5466,7 +5614,7 @@ components:
           - blocked_viewer
           type: string
         place:
-          additionalProperties: true
+          $ref: '#/components/schemas/TweetLegacyPlace'
         possibly_sensitive:
           type: boolean
         possibly_sensitive_editable:
@@ -5510,6 +5658,64 @@ components:
       - retweeted
       - user_id_str
       - id_str
+    TweetLegacyPlace:
+      properties:
+        bounding_box:
+          $ref: '#/components/schemas/TweetLegacyPlaceBoundingBox'
+        country:
+          type: string
+        country_code:
+          type: string
+        full_name:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        place_type:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - bounding_box
+      - country
+      - country_code
+      - full_name
+      - id
+      - name
+      - place_type
+      - url
+    TweetLegacyPlaceBoundingBox:
+      properties:
+        coordinates:
+          items:
+            items:
+              items:
+                type: number
+              type: array
+            type: array
+          type: array
+        type:
+          enum:
+          - Polygon
+          type: string
+      required:
+      - coordinates
+      - type
+    TweetLegacyPoint:
+      properties:
+        coordinates:
+          items:
+            type: number
+          type: array
+        type:
+          enum:
+          - Point
+          type: string
+      required:
+      - coordinates
+      - type
     TweetLegacyScopes:
       properties:
         followers:
@@ -6099,7 +6305,6 @@ components:
         timeline:
           $ref: '#/components/schemas/UserHighlightsTweetsTimeline'
       required:
-      - timeline
       - __typename
     UserHighlightsTweetsTimeline:
       properties:
@@ -6654,7 +6859,6 @@ components:
           $ref: '#/components/schemas/TimelineResult'
       required:
       - __typename
-      - timeline
     UserTweetsResultV2:
       properties:
         __typename:
