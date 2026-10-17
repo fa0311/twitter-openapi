@@ -134,17 +134,14 @@ components:
     ArticleContentBlock:
       properties:
         data:
-          properties: {}
-          type: object
+          $ref: '#/components/schemas/ArticleContentBlockData'
         entityRanges:
           items:
-            properties: {}
-            type: object
+            $ref: '#/components/schemas/ArticleContentEntityRange'
           type: array
         inlineStyleRanges:
           items:
-            properties: {}
-            type: object
+            $ref: '#/components/schemas/ArticleContentInlineStyleRange'
           type: array
         key:
           type: string
@@ -159,6 +156,96 @@ components:
       - key
       - text
       - type
+    ArticleContentBlockData:
+      properties:
+        mentions:
+          items:
+            $ref: '#/components/schemas/ArticleContentTextRange'
+          type: array
+        urls:
+          items:
+            $ref: '#/components/schemas/ArticleContentTextRange'
+          type: array
+    ArticleContentEntity:
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ArticleContentEntityValue'
+      required:
+      - key
+      - value
+    ArticleContentEntityData:
+      properties:
+        caption:
+          type: string
+        entityKey:
+          type: string
+        mediaItems:
+          items:
+            $ref: '#/components/schemas/ArticleContentMediaItem'
+          type: array
+        tweetId:
+          pattern: ^[0-9]+$
+          type: string
+        url:
+          type: string
+    ArticleContentEntityRange:
+      properties:
+        key:
+          type: integer
+        length:
+          type: integer
+        offset:
+          type: integer
+      required:
+      - key
+      - length
+      - offset
+    ArticleContentEntityValue:
+      properties:
+        data:
+          $ref: '#/components/schemas/ArticleContentEntityData'
+        mutability:
+          type: string
+        type:
+          enum:
+          - MEDIA
+          - TWEMOJI
+          - TWEET
+          type: string
+      required:
+      - data
+      - mutability
+      - type
+    ArticleContentInlineStyleRange:
+      properties:
+        length:
+          type: integer
+        offset:
+          type: integer
+        style:
+          enum:
+          - Bold
+          - Italic
+          type: string
+      required:
+      - length
+      - offset
+      - style
+    ArticleContentMediaItem:
+      properties:
+        localMediaId:
+          type: string
+        mediaCategory:
+          type: string
+        mediaId:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - localMediaId
+      - mediaCategory
+      - mediaId
     ArticleContentState:
       properties:
         blocks:
@@ -167,12 +254,23 @@ components:
           type: array
         entityMap:
           items:
-            properties: {}
-            type: object
+            $ref: '#/components/schemas/ArticleContentEntity'
           type: array
       required:
       - blocks
       - entityMap
+    ArticleContentTextRange:
+      properties:
+        fromIndex:
+          type: integer
+        text:
+          type: string
+        toIndex:
+          type: integer
+      required:
+      - fromIndex
+      - text
+      - toIndex
     ArticleCoverMedia:
       properties:
         id:

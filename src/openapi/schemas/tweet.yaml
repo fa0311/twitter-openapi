@@ -1829,7 +1829,7 @@ components:
         color_info:
           $ref: "./media.yaml#/components/schemas/MediaColorInfo"
 
-    ArticleContentState: # draft.js; typed from a plain-text article (unstyled blocks, no entities)
+    ArticleContentState: # draft.js
       required:
         - "blocks"
         - "entityMap"
@@ -1841,8 +1841,7 @@ components:
         entityMap:
           type: array
           items:
-            type: object
-            properties: {} # always []
+            $ref: "#/components/schemas/ArticleContentEntity"
 
     ArticleContentBlock:
       required:
@@ -1854,24 +1853,126 @@ components:
         - "type"
       properties:
         data:
-          type: object
-          properties: {} # always {}
+          $ref: "#/components/schemas/ArticleContentBlockData"
         entityRanges:
           type: array
           items:
-            type: object
-            properties: {} # always []
+            $ref: "#/components/schemas/ArticleContentEntityRange"
         inlineStyleRanges:
           type: array
           items:
-            type: object
-            properties: {} # always []
+            $ref: "#/components/schemas/ArticleContentInlineStyleRange"
         key:
           type: string
         text:
           type: string
         type:
-          type: string # unstyled
+          type: string # unstyled, atomic, unordered-list-item, ... (draft.js block types)
+
+    ArticleContentBlockData: # {} on most blocks
+      properties:
+        mentions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentTextRange"
+        urls:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentTextRange"
+
+    ArticleContentTextRange:
+      required:
+        - "fromIndex"
+        - "text"
+        - "toIndex"
+      properties:
+        fromIndex:
+          type: integer
+        text:
+          type: string
+        toIndex:
+          type: integer
+
+    ArticleContentEntityRange:
+      required:
+        - "key"
+        - "length"
+        - "offset"
+      properties:
+        key:
+          type: integer # index into entityMap
+        length:
+          type: integer
+        offset:
+          type: integer
+
+    ArticleContentInlineStyleRange:
+      required:
+        - "length"
+        - "offset"
+        - "style"
+      properties:
+        length:
+          type: integer
+        offset:
+          type: integer
+        style:
+          type: string
+          enum: [Bold, Italic]
+
+    ArticleContentEntity:
+      required:
+        - "key"
+        - "value"
+      properties:
+        key:
+          type: string
+        value:
+          $ref: "#/components/schemas/ArticleContentEntityValue"
+
+    ArticleContentEntityValue:
+      required:
+        - "data"
+        - "mutability"
+        - "type"
+      properties:
+        data:
+          $ref: "#/components/schemas/ArticleContentEntityData"
+        mutability:
+          type: string # Immutable
+        type:
+          type: string
+          enum: [MEDIA, TWEMOJI, TWEET]
+
+    ArticleContentEntityData: # MEDIA: entityKey + mediaItems (+ caption), TWEMOJI: url, TWEET: tweetId
+      properties:
+        caption:
+          type: string
+        entityKey:
+          type: string
+        mediaItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/ArticleContentMediaItem"
+        tweetId:
+          type: string
+          pattern: "^[0-9]+$"
+        url:
+          type: string
+
+    ArticleContentMediaItem:
+      required:
+        - "localMediaId"
+        - "mediaCategory"
+        - "mediaId"
+      properties:
+        localMediaId:
+          type: string
+        mediaCategory:
+          type: string # DraftTweetImage
+        mediaId:
+          type: string
+          pattern: "^[0-9]+$"
 
     ArticleMetadata:
       required:
