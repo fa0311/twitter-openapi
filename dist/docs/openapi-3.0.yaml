@@ -456,6 +456,7 @@ components:
           enum:
           - BirdwatchV1Icon
           - BirdwatchCameraVideo
+          - BirdwatchPhoto
           type: string
         note:
           $ref: '#/components/schemas/BirdwatchPivotNote'
@@ -1642,8 +1643,6 @@ components:
       - result
     CoverCta:
       properties:
-        Text:
-          type: string
         buttonStyle:
           enum:
           - Primary
@@ -1656,6 +1655,8 @@ components:
           $ref: '#/components/schemas/CtaClientEventInfo'
         ctaBehavior:
           $ref: '#/components/schemas/TimelineCoverBehavior'
+        text:
+          type: string
       required:
       - text
       - ctaBehavior
@@ -15609,8 +15610,8 @@ paths:
                   example: false
                   type: boolean
                 userId:
-                  default: '1787148517779406848'
-                  example: '1787148517779406848'
+                  default: '44196397'
+                  example: '44196397'
                   type: string
                 withBirdwatchNotes:
                   default: false
@@ -17216,8 +17217,8 @@ paths:
                   example: '44196397'
                   type: string
                 userId:
-                  default: '1787148517779406848'
-                  example: '1787148517779406848'
+                  default: '44196397'
+                  example: '44196397'
                   type: string
               required:
               - userId
@@ -18770,8 +18771,8 @@ paths:
             schema:
               properties:
                 screen_name:
-                  default: ptcpz3
-                  example: ptcpz3
+                  default: elonmusk
+                  example: elonmusk
                   type: string
               required:
               - screen_name
@@ -19830,8 +19831,8 @@ paths:
                   example: false
                   type: boolean
                 tweetId:
-                  default: '1691730070669517096'
-                  example: '1691730070669517096'
+                  default: '1349129669258448897'
+                  example: '1349129669258448897'
                   type: string
                 withBirdwatchNotes:
                   default: true
@@ -23351,8 +23352,8 @@ paths:
               properties:
                 userIds:
                   items:
-                    default: '1787148517779406848'
-                    example: '1787148517779406848'
+                    default: '44196397'
+                    example: '44196397'
                     type: string
                   type: array
               required:

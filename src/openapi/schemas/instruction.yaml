@@ -297,7 +297,7 @@ components:
         - callbacks
         - clientEventInfo
       properties:
-        Text:
+        text:
           type: string
         ctaBehavior:
           $ref: "#/components/schemas/TimelineCoverBehavior"

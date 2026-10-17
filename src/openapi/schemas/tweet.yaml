@@ -810,7 +810,7 @@ components:
           enum: [Default, Tentative]
         iconType:
           type: string
-          enum: [BirdwatchV1Icon, BirdwatchCameraVideo]
+          enum: [BirdwatchV1Icon, BirdwatchCameraVideo, BirdwatchPhoto]
         callToAction:
           $ref: "#/components/schemas/BirdwatchPivotCallToAction"
         titleDetail:
