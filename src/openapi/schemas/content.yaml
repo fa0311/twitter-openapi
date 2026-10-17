@@ -93,8 +93,7 @@ components:
         - "text"
       properties:
         displayType:
-          type: string
-          enum: [Classic]
+          type: string # Classic, ... (UI value, X keeps adding)
         socialContext:
           $ref: "#/components/schemas/SocialContextUnion" # "Sourced from across X" on TweetDetail modules
         sticky:
@@ -367,8 +366,7 @@ components:
         topic:
           $ref: "#/components/schemas/TopicContext"
         functionalityType:
-          type: string
-          enum: ["Basic"]
+          type: string # Basic, ... (UI value, X keeps adding)
 
     TopicContext:
       type: object
@@ -475,11 +473,9 @@ components:
         confirmation:
           type: string
         contentType:
-          type: string
-          enum: [TimelineRelevancePrompt]
+          type: string # TimelineRelevancePrompt, ... (UI value, X keeps adding)
         displayType:
-          type: string
-          enum: [Compact]
+          type: string # Compact, ... (UI value, X keeps adding)
         isRelevantCallback:
           $ref: "#/components/schemas/TimelinePromptCallback"
         isRelevantText:
@@ -521,8 +517,7 @@ components:
         bodyText:
           type: string
         contentType:
-          type: string
-          enum: [TimelineInlinePrompt, TimelineCompactPrompt]
+          type: string # TimelineInlinePrompt, TimelineCompactPrompt, ... (UI value, X keeps adding)
         headerText:
           type: string
         primaryButtonAction:
@@ -729,8 +724,7 @@ components:
         itemType:
           $ref: "#/components/schemas/ContentItemType" # TimelineTombstone
         tombstoneDisplayType:
-          type: string
-          enum: [Inline]
+          type: string # Inline, ... (UI value, X keeps adding)
         tombstoneInfo:
           $ref: "#/components/schemas/TombstoneInfo"
 
@@ -1106,7 +1100,7 @@ components:
         itemType:
           $ref: "#/components/schemas/ContentItemType" # TimelineTwitterList
         displayType:
-          type: string
+          type: string # ListWithSubscribe, ListWithPin, ... (UI value)
         list:
           $ref: "./list.yaml#/components/schemas/TwitterList"
 

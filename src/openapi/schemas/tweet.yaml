@@ -400,8 +400,7 @@ components:
         - "card_fetch_state"
       properties:
         card_fetch_state:
-          type: string
-          enum: [NoCard]
+          type: string # NoCard, ... (UI value, X keeps adding)
 
     TweetPreviousCounts:
       required:
@@ -589,7 +588,7 @@ components:
           type: integer
         role:
           type: string
-          enum: [NonMember]
+          enum: [Member, Moderator, Admin, NonMember] # same backend enum as AuthorCommunityRelationship.role
         rules:
           type: array
           items:
@@ -680,8 +679,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityDeleteActionUnavailable
         reason:
-          type: string
-          enum: [Unavailable]
+          type: string # Unavailable, ... (UI value, X keeps adding)
 
     CommunityJoinActionResultUnion:
       oneOf:
@@ -709,8 +707,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityJoinActionUnavailable
         reason:
-          type: string
-          enum: [ViewerRequestRequired]
+          type: string # ViewerRequestRequired, ... (UI value, X keeps adding)
         message:
           type: string
 
@@ -723,8 +720,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityLeaveActionUnavailable
         reason:
-          type: string
-          enum: [ViewerNotMember]
+          type: string # ViewerNotMember, ... (UI value, X keeps adding)
         message:
           type: string
 
@@ -751,8 +747,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CommunityInvitesUnavailable
         reason:
-          type: string
-          enum: [Unavailable]
+          type: string # Unavailable, ... (UI value, X keeps adding)
         message:
           type: string
 
@@ -821,8 +816,7 @@ components:
         titleDetail:
           type: string
         footerIconType:
-          type: string
-          enum: [BirdwatchEyeOff, BirdwatchLevelLow]
+          type: string # BirdwatchEyeOff, BirdwatchLevelLow, ... (UI value, X keeps adding)
 
     BirdwatchPivotFooter:
       required:
@@ -1026,8 +1020,7 @@ components:
         - "name"
       properties:
         name:
-          type: string
-          enum: [production]
+          type: string # production, ... (UI value, X keeps adding)
 
     TweetCardPlatformDevice:
       required:
@@ -1062,6 +1055,7 @@ components:
           type: string
         type:
           type: string
+          enum: [STRING, IMAGE, USER, BOOLEAN, IMAGE_COLOR] # decides which *_value is present
         image_value:
           $ref: "#/components/schemas/TweetCardLegacyBindingValueDataImage"
         image_color_value:
@@ -1211,7 +1205,8 @@ components:
         conversation_owner_results:
           $ref: "#/components/schemas/ConversationOwnerResults"
         policy:
-          type: string # ByInvitation, Community, Subscribers, Verified; "Co" was also seen once (2026-10-16)
+          type: string
+          enum: [ByInvitation, Community, Co, Subscribers, Verified, MyNetwork] # Co is what X sends for some Community-limited tweets
 
     ConversationOwnerResults:
       required:
@@ -2161,8 +2156,7 @@ components:
         display_locations:
           type: array
           items:
-            type: string
-            enum: [TweetDetails, ForYouTimeline, RepliesTimeline]
+            type: string # TweetDetails, ForYouTimeline, RepliesTimeline, ... (UI value, X keeps adding)
         post_cta:
           $ref: "#/components/schemas/PostCta"
         scribe_id:
@@ -2327,7 +2321,8 @@ components:
         - "action"
       properties:
         action:
-          type: string # Reply, Retweet, QuoteTweet, Like, React, AddToBookmarks, AddToMoment, PinToProfile, ViewHiddenReplies, VoteOnPoll, ShowRetweetActionMenu, ReplyDownVote, SendViaDm, ViewPostEngagements, CopyLink, ... (X keeps adding UI actions)
+          type: string
+          enum: [Reply, Retweet, QuoteTweet, Like, React, AddToBookmarks, AddToMoment, PinToProfile, ViewHiddenReplies, VoteOnPoll, ShowRetweetActionMenu, ReplyDownVote, SendViaDm, ViewPostEngagements, CopyLink, ShareTweetVia, Embed, HideCommunityTweet, ViewTweetActivity]
 
     LimitedActionResults: # TweetWithVisibilityResults.limitedActionResults
       required:
@@ -2343,7 +2338,8 @@ components:
         - "action"
       properties:
         action:
-          type: string # same values as LimitedActionResultsData.action, plus ShareTweetVia
+          type: string
+          enum: [Reply, Retweet, QuoteTweet, Like, React, AddToBookmarks, AddToMoment, PinToProfile, ViewHiddenReplies, VoteOnPoll, ShowRetweetActionMenu, ReplyDownVote, SendViaDm, ViewPostEngagements, CopyLink, ShareTweetVia, Embed, HideCommunityTweet, ViewTweetActivity]
         prompt:
           $ref: "#/components/schemas/CtaLimitedActionPrompt" # Reply only
 
@@ -2357,8 +2353,7 @@ components:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # CtaLimitedActionPrompt
         cta_type:
-          type: string
-          enum: [SeeConversation]
+          type: string # SeeConversation, ... (UI value, X keeps adding)
         headline:
           $ref: "#/components/schemas/CtaLimitedActionPromptText"
         subtext:

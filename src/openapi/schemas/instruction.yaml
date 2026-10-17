@@ -123,8 +123,7 @@ components:
         type:
           $ref: "#/components/schemas/InstructionType" # TimelineShowAlert
         alertType:
-          type: string
-          enum: [NewTweets] # which else?
+          type: string # NewTweets, ... (UI value, X keeps adding)
         triggerDelayMs:
           type: integer
         displayDurationMs:
@@ -140,8 +139,7 @@ components:
         colorConfig:
           $ref: "#/components/schemas/TimelineShowAlertColorConfig"
         displayLocation:
-          type: string
-          enum: [Top] # which else?
+          type: string # Top, ... (UI value, X keeps adding)
         clientEventInfo:
           $ref: "./content.yaml#/components/schemas/ClientEventInfo"
 
@@ -234,8 +232,7 @@ components:
           type: string
           enum: [TimelineHalfCover]
         halfCoverDisplayType:
-          type: string
-          enum: [Cover]
+          type: string # Cover, ... (UI value, X keeps adding)
         primaryText:
           $ref: "#/components/schemas/Text"
         secondaryText:
@@ -308,8 +305,7 @@ components:
         clientEventInfo:
           $ref: "#/components/schemas/CtaClientEventInfo"
         buttonStyle:
-          type: string
-          enum: ["Primary"]
+          type: string # Primary, ... (UI value, X keeps adding)
 
     TimelineCoverBehavior:
       required:
@@ -347,8 +343,7 @@ components:
         - action
       properties:
         action:
-          type: string
-          enum: [primary_cta]
+          type: string # primary_cta, ... (UI value, X keeps adding)
 
     TimelineClearEntriesUnreadState:
       required:
