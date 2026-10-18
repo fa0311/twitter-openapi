@@ -4309,11 +4309,39 @@ components:
           items:
             type: object
           type: array
+        show_all_link_text:
+          type: string
         target_objects:
           items:
             type: object
           type: array
       type: object
+    NotificationUrl:
+      properties:
+        url:
+          type: string
+        urlType:
+          enum:
+          - ExternalUrl
+          - UrtEndpoint
+          type: string
+        urtEndpointOptions:
+          $ref: '#/components/schemas/NotificationUrtEndpointOptions'
+      required:
+      - url
+      - urlType
+    NotificationUrtEndpointOptions:
+      properties:
+        cacheId:
+          type: string
+        subtitle:
+          type: string
+        title:
+          type: string
+      required:
+      - cacheId
+      - subtitle
+      - title
     NotificationsResult:
       properties:
         __typename:
@@ -5299,7 +5327,7 @@ components:
         notification_icon:
           type: string
         notification_url:
-          $ref: '#/components/schemas/SocialContextLandingUrl'
+          $ref: '#/components/schemas/NotificationUrl'
         rich_message:
           $ref: '#/components/schemas/RichMessage'
         template:
@@ -5907,6 +5935,8 @@ components:
           type: string
         source:
           type: string
+        sports_post_context:
+          $ref: '#/components/schemas/TweetSportsPostContext'
         superFollowsReplyUserResult:
           $ref: '#/components/schemas/SuperFollowsReplyUserResult'
         trend_results:
@@ -6493,6 +6523,73 @@ components:
       properties:
         retweeters_timeline:
           $ref: '#/components/schemas/TimelineResult'
+    TweetSportsCompetitor:
+      properties:
+        abbreviation:
+          type: string
+        dark_logo_url:
+          format: uri
+          type: string
+        is_active:
+          type: boolean
+        is_winner:
+          type: boolean
+        logo_url:
+          format: uri
+          type: string
+        name:
+          type: string
+        score:
+          type: string
+        team_rest_id:
+          $ref: '#/components/schemas/TweetSportsRestId'
+      required:
+      - abbreviation
+      - dark_logo_url
+      - is_active
+      - is_winner
+      - logo_url
+      - name
+      - score
+      - team_rest_id
+    TweetSportsPostContext:
+      properties:
+        competitors:
+          items:
+            $ref: '#/components/schemas/TweetSportsCompetitor'
+          type: array
+        game_id:
+          $ref: '#/components/schemas/TweetSportsRestId'
+        league:
+          type: string
+        scheduled_at_ms:
+          pattern: ^[0-9]+$
+          type: string
+        state:
+          type: string
+        status_text:
+          type: string
+        title:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - competitors
+      - game_id
+      - league
+      - scheduled_at_ms
+      - state
+      - status_text
+      - title
+      - url
+    TweetSportsRestId:
+      properties:
+        rest_id:
+          pattern: ^[0-9]+$
+          type: string
+      required:
+      - rest_id
     TweetTombstone:
       additionalProperties: true
       properties:
