@@ -169,6 +169,8 @@ components:
         voiceInfo:
           type: object
           properties: {} # always {} (TweetDetail, 2026-10-17)
+        sports_post_context:
+          $ref: "#/components/schemas/TweetSportsPostContext" # a post about a game (HomeLatestTimeline, 2026-10-18)
         edit_control:
           $ref: "#/components/schemas/TweetEditControl"
         edit_prespective:
@@ -313,6 +315,76 @@ components:
         type:
           type: string
           enum: [Point]
+
+    TweetSportsPostContext: # the scoreboard card on a post about a game
+      required:
+        - "competitors"
+        - "game_id"
+        - "league"
+        - "scheduled_at_ms"
+        - "state"
+        - "status_text"
+        - "title"
+        - "url"
+      properties:
+        competitors:
+          type: array
+          items:
+            $ref: "#/components/schemas/TweetSportsCompetitor"
+        game_id:
+          $ref: "#/components/schemas/TweetSportsRestId"
+        league:
+          type: string # mlb, ...
+        scheduled_at_ms:
+          type: string
+          pattern: "^[0-9]+$"
+        state:
+          type: string # Final, ...
+        status_text:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    TweetSportsCompetitor:
+      required:
+        - "abbreviation"
+        - "dark_logo_url"
+        - "is_active"
+        - "is_winner"
+        - "logo_url"
+        - "name"
+        - "score"
+        - "team_rest_id"
+      properties:
+        abbreviation:
+          type: string
+        dark_logo_url:
+          type: string
+          format: uri
+        is_active:
+          type: boolean
+        is_winner:
+          type: boolean
+        logo_url:
+          type: string
+          format: uri
+        name:
+          type: string
+        score:
+          type: string
+        team_rest_id:
+          $ref: "#/components/schemas/TweetSportsRestId"
+
+    TweetSportsRestId:
+      required:
+        - "rest_id"
+      properties:
+        rest_id:
+          type: string
+          pattern: "^[0-9]+$"
 
     TweetEditControl:
       properties:

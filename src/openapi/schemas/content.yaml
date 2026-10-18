@@ -1013,7 +1013,7 @@ components:
         rich_message:
           $ref: "#/components/schemas/RichMessage"
         notification_url:
-          $ref: "#/components/schemas/SocialContextLandingUrl"
+          $ref: "#/components/schemas/NotificationUrl"
         template:
           $ref: "#/components/schemas/NotificationTemplate"
         timestamp_ms:
@@ -1059,11 +1059,39 @@ components:
         url:
           type: string # TimelineRichTextList, a relative path such as i/lists/<id>
 
+    NotificationUrl: # ExternalUrl, or an UrtEndpoint for the notification details (/2/notifications/view/{id}.json)
+      required:
+        - "url"
+        - "urlType"
+      properties:
+        url:
+          type: string
+        urlType:
+          type: string
+          enum: [ExternalUrl, UrtEndpoint]
+        urtEndpointOptions:
+          $ref: "#/components/schemas/NotificationUrtEndpointOptions"
+
+    NotificationUrtEndpointOptions:
+      required:
+        - "cacheId"
+        - "subtitle"
+        - "title"
+      properties:
+        cacheId:
+          type: string
+        subtitle:
+          type: string
+        title:
+          type: string
+
     NotificationTemplate:
       type: object
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # NotificationTemplate
+        show_all_link_text:
+          type: string # "Show all"
         target_objects:
           type: array
           items:
