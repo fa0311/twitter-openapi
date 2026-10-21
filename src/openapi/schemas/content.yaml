@@ -691,6 +691,8 @@ components:
           type: boolean
         unifiedCardOverride:
           type: string # JSON of a unified card (image_multi_dest_carousel_website seen on an ad)
+        remove_promoted_attribution_for_preroll:
+          type: boolean # video ads (HomeTimeline, 2026-10-21)
         renderLegacyWebsiteCard:
           type: boolean
         renderSalesCtaWebsiteCard:
