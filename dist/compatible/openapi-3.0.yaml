@@ -151,6 +151,8 @@ components:
           type: array
         isQuickPromote:
           type: boolean
+        remove_promoted_attribution_for_preroll:
+          type: boolean
         renderLegacyWebsiteCard:
           type: boolean
         renderSalesCtaWebsiteCard:
