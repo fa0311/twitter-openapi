@@ -3008,9 +3008,6 @@ components:
           type: string
         element:
           type: string
-      required:
-      - action
-      - element
     FeedbackInfo:
       properties:
         clientEventInfo:
@@ -4294,6 +4291,20 @@ components:
       - from_index
       - to_index
       - richtext_types
+    NotificationAdditionalContext:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        entities:
+          items:
+            type: object
+          type: array
+        text:
+          type: string
+      required:
+      - __typename
+      - entities
+      - text
     NotificationDetails:
       properties:
         impressionId:
@@ -4307,6 +4318,8 @@ components:
       properties:
         __typename:
           $ref: '#/components/schemas/TypeName'
+        additional_context:
+          $ref: '#/components/schemas/NotificationAdditionalContext'
         from_users:
           items:
             type: object
@@ -4642,6 +4655,8 @@ components:
       type: object
     RichMessageEntity:
       properties:
+        format:
+          type: string
         fromIndex:
           type: integer
         ref:
@@ -4650,7 +4665,6 @@ components:
           type: integer
       required:
       - fromIndex
-      - ref
       - toIndex
     RichMessageEntityRef:
       properties:
@@ -6725,6 +6739,7 @@ components:
       - TimelineLabel
       - TimelineEventSummary
       - AiTrend
+      - TimelineRichText
       - TimelineTimelineItem
       - TimelineUser
       - TimelineTimelineCursor

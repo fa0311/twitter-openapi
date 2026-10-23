@@ -16,6 +16,7 @@ components:
           TimelineLabel,
           TimelineEventSummary,
           AiTrend,
+          TimelineRichText,
           TimelineTimelineItem,
           TimelineUser,
           TimelineTimelineCursor,

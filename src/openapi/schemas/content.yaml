@@ -598,13 +598,10 @@ components:
         itemType:
           $ref: "#/components/schemas/ContentItemType" # TimelineCommunity
 
-    FeedbackClientEventInfo: # feedbackInfo and responseObjects.feedbackActions
-      required:
-        - "action"
-        - "element"
+    FeedbackClientEventInfo: # feedbackInfo and responseObjects.feedbackActions; any subset of the keys (notifications send {action} or {element} alone)
       properties:
         action:
-          type: string # click
+          type: string # click, see_less_often
         component:
           type: string
         element:
@@ -1033,16 +1030,17 @@ components:
         text:
           type: string
 
-    RichMessageEntity: # a user or a list mentioned in a notification message
+    RichMessageEntity: # a user or a list mentioned in a notification message, or a styled range
       required:
         - "fromIndex"
-        - "ref"
         - "toIndex"
       properties:
         fromIndex:
           type: integer
         ref:
           $ref: "#/components/schemas/RichMessageEntityRef"
+        format:
+          type: string # Strong (a styled range without ref, 2026-10-23)
         toIndex:
           type: integer
 
@@ -1060,6 +1058,21 @@ components:
           pattern: "^[0-9]+$" # TimelineRichTextList
         url:
           type: string # TimelineRichTextList, a relative path such as i/lists/<id>
+
+    NotificationAdditionalContext: # TimelineRichText under a notification template; only seen with empty text (2026-10-23)
+      required:
+        - "__typename"
+        - "entities"
+        - "text"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineRichText
+        entities:
+          type: array
+          items:
+            type: object # only seen empty
+        text:
+          type: string
 
     NotificationUrl: # ExternalUrl, or an UrtEndpoint for the notification details (/2/notifications/view/{id}.json)
       required:
@@ -1094,6 +1107,8 @@ components:
           $ref: "./typename.yaml#/components/schemas/TypeName" # NotificationTemplate
         show_all_link_text:
           type: string # "Show all"
+        additional_context:
+          $ref: "#/components/schemas/NotificationAdditionalContext"
         target_objects:
           type: array
           items:
