@@ -21901,7 +21901,9 @@ paths:
       - post
   /graphql/{pathQueryId}/UserByRestId:
     get:
-      description: get user by rest id
+      deprecated: true
+      description: 'get user by rest id. Deprecated: X answers 403 outside a browser
+        since 2026-10'
       operationId: getUserByRestId
       parameters:
       - in: path
@@ -24930,7 +24932,9 @@ paths:
       - tweet
   /graphql/{pathQueryId}/UsersByRestIds:
     get:
-      description: get users by rest ids
+      deprecated: true
+      description: 'get users by rest ids. Deprecated: X answers 403 outside a browser
+        since 2026-10'
       operationId: getUsersByRestIds
       parameters:
       - in: path

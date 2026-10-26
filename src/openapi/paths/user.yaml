@@ -21,7 +21,8 @@ paths:
   /graphql/{pathQueryId}/UserByRestId:
     get:
       operationId: getUserByRestId
-      description: "get user by rest id"
+      description: "get user by rest id. Deprecated: X answers 403 outside a browser since 2026-10"
+      deprecated: true
       responses:
         "200":
           description: Successful operation
@@ -35,7 +36,8 @@ paths:
   /graphql/{pathQueryId}/UsersByRestIds:
     get:
       operationId: getUsersByRestIds
-      description: "get users by rest ids"
+      description: "get users by rest ids. Deprecated: X answers 403 outside a browser since 2026-10"
+      deprecated: true
       responses:
         "200":
           description: Successful operation
