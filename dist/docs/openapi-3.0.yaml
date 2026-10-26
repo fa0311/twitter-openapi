@@ -4507,6 +4507,77 @@ components:
       required:
       - __typename
       - avatar
+    Preroll:
+      properties:
+        dynamicPrerollType:
+          type: string
+        mediaInfo:
+          $ref: '#/components/schemas/PrerollMediaInfo'
+        prerollId:
+          type: string
+      required:
+      - dynamicPrerollType
+      - mediaInfo
+      - prerollId
+    PrerollCallToAction:
+      properties:
+        callToActionType:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - callToActionType
+      - url
+    PrerollMediaInfo:
+      properties:
+        advertiserName:
+          type: string
+        advertiserProfileImageUrl:
+          format: uri
+          type: string
+        callToAction:
+          $ref: '#/components/schemas/PrerollCallToAction'
+        durationMillis:
+          type: integer
+        publisherResults:
+          $ref: '#/components/schemas/UserResults'
+        renderAdByAdvertiserName:
+          type: boolean
+        uuid:
+          type: string
+        videoVariants:
+          items:
+            $ref: '#/components/schemas/PrerollVideoVariant'
+          type: array
+      required:
+      - advertiserName
+      - advertiserProfileImageUrl
+      - callToAction
+      - durationMillis
+      - publisherResults
+      - renderAdByAdvertiserName
+      - uuid
+      - videoVariants
+    PrerollMetadata:
+      properties:
+        preroll:
+          $ref: '#/components/schemas/Preroll'
+      required:
+      - preroll
+    PrerollVideoVariant:
+      properties:
+        bitrate:
+          type: integer
+        contentType:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - bitrate
+      - contentType
+      - url
     PrimaryCommunityTopic:
       properties:
         topic_id:
@@ -5672,6 +5743,8 @@ components:
           $ref: '#/components/schemas/Highlight'
         itemType:
           $ref: '#/components/schemas/ContentItemType'
+        prerollMetadata:
+          $ref: '#/components/schemas/PrerollMetadata'
         promotedMetadata:
           $ref: '#/components/schemas/PromotedMetadata'
         socialContext:
