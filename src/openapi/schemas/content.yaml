@@ -283,10 +283,88 @@ components:
           $ref: "#/components/schemas/SocialContextUnion"
         promotedMetadata:
           $ref: "#/components/schemas/PromotedMetadata"
+        prerollMetadata:
+          $ref: "#/components/schemas/PrerollMetadata" # a video ad played before the post's video (HomeTimeline, 2026-10-26)
         highlights:
           $ref: "#/components/schemas/Highlight"
         hasModeratedReplies:
           type: boolean
+
+    PrerollMetadata:
+      required:
+        - "preroll"
+      properties:
+        preroll:
+          $ref: "#/components/schemas/Preroll"
+
+    Preroll:
+      required:
+        - "dynamicPrerollType"
+        - "mediaInfo"
+        - "prerollId"
+      properties:
+        dynamicPrerollType:
+          type: string # Amplify
+        mediaInfo:
+          $ref: "#/components/schemas/PrerollMediaInfo"
+        prerollId:
+          type: string # <media type>_<media id>, e.g. 13_2105104720855781377
+
+    PrerollMediaInfo:
+      required:
+        - "advertiserName"
+        - "advertiserProfileImageUrl"
+        - "callToAction"
+        - "durationMillis"
+        - "publisherResults"
+        - "renderAdByAdvertiserName"
+        - "uuid"
+        - "videoVariants"
+      properties:
+        advertiserName:
+          type: string
+        advertiserProfileImageUrl:
+          type: string
+          format: uri
+        callToAction:
+          $ref: "#/components/schemas/PrerollCallToAction"
+        durationMillis:
+          type: integer
+        publisherResults:
+          $ref: "./user.yaml#/components/schemas/UserResults"
+        renderAdByAdvertiserName:
+          type: boolean
+        uuid:
+          type: string
+        videoVariants:
+          type: array
+          items:
+            $ref: "#/components/schemas/PrerollVideoVariant"
+
+    PrerollCallToAction:
+      required:
+        - "callToActionType"
+        - "url"
+      properties:
+        callToActionType:
+          type: string # SEE_MORE
+        url:
+          type: string
+          format: uri
+
+    PrerollVideoVariant:
+      required:
+        - "bitrate"
+        - "contentType"
+        - "url"
+      properties:
+        bitrate:
+          type: integer
+        contentType:
+          type: string # video/mp4
+        url:
+          type: string
+          format: uri
 
     TimelineUser:
       required:
