@@ -706,11 +706,9 @@ components:
         result:
           $ref: "#/components/schemas/UserLabelMentionUser"
 
-    UserLabelMentionUser:
+    UserLabelMentionUser: # core and rest_id are null when the mentioned account is gone (2026-10-27)
       required:
         - "__typename"
-        - "core"
-        - "rest_id"
       properties:
         __typename:
           $ref: "./typename.yaml#/components/schemas/TypeName" # User
