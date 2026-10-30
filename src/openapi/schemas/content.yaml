@@ -783,6 +783,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/KeyValue"
+        urlOverride:
+          type: string # a third-party click tracker (HomeTimeline ads, 2026-10-29)
+          format: uri
+        urlOverrideType:
+          type: string # Dcm
 
     KeyValue:
       required:

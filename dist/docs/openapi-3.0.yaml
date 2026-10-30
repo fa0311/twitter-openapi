@@ -1293,6 +1293,11 @@ components:
       - tradable_platforms
     ClickTrackingInfo:
       properties:
+        urlOverride:
+          format: uri
+          type: string
+        urlOverrideType:
+          type: string
         urlParams:
           items:
             $ref: '#/components/schemas/KeyValue'
@@ -7167,8 +7172,6 @@ components:
           type: string
       required:
       - __typename
-      - core
-      - rest_id
     UserLabelMentionUserCore:
       properties:
         screen_name:
