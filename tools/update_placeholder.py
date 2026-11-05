@@ -71,7 +71,8 @@ def check_variables(name: str, placeholder: dict, recorded: dict):
 
 def apply_recorded(placeholder: dict, recorded: dict[tuple[str, str], dict]) -> list[str]:
     """Overwrite with the recorded request. The frontend switches an operation to POST only when the query string
-    would get too long (HomeLatestTimeline with seenTweetIds), so POST is taken whenever it was recorded."""
+    would get too long (HomeLatestTimeline with seenTweetIds): the method the entry already has is kept while it
+    is still recorded (the clients derive the transaction id from it), otherwise POST is taken when it was recorded."""
     by_name: dict[str, dict] = {}
     for (name, method), hit in recorded.items():
         by_name.setdefault(name, hit)
@@ -79,7 +80,7 @@ def apply_recorded(placeholder: dict, recorded: dict[tuple[str, str], dict]) -> 
     for name, entry in placeholder.items():
         if not is_graphql(entry) or name not in by_name:
             continue
-        hit = recorded.get((name, "POST"), by_name[name])
+        hit = recorded.get((name, entry["@method"])) or recorded.get((name, "POST"), by_name[name])
         before = json.dumps(entry, sort_keys=True)
         entry["@path"] = hit["@path"]
         entry["@method"] = hit["@method"]

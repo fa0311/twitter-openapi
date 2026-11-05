@@ -4915,6 +4915,8 @@ components:
       properties:
         info:
           $ref: '#/components/schemas/SmarttagTagInfo'
+        rest_id:
+          type: string
       required:
       - info
     SmarttagTagInfo:
@@ -8830,8 +8832,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: sSuYIbdpe1f2v9AtD-sYeQ
-          example: sSuYIbdpe1f2v9AtD-sYeQ
+          default: zm3JmUpYWDXIUsf_33-ZrA
+          example: zm3JmUpYWDXIUsf_33-ZrA
           type: string
       - content:
           application/json:
@@ -8970,6 +8972,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -9026,6 +9032,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - spaces_2022_h2_spaces_communities
               - spaces_2022_h2_clipping
@@ -9042,6 +9052,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -9065,6 +9076,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               type: object
@@ -9374,8 +9386,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: FAmIZKHUZkuRclhoxxRAuw
-          example: FAmIZKHUZkuRclhoxxRAuw
+          default: i8I7E-QFR0dnhrYk8SRgXA
+          example: i8I7E-QFR0dnhrYk8SRgXA
           type: string
       - content:
           application/json:
@@ -9489,6 +9501,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -9541,6 +9557,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - profile_label_improvements_pcf_label_in_post_enabled
@@ -9558,6 +9578,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -9580,6 +9601,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -9705,8 +9727,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 1fjk4lmK45a-giaZTubqbg
-          example: 1fjk4lmK45a-giaZTubqbg
+          default: yeHz6Pbno-kijajOobPLNg
+          example: yeHz6Pbno-kijajOobPLNg
           type: string
       - content:
           application/json:
@@ -9849,6 +9871,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -9901,6 +9927,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -9918,6 +9948,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -9940,6 +9971,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -9989,8 +10021,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: VxJMx0-NXe-GO_4jC1lNhw
-          example: VxJMx0-NXe-GO_4jC1lNhw
+          default: 3sreNJCdPWiqkUE9eoE92g
+          example: 3sreNJCdPWiqkUE9eoE92g
           type: string
       - content:
           application/json:
@@ -10104,6 +10136,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -10156,6 +10192,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -10173,6 +10213,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -10195,6 +10236,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -10263,8 +10305,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: VjWsfItbiMLeajpZ90NJeg
-          example: VjWsfItbiMLeajpZ90NJeg
+          default: jbqsfdzI0EMFHAtpEC6vyA
+          example: jbqsfdzI0EMFHAtpEC6vyA
           type: string
       - content:
           application/json:
@@ -10397,6 +10439,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -10449,6 +10495,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -10466,6 +10516,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -10488,6 +10539,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -10537,8 +10589,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: NtEAlAR40O3S7Lf8s6XUTQ
-          example: NtEAlAR40O3S7Lf8s6XUTQ
+          default: zov7jwKdTlWkL1pfblnigA
+          example: zov7jwKdTlWkL1pfblnigA
           type: string
       - content:
           application/json:
@@ -10662,6 +10714,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -10710,6 +10766,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - creator_subscriptions_tweet_preview_api_enabled
               - premium_content_api_read_enabled
@@ -10720,6 +10780,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -10747,6 +10808,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               type: object
@@ -10796,8 +10858,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HoclSXITeTmRfg1TF3G-RQ
-          example: HoclSXITeTmRfg1TF3G-RQ
+          default: EZ8YjsOa_EBMOMv815eqZw
+          example: EZ8YjsOa_EBMOMv815eqZw
           type: string
       - content:
           application/json:
@@ -10911,6 +10973,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -10963,6 +11029,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -10980,6 +11050,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -11002,6 +11073,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -11241,8 +11313,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: RP7MUDwIF83cj8gTe2POnA
-          example: RP7MUDwIF83cj8gTe2POnA
+          default: DCvD6yLzBhMnu0k4GXyc9g
+          example: DCvD6yLzBhMnu0k4GXyc9g
           type: string
       - content:
           application/json:
@@ -11375,6 +11447,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -11427,6 +11503,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -11444,6 +11524,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -11466,6 +11547,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -11515,8 +11597,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: Q09zXXRL9twh6SlnRaOUMg
-          example: Q09zXXRL9twh6SlnRaOUMg
+          default: aFpvv7GZ1Z0fVIPLjzeWHg
+          example: aFpvv7GZ1Z0fVIPLjzeWHg
           type: string
       - content:
           application/json:
@@ -11644,6 +11726,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -11696,6 +11782,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -11713,6 +11803,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -11735,6 +11826,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -11784,8 +11876,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: yxMlTG2M9KO6zSmu8gcfAg
-          example: yxMlTG2M9KO6zSmu8gcfAg
+          default: J40ERczeKx9pcsGDOy4RUw
+          example: J40ERczeKx9pcsGDOy4RUw
           type: string
       - content:
           application/json:
@@ -11923,6 +12015,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -11975,6 +12071,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -11992,6 +12092,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -12014,6 +12115,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -12142,8 +12244,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: wXey4HQTUdYUlWWXltWMpg
-          example: wXey4HQTUdYUlWWXltWMpg
+          default: jegGVG9ZRxfsKgRH8TGCKw
+          example: jegGVG9ZRxfsKgRH8TGCKw
           type: string
       - content:
           application/json:
@@ -12291,6 +12393,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -12343,6 +12449,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -12360,6 +12470,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -12382,6 +12493,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -12431,8 +12543,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: IMQS8zyOjCLnWBkm6wNcQg
-          example: IMQS8zyOjCLnWBkm6wNcQg
+          default: l8W_aoK20ZnDerU_sxx7tA
+          example: l8W_aoK20ZnDerU_sxx7tA
           type: string
       - content:
           application/json:
@@ -12565,6 +12677,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -12617,6 +12733,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -12634,6 +12754,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -12656,6 +12777,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -13849,8 +13971,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: BMib5Px-wibex8mYlOUhmQ
-          example: BMib5Px-wibex8mYlOUhmQ
+          default: 48W-AbOlM55_eQT_rzUECA
+          example: 48W-AbOlM55_eQT_rzUECA
           type: string
       - content:
           application/json:
@@ -13978,6 +14100,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -14030,6 +14156,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - profile_label_improvements_pcf_label_in_post_enabled
@@ -14047,6 +14177,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -14069,6 +14200,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -14118,8 +14250,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: bY118dk8ns_5JzfzIMeiBw
-          example: bY118dk8ns_5JzfzIMeiBw
+          default: GVGJ2AHQjQLkIPlIZ9LiSw
+          example: GVGJ2AHQjQLkIPlIZ9LiSw
           type: string
       - content:
           application/json:
@@ -14233,6 +14365,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -14285,6 +14421,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -14302,6 +14442,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -14324,6 +14465,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -14854,8 +14996,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: stpzFPAIZ2qv8s2lRzPOnQ
-          example: stpzFPAIZ2qv8s2lRzPOnQ
+          default: QgDRdL1wGs4vS0mZ0qKHkA
+          example: QgDRdL1wGs4vS0mZ0qKHkA
           type: string
       - content:
           application/json:
@@ -14998,6 +15140,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -15050,6 +15196,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -15067,6 +15217,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -15089,6 +15240,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -15138,8 +15290,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 479-dF4nq3sH1uu0n4Wdxg
-          example: 479-dF4nq3sH1uu0n4Wdxg
+          default: 84Pvhd0CoG9mTIHy5DxrdA
+          example: 84Pvhd0CoG9mTIHy5DxrdA
           type: string
       - content:
           application/json:
@@ -15282,6 +15434,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -15334,6 +15490,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -15351,6 +15511,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -15373,6 +15534,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -15422,8 +15584,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: ath0FIohYC_c3Hj3SsxoCg
-          example: ath0FIohYC_c3Hj3SsxoCg
+          default: QPaR5ONQTW_KyiEXQCHP4g
+          example: QPaR5ONQTW_KyiEXQCHP4g
           type: string
       - content:
           application/json:
@@ -15566,6 +15728,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -15618,6 +15784,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -15635,6 +15805,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -15657,6 +15828,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -15706,8 +15878,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: cW93hZ3nlNYbYcUROF5r5A
-          example: cW93hZ3nlNYbYcUROF5r5A
+          default: jGftuM3PU3SFT3MUzwLopw
+          example: jGftuM3PU3SFT3MUzwLopw
           type: string
       - content:
           application/json:
@@ -15845,6 +16017,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -15897,6 +16073,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -15914,6 +16094,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -15936,6 +16117,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -15985,8 +16167,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: XtgLdT7L-zyrDDKH2dO0lw
-          example: XtgLdT7L-zyrDDKH2dO0lw
+          default: rOLZrEBkGfx9WIb0-cx4GA
+          example: rOLZrEBkGfx9WIb0-cx4GA
           type: string
       - content:
           application/json:
@@ -16100,6 +16282,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -16152,6 +16338,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -16169,6 +16359,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -16191,6 +16382,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -16259,8 +16451,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: z3OlkLD0_MFgCvUXcN1XeA
-          example: z3OlkLD0_MFgCvUXcN1XeA
+          default: VTpTM1R7_HJKUMFcZkoedQ
+          example: VTpTM1R7_HJKUMFcZkoedQ
           type: string
       - content:
           application/json:
@@ -16374,6 +16566,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -16426,6 +16622,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -16443,6 +16643,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -16465,6 +16666,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -16587,8 +16789,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: NmDBT3APtNxDpMqIEauu7A
-          example: NmDBT3APtNxDpMqIEauu7A
+          default: GjleyyGw4xvWe5tn8EQt9w
+          example: GjleyyGw4xvWe5tn8EQt9w
           type: string
       - content:
           application/json:
@@ -16606,10 +16808,6 @@ paths:
                   default: true
                   example: true
                   type: boolean
-                latestControlAvailable:
-                  default: true
-                  example: true
-                  type: boolean
                 requestContext:
                   default: launch
                   example: launch
@@ -16623,7 +16821,6 @@ paths:
               required:
               - count
               - includePromotedContent
-              - latestControlAvailable
               - requestContext
               - seenTweetIds
               - enableRanking
@@ -16743,6 +16940,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -16795,6 +16996,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -16812,6 +17017,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -16834,6 +17040,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -16897,8 +17104,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: svLglq6U2wlTyZMGDDcLYQ
-          example: svLglq6U2wlTyZMGDDcLYQ
+          default: fedFLLzmiCAuzPgA8lyh8Q
+          example: fedFLLzmiCAuzPgA8lyh8Q
           type: string
       - content:
           application/json:
@@ -16909,10 +17116,6 @@ paths:
                   example: 20
                   type: integer
                 includePromotedContent:
-                  default: true
-                  example: true
-                  type: boolean
-                latestControlAvailable:
                   default: true
                   example: true
                   type: boolean
@@ -16933,7 +17136,6 @@ paths:
               required:
               - count
               - includePromotedContent
-              - latestControlAvailable
               - requestContext
               - seenTweetIds
               - withCommunity
@@ -17053,6 +17255,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -17105,6 +17311,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -17122,6 +17332,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -17144,6 +17355,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -17207,8 +17419,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: mu4us66Q6RRNOywVQhGtRg
-          example: mu4us66Q6RRNOywVQhGtRg
+          default: a6ZbplAY_XzbVt5jy_Ko_Q
+          example: a6ZbplAY_XzbVt5jy_Ko_Q
           type: string
       - content:
           application/json:
@@ -17361,6 +17573,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -17413,6 +17629,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -17430,6 +17650,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -17452,6 +17673,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -18266,8 +18488,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: RgfF9JYDXXI1F-ZrDqjUfQ
-          example: RgfF9JYDXXI1F-ZrDqjUfQ
+          default: dCYL1r8KgXjvgV6t1vtSZA
+          example: dCYL1r8KgXjvgV6t1vtSZA
           type: string
       - content:
           application/json:
@@ -18400,6 +18622,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -18452,6 +18678,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -18469,6 +18699,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -18491,6 +18722,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -18540,8 +18772,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: yQ_0-CTekcCY2oFRTskpSw
-          example: yQ_0-CTekcCY2oFRTskpSw
+          default: _RDpx--fQKSccuRlGpEIoA
+          example: _RDpx--fQKSccuRlGpEIoA
           type: string
       - content:
           application/json:
@@ -18674,6 +18906,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -18726,6 +18962,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -18743,6 +18983,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -18765,6 +19006,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -19197,8 +19439,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 9kXBVnbdRxymiEvafaXCQA
-          example: 9kXBVnbdRxymiEvafaXCQA
+          default: AUuFRTs_uR18jkZRequlMA
+          example: AUuFRTs_uR18jkZRequlMA
           type: string
       - content:
           application/json:
@@ -19312,6 +19554,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -19364,6 +19610,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -19381,6 +19631,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -19403,6 +19654,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -19471,8 +19723,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: n52ZU-g4FEWzgdPkv1UC2g
-          example: n52ZU-g4FEWzgdPkv1UC2g
+          default: QmqW0VFRmLPfBtViuvVtBA
+          example: QmqW0VFRmLPfBtViuvVtBA
           type: string
       - content:
           application/json:
@@ -19605,6 +19857,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -19657,6 +19913,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -19674,6 +19934,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -19696,6 +19957,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -19745,8 +20007,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: FMDRDwDKo_nl4kT_AKWOCg
-          example: FMDRDwDKo_nl4kT_AKWOCg
+          default: HWkp6lUaAkEJ-Y_Q57korw
+          example: HWkp6lUaAkEJ-Y_Q57korw
           type: string
       - content:
           application/json:
@@ -19860,6 +20122,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -19912,6 +20178,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -19929,6 +20199,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -19951,6 +20222,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -20014,8 +20286,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: EUX2EwvgT4f9F7sC4A59Eg
-          example: EUX2EwvgT4f9F7sC4A59Eg
+          default: YX7xisHsNjDlFHW-MVXINQ
+          example: YX7xisHsNjDlFHW-MVXINQ
           type: string
       - content:
           application/json:
@@ -20148,6 +20420,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -20200,6 +20476,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -20217,6 +20497,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -20239,6 +20520,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -20442,8 +20724,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 9gzvtg9l4CmhrfO6KMgKCA
-          example: 9gzvtg9l4CmhrfO6KMgKCA
+          default: ZB1yNma3uVFb0gtV9kEWiA
+          example: ZB1yNma3uVFb0gtV9kEWiA
           type: string
       - content:
           application/json:
@@ -20586,6 +20868,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -20638,6 +20924,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -20655,6 +20945,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -20677,6 +20968,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -20726,8 +21018,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: irezafrnzav4Ulf1vDkEBg
-          example: irezafrnzav4Ulf1vDkEBg
+          default: 3fEctOs2-FvTB7_mvm1hrQ
+          example: 3fEctOs2-FvTB7_mvm1hrQ
           type: string
       - content:
           application/json:
@@ -20880,6 +21172,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -20932,6 +21228,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -20949,6 +21249,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -20971,6 +21272,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -21168,8 +21470,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 3BlMtudy4N-d78ch7zTLZQ
-          example: 3BlMtudy4N-d78ch7zTLZQ
+          default: qpemjmVMoTWDvcRT43JIVQ
+          example: qpemjmVMoTWDvcRT43JIVQ
           type: string
       - content:
           application/json:
@@ -21337,6 +21639,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -21389,6 +21695,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -21406,6 +21716,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -21428,6 +21739,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -21526,8 +21838,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: xZfFqfOmKQu_OXekGI59mg
-          example: xZfFqfOmKQu_OXekGI59mg
+          default: U8lc5aomF5krJzZ9vJ9wxg
+          example: U8lc5aomF5krJzZ9vJ9wxg
           type: string
       - content:
           application/json:
@@ -21671,6 +21983,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -21719,6 +22035,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - creator_subscriptions_tweet_preview_api_enabled
               - premium_content_api_read_enabled
@@ -21729,6 +22049,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -21756,6 +22077,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_graphql_timeline_navigation_enabled
               type: object
@@ -22190,8 +22512,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: Ducf_uu7enyuuE2kjOwFcw
-          example: Ducf_uu7enyuuE2kjOwFcw
+          default: clDqp0dS11B6eNOEF6oYhQ
+          example: clDqp0dS11B6eNOEF6oYhQ
           type: string
       - content:
           application/json:
@@ -22334,6 +22656,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -22386,6 +22712,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -22403,6 +22733,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -22425,6 +22756,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -22801,8 +23133,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: QLGv_wL7wziqsHhU0K100w
-          example: QLGv_wL7wziqsHhU0K100w
+          default: 0L_XictlTdXhxJyxhMDxQA
+          example: 0L_XictlTdXhxJyxhMDxQA
           type: string
       - content:
           application/json:
@@ -22950,6 +23282,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -23002,6 +23338,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -23019,6 +23359,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -23041,6 +23382,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -23109,8 +23451,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: X9Te-FyiGcoV2qNrnx9w3w
-          example: X9Te-FyiGcoV2qNrnx9w3w
+          default: e2U1WlALwVhjkDBJnkcLnA
+          example: e2U1WlALwVhjkDBJnkcLnA
           type: string
       - content:
           application/json:
@@ -23258,6 +23600,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -23310,6 +23656,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -23327,6 +23677,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -23349,6 +23700,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -23417,8 +23769,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: jVw4ob-dDfVzoaz2G6NpVA
-          example: jVw4ob-dDfVzoaz2G6NpVA
+          default: q5tCz6UCo5FOK8DSqsjS2A
+          example: q5tCz6UCo5FOK8DSqsjS2A
           type: string
       - content:
           application/json:
@@ -23561,6 +23913,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -23613,6 +23969,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -23630,6 +23990,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -23652,6 +24013,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -23720,8 +24082,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: SgMBGaLeFpBoPYftpsn8fw
-          example: SgMBGaLeFpBoPYftpsn8fw
+          default: lsccw_JwPlNPMP26U3y-0g
+          example: lsccw_JwPlNPMP26U3y-0g
           type: string
       - content:
           application/json:
@@ -23864,6 +24226,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -23916,6 +24282,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -23933,6 +24303,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -23955,6 +24326,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
@@ -24629,8 +25001,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: oAFGPinlLUFMoa3u70mnAw
-          example: oAFGPinlLUFMoa3u70mnAw
+          default: pPxk1XFyAcJJ28hNFCLjTA
+          example: pPxk1XFyAcJJ28hNFCLjTA
           type: string
       - content:
           application/json:
@@ -24783,6 +25155,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                responsive_web_made_on_x_label_enabled:
+                  default: false
+                  example: false
+                  type: boolean
                 responsive_web_nested_quote_preview_enabled:
                   default: true
                   example: true
@@ -24835,6 +25211,10 @@ paths:
                   default: true
                   example: true
                   type: boolean
+                x_elections_post_context_enabled:
+                  default: true
+                  example: true
+                  type: boolean
               required:
               - rweb_video_screen_enabled
               - rweb_cashtags_enabled
@@ -24852,6 +25232,7 @@ paths:
               - rweb_cashtags_composer_attachment_enabled
               - responsive_web_jetfuel_frame
               - rweb_sports_post_context_enabled
+              - x_elections_post_context_enabled
               - responsive_web_grok_share_attachment_enabled
               - responsive_web_grok_annotations_enabled
               - articles_preview_enabled
@@ -24874,6 +25255,7 @@ paths:
               - responsive_web_nested_quote_preview_enabled
               - responsive_web_grok_image_annotation_enabled
               - responsive_web_grok_imagine_annotation_enabled
+              - responsive_web_made_on_x_label_enabled
               - responsive_web_grok_community_note_auto_translation_is_enabled
               - responsive_web_enhance_cards_enabled
               type: object
