@@ -8762,6 +8762,69 @@ paths:
                 type: string
       tags:
       - v2.0-get
+  /2/timeline/feedback.json:
+    post:
+      description: post timeline feedback
+      operationId: postTimelineFeedback
+      parameters:
+      - in: query
+        name: feedback_type
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: action_metadata
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                feedback_type:
+                  default: DontLike
+                  example: DontLike
+                  type: string
+                undo:
+                  default: 'false'
+                  example: 'false'
+                  type: string
+              required:
+              - feedback_type
+              - undo
+        description: body
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            x-connection-hash:
+              schema:
+                type: string
+            x-rate-limit-limit:
+              schema:
+                type: integer
+            x-rate-limit-remaining:
+              schema:
+                type: integer
+            x-rate-limit-reset:
+              schema:
+                type: integer
+            x-response-time:
+              schema:
+                type: integer
+            x-tfe-preserve-body:
+              schema:
+                type: boolean
+            x-transaction-id:
+              schema:
+                type: string
+            x-twitter-response-tags:
+              schema:
+                type: string
+      tags:
+      - v2.0-post
   /graphql/{pathQueryId}/AboutAccountQuery:
     get:
       description: 'About this account: join date, where the account is based, username

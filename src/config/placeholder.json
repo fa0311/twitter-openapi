@@ -1741,6 +1741,10 @@
         "include_ext_edit_control": true,
         "ext": "mediaStats,highlightedLabel,hasNftAvatar,voiceInfo,birdwatchPivot,enrichments,superFollowMetadata,unmentionInfo,editControl,vibe"
     },
+    "timeline/feedback.json": {
+        "feedback_type": "DontLike",
+        "undo": "false"
+    },
     "#=====NotImplemented====": {},
     "DataSaverMode": {
         "@path": "/i/api/graphql/xF6sXnKJfS2AOylzxRjf6A/DataSaverMode",
