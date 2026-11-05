@@ -1842,6 +1842,8 @@ components:
       properties:
         info:
           $ref: "#/components/schemas/SmarttagTagInfo"
+        rest_id:
+          type: string # the ticker; newer query versions only
 
     SmarttagTagInfo:
       properties:

@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: Twitter OpenAPI
+  version: 0.0.1
+
+paths:
+  /2/timeline/feedback.json:
+    post:
+      operationId: postTimelineFeedback
+      description: post timeline feedback
+      parameters: # the query of feedbackUrl / endpoint in the timeline (e.g. /2/timeline/feedback.json?feedback_type=DontLike&action_metadata=...)
+        - name: feedback_type
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: action_metadata
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+      tags:
+        - "v2.0-post"
