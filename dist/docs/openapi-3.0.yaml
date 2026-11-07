@@ -2841,6 +2841,7 @@ components:
         promotedTrend:
           $ref: '#/components/schemas/PromotedTrend'
         promotedTrendDescription:
+          nullable: true
           type: string
         promotedTrendName:
           type: string
@@ -5939,6 +5940,7 @@ components:
         promotedTrend:
           $ref: '#/components/schemas/PromotedTrend'
         promotedTrendDescription:
+          nullable: true
           type: string
         promotedTrendName:
           type: string
@@ -6636,6 +6638,7 @@ components:
         name:
           type: string
         score:
+          nullable: true
           type: string
         team_rest_id:
           $ref: '#/components/schemas/TweetSportsRestId'

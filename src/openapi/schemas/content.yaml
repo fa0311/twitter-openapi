@@ -946,6 +946,7 @@ components:
           $ref: "#/components/schemas/PromotedTrend"
         promotedTrendDescription:
           type: string
+          nullable: true # null on some promoted trends (nightly 2026-11-07)
         promotedTrendName:
           type: string
         promotedTrendQueryTerm:
@@ -1051,6 +1052,7 @@ components:
           $ref: "#/components/schemas/PromotedTrend"
         promotedTrendDescription:
           type: string
+          nullable: true # null on some promoted trends (nightly 2026-11-07)
         promotedTrendName:
           type: string
         promotedTrendQueryTerm:
