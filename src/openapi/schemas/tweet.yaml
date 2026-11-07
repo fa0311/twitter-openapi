@@ -375,6 +375,7 @@ components:
           type: string
         score:
           type: string
+          nullable: true # before the game (nightly 2026-11-07)
         team_rest_id:
           $ref: "#/components/schemas/TweetSportsRestId"
 
