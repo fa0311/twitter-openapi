@@ -5189,13 +5189,13 @@ components:
         url:
           format: uri
           type: string
-        url_type:
+        urlType:
           enum:
           - ExternalUrl
           type: string
       required:
       - url
-      - url_type
+      - urlType
     TimelineEventSummary:
       properties:
         __typename:
@@ -5279,6 +5279,8 @@ components:
           $ref: '#/components/schemas/CoverCta'
         primaryText:
           $ref: '#/components/schemas/Text'
+        secondaryCoverCta:
+          $ref: '#/components/schemas/CoverCta'
         secondaryText:
           $ref: '#/components/schemas/Text'
         type:
@@ -5292,7 +5294,6 @@ components:
       - primaryCoverCta
       - secondaryText
       - impressionCallbacks
-      - dismissible
     TimelineLabel:
       properties:
         __typename:
