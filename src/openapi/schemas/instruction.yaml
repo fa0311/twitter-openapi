@@ -226,7 +226,6 @@ components:
         - primaryCoverCta
         - secondaryText
         - impressionCallbacks
-        - dismissible
       properties:
         type:
           type: string
@@ -239,12 +238,14 @@ components:
           $ref: "#/components/schemas/Text"
         primaryCoverCta:
           $ref: "#/components/schemas/CoverCta"
+        secondaryCoverCta:
+          $ref: "#/components/schemas/CoverCta" # the review-email cover (nightly 2026-11-11)
         impressionCallbacks:
           type: array
           items:
             $ref: "#/components/schemas/Callback"
         dismissible:
-          type: boolean
+          type: boolean # absent on the review-email cover (nightly 2026-11-11)
 
     Text:
       required:
@@ -320,12 +321,12 @@ components:
     TimelineCoverBehaviorUrl:
       required:
         - "url"
-        - "url_type"
+        - "urlType"
       properties:
         url:
           type: string
           format: uri
-        url_type:
+        urlType:
           type: string
           enum: ["ExternalUrl"]
 
