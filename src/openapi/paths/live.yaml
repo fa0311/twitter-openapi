@@ -185,9 +185,11 @@ components:
         audioSpace:
           $ref: "#/components/schemas/AudioSpace"
 
-    AudioSpace: # only is_subscribed is left once the space is no longer available (nightly 2026-11-17)
+    AudioSpace:
       required:
         - "is_subscribed"
+        - "metadata"
+        - "participants"
       properties:
         is_subscribed:
           type: boolean
@@ -231,10 +233,8 @@ components:
         - "rest_id"
         - "started_at"
         - "state"
-        - "title"
         - "total_live_listeners"
         - "total_replay_watched"
-        - "tweet_results"
         - "updated_at"
       properties:
         content_type:
@@ -283,13 +283,13 @@ components:
         state:
           type: string # Running, Ended, ...
         title:
-          type: string
+          type: string # absent in 2 of 24 spaces (2026-11-17)
         total_live_listeners:
           type: integer
         total_replay_watched:
           type: integer
         tweet_results:
-          $ref: "./../schemas/content.yaml#/components/schemas/ItemResult"
+          $ref: "./../schemas/content.yaml#/components/schemas/ItemResult" # absent in 1 of 24 spaces (2026-11-17)
         updated_at:
           type: integer
 
