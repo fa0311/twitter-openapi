@@ -562,6 +562,8 @@ components:
           $ref: '#/components/schemas/AudioSpaceSharings'
       required:
       - is_subscribed
+      - metadata
+      - participants
     AudioSpaceData:
       properties:
         audioSpace:

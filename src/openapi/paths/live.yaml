@@ -185,9 +185,11 @@ components:
         audioSpace:
           $ref: "#/components/schemas/AudioSpace"
 
-    AudioSpace: # only is_subscribed when the id resolves to no space (a made-up id answers the same)
+    AudioSpace:
       required:
         - "is_subscribed"
+        - "metadata"
+        - "participants"
       properties:
         is_subscribed:
           type: boolean
