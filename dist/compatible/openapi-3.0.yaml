@@ -562,8 +562,6 @@ components:
           $ref: '#/components/schemas/AudioSpaceSharings'
       required:
       - is_subscribed
-      - metadata
-      - participants
     AudioSpaceData:
       properties:
         audioSpace:
@@ -844,6 +842,7 @@ components:
           enum:
           - TimelineUrl
           - TimelineRichTextHashtag
+          - TimelineRichTextCashtag
           type: string
         url:
           format: uri
@@ -6639,7 +6638,6 @@ components:
         name:
           type: string
         score:
-          nullable: true
           type: string
         team_rest_id:
           $ref: '#/components/schemas/TweetSportsRestId'
@@ -6650,7 +6648,6 @@ components:
       - is_winner
       - logo_url
       - name
-      - score
       - team_rest_id
     TweetSportsPostContext:
       properties:
