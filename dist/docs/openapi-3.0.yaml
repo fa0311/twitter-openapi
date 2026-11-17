@@ -650,10 +650,8 @@ components:
       - rest_id
       - started_at
       - state
-      - title
       - total_live_listeners
       - total_replay_watched
-      - tweet_results
       - updated_at
     AudioSpaceParticipant:
       properties:
@@ -8904,8 +8902,8 @@ paths:
             schema:
               properties:
                 id:
-                  default: 1qxoNYAlYMXJv
-                  example: 1qxoNYAlYMXJv
+                  default: 1yNGabwXqXnJj
+                  example: 1yNGabwXqXnJj
                   type: string
                 isMetatagsQuery:
                   default: true
