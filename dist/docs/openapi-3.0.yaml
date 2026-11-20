@@ -131,11 +131,8 @@ components:
         username_changes:
           $ref: '#/components/schemas/AboutProfileUsernameChanges'
       required:
-      - account_based_in
-      - affiliate_username
       - learn_more_url
       - location_accurate
-      - source
       - username_changes
     AboutProfileUsernameChanges:
       properties:
@@ -1730,6 +1727,10 @@ components:
           type: integer
         name:
           type: string
+        primary_community_topic:
+          $ref: '#/components/schemas/PrimaryCommunityTopic'
+        question:
+          type: string
         role:
           type: string
         rules:
@@ -1748,7 +1749,6 @@ components:
       - admin_results
       - created_at
       - creator_results
-      - custom_banner_media
       - default_banner_media
       - description
       - id
@@ -1800,6 +1800,10 @@ components:
           type: string
         __typename:
           $ref: '#/components/schemas/TypeName'
+        message:
+          type: string
+        reason:
+          type: string
       required:
       - __isCommunityJoinActionResult
       - __typename
@@ -2271,6 +2275,12 @@ components:
       required:
       - conversation_owner_results
       - policy
+    ConversationControlDetails:
+      properties:
+        mode:
+          type: string
+      required:
+      - mode
     ConversationDetails:
       properties:
         conversationSection:
@@ -4609,6 +4619,8 @@ components:
           type: string
         entities:
           $ref: '#/components/schemas/ProfileBioEntities'
+        with_held_scope:
+          type: string
         withheld_in_countries:
           items:
             type: string
@@ -5994,6 +6006,8 @@ components:
           $ref: '#/components/schemas/CommunityResult'
         content_disclosure:
           $ref: '#/components/schemas/ContentDisclosure'
+        conversation_control_details:
+          $ref: '#/components/schemas/ConversationControlDetails'
         core:
           $ref: '#/components/schemas/UserResultCore'
         edit_control:

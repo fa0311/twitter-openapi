@@ -331,11 +331,8 @@ components:
 
     AboutProfile:
       required:
-        - "account_based_in"
-        - "affiliate_username"
         - "learn_more_url"
         - "location_accurate"
-        - "source"
         - "username_changes"
       properties:
         account_based_in:

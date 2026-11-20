@@ -237,6 +237,15 @@ components:
           $ref: "#/components/schemas/ContentDisclosure"
         postCta:
           $ref: "#/components/schemas/TweetPostCta"
+        conversation_control_details:
+          $ref: "#/components/schemas/ConversationControlDetails"
+
+    ConversationControlDetails:
+      required:
+        - "mode"
+      properties:
+        mode:
+          type: string # Community, Verified
 
     JetfuelAttachment: # responsive_web_jetfuel_frame; an opaque frame payload (seen on an NFL live chat card)
       required:

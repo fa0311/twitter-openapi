@@ -579,6 +579,8 @@ components:
           type: string
         entities:
           $ref: "#/components/schemas/ProfileBioEntities"
+        with_held_scope:
+          type: string # user
         withheld_in_countries:
           type: array
           items:

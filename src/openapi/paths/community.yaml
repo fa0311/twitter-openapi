@@ -125,7 +125,6 @@ components:
         - "admin_results"
         - "created_at"
         - "creator_results"
-        - "custom_banner_media"
         - "default_banner_media"
         - "description"
         - "id"
@@ -187,6 +186,10 @@ components:
         moderator_count:
           type: integer
         name:
+          type: string
+        primary_community_topic:
+          $ref: "./../schemas/tweet.yaml#/components/schemas/PrimaryCommunityTopic"
+        question:
           type: string
         role:
           type: string
@@ -257,7 +260,11 @@ components:
         __isCommunityJoinActionResult:
           type: string
         __typename:
-          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityJoinAction
+          $ref: "./../schemas/typename.yaml#/components/schemas/TypeName" # CommunityJoinAction, CommunityJoinActionUnavailable
+        message:
+          type: string
+        reason:
+          type: string # ViewerRequestRequired
 
     CommunityPageLeaveActionResult:
       required:
