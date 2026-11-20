@@ -758,6 +758,8 @@ components:
         - "renderLegacyWebsiteCard"
         - "renderSalesCtaWebsiteCard"
       properties:
+        allowSpineClicks:
+          type: boolean
         destinationUrlParams:
           type: array
           items:

@@ -191,6 +191,10 @@ components:
       properties:
         dm_unread_count:
           type: integer
+        grok_bot_primary_unread_count:
+          type: integer
+        grok_bot_unread_conversations:
+          type: integer
         is_from_urt:
           type: boolean
         ntab_unread_count:
@@ -327,17 +331,16 @@ components:
 
     AboutProfile:
       required:
-        - "account_based_in"
-        - "affiliate_username"
         - "learn_more_url"
         - "location_accurate"
-        - "source"
         - "username_changes"
       properties:
         account_based_in:
           type: string
         affiliate_username:
           type: string
+        created_country_accurate:
+          type: boolean
         learn_more_url:
           type: string
           format: uri
@@ -366,6 +369,8 @@ components:
       properties:
         id:
           type: string
+        is_identity_verified:
+          type: boolean
         reason:
           $ref: "#/components/schemas/AboutAccountVerificationInfoReason"
 
