@@ -8836,8 +8836,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: XRqGa7EeokUU5kppkh13EA
-          example: XRqGa7EeokUU5kppkh13EA
+          default: TzOG2twZEfhr9KmClvVVqA
+          example: TzOG2twZEfhr9KmClvVVqA
           type: string
       - in: query
         name: variables
@@ -8921,7 +8921,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "rweb_cashtags_enabled": true,
+            true, "post_ctas_fetch_enabled": true, "rweb_cashtags_enabled": true,
             "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
             true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
@@ -8945,7 +8945,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "rweb_cashtags_enabled": true,
+            true, "post_ctas_fetch_enabled": true, "rweb_cashtags_enabled": true,
             "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
             true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
@@ -9225,8 +9225,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: i8I7E-QFR0dnhrYk8SRgXA
-          example: i8I7E-QFR0dnhrYk8SRgXA
+          default: IJbJ4jU4OvOeYZOIC6eG6w
+          example: IJbJ4jU4OvOeYZOIC6eG6w
           type: string
       - in: query
         name: features
@@ -9248,7 +9248,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9271,7 +9271,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9389,8 +9389,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: yeHz6Pbno-kijajOobPLNg
-          example: yeHz6Pbno-kijajOobPLNg
+          default: HP_mH6gi0qyrYpnRxVovew
+          example: HP_mH6gi0qyrYpnRxVovew
           type: string
       - in: query
         name: variables
@@ -9421,7 +9421,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9444,7 +9444,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9495,8 +9495,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 3sreNJCdPWiqkUE9eoE92g
-          example: 3sreNJCdPWiqkUE9eoE92g
+          default: pgYWLRBVcyTTpHZPbfstqA
+          example: pgYWLRBVcyTTpHZPbfstqA
           type: string
       - in: query
         name: features
@@ -9518,7 +9518,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9541,7 +9541,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9599,8 +9599,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: jbqsfdzI0EMFHAtpEC6vyA
-          example: jbqsfdzI0EMFHAtpEC6vyA
+          default: fjf5b5Lu82lYMSBRhppK2g
+          example: fjf5b5Lu82lYMSBRhppK2g
           type: string
       - in: query
         name: variables
@@ -9629,7 +9629,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9652,7 +9652,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9807,8 +9807,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: EZ8YjsOa_EBMOMv815eqZw
-          example: EZ8YjsOa_EBMOMv815eqZw
+          default: r4OjZGZWNqdV6smWr30C3w
+          example: r4OjZGZWNqdV6smWr30C3w
           type: string
       - in: query
         name: features
@@ -9830,7 +9830,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -9853,7 +9853,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10032,8 +10032,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: DCvD6yLzBhMnu0k4GXyc9g
-          example: DCvD6yLzBhMnu0k4GXyc9g
+          default: K05dSl4ojiEs2GConYTQeA
+          example: K05dSl4ojiEs2GConYTQeA
           type: string
       - in: query
         name: variables
@@ -10062,7 +10062,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10085,7 +10085,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10136,8 +10136,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: aFpvv7GZ1Z0fVIPLjzeWHg
-          example: aFpvv7GZ1Z0fVIPLjzeWHg
+          default: 8LcJBzj6qJuxobaWelUjew
+          example: 8LcJBzj6qJuxobaWelUjew
           type: string
       - in: query
         name: variables
@@ -10166,7 +10166,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10189,7 +10189,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10240,8 +10240,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: J40ERczeKx9pcsGDOy4RUw
-          example: J40ERczeKx9pcsGDOy4RUw
+          default: m_IF9tFIf_iDPaRbree99g
+          example: m_IF9tFIf_iDPaRbree99g
           type: string
       - in: query
         name: variables
@@ -10272,7 +10272,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10295,7 +10295,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10408,8 +10408,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: jegGVG9ZRxfsKgRH8TGCKw
-          example: jegGVG9ZRxfsKgRH8TGCKw
+          default: bKYFeT4aNUQDMHx4gyXIoQ
+          example: bKYFeT4aNUQDMHx4gyXIoQ
           type: string
       - in: query
         name: variables
@@ -10440,7 +10440,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10463,7 +10463,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10514,8 +10514,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: l8W_aoK20ZnDerU_sxx7tA
-          example: l8W_aoK20ZnDerU_sxx7tA
+          default: A_0eI5aoTb8yUzDUzwm5yw
+          example: A_0eI5aoTb8yUzDUzwm5yw
           type: string
       - in: query
         name: variables
@@ -10544,7 +10544,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -10567,7 +10567,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -11754,8 +11754,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 48W-AbOlM55_eQT_rzUECA
-          example: 48W-AbOlM55_eQT_rzUECA
+          default: CVExg1KY6Ec9BioRBbI8Jg
+          example: CVExg1KY6Ec9BioRBbI8Jg
           type: string
       - in: query
         name: variables
@@ -11784,7 +11784,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -11807,7 +11807,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -11858,8 +11858,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: GVGJ2AHQjQLkIPlIZ9LiSw
-          example: GVGJ2AHQjQLkIPlIZ9LiSw
+          default: cM7LCaFTQnUWRA1jMWH6Pg
+          example: cM7LCaFTQnUWRA1jMWH6Pg
           type: string
       - in: query
         name: features
@@ -11881,7 +11881,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -11904,7 +11904,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12239,8 +12239,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: QgDRdL1wGs4vS0mZ0qKHkA
-          example: QgDRdL1wGs4vS0mZ0qKHkA
+          default: Xe3y9_ndZ9-RtWz8zd_wpg
+          example: Xe3y9_ndZ9-RtWz8zd_wpg
           type: string
       - in: query
         name: variables
@@ -12271,7 +12271,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12294,7 +12294,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12345,8 +12345,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 84Pvhd0CoG9mTIHy5DxrdA
-          example: 84Pvhd0CoG9mTIHy5DxrdA
+          default: N-5YQGqcnNO164XwsevHCA
+          example: N-5YQGqcnNO164XwsevHCA
           type: string
       - in: query
         name: variables
@@ -12377,7 +12377,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12400,7 +12400,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12451,8 +12451,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: QPaR5ONQTW_KyiEXQCHP4g
-          example: QPaR5ONQTW_KyiEXQCHP4g
+          default: eDqlbOS46zda8jDT8dEQ_Q
+          example: eDqlbOS46zda8jDT8dEQ_Q
           type: string
       - in: query
         name: variables
@@ -12483,7 +12483,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12506,7 +12506,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12557,8 +12557,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: jGftuM3PU3SFT3MUzwLopw
-          example: jGftuM3PU3SFT3MUzwLopw
+          default: UToImY30uYcerTaw8gu21w
+          example: UToImY30uYcerTaw8gu21w
           type: string
       - in: query
         name: variables
@@ -12589,7 +12589,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12612,7 +12612,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12663,8 +12663,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: rOLZrEBkGfx9WIb0-cx4GA
-          example: rOLZrEBkGfx9WIb0-cx4GA
+          default: 60lEf-uOZXGMD_KQoO1WSw
+          example: 60lEf-uOZXGMD_KQoO1WSw
           type: string
       - in: query
         name: features
@@ -12686,7 +12686,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12709,7 +12709,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12767,8 +12767,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: VTpTM1R7_HJKUMFcZkoedQ
-          example: VTpTM1R7_HJKUMFcZkoedQ
+          default: Tm8OZBTJ5F_dQNdP1KEoug
+          example: Tm8OZBTJ5F_dQNdP1KEoug
           type: string
       - in: query
         name: features
@@ -12790,7 +12790,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12813,7 +12813,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12924,8 +12924,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: GjleyyGw4xvWe5tn8EQt9w
-          example: GjleyyGw4xvWe5tn8EQt9w
+          default: IVA5BUbeYPTrpYekQH7jiA
+          example: IVA5BUbeYPTrpYekQH7jiA
           type: string
       - in: query
         name: variables
@@ -12956,7 +12956,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -12979,7 +12979,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13037,8 +13037,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: fedFLLzmiCAuzPgA8lyh8Q
-          example: fedFLLzmiCAuzPgA8lyh8Q
+          default: KmJCeZ__ef1fNos7tKN_fg
+          example: KmJCeZ__ef1fNos7tKN_fg
           type: string
       - in: query
         name: variables
@@ -13069,7 +13069,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13092,7 +13092,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13150,8 +13150,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: a6ZbplAY_XzbVt5jy_Ko_Q
-          example: a6ZbplAY_XzbVt5jy_Ko_Q
+          default: ZjyvI1V9gajq5eclHCObzA
+          example: ZjyvI1V9gajq5eclHCObzA
           type: string
       - in: query
         name: variables
@@ -13184,7 +13184,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13207,7 +13207,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13635,8 +13635,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: dCYL1r8KgXjvgV6t1vtSZA
-          example: dCYL1r8KgXjvgV6t1vtSZA
+          default: UMc_lPEeKz_WiKSY8ZT7yw
+          example: UMc_lPEeKz_WiKSY8ZT7yw
           type: string
       - in: query
         name: variables
@@ -13665,7 +13665,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13688,7 +13688,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13739,8 +13739,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: _RDpx--fQKSccuRlGpEIoA
-          example: _RDpx--fQKSccuRlGpEIoA
+          default: vgA6FHTOKJQ1rJ7iiHc0xw
+          example: vgA6FHTOKJQ1rJ7iiHc0xw
           type: string
       - in: query
         name: variables
@@ -13769,7 +13769,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -13792,7 +13792,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14049,8 +14049,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: AUuFRTs_uR18jkZRequlMA
-          example: AUuFRTs_uR18jkZRequlMA
+          default: jFPCAdAJea4Pi9P6L0FlsQ
+          example: jFPCAdAJea4Pi9P6L0FlsQ
           type: string
       - in: query
         name: features
@@ -14072,7 +14072,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14095,7 +14095,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14153,8 +14153,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: QmqW0VFRmLPfBtViuvVtBA
-          example: QmqW0VFRmLPfBtViuvVtBA
+          default: QSCka9VX6mjOARoPtihe0Q
+          example: QSCka9VX6mjOARoPtihe0Q
           type: string
       - in: query
         name: variables
@@ -14183,7 +14183,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14206,7 +14206,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14257,8 +14257,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: HWkp6lUaAkEJ-Y_Q57korw
-          example: HWkp6lUaAkEJ-Y_Q57korw
+          default: HeY9oqJxWKHSTCoBXaWnHg
+          example: HeY9oqJxWKHSTCoBXaWnHg
           type: string
       - in: query
         name: features
@@ -14280,7 +14280,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14303,7 +14303,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14361,8 +14361,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: YX7xisHsNjDlFHW-MVXINQ
-          example: YX7xisHsNjDlFHW-MVXINQ
+          default: XANkUc-HLIcCl8q85rGC2A
+          example: XANkUc-HLIcCl8q85rGC2A
           type: string
       - in: query
         name: variables
@@ -14391,7 +14391,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14414,7 +14414,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14589,8 +14589,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: ZB1yNma3uVFb0gtV9kEWiA
-          example: ZB1yNma3uVFb0gtV9kEWiA
+          default: VzgCyBwfqzAvPjK2E4U2vA
+          example: VzgCyBwfqzAvPjK2E4U2vA
           type: string
       - in: query
         name: variables
@@ -14621,7 +14621,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14644,7 +14644,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14695,8 +14695,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 3fEctOs2-FvTB7_mvm1hrQ
-          example: 3fEctOs2-FvTB7_mvm1hrQ
+          default: vLHjqbDv7TPFMBkIIO1nOA
+          example: vLHjqbDv7TPFMBkIIO1nOA
           type: string
       - in: query
         name: variables
@@ -14729,7 +14729,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14752,7 +14752,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14922,8 +14922,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: qpemjmVMoTWDvcRT43JIVQ
-          example: qpemjmVMoTWDvcRT43JIVQ
+          default: dQDdKtt882nl-Km98FJGSQ
+          example: dQDdKtt882nl-Km98FJGSQ
           type: string
       - in: query
         name: variables
@@ -14958,7 +14958,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -14981,7 +14981,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15072,7 +15072,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "rweb_cashtags_enabled": true,
+            true, "post_ctas_fetch_enabled": true, "rweb_cashtags_enabled": true,
             "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
             true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
@@ -15095,7 +15095,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "rweb_cashtags_enabled": true,
+            true, "post_ctas_fetch_enabled": true, "rweb_cashtags_enabled": true,
             "freedom_of_speech_not_reach_fetch_enabled": true, "standardized_nudges_misinfo":
             true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
@@ -15383,8 +15383,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: clDqp0dS11B6eNOEF6oYhQ
-          example: clDqp0dS11B6eNOEF6oYhQ
+          default: vukXwNm6argozncYmHqZDQ
+          example: vukXwNm6argozncYmHqZDQ
           type: string
       - in: query
         name: variables
@@ -15415,7 +15415,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15438,7 +15438,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15607,8 +15607,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: 0L_XictlTdXhxJyxhMDxQA
-          example: 0L_XictlTdXhxJyxhMDxQA
+          default: ZFKu1DFS63hgrkLzR3Hsdw
+          example: ZFKu1DFS63hgrkLzR3Hsdw
           type: string
       - in: query
         name: variables
@@ -15639,7 +15639,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15662,7 +15662,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15720,8 +15720,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: e2U1WlALwVhjkDBJnkcLnA
-          example: e2U1WlALwVhjkDBJnkcLnA
+          default: fpl-c0_APDI3nZ1CeeBMbg
+          example: fpl-c0_APDI3nZ1CeeBMbg
           type: string
       - in: query
         name: variables
@@ -15752,7 +15752,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15775,7 +15775,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15833,8 +15833,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: q5tCz6UCo5FOK8DSqsjS2A
-          example: q5tCz6UCo5FOK8DSqsjS2A
+          default: bWzOK-jDN4SYVcF6AQ22Qw
+          example: bWzOK-jDN4SYVcF6AQ22Qw
           type: string
       - in: query
         name: variables
@@ -15865,7 +15865,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15888,7 +15888,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -15946,8 +15946,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: lsccw_JwPlNPMP26U3y-0g
-          example: lsccw_JwPlNPMP26U3y-0g
+          default: ytLS5NE_Bm3wQBztZWFtAQ
+          example: ytLS5NE_Bm3wQBztZWFtAQ
           type: string
       - in: query
         name: variables
@@ -15978,7 +15978,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -16001,7 +16001,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -16277,8 +16277,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: pPxk1XFyAcJJ28hNFCLjTA
-          example: pPxk1XFyAcJJ28hNFCLjTA
+          default: 1UmMb8X-BFHS98GG6DyRsQ
+          example: 1UmMb8X-BFHS98GG6DyRsQ
           type: string
       - in: query
         name: variables
@@ -16311,7 +16311,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -16334,7 +16334,7 @@ paths:
             true, "responsive_web_twitter_article_tweet_consumption_enabled": true,
             "content_disclosure_indicator_enabled": true, "content_disclosure_ai_generated_indicator_enabled":
             true, "responsive_web_grok_show_grok_translated_post": true, "responsive_web_grok_analysis_button_from_backend":
-            true, "post_ctas_fetch_enabled": false, "freedom_of_speech_not_reach_fetch_enabled":
+            true, "post_ctas_fetch_enabled": true, "freedom_of_speech_not_reach_fetch_enabled":
             true, "standardized_nudges_misinfo": true, "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":
             true, "longform_notetweets_rich_text_read_enabled": true, "longform_notetweets_inline_media_enabled":
             false, "responsive_web_nested_quote_preview_enabled": true, "responsive_web_grok_image_annotation_enabled":
@@ -16520,8 +16520,8 @@ paths:
         name: pathQueryId
         required: true
         schema:
-          default: q4Npr1-FYRWyXsRzPckwEA
-          example: q4Npr1-FYRWyXsRzPckwEA
+          default: I7FbT7Bfw_If9nT5q6PUQQ
+          example: I7FbT7Bfw_If9nT5q6PUQQ
           type: string
       - in: query
         name: variables
