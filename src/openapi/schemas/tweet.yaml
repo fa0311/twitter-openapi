@@ -264,7 +264,17 @@ components:
         rest_id:
           type: string
         size_variant:
-          type: integer
+          type: integer # 0, 1
+        candle_size: # the four chart fields: together on both recorded attachments with size_variant 1, on none of the 62 others
+          type: string # 5m, 1D
+        timeframe:
+          type: string # 1D, 1Y
+        from_timestamp_ms:
+          type: string
+          pattern: "^[0-9]+$"
+        to_timestamp_ms:
+          type: string
+          pattern: "^[0-9]+$"
 
     TweetLegacyPlace: # geo-tagged post (27 recorded)
       required:
