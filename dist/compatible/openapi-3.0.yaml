@@ -1277,10 +1277,20 @@ components:
       - endpoint
     CashtagAttachment:
       properties:
+        candle_size:
+          type: string
+        from_timestamp_ms:
+          pattern: ^[0-9]+$
+          type: string
         rest_id:
           type: string
         size_variant:
           type: integer
+        timeframe:
+          type: string
+        to_timestamp_ms:
+          pattern: ^[0-9]+$
+          type: string
       required:
       - rest_id
     CashtagInfo:
