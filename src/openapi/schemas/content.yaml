@@ -227,6 +227,7 @@ components:
         - $ref: "#/components/schemas/TimelineTwitterList"
         - $ref: "#/components/schemas/TimelineLabel"
         - $ref: "#/components/schemas/TimelineEventSummary"
+        - $ref: "#/components/schemas/TimelineSmartTag"
 
       discriminator:
         propertyName: __typename
@@ -261,6 +262,7 @@ components:
           TimelineTwitterList,
           TimelineLabel,
           TimelineEventSummary,
+          TimelineSmartTag,
         ]
 
     TimelineTweet:
@@ -1220,6 +1222,32 @@ components:
           type: integer
         payload:
           type: string
+
+    TimelineSmartTag: # the ticker card that opens a cashtag search (12 recorded)
+      required:
+        - "__typename"
+        - "itemType"
+        - "active"
+        - "restId"
+        - "supportsOhlc"
+        - "tradablePlatforms"
+      properties:
+        __typename:
+          $ref: "./typename.yaml#/components/schemas/TypeName" # TimelineSmartTag
+        itemType:
+          $ref: "#/components/schemas/ContentItemType" # TimelineSmartTag
+        active:
+          type: boolean
+        restId:
+          type: string # TSLA, BTC
+        supportsOhlc:
+          type: boolean
+        themeOverride:
+          type: string # Dark (1 of 12)
+        tradablePlatforms: # empty in all 12
+          type: array
+          items:
+            type: object
 
     TimelineTwitterList:
       required:

@@ -2257,6 +2257,7 @@ components:
       - TimelineTwitterList
       - TimelineLabel
       - TimelineEventSummary
+      - TimelineSmartTag
       type: string
     ContentUnion:
       discriminator:
@@ -3587,6 +3588,7 @@ components:
       - $ref: '#/components/schemas/TimelineTwitterList'
       - $ref: '#/components/schemas/TimelineLabel'
       - $ref: '#/components/schemas/TimelineEventSummary'
+      - $ref: '#/components/schemas/TimelineSmartTag'
     ItemResult:
       properties:
         __typename:
@@ -5640,6 +5642,31 @@ components:
       - type
       - clientEventInfo
       - cover
+    TimelineSmartTag:
+      properties:
+        __typename:
+          $ref: '#/components/schemas/TypeName'
+        active:
+          type: boolean
+        itemType:
+          $ref: '#/components/schemas/ContentItemType'
+        restId:
+          type: string
+        supportsOhlc:
+          type: boolean
+        themeOverride:
+          type: string
+        tradablePlatforms:
+          items:
+            type: object
+          type: array
+      required:
+      - __typename
+      - itemType
+      - active
+      - restId
+      - supportsOhlc
+      - tradablePlatforms
     TimelineTerminateTimeline:
       properties:
         direction:
@@ -6853,6 +6880,7 @@ components:
       - TimelineTwitterList
       - TimelineLabel
       - TimelineEventSummary
+      - TimelineSmartTag
       - AiTrend
       - TimelineRichText
       - TimelineTimelineItem
