@@ -15,6 +15,7 @@ components:
           TimelineTwitterList,
           TimelineLabel,
           TimelineEventSummary,
+          TimelineSmartTag,
           AiTrend,
           TimelineRichText,
           TimelineTimelineItem,
